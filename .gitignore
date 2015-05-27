@@ -1,5 +1,6 @@
 **/webmd
 .DS_Store
+.sass-cache
 
 # NPM Packages #
 #################
