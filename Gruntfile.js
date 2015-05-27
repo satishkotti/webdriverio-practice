@@ -12,7 +12,6 @@ module.exports = function (grunt) {
 
     require('load-grunt-tasks')(grunt);
 
-
     grunt.initConfig({
         // File Path Setup
         dirSrc : 'src',
