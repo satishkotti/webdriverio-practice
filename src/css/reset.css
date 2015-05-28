@@ -9,3 +9,15 @@
     margin-top: 0px;
     position: static;
 }
+#s3 {
+    width: auto;
+    float: none;
+    display: table-cell;
+    vertical-align: top;
+    padding-right: 15px;
+}
+#s4 {
+    float: none;
+    width: 320px;
+    display: table-cell;
+}
