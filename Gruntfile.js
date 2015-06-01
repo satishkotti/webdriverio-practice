@@ -85,7 +85,7 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    '<%= dirDist %>/<%= dirDctmPbJsPath %>/funded-editorial.js' : '<%= dirSrc %>/js/funded-editorial.js'
+                    '<%= dirDist %>/<%= dirDctmPbJsPath %>/funded-editorial.min.js' : '<%= dirSrc %>/js/funded-editorial.js'
                 }
             }
         },

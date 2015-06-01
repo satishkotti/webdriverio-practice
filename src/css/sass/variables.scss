@@ -15,6 +15,7 @@ $large_screen: "(min-width : 1824px)";
 $small_screen: "(min-width : 676px)";
 
 // Smartphones (not using orientation query)
-$smartphone: "(min-width : 320px) and (max-width : 480px)";
+//$smartphone: "(min-width : 320px) and (max-width : 480px)";
+$smartphone: "(min-width : 320px) and (max-width : 736px)";
 $smartphone_landscape: "(min-width : 321px)";
 $smartphone_portrait: "(max-width : 320px)";
