@@ -1,17 +1,20 @@
-// Colors
-$light-orange : #FA8D18;
-$orange : #f67f00;
-$dark-orange : #BD6100;
-$light-blue : #f5f9fa;
-$blue : #1295cc;
-$dark-blue : #0F7194;
-$black : #222222;
-$light-grey : #ebebeb;
-$medium-grey : #aaaaaa;
-$dark-grey : #333333;
+// Screen Type (Retina or Non-Retina)
+$non_retina: "(-webkit-min-device-pixel-ratio : 1)";
+$retina: "(-webkit-min-device-pixel-ratio : 2) and (min-resolution : 192dpi)";
 
-// Link Colors
-$link-blue : #1295cc;
+// Desktop & Laptop
+$desktop_laptop: "(min-width : 1025px)";
 
-// Text Shadows
-$text-shadow : 0 0 7px rgba(0,0,0,.5);
+// iPad
+$ipad: "(min-width : 768px) and (max-width : 1024px)";
+
+// Large Screen
+$large_screen: "(min-width : 1824px)";
+
+// Small Screen
+$small_screen: "(min-width : 676px)";
+
+// Smartphones (not using orientation query)
+$smartphone: "(min-width : 320px) and (max-width : 480px)";
+$smartphone_landscape: "(min-width : 321px)";
+$smartphone_portrait: "(max-width : 320px)";

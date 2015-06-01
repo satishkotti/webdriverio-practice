@@ -1,0 +1,16 @@
+/* Desktops and laptops ----------- */
+@media only screen
+  and #{$desktop_laptop} {
+
+  /* STYLES GO HERE */
+
+}
+
+/* Desktops and laptops - Retina ----------- */
+@media only screen
+  and #{$desktop_laptop}
+  and #{$retina} {
+
+  /* STYLES GO HERE */
+
+}

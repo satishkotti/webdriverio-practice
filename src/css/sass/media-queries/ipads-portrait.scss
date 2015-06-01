@@ -1,0 +1,18 @@
+/* Tablets, iPads (portrait) ----------- */
+@media only screen
+  and #{$ipad}
+  and (orientation : portrait) {
+
+  /* STYLES GO HERE */
+
+}
+
+/* Tablets, iPads (portrait) - Retina ----------- */
+@media only screen
+  and #{$ipad}
+  and (orientation : portrait)
+  and #{$retina} {
+
+  /* STYLES GO HERE */
+
+}

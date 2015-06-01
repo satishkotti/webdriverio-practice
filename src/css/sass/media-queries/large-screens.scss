@@ -1,0 +1,16 @@
+/* Large screens : Non-Retina ----------- */
+@media only screen
+  and #{$large_screen} {
+
+  /* STYLES GO HERE */
+
+}
+
+/* Large screens : Retina ----------- */
+@media only screen
+  and #{$large_screen}
+  and #{$retina} {
+
+  /* STYLES GO HERE */
+
+}

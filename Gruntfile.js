@@ -34,7 +34,10 @@ module.exports = function (grunt) {
                     sourcemap: 'none'
                 },
                 files: {
-                    '<%= dirSrc %>/css/funded-editorial.css' : '<%= dirSrc %>/css/funded-editorial.scss'
+                    '<%= dirSrc %>/css/funded-editorial.css' : '<%= dirSrc %>/css/funded-editorial.scss',
+                    '<%= dirSrc %>/css/build/masthead.css' : '<%= dirSrc %>/css/sass/masthead.scss',
+                    '<%= dirSrc %>/css/build/attribution.css' : '<%= dirSrc %>/css/sass/attribution.scss',
+                    '<%= dirSrc %>/css/build/footer.css' : '<%= dirSrc %>/css/sass/footer.scss'
                 }
             }
         },

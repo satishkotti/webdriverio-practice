@@ -1,0 +1,41 @@
+/* Small screens ----------- */
+@media only screen
+  and #{$small_screen} {
+  
+  /* STYLES GO HERE */
+
+  .device-type::after {
+    content: "Small Screens";
+  }
+  #bannerAd_rdr {
+    display: none !important;
+  }
+  #s3 {
+    padding-right: 15px !important;
+  }
+  #s4 {
+    display: table-cell !important;
+  }
+}
+
+
+/* Small screens : Retina ----------- */
+@media only screen
+  and #{$small_screen}
+  and #{$retina} {
+
+  /* STYLES GO HERE */
+
+  .device-type::after {
+    content: "Small Screen|Retina";
+  }
+  #bannerAd_rdr {
+    display: none !important;
+  }
+  #s3 {
+    padding-right: 15px !important;
+  }
+  #s4 {
+    display: table-cell !important;
+  }
+}

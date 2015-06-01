@@ -4,6 +4,10 @@
 // Mixins
 @import 'sass/mixins';
 
+
+// Animations
+@import 'sass/animate';
+
 // Media Queries
 @import 'sass/media-queries/desktops-laptops';
 @import 'sass/media-queries/small-desktops-laptops';
@@ -14,9 +18,3 @@
 @import 'sass/media-queries/smartphones-landscape';
 @import 'sass/media-queries/smartphones-portrait-landscape';
 @import 'sass/media-queries/smartphones-portrait';
-
-// Animations
-@import 'sass/animate';
-
-// Masthead
-@import 'sass/masthead.scss';

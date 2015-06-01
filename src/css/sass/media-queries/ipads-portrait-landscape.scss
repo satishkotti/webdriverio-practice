@@ -1,0 +1,15 @@
+/* Tablets, iPads (portrait and landscape) ----------- */
+@media only screen
+  and #{$ipad} {
+
+  /* STYLES GO HERE */
+
+}
+
+@media only screen
+  and #{$ipad}
+  and #{$retina} {
+
+  /* STYLES GO HERE */
+
+}

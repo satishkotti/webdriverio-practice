@@ -1,0 +1,19 @@
+/* Tablets, iPads (landscape) ----------- */
+@media only screen
+  and #{$ipad}
+  and (orientation : landscape) {
+
+  /* STYLES GO HERE */
+
+}
+
+
+/* Tablets, iPads (landscape) - Retina ----------- */
+@media only screen
+  and #{$ipad}
+  and (orientation : landscape)
+  and #{$retina} {
+
+  /* STYLES GO HERE */
+
+}
