@@ -31,11 +31,11 @@
                         <li><a href="http://www.webmd.com/about-webmd-policies/media/default.htm" data-metrics-link="adv">Advertise With Us</a></li>
                         <li><a href="http://www.webmd.com/about-webmd-policies/about-terms-and-conditions-of-use?ss=ftr" data-metrics-link="trms">Terms of Use</a></li>
                         <li><a href="http://www.webmd.com/about-webmd-policies/about-privacy-policy?ss=ftr" data-metrics-link="prvy">Privacy Policy</a></li>
-                        <li><a href="https://customercare.webmd.com/ics/support/default.asp?deptID=18003&task=ticket" data-metrics-link="cnt">Contact Us</a></li>
+                        <li><a href="https://customercare.webmd.com/ics/support/default.asp?deptID=18003&amp;task=ticket" data-metrics-link="cnt">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="copyright">
-                    <p>&copy; 2005-2015 WebMD, LLC. All rights reserved.</p>
+                    <p>&#169; 2005-2015 WebMD, LLC. All rights reserved.</p>
                     <p data-metrics-module="disclaimer">WebMD does not provide medical advice, diagnosis or treatment.<br/> <a data-metrics-link="info" href="http://www.webmd.com/www/policies/additional-info?ss=ftr" rel="nofollow">See additional information.</a></p>
                 </div>
             </div>
