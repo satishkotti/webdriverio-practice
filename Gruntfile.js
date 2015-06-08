@@ -1,11 +1,11 @@
 module.exports = function (grunt) {
 
     // Build all
-    grunt.registerTask('default', ['clean','sass','autoprefixer','cssmin','uglify']);
+    grunt.registerTask('default', ['clean','sass','autoprefixer','cssmin','concat','uglify']);
     // Build CSS
     grunt.registerTask('css', ['clean','sass','autoprefixer','cssmin']);
     // Build JS
-    grunt.registerTask('js', ['clean','uglify']);
+    grunt.registerTask('js', ['clean','concat','uglify']);
 
     // Zip Files
     grunt.registerTask('zip', ['webmd-zip']);
@@ -25,7 +25,7 @@ module.exports = function (grunt) {
 
         // Build Tasks
         clean: {
-            all: ['dist','build','sourcemaps','zip']
+            all: ['dist','build','sourcemaps','zip','src/css/build','src/js/build']
         },
         sass: {
             dist: {
@@ -61,6 +61,18 @@ module.exports = function (grunt) {
                 }
             }
         },
+        concat: {
+            js: {
+                options: {
+                    separator: ';',
+                },
+                src: [
+                    '<%= dirSrc %>/js/lib/hc-sticky.js',
+                    '<%= dirSrc %>/js/funded-editorial.js'
+                ],
+                dest: '<%= dirSrc %>/js/build/funded-editorial.js',
+            }
+        },
         uglify: {
             build: {
                 options: {
@@ -72,7 +84,7 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    '<%= dirBuild %>/js/funded-editorial.js' : '<%= dirSrc %>/js/funded-editorial.js'
+                    '<%= dirBuild %>/js/funded-editorial.js' : '<%= dirSrc %>/js/build/funded-editorial.js'
                 }
             },
             dist: {

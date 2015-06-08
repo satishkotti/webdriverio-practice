@@ -26,7 +26,7 @@
         s_business_reference="Feature",
         s_publication_source="webmd",
         s_sponsor_brand="",
-        s_sponsor_program="test",
+        s_sponsor_program="",
         s_package_type="",
         s_package_name="",
         s_channel_super_portal="",
@@ -102,75 +102,151 @@
         }
     }
 </script><!-- ROMWidget ID:091e9c5e811bf6d1.Missing XSLT or XSLT error in GenerateAndCacheContent. Failed to get XSL from IXSLTProvider --></div>
-            <div id="ContentPane2" class="pane"><header class="masthead">
-  <div class="masthead-container clearfix">
-    <div class="masthead-left clearfix">
-      <div id="logo">
-        <a onclick="sl(this,'','logo')" href="http://www.webmd.com/www/default.htm">
-          <img src="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/usability/2012/LBi_Masthead/logo_trans.png" class="logo_rdr" alt="WebMD: Better information. Better health.">
-        </a>
-      </div>
-      <div id="search_container" role="search">
-        <form action="http://www.webmd.com/search/search_results/default.aspx" method="get" name="searchForm">
-          <label class="jawsonly" for="searchQuery_fmt">Enter Search Keywords. Use the arrow keys to navigate suggestions.</label>
-          <input type="text" id="searchQuery_fmt" name="query" maxlength="200" value="" autocomplete="off" title="Enter Search Keywords">
-          <button type="submit" class="searchButton_fmt icon-search" name="searchButton_fmt" value="" title="Search" onclick="return sl(this,'','srch-bar_submit')">
-          </button>
-        </form>
-        <ul id="searchTypeahead_fmt" aria-live="assertive">
-        </ul>
-      </div>
-    </div>
-    <div class="masthead-right">
-    </div>
-  </div>
-</header><!--<ul><li>$adsystem = DFP</li><li>$pos = 101</li><li>$print = false</li></ul><ul><li>adtype = iFRAME</li><li>iframeheight = 90</li><li>iframewidth = 728</li><li>adserver = as.webmd.com</li></ul><ul><li>affiliate = 20</li><li>apg = 4252</li><li>artid = 091e9c5e811d5416</li><li>au1 = </li><li>au2 = </li><li>bc = __</li><li>brand = 0</li><li>cc = 10</li><li>env = &amp;env=0</li><li>hcent = </li><li>mcent = </li><li>micro = </li><li>pkg = &amp;leaf=</li><li>pos = 101</li><li>pug = __</li><li>scent = </li><li>sec = </li><li>segval = </li><li>site = 2</li><li>tile = 668832371</li><li>tmg = </li><li>transactionID = 473708659</li><li>tug = </li><li>uri = %2fzztest%2fryan-lu%2ftest-funded-editorial-main%2ftest-funded-editorial%2farticle-test-funded-editorial</li></ul>--><script>
-    var priTopId='4252', secTopId='';
-</script><div id="bannerAd_rdr"><div class="bannerAd_top_fmt"></div><div id="bannerAd_fmt" class="bannerAd_BG_fmt loaded"><div id="ads2-pos-101-ad_banner" class="ad_placeholder"></div></div></div><script>
-                webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e811d5416',cc:'10',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'4252',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fzztest%2fryan-lu%2ftest-funded-editorial-main%2ftest-funded-editorial%2farticle-test-funded-editorial'},blockCodes:'__',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});
-            </script><div id="attribution_rdr">
-  <a href="http://www.preview.webmd.com/brought-to-you-by" onclick="return sl(this,'','attribution');">Brought to you by:</a>
-  <img src="http://img.preview.webmd.com/dtmcms/preview//webmd/consumer_assets/site_images/logos/client/walmart/logo_walmart_138x50.png" alt="Walmart Pharmacy" border="0" />
-</div>
-<script type="text/javascript">
-(function() {
-    var firstRun = true;
-    $('img', '#attribution_rdr').add(window).load(function() {
-        if(firstRun) {
-            // calculate heights
-            var $att = $('#attribution_rdr'),
-                headerHeight = $('#header').outerHeight(),
-                attHeight = $att.outerHeight(),
-                heightDifference;
+    <div id="ContentPane2" class="pane">
 
-            if (!headerHeight) {
-                return;
-            } else {
-                headerHeight -= 12;
-            }
+        <header class="masthead">
+          <div class="masthead-container clearfix">
+            <div class="masthead-left clearfix">
+              <div id="logo">
+                <a onclick="sl(this,'','logo')" href="http://www.webmd.com/www/default.htm">
+                  <img src="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/usability/2012/LBi_Masthead/logo_trans.png" class="logo_rdr" alt="WebMD: Better information. Better health.">
+                </a>
+              </div>
+              <div id="search_container" role="search">
+                <form action="http://www.webmd.com/search/search_results/default.aspx" method="get" name="searchForm">
+                  <label class="jawsonly" for="searchQuery_fmt">Enter Search Keywords. Use the arrow keys to navigate suggestions.</label>
+                  <input type="text" id="searchQuery_fmt" name="query" maxlength="200" value="" autocomplete="off" title="Enter Search Keywords">
+                  <button type="submit" class="searchButton_fmt icon-search" name="searchButton_fmt" value="" title="Search" onclick="return sl(this,'','srch-bar_submit')">
+                  </button>
+                </form>
+                <ul id="searchTypeahead_fmt" aria-live="assertive">
+                </ul>
+              </div>
+            </div>
+            <div class="masthead-right">
+            </div>
+          </div>
+        </header>
 
-            if($('.ed_disclaimer')[0]) {
-                headerHeight = headerHeight + Math.floor($('.ed_disclaimer').outerHeight());
-            }
 
-            // difference in height
-            heightDifference = Math.abs(headerHeight - attHeight);
+        <!--<ul><li>$adsystem = DFP</li><li>$pos = 101</li><li>$print = false</li></ul><ul><li>adtype = iFRAME</li><li>iframeheight = 90</li><li>iframewidth = 728</li><li>adserver = as.webmd.com</li></ul><ul><li>affiliate = 20</li><li>apg = 4252</li><li>artid = 091e9c5e811d5416</li><li>au1 = </li><li>au2 = </li><li>bc = __</li><li>brand = 0</li><li>cc = 10</li><li>env = &amp;env=0</li><li>hcent = </li><li>mcent = </li><li>micro = </li><li>pkg = &amp;leaf=</li><li>pos = 101</li><li>pug = __</li><li>scent = </li><li>sec = </li><li>segval = </li><li>site = 2</li><li>tile = 668832371</li><li>tmg = </li><li>transactionID = 473708659</li><li>tug = </li><li>uri = %2fzztest%2fryan-lu%2ftest-funded-editorial-main%2ftest-funded-editorial%2farticle-test-funded-editorial</li></ul>-->
+        <script>
+            var priTopId='4252', secTopId='';
+        </script>
+        <div id="bannerAd_rdr">
+            <div class="bannerAd_top_fmt"></div>
+            <div id="bannerAd_fmt" class="bannerAd_BG_fmt loaded">
+                <div id="ads2-pos-101-ad_banner" class="ad_placeholder"></div>
+            </div>
+        </div>
+        <script>
+            webmd.ads2Consumer.defineAd({
+                targets:{
+                    art:'091e9c5e811d5416',
+                    cc:'10',
+                    env:'&amp;env=0',
+                    hcent:'',
+                    leaf:'&amp;leaf=',
+                    mcent:'',
+                    mic:'',
+                    pt:'4252',
+                    sec:'',
+                    pug:'__',
+                    scent:'',
+                    tmg:'',
+                    tug:'',
+                    uri:'%2fzztest%2fryan-lu%2ftest-funded-editorial-main%2ftest-funded-editorial%2farticle-test-funded-editorial'
+                },
+                blockCodes:'__',
+                id:'ads2-pos-101-ad_banner',
+                pos:'101',
+                sizes:[[728,90],[970, 90],[970,250]]
+            });
+        </script>
 
-            // vertically align logo and header based on heightDifference
-            if(attHeight > headerHeight) {
-                $('#header').css('padding-top', Math.floor(heightDifference / 2) + 'px');
-            } else {
-                $att.css({
-                    'padding-top': Math.floor(heightDifference / 2) + 'px',
-                    'padding-bottom': Math.floor(heightDifference / 2) + 'px'
-                });
-            }
 
-            firstRun = false;
-        }
-    });
-})();
-            </script></div>
+        <!--<ul><li>$adsystem = DFP</li><li>$pos = 2025</li><li>$print = false</li></ul><ul><li>adtype = JavaScript</li><li>iframeheight = 50</li><li>iframewidth = 320</li><li>adserver = as.webmd.com</li></ul><ul><li>affiliate = 20</li><li>apg = 1728</li><li>artid = 091e9c5e80f2253d</li><li>au1 = </li><li>au2 = </li><li>bc = __</li><li>brand = 0</li><li>cc = 83</li><li>env = &amp;env=0</li><li>hcent = </li><li>mcent = </li><li>micro = </li><li>pkg = &amp;leaf=11025</li><li>pos = 2025</li><li>pug = __</li><li>scent = </li><li>sec = </li><li>segval = </li><li>site = 2</li><li>tile = 242032583</li><li>tmg = </li><li>transactionID = 575187789</li><li>tug = </li><li>uri = %2fdefault</li></ul>-->
+        <script>
+            var priTopId='4252', secTopId='';
+        </script>
+        <div class="ad_rdr top_ad_rdr">
+            <div class="ad_label">Advertisement</div>
+            <div id="top_ad">
+                <div id="ads2-pos-2025-ad_top" class="ad_placeholder" style="border: 1px #ccc solid;"></div>
+            </div>
+        </div>
+        <script>
+            webmd.ads2Consumer.defineAd({
+                targets:{
+                    art:'091e9c5e811d5416',
+                    cc:'83',
+                    env:'&amp;env=0',
+                    hcent:'',
+                    leaf:'&amp;leaf=',
+                    mcent:'',
+                    mic:'',
+                    pt:'4252',
+                    sec:'',
+                    pug:'__',
+                    scent:'',
+                    tmg:'',
+                    tug:'',
+                    uri:'%2fzztest%2fryan-lu%2ftest-funded-editorial-main%2ftest-funded-editorial%2farticle-test-funded-editorial'
+                },
+                blockCodes:'__',
+                id:'ads2-pos-2025-ad_top',
+                pos:'2025',
+                sizes:[[300,50], [320, 50]]
+            });
+        </script>
+
+
+
+        <div id="attribution_rdr">
+          <a href="http://www.preview.webmd.com/brought-to-you-by" onclick="return sl(this,'','attribution');">Brought to you by:</a>
+          <img src="http://img.preview.webmd.com/dtmcms/preview//webmd/consumer_assets/site_images/logos/client/walmart/logo_walmart_138x50.png" alt="Walmart Pharmacy" border="0" />
+        </div>
+        <script type="text/javascript">
+        (function() {
+            var firstRun = true;
+            $('img', '#attribution_rdr').add(window).load(function() {
+                if(firstRun) {
+                    // calculate heights
+                    var $att = $('#attribution_rdr'),
+                        headerHeight = $('#header').outerHeight(),
+                        attHeight = $att.outerHeight(),
+                        heightDifference;
+
+                    if (!headerHeight) {
+                        return;
+                    } else {
+                        headerHeight -= 12;
+                    }
+
+                    if($('.ed_disclaimer')[0]) {
+                        headerHeight = headerHeight + Math.floor($('.ed_disclaimer').outerHeight());
+                    }
+
+                    // difference in height
+                    heightDifference = Math.abs(headerHeight - attHeight);
+
+                    // vertically align logo and header based on heightDifference
+                    if(attHeight > headerHeight) {
+                        $('#header').css('padding-top', Math.floor(heightDifference / 2) + 'px');
+                    } else {
+                        $att.css({
+                            'padding-top': Math.floor(heightDifference / 2) + 'px',
+                            'padding-bottom': Math.floor(heightDifference / 2) + 'px'
+                        });
+                    }
+
+                    firstRun = false;
+                }
+            });
+        })();
+        </script>
+
+            </div>
             <div id="ContentPane3" class="pane"></div>
             <div id="ContentPane4" class="pane"></div>
             <div id="ContentPane5" class="pane"></div>
@@ -1269,12 +1345,14 @@ a.Video::after {
                 <div id="ContentPane28" class="pane"></div>
                 <div id="ContentPane29" class="pane"></div>
                 <div id="ContentPane30" class="pane">
-                    <div style="width: 320px; height: 300px;background: pink;margin-bottom: 20px;"></div>
-                <!--<ul><li>$adsystem = DFP</li><li>$pos = 121</li><li>$print = false</li></ul><ul><li>adtype = iFRAME</li><li>iframeheight = 250</li><li>iframewidth = 300</li><li>adserver = as.webmd.com</li></ul><ul><li>affiliate = 20</li><li>apg = 4252</li><li>artid = 091e9c5e811d5416</li><li>au1 = </li><li>au2 = </li><li>bc = __</li><li>brand = 0</li><li>cc = 10</li><li>env = &amp;env=0</li><li>hcent = </li><li>mcent = </li><li>micro = </li><li>pkg = &amp;leaf=</li><li>pos = 121</li><li>pug = __</li><li>scent = </li><li>sec = </li><li>segval = </li><li>site = 2</li><li>tile = 668832371</li><li>tmg = </li><li>transactionID = 473708659</li><li>tug = </li><li>uri = %2fzztest%2fryan-lu%2ftest-funded-editorial-main%2ftest-funded-editorial%2farticle-test-funded-editorial</li></ul>--><script>
-    var priTopId='4252', secTopId='';
-</script><div id="rightAd_rdr"><div class="rightAd_top_fmt"></div><div id="rightAd_fmt" class="rightAd_BG_fmt loaded"><div id="ads2-pos-121-ad_rr_p1" class="ad_placeholder"></div></div><div class="rightAd_bottom_fmt"></div></div><div class="moduleSpacer_rdr"></div><script>
-                webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e811d5416',cc:'10',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'4252',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fzztest%2fryan-lu%2ftest-funded-editorial-main%2ftest-funded-editorial%2farticle-test-funded-editorial'},blockCodes:'__',id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});
-            </script>
+
+                        <div style="width: 320px; height: 300px;background: pink;margin-bottom: 20px;"></div>
+                        <!--<ul><li>$adsystem = DFP</li><li>$pos = 121</li><li>$print = false</li></ul><ul><li>adtype = iFRAME</li><li>iframeheight = 250</li><li>iframewidth = 300</li><li>adserver = as.webmd.com</li></ul><ul><li>affiliate = 20</li><li>apg = 4252</li><li>artid = 091e9c5e811d5416</li><li>au1 = </li><li>au2 = </li><li>bc = __</li><li>brand = 0</li><li>cc = 10</li><li>env = &amp;env=0</li><li>hcent = </li><li>mcent = </li><li>micro = </li><li>pkg = &amp;leaf=</li><li>pos = 121</li><li>pug = __</li><li>scent = </li><li>sec = </li><li>segval = </li><li>site = 2</li><li>tile = 668832371</li><li>tmg = </li><li>transactionID = 473708659</li><li>tug = </li><li>uri = %2fzztest%2fryan-lu%2ftest-funded-editorial-main%2ftest-funded-editorial%2farticle-test-funded-editorial</li></ul>--><script>
+                        var priTopId='4252', secTopId='';
+                        </script><div id="rightAd_rdr"><div class="rightAd_top_fmt"></div><div id="rightAd_fmt" class="rightAd_BG_fmt loaded"><div id="ads2-pos-121-ad_rr_p1" class="ad_placeholder"></div></div><div class="rightAd_bottom_fmt"></div></div><div class="moduleSpacer_rdr"></div><script>
+                        webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e811d5416',cc:'10',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'4252',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fzztest%2fryan-lu%2ftest-funded-editorial-main%2ftest-funded-editorial%2farticle-test-funded-editorial'},blockCodes:'__',id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});
+                        </script>
+
                 </div>
                 <div id="ContentPane33" class="pane"></div>
                 <div id="ContentPane34" class="pane"></div>
@@ -1429,7 +1507,34 @@ a.Video::after {
       <p data-metrics-module="disclaimer">WebMD does not provide medical advice, diagnosis or treatment.<br><a data-metrics-link="info" href="http://www.webmd.com/www/policies/additional-info?ss=ftr" rel="nofollow">See additional information.</a></p>
     </div>
   </div>
-</div></div>
+</div>
+
+<script>
+    var uaType = webmd.useragent.ua.type,
+        target,
+        pos;
+
+    if(this.uaType !== 'mobile'){
+        pos = {2025:true, 2026:true};
+        target = '';
+        // remove mobile ads
+        $('.top_ad_rdr').remove();
+    } else {
+        pos = {101:true, 121:true};
+        target = 'mobile';
+        //remove desktop ads
+        $('#bannerAd_rdr, #rightAd_rdr').remove();
+    }
+    // ignore approriate ads per enviroment
+    var ads2_ignore = pos;
+    // set targets per enviroment
+    //webmd.ads2.adTarget = [target];
+
+    // Disable Initial Ad Call
+    //webmd.ads2.disableInitialLoad();
+</script>
+
+</div>
             <div id="ContentPane65" class="pane"><!--<ul><li>$adsystem = DFP</li><li>$pos = 901</li><li>$print = false</li></ul><ul><li>adtype = iFRAME</li><li>iframeheight = 1</li><li>iframewidth = 1</li><li>adserver = as.webmd.com</li></ul><ul><li>affiliate = 20</li><li>apg = 4252</li><li>artid = 091e9c5e811d5416</li><li>au1 = </li><li>au2 = </li><li>bc = __</li><li>brand = 0</li><li>cc = 10</li><li>env = &amp;env=0</li><li>hcent = </li><li>mcent = </li><li>micro = </li><li>pkg = &amp;leaf=</li><li>pos = 901</li><li>pug = __</li><li>scent = </li><li>sec = </li><li>segval = </li><li>site = 2</li><li>tile = 668832371</li><li>tmg = </li><li>transactionID = 473708659</li><li>tug = </li><li>uri = %2fzztest%2fryan-lu%2ftest-funded-editorial-main%2ftest-funded-editorial%2farticle-test-funded-editorial</li></ul>--><script>
     var priTopId='4252', secTopId='';
 </script><div id="ads2-pos-901-1x1ad" class="ad_placeholder" style="display:none;"></div><script>
@@ -1441,7 +1546,6 @@ a.Video::after {
             <div id="ContentPane69" class="pane"></div>
             <div id="ContentPane70" class="pane"></div>
             <div id="ContentPane71" class="pane"><script language="javascript" type="text/javascript" src="http://img.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/JS_static/tools/ldcc.js"></script>
-
 <script type="text/javascript">
 (function(){
     // duckpunching s_before_pv as some assets are using that vs our event driven system. This lets the event system get triggered as well as the other functions

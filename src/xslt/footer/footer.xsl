@@ -40,6 +40,29 @@
                 </div>
             </div>
         </div>
+        <xsl:text disable-output-escaping="yes"><![CDATA[
+        <script type="text/javascript">
+            var uaType = webmd.useragent.ua.type,
+                target,
+                pos;
+
+            if(this.uaType !== 'mobile'){
+                pos = {2025:true, 2026:true};
+                target = '';
+                // remove mobile ads
+                $('.top_ad_rdr,.bottom_ad_rdr').remove();
+            } else {
+                pos = {101:true, 121:true};
+                target = 'mobile';
+                //remove desktop ads
+                $('#bannerAd_rdr, #rightAd_rdr').remove();
+            }
+            // ignore approriate ads per enviroment
+            var ads2_ignore = pos;
+            // set targets per enviroment
+            //webmd.ads2.adTarget = [target];
+        </script>
+        ]]></xsl:text>
 
     </xsl:template>
 </xsl:stylesheet>
