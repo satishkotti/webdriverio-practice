@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Test</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.0/mustache.min.js"></script>
+    <script>
+    var fundedArticles = [
+        {
+            "id" : 1,
+            "article" : {
+                "title" : "Test Title 1",
+                "description" : "This is a test description. 1",
+                "link" : "http://www.preview.webmd.com",
+                "image" : "http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/usability/2012/LBi_Masthead/logo_trans.png"
+            }
+        },
+        {
+            "id" : 2,
+            "article" : {
+                "title" : "Test Title 2",
+                "description" : "This is a test description. 2",
+                "link" : "http://www.preview.webmd.com",
+                "image" : "http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/usability/2012/LBi_Masthead/logo_trans.png"
+            }
+        },
+        {
+            "id" : 3,
+            "article" : {
+                "title" : "Test Title 3",
+                "description" : "This is a test description. 3",
+                "link" : "http://www.preview.webmd.com",
+                "image" : "http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/usability/2012/LBi_Masthead/logo_trans.png"
+            }
+        }
+    ];
+
+    var fundedArticle = {
+        items : fundedArticles
+    };
+    </script>
+</head>
+<body>
+    <div id="ContentPane2" class="pane">
+        <script id="template" type="x-tmpl-mustache">
+        {{#items}}
+        <p>{{article.title}}</p>
+        {{/items}}
+        </script>
+
+        <script>
+        function renderTemplate() {
+            var template = $('#template'),
+                templateHTML = $('#template').html(),
+                conatiner = template.parent(),
+                html = Mustache.to_html(templateHTML, fundedArticle);
+
+            conatiner.prepend(html);
+        }
+        $(function(){
+            renderTemplate();
+        });
+        </script>
+    </div>
+</body>
+</html>

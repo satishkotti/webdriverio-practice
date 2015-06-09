@@ -23,7 +23,8 @@
                     </ul>
                 </div>
                 <div class="disclaimers" data-metrics-module="ftr">
-                    <a onclick="TRUSTeWidget.Tab.link();" class="logo_AdChoices" data-metrics-link="ad-choice">AdChoices</a>
+                    <a onclick="TRUSTeWidget.Tab.link();" class="logo_AdChoices adChoice-dsk" data-metrics-link="ad-choice">AdChoices</a>
+                    <a href="//preferences-mgr.truste.com/?pid=webmd01&amp;aid=webmdsafari_mobile01&amp;type=webmd_mobile" class="logo_AdChoices adChoice-mbl" data-metrics-link="ad-choice">AdChoices</a>
                 </div>
                 <div class="links" data-metrics-module="ftr">
                     <ul>
@@ -61,11 +62,24 @@
             var ads2_ignore = pos;
             // set targets per enviroment
             //webmd.ads2.adTarget = [target];
+
+            $(function(){
+                if(webmd.useragent.ua.type == 'mobile'){
+                    $('.adChoice-dsk').remove();
+                } else {
+                    $('.adChoice-mbl').remove();
+                    var fileNameToLoad = '//preferences.truste.com/webservices/js?type=webmd&domain=webmd';
+
+                    webmd.load({js:[fileNameToLoad, '//privacy-policy.truste.com/privacy-seal/WebMD,-LLC/asc?rid=f733a173-6d11-4e17-ba9f-f1454ef8b32f']});
+                }
+            });
         </script>
         ]]></xsl:text>
 
     </xsl:template>
 </xsl:stylesheet>
+
+
 
 
 

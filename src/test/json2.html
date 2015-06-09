@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Test</title>
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+    <script type="text/javascript" src="http://js.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/JS/harmony/scripts_harmony80.js"></script>
+
+    <!-- <script>
+    var article_data = {
+        articles : [
+            {
+                "id" : 1,
+                "article" : {
+                    "title" : "Test Title 1",
+                    "description" : "This is a test description. 1",
+                    "link" : "http://www.preview.webmd.com",
+                    "image" : "http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/usability/2012/LBi_Masthead/logo_trans.png"
+                },
+                "type" : "normal"
+            },
+            {
+                "id" : 2,
+                "article" : {
+                    "title" : "Test Title 2",
+                    "description" : "This is a test description. 2",
+                    "link" : "http://www.preview.webmd.com",
+                    "image" : "http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/usability/2012/LBi_Masthead/logo_trans.png"
+                },
+                "type" : "sponsor"
+            },
+            {
+                "id" : 3,
+                "article" : {
+                    "title" : "Test Title 3",
+                    "description" : "This is a test description. 3",
+                    "link" : "http://www.preview.webmd.com",
+                    "image" : "http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/usability/2012/LBi_Masthead/logo_trans.png"
+                },
+                "type" : "normal"
+            }
+        ]
+    };
+    </script> -->
+
+    <script>
+        var article_data = {
+            articles : [
+
+                    {
+                        "id" : 1,
+                        "article" : {
+                            "title" : "Text Field",
+                            "description" : "Action Text Field",
+                            "link" : "http://www.webmd.com/allergies/default.htm",
+                            "image" : "http://img.preview.webmd.com/dtmcms/preview/webmd/consumer_assets/site_images/article_thumbnails/news/2015/05_2015/antipsychotic_drugs_less_effective/650x350_antipsychotic_drugs_less_effective.jpg"
+                        },
+                        "type" : "sponsor"
+                    },
+                    {
+                        "id" : 1,
+                        "article" : {
+                            "title" : "Text Field 2",
+                            "description" : "Action Text Field 2",
+                            "link" : "http://www.webmd.com/allergies/default.htm",
+                            "image" : "http://img.preview.webmd.com/dtmcms/preview/webmd/consumer_assets/site_images/article_thumbnails/slideshows/cancer_fighting_foods_slideshow/493x335_cancer_fighting_foods_slideshow.jpg"
+                        },
+                        "type" : "normal"
+                    }
+            ]
+        };
+        </script>
+</head>
+<body>
+
+    <div class="entry-shell"></div>
+    <script id="entry-template" type="text/x-handlebars-template">
+        {{#each articles}}
+        <div style="margin-bottom: 10px; border: 1px red dashed">
+            <p>{{article.title}}</p>
+            <p>{{article.description}}</p>
+            <img src="{{article.image}}"/>
+        </div>
+        {{/each}}
+    </script>
+    <script>
+    $(function(){
+        require(["handlebars/1/handlebars"], function(Handlebars) {
+            if (typeof article_data !== "undefined") {
+                var template = $("#entry-template"),
+                    container = $(".entry-shell"),
+                    source = template.html(),
+                    template = Handlebars.compile(source),
+                    context = article_data || {},
+                    html = template(context);
+
+                container.prepend(html);
+            }
+        });
+    });
+    </script>
+
+    <div class="entry-shell-2"></div>
+    <script id="entry-template-2" type="text/x-handlebars-template">
+    {{#each articles}}
+        <p>{{article.description}}</p>
+    {{/each}}
+    </script>
+    <script>
+    $(function(){
+        require(["handlebars/1/handlebars"], function(Handlebars) {
+            if (typeof article_data !== "undefined") {
+                var template = $("#entry-template-2"),
+                    container = $(".entry-shell-2"),
+                    source = template.html(),
+                    template = Handlebars.compile(source),
+                    context = article_data || {},
+                    html = template(context);
+
+                container.prepend(html);
+            }
+        });
+    });
+    </script>
+
+</body>
+</html>
