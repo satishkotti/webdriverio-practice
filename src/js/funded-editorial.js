@@ -30,19 +30,15 @@ webmd.fundedEditorial = {
 
     bindEvents : function(){
         var self = this,
-            mastheadH = $('.masthead').outerHeight(true),
-            articleTop = $('.chrome').position().top + $('.article').position().top,
-            articleBottom = $('.article').outerHeight(true) + articleTop;
+            mastheadH = $('.masthead').outerHeight(true);
+
+        $(window).bind('resizeEnd', function() {
+            //do something, window hasn't changed size in 500ms
+            self.setNavPalette();
+        });
 
         $(window).scroll(function() {
-            var y = $(document).scrollTop(),
-                scrollTop = $(window).scrollTop(),
-                scrollBottom = scrollTop + $(window).height(),
-                showNavLocation = (scrollTop >= articleTop),
-                hideNavLocation = (scrollBottom >= articleBottom);
-
-            console.log("scrollTop(" + scrollTop + ") >= articleTop(" + articleTop + ") : " + showNavLocation);
-            console.log("scrollBottom(" + scrollBottom + ") >= articleBottom(" + articleBottom + ") : " + hideNavLocation);
+            var y = $(document).scrollTop();
 
             if (y > mastheadH) {
                 self.stickMasthead(mastheadH);
@@ -51,11 +47,17 @@ webmd.fundedEditorial = {
                 self.unstickMasthead();
             }
 
-            if(showNavLocation && !hideNavLocation) {
-                self.showElement('.article-nav');
-            } else {
-                self.hideElement('.article-nav');
+            self.setNavPalette();
+        });
+
+        $(window).resize(function() {
+            if(this.resizeTO) {
+                clearTimeout(this.resizeTO);
             }
+
+            this.resizeTO = setTimeout(function() {
+                $(this).trigger('resizeEnd');
+            }, 500);
         });
     },
 
@@ -103,6 +105,22 @@ webmd.fundedEditorial = {
     unstickMasthead: function(){
         $('body').removeClass('masthead-stuck');
         $('body').css('padding-top','');
+    },
+
+    setNavPalette: function() {
+        var self = this,
+            articleTop = $('.chrome').position().top + $('.article').position().top,
+            articleBottom = $('.article').outerHeight(true) + articleTop,
+            scrollTop = $(window).scrollTop(),
+            scrollBottom = scrollTop + $(window).height(),
+            showNavLocation = (scrollTop >= articleTop),
+            hideNavLocation = (scrollBottom >= articleBottom);
+
+        if(showNavLocation && !hideNavLocation) {
+            self.showElement('.article-nav');
+        } else {
+            self.hideElement('.article-nav');
+        }
     },
 
     showElement: function(el) {
