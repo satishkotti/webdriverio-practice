@@ -30,14 +30,31 @@ webmd.fundedEditorial = {
 
     bindEvents : function(){
         var self = this,
-            mastheadH = $('.masthead').outerHeight(true);
+            mastheadH = $('.masthead').outerHeight(true),
+            articleTop = $('.chrome').position().top + $('.article').position().top,
+            articleBottom = $('.article').outerHeight(true) + articleTop;
 
         $(window).scroll(function() {
-            if ($(document).scrollTop() > mastheadH) {
+            var y = $(document).scrollTop(),
+                scrollTop = $(window).scrollTop(),
+                scrollBottom = scrollTop + $(window).height(),
+                showNavLocation = (scrollTop >= articleTop),
+                hideNavLocation = (scrollBottom >= articleBottom);
+
+            console.log("scrollTop(" + scrollTop + ") >= articleTop(" + articleTop + ") : " + showNavLocation);
+            console.log("scrollBottom(" + scrollBottom + ") >= articleBottom(" + articleBottom + ") : " + hideNavLocation);
+
+            if (y > mastheadH) {
                 self.stickMasthead(mastheadH);
             }
             else {
                 self.unstickMasthead();
+            }
+
+            if(showNavLocation && !hideNavLocation) {
+                self.showElement('.article-nav');
+            } else {
+                self.hideElement('.article-nav');
             }
         });
     },
@@ -86,6 +103,14 @@ webmd.fundedEditorial = {
     unstickMasthead: function(){
         $('body').removeClass('masthead-stuck');
         $('body').css('padding-top','');
+    },
+
+    showElement: function(el) {
+        $(el).addClass('show');
+    },
+
+    hideElement: function(el) {
+        $(el).removeClass('show');
     },
 
     moveAttribution : function(){

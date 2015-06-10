@@ -25,6 +25,119 @@
   display: table-cell;
 }
 
+.article-nav-container {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 980px;
+  text-align: center;
+}
+
+.article-nav-container.half-me {
+  width: 50%;
+  max-width: 490px;
+}
+.article-nav-container.half-me .article-nav{
+  max-width: 490px !important;
+}
+
+.article-nav-container.half-me .article-nav > div {
+  width: 100% !important;
+}
+
+.article-nav-container.half-me .article-nav > div.next {
+  border: 0 !important;
+}
+
+.article-nav {
+  position: inherit;
+  display: table;
+  width: 100%;
+  max-width: 980px;
+  bottom: -500px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgb(193,193,193);
+  background-color: #fff;
+  -webkit-transition: all 0.5s ease-in-out 0.5s;
+  -moz-transition: all 0.5s ease-in-out 0.5s;
+  -o-transition: all 0.5s ease-in-out 0.5s;
+  -ms-transition: all 0.5s ease-in-out 0.5s;
+  transition: all 0.5s ease-in-out 0.5s;
+}
+.article-nav.show {
+  bottom: -5px;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  transition-delay: 0s;
+}
+.article-nav > div {
+  display: inline-table;
+  width: 50%;
+  height: 100%;
+  max-height: 90px;
+}
+.article-nav > div:hover {
+  background-color: rgb(239,239,239);
+}
+.article-nav .arrow {
+  margin: 30px;
+  width: 25px;
+  height: 25px;
+  opacity: 0.4;
+  border-bottom: 5px solid rgb(182,182,182);
+}
+.article-nav .text {
+  position: relative;
+  display: table-cell;
+  width: 100%;
+  font-size: 18px;
+  text-align: center;
+  vertical-align: middle;
+}
+.article-nav .text .nav {
+  display: block;
+  color: rgb(182,182,182);
+}
+.article-nav .text .title {
+  font-size: 24px;
+  display: block;
+  word-wrap: break-word;
+  font-family: 'Lato';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  color: #333333;
+  line-height: normal;
+}
+.article-nav .next {
+  height: 100%;
+  border-left: 1px solid rgb(182,182,182);
+}
+.article-nav .next .arrow {
+  float: right;
+  border-right: 5px solid rgb(182,182,182);
+  transform: rotate(-45deg);
+}
+.article-nav .next .text {
+}
+.article-nav .prev {
+  height: 100%;
+}
+.article-nav .prev .arrow {
+  float: left;
+  border-left: 5px solid rgb(182,182,182);
+  transform: rotate(45deg);
+}
+.article-nav .prev .text {
+}
+
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   /* STYLES GO HERE */
