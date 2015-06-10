@@ -9,6 +9,10 @@ webmd.fundedEditorial = {
     uaType : webmd.useragent.ua.type,
 
     init : function(){
+        this.getCurrentURL();
+
+        this.getCurrentArticleId();
+
         this.bindEvents();
 
         //this.createAds(this.uaType);
@@ -26,6 +30,20 @@ webmd.fundedEditorial = {
             //this.stickIt();
         }
 
+    },
+
+    getCurrentURL : function () {
+        var url = window.location.href;
+        // save URL without querystring and/or hash for session only
+        sessionStorage.currentURL = url.split("?")[0].split("#")[0];
+    },
+
+    getCurrentArticleId : function() {
+        for(var key in article_data.articles) {
+            if (article_data.articles[key].article.link === sessionStorage.currentURL) {
+                article_data.current_article_id = article_data.articles[key].id;
+            } 
+        }
     },
 
     bindEvents : function(){

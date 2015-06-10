@@ -42,7 +42,7 @@
                     "article" : {
                         "title" : "Text Field 2",
                         "description" : "Action Text Field 2",
-                        "link" : "http://www.webmd.com/allergies/default.htm",
+                        "link" : "http://localhost:8080/repos/funded-editorial/src/test/prev_next_responsive.html",
                         "image" : "http://img.preview.webmd.com/dtmcms/preview/webmd/consumer_assets/site_images/article_thumbnails/slideshows/cancer_fighting_foods_slideshow/493x335_cancer_fighting_foods_slideshow.jpg"
                     },
                     "type" : "normal"
@@ -59,9 +59,6 @@
                 }
         ]
     };
-
-    // Need to store id of article currently displayed (append to JSON obj)
-    article_data.current_article_id = 2;
     </script>
 
     <script type="text/javascript">
@@ -1421,7 +1418,7 @@ a.Video::after {
 
 
     <script id="previous-btn-partial" type="text/x-handlebars-template">
-    <div class="prev">
+    <div class="prev" data-link="{{link}}">
       <span class="arrow"></span>
       <span class="text">
         <span class="nav">Previous</span>
@@ -1431,7 +1428,7 @@ a.Video::after {
     </script>
 
     <script id="next-btn-partial" type="text/x-handlebars-template">
-    <div class="next">
+    <div class="next" data-link="{{link}}">
       <span class="text">
         <span class="nav">Next</span>
         <span class="title">{{title}}</span>
@@ -1490,11 +1487,20 @@ a.Video::after {
                 $container.prepend(html);
 
                 // Handle display of 1 button or no buttons
-                var prev_btn_len = $(".prev").length,
-                    next_btn_len = $(".next").length;
+                var $prev_btn = $(".prev"),
+                    $next_btn = $(".next"),
+                    prev_btn_len = $prev_btn.length,
+                    next_btn_len = $next_btn.length;
 
                 if ((prev_btn_len>0) && (next_btn_len>0)) {
-                  // Both 'previous' and 'next' exist - no special handling needed
+                  // Both 'previous' and 'next' exist - setup event handlers
+                  $prev_btn.click(function() {
+                      window.location = $(this).data("link");
+                  });
+
+                  $next_btn.click(function() {
+                      window.location = $(this).data("link");
+                  });
                   return;
                 } else {
                   if ((prev_btn_len>0 && next_btn_len===0) || (prev_btn_len===0 && next_btn_len>0)) {
