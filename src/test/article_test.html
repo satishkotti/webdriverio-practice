@@ -1502,7 +1502,7 @@ a.Video::after {
       </ul>
     </div>
     <div class="disclaimers" data-metrics-module="ftr">
-        <a onclick="TRUSTeWidget.Tab.link();" class="logo_AdChoices adChoice-dsk" data-metrics-link="ad-choice">AdChoices</a>
+        <a href="" onclick="TRUSTeWidget.Tab.link();" class="logo_AdChoices adChoice-dsk" data-metrics-link="ad-choice">AdChoices</a>
         <a href="//preferences-mgr.truste.com/?pid=webmd01&amp;aid=webmdsafari_mobile01&amp;type=webmd_mobile" class="logo_AdChoices adChoice-mbl" data-metrics-link="ad-choice">AdChoices</a>
         <script>
         $(function(){
@@ -1514,6 +1514,8 @@ a.Video::after {
 
                 webmd.load({js:[fileNameToLoad, '//privacy-policy.truste.com/privacy-seal/WebMD,-LLC/asc?rid=f733a173-6d11-4e17-ba9f-f1454ef8b32f']});
             }
+
+            $('adChoice-dsk').click(function(e){e.preventDefault();})
         });
         </script>
 

@@ -11,7 +11,7 @@ webmd.fundedEditorial = {
     init : function(){
         this.bindEvents();
 
-        this.createAds(this.uaType);
+        //this.createAds(this.uaType);
 
         if($('#attribution_rdr').length) {
             this.moveAttribution();
