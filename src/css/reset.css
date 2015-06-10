@@ -43,11 +43,11 @@
   max-width: 490px !important;
 }
 
-.article-nav-container.half-me .article-nav > div {
+.article-nav-container.half-me .article-nav > a {
   width: 100% !important;
 }
 
-.article-nav-container.half-me .article-nav > div.next {
+.article-nav-container.half-me .article-nav > a.next {
   border: 0 !important;
 }
 
@@ -77,13 +77,13 @@
   -ms-transition-delay: 0s;
   transition-delay: 0s;
 }
-.article-nav > div {
+.article-nav > a {
   display: inline-table;
   width: 50%;
   height: 100%;
   max-height: 90px;
 }
-.article-nav > div:hover {
+.article-nav > a:hover {
   background-color: rgb(239,239,239);
 }
 .article-nav .arrow {

@@ -11,6 +11,8 @@ webmd.fundedEditorial = {
     init : function(){
         this.getCurrentURL();
 
+        this.addToSessionHistory();
+
         this.getCurrentArticleId();
 
         this.bindEvents();
@@ -38,11 +40,31 @@ webmd.fundedEditorial = {
         sessionStorage.currentURL = url.split("?")[0].split("#")[0];
     },
 
+    addToSessionHistory : function() {
+        var jsonStr = sessionStorage.visitedPages || '{"visited":[]}',
+        visitedObj = JSON.parse(jsonStr),
+        urlExists = false;
+
+        for (key in visitedObj.visited) {
+            if (visitedObj.visited[key].page === sessionStorage.currentURL) {
+                urlExists = true;
+                break;
+            }
+        }
+
+        if (!urlExists) {
+            visitedObj["visited"].push({"page" : sessionStorage.currentURL});
+        }
+        sessionStorage.visitedPages = JSON.stringify(visitedObj);
+    },
+
     getCurrentArticleId : function() {
-        for(var key in article_data.articles) {
-            if (article_data.articles[key].article.link === sessionStorage.currentURL) {
-                article_data.current_article_id = article_data.articles[key].id;
-            } 
+        if (typeof article_data !== "undefined") {
+            for(var key in article_data.articles) {
+                if (article_data.articles[key].article.link === sessionStorage.currentURL) {
+                    article_data.current_article_id = article_data.articles[key].id;
+                }
+            }
         }
     },
 
