@@ -179,7 +179,7 @@ webmd.fundedNavigation = {
                     $article_nav = $(".article-nav"),
                     source = $template.html(),
                     template = Handlebars.compile(source),
-                    context = {article_data} || {},
+                    context = {"article_data" : article_data} || {},
                     html = template(context);
 
                 $container.prepend(html);
