@@ -1418,23 +1418,23 @@ a.Video::after {
 
 
     <script id="previous-btn-partial" type="text/x-handlebars-template">
-    <div class="prev" data-link="{{link}}">
+    <a class="prev" href="{{link}}">
       <span class="arrow"></span>
       <span class="text">
         <span class="nav">Previous</span>
         <span class="title">{{title}}</span>
       </span>
-    </div>
+    </a>
     </script>
 
     <script id="next-btn-partial" type="text/x-handlebars-template">
-    <div class="next" data-link="{{link}}">
+    <a class="next" href="{{link}}">
       <span class="text">
         <span class="nav">Next</span>
         <span class="title">{{title}}</span>
       </span>
       <span class="arrow"></span>
-    </div>
+    </a>
     </script>
 
     <script id="entry-template" type="text/x-handlebars-template">
@@ -1495,11 +1495,11 @@ a.Video::after {
                 if ((prev_btn_len>0) && (next_btn_len>0)) {
                   // Both 'previous' and 'next' exist - setup event handlers
                   $prev_btn.click(function() {
-                      window.location = $(this).data("link");
+                      window.location = $(this).attr("href");
                   });
 
                   $next_btn.click(function() {
-                      window.location = $(this).data("link");
+                      window.location = $(this).attr("href");
                   });
                   return;
                 } else {
