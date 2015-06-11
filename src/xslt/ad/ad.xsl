@@ -144,6 +144,54 @@ This parameter builds the dynamic ad id name.
     </xsl:choose>
 </xsl:param>
 
+<!--
+    Targets object
+
+    targets: { $targets }
+
+    Special cases:
+
+    "pt" parameter (primary topic) uses [apg] token.
+    This used to be sent as the "xpg" parameter in the old ad system.
+
+    "env" parameter has some extra characters we don't need so we strip '&amp;enf='
+
+    "uri" contains a url encoded string, but we decode it before passing to google, because
+    google handles all necessary encoding
+
+    "leaf" parameter uses token [pkg] but as set by runtime it has some extra characters we don't need,
+    so those are stripped out using javascript.
+
+    "app" parameter is an app id used for ads. Note this is not the same as webmd.appid which is used by registration.
+    Apps can set the webmd.adappid variable at the top of the page to set this, or (preferred) can directly call webmd.ads2.setPageTarget()
+    to set the parameter directly.
+-->
+<xsl:param name="targets">
+    <xsl:text>art:'[artid]',</xsl:text>
+    <xsl:text>cc:'[cc]',</xsl:text>
+    <xsl:text>env:'[env]',</xsl:text>
+    <xsl:text>hcent:'[hcent]',</xsl:text>
+    <xsl:text>leaf:'[pkg]',</xsl:text>
+    <xsl:text>mcent:'[mcent]',</xsl:text>
+    <xsl:text>mic:'[micro]',</xsl:text>
+    <xsl:text>pt:'[apg]',</xsl:text>
+    <xsl:text>sec:'[sec]',</xsl:text>
+    <xsl:text>pug:'[pug]',</xsl:text>
+    <xsl:text>scent:'[scent]',</xsl:text>
+    <xsl:text>tmg:'[tmg]',</xsl:text>
+    <xsl:text>tug:'[tug]',</xsl:text>
+    <xsl:text>uri:'[uri]'</xsl:text>
+</xsl:param>
+
+<!--
+    Block codes
+
+    This is to allow for overwriting for exchanges
+-->
+<xsl:param name="blockCodes">
+    <xsl:text>[bc]</xsl:text>
+</xsl:param>
+
 <!-- replace hyphen with underscore. hyphen is an illegal JS variable name -->
 <xsl:variable name="vModuleTitle">
     <xsl:call-template name="ReplaceString">
@@ -268,6 +316,22 @@ This parameter builds the dynamic ad id name.
         </xsl:otherwise>
     </xsl:choose>
 
+    <!--
+        Script to set global targets for all ads on the page,
+        then define the ad div and the pos value for that ad.
+    -->
+    <xsl:choose>
+        <xsl:when test="$print != 'false'">
+            <script><![CDATA[
+                webmd.ads2Consumer.printAdTargets = {targets:{]]><xsl:value-of select="$targets"/><![CDATA[},blockCodes:']]><xsl:value-of select="$blockCodes"/><![CDATA['};
+            ]]></script>
+        </xsl:when>
+        <xsl:otherwise>
+            <script><![CDATA[
+                webmd.ads2Consumer.defineAd({targets:{]]><xsl:value-of select="$targets"/><![CDATA[},blockCodes:']]><xsl:value-of select="$blockCodes"/><![CDATA[',id:']]><xsl:value-of select="$adID"/><![CDATA[',pos:']]><xsl:value-of select="$adPos"/><![CDATA[',sizes:]]><xsl:value-of select="$sizes"/><![CDATA[});
+            ]]></script>
+        </xsl:otherwise>
+    </xsl:choose>
 </xsl:template>
 
 <!--
@@ -292,54 +356,6 @@ This parameter builds the dynamic ad id name.
                 <xsl:text>left</xsl:text>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:param>
-
-    <!--
-        Targets object
-
-        targets: { $targets }
-
-        Special cases:
-
-        "pt" parameter (primary topic) uses [apg] token.
-        This used to be sent as the "xpg" parameter in the old ad system.
-
-        "env" parameter has some extra characters we don't need so we strip '&amp;enf='
-
-        "uri" contains a url encoded string, but we decode it before passing to google, because
-        google handles all necessary encoding
-
-        "leaf" parameter uses token [pkg] but as set by runtime it has some extra characters we don't need,
-        so those are stripped out using javascript.
-
-        "app" parameter is an app id used for ads. Note this is not the same as webmd.appid which is used by registration.
-        Apps can set the webmd.adappid variable at the top of the page to set this, or (preferred) can directly call webmd.ads2.setPageTarget()
-        to set the parameter directly.
-    -->
-    <xsl:param name="targets">
-        <xsl:text>art:'[artid]',</xsl:text>
-        <xsl:text>cc:'[cc]',</xsl:text>
-        <xsl:text>env:'[env]',</xsl:text>
-        <xsl:text>hcent:'[hcent]',</xsl:text>
-        <xsl:text>leaf:'[pkg]',</xsl:text>
-        <xsl:text>mcent:'[mcent]',</xsl:text>
-        <xsl:text>mic:'[micro]',</xsl:text>
-        <xsl:text>pt:'[apg]',</xsl:text>
-        <xsl:text>sec:'[sec]',</xsl:text>
-        <xsl:text>pug:'[pug]',</xsl:text>
-        <xsl:text>scent:'[scent]',</xsl:text>
-        <xsl:text>tmg:'[tmg]',</xsl:text>
-        <xsl:text>tug:'[tug]',</xsl:text>
-        <xsl:text>uri:'[uri]'</xsl:text>
-    </xsl:param>
-
-    <!--
-        Block codes
-
-        This is to allow for overwriting for exchanges
-    -->
-    <xsl:param name="blockCodes">
-        <xsl:text>[bc]</xsl:text>
     </xsl:param>
 
     <!--
@@ -426,23 +442,6 @@ This parameter builds the dynamic ad id name.
             <xsl:if test="$adType != 'banner'">
                 <div class="moduleSpacer_rdr"> </div>
             </xsl:if>
-        </xsl:otherwise>
-    </xsl:choose>
-
-    <!--
-        Script to set global targets for all ads on the page,
-        then define the ad div and the pos value for that ad.
-    -->
-    <xsl:choose>
-        <xsl:when test="$print != 'false'">
-            <script><![CDATA[
-                webmd.ads2Consumer.printAdTargets = {targets:{]]><xsl:value-of select="$targets"/><![CDATA[},blockCodes:']]><xsl:value-of select="$blockCodes"/><![CDATA['};
-            ]]></script>
-        </xsl:when>
-        <xsl:otherwise>
-            <script><![CDATA[
-                webmd.ads2Consumer.defineAd({targets:{]]><xsl:value-of select="$targets"/><![CDATA[},blockCodes:']]><xsl:value-of select="$blockCodes"/><![CDATA[',id:']]><xsl:value-of select="$adID"/><![CDATA[',pos:']]><xsl:value-of select="$adPos"/><![CDATA[',sizes:]]><xsl:value-of select="$sizes"/><![CDATA[});
-            ]]></script>
         </xsl:otherwise>
     </xsl:choose>
 </xsl:template>
@@ -474,57 +473,6 @@ This parameter builds the dynamic ad id name.
     </xsl:param>
 
     <!--
-        Targets object
-
-        targets: { $targets }
-
-        Special cases:
-
-        "pt" parameter (primary topic) uses [apg] token.
-        This used to be sent as the "xpg" parameter in the old ad system.
-
-        "env" parameter has some extra characters we don't need so we strip '&amp;enf='
-
-        "uri" contains a url encoded string, but we decode it before passing to google, because
-        google handles all necessary encoding
-
-        "leaf" parameter uses token [pkg] but as set by runtime it has some extra characters we don't need,
-        so those are stripped out using javascript.
-
-        "app" parameter is an app id used for ads. Note this is not the same as webmd.appid which is used by registration.
-        Apps can set the webmd.adappid variable at the top of the page to set this, or (preferred) can directly call webmd.ads2.setPageTarget()
-        to set the parameter directly.
-    -->
-    <xsl:param name="targets">
-        <xsl:text>art:'[artid]',</xsl:text>
-        <xsl:text>cc:'[cc]',</xsl:text>
-        <xsl:text>env:'[env]',</xsl:text>
-        <xsl:text>hcent:'[hcent]',</xsl:text>
-        <xsl:text>leaf:'[pkg]',</xsl:text>
-        <xsl:text>mcent:'[mcent]',</xsl:text>
-        <xsl:text>mic:'[micro]',</xsl:text>
-        <xsl:text>pt:'[apg]',</xsl:text>
-        <xsl:text>sec:'[sec]',</xsl:text>
-        <xsl:text>pug:'[pug]',</xsl:text>
-        <xsl:text>scent:'[scent]',</xsl:text>
-        <xsl:text>tmg:'[tmg]',</xsl:text>
-        <xsl:text>tug:'[tug]',</xsl:text>
-        <xsl:text>uri:'[uri]'</xsl:text>
-    </xsl:param>
-
-    <!--
-        Block codes
-
-        This is to allow for overwriting for exchanges
-    -->
-    <xsl:param name="blockCodes">
-        <xsl:text>[bc]</xsl:text>
-    </xsl:param>
-
-    <xsl:text>Mobile Ad</xsl:text>
-
-
-    <!--
         Wrapping divs for the ad to allow various styles to be applied.
         Most of this code is legacy and should probably be updated later.
     -->
@@ -608,23 +556,6 @@ This parameter builds the dynamic ad id name.
             <xsl:if test="$adType != 'banner'">
                 <div class="moduleSpacer_rdr"> </div>
             </xsl:if>
-        </xsl:otherwise>
-    </xsl:choose>
-
-    <!--
-        Script to set global targets for all ads on the page,
-        then define the ad div and the pos value for that ad.
-    -->
-    <xsl:choose>
-        <xsl:when test="$print != 'false'">
-            <script><![CDATA[
-                webmd.ads2Consumer.printAdTargets = {targets:{]]><xsl:value-of select="$targets"/><![CDATA[},blockCodes:']]><xsl:value-of select="$blockCodes"/><![CDATA['};
-            ]]></script>
-        </xsl:when>
-        <xsl:otherwise>
-            <script><![CDATA[
-                webmd.ads2Consumer.defineAd({targets:{]]><xsl:value-of select="$targets"/><![CDATA[},blockCodes:']]><xsl:value-of select="$blockCodes"/><![CDATA[',id:']]><xsl:value-of select="$adID"/><![CDATA[',pos:']]><xsl:value-of select="$adPos"/><![CDATA[',sizes:]]><xsl:value-of select="$sizes"/><![CDATA[});
-            ]]></script>
         </xsl:otherwise>
     </xsl:choose>
 </xsl:template>
