@@ -1,0 +1,158 @@
+var webmd;
+
+if(!webmd){
+    webmd = {};
+}
+
+webmd.fundedNextUp = {
+
+    init : function(){
+        this.articles_to_display = 3; // number of links to display in "Next Up"
+
+        this.injectCSS();
+
+        this.injectHBtemplateJS();
+
+        this.getCurrentURL();
+
+        this.addToSessionHistory();
+
+        this.getCurrentArticleId();
+
+        this.render();
+    },
+
+    injectCSS: function() { // this may not be needed if attaching CSS via PageBuilder
+        var $link = $('<link/>');
+
+        $link.attr({
+            'rel' : 'stylesheet',
+            'href' : '../css/build/nextup.css',
+            'type' : 'text/css'
+        });
+
+        $('head').append($link);
+    },
+
+    injectHBtemplateJS: function() { // inject embedded script to reduce http calls
+        var $script = $('<script></script>'), 
+            newline = '\n'; //allows readability using inspector
+
+        $script
+            .attr({
+                'id'   : 'funded-nextup',
+                'type' : 'text/x-handlebars-template'
+            })
+            .html(
+                '{{#article_data}}' + newline +
+                '<ul class="article-list">' + newline +
+                '   <li class="up-next-header">Up Next</li>' + newline +
+                '   <li>' + newline +
+                '       <ul class="articles">' + newline +
+                '           {{#each articles}}' + newline +
+                '           <li class="{{#iscurrent article.link ../current_article_url}}current{{/iscurrent}}">' + newline +
+                '               <a href="{{article.link}}">' + newline +
+                '                   <span class="text">' + newline +
+                '                       <span class="title">{{article.title}}</span>' + newline +
+                '                   </span>' + newline +
+                '               </a>' + newline +
+                '           </li>' + newline +
+                '           {{/each}}' + newline +
+                '       </ul>' + newline +
+                '   </li>' + newline +
+                '</ul>' + newline +
+                '{{/article_data}}'
+            );
+
+        $('head').append($script);
+    },
+
+    getCurrentURL : function () {
+        var url = window.location.href;
+
+        // save URL without querystring and/or hash for session only
+        sessionStorage.currentURL = url.split("?")[0].split("#")[0];
+        article_data.current_article_url = sessionStorage.currentURL;
+    },
+
+    addToSessionHistory : function() {
+        var jsonStr = sessionStorage.visitedPages || '{"visited":[]}',
+        visitedObj = JSON.parse(jsonStr),
+        urlExists = false;
+
+        for (key in visitedObj.visited) {
+            if (visitedObj.visited[key].page === sessionStorage.currentURL) {
+                urlExists = true;
+                break;
+            }
+        }
+
+        if (!urlExists) {
+            visitedObj["visited"].push({"page" : sessionStorage.currentURL});
+        }
+        sessionStorage.visitedPages = JSON.stringify(visitedObj);
+    },
+
+    getCurrentArticleId : function() {
+        if (typeof article_data !== "undefined") {
+            for(var key in article_data.articles) {
+                if (article_data.articles[key].article.link === sessionStorage.currentURL) {
+                    article_data.current_article_id = article_data.articles[key].id;
+                }
+            }
+        }
+    },
+
+    bindEvents: function() {
+        $('.articles li a').hover( // hide 2px border when hovering (remove if hover is not used)
+            function() {
+                $(this).closest("li").addClass("no-bottom-border");
+                $(this).closest("li").prev().addClass("no-bottom-border");
+            }, function() {
+                $(this).closest("li").removeClass("no-bottom-border");
+                $(this).closest("li").prev().removeClass("no-bottom-border");
+            }
+        );
+    },
+
+    render: function(){ // uses handlebars template above
+        var self = this;
+
+        require(["handlebars/1/handlebars"], function(Handlebars) {
+            Handlebars.registerHelper('iscurrent', function(value, value2, options) {
+              if (value === value2) {
+                return options.fn(this);
+              } else {
+                return options.inverse(this);
+              }
+            });
+
+            if (typeof article_data !== "undefined") {
+                var $template = $("#funded-nextup"),
+                    $container = $(".article-list-container"),
+                    $articles = $(".articles"),
+                    source = $template.html(),
+                    template = Handlebars.compile(source),
+                    context = {"article_data" : article_data} || {},
+                    html = template(context);
+
+                $container.prepend(html);
+
+                self.moveCurrentToTop();
+
+                self.bindEvents();
+            }
+        });
+    },
+
+    moveCurrentToTop: function() {
+        var $articles = $('ul.article-list .articles'),
+            $currentListItem = $('ul.article-list .articles .current');
+
+        $articles.prepend($currentListItem);
+    }
+};
+
+$(function() {
+    webmd.fundedNextUp.init();
+});

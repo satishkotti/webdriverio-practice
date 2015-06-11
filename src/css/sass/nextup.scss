@@ -1,0 +1,61 @@
+// Variables
+@import 'variables';
+
+.article-list-container {
+  position: relative;
+  display: block;
+  width: calc(100% - 1px);
+  border: 1px solid rgb(239,239,239);
+  margin-bottom: 10px;
+  background-color: #fff;
+  font-family: 'Roboto Slab';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+
+  .article-list {
+    .up-next-header {
+      display: block;
+      width: 100%;
+      margin: 0px;
+      padding: 15px;
+      background-color: rgb(48,146,209);
+      color: #fff;
+      border: 0 !important;
+    }
+
+    .articles {
+      margin: 0px 15px 0px 15px;
+    }
+
+    li {
+      border-bottom: 2px solid rgb(239,239,239);
+
+      &:last-child {
+        border: 0 !important;
+      }
+
+      a {
+        position: relative;
+        left: -15px;
+        width: calc(100% + 30px);
+      }
+    }
+
+    .articles > li a:hover {
+      background-color: rgb(239,239,239);
+    }
+
+    a {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      color: #000;
+    }
+
+    .no-bottom-border {
+      border-bottom: 2px solid #fff !important;
+    }
+  }
+}
+
