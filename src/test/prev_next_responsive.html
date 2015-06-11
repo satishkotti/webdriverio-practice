@@ -135,7 +135,7 @@
           //   $("#s4").stick_in_parent();
           // });
           </script>
-
+          <script type="text/javascript" src="../js/funded-navigation.js"/>
           <script src="//localhost:35729/livereload.js"></script>
     </head>
 
@@ -1414,108 +1414,5 @@ a.Video::after {
             <div id="ContentPane72" class="pane"></div>
         </section>
         <script type="text/javascript" src="http://img.preview.webmd.com/bi_common/bi_consumer.js?d=5/28/2015"></script>
-
-
-
-    <script id="previous-btn-partial" type="text/x-handlebars-template">
-    <a class="prev" href="{{link}}">
-      <span class="arrow"></span>
-      <span class="text">
-        <span class="nav">Previous</span>
-        <span class="title">{{title}}</span>
-      </span>
-    </a>
-    </script>
-
-    <script id="next-btn-partial" type="text/x-handlebars-template">
-    <a class="next" href="{{link}}">
-      <span class="text">
-        <span class="nav">Next</span>
-        <span class="title">{{title}}</span>
-      </span>
-      <span class="arrow"></span>
-    </a>
-    </script>
-
-    <script id="entry-template" type="text/x-handlebars-template">
-    <div class="article-nav">
-      {{#article_data}}
-        {{#each articles}}
-            {{#isprevious id ...current_article_id}}
-              {{> previous-btn article}}
-            {{/isprevious}}
-
-            {{#isnext id ...current_article_id}}
-              {{> next-btn article}}
-            {{/isnext}}
-        {{/each}}
-      {{/article_data}}
-    </div>
-    </script>
-
-    <script type="text/javascript">
-    $(function(){
-        require(["handlebars/1/handlebars"], function(Handlebars) {
-            Handlebars.registerHelper('isprevious', function(value, value2, options) {
-              if (value < value2 && (value > value2 - 2)) {
-                return options.fn(this);
-              } else {
-                return options.inverse(this);
-              }
-            });
-
-            Handlebars.registerHelper('isnext', function(value, value2, options) {
-              if (value > value2 && value < (value2 + 2)) {
-                return options.fn(this);
-              } else {
-                return options.inverse(this);
-              }
-            });
-
-            Handlebars.registerPartial("previous-btn", $("#previous-btn-partial").html());
-            Handlebars.registerPartial("next-btn", $("#next-btn-partial").html());
-
-            if (typeof article_data !== "undefined") {
-                var $template = $("#entry-template"),
-                    $container = $(".article-nav-container"),
-                    $article_nav = $(".article-nav"),
-                    source = $template.html(),
-                    template = Handlebars.compile(source),
-                    context = {article_data} || {},
-                    html = template(context);
-                //console.log(context);
-                $container.prepend(html);
-
-                // Handle display of 1 button or no buttons
-                var $prev_btn = $(".prev"),
-                    $next_btn = $(".next"),
-                    prev_btn_len = $prev_btn.length,
-                    next_btn_len = $next_btn.length;
-
-                if ((prev_btn_len>0) && (next_btn_len>0)) {
-                  // Both 'previous' and 'next' exist - setup event handlers
-                  $prev_btn.click(function() {
-                      window.location = $(this).attr("href");
-                  });
-
-                  $next_btn.click(function() {
-                      window.location = $(this).attr("href");
-                  });
-                  return;
-                } else {
-                  if ((prev_btn_len>0 && next_btn_len===0) || (prev_btn_len===0 && next_btn_len>0)) {
-                    $container.addClass("half-me");
-
-                    if (next_btn_len>0) {
-                      $article_nav.addClass("next-only");
-                    }
-                  } else {
-                    $article_nav.addClass("no-btns");
-                  }
-                }
-            }
-        });
-    });
-    </script>
         </body>
 </html>
