@@ -42,7 +42,7 @@ webmd.fundedEditorial = {
         for(var key in article_data.articles) {
             if (article_data.articles[key].article.link === sessionStorage.currentURL) {
                 article_data.current_article_id = article_data.articles[key].id;
-            } 
+            }
         }
     },
 
