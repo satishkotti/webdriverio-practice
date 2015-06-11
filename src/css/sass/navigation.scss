@@ -1,0 +1,129 @@
+// Variables
+@import 'variables';
+
+.article-nav-container {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 980px;
+  text-align: center;
+
+  &.half-me {
+    width: 50%;
+    max-width: 490px;
+
+    .article-nav {
+      max-width: 490px !important;
+
+      a {
+        width: 100% !important;
+
+        &.next {
+          border: 0 !important;
+        }
+      }
+    }
+  }
+
+  .article-nav {
+    position: inherit;
+    display: table;
+    width: 100%;
+    max-width: 980px;
+    bottom: -200px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid rgb(193,193,193);
+    background-color: #fff;
+    -webkit-transition: all 0.5s ease-in-out 0.5s;
+    -moz-transition: all 0.5s ease-in-out 0.5s;
+    -o-transition: all 0.5s ease-in-out 0.5s;
+    -ms-transition: all 0.5s ease-in-out 0.5s;
+    transition: all 0.5s ease-in-out 0.5s;
+
+    &.show {
+      bottom: -1px; /* hides bottom border */
+      -webkit-transition-delay: 0s;
+      -moz-transition-delay: 0s;
+      -o-transition-delay: 0s;
+      -ms-transition-delay: 0s;
+      transition-delay: 0s;
+    }
+
+    a {
+      display: inline-table;
+      width: 50%;
+      height: 100%;
+      max-height: 90px;
+    }
+
+    a:hover {
+      background-color: rgb(239,239,239);
+    }
+
+    .next, .prev {
+      height: 100%;
+    }
+
+    .next {
+      border-left: 1px solid rgb(182,182,182);
+
+      .arrow {
+        float: right;
+        border-right: 5px solid rgb(182,182,182);
+        transform: rotate(-45deg);
+      }
+
+      .text {}
+    }
+
+    .prev {
+      .arrow {
+        float: left;
+        border-left: 5px solid rgb(182,182,182);
+        transform: rotate(45deg);
+      }
+
+      .text {}
+    }
+
+    .arrow {
+      margin: 30px 30px 25px 30px;
+      width: 25px;
+      height: 25px;
+      opacity: 0.4;
+      border-bottom: 5px solid rgb(182,182,182);
+    }
+
+    .text {
+      position: relative;
+      display: table-cell;
+      width: 100%;
+      font-size: 18px;
+      text-align: center;
+      vertical-align: middle;
+
+      .nav {
+        display: block;
+        color: rgb(182,182,182);
+      }
+
+      .title {
+        font-size: 24px;
+        display: block;
+        word-wrap: break-word;
+        font-family: 'Lato';
+        font-weight: 400;
+        font-style: normal;
+        font-size: 18px;
+        color: #333333;
+        line-height: normal;
+      }
+    }
+  }
+}
+
