@@ -136,8 +136,8 @@ webmd.fundedNextUp = {
                     urlVisited = false;
 
                 for(var key in history.visited) {
-                    console.log("page: " + history.visited[key].page);
                     if (history.visited[key].page === value) {
+                        urlVisited = true;
                     }
                 }
 
