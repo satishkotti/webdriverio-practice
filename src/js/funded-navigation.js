@@ -48,7 +48,7 @@ webmd.fundedNavigation = {
                 '   {{#article_data}}' + newline +
                 '       {{#each articles}}' + newline +
                 '           {{#isprevious id ...current_article_id}}' + newline +
-                '           <a class="prev" href="{{article.link}}">' + newline +
+                '           <a class="prev {{#isvisited article.link}}visited{{/isvisited}}" href="{{article.link}}">' + newline +
                 '               <span class="arrow"></span>' + newline +
                 '               <span class="text">' + newline +
                 '                   <span class="nav">Previous</span>' + newline +
@@ -57,7 +57,7 @@ webmd.fundedNavigation = {
                 '           </a>' + newline +
                 '           {{/isprevious}}' + newline +
                 '           {{#isnext id ...current_article_id}}' + newline +
-                '           <a class="next" href="{{article.link}}">' + newline +
+                '           <a class="next {{#isvisited article.link}}visited{{/isvisited}}" href="{{article.link}}">' + newline +
                 '               <span class="text">' + newline +
                 '                   <span class="nav">Next</span>' + newline +
                 '                   <span class="title">{{article.title}}</span>' + newline +
@@ -74,34 +74,38 @@ webmd.fundedNavigation = {
     },
 
     getCurrentURL : function () {
-        var url = window.location.href;
+        var self = this,
+            url = window.location.href;
 
         // save URL without querystring and/or hash for session only
-        sessionStorage.currentURL = url.split("?")[0].split("#")[0];
+        self.currentURL = url.split("?")[0].split("#")[0];
     },
 
     addToSessionHistory : function() {
-        var jsonStr = sessionStorage.visitedPages || '{"visited":[]}',
-        visitedObj = JSON.parse(jsonStr),
-        urlExists = false;
+        var self = this,
+            jsonStr = sessionStorage.visitedPages || '{visited:[]}',
+            visitedObj = JSON.parse(jsonStr),
+            urlExists = false;
 
         for (key in visitedObj.visited) {
-            if (visitedObj.visited[key].page === sessionStorage.currentURL) {
+            if (visitedObj.visited[key].page === self.currentURL) {
                 urlExists = true;
                 break;
             }
         }
 
         if (!urlExists) {
-            visitedObj["visited"].push({"page" : sessionStorage.currentURL});
+            visitedObj["visited"].push({"page" : self.currentURL});
         }
         sessionStorage.visitedPages = JSON.stringify(visitedObj);
     },
 
     getCurrentArticleId : function() {
+        var self = this;
+
         if (typeof article_data !== "undefined") {
             for(var key in article_data.articles) {
-                if (article_data.articles[key].article.link === sessionStorage.currentURL) {
+                if (article_data.articles[key].article.link === self.currentURL) {
                     article_data.current_article_id = article_data.articles[key].id;
                 }
             }
@@ -171,6 +175,23 @@ webmd.fundedNavigation = {
               } else {
                 return options.inverse(this);
               }
+            });
+
+            Handlebars.registerHelper('isvisited', function(value, options) {
+                var history = JSON.parse(sessionStorage.visitedPages),
+                    urlVisited = false;
+
+                for(var key in history.visited) {
+                    if (history.visited[key].page === value) {
+                        urlVisited = true;
+                    }
+                }
+
+                if (urlVisited) {
+                    return options.fn(this);
+                } else {
+                    return options.inverse(this);
+                }
             });
 
             if (typeof article_data !== "undefined") {
