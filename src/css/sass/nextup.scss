@@ -4,7 +4,7 @@
 .article-list-container {
   position: relative;
   display: block;
-  width: calc(100% - 1px);
+  width: 100%;
   border: 1px solid rgb(239,239,239);
   margin-bottom: 10px;
   background-color: #fff;
@@ -29,7 +29,7 @@
     }
 
     li {
-      border-bottom: 2px solid rgb(239,239,239);
+      border-bottom: 1px solid rgb(221,221,221);
 
       &:last-child {
         border: 0 !important;
@@ -43,7 +43,7 @@
     }
 
     .articles > li a:hover {
-      background-color: rgb(239,239,239);
+      background-color: rgb(221,221,221);
     }
 
     a {
@@ -54,7 +54,7 @@
     }
 
     .no-bottom-border {
-      border-bottom: 2px solid #fff !important;
+      border-bottom: 1px solid #fff !important;
     }
   }
 }
