@@ -11,7 +11,7 @@
     </xsl:param>
 
     <xsl:template match="/">
-        <div class="article-nav-container"></div>
+        <div class="article-list-container"></div>
         <xsl:element name="script">
         <![CDATA[require(["funded/1/funded-nextup"]);]]>
         </xsl:element>
