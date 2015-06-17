@@ -13,7 +13,7 @@
     <xsl:template match="/">
         <div class="article-nav-container"></div>
         <xsl:element name="script">
-        <![CDATA[require(["funded/1/funded-navigation"]);]]>
+        <![CDATA[require(["funded/1/funded-navigation.min"]);]]>
         </xsl:element>
     </xsl:template>
 
