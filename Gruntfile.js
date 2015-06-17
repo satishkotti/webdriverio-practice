@@ -1,11 +1,11 @@
 module.exports = function (grunt) {
 
     // Build all
-    grunt.registerTask('default', ['clean','sass','autoprefixer','cssmin','concat','uglify']);
+    grunt.registerTask('default', ['clean','sass','autoprefixer','cssmin','concat','copy','uglify']);
     // Build CSS
     grunt.registerTask('css', ['clean','sass','autoprefixer','cssmin']);
     // Build JS
-    grunt.registerTask('js', ['clean','concat','uglify']);
+    grunt.registerTask('js', ['clean','concat','copy','uglify']);
 
     // Zip Files
     grunt.registerTask('zip', ['webmd-zip']);
@@ -75,6 +75,14 @@ module.exports = function (grunt) {
                 dest: '<%= dirSrc %>/js/build/funded-editorial.js',
             }
         },
+        copy: {
+            target: {
+                files: {
+                    '<%= dirSrc %>/js/build/funded-navigation.js' : '<%= dirSrc %>/js/funded-navigation.js',
+                    '<%= dirSrc %>/js/build/funded-nextup.js' : '<%= dirSrc %>/js/funded-nextup.js'
+                }
+            }
+        },
         uglify: {
             build: {
                 options: {
@@ -86,7 +94,9 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    '<%= dirBuild %>/js/funded-editorial.js' : '<%= dirSrc %>/js/build/funded-editorial.js'
+                    '<%= dirBuild %>/js/funded-editorial.js' : '<%= dirSrc %>/js/build/funded-editorial.js',
+                    '<%= dirBuild %>/js/funded-navigation.js' : '<%= dirSrc %>/js/build/funded-navigation.js',
+                    '<%= dirBuild %>/js/funded-nextup.js' : '<%= dirSrc %>/js/build/funded-nextup.js'
                 }
             },
             dist: {
@@ -99,7 +109,9 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    '<%= dirDist %>/<%= dirDctmPbJsPath %>/funded-editorial.min.js' : '<%= dirSrc %>/js/funded-editorial.js'
+                    '<%= dirDist %>/<%= dirDctmPbJsPath %>/funded-editorial.min.js' : '<%= dirSrc %>/js/funded-editorial.js',
+                    '<%= dirDist %>/<%= dirDctmPbJsPath %>/funded/1/funded-navigation.min.js' : '<%= dirSrc %>/js/funded-navigation.js',
+                    '<%= dirDist %>/<%= dirDctmPbJsPath %>/funded/1/funded-nextup.min.js' : '<%= dirSrc %>/js/funded-nextup.js'
                 }
             }
         },
