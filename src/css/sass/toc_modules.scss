@@ -1,0 +1,126 @@
+.toc-container {
+  .icm {
+    position: relative;
+    color: white;
+    text-align: center;
+    font-size: 0;
+
+    &.icm-1x {
+      width: 300px;
+      height: 250px;
+
+      .text {
+        display: none;
+      }
+    }
+
+    &.icm-1x-2t {
+      width: 300px;
+      height: 500px;
+
+      .image, .text {
+        height: 250px;
+      }
+    }
+
+    &.icm-2x {
+      width: 600px;
+      height: 250px;
+    }
+
+    &.right {
+      clear: right;
+      float: right;
+    }
+
+    &.left {
+      clear: right;
+      float: left;
+    }
+
+    .image, .text {
+      position: relative;
+      display: block;
+      float: left;
+      width: 300px;
+      height: 100%;
+    }
+
+    .image {
+      background-color: purple;
+    }
+
+    .text {
+      color: black;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+
+  .toc {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-content: flex-start;
+    align-content: flex-start;
+
+    .column {
+      border: 1px solid rgb(221,221,221);
+      height: auto;
+      font-size: 0;
+      -webkit-align-items: stretch;
+      align-items: stretch;
+
+      .item_container {
+        display: block;
+        width: 100%;
+
+        a {
+          display: block;
+          width: 100%;
+
+          &.item-1 {
+            font-size: 14px;
+            border: 1px solid rgb(255,0,0);
+            width: inherit;
+            /* min-width: 300px; // Set this on media query below 768 width */
+            height: 250px;
+
+            span.image {
+              display: block;
+              background-image: url();
+              background-size: contain;
+              background-position: top center;
+              width: 100%;
+              height: 50%;
+              color: white;
+              background-color: rgb(105, 156, 60);
+            }
+            span.text {
+              display: block;
+              font-size: 22px;
+              font-weight: bold;
+              color: black;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+        }
+      }
+    }
+
+    .column-2x {
+     /* This will be twice as big as the small item. */
+     -webkit-flex: 2 0 0; 
+     flex: 2 0 0; 
+    }
+
+    .column-1x {
+       -webkit-flex: 1 0 0;
+       flex: 1 0 0;
+    }
+  }
+}
