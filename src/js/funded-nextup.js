@@ -9,7 +9,7 @@ webmd.fundedNextUp = {
     init : function(){
         this.articles_to_display = 3; // number of links to display in "Next Up"
 
-        this.injectCSS();
+        //this.injectCSS();
 
         this.injectHBtemplateJS();
 
