@@ -110,8 +110,8 @@ module.exports = function (grunt) {
                 },
                 files: {
                     '<%= dirDist %>/<%= dirDctmPbJsPath %>/funded-editorial.min.js' : '<%= dirSrc %>/js/funded-editorial.js',
-                    '<%= dirDist %>/<%= dirDctmPbJsPath %>/funded/1/funded-navigation.min.js' : '<%= dirSrc %>/js/funded-navigation.js',
-                    '<%= dirDist %>/<%= dirDctmPbJsPath %>/funded/1/funded-nextup.min.js' : '<%= dirSrc %>/js/funded-nextup.js'
+                    '<%= dirDist %>/<%= dirDctmPbJsRquirePath %>/funded/1/funded-navigation.min.js' : '<%= dirSrc %>/js/funded-navigation.js',
+                    '<%= dirDist %>/<%= dirDctmPbJsRquirePath %>/funded/1/funded-nextup.min.js' : '<%= dirSrc %>/js/funded-nextup.js'
                 }
             }
         },
