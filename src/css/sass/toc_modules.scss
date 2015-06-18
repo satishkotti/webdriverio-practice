@@ -1,4 +1,10 @@
+// Variables
+@import 'variables';
+
+
 .toc-container {
+  overflow: hidden;
+
   .icm {
     position: relative;
     color: white;
