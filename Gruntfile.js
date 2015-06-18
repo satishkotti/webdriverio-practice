@@ -39,6 +39,7 @@ module.exports = function (grunt) {
                     '<%= dirSrc %>/css/build/attribution.css' : '<%= dirSrc %>/css/sass/attribution.scss',
                     '<%= dirSrc %>/css/build/nextup.css' : '<%= dirSrc %>/css/sass/nextup.scss',
                     '<%= dirSrc %>/css/build/navigation.css' : '<%= dirSrc %>/css/sass/navigation.scss',
+                    '<%= dirSrc %>/css/build/toc_modules.css' : '<%= dirSrc %>/css/sass/toc_modules.scss',
                     '<%= dirSrc %>/css/build/footer.css' : '<%= dirSrc %>/css/sass/footer.scss'
                 }
             }
