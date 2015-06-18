@@ -160,7 +160,7 @@ webmd.fundedNextUp = {
               var displayMe = false;
 
               if (self.displayed_articles !== self.articles_to_display) {
-                if (value === value2 || value > value2) {
+                if (value > value2) {
                     self.displayed_articles += 1;
                     displayMe = true;
                 }
