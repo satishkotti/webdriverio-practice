@@ -31,6 +31,10 @@
     li {
       border-bottom: 1px solid rgb(221,221,221);
 
+      &.hideme {
+        display: none !important;
+      }
+      
       &:last-child {
         border: 0 !important;
       }
