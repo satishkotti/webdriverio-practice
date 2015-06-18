@@ -7,7 +7,8 @@ if(!webmd){
 webmd.fundedNextUp = {
 
     init : function(){
-        this.articles_to_display = 3; // number of links to display in "Next Up"
+        this.displayed_articles = 0;
+        this.articles_to_display = 3; // this includes the current article (on top)
 
         //this.injectCSS();
 
@@ -50,7 +51,7 @@ webmd.fundedNextUp = {
                 '   <li>' + newline +
                 '       <ul class="articles">' + newline +
                 '           {{#each articles}}' + newline +
-                '           <li class="{{#iscurrent article.link ../current_article_url}}current{{/iscurrent}} {{#isvisited article.link}}visited{{/isvisited}}">' + newline +
+                '           <li class="{{#iscurrent article.link ../current_article_url}}current{{/iscurrent}} {{#isnextup id ../current_article_id}}showme{{else}}hideme{{/isnextup}} {{#isvisited article.link}}visited{{/isvisited}}">' + newline +
                 '               <a href="{{article.link}}">' + newline +
                 '                   <span class="text">' + newline +
                 '                       <span class="title">{{article.title}}</span>' + newline +
@@ -107,6 +108,13 @@ webmd.fundedNextUp = {
         }
     },
 
+    removeDOMelements: function() {
+        var hiddenElements = $(".article-list-container .hideme");
+        for(var i = 0; i < hiddenElements.length; i++) {
+            $(hiddenElements[i]).remove();
+        }
+    },
+
     bindEvents: function() {
         $('.articles li a').hover( // hide 2px border when hovering (remove if hover is not used)
             function() {
@@ -148,6 +156,23 @@ webmd.fundedNextUp = {
                 }
             });
 
+            Handlebars.registerHelper('isnextup', function(value, value2, options) {
+              var displayMe = false;
+
+              if (self.displayed_articles !== self.articles_to_display) {
+                if (value === value2 || value > value2) {
+                    self.displayed_articles += 1;
+                    displayMe = true;
+                }
+              }
+
+              if (displayMe) {
+                return options.fn(this);
+              } else {
+                return options.inverse(this);
+              }
+            });
+
             if (typeof article_data !== "undefined") {
                 var $template = $("#funded-nextup"),
                     $container = $(".article-list-container"),
@@ -159,7 +184,11 @@ webmd.fundedNextUp = {
 
                 $container.prepend(html);
 
-                self.moveCurrentToTop();
+                // Not needed at this time
+                // self.moveCurrentToTop();
+
+                // Remove hidden articles form up next (auto-corrects CSS issues)
+                self.removeDOMelements();
 
                 self.bindEvents();
             }
