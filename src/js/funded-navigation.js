@@ -7,7 +7,7 @@ if(!webmd){
 webmd.fundedNavigation = {
 
     init : function(){
-        this.injectCSS();
+        //this.injectCSS();
 
         this.injectHBtemplateJS();
 
@@ -35,7 +35,7 @@ webmd.fundedNavigation = {
     },
 
     injectHBtemplateJS: function() { // inject embedded script to reduce http calls
-        var $script = $('<script></script>'), 
+        var $script = $('<script></script>'),
             newline = '\n'; //allows readability using inspector
 
         $script

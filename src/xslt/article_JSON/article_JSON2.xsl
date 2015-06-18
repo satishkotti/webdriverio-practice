@@ -33,16 +33,16 @@
                         <![CDATA["article" : {]]>
                             <![CDATA["title" : "]]><xsl:choose>
                                 <xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
-                                    <xsl:value-of select="substring-before(link_text,' [')"/>
+                                    <xsl:value-of select="normalize-space(substring-before(link_text,' ['))"/>
                                 </xsl:when>
                                 <xsl:when test="substring-before(substring-after(link_text, '['), ']')">
-                                    <xsl:value-of select="substring-before(link_text,'[')"/>
+                                    <xsl:value-of select="normalize-space(substring-before(link_text,'['))"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:value-of select="link_text"/>
+                                    <xsl:value-of select="normalize-space(link_text)"/>
                                 </xsl:otherwise>
                             </xsl:choose><![CDATA[",]]>
-                            <![CDATA["description" : "]]><xsl:value-of select="action_text" disable-output-escaping="yes"></xsl:value-of><![CDATA[",]]>
+                            <![CDATA["description" : "]]><xsl:value-of select="normalize-space(action_text)" disable-output-escaping="yes"></xsl:value-of><![CDATA[",]]>
                             <![CDATA["link" : "]]><xsl:value-of select="$href"></xsl:value-of><![CDATA[",]]>
                             <![CDATA["images" : {]]>
                                 <![CDATA["image650x350" : "]]><xsl:value-of select="$image_server_url"/><xsl:value-of select="link_source_icon/@path"/><![CDATA[",]]>
