@@ -11,7 +11,11 @@
     </xsl:param>
 
     <xsl:template match="/">
-        <div class="article-list-container"></div>
+        <xsl:element name="div">
+            <xsl:attribute name="class">
+                <xsl:text>article-list-container</xsl:text>
+            </xsl:attribute>
+        </xsl:element>
         <xsl:element name="script">
         <![CDATA[require(["funded/1/funded-nextup.min"]);]]>
         </xsl:element>
