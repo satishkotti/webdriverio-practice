@@ -70,7 +70,7 @@ module.exports = function (grunt) {
                     separator: ';',
                 },
                 src: [
-                    '<%= dirSrc %>/js/lib/hc-sticky.js',
+                    '<%= dirSrc %>/js/lib/hc-sticky.min.js',
                     '<%= dirSrc %>/js/funded-editorial.js'
                 ],
                 dest: '<%= dirSrc %>/js/build/funded-editorial.js',
@@ -110,7 +110,7 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    '<%= dirDist %>/<%= dirDctmPbJsPath %>/funded-editorial.min.js' : '<%= dirSrc %>/js/funded-editorial.js',
+                    '<%= dirDist %>/<%= dirDctmPbJsPath %>/funded-editorial.min.js' : '<%= dirSrc %>/js/build/funded-editorial.js',
                     '<%= dirDist %>/<%= dirDctmPbJsRquirePath %>/funded/1/funded-navigation.min.js' : '<%= dirSrc %>/js/funded-navigation.js',
                     '<%= dirDist %>/<%= dirDctmPbJsRquirePath %>/funded/1/funded-nextup.min.js' : '<%= dirSrc %>/js/funded-nextup.js'
                 }

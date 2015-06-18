@@ -29,7 +29,7 @@ webmd.fundedEditorial = {
         }
 
         if(this.uaType !== 'mobile'){
-            //this.stickIt();
+            this.stickIt();
         }
 
     },
