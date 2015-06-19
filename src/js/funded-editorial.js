@@ -1,8 +1,4 @@
-var webmd;
-
-if(!webmd){
-    webmd = {};
-}
+webmd.object.set('webmd.fundedEditorial');
 
 webmd.fundedEditorial = {
 

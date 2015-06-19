@@ -97,7 +97,8 @@ module.exports = function (grunt) {
                 files: {
                     '<%= dirBuild %>/js/funded-editorial.js' : '<%= dirSrc %>/js/build/funded-editorial.js',
                     '<%= dirBuild %>/js/funded-navigation.js' : '<%= dirSrc %>/js/build/funded-navigation.js',
-                    '<%= dirBuild %>/js/funded-nextup.js' : '<%= dirSrc %>/js/build/funded-nextup.js'
+                    '<%= dirBuild %>/js/funded-nextup.js' : '<%= dirSrc %>/js/build/funded-nextup.js',
+                    '<%= dirBuild %>/js/responsive.js' : '<%= dirSrc %>/js/responsive.js'
                 }
             },
             dist: {
