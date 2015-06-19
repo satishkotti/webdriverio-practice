@@ -6,36 +6,23 @@ if(!webmd){
 
 webmd.fundedNextUp = {
 
-    init : function(){
-        this.displayed_articles = 0;
-        this.articles_to_display = 3; // this includes the current article (on top)
+    articles_to_display : 3,
 
-        //this.injectCSS();
+    displayed_articles : 0,
+    nextup_article_data : {articles:[]},
+
+    init : function(){
 
         this.injectHBtemplateJS();
 
-        this.getCurrentURL();
+        this.setCurrentArticle();
 
         this.addToSessionHistory();
-
-        this.getCurrentArticleId();
 
         this.render();
     },
 
-    injectCSS: function() { // this may not be needed if attaching CSS via PageBuilder
-        var $link = $('<link/>');
-
-        $link.attr({
-            'rel' : 'stylesheet',
-            'href' : '../css/build/nextup.css',
-            'type' : 'text/css'
-        });
-
-        $('head').append($link);
-    },
-
-    injectHBtemplateJS: function() { // inject embedded script to reduce http calls
+    injectHBtemplateJS : function() { // inject embedded script to reduce http calls
         var $script = $('<script></script>'), 
             newline = '\n'; //allows readability using inspector
 
@@ -51,7 +38,7 @@ webmd.fundedNextUp = {
                 '   <li>' + newline +
                 '       <ul class="articles">' + newline +
                 '           {{#each articles}}' + newline +
-                '           <li class="{{#iscurrent article.link ../current_article_url}}current{{/iscurrent}} {{#isnextup id ../current_article_id}}showme{{else}}hideme{{/isnextup}} {{#isvisited article.link}}visited{{/isvisited}}">' + newline +
+                '           <li class="{{#if article.visited}}visited{{/if}}">' + newline +
                 '               <a href="{{article.link}}">' + newline +
                 '                   <span class="text">' + newline +
                 '                       <span class="title">{{article.title}}</span>' + newline +
@@ -68,54 +55,110 @@ webmd.fundedNextUp = {
         $('head').append($script);
     },
 
-    getCurrentURL : function () {
+    setCurrentArticle : function() {
         var self = this,
-            url = window.location.href;
-
-        // save URL without querystring and/or hash for session only
-        self.currentURL = url.split("?")[0].split("#")[0];
-        article_data.current_article_url = self.currentURL;
-    },
-
-    addToSessionHistory : function() {
-        var self = this,
-            jsonStr = sessionStorage.visitedPages || '{visited:[]}',
-            visitedObj = JSON.parse(jsonStr),
-            urlExists = false;
-
-        for (key in visitedObj.visited) {
-            if (visitedObj.visited[key].page === self.currentURL) {
-                urlExists = true;
-                break;
-            }
-        }
-
-        if (!urlExists) {
-            visitedObj["visited"].push({"page" : self.currentURL});
-        }
-        sessionStorage.visitedPages = JSON.stringify(visitedObj);
-    },
-
-    getCurrentArticleId : function() {
-        var self = this;
+            url = window.location.href,
+            current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
+            articles,
+            article;
 
         if (typeof article_data !== "undefined") {
-            for(var key in article_data.articles) {
-                if (article_data.articles[key].article.link === self.currentURL) {
-                    article_data.current_article_id = article_data.articles[key].id;
+            articles = article_data.articles;
+
+            for(var key in articles) {
+                article = articles[key].article;
+                articles[key].current = false;
+
+                if (article.link === current_url) {
+                    article_data.current_article_id = articles[key].id;
+                    articles[key].current = true;
                 }
             }
         }
     },
 
-    removeDOMelements: function() {
-        var hiddenElements = $(".article-list-container .hideme");
-        for(var i = 0; i < hiddenElements.length; i++) {
-            $(hiddenElements[i]).remove();
+    addToSessionHistory : function(url) {
+        var self = this,
+            jsonStr = sessionStorage.visitedPages || '{}',
+            visitedObj = JSON.parse(jsonStr),
+            urlExists = false;
+
+        for (key in visitedObj.visited) {
+            if (visitedObj.visited[key].page === url) {
+                urlExists = true;
+                break;
+            }
+        }
+
+        if (!urlExists && url) {
+            visitedObj["visited"].push({"page" : url});
+        }
+        
+        this.setArticlesVisited(visitedObj);
+
+        sessionStorage.visitedPages = JSON.stringify(visitedObj);
+    },
+
+    setArticlesVisited : function(history) {
+        var self = this,
+            article,
+            article_link,
+            history_page;
+
+        if (typeof article_data !== "undefined") {
+            for (var key in article_data.articles) {
+                article = article_data.articles[key].article;
+                article_link = article.link;
+
+                for(var j in history.visited) {
+                    history_page = history_link = history.visited[j].page;
+                    article.visited = false;
+
+                    if (article_link === history_page) {
+                        article.visited = true;
+                    }
+                }
+            }
         }
     },
 
-    bindEvents: function() {
+    setNextUpArticles : function() {
+        var self = this,
+            current_article_id,
+            articles,
+            article,
+            nextup_article;
+
+        if (typeof article_data !== "undefined") {
+            current_article_id = article_data.current_article_id;
+            articles = article_data.articles;
+            
+            for(var key in articles) {
+                article = articles[key].article;
+
+                if (current_article_id && (current_article_id < articles[key].id) && (self.displayed_articles < self.articles_to_display)) {
+                    self.nextup_article_data["articles"].push({"article" : article});
+                    self.displayed_articles += 1;
+                }
+            }
+
+            // Loop through article_data again to grab from the beginning if needed
+            while (self.displayed_articles < self.articles_to_display) {
+                loopArticleData();
+            }
+        }
+
+        function loopArticleData() {
+            for(var key in article_data.articles) {
+                if (self.nextup_article_data.articles.length < self.articles_to_display) {
+                    self.nextup_article_data["articles"].push({article : articles[key].article});
+                    self.displayed_articles += 1;
+                }
+            }
+        }
+    },
+
+    bindEvents : function() {
         $('.articles li a').hover( // hide 2px border when hovering (remove if hover is not used)
             function() {
                 $(this).closest("li").addClass("no-bottom-border");
@@ -127,59 +170,19 @@ webmd.fundedNextUp = {
         );
     },
 
-    render: function(){ // uses handlebars template above
+    render : function(){ // uses handlebars template above
         var self = this;
 
-        require(["handlebars/1/handlebars"], function(Handlebars) {
-            Handlebars.registerHelper('iscurrent', function(value, value2, options) {
-                if (value === value2) {
-                    return options.fn(this);
-                } else {
-                    return options.inverse(this);
-                }
-            });
+        if (typeof article_data !== "undefined") {
+            self.setNextUpArticles();
 
-            Handlebars.registerHelper('isvisited', function(value, options) {
-                var history = JSON.parse(sessionStorage.visitedPages),
-                    urlVisited = false;
-
-                for(var key in history.visited) {
-                    if (history.visited[key].page === value) {
-                        urlVisited = true;
-                    }
-                }
-
-                if (urlVisited) {
-                    return options.fn(this);
-                } else {
-                    return options.inverse(this);
-                }
-            });
-
-            Handlebars.registerHelper('isnextup', function(value, value2, options) {
-              var displayMe = false;
-
-              if (self.displayed_articles !== self.articles_to_display) {
-                if (value > value2) {
-                    self.displayed_articles += 1;
-                    displayMe = true;
-                }
-              }
-
-              if (displayMe) {
-                return options.fn(this);
-              } else {
-                return options.inverse(this);
-              }
-            });
-
-            if (typeof article_data !== "undefined") {
+            require(["handlebars/1/handlebars"], function(Handlebars) {
                 var $template = $("#funded-nextup"),
                     $container = $(".article-list-container"),
                     $articles = $(".articles"),
                     source = $template.html(),
                     template = Handlebars.compile(source),
-                    context = {"article_data" : article_data} || {},
+                    context = {"article_data" : self.nextup_article_data} || {},
                     html = template(context);
 
                 $container.prepend(html);
@@ -188,18 +191,11 @@ webmd.fundedNextUp = {
                 // self.moveCurrentToTop();
 
                 // Remove hidden articles form up next (auto-corrects CSS issues)
-                self.removeDOMelements();
+                //self.removeDOMelements();
 
                 self.bindEvents();
-            }
-        });
-    },
-
-    moveCurrentToTop: function() {
-        var $articles = $('ul.article-list .articles'),
-            $currentListItem = $('ul.article-list .articles .current');
-
-        $articles.prepend($currentListItem);
+            });
+        }
     }
 };
 
