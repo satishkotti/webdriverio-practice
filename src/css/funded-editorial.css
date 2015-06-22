@@ -2789,6 +2789,9 @@ table.art-seq td span.icon-check {
   color: #f67f00;
   font-size: 1.6em;
 }
+table.art-seq td img {
+  border-radius: 50%;
+}
 
 /* Desktops and laptops ----------- */
 @media only screen and (min-width: 1025px) {
