@@ -60,17 +60,17 @@
                                 <![CDATA["image50x50" : "]]><xsl:call-template name="getImgPath"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">50</xsl:with-param><xsl:with-param name="height">50</xsl:with-param></xsl:call-template><![CDATA["]]>
                             <![CDATA[}]]>
                         <![CDATA[},]]>
-                        <![CDATA["type" : "]]><xsl:choose>
+                        <![CDATA["sponsored" : ]]><xsl:choose>
                                 <xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
-                                    <xsl:text>sponsor</xsl:text>
+                                    <xsl:text>true</xsl:text>
                                 </xsl:when>
                                 <xsl:when test="substring-before(substring-after(link_text, '['), ']')">
-                                    <xsl:text>sponsor</xsl:text>
+                                    <xsl:text>true</xsl:text>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:text>normal</xsl:text>
+                                    <xsl:text>false</xsl:text>
                                 </xsl:otherwise>
-                            </xsl:choose><![CDATA["]]>
+                            </xsl:choose><![CDATA[]]>
                     <![CDATA[}]]><xsl:if test="position()!=last()"><xsl:text>,</xsl:text></xsl:if>
                 </xsl:for-each>
             <![CDATA[]

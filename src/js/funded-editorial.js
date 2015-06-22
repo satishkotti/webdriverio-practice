@@ -70,7 +70,7 @@ webmd.fundedEditorial = {
 
         $(window).bind('resizeEnd', function() {
             //do something, window hasn't changed size in 500ms
-            self.setNavPalette();
+            //self.setNavPalette();
         });
 
         $(window).scroll(function() {
@@ -83,7 +83,7 @@ webmd.fundedEditorial = {
                 self.unstickMasthead();
             }
 
-            self.setNavPalette();
+            //self.setNavPalette();
         });
 
         $(window).resize(function() {

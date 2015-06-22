@@ -1,0 +1,32 @@
+table.art-seq {
+    width: 100%;
+
+    .tableFloatingHeaderOriginal {
+        top: 45px !important;
+    }
+    td,th {
+        border: 1px #ddd solid;
+        padding: 10px;
+    }
+    th {
+        background-color: #f4f4f4;
+    }
+    td {
+        background-color: #fff;
+
+        &.cnt-mid {
+            text-align: center;
+            vertical-align: middle;
+        }
+        &.mid {
+            vertical-align: middle;
+        }
+        &.id {
+            font-weight: bold;
+        }
+        span.icon-check {
+            color: #f67f00;
+            font-size: 1.6em;
+        }
+    }
+}
