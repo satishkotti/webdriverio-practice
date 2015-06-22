@@ -8,7 +8,7 @@ webmd.fundedEditorial = {
 
         var artObjParam = webmd.url.getParam('artObj');
 
-        this.addToSessionHistory();
+        //this.addToSessionHistory();
 
         this.bindEvents();
 
@@ -144,14 +144,14 @@ webmd.fundedEditorial = {
             urlExists = false;
 
         for (key in visitedObj.visited) {
-            if (visitedObj.visited[key].page === url) {
-                urlExists = true;
+            if (visitedObj.visited[key].page === currentURL) {
+                currentURLExists = true;
                 break;
             }
         }
 
-        if (!urlExists && url) {
-            visitedObj["visited"].push({"page" : url});
+        if (!urlExists && currentURL) {
+            visitedObj["visited"].push({"page" : currentURL});
         }
 
         sessionStorage.visitedPages = JSON.stringify(visitedObj);
