@@ -6,24 +6,19 @@ if(!webmd){
 
 webmd.fundedNextUp = {
 
-    articles_to_display : 3,
-
-    displayed_articles : 0,
-    nextup_article_data : {articles:[]},
-
     init : function(){
+        this.articles_to_display = 3;
 
-        this.injectHBtemplateJS();
+        this.displayed_articles = 0;
 
-        this.setCurrentArticle();
-
-        this.addToSessionHistory();
+        this.nextup_article_data = {articles:[]};
 
         this.render();
     },
 
     injectHBtemplateJS : function() { // inject embedded script to reduce http calls
-        var $script = $('<script></script>'), 
+        var self = this,
+            $script = $('<script></script>'), 
             newline = '\n'; //allows readability using inspector
 
         $script
@@ -59,20 +54,16 @@ webmd.fundedNextUp = {
         var self = this,
             url = window.location.href,
             current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
-            articles,
+            articles = article_data.articles,
             article;
 
-        if (typeof article_data !== "undefined") {
-            articles = article_data.articles;
+        for(var key in articles) {
+            article = articles[key].article;
+            articles[key].current = false;
 
-            for(var key in articles) {
-                article = articles[key].article;
-                articles[key].current = false;
-
-                if (article.link === current_url) {
-                    article_data.current_article_id = articles[key].id;
-                    articles[key].current = true;
-                }
+            if (article.link === current_url) {
+                article_data.current_article_id = articles[key].id;
+                articles[key].current = true;
             }
         }
     },
@@ -105,18 +96,16 @@ webmd.fundedNextUp = {
             article_link,
             history_page;
 
-        if (typeof article_data !== "undefined") {
-            for (var key in article_data.articles) {
-                article = article_data.articles[key].article;
-                article_link = article.link;
+        for (var key in article_data.articles) {
+            article = article_data.articles[key].article;
+            article_link = article.link;
 
-                for(var j in history.visited) {
-                    history_page = history_link = history.visited[j].page;
-                    article.visited = false;
+            for(var j in history.visited) {
+                history_page = history_link = history.visited[j].page;
+                article.visited = false;
 
-                    if (article_link === history_page) {
-                        article.visited = true;
-                    }
+                if (article_link === history_page) {
+                    article.visited = true;
                 }
             }
         }
@@ -124,28 +113,22 @@ webmd.fundedNextUp = {
 
     setNextUpArticles : function() {
         var self = this,
-            current_article_id,
-            articles,
-            article,
-            nextup_article;
+            current_article_id = article_data.current_article_id,
+            articles = article_data.articles,
+            article;
 
-        if (typeof article_data !== "undefined") {
-            current_article_id = article_data.current_article_id;
-            articles = article_data.articles;
-            
-            for(var key in articles) {
-                article = articles[key].article;
+        for(var key in articles) {
+            article = articles[key].article;
 
-                if (current_article_id && (current_article_id < articles[key].id) && (self.displayed_articles < self.articles_to_display)) {
-                    self.nextup_article_data["articles"].push({"article" : article});
-                    self.displayed_articles += 1;
-                }
+            if (current_article_id && (current_article_id < articles[key].id) && (self.displayed_articles < self.articles_to_display)) {
+                self.nextup_article_data["articles"].push({"article" : article});
+                self.displayed_articles += 1;
             }
+        }
 
-            // Loop through article_data again to grab from the beginning if needed
-            while (self.displayed_articles < self.articles_to_display) {
-                loopArticleData();
-            }
+        // Loop through article_data again to grab from the beginning if needed
+        while (self.displayed_articles < self.articles_to_display) {
+            loopArticleData();
         }
 
         function loopArticleData() {
@@ -159,6 +142,8 @@ webmd.fundedNextUp = {
     },
 
     bindEvents : function() {
+        var self = this;
+
         $('.articles li a').hover( // hide 2px border when hovering (remove if hover is not used)
             function() {
                 $(this).closest("li").addClass("no-bottom-border");
@@ -174,6 +159,12 @@ webmd.fundedNextUp = {
         var self = this;
 
         if (typeof article_data !== "undefined") {
+            self.injectHBtemplateJS();
+
+            self.setCurrentArticle();
+
+            self.addToSessionHistory();
+
             self.setNextUpArticles();
 
             require(["handlebars/1/handlebars"], function(Handlebars) {
@@ -186,12 +177,6 @@ webmd.fundedNextUp = {
                     html = template(context);
 
                 $container.prepend(html);
-
-                // Not needed at this time
-                // self.moveCurrentToTop();
-
-                // Remove hidden articles form up next (auto-corrects CSS issues)
-                //self.removeDOMelements();
 
                 self.bindEvents();
             });
