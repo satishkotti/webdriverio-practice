@@ -64,6 +64,11 @@ webmd.fundedNextUp = {
             if (article.link === current_url) {
                 article_data.current_article_id = articles[key].id;
                 articles[key].current = true;
+
+                if (articles[key].sponsored) {
+                    self.checkSponsoredArticle = true;
+                    return true;
+                }
             }
         }
     },
@@ -120,9 +125,11 @@ webmd.fundedNextUp = {
         for(var key in articles) {
             article = articles[key].article;
 
-            if (current_article_id && (current_article_id < articles[key].id) && (self.displayed_articles < self.articles_to_display)) {
-                self.nextup_article_data["articles"].push({"article" : article});
-                self.displayed_articles += 1;
+            if (!articles[key].sponsored) {
+                if (current_article_id && (current_article_id < articles[key].id) && (self.displayed_articles < self.articles_to_display)) {
+                    self.nextup_article_data["articles"].push({"article" : article});
+                    self.displayed_articles += 1;
+                }
             }
         }
 
@@ -134,8 +141,10 @@ webmd.fundedNextUp = {
         function loopArticleData() {
             for(var key in article_data.articles) {
                 if (self.nextup_article_data.articles.length < self.articles_to_display) {
-                    self.nextup_article_data["articles"].push({article : articles[key].article});
-                    self.displayed_articles += 1;
+                    if (!articles[key].sponsored) {
+                        self.nextup_article_data["articles"].push({article : articles[key].article});
+                        self.displayed_articles += 1;
+                    }
                 }
             }
         }
@@ -159,27 +168,32 @@ webmd.fundedNextUp = {
         var self = this;
 
         if (typeof article_data !== "undefined") {
-            self.injectHBtemplateJS();
-
+            
             self.setCurrentArticle();
 
             self.addToSessionHistory();
 
-            self.setNextUpArticles();
+            if (self.checkSponsoredArticle) {
+                return true;
+            } else {
+                self.injectHBtemplateJS();
 
-            require(["handlebars/1/handlebars"], function(Handlebars) {
-                var $template = $("#funded-nextup"),
-                    $container = $(".article-list-container"),
-                    $articles = $(".articles"),
-                    source = $template.html(),
-                    template = Handlebars.compile(source),
-                    context = {"article_data" : self.nextup_article_data} || {},
-                    html = template(context);
+                self.setNextUpArticles();
 
-                $container.prepend(html);
+                require(["handlebars/1/handlebars"], function(Handlebars) {
+                    var $template = $("#funded-nextup"),
+                        $container = $(".article-list-container"),
+                        $articles = $(".articles"),
+                        source = $template.html(),
+                        template = Handlebars.compile(source),
+                        context = {"article_data" : self.nextup_article_data} || {},
+                        html = template(context);
 
-                self.bindEvents();
-            });
+                    $container.prepend(html);
+
+                    self.bindEvents();
+                });
+            }
         }
     }
 };

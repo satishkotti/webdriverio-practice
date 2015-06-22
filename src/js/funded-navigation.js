@@ -7,6 +7,8 @@ if(!webmd){
 webmd.fundedNavigation = {
 
     init : function(){
+        this.checkSponsoredArticle = false;
+
         this.render();
     },
 
@@ -65,7 +67,12 @@ webmd.fundedNavigation = {
                 article_data.current_article_id = articles[key].id;
                 articles[key].current = true;
 
-                self.setNavArticles();
+                if (articles[key].sponsored) {
+                    self.checkSponsoredArticle = true;
+                    return true;
+                } else {
+                    self.setNavArticles();
+                }
             }
         }
     },
@@ -126,29 +133,41 @@ webmd.fundedNavigation = {
             article.next = false;
             article.previous = false;
 
-            if (!nextArticleFound && (articles[key].id === (current_article_id + 1))) {
-                nextArticleFound = true;
-                article.next = true;
-            }
+            if (!articles[key].sponsored) {
+                if (!nextArticleFound && (articles[key].id === (current_article_id + 1))) {
+                    nextArticleFound = true;
+                    article.next = true;
+                }
 
-            if (!prevArticleFound && (articles[key].id === (current_article_id - 1))) {
-                prevArticleFound = true;
-                article.previous = true;
+                if (!prevArticleFound && (articles[key].id === (current_article_id - 1))) {
+                    prevArticleFound = true;
+                    article.previous = true;
+                }
             }
         }
 
         // Last article does not have a next
-        // Set Next Article as first article in JSON Array (treat articles as a loop)
+        // Set Next Article as first article in JSON Array that is not sponsored
         if (!nextArticleFound) {
-            nextArticleFound = true;
-            articles[0].article.next = true;
+            for (var i=0; i<articles.length; i++) {
+                if (!articles[i].sponsored) {
+                    nextArticleFound = true;
+                    articles[i].article.next = true;
+                    break;
+                }
+            }
         }
 
         // First article does not have a previous
         // Set Previous Article as last article in JSON Array (treat articles as a loop)
         if (!prevArticleFound) {
-            prevArticleFound = true;
-            articles[articles.length-1].article.previous = true;
+            for (var i=1; i<articles.length; i++) {
+                if (!articles[articles.length-i].sponsored) {
+                    prevArticleFound = true;
+                    articles[articles.length-i].article.previous = true;
+                    break;
+                }
+            }
         }
     },
 
@@ -203,27 +222,32 @@ webmd.fundedNavigation = {
         var self = this;
 
         if (typeof article_data !== "undefined") {
-            self.injectHBtemplateJS();
 
             self.setCurrentArticle();
 
             self.addToSessionHistory();
 
-            require(["handlebars/1/handlebars"], function(Handlebars) {
-                if (typeof article_data !== "undefined") {
-                    var $template = $("#entry-template"),
-                        $container = $(".article-nav-container"),
-                        $article_nav = $(".article-nav"),
-                        source = $template.html(),
-                        template = Handlebars.compile(source),
-                        context = {"article_data" : article_data} || {},
-                        html = template(context);
+            if (self.checkSponsoredArticle) {
+                return true;
+            } else {
+                self.injectHBtemplateJS();
 
-                    $container.prepend(html);
-                }
+                require(["handlebars/1/handlebars"], function(Handlebars) {
+                    if (typeof article_data !== "undefined") {
+                        var $template = $("#entry-template"),
+                            $container = $(".article-nav-container"),
+                            $article_nav = $(".article-nav"),
+                            source = $template.html(),
+                            template = Handlebars.compile(source),
+                            context = {"article_data" : article_data} || {},
+                            html = template(context);
 
-                self.bindEvents();
-            });
+                        $container.prepend(html);
+                    }
+
+                    self.bindEvents();
+                });
+            }
         }
     }
 };
