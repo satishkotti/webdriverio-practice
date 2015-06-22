@@ -157,7 +157,7 @@ webmd.fundedNavigation = {
             article = articles[key].article;
             article.next = false;
 
-            if (current_article_id && (articles[key].id === (current_article_id + 1)) {
+            if (current_article_id && (articles[key].id === (current_article_id + 1))) {
                 nextArticleFound = true;
                 article.next = true;
                 self.nav_article_data["articles"].push({"article" : article});
