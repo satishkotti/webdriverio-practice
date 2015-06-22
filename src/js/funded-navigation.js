@@ -7,8 +7,6 @@ if(!webmd){
 webmd.fundedNavigation = {
 
     init : function(){
-        this.nav_article_data = {articles:[]};
-
         this.render();
     },
 
@@ -67,8 +65,7 @@ webmd.fundedNavigation = {
                 article_data.current_article_id = articles[key].id;
                 articles[key].current = true;
 
-                self.setPrevArticle();
-                self.setNextArticle();
+                self.setNavArticles();
             }
         }
     },
@@ -116,63 +113,42 @@ webmd.fundedNavigation = {
         }
     },
 
-    setPrevArticle : function() {
+    setNavArticles : function() {
         var self = this,
             current_article_id = article_data.current_article_id,
             articles = article_data.articles,
             article,
-            previusArticleFound = false;
-            
-        for(var key in articles) {
-            article = articles[key].article;
-            article.previous = false;
-
-            if (current_article_id && (articles[key].id === current_article_id - 1)) {
-                previusArticleFound = true;
-                article.previous = true;
-                self.nav_article_data["articles"].push({"article" : article});
-            }
-        }
-
-        // Loop through article_data again to grab from the beginning if needed
-        if (!self.previusArticleFound) {
-            for(var key in article_data.articles) {
-                if (articles[key].id === articles.length) {
-                    previusArticleFound = true;
-                    article.previous = true;
-                    self.nav_article_data["articles"].push({article : articles[key].article});
-                }
-            }
-        }
-    },
-
-    setNextArticle : function() {
-        var self = this,
-            current_article_id = article_data.current_article_id,
-            articles = article_data.articles,
-            article,
-            nextArticleFound = false;
+            nextArticleFound = false,
+            prevArticleFound = false;
             
         for(var key in articles) {
             article = articles[key].article;
             article.next = false;
+            article.previous = false;
 
-            if (current_article_id && (articles[key].id === (current_article_id + 1))) {
+            if (!nextArticleFound && (articles[key].id === (current_article_id + 1))) {
                 nextArticleFound = true;
                 article.next = true;
-                self.nav_article_data["articles"].push({"article" : article});
+            }
+
+            if (!prevArticleFound && (articles[key].id === (current_article_id - 1))) {
+                prevArticleFound = true;
+                article.previous = true;
             }
         }
 
-        // Loop through article_data again to grab from the beginning if needed
+        // Last article does not have a next
+        // Set Next Article as first article in JSON Array (treat articles as a loop)
         if (!nextArticleFound) {
-            for(var key in article_data.articles) {
-                if (articles[key].id === 1) {
-                    nextArticleFound = true;
-                    article.next = true;
-                    self.nav_article_data["articles"].push({article : articles[key].article});
-                }
-            }
+            nextArticleFound = true;
+            articles[0].article.next = true;
+        }
+
+        // First article does not have a previous
+        // Set Previous Article as last article in JSON Array (treat articles as a loop)
+        if (!prevArticleFound) {
+            prevArticleFound = true;
+            articles[articles.length-1].article.previous = true;
         }
     },
 
@@ -240,7 +216,7 @@ webmd.fundedNavigation = {
                         $article_nav = $(".article-nav"),
                         source = $template.html(),
                         template = Handlebars.compile(source),
-                        context = {"article_data" : self.nav_article_data} || {},
+                        context = {"article_data" : article_data} || {},
                         html = template(context);
 
                     $container.prepend(html);
