@@ -5,11 +5,8 @@ webmd.fundedEditorial = {
     uaType : webmd.useragent.ua.type,
 
     init : function(){
-        this.getCurrentURL();
 
         this.addToSessionHistory();
-
-        this.getCurrentArticleId();
 
         this.bindEvents();
 
@@ -30,48 +27,31 @@ webmd.fundedEditorial = {
 
     },
 
-    getCurrentURL : function () {
-        var url = window.location.href;
-        // save URL without querystring and/or hash for session only
-        sessionStorage.currentURL = url.split("?")[0].split("#")[0];
-    },
-
     addToSessionHistory : function() {
-        var jsonStr = sessionStorage.visitedPages || '{"visited":[]}',
-        visitedObj = JSON.parse(jsonStr),
-        urlExists = false;
+        var self = this,
+            url = window.location.href,
+            currentURL = url.split("?")[0].split("#")[0],
+            jsonStr = sessionStorage.visitedPages || '{}',
+            visitedObj = JSON.parse(jsonStr),
+            urlExists = false;
 
         for (key in visitedObj.visited) {
-            if (visitedObj.visited[key].page === sessionStorage.currentURL) {
+            if (visitedObj.visited[key].page === url) {
                 urlExists = true;
                 break;
             }
         }
 
-        if (!urlExists) {
-            visitedObj["visited"].push({"page" : sessionStorage.currentURL});
+        if (!urlExists && url) {
+            visitedObj["visited"].push({"page" : url});
         }
-        sessionStorage.visitedPages = JSON.stringify(visitedObj);
-    },
 
-    getCurrentArticleId : function() {
-        if (typeof article_data !== "undefined") {
-            for(var key in article_data.articles) {
-                if (article_data.articles[key].article.link === sessionStorage.currentURL) {
-                    article_data.current_article_id = article_data.articles[key].id;
-                }
-            }
-        }
+        sessionStorage.visitedPages = JSON.stringify(visitedObj);
     },
 
     bindEvents : function(){
         var self = this,
             mastheadH = $('.masthead').outerHeight(true);
-
-        $(window).bind('resizeEnd', function() {
-            //do something, window hasn't changed size in 500ms
-            //self.setNavPalette();
-        });
 
         $(window).scroll(function() {
             var y = $(document).scrollTop();
@@ -82,18 +62,6 @@ webmd.fundedEditorial = {
             else {
                 self.unstickMasthead();
             }
-
-            //self.setNavPalette();
-        });
-
-        $(window).resize(function() {
-            if(this.resizeTO) {
-                clearTimeout(this.resizeTO);
-            }
-
-            this.resizeTO = setTimeout(function() {
-                $(this).trigger('resizeEnd');
-            }, 500);
         });
     },
 
@@ -141,30 +109,6 @@ webmd.fundedEditorial = {
     unstickMasthead: function(){
         $('body').removeClass('masthead-stuck');
         $('body').css('padding-top','');
-    },
-
-    setNavPalette: function() {
-        var self = this,
-            articleTop = $('.chrome').position().top + $('.article').position().top,
-            articleBottom = $('.article').outerHeight(true) + articleTop,
-            scrollTop = $(window).scrollTop(),
-            scrollBottom = scrollTop + $(window).height(),
-            showNavLocation = (scrollTop >= articleTop),
-            hideNavLocation = (scrollBottom >= articleBottom);
-
-        if(showNavLocation && !hideNavLocation) {
-            self.showElement('.article-nav');
-        } else {
-            self.hideElement('.article-nav');
-        }
-    },
-
-    showElement: function(el) {
-        $(el).addClass('show');
-    },
-
-    hideElement: function(el) {
-        $(el).removeClass('show');
     },
 
     moveAttribution : function(){
