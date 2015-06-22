@@ -2745,6 +2745,51 @@
   animation-name: slideOutUp;
 }
 
+.article-obj-button-cont {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  transform: translateY(100%);
+}
+.article-obj-button-cont button {
+  background-color: #f67f00;
+  color: #fff;
+  border: 0;
+  margin: 0;
+  padding: 10px;
+  width: 100%;
+  font-size: .85em;
+}
+
+table.art-seq {
+  width: 100%;
+}
+table.art-seq td, table.art-seq th {
+  border: 1px #ddd solid;
+  padding: 10px;
+}
+table.art-seq th {
+  background-color: #f4f4f4;
+}
+table.art-seq td {
+  background-color: #fff;
+}
+table.art-seq td.cnt-mid {
+  text-align: center;
+  vertical-align: middle;
+}
+table.art-seq td.mid {
+  vertical-align: middle;
+}
+table.art-seq td.id {
+  font-weight: bold;
+}
+table.art-seq td span.icon-check {
+  color: #f67f00;
+  font-size: 1.6em;
+}
+
 /* Desktops and laptops ----------- */
 @media only screen and (min-width: 1025px) {
   /* STYLES GO HERE */

@@ -1,9 +1,23 @@
+.article-obj-button-cont {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    transform: translateY(100%);
+
+    button {
+        background-color: #f67f00;
+        color: #fff;
+        border: 0;
+        margin: 0;
+        padding: 10px;
+        width: 100%;
+        font-size: .85em;
+    }
+}
 table.art-seq {
     width: 100%;
 
-    .tableFloatingHeaderOriginal {
-        top: 45px !important;
-    }
     td,th {
         border: 1px #ddd solid;
         padding: 10px;
