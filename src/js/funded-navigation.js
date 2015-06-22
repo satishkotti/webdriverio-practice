@@ -7,35 +7,14 @@ if(!webmd){
 webmd.fundedNavigation = {
 
     init : function(){
-        //this.injectCSS();
-
-        this.injectHBtemplateJS();
-
-        this.getCurrentURL();
-
-        this.addToSessionHistory();
-
-        this.getCurrentArticleId();
-
-        this.bindEvents();
+        this.nav_article_data = {articles:[]};
 
         this.render();
     },
 
-    injectCSS: function() { // this may not be needed if attaching CSS via PageBuilder
-        var $link = $('<link/>');
-
-        $link.attr({
-            'rel' : 'stylesheet',
-            'href' : '../css/build/navigation.css',
-            'type' : 'text/css'
-        });
-
-        $('head').append($link);
-    },
-
     injectHBtemplateJS: function() { // inject embedded script to reduce http calls
-        var $script = $('<script></script>'),
+        var self = this,
+            $script = $('<script></script>'),
             newline = '\n'; //allows readability using inspector
 
         $script
@@ -47,24 +26,24 @@ webmd.fundedNavigation = {
                 '<div class="article-nav">' + newline +
                 '   {{#article_data}}' + newline +
                 '       {{#each articles}}' + newline +
-                '           {{#isprevious id ...current_article_id}}' + newline +
-                '           <a class="prev {{#isvisited article.link}}visited{{/isvisited}}" href="{{article.link}}">' + newline +
+                '           {{#if article.previous}}' + newline +
+                '           <a class="prev {{#if article.visited}}visited{{/if}}" href="{{article.link}}">' + newline +
                 '               <span class="arrow"></span>' + newline +
                 '               <span class="text">' + newline +
                 '                   <span class="nav">Previous</span>' + newline +
                 '                   <span class="title">{{article.title}}</span>' + newline +
                 '               </span>' + newline +
                 '           </a>' + newline +
-                '           {{/isprevious}}' + newline +
-                '           {{#isnext id ...current_article_id}}' + newline +
-                '           <a class="next {{#isvisited article.link}}visited{{/isvisited}}" href="{{article.link}}">' + newline +
+                '           {{/if}}' + newline +
+                '           {{#if article.next}}' + newline +
+                '           <a class="next {{#if article.visited}}visited{{/if}}" href="{{article.link}}">' + newline +
                 '               <span class="text">' + newline +
                 '                   <span class="nav">Next</span>' + newline +
                 '                   <span class="title">{{article.title}}</span>' + newline +
                 '               </span>' + newline +
                 '               <span class="arrow"></span>' + newline +
                 '           </a>' + newline +
-                '           {{/isnext}}' + newline +
+                '           {{/if}}' + newline +
                 '       {{/each}}' + newline +
                 '   {{/article_data}}' + newline +
                 '</div>'
@@ -73,40 +52,125 @@ webmd.fundedNavigation = {
         $('head').append($script);
     },
 
-    getCurrentURL : function () {
+    setCurrentArticle : function() {
         var self = this,
-            url = window.location.href;
+            url = window.location.href,
+            current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
+            articles = article_data.articles,
+            article;
 
-        // save URL without querystring and/or hash for session only
-        self.currentURL = url.split("?")[0].split("#")[0];
+        for(var key in articles) {
+            article = articles[key].article;
+            articles[key].current = false;
+
+            if (article.link === current_url) {
+                article_data.current_article_id = articles[key].id;
+                articles[key].current = true;
+
+                self.setPrevArticle();
+                self.setNextArticle();
+            }
+        }
     },
 
-    addToSessionHistory : function() {
+    addToSessionHistory : function(url) {
         var self = this,
-            jsonStr = sessionStorage.visitedPages || '{visited:[]}',
+            jsonStr = sessionStorage.visitedPages || '{}',
             visitedObj = JSON.parse(jsonStr),
             urlExists = false;
 
         for (key in visitedObj.visited) {
-            if (visitedObj.visited[key].page === self.currentURL) {
+            if (visitedObj.visited[key].page === url) {
                 urlExists = true;
                 break;
             }
         }
 
-        if (!urlExists) {
-            visitedObj["visited"].push({"page" : self.currentURL});
+        if (!urlExists && url) {
+            visitedObj["visited"].push({"page" : url});
         }
+        
+        this.setArticlesVisited(visitedObj);
+
         sessionStorage.visitedPages = JSON.stringify(visitedObj);
     },
 
-    getCurrentArticleId : function() {
-        var self = this;
+    setArticlesVisited : function(history) {
+        var self = this,
+            article,
+            article_link,
+            history_page;
 
-        if (typeof article_data !== "undefined") {
+        for (var key in article_data.articles) {
+            article = article_data.articles[key].article;
+            article_link = article.link;
+
+            for(var j in history.visited) {
+                history_page = history_link = history.visited[j].page;
+                article.visited = false;
+
+                if (article_link === history_page) {
+                    article.visited = true;
+                }
+            }
+        }
+    },
+
+    setPrevArticle : function() {
+        var self = this,
+            current_article_id = article_data.current_article_id,
+            articles = article_data.articles,
+            article,
+            previusArticleFound = false;
+            
+        for(var key in articles) {
+            article = articles[key].article;
+            article.previous = false;
+
+            if (current_article_id && (articles[key].id === current_article_id - 1)) {
+                previusArticleFound = true;
+                article.previous = true;
+                self.nav_article_data["articles"].push({"article" : article});
+            }
+        }
+
+        // Loop through article_data again to grab from the beginning if needed
+        if (!self.previusArticleFound) {
             for(var key in article_data.articles) {
-                if (article_data.articles[key].article.link === self.currentURL) {
-                    article_data.current_article_id = article_data.articles[key].id;
+                if (articles[key].id === articles.length) {
+                    previusArticleFound = true;
+                    article.previous = true;
+                    self.nav_article_data["articles"].push({article : articles[key].article});
+                }
+            }
+        }
+    },
+
+    setNextArticle : function() {
+        var self = this,
+            current_article_id = article_data.current_article_id,
+            articles = article_data.articles,
+            article,
+            nextArticleFound = false;
+            
+        for(var key in articles) {
+            article = articles[key].article;
+            article.next = false;
+
+            if (current_article_id && (articles[key].id === (current_article_id + 1)) {
+                nextArticleFound = true;
+                article.next = true;
+                self.nav_article_data["articles"].push({"article" : article});
+            }
+        }
+
+        // Loop through article_data again to grab from the beginning if needed
+        if (!nextArticleFound) {
+            for(var key in article_data.articles) {
+                if (articles[key].id === 1) {
+                    nextArticleFound = true;
+                    article.next = true;
+                    self.nav_article_data["articles"].push({article : articles[key].article});
                 }
             }
         }
@@ -160,80 +224,31 @@ webmd.fundedNavigation = {
     },
 
     render: function(){ // uses handlebars template above
-        require(["handlebars/1/handlebars"], function(Handlebars) {
-            Handlebars.registerHelper('isprevious', function(value, value2, options) {
-              if (value < value2 && (value > value2 - 2)) {
-                return options.fn(this);
-              } else {
-                return options.inverse(this);
-              }
-            });
+        var self = this;
 
-            Handlebars.registerHelper('isnext', function(value, value2, options) {
-              if (value > value2 && value < (value2 + 2)) {
-                return options.fn(this);
-              } else {
-                return options.inverse(this);
-              }
-            });
+        if (typeof article_data !== "undefined") {
+            self.injectHBtemplateJS();
 
-            Handlebars.registerHelper('isvisited', function(value, options) {
-                var history = JSON.parse(sessionStorage.visitedPages),
-                    urlVisited = false;
+            self.setCurrentArticle();
 
-                for(var key in history.visited) {
-                    if (history.visited[key].page === value) {
-                        urlVisited = true;
-                    }
+            self.addToSessionHistory();
+
+            require(["handlebars/1/handlebars"], function(Handlebars) {
+                if (typeof article_data !== "undefined") {
+                    var $template = $("#entry-template"),
+                        $container = $(".article-nav-container"),
+                        $article_nav = $(".article-nav"),
+                        source = $template.html(),
+                        template = Handlebars.compile(source),
+                        context = {"article_data" : self.nav_article_data} || {},
+                        html = template(context);
+
+                    $container.prepend(html);
                 }
 
-                if (urlVisited) {
-                    return options.fn(this);
-                } else {
-                    return options.inverse(this);
-                }
+                self.bindEvents();
             });
-
-            if (typeof article_data !== "undefined") {
-                var $template = $("#entry-template"),
-                    $container = $(".article-nav-container"),
-                    $article_nav = $(".article-nav"),
-                    source = $template.html(),
-                    template = Handlebars.compile(source),
-                    context = {"article_data" : article_data} || {},
-                    html = template(context);
-
-                $container.prepend(html);
-
-                // Handle display of 1 button or no buttons
-                var $prev_btn = $(".prev"),
-                    $next_btn = $(".next"),
-                    prev_btn_len = $prev_btn.length,
-                    next_btn_len = $next_btn.length;
-
-                if ((prev_btn_len>0) && (next_btn_len>0)) {
-                  // Both 'previous' and 'next' exist - setup event handlers
-                  $prev_btn.click(function() {
-                      window.location = $(this).attr("href");
-                  });
-
-                  $next_btn.click(function() {
-                      window.location = $(this).attr("href");
-                  });
-                  return;
-                } else {
-                  if ((prev_btn_len>0 && next_btn_len===0) || (prev_btn_len===0 && next_btn_len>0)) {
-                    $container.addClass("half-me");
-
-                    if (next_btn_len>0) {
-                      $article_nav.addClass("next-only");
-                    }
-                  } else {
-                    $article_nav.addClass("no-btns");
-                  }
-                }
-            }
-        });
+        }
     }
 };
 
