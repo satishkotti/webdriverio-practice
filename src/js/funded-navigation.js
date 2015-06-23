@@ -7,6 +7,8 @@ if(!webmd){
 webmd.fundedNavigation = {
 
     init : function(){
+        this.hide_sponsor_pages = false;
+
         this.checkSponsoredArticle = false;
 
         this.render();
@@ -133,7 +135,19 @@ webmd.fundedNavigation = {
             article.next = false;
             article.previous = false;
 
-            if (!articles[key].sponsored) {
+            if (self.hide_sponsor_pages) {
+                if (!articles[key].sponsored) {
+                    if (!nextArticleFound && (articles[key].id === (current_article_id + 1))) {
+                        nextArticleFound = true;
+                        article.next = true;
+                    }
+
+                    if (!prevArticleFound && (articles[key].id === (current_article_id - 1))) {
+                        prevArticleFound = true;
+                        article.previous = true;
+                    }
+                }
+            } else {
                 if (!nextArticleFound && (articles[key].id === (current_article_id + 1))) {
                     nextArticleFound = true;
                     article.next = true;

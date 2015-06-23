@@ -9,6 +9,8 @@ webmd.fundedNextUp = {
     init : function(){
         this.articles_to_display = 3;
 
+        this.hide_sponsor_pages = false;
+
         this.article_ids_to_display = [];
 
         this.nextup_article_data = {articles:[]};
@@ -125,11 +127,19 @@ webmd.fundedNextUp = {
             article = articles[key].article;
             articleIdArrLen = self.article_ids_to_display.length;
 
-            if (!articles[key].sponsored &&
-               (articles[key].id > article_data.current_article_id) &&
-               (articleIdArrLen < self.articles_to_display)) {
-                    self.nextup_article_data["articles"].push({"article" : article});
-                    self.article_ids_to_display.push(articles[key].id);
+            if (self.hide_sponsor_pages) {
+                if (!articles[key].sponsored &&
+                    (articles[key].id > article_data.current_article_id) &&
+                    (articleIdArrLen < self.articles_to_display)) {
+                        self.nextup_article_data["articles"].push({"article" : article});
+                        self.article_ids_to_display.push(articles[key].id);
+                }
+            } else {
+                if ((articles[key].id > article_data.current_article_id) &&
+                    (articleIdArrLen < self.articles_to_display)) {
+                        self.nextup_article_data["articles"].push({"article" : article});
+                        self.article_ids_to_display.push(articles[key].id);
+                }
             }
         }
 
@@ -148,9 +158,16 @@ webmd.fundedNextUp = {
                 currentArticle = (articles[key].id === article_data.current_article_id);
 
                 if (!articleExists && (self.article_ids_to_display.length < self.articles_to_display)) {
-                    if (!articles[key].sponsored && !currentArticle) {
-                        self.nextup_article_data["articles"].push({article : articles[key].article});
-                        self.article_ids_to_display.push(articles[key].id);
+                    if (self.hide_sponsor_pages) {
+                        if (!articles[key].sponsored && !currentArticle) {
+                            self.nextup_article_data["articles"].push({article : articles[key].article});
+                            self.article_ids_to_display.push(articles[key].id);
+                        }
+                    } else {
+                        if (!currentArticle) {
+                            self.nextup_article_data["articles"].push({article : articles[key].article});
+                            self.article_ids_to_display.push(articles[key].id);
+                        }
                     }
                 }
             }
