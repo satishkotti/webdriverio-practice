@@ -19,8 +19,8 @@ webmd.fundedNavigation = {
 
         $script
             .attr({
-                'id'   : 'entry-template',
-                'type' : 'text/x-handlebars-template'
+                id   : 'entry-template',
+                type : 'text/x-handlebars-template'
             })
             .html(
                 '<div class="article-nav">' + newline +
@@ -69,10 +69,10 @@ webmd.fundedNavigation = {
 
                 if (articles[key].sponsored) {
                     self.checkSponsoredArticle = true;
-                    return true;
                 } else {
                     self.setNavArticles();
                 }
+                break;
             }
         }
     },
