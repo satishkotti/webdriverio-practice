@@ -200,7 +200,7 @@ webmd.fundedNextUp = {
 
             self.addToSessionHistory();
 
-            if (self.checkSponsoredArticle) {
+            if (self.hide_sponsor_pages && self.checkSponsoredArticle) {
                 return true;
             } else {
                 self.setNextUpArticles();
