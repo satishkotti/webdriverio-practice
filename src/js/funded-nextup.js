@@ -11,6 +11,10 @@ webmd.fundedNextUp = {
 
         this.hide_sponsor_pages = false;
 
+        this.hide_module_on_sponsor_pages = false;
+
+        this.is_current_sponsored = false;
+
         this.article_ids_to_display = [];
 
         this.nextup_article_data = {articles:[]};
@@ -68,7 +72,7 @@ webmd.fundedNextUp = {
                 articles[key].current = true;
 
                 if (articles[key].sponsored) {
-                    self.checkSponsoredArticle = true;
+                    self.is_current_sponsored = true;
                 } 
             }
         }
@@ -127,18 +131,16 @@ webmd.fundedNextUp = {
             article = articles[key].article;
             articleIdArrLen = self.article_ids_to_display.length;
 
-            if (self.hide_sponsor_pages) {
-                if (!articles[key].sponsored &&
-                    (articles[key].id > article_data.current_article_id) &&
-                    (articleIdArrLen < self.articles_to_display)) {
+            if ((articles[key].id > article_data.current_article_id) &&
+                (articleIdArrLen < self.articles_to_display)) {
+                if (self.hide_sponsor_pages) {
+                    if (!articles[key].sponsored) {
                         self.nextup_article_data["articles"].push({"article" : article});
                         self.article_ids_to_display.push(articles[key].id);
-                }
-            } else {
-                if ((articles[key].id > article_data.current_article_id) &&
-                    (articleIdArrLen < self.articles_to_display)) {
-                        self.nextup_article_data["articles"].push({"article" : article});
-                        self.article_ids_to_display.push(articles[key].id);
+                    }
+                } else {
+                    self.nextup_article_data["articles"].push({"article" : article});
+                    self.article_ids_to_display.push(articles[key].id);
                 }
             }
         }
@@ -200,7 +202,7 @@ webmd.fundedNextUp = {
 
             self.addToSessionHistory();
 
-            if (self.hide_sponsor_pages && self.checkSponsoredArticle) {
+            if (self.hide_module_on_sponsor_pages && self.is_current_sponsored) {
                 return true;
             } else {
                 self.setNextUpArticles();

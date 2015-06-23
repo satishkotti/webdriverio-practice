@@ -9,7 +9,9 @@ webmd.fundedNavigation = {
     init : function(){
         this.hide_sponsor_pages = false;
 
-        this.checkSponsoredArticle = false;
+        this.hide_module_on_sponsor_pages = false;
+
+        this.is_current_sponsored = false;
 
         this.render();
     },
@@ -70,10 +72,10 @@ webmd.fundedNavigation = {
                 articles[key].current = true;
 
                 if (articles[key].sponsored) {
-                    self.checkSponsoredArticle = true;
-                } else {
-                    self.setNavArticles();
+                    self.is_current_sponsored = true;
                 }
+
+                self.setNavArticles();
                 break;
             }
         }
@@ -164,7 +166,13 @@ webmd.fundedNavigation = {
         // Set Next Article as first article in JSON Array that is not sponsored
         if (!nextArticleFound) {
             for (var i=0; i<articles.length; i++) {
-                if (!articles[i].sponsored) {
+                if (self.hide_sponsor_pages) {
+                    if (!articles[i].sponsored) {
+                        nextArticleFound = true;
+                        articles[i].article.next = true;
+                        break;
+                    }
+                } else {
                     nextArticleFound = true;
                     articles[i].article.next = true;
                     break;
@@ -176,7 +184,13 @@ webmd.fundedNavigation = {
         // Set Previous Article as last article in JSON Array (treat articles as a loop)
         if (!prevArticleFound) {
             for (var i=1; i<articles.length; i++) {
-                if (!articles[articles.length-i].sponsored) {
+                if (self.hide_sponsor_pages) {
+                    if (!articles[articles.length-i].sponsored) {
+                        prevArticleFound = true;
+                        articles[articles.length-i].article.previous = true;
+                        break;
+                    }
+                } else {
                     prevArticleFound = true;
                     articles[articles.length-i].article.previous = true;
                     break;
@@ -241,23 +255,21 @@ webmd.fundedNavigation = {
 
             self.addToSessionHistory();
 
-            if (self.hide_sponsor_pages && self.checkSponsoredArticle) {
+            if (self.hide_module_on_sponsor_pages && self.is_current_sponsored) {
                 return true;
             } else {
                 self.injectHBtemplateJS();
-
+                
                 require(["handlebars/1/handlebars"], function(Handlebars) {
-                    if (typeof article_data !== "undefined") {
-                        var $template = $("#entry-template"),
-                            $container = $(".article-nav-container"),
-                            $article_nav = $(".article-nav"),
-                            source = $template.html(),
-                            template = Handlebars.compile(source),
-                            context = {"article_data" : article_data} || {},
-                            html = template(context);
+                    var $template = $("#entry-template"),
+                        $container = $(".article-nav-container"),
+                        $article_nav = $(".article-nav"),
+                        source = $template.html(),
+                        template = Handlebars.compile(source),
+                        context = {"article_data" : article_data} || {},
+                        html = template(context);
 
-                        $container.prepend(html);
-                    }
+                    $container.prepend(html);
 
                     self.bindEvents();
                 });
