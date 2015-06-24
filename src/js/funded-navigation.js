@@ -13,6 +13,10 @@ webmd.fundedNavigation = {
 
         this.is_current_sponsored = false;
 
+        this.percent_after_article_start_to_show = 60; // Shows Next|Prev nav defined percentage after start of article
+
+        this.pixels_after_article_end_to_hide = 200; // Hides Next|Prev nav defined # of pixels after end of article
+
         this.render();
     },
 
@@ -226,14 +230,19 @@ webmd.fundedNavigation = {
         var self = this,
             articleTop = $('.chrome').position().top + $('.article').position().top,
             articleBottom = $('.article').outerHeight(true) + articleTop,
+            articleHeight = $('.article').innerHeight(),
             scrollTop = $(window).scrollTop(),
             scrollBottom = scrollTop + $(window).height(),
-            showNavLocation = (scrollTop >= articleTop),
-            hideNavLocation = (scrollBottom >= articleBottom);
+            showNavLocation = (scrollBottom >= (articleHeight * (self.percent_after_article_start_to_show / 100))),
+            hideNavLocation = (scrollBottom >= (articleBottom + self.pixels_after_article_end_to_hide));
 
         if(showNavLocation && !hideNavLocation) {
             self.showElement('.article-nav');
         } else {
+            self.hideElement('.article-nav');
+        }
+
+        if (scrollBottom === $(document).height()) { // hide if nav covers the footer on very bottom
             self.hideElement('.article-nav');
         }
     },
