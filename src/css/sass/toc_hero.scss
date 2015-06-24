@@ -1,0 +1,288 @@
+.toc-hero {
+    padding-top: 10px;
+    display: table;
+    font-size: 1rem;
+
+    /* Single Hero */
+    &.toc-hero-1-col{
+        width: 100%;
+
+        .toc-hero-img,
+        .toc-hero-desc {
+            display: table-cell;
+        }
+        .toc-hero-img {
+            img {
+                width: 100%;
+            }
+        }
+        .toc-hero-desc {
+            width: 330px;
+            padding: 30px;
+            background-color: #ccc;
+            vertical-align: middle;
+
+            h3 {
+                font-family: Lato, Arial, sans-serif;
+                color: #fff;
+                font-size: 1.85em;
+                font-weight: 100;
+            }
+        }
+    }
+
+    /* Double Hero */
+    &.toc-hero-2-col {
+        width: 100%;
+        overflow: hidden;
+
+        .toc-hero-item {
+            width: 49.5%;
+            position: relative;
+            float: left;
+
+            &:first-child {
+                margin-right: 1%;
+            }
+        }
+        .toc-hero-img {
+            img {
+                width: 100%;
+            }
+        }
+        .toc-hero-desc {
+            padding: 10px 20px;
+            background-color: rgba(0,0,0,0.65);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+
+            h3 {
+                font-family: Lato, Arial, sans-serif;
+                color: #fff;
+                font-size: 1.2em;
+                font-weight: 100;
+            }
+        }
+    }
+}
+
+/* Media Queries */
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-width: 320px) and (max-width: 736px) {
+    /* STYLES GO HERE */
+    .toc-hero {
+
+        &.toc-hero-1-col{
+            margin-bottom: -95px;
+
+            .toc-hero-img,
+            .toc-hero-desc {
+                display: block;
+            }
+            .toc-hero-img {
+                img {
+                    width: 100%;
+                }
+            }
+            .toc-hero-desc {
+                width: 100%;
+                padding: 10px 15px 110px;
+
+                h3 {
+                    font-size: 1.2em;
+                }
+            }
+        }
+        &.toc-hero-2-col{
+            overflow: visible;
+
+            .toc-hero-item {
+                width: auto;
+                position: relative;
+                float: none;
+                margin: 0 10px;
+                box-shadow: 0 1px 2px 0 rgba(0,0,0,.125);
+
+                &:first-child {
+                    margin: 0;
+                    margin-bottom: -95px;
+                    border: 0;
+                    box-shadow: none;
+
+                    .toc-hero-desc {
+                        padding: 10px 15px 110px;
+                        border: 0;
+
+                        h3 {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+            .toc-hero-img {
+                img {
+                    width: 100%;
+                }
+            }
+            .toc-hero-desc {
+                position: static;
+                background-color: #fff;
+                border: 1px #c6c4c5 solid;
+                border-top: 0;
+
+                h3 {
+                    color: #333;
+                }
+            }
+        }
+    }
+}
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: 321px) {
+    /* STYLES GO HERE */
+}
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: 320px) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (portrait and landscape) ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    /* STYLES GO HERE */
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Small screens ----------- */
+@media only screen and (min-width: 676px) {
+    /* STYLES GO HERE */
+}
+/* Small screens : Retina ----------- */
+@media only screen and (min-width: 676px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (landscape) ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    /* STYLES GO HERE */
+    .toc-hero {
+        &.toc-hero-2-col {
+
+            .toc-hero-desc {
+                background-color: rgba(0,0,0,0.65) !important;
+            }
+        }
+        &.toc-hero-2-col {
+
+            .toc-hero-desc {
+                background-color: rgba(0,0,0,0.65) !important;
+            }
+        }
+    }
+}
+/* Tablets, iPads (landscape) - Retina ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+    .toc-hero {
+        &.toc-hero-2-col {
+
+            .toc-hero-desc {
+                background-color: rgba(0,0,0,0.65) !important;
+            }
+        }
+        &.toc-hero-2-col {
+
+            .toc-hero-desc {
+                background-color: rgba(0,0,0,0.65) !important;
+            }
+        }
+    }
+}
+/* Tablets, iPads (portrait) ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    /* STYLES GO HERE */
+    .toc-hero {
+        &.toc-hero-1-col{
+            .toc-hero-desc {
+
+                h3 {
+                    font-size: 1.5em;
+                }
+            }
+        }
+        &.toc-hero-2-col {
+
+            .toc-hero-desc {
+                background-color: rgba(0,0,0,0.65) !important;
+            }
+        }
+    }
+}
+/* Tablets, iPads (portrait) - Retina ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+    .toc-hero {
+        &.toc-hero-1-col{
+            .toc-hero-desc {
+
+                h3 {
+                    font-size: 1.5em;
+                }
+            }
+        }
+        &.toc-hero-2-col {
+
+            .toc-hero-desc {
+                background-color: rgba(0,0,0,0.65) !important;
+            }
+        }
+    }
+}
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1025px) {
+    /* STYLES GO HERE */
+    .toc-hero {
+        &.toc-hero-2-col {
+
+            .toc-hero-desc {
+                background-color: rgba(0,0,0,0.65) !important;
+            }
+        }
+    }
+}
+/* Desktops and laptops - Retina ----------- */
+@media only screen and (min-width: 1025px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+    .toc-hero {
+        &.toc-hero-2-col {
+
+            .toc-hero-desc {
+                background-color: rgba(0,0,0,0.65) !important;
+            }
+        }
+    }
+}
+/* Large screens : Non-Retina ----------- */
+@media only screen and (min-width: 1824px) {
+    /* STYLES GO HERE */
+    .toc-hero {
+        &.toc-hero-2-col {
+
+            .toc-hero-desc {
+                background-color: rgba(0,0,0,0.65) !important;
+            }
+        }
+    }
+}
+/* Large screens : Retina ----------- */
+@media only screen and (min-width: 1824px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+    .toc-hero {
+        &.toc-hero-2-col {
+
+            .toc-hero-desc {
+                background-color: rgba(0,0,0,0.65) !important;
+            }
+        }
+    }
+}
