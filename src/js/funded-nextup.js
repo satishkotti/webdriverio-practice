@@ -9,7 +9,13 @@ webmd.fundedNextUp = {
     init : function(){
         this.articles_to_display = 3;
 
-        this.displayed_articles = 0;
+        this.hide_sponsor_pages = false;
+
+        this.hide_module_on_sponsor_pages = false;
+
+        this.is_current_sponsored = false;
+
+        this.article_ids_to_display = [];
 
         this.nextup_article_data = {articles:[]};
 
@@ -23,8 +29,8 @@ webmd.fundedNextUp = {
 
         $script
             .attr({
-                'id'   : 'funded-nextup',
-                'type' : 'text/x-handlebars-template'
+                id   : 'funded-nextup',
+                type : 'text/x-handlebars-template'
             })
             .html(
                 '{{#article_data}}' + newline +
@@ -66,9 +72,8 @@ webmd.fundedNextUp = {
                 articles[key].current = true;
 
                 if (articles[key].sponsored) {
-                    self.checkSponsoredArticle = true;
-                    return true;
-                }
+                    self.is_current_sponsored = true;
+                } 
             }
         }
     },
@@ -118,35 +123,58 @@ webmd.fundedNextUp = {
 
     setNextUpArticles : function() {
         var self = this,
-            current_article_id = article_data.current_article_id,
             articles = article_data.articles,
-            article;
+            article,
+            articleIdArrLen;
 
         for(var key in articles) {
             article = articles[key].article;
+            articleIdArrLen = self.article_ids_to_display.length;
 
-            if (!articles[key].sponsored) {
-                if (current_article_id && (current_article_id < articles[key].id) && (self.displayed_articles < self.articles_to_display)) {
+            if ((articles[key].id > article_data.current_article_id) &&
+                (articleIdArrLen < self.articles_to_display)) {
+                if (self.hide_sponsor_pages) {
+                    if (!articles[key].sponsored) {
+                        self.nextup_article_data["articles"].push({"article" : article});
+                        self.article_ids_to_display.push(articles[key].id);
+                    }
+                } else {
                     self.nextup_article_data["articles"].push({"article" : article});
-                    self.displayed_articles += 1;
+                    self.article_ids_to_display.push(articles[key].id);
                 }
             }
         }
 
-        // Loop through article_data again to grab from the beginning if needed
-        while (self.displayed_articles < self.articles_to_display) {
+        // Check if the number of non-sponsored articles is equal to or greater
+        // than the number of articles needed to display in the Up Next module
+        //while (self.article_ids_to_display.length < self.articles_to_display) {
             loopArticleData();
-        }
+        //}
 
         function loopArticleData() {
+            var articleExists,
+                currentArticle;
+
             for(var key in article_data.articles) {
-                if (self.nextup_article_data.articles.length < self.articles_to_display) {
-                    if (!articles[key].sponsored) {
-                        self.nextup_article_data["articles"].push({article : articles[key].article});
-                        self.displayed_articles += 1;
+                articleExists = (self.article_ids_to_display.indexOf(articles[key].id) != -1);
+                currentArticle = (articles[key].id === article_data.current_article_id);
+
+                if (!articleExists && (self.article_ids_to_display.length < self.articles_to_display)) {
+                    if (self.hide_sponsor_pages) {
+                        if (!articles[key].sponsored && !currentArticle) {
+                            self.nextup_article_data["articles"].push({article : articles[key].article});
+                            self.article_ids_to_display.push(articles[key].id);
+                        }
+                    } else {
+                        if (!currentArticle) {
+                            self.nextup_article_data["articles"].push({article : articles[key].article});
+                            self.article_ids_to_display.push(articles[key].id);
+                        }
                     }
                 }
             }
+
+            self.articles_to_display = self.article_ids_to_display.length;
         }
     },
 
@@ -165,7 +193,8 @@ webmd.fundedNextUp = {
     },
 
     render : function(){ // uses handlebars template above
-        var self = this;
+        var self = this,
+            next_up_articles_len;
 
         if (typeof article_data !== "undefined") {
             
@@ -173,26 +202,31 @@ webmd.fundedNextUp = {
 
             self.addToSessionHistory();
 
-            if (self.checkSponsoredArticle) {
+            if (self.hide_module_on_sponsor_pages && self.is_current_sponsored) {
                 return true;
             } else {
-                self.injectHBtemplateJS();
-
                 self.setNextUpArticles();
 
-                require(["handlebars/1/handlebars"], function(Handlebars) {
-                    var $template = $("#funded-nextup"),
-                        $container = $(".article-list-container"),
-                        $articles = $(".articles"),
-                        source = $template.html(),
-                        template = Handlebars.compile(source),
-                        context = {"article_data" : self.nextup_article_data} || {},
-                        html = template(context);
+                next_up_articles_len = self.nextup_article_data.articles.length;
 
-                    $container.prepend(html);
+                // Do no create module if not enough articles in data object
+                if (next_up_articles_len > 0) {
+                    self.injectHBtemplateJS();
 
-                    self.bindEvents();
-                });
+                    require(["handlebars/1/handlebars"], function(Handlebars) {
+                        var $template = $("#funded-nextup"),
+                            $container = $(".article-list-container"),
+                            $articles = $(".articles"),
+                            source = $template.html(),
+                            template = Handlebars.compile(source),
+                            context = {"article_data" : self.nextup_article_data} || {},
+                            html = template(context);
+
+                        $container.prepend(html);
+
+                        self.bindEvents();
+                    });
+                }
             }
         }
     }
