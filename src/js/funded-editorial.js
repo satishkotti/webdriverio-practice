@@ -71,6 +71,7 @@ webmd.fundedEditorial = {
                     '            <th>Image</th>' + newline +
                     '            <th>Funded</th>' + newline +
                     '            <th>Sponsored</th>' + newline +
+                    '            <th>Type</th>' + newline +
                     '        </tr>' + newline +
                     '    </thead>' + newline +
                     '    <tbody>' + newline +
@@ -91,6 +92,7 @@ webmd.fundedEditorial = {
                     '                <span class="icon-check"></span>' + newline +
                     '                {{/if}}' + newline +
                     '            </td>' + newline +
+                    '            <td class="typ cnt-mid">{{type}}</td>' + newline +
                     '        </tr>' + newline +
                     '        {{/each}}' + newline +
                     '    </tbody>' + newline +

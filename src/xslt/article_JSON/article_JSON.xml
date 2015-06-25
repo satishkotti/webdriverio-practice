@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <webmd_rendition>
   <content>
-<wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e811e2639">
+<wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e811f82ef">
     <webmd_module>
         <module_settings>
-            <chronic_id>091e9c5e811e2639</chronic_id>
-            <r_object_id>091e9c5e811e2639</r_object_id>
-            <title>test ed</title>
-            <object_name>module_test ed_091e9c5e811e2639.xml</object_name>
-            <object_type>wbmd_pb_module</object_type>
+            <chronic_id>091e9c5e811f0312</chronic_id>
+            <r_object_id>091e9c5e811f82ef</r_object_id>
+            <title>article-data</title>
+            <object_name>module_article-data_091e9c5e811f0312.xml</object_name>
+            <object_type>wbmd_pb_templatemodule</object_type>
             <wbmd_pb_module_category />
             <wbmd_pb_module_subcategory />
             <wbmd_pb_dyn_module_category />
@@ -21,44 +21,105 @@
             <wbmd_pb_module_sp_program />
             <wbmd_pb_module_tier>0</wbmd_pb_module_tier>
             <wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
-            <r_modify_date>06/09/2015 08:36:03</r_modify_date>
+            <r_modify_date>06/22/2015 12:27:42</r_modify_date>
             <wbmd_c_channel_ids_group />
-            <wbmd_pb_asset_css path="/webmd/PageBuilder_Assets/CSS/EditorialModule/Article Promo/Center Well Promo_091e9c5e8048496c.css" object_type="wbmd_pb_css" chronic_id="091e9c5e8048496c" />
-            <wbmd_pb_module_xsl path="/webmd/PageBuilder_Assets/XSL/EditorialModule/Article Promo_091e9c5e80484968.xsl" object_type="wbmd_pb_xsl" chronic_id="091e9c5e80484968" />
+            <wbmd_pb_asset_css path="/webmd/PageBuilder_Assets/CSS/EditorialModule/Article Data/Standard_091e9c5e811f0311.css" object_type="wbmd_pb_css" chronic_id="091e9c5e811f0311" />
+            <wbmd_pb_module_xsl path="/webmd/PageBuilder_Assets/XSL/EditorialModule/Article Data_091e9c5e811f0310.xsl" object_type="wbmd_pb_xsl" chronic_id="091e9c5e811f0310" />
             <wbmd_pb_moduledataschema path="/webmd_uk/PageBuilder_Assets/schemas/module_schemas/EditorialModule.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005117" />
             <wbmd_pb_moduledataschema path="/webmd/PageBuilder_Assets/schemas/module_schemas/EditorialModule.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005117" />
-            <wbmd_pb_owner_page_id path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Ryans First Page_091e9c5e80b3d421/page_Ryans First Page_091e9c5e80b3d421.xml" object_type="wbmd_pb_page" chronic_id="091e9c5e80b3d421" />
+            <wbmd_pb_owner_page_id path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Templates/Program Title MAIN_091e9c5e811f02e4/template_Program Title MAIN_091e9c5e811f02e4.xml" object_type="wbmd_pb_template" chronic_id="091e9c5e811f02e4" />
             <dnn_id>0</dnn_id>
             <class>EditorialModule</class>
         </module_settings>
         <module_data>
-            <module_title>Test Title</module_title>
+            <module_title />
             <module_link_view>Page Refresh(Default)</module_link_view>
             <module_link chronic_id="" directive="friendlyurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" />
             <links>
                 <link_bullet>false</link_bullet>
                 <link>
-                    <link_text>Text Field [sp]</link_text>
-                    <action_text>Action Text Field</action_text>
+                    <link_text>8 Reasons Your Cough Is Not Improving</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
                     <link_link_view>Page Refresh(Default)</link_link_view>
-                    <link_url chronic_id="091e9c5e80022f86" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
-                    <link_source_icon chronic_id="091e9c5e811b0c80" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/news/2015/05_2015/antipsychotic_drugs_less_effective/650x350_antipsychotic_drugs_less_effective.jpg" alt="closup of pills spilling from bottle" />
+                    <link_url chronic_id="091e9c5e811f0a04" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e80fbbee2" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/reference_guide/understanding_trans_fats_ref_guide/650x350_understanding_trans_fats_ref_guide.jpg" alt="doughnuts" />
                 </link>
                 <link>
-                    <link_text>Text Field 2</link_text>
-                    <action_text>Action Text Field 2</action_text>
+                    <link_text>8 Tips for Nighttime Cough Relief</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
                     <link_link_view>Page Refresh(Default)</link_link_view>
-                    <link_url chronic_id="091e9c5e80022f86" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
-                    <link_source_icon chronic_id="091e9c5e80c501bb" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/slideshows/cancer_fighting_foods_slideshow/650x350cancer_fighting_foods_slideshow.jpg" alt="sauteed cherry tomatoes" />
+                    <link_url chronic_id="091e9c5e811f20a7" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e811ef5e7" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/news/2015/06_2015/appendix/650x350_appendix.jpg" alt="illustration of appendix" />
+                </link>
+                <link>
+                    <link_text>OTC Medicines for Cough: What You Need to Know
+</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e811f20a9" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e811e97bd" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/news/2015/06_2015/pregnancy_complications_and_cdv/650x350_pregnancy_complications_and_cdv.jpg" alt="pregnant woman getting bloodpressure taken" />
+                </link>
+                <link>
+                    <link_text>Stop the Spread of Cold and Flu Germs</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e811f20ab" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e811e8e49" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/news/2015/06_2015/gerd_and_gender/650x350_gerd_and_gender.jpg" alt="human skeleton illustration" />
+                </link>
+                <link>
+                    <link_text>Why You Cough</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e811f20ad" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e811ecfc0" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/features/_2015/06_2015/are_you_getting_enough_potassium_0615_features/650x350_are_you_getting_enough_potassium_0615_features.jpg" alt="mixed fruit" />
+                </link>
+                <link>
+                    <link_text>10 Home Remedies for the Flu
+</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e811f2480" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e811300ad" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/video/when_autism_grows_up_video/650x350_when_autism_grows_up_video.jpg" alt="man on bicycle" />
+                </link>
+                <link>
+                    <link_text>Pregnancy and the Flu</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e811f2482" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e811916a0" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/slideshows/concentration_killers/650x350_concentration_killers.jpg" alt="woman staring at social media" />
+                </link>
+                <link>
+                    <link_text>How to Treat the Flu</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e811f2484" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e8101192b" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/recipes/broccoli_parmesan_pasta_recipe/650x350_broccoli_parmesan_pasta_recipe.jpg" alt="broccoli parmesan pasta" />
+                </link>
+                <link>
+                    <link_text>Too Sick to Work?
+</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e811f2486" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e811e97bd" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/news/2015/06_2015/pregnancy_complications_and_cdv/650x350_pregnancy_complications_and_cdv.jpg" alt="pregnant woman getting bloodpressure taken" />
+                </link>
+                <link>
+                    <link_text>Is Your Kid Sick or Just Faking It?</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e811f2d1e" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e80f265d1" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/slideshows/ms_overview_slideshow/650x350_ms_overview_slideshow.jpg" alt="nerve damage" />
+                </link>
+                <link>
+                    <link_text>Sponsored Article 01 [sp]</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e811f8072" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e80eed53b" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/news/2014/05_2014/mers_news_story_/650x350_mers_news_story_.jpg" alt="MERS" />
                 </link>
             </links>
             <descriptions>
-                <description>
-                    <description_text>Description 1</description_text>
-                </description>
-                <description>
-                    <description_text>Description 2</description_text>
-                </description>
+                <description />
             </descriptions>
             <body_images>
                 <body_image>
@@ -75,9 +136,38 @@
 </content>
   <friendlyurls />
   <referenced_objects>
-    <object chronic_id="091e9c5e80022f86" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Allergies Health Center/page_Allergies Health Center_091e9c5e80022f86.wxml">
-      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/allergies/default.htm" umtchronicleid="091e9c5e80686cc0" />
-      <target siteid="8" name="" prefix="www" friendlyurl="/allergies/default.htm" umtchronicleid="091e9c5e80686cc0" />
+    <object chronic_id="091e9c5e811f0a04" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 01_091e9c5e811f0a04/page_Article Title 01_091e9c5e811f0a04.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/article-title-01" />
+    </object>
+    <object chronic_id="091e9c5e811f20a7" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 02_091e9c5e811f20a7/page_Article Title 02_091e9c5e811f20a7.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/article-title-02" />
+    </object>
+    <object chronic_id="091e9c5e811f20a9" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 03_091e9c5e811f20a9/page_Article Title 03_091e9c5e811f20a9.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/article-title-03" />
+    </object>
+    <object chronic_id="091e9c5e811f20ab" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 04_091e9c5e811f20ab/page_Article Title 04_091e9c5e811f20ab.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/article-title-04" />
+    </object>
+    <object chronic_id="091e9c5e811f20ad" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 05_091e9c5e811f20ad/page_Article Title 05_091e9c5e811f20ad.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/article-title-05" />
+    </object>
+    <object chronic_id="091e9c5e811f2480" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 06_091e9c5e811f2480/page_Article Title 06_091e9c5e811f2480.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/article-title-06" />
+    </object>
+    <object chronic_id="091e9c5e811f2482" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 07_091e9c5e811f2482/page_Article Title 07_091e9c5e811f2482.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/article-title-07" />
+    </object>
+    <object chronic_id="091e9c5e811f2484" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 08_091e9c5e811f2484/page_Article Title 08_091e9c5e811f2484.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/article-title-08" />
+    </object>
+    <object chronic_id="091e9c5e811f2486" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 09_091e9c5e811f2486/page_Article Title 09_091e9c5e811f2486.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/article-title-09" />
+    </object>
+    <object chronic_id="091e9c5e811f2d1e" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 10_091e9c5e811f2d1e/page_Article Title 10_091e9c5e811f2d1e.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/article-title-10" />
+    </object>
+    <object chronic_id="091e9c5e811f8072" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Sponsored Title 01_091e9c5e811f8072/page_Sponsored Title 01_091e9c5e811f8072.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/sponsored-title-01" />
     </object>
   </referenced_objects>
   <container_hierarchy />

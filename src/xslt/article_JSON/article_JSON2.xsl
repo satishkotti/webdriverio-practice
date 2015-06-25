@@ -60,6 +60,11 @@
                                 <![CDATA["image50x50" : "]]><xsl:call-template name="getImgPath"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">50</xsl:with-param><xsl:with-param name="height">50</xsl:with-param></xsl:call-template><![CDATA["]]>
                             <![CDATA[}]]>
                         <![CDATA[},]]>
+                        <![CDATA["type" : "]]><xsl:call-template name="GetLinkIconType">
+                                <xsl:with-param name="link_href">
+                                    <xsl:value-of select="$href"/>
+                                </xsl:with-param>
+                            </xsl:call-template><![CDATA[",]]>
                         <![CDATA["sponsored" : ]]><xsl:choose>
                                 <xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
                                     <xsl:text>true</xsl:text>
@@ -138,5 +143,28 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:if>
+    </xsl:template>
+    <xsl:template name="GetLinkIconType">
+        <xsl:param name="link_href"></xsl:param>
+        <xsl:choose>
+            <xsl:when test="contains(string($link_href),'/default.htm')">
+                <xsl:text>type_toc</xsl:text>
+            </xsl:when>
+            <xsl:when test="contains(string($link_href),'blogs.') or contains(string($link_href),'boards.')">
+                <xsl:text>type_com</xsl:text>
+            </xsl:when>
+            <xsl:when test="contains(string($link_href),'video')">
+                <xsl:text>type_vid</xsl:text>
+            </xsl:when>
+            <xsl:when test="contains(string($link_href),'slideshow')">
+                <xsl:text>type_ss</xsl:text>
+            </xsl:when>
+            <xsl:when test="contains(string($link_href),'rm-quiz')">
+                <xsl:text>type_rmq</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>type_art</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 </xsl:stylesheet>
