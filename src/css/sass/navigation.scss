@@ -39,6 +39,7 @@
     overflow: hidden;
     border: 1px solid rgb(193,193,193);
     background-color: #fff;
+
     -webkit-transition: all 0.5s ease-in-out 0.5s;
     -moz-transition: all 0.5s ease-in-out 0.5s;
     -o-transition: all 0.5s ease-in-out 0.5s;
@@ -58,7 +59,7 @@
       display: inline-table;
       width: 50%;
       height: 100%;
-      max-height: 90px;
+      table-layout: fixed;
     }
 
     a:hover {
@@ -73,6 +74,7 @@
       border-left: 1px solid rgb(182,182,182);
 
       .arrow {
+        position: relative;
         float: right;
         border-right: 5px solid rgb(182,182,182);
         -ms-transform: rotate(-45deg); /* IE 9 */
@@ -87,6 +89,7 @@
       float: left;
 
       .arrow {
+        position: relative;
         float: left;
         border-left: 5px solid rgb(182,182,182);
         -ms-transform: rotate(45deg); /* IE 9 */
@@ -121,15 +124,149 @@
       .title {
         font-size: 24px;
         display: block;
-        word-wrap: break-word;
         font-family: 'Lato';
         font-weight: 400;
         font-style: normal;
         font-size: 18px;
         color: #333333;
         line-height: normal;
+        overflow: hidden;
       }
     }
   }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-width: 320px) and (max-width: 736px) {
+    .prev {
+      .text span {
+        float: right !important;
+      }
+
+      .arrow {
+        left: -10px;
+      }
+    }
+
+    .next {
+      .text span {
+        float: left !important;
+      }
+
+      .arrow {
+        right: -10px;
+      }
+    }
+
+    .text {
+        font-size: 100%;
+        padding: 5px !important;
+        height: 100%;
+        vertical-align: initial;
+
+        .nav, .title {
+          font-size: 0.75em !important;
+          width: 75% !important;
+        }
+
+        .nav {
+          vertical-align: top;
+        }
+        .title {
+          height: 60px;
+        }
+    }
+}
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: 321px) {
+    /* STYLES GO HERE */
+}
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: 320px) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (portrait and landscape) ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    /* STYLES GO HERE */
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Small screens ----------- */
+@media only screen and (min-width: 676px) {
+    /* STYLES GO HERE */
+}
+/* Small screens : Retina ----------- */
+@media only screen and (min-width: 676px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (landscape) ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (landscape) - Retina ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (portrait) ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    .prev {
+      .text span {
+        float: right !important;
+      }
+
+      .arrow {
+        left: -10px;
+      }
+    }
+
+    .next {
+      .text span {
+        float: left !important;
+      }
+
+      .arrow {
+        right: -10px;
+      }
+    }
+
+    .text {
+        font-size: 100%;
+        padding: 10px !important;
+        height: 100%;
+        vertical-align: initial;
+
+        .nav, .title {
+          font-size: 1em !important;
+          width: 85% !important;
+        }
+
+        .nav {
+          vertical-align: top;
+        }
+        .title {
+          height: 60px;
+        }
+    }
+}
+/* Tablets, iPads (portrait) - Retina ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1025px) {
+    /* STYLES GO HERE */
+}
+/* Desktops and laptops - Retina ----------- */
+@media only screen and (min-width: 1025px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Large screens : Non-Retina ----------- */
+@media only screen and (min-width: 1824px) {
+    /* STYLES GO HERE */
+}
+/* Large screens : Retina ----------- */
+@media only screen and (min-width: 1824px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
 }
 

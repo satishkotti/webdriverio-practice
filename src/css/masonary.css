@@ -1,0 +1,147 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+body {
+	background-color: #f4f4f4;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+	max-width: 980px;
+	width: 98%;
+	margin: 0 auto;
+	background-color: pink;
+}
+.grid {
+	margin: 0 auto;
+}
+.wbmd-grid-item {
+	width: 313px;
+	/*width: 32.75%;*/
+	min-height: 305px;
+	/*height: 320px;*/
+	float: left;
+	background-color: #fff;
+	margin: 0 0 20px 0;
+}
+.wbmd-grid-item.ad {
+	text-align: center;
+}
+.wbmd-grid-item.col-2 {
+	width: 646px;
+}
+.wbmd-grid-item img {
+	width: 100%;
+	display: block;
+}
+.wbmd-grid-item.ad img {
+	width: auto;
+	margin: 0 auto;
+}
+.wbmd-grid-item p {
+	padding: 10px;
+	font-size: 18px;
+	margin: 0;
+}
+.adLabel {
+	font-size: 10px;
+	color: #ddd;
+	display: block;
+	padding: 2px 0;
+}
+
+.visited {
+	-webkit-filter: grayscale(100%);
+  -webkit-transition: .5s ease-in-out;
+  -moz-filter: grayscale(100%); 
+  -moz-transition: .5s ease-in-out;
+  -o-filter: grayscale(100%); 
+  -o-transition: .5s ease-in-out;
+  opacity: 0.5;
+}
+
+.visited:hover {
+	-webkit-filter: grayscale(0%);
+  -webkit-transition: .5s ease-in-out;
+  -moz-filter: grayscale(0%);
+  -moz-transition: .5s ease-in-out;
+  -o-filter: grayscale(0%);
+  -o-transition: .5s ease-in-out;
+  opacity: 1;
+}
+
+.addTopMargin {
+	margin-top: 20px;;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-width : 320px)
+and (max-width : 480px) {
+/* Styles */
+.wbmd-grid-item,
+.wbmd-grid-item.col-2 {
+	width: 100%;
+}
+}
+ 
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width : 321px) {
+/* Styles */
+}
+ 
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 320px) {
+/* Styles */
+}
+ 
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-width : 768px)
+and (max-width : 1024px) {
+/* Styles */
+	
+}
+ 
+/* iPads (landscape) ----------- */
+@media only screen
+and (min-width : 768px)
+and (max-width : 1024px)
+and (orientation : landscape) {
+/* Styles */
+}
+ 
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-width : 768px)
+and (max-width : 1024px)
+and (orientation : portrait) {
+/* Styles */
+	.wbmd-grid-item {
+		width: 357px;
+	}
+	.wbmd-grid-item.col-2 {
+		width: 100%;
+	}
+}
+ 
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+/* Styles */
+}
+ 
+/* Large screens ----------- */
+@media only screen
+and (min-width : 1824px) {
+/* Styles */
+}
+ 
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+}
