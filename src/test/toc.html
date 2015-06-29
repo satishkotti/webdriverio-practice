@@ -109,6 +109,7 @@
                                 "image50x50" : "http://img.preview.webmd.com/dtmcms/preview/webmd/consumer_assets/site_images/article_thumbnails/reference_guide/understanding_trans_fats_ref_guide/50x50_understanding_trans_fats_ref_guide.jpg"
                             }
                         },
+                        "type" : "type_vid",
                         "sponsored" : false
                     },
                     {
@@ -133,6 +134,7 @@
                                 "image50x50" : "http://img.preview.webmd.com/dtmcms/preview/webmd/consumer_assets/site_images/article_thumbnails/news/2015/06_2015/appendix/50x50_appendix.jpg"
                             }
                         },
+                        "type" : "type_art",
                         "sponsored" : false
                     },
                     {
@@ -157,6 +159,7 @@
                                 "image50x50" : "http://img.preview.webmd.com/dtmcms/preview/webmd/consumer_assets/site_images/article_thumbnails/news/2015/06_2015/pregnancy_complications_and_cdv/50x50_pregnancy_complications_and_cdv.jpg"
                             }
                         },
+                        "type" : "type_art",
                         "sponsored" : false
                     },
                     {
@@ -181,6 +184,7 @@
                                 "image50x50" : "http://img.preview.webmd.com/dtmcms/preview/webmd/consumer_assets/site_images/article_thumbnails/news/2015/06_2015/gerd_and_gender/50x50_gerd_and_gender.jpg"
                             }
                         },
+                        "type" : "type_art",
                         "sponsored" : false
                     },
                     {
@@ -205,6 +209,7 @@
                                 "image50x50" : "http://img.preview.webmd.com/dtmcms/preview/webmd/consumer_assets/site_images/article_thumbnails/features/_2015/06_2015/are_you_getting_enough_potassium_0615_features/50x50_are_you_getting_enough_potassium_0615_features.jpg"
                             }
                         },
+                        "type" : "type_art",
                         "sponsored" : false
                     },
                     {
@@ -229,6 +234,7 @@
                                 "image50x50" : "http://img.preview.webmd.com/dtmcms/preview/webmd/consumer_assets/site_images/article_thumbnails/video/when_autism_grows_up_video/50x50_when_autism_grows_up_video.jpg"
                             }
                         },
+                        "type" : "type_art",
                         "sponsored" : false
                     },
                     {
@@ -253,6 +259,7 @@
                                 "image50x50" : "http://img.preview.webmd.com/dtmcms/preview/webmd/consumer_assets/site_images/article_thumbnails/slideshows/concentration_killers/50x50_concentration_killers.jpg"
                             }
                         },
+                        "type" : "type_art",
                         "sponsored" : false
                     },
                     {
@@ -277,6 +284,7 @@
                                 "image50x50" : "http://img.preview.webmd.com/dtmcms/preview/webmd/consumer_assets/site_images/article_thumbnails/recipes/broccoli_parmesan_pasta_recipe/50x50_broccoli_parmesan_pasta_recipe.jpg"
                             }
                         },
+                        "type" : "type_art",
                         "sponsored" : false
                     },
                     {
@@ -301,6 +309,7 @@
                                 "image50x50" : "http://img.preview.webmd.com/dtmcms/preview/webmd/consumer_assets/site_images/article_thumbnails/news/2015/06_2015/pregnancy_complications_and_cdv/50x50_pregnancy_complications_and_cdv.jpg"
                             }
                         },
+                        "type" : "type_art",
                         "sponsored" : false
                     },
                     {
@@ -325,6 +334,7 @@
                                 "image50x50" : "http://img.preview.webmd.com/dtmcms/preview/webmd/consumer_assets/site_images/article_thumbnails/slideshows/ms_overview_slideshow/50x50_ms_overview_slideshow.jpg"
                             }
                         },
+                        "type" : "type_art",
                         "sponsored" : false
                     },
                     {
@@ -349,10 +359,12 @@
                                 "image50x50" : "http://img.preview.webmd.com/dtmcms/preview/webmd/consumer_assets/site_images/article_thumbnails/news/2014/05_2014/mers_news_story_/50x50_mers_news_story_.jpg"
                             }
                         },
+                        "type" : "type_art",
                         "sponsored" : true
                     }
             ]
         };
+
         </script>
     </head>
 
@@ -462,7 +474,7 @@
                 <div id="ContentPane13" class="pane">
                     <h3>Single Hero</h3>
                     <!-- Start Single Hero -->
-                    <div class="toc-hero toc-hero-1-col">
+                    <!-- <div class="toc-hero toc-hero-1-col">
                         <div class="toc-hero-item">
                             <div class="toc-hero-img">
                                 <a href="#" class="toc-img-link type-vid">
@@ -475,13 +487,51 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
-                    <div style=" margin: 0 10px; height: 300px; background-color: pink"></div>
+                    </div> -->
+
+                            <!--Hero Single Unit-->
+                            <div class="toc-hero-single-unit-shell"/>
+                            <script id="toc-hero-single-unit-template" type="text/x-handlebars-template">
+                               <div class="toc-hero toc-hero-1-col">
+                                  <div class="toc-hero-item">
+                                     <div class="toc-hero-img">
+                                        <a class="toc-img-link {{articles.0.type}}" href="{{articles.0.article.link}}">
+                                           <img src="{{articles.0.article.images.image650x350}}"/>
+                                        </a>
+                                     </div>
+                                     <div class="toc-hero-desc" style="background-color:#925119">
+                                        <a class="toc-desc-link" href="{{articles.0.article.link}}">
+                                           <h3>{{articles.0.article.title}}</h3>
+                                        </a>
+                                     </div>
+                                  </div>
+                               </div>
+                            </script>
+                            <script>
+
+                                //$(function(){
+                                    require(["handlebars/1/handlebars"], function(Handlebars) {
+                                        if (typeof article_data !== "undefined") {
+                                            var template = $("#toc-hero-single-unit-template"),
+                                                container = $(".toc-hero-single-unit-shell"),
+                                                source = template.html(),
+                                                template = Handlebars.compile(source),
+                                                context = article_data || {},
+                                                html = template(context);
+
+                                            container.prepend(html);
+                                        }
+                                    });
+                                //});
+
+                            </script>
+
+                    <!-- <div style=" margin: 0 10px; height: 300px; background-color: pink; position: relative"></div> -->
                     <!-- End Single Hero -->
 
                     <h3>Double Hero</h3>
                     <!-- Start Double Hero -->
-                    <div class="toc-hero toc-hero-2-col">
+                    <!-- <div class="toc-hero toc-hero-2-col">
                         <div class="toc-hero-item">
                             <div class="toc-hero-img">
                                 <a href="#" class="toc-img-link">
@@ -506,12 +556,62 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
+                    <!--Hero Double Unit-->
+<div class="toc-hero-double-unit-shell"/>
+<script id="toc-hero-double-unit-template" type="text/x-handlebars-template">
+   <div class="toc-hero toc-hero-2-col">
+      <div class="toc-hero-item">
+         <div class="toc-hero-img">
+            <a class="toc-img-link {{articles.3.type}}" href="{{articles.3.article.link}}">
+               <img src="{{articles.3.article.images.image493x335}}"/>
+            </a>
+         </div>
+         <div class="toc-hero-desc" style="background-color:#925119">
+            <a class="toc-desc-link" href="{{articles.3.article.link}}">
+               <h3>{{articles.3.article.title}}</h3>
+            </a>
+         </div>
+      </div>
+      <div class="toc-hero-item">
+         <div class="toc-hero-img">
+            <a class="toc-img-link {{articles.1.type}}" href="{{articles.1.article.link}}">
+               <img src="{{articles.1.article.images.image493x335}}"/>
+            </a>
+         </div>
+         <div class="toc-hero-desc">
+            <a class="toc-desc-link" href="{{articles.1.article.link}}">
+               <h3>{{articles.1.article.title}}</h3>
+            </a>
+         </div>
+      </div>
+   </div>
+</script>
+<script>
+
+        //$(function(){
+            require(["handlebars/1/handlebars"], function(Handlebars) {
+                if (typeof article_data !== "undefined") {
+                    var template = $("#toc-hero-double-unit-template"),
+                        container = $(".toc-hero-double-unit-shell"),
+                        source = template.html(),
+                        template = Handlebars.compile(source),
+                        context = article_data || {},
+                        html = template(context);
+
+                    container.prepend(html);
+                }
+            });
+        //});
+
+        </script>
+
                     <!-- End Double Hero -->
 
                     <h3>Triple Hero</h3>
                     <!-- Start Triple Hero -->
-                    <div class="toc-hero toc-hero-2-col-3-item">
+                    <!-- <div class="toc-hero toc-hero-2-col-3-item">
                         <div class="toc-hero-left-col">
                             <div class="toc-hero-item">
                                 <div class="toc-hero-img">
@@ -552,7 +652,73 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
+                    <!--Hero Triple Unit-->
+<div class="toc-hero-triple-unit-shell"/>
+<script id="toc-hero-triple-unit-template" type="text/x-handlebars-template">
+   <div class="toc-hero toc-hero-2-col-3-item">
+      <div class="toc-hero-left-col">
+         <div class="toc-hero-item">
+            <div class="toc-hero-img">
+               <a class="toc-img-link {{articles.3.type}}" href="{{articles.3.article.link}}">
+                  <img src="{{articles.3.article.images.image493x335}}"/>
+               </a>
+            </div>
+            <div class="toc-hero-desc" style="background-color:#925119">
+               <a class="toc-desc-link" href="{{articles.3.article.link}}">
+                  <h3>{{articles.3.article.title}}</h3>
+               </a>
+            </div>
+         </div>
+      </div>
+      <div class="toc-hero-right-col">
+         <div class="toc-hero-item">
+            <div class="toc-hero-img">
+               <a class="toc-img-link {{articles.1.type}}" href="{{articles.1.article.link}}">
+                  <img src="{{articles.1.article.images.image493x335}}"/>
+               </a>
+            </div>
+            <div class="toc-hero-desc">
+               <a class="toc-desc-link" href="{{articles.1.article.link}}">
+                  <h3>{{articles.1.article.title}}</h3>
+               </a>
+            </div>
+         </div>
+         <div class="toc-hero-item">
+            <div class="toc-hero-img">
+               <a class="toc-img-link {{articles.2.type}}" href="{{articles.2.article.link}}">
+                  <img src="{{articles.2.article.images.image493x335}}"/>
+               </a>
+            </div>
+            <div class="toc-hero-desc">
+               <a class="toc-desc-link" href="{{articles.2.article.link}}">
+                  <h3>{{articles.2.article.title}}</h3>
+               </a>
+            </div>
+         </div>
+      </div>
+   </div>
+</script>
+<script>
+
+        //$(function(){
+            require(["handlebars/1/handlebars"], function(Handlebars) {
+                if (typeof article_data !== "undefined") {
+                    var template = $("#toc-hero-triple-unit-template"),
+                        container = $(".toc-hero-triple-unit-shell"),
+                        source = template.html(),
+                        template = Handlebars.compile(source),
+                        context = article_data || {},
+                        html = template(context);
+
+                    container.prepend(html);
+                }
+            });
+        //});
+
+        </script>
+
                     <!-- End Triple Hero -->
 
 
