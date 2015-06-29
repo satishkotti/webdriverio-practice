@@ -161,7 +161,7 @@ webmd.fundedTOC = {
                     '</a>'+ newline
                 );
 
-                nodeWidth = $(myNode).width();
+                nodeWidth = $(myNode).outerWidth();
 
                 if (!self.smallestGridSize || self.smallestGridSize > nodeWidth || !self.smallestNodes.nodes[$parentNode]) {
                     self.smallestGridSize = nodeWidth;
@@ -192,23 +192,18 @@ webmd.fundedTOC = {
 
         if (typeof article_data !== "undefined") {
             require(["masonry/1/masonry"], function(Masonry) {
-                // require jquery-bridget, it's included in masonry.pkgd.js
-                require(['jquery-bridget/jquery.bridget'], function() {
-                    //make Masonry a jQuery plugin
-                    $.bridget( 'masonry', Masonry );
-
-                    // now you can use $().masonry()
-                    $.each(contentPanes, function(key,value) {
-                        $("#" + contentPanes[key]).imagesLoaded(function(){
-                            $("#" + contentPanes[key]).masonry({
-                                itemSelector : '.wbmd-grid-item',
-                                columnWidth : '.wbmd-grid-sizer',
-                                gutter: 20,
-                                isFitWidth: true
-                            });
+                
+                $.each(contentPanes, function(key,value) {
+                    $("#" + contentPanes[key]).imagesLoaded(function(){
+                        new Masonry("#" + contentPanes[key], {
+                            itemSelector : '.wbmd-grid-item',
+                            columnWidth : '.wbmd-grid-sizer',
+                            gutter: 20,
+                            isFitWidth: true
                         });
                     });
                 });
+
             });
         }
     }
