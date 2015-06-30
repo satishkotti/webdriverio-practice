@@ -27,6 +27,12 @@ body {
 .wbmd-grid-item.ad {
 	text-align: center;
 }
+.wbmd-grid-item.ad.x2tall {
+	height: 630px;
+}
+.wbmd-grid-item.ad.x2wide {
+	width: 646px;
+}
 .wbmd-grid-item.col-2 {
 	width: 646px;
 }
@@ -80,7 +86,8 @@ and (min-width : 320px)
 and (max-width : 480px) {
 /* Styles */
 .wbmd-grid-item,
-.wbmd-grid-item.col-2 {
+.wbmd-grid-item.col-2,
+.wbmd-grid-item.ad.x2wide {
 	width: 100%;
 }
 }
@@ -122,8 +129,9 @@ and (orientation : portrait) {
 	.wbmd-grid-item {
 		width: 357px;
 	}
-	.wbmd-grid-item.col-2 {
+	.wbmd-grid-item.col-2, .wbmd-grid-item.ad.x2wide {
 		width: 100%;
+	}
 	}
 }
  

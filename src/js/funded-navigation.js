@@ -211,6 +211,10 @@ webmd.fundedNavigation = {
             self.setNavPalette();
         });
 
+        $(window).bind('touchstart', function () {
+            return true;
+        });
+
         $(window).scroll(function() {
             self.setNavPalette();
         });

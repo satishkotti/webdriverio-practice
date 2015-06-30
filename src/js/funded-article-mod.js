@@ -95,6 +95,8 @@ webmd.fundedTOC = {
         }
         
         this.setMasonryGridSizePerPane();
+
+        this.addGridContainerToPanes();
     },
 
     getAllParentPanes : function(myNode) {
@@ -104,6 +106,19 @@ webmd.fundedTOC = {
         if (this.parentPanes.indexOf($parentNode) === -1) {
             this.parentPanes.push($parentNode);
         }
+    },
+
+    addGridContainerToPanes : function() {
+        var self = this;
+
+        $.each(this.parentPanes, function(index) {
+            var $gridDiv = $("<div></div>"),
+                html = $("#" + this).html();
+
+            $gridDiv.addClass('wbmd-masonry-grid').html(html);
+
+            $("#" + this).html("").addClass("wbmd-masonry-container").append($gridDiv);
+        });
     },
 
     getAllNodes : function() {
@@ -135,8 +150,6 @@ webmd.fundedTOC = {
         }
 
         this.nodeContentPanes.panes[$parentNode].nodes.push({"el":myNode});
-
-        return $parentNode;
     },
 
     setInnerHTML : function(myNode) {
@@ -187,21 +200,25 @@ webmd.fundedTOC = {
 
     render: function(){ // uses handlebars template above
         var self = this,
-            contentPanes = this.parentPanes,
-            contentPane;
+            contentPanes = this.parentPanes;
 
         if (typeof article_data !== "undefined") {
             require(["masonry/1/masonry"], function(Masonry) {
                 
                 $.each(contentPanes, function(key,value) {
-                    $("#" + contentPanes[key]).imagesLoaded(function(){
-                        new Masonry("#" + contentPanes[key], {
+                    var contentPane = "#" + contentPanes[key],
+                        masonryGrid = contentPane + " .wbmd-masonry-grid";
+
+                    $(masonryGrid).imagesLoaded(function(){
+                        new Masonry(masonryGrid, {
                             itemSelector : '.wbmd-grid-item',
                             columnWidth : '.wbmd-grid-sizer',
-                            gutter: 20,
-                            isFitWidth: true
+                            gutter : 20,
+                            isFitWidth : true,
+                            transitionDuration : '0.2s'
                         });
                     });
+
                 });
 
             });
