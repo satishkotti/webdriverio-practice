@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<webmd_rendition>
+  <content>
+<wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e811fd35f">
+    <webmd_module>
+        <module_settings>
+            <chronic_id>091e9c5e811fd35f</chronic_id>
+            <r_object_id>091e9c5e811fd35f</r_object_id>
+            <title>test ed</title>
+            <object_name>module_test ed_091e9c5e811fd35f.xml</object_name>
+            <object_type>wbmd_pb_module</object_type>
+            <wbmd_pb_module_category />
+            <wbmd_pb_module_subcategory />
+            <wbmd_pb_dyn_module_category />
+            <md_pb_module_label1_group>
+                <wbmd_pb_module_label1 object_type="wbmd_lookup" wbmd_lookup_type="wbmd_module_label1" i_chronicle_id="091e9c5e811fc5ff" wbmd_disp_nm="TOC" wbmd_storage_val="editorialmodule_toc" />
+            </md_pb_module_label1_group>
+            <md_pb_module_label2_group>
+                <wbmd_pb_module_label2 object_type="wbmd_lookup" wbmd_lookup_type="wbmd_module_label2" i_chronicle_id="091e9c5e811fc601" wbmd_disp_nm="Hero Double Unit" wbmd_storage_val="hero_triple_unit" />
+            </md_pb_module_label2_group>
+            <wbmd_pb_module_sp_program />
+            <wbmd_pb_module_tier>0</wbmd_pb_module_tier>
+            <wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
+            <r_modify_date>06/25/2015 12:42:56</r_modify_date>
+            <wbmd_c_channel_ids_group />
+            <wbmd_pb_asset_css path="/webmd/PageBuilder_Assets/CSS/EditorialModule/Answers From Expert Slider Footer/Standard_091e9c5e808e4b32.css" object_type="wbmd_pb_css" chronic_id="091e9c5e808e4b32" />
+            <wbmd_pb_module_xsl path="/webmd/PageBuilder_Assets/XSL/EditorialModule/Answers From Expert Slider Footer_091e9c5e808e4b31.xsl" object_type="wbmd_pb_xsl" chronic_id="091e9c5e808e4b31" />
+            <wbmd_pb_moduledataschema path="/webmd_uk/PageBuilder_Assets/schemas/module_schemas/EditorialModule.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005117" />
+            <wbmd_pb_moduledataschema path="/webmd/PageBuilder_Assets/schemas/module_schemas/EditorialModule.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005117" />
+            <wbmd_pb_owner_page_id path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Module XML_091e9c5e80ed87f4/page_Module XML_091e9c5e80ed87f4.xml" object_type="wbmd_pb_page" chronic_id="091e9c5e80ed87f4" />
+            <dnn_id>0</dnn_id>
+            <class>EditorialModule</class>
+        </module_settings>
+        <module_data>
+            <module_title />
+            <module_link_view>Page Refresh(Default)</module_link_view>
+            <module_link chronic_id="" directive="friendlyurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" />
+            <links>
+                <link_bullet>false</link_bullet>
+                <link>
+                    <link_text>1</link_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="" directive="friendlyurl" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt="" />
+                </link>
+                <link>
+                    <link_text>2</link_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="" directive="friendlyurl" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt="" />
+                </link>
+                <link>
+                    <link_text>3</link_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="" directive="friendlyurl" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt="" />
+                </link>
+            </links>
+            <descriptions>
+                <description />
+            </descriptions>
+            <body_images>
+                <body_image>
+                    <override_text />
+                    <image_link_view>Page Refresh(Default)</image_link_view>
+                    <alignment>left</alignment>
+                    <source chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt="" />
+                    <image_link chronic_id="" directive="friendlyurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" />
+                </body_image>
+            </body_images>
+        </module_data>
+    </webmd_module>
+</wbmd_asset>
+</content>
+  <friendlyurls />
+  <referenced_objects />
+  <container_hierarchy />
+  <expanded_objects />
+</webmd_rendition>
