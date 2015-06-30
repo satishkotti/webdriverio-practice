@@ -67,7 +67,7 @@
                 font-family: Lato, Arial, sans-serif;
                 color: #fff;
                 font-size: 1.85em;
-                font-weight: 100;
+                /*font-weight: 100;*/
                 text-shadow: 0 0 3px rgba(0,0,0,.8);
             }
         }
@@ -106,7 +106,7 @@
                 font-family: Lato, Arial, sans-serif;
                 color: #fff;
                 font-size: 1.2em;
-                font-weight: 100;
+                /*font-weight: 100;*/
                 text-shadow: 0 0 3px rgba(0,0,0,.8);
             }
         }
@@ -164,7 +164,7 @@
                 font-family: Lato, Arial, sans-serif;
                 color: #fff;
                 font-size: 1.2em;
-                font-weight: 100;
+                /*font-weight: 100;*/
                 text-shadow: 0 0 3px rgba(0,0,0,.8);
             }
         }
@@ -195,6 +195,7 @@
 
                 h3 {
                     font-size: 1.2em;
+                    text-shadow: none;
                 }
             }
         }
@@ -237,6 +238,7 @@
 
                 h3 {
                     color: #333;
+                    text-shadow: none;
                 }
             }
         }
@@ -259,6 +261,7 @@
 
                     h3 {
                         color: #fff;
+                        text-shadow: none;
                     }
                 }
             }
@@ -277,6 +280,7 @@
                 .toc-hero-desc {
                     h3 {
                         font-size: 1em;
+                        text-shadow: none;
                     }
                 }
             }
