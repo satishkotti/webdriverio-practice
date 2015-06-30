@@ -93,6 +93,8 @@ webmd.fundedTOC = {
             self.setInnerHTML(this.allNodes[i]);
             self.placeInGroup(this.allNodes[i]);
         }
+
+        this.addGridContainerToPanes();
         
         this.setMasonryGridSizePerPane();
     },
@@ -104,6 +106,19 @@ webmd.fundedTOC = {
         if (this.parentPanes.indexOf($parentNode) === -1) {
             this.parentPanes.push($parentNode);
         }
+    },
+
+    addGridContainerToPanes : function() {
+        var self = this;
+
+        $.each(this.parentPanes, function(index) {
+            var $gridDiv = $("<div></div>"),
+                html = $("#" + this).html();
+
+            $gridDiv.addClass('wbmd-masonry-grid').html(html);
+
+            $("#" + this).html("").addClass("wbmd-masonry-container").append($gridDiv);
+        });
     },
 
     getAllNodes : function() {
@@ -187,21 +202,27 @@ webmd.fundedTOC = {
 
     render: function(){ // uses handlebars template above
         var self = this,
-            contentPanes = this.parentPanes,
-            contentPane;
+            contentPanes = this.parentPanes;
 
         if (typeof article_data !== "undefined") {
             require(["masonry/1/masonry"], function(Masonry) {
                 
                 $.each(contentPanes, function(key,value) {
-                    $("#" + contentPanes[key]).imagesLoaded(function(){
-                        new Masonry("#" + contentPanes[key], {
+                    var contentPane = "#" + contentPanes[key],
+                        masonryContainer = contentPane + ".wbmd-masonry-container",
+                        masonryGrid = contentPane + " .wbmd-masonry-grid";
+
+                    $(masonryContainer).imagesLoaded(function(){
+                        new Masonry(masonryContainer, {
                             itemSelector : '.wbmd-grid-item',
                             columnWidth : '.wbmd-grid-sizer',
                             gutter: 20,
-                            isFitWidth: true
+                            isFitWidth: true,
+                            transitionDuration: '0.2s'
                         });
                     });
+
+                    
                 });
 
             });

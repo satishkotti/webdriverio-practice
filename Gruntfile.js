@@ -35,6 +35,7 @@ module.exports = function (grunt) {
                 },
                 files: {
                     '<%= dirSrc %>/css/funded-editorial.css' : '<%= dirSrc %>/css/funded-editorial.scss',
+                    '<%= dirSrc %>/css/funded-article-mod.css' : '<%= dirSrc %>/css/funded-article-mod.scss',
                     '<%= dirSrc %>/css/build/masthead.css' : '<%= dirSrc %>/css/sass/masthead.scss',
                     '<%= dirSrc %>/css/build/attribution.css' : '<%= dirSrc %>/css/sass/attribution.scss',
                     '<%= dirSrc %>/css/build/nextup.css' : '<%= dirSrc %>/css/sass/nextup.scss',
@@ -63,7 +64,8 @@ module.exports = function (grunt) {
             },
             target: {
                 files: {
-                    '<%= dirDist %>/<%= dirDctmPbCssPath %>/funded-editorial.min.css' : '<%= dirBuild %>/css/funded-editorial.css'
+                    '<%= dirDist %>/<%= dirDctmPbCssPath %>/funded-editorial.min.css' : '<%= dirBuild %>/css/funded-editorial.css',
+                    '<%= dirDist %>/<%= dirDctmPbCssPath %>/funded-article-mod.min.css' : '<%= dirBuild %>/css/funded-article-mod.css'
                 }
             }
         },
@@ -83,7 +85,8 @@ module.exports = function (grunt) {
             target: {
                 files: {
                     '<%= dirSrc %>/js/build/funded-navigation.js' : '<%= dirSrc %>/js/funded-navigation.js',
-                    '<%= dirSrc %>/js/build/funded-nextup.js' : '<%= dirSrc %>/js/funded-nextup.js'
+                    '<%= dirSrc %>/js/build/funded-nextup.js' : '<%= dirSrc %>/js/funded-nextup.js',
+                    '<%= dirSrc %>/js/build/funded-article-mod.js' : '<%= dirSrc %>/js/funded-article-mod.js'
                 }
             }
         },
@@ -101,6 +104,7 @@ module.exports = function (grunt) {
                     '<%= dirBuild %>/js/funded-editorial.js' : '<%= dirSrc %>/js/build/funded-editorial.js',
                     '<%= dirBuild %>/js/funded-navigation.js' : '<%= dirSrc %>/js/build/funded-navigation.js',
                     '<%= dirBuild %>/js/funded-nextup.js' : '<%= dirSrc %>/js/build/funded-nextup.js',
+                    '<%= dirBuild %>/js/funded-article-mod.js' : '<%= dirSrc %>/js/build/funded-article-mod.js',
                     '<%= dirBuild %>/js/responsive.js' : '<%= dirSrc %>/js/responsive.js'
                 }
             },
@@ -115,6 +119,7 @@ module.exports = function (grunt) {
                 },
                 files: {
                     '<%= dirDist %>/<%= dirDctmPbJsPath %>/funded-editorial.min.js' : '<%= dirSrc %>/js/build/funded-editorial.js',
+                    '<%= dirDist %>/<%= dirDctmPbJsPath %>/funded-article-mod.min.js' : '<%= dirSrc %>/js/funded-article-mod.js',
                     '<%= dirDist %>/<%= dirDctmPbJsRquirePath %>/funded/1/funded-navigation.min.js' : '<%= dirSrc %>/js/funded-navigation.js',
                     '<%= dirDist %>/<%= dirDctmPbJsRquirePath %>/funded/1/funded-nextup.min.js' : '<%= dirSrc %>/js/funded-nextup.js'
                 }
