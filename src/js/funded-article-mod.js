@@ -93,10 +93,10 @@ webmd.fundedTOC = {
             self.setInnerHTML(this.allNodes[i]);
             self.placeInGroup(this.allNodes[i]);
         }
-
-        this.addGridContainerToPanes();
         
         this.setMasonryGridSizePerPane();
+
+        this.addGridContainerToPanes();
     },
 
     getAllParentPanes : function(myNode) {
@@ -150,8 +150,6 @@ webmd.fundedTOC = {
         }
 
         this.nodeContentPanes.panes[$parentNode].nodes.push({"el":myNode});
-
-        return $parentNode;
     },
 
     setInnerHTML : function(myNode) {
@@ -209,20 +207,18 @@ webmd.fundedTOC = {
                 
                 $.each(contentPanes, function(key,value) {
                     var contentPane = "#" + contentPanes[key],
-                        masonryContainer = contentPane + ".wbmd-masonry-container",
                         masonryGrid = contentPane + " .wbmd-masonry-grid";
 
-                    $(masonryContainer).imagesLoaded(function(){
-                        new Masonry(masonryContainer, {
+                    $(masonryGrid).imagesLoaded(function(){
+                        new Masonry(masonryGrid, {
                             itemSelector : '.wbmd-grid-item',
                             columnWidth : '.wbmd-grid-sizer',
-                            gutter: 20,
-                            isFitWidth: true,
-                            transitionDuration: '0.2s'
+                            gutter : 20,
+                            isFitWidth : true,
+                            transitionDuration : '0.2s'
                         });
                     });
 
-                    
                 });
 
             });
