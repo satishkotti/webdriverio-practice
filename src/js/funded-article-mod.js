@@ -58,7 +58,7 @@ $.fn.imagesLoaded = function( callback ){
 };
 
 
-webmd.fundedTOC = {
+webmd.fundedArticleMod = {
 
     nodeContentPanes : {"panes":{}},
 
@@ -71,8 +71,6 @@ webmd.fundedTOC = {
     smallestGridSize : null,
 
     init : function(){
-        this.startWith('.wbmd-grid-item');
-
         this.render();
     },
 
@@ -97,6 +95,52 @@ webmd.fundedTOC = {
         this.setMasonryGridSizePerPane();
 
         this.addGridContainerToPanes();
+    },
+
+    addToSessionHistory : function() {
+        var self = this,
+            url = window.location.href,
+            current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
+            json = sessionStorage.visitedPages || {"visited":[]},
+            visitedObj = (typeof json === "string") ? JSON.parse(json) : json,
+            urlExists = false;
+
+        for (key in visitedObj.visited) {
+            if (visitedObj.visited[key].page === current_url) {
+                urlExists = true;
+                break;
+            }
+        }
+
+        if (!urlExists && current_url) {
+            visitedObj.visited.push({"page" : current_url});
+        }
+
+        sessionStorage.visitedPages = JSON.stringify(visitedObj);
+    },
+
+    setArticlesVisited : function() {
+        var self = this,
+            article_data = this.article_data,
+            articles = article_data.articles,
+            article,
+            article_link,
+            history = JSON.parse(sessionStorage.visitedPages),
+            history_page;
+
+        for (var key in articles) {
+            article = articles[key].article;
+            article_link = article.link;
+
+            for(var j in history.visited) {
+                history_page = history.visited[j].page;
+                //console.log("article_link: " + article_link + "\nhistory_page: " + history_page);
+
+                if (article_link === history_page) {
+                    article.visited = true;
+                }
+            }
+        }
     },
 
     getAllParentPanes : function(myNode) {
@@ -154,6 +198,7 @@ webmd.fundedTOC = {
 
     setInnerHTML : function(myNode) {
         var self = this,
+            article_data = this.article_data,
             $myNodeArticleNum = $(myNode).data('articleNum'),
             $parentNode = $(myNode).closest('div.pane')[0].id,
             newline = '\n',
@@ -200,9 +245,20 @@ webmd.fundedTOC = {
 
     render: function(){ // uses handlebars template above
         var self = this,
-            contentPanes = this.parentPanes;
+            contentPanes;
 
         if (typeof article_data !== "undefined") {
+
+            self.article_data = article_data;
+
+            self.addToSessionHistory();
+
+            self.setArticlesVisited();
+
+            self.startWith('.wbmd-grid-item');
+
+            contentPanes = self.parentPanes;
+
             require(["masonry/1/masonry"], function(Masonry) {
                 
                 $.each(contentPanes, function(key,value) {
@@ -227,5 +283,5 @@ webmd.fundedTOC = {
 };
 
 $(function() {
-    webmd.fundedTOC.init();
+    webmd.fundedArticleMod.init();
 });
