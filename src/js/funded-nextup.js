@@ -6,19 +6,19 @@ if(!webmd){
 
 webmd.fundedNextUp = {
 
+    articles_to_display : 3,
+
+    hide_sponsor_pages : false,
+
+    hide_module_on_sponsor_pages : false,
+
+    is_current_sponsored : false,
+
+    article_ids_to_display : [],
+
+    nextup_article_data : {"articles":[]},
+
     init : function(){
-        this.articles_to_display = 3;
-
-        this.hide_sponsor_pages = false;
-
-        this.hide_module_on_sponsor_pages = false;
-
-        this.is_current_sponsored = false;
-
-        this.article_ids_to_display = [];
-
-        this.nextup_article_data = {articles:[]};
-
         this.render();
     },
 
@@ -33,13 +33,14 @@ webmd.fundedNextUp = {
                 type : 'text/x-handlebars-template'
             })
             .html(
-                '{{#article_data}}' + newline +
+                '{{#nextup_article_data}}' + newline +
                 '<ul class="article-list">' + newline +
                 '   <li class="up-next-header">Up Next</li>' + newline +
                 '   <li>' + newline +
                 '       <ul class="articles">' + newline +
                 '           {{#each articles}}' + newline +
-                '           <li class="{{#if article.visited}}visited{{/if}}">' + newline +
+                //'           <li class="{{#if article.visited}}visited{{/if}}">' + newline +
+                '           <li>' + newline +
                 '               <a href="{{article.link}}">' + newline +
                 '                   <span class="text">' + newline +
                 '                       <span class="title">{{article.title}}</span>' + newline +
@@ -50,7 +51,7 @@ webmd.fundedNextUp = {
                 '       </ul>' + newline +
                 '   </li>' + newline +
                 '</ul>' + newline +
-                '{{/article_data}}'
+                '{{/nextup_article_data}}'
             );
 
         $('head').append($script);
@@ -58,6 +59,7 @@ webmd.fundedNextUp = {
 
     setCurrentArticle : function() {
         var self = this,
+            article_data = this.article_data,
             url = window.location.href,
             current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
             articles = article_data.articles,
@@ -78,41 +80,44 @@ webmd.fundedNextUp = {
         }
     },
 
-    addToSessionHistory : function(url) {
+    addToSessionHistory : function() {
         var self = this,
-            jsonStr = sessionStorage.visitedPages || '{}',
-            visitedObj = JSON.parse(jsonStr),
+            url = window.location.href,
+            current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
+            json = sessionStorage.visitedPages || {"visited":[]},
+            visitedObj = (typeof json === "string") ? JSON.parse(json) : json,
             urlExists = false;
 
         for (key in visitedObj.visited) {
-            if (visitedObj.visited[key].page === url) {
+            if (visitedObj.visited[key].page === current_url) {
                 urlExists = true;
                 break;
             }
         }
 
-        if (!urlExists && url) {
-            visitedObj["visited"].push({"page" : url});
+        if (!urlExists && current_url) {
+            visitedObj.visited.push({"page" : current_url});
         }
-        
-        this.setArticlesVisited(visitedObj);
 
         sessionStorage.visitedPages = JSON.stringify(visitedObj);
     },
 
-    setArticlesVisited : function(history) {
+    setArticlesVisited : function() {
         var self = this,
+            article_data = this.article_data,
+            articles = article_data.articles,
             article,
             article_link,
+            history = JSON.parse(sessionStorage.visitedPages),
             history_page;
 
-        for (var key in article_data.articles) {
-            article = article_data.articles[key].article;
+        for (var key in articles) {
+            article = articles[key].article;
             article_link = article.link;
 
             for(var j in history.visited) {
-                history_page = history_link = history.visited[j].page;
-                article.visited = false;
+                history_page = history.visited[j].page;
+                //console.log("article_link: " + article_link + "\nhistory_page: " + history_page);
 
                 if (article_link === history_page) {
                     article.visited = true;
@@ -123,7 +128,9 @@ webmd.fundedNextUp = {
 
     setNextUpArticles : function() {
         var self = this,
-            articles = article_data.articles,
+            article_data = this.article_data,
+            articles = this.article_data.articles,
+            current_article_id = this.article_data.current_article_id,
             article,
             articleIdArrLen;
 
@@ -131,7 +138,7 @@ webmd.fundedNextUp = {
             article = articles[key].article;
             articleIdArrLen = self.article_ids_to_display.length;
 
-            if ((articles[key].id > article_data.current_article_id) &&
+            if ((articles[key].id > current_article_id) &&
                 (articleIdArrLen < self.articles_to_display)) {
                 if (self.hide_sponsor_pages) {
                     if (!articles[key].sponsored) {
@@ -155,9 +162,9 @@ webmd.fundedNextUp = {
             var articleExists,
                 currentArticle;
 
-            for(var key in article_data.articles) {
+            for(var key in articles) {
                 articleExists = (self.article_ids_to_display.indexOf(articles[key].id) != -1);
-                currentArticle = (articles[key].id === article_data.current_article_id);
+                currentArticle = (articles[key].id === current_article_id);
 
                 if (!articleExists && (self.article_ids_to_display.length < self.articles_to_display)) {
                     if (self.hide_sponsor_pages) {
@@ -197,10 +204,14 @@ webmd.fundedNextUp = {
             next_up_articles_len;
 
         if (typeof article_data !== "undefined") {
-            
+
+            self.article_data = article_data;
+
             self.setCurrentArticle();
 
             self.addToSessionHistory();
+
+            self.setArticlesVisited();
 
             if (self.hide_module_on_sponsor_pages && self.is_current_sponsored) {
                 return true;
@@ -219,7 +230,7 @@ webmd.fundedNextUp = {
                             $articles = $(".articles"),
                             source = $template.html(),
                             template = Handlebars.compile(source),
-                            context = {"article_data" : self.nextup_article_data} || {},
+                            context = {"nextup_article_data" : self.nextup_article_data} || {},
                             html = template(context);
 
                         $container.prepend(html);

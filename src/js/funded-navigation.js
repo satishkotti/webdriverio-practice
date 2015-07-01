@@ -6,17 +6,17 @@ if(!webmd){
 
 webmd.fundedNavigation = {
 
+    hide_sponsor_pages : false,
+
+    hide_module_on_sponsor_pages : false,
+
+    is_current_sponsored : false,
+
+    percent_after_article_start_to_show : 60, // Shows Next|Prev nav defined percentage after start of article
+
+    pixels_after_article_end_to_hide : 200, // Hides Next|Prev nav defined # of pixels after end of article
+
     init : function(){
-        this.hide_sponsor_pages = false;
-
-        this.hide_module_on_sponsor_pages = false;
-
-        this.is_current_sponsored = false;
-
-        this.percent_after_article_start_to_show = 60; // Shows Next|Prev nav defined percentage after start of article
-
-        this.pixels_after_article_end_to_hide = 200; // Hides Next|Prev nav defined # of pixels after end of article
-
         this.render();
     },
 
@@ -62,6 +62,7 @@ webmd.fundedNavigation = {
 
     setCurrentArticle : function() {
         var self = this,
+            article_data = this.article_data,
             url = window.location.href,
             current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
             articles = article_data.articles,
@@ -85,41 +86,44 @@ webmd.fundedNavigation = {
         }
     },
 
-    addToSessionHistory : function(url) {
+    addToSessionHistory : function() {
         var self = this,
-            jsonStr = sessionStorage.visitedPages || '{}',
-            visitedObj = JSON.parse(jsonStr),
+            url = window.location.href,
+            current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
+            json = sessionStorage.visitedPages || {"visited":[]},
+            visitedObj = (typeof json === "string") ? JSON.parse(json) : json,
             urlExists = false;
 
         for (key in visitedObj.visited) {
-            if (visitedObj.visited[key].page === url) {
+            if (visitedObj.visited[key].page === current_url) {
                 urlExists = true;
                 break;
             }
         }
 
-        if (!urlExists && url) {
-            visitedObj["visited"].push({"page" : url});
+        if (!urlExists && current_url) {
+            visitedObj.visited.push({"page" : current_url});
         }
-        
-        this.setArticlesVisited(visitedObj);
 
         sessionStorage.visitedPages = JSON.stringify(visitedObj);
     },
 
-    setArticlesVisited : function(history) {
+    setArticlesVisited : function() {
         var self = this,
+            article_data = this.article_data,
+            articles = article_data.articles,
             article,
             article_link,
+            history = JSON.parse(sessionStorage.visitedPages),
             history_page;
 
-        for (var key in article_data.articles) {
-            article = article_data.articles[key].article;
+        for (var key in articles) {
+            article = articles[key].article;
             article_link = article.link;
 
             for(var j in history.visited) {
-                history_page = history_link = history.visited[j].page;
-                article.visited = false;
+                history_page = history.visited[j].page;
+                //console.log("article_link: " + article_link + "\nhistory_page: " + history_page);
 
                 if (article_link === history_page) {
                     article.visited = true;
@@ -130,6 +134,7 @@ webmd.fundedNavigation = {
 
     setNavArticles : function() {
         var self = this,
+            article_data = this.article_data,
             current_article_id = article_data.current_article_id,
             articles = article_data.articles,
             article,
@@ -237,16 +242,14 @@ webmd.fundedNavigation = {
             articleHeight = $('.article').innerHeight(),
             scrollTop = $(window).scrollTop(),
             scrollBottom = scrollTop + $(window).height(),
-            showNavLocation = (scrollBottom >= (articleHeight * (self.percent_after_article_start_to_show / 100))),
-            hideNavLocation = (scrollBottom >= (articleBottom + self.pixels_after_article_end_to_hide));
+            showNavLocation = (scrollBottom >= (articleHeight * (self.percent_after_article_start_to_show / 100))), //show at specified percentage of article
+            hideNavLocation = ((scrollBottom >= (articleBottom + self.pixels_after_article_end_to_hide)) || // hide at specified pixels after the article
+                               (scrollBottom === $(document).height()) || // hide when scroll bottom reaches the bottom of the document
+                               (scrollTop < articleTop)); // hide when scroll top is above the article
 
         if(showNavLocation && !hideNavLocation) {
             self.showElement('.article-nav');
         } else {
-            self.hideElement('.article-nav');
-        }
-
-        if (scrollBottom === $(document).height()) { // hide if nav covers the footer on very bottom
             self.hideElement('.article-nav');
         }
     },
@@ -264,9 +267,13 @@ webmd.fundedNavigation = {
 
         if (typeof article_data !== "undefined") {
 
+            self.article_data = article_data;
+
             self.setCurrentArticle();
 
             self.addToSessionHistory();
+
+            self.setArticlesVisited();
 
             if (self.hide_module_on_sponsor_pages && self.is_current_sponsored) {
                 return true;
@@ -279,7 +286,7 @@ webmd.fundedNavigation = {
                         $article_nav = $(".article-nav"),
                         source = $template.html(),
                         template = Handlebars.compile(source),
-                        context = {"article_data" : article_data} || {},
+                        context = {"article_data" : self.article_data} || {},
                         html = template(context);
 
                     $container.prepend(html);
