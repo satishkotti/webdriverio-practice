@@ -76,60 +76,67 @@
     }
   }
 }
-
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-width : 320px) and (max-width : 480px) {
+ 
+@media only screen and (max-width: 736px) and (min-width: 320px) {
   /* Styles */
-  .wbmd-grid-item {
-    &.col-2, &.x2wide {
-      width: 100%;
+  .wbmd-masonry-container {
+
+    .wbmd-masonry-grid {
+      width: auto;
+      position: relative;
+      margin: 0 15px;
+
+      .wbmd-grid-item {
+        width: 100%;
+        position: relative;
+        min-height: inherit;
+        height: auto;
+        float: none;
+        margin: 0 0 20px 0;
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,.125);
+
+        &.col-2, &.x2wide {
+          width: 100%;
+        }
+      }
     }
   }
 }
- 
-/* Smartphones (landscape) ----------- */
-@media only screen and (min-width : 321px) {
-  /* Styles */
-}
- 
-/* Smartphones (portrait) ----------- */
-@media only screen and (max-width : 320px) {
-  /* Styles */
-}
- 
-/* iPads (portrait and landscape) ----------- */
-@media only screen and (min-width : 768px) and (max-width : 1024px) {
-  /* Styles */
-}
- 
-/* iPads (landscape) ----------- */
-@media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : landscape) {
-  /* Styles */
-}
- 
-/* iPads (portrait) ----------- */
-@media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : portrait) {
-  /* Styles */
-  .wbmd-grid-item {
-    width: 357px;
 
-    &.col-2, &.x2wide {
-      width: 100%;
+@media only screen and (max-width: 736px) and (min-width: 320px) and (orientation: portrait) {
+  /* Styles */
+  .wbmd-masonry-container {
+
+    .wbmd-masonry-grid {
+      width: auto !important;
+
+      .wbmd-grid-item {
+        width: 100% !important;
+        min-height: auto;
+        height: auto;
+
+        &.col-2, &.x2wide {
+        }
+      }
     }
   }
 }
- 
-/* Desktops and laptops ----------- */
-@media only screen and (min-width : 1224px) {
+
+@media only screen and (max-width: 736px) and (min-width: 320px) and (orientation: landscape) {
   /* Styles */
-}
- 
-/* Large screens ----------- */
-@media only screen and (min-width : 1824px) {
-  /* Styles */
-}
- 
-/* iPhone 4 ----------- */
-@media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
-  /* Styles */
+  .wbmd-masonry-container {
+
+    .wbmd-masonry-grid {
+      width: auto !important;
+
+      .wbmd-grid-item {
+        width: 100% !important;
+        min-height: auto;
+        height: auto;
+
+        &.col-2, &.x2wide {
+        }
+      }
+    }
+  }
 }

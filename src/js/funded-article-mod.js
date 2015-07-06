@@ -281,7 +281,8 @@ webmd.fundedArticleMod = {
 
     createMasonry: function(windowResized) {
         var self = this,
-            contentPanes = this.parentPanes;
+            contentPanes = this.parentPanes,
+            columnWidth = '.wbmd-grid-item';
 
         require(["masonry/1/masonry"], function(Masonry) {
             $.each(contentPanes, function(key, value) {
@@ -300,10 +301,10 @@ webmd.fundedArticleMod = {
             	$(masonryGrid).imagesLoaded(function() {
                     self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
                         itemSelector: '.wbmd-grid-item',
-                        columnWidth: '.wbmd-grid-item',
+                        columnWidth: columnWidth,
                         gutter: 10,
                         isFitWidth: true,
-                        isResizable: false
+                        isResizable: true
                     });
                 });
             });
