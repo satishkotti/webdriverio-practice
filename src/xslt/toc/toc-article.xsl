@@ -14,10 +14,6 @@
         <xsl:apply-templates select="webmd_rendition/content/wbmd_asset/webmd_module/module_data"></xsl:apply-templates>
     </xsl:template>
     
-    <xsl:template match="module_data">
-        <xsl:call-template name="articleTemplate"></xsl:call-template>
-    </xsl:template>
-    
     <!-- TOC Article Template -->
     <xsl:template name="articleTemplate">
         <xsl:apply-templates/>
@@ -37,14 +33,3 @@
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
-
-
-
-
-
-
-
-
-
-
-

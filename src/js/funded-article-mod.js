@@ -1,107 +1,114 @@
 var webmd;
 
-if(!webmd){
+if (!webmd) {
     webmd = {};
 }
 
 // $('img.photo',this).imagesLoaded(myFunction)
 // execute a callback when all images have loaded.
 // needed because .load() doesn't work on cached images
- 
+
 // Modified with a two-pass approach to changing image
 // src. First, the proxy imagedata is set, which leads
 // to the first callback being triggered, which resets
 // imagedata to the original src, which fires the final,
 // user defined callback.
- 
+
 // modified by yiannis chatzikonstantinou.
- 
+
 // original:
 // mit license. paul irish. 2010.
 // webkit fix from Oren Solomianik. thx!
- 
+
 // callback function is passed the last image to load
 //   as an argument, and the collection as `this`
- 
- 
-$.fn.imagesLoaded = function( callback ){
-  var elems = this.find( 'img' ),
-      elems_src = [],
-      self = this,
-      len = elems.length;
- 
-  if ( !elems.length ) {
-    callback.call( this );
-    return this;
-  }
- 
-  elems.one('load error', function() {
-    if ( --len === 0 ) {
-      // Rinse and repeat.
-      len = elems.length;
-      elems.one( 'load error', function() {
-        if ( --len === 0 ) {
-          callback.call( self );
-        }
-      }).each(function() {
-        this.src = elems_src.shift();
-      });
+
+
+$.fn.imagesLoaded = function(callback) {
+    var elems = this.find('img'),
+        elems_src = [],
+        self = this,
+        len = elems.length;
+
+    if (!elems.length) {
+        callback.call(this);
+        return this;
     }
-  }).each(function() {
-    elems_src.push( this.src );
-    // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
-    // data uri bypasses webkit log warning (thx doug jones)
-    this.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-  });
- 
-  return this;
+
+    elems.one('load error', function() {
+        if (--len === 0) {
+            // Rinse and repeat.
+            len = elems.length;
+            elems.one('load error', function() {
+                if (--len === 0) {
+                    callback.call(self);
+                }
+            }).each(function() {
+                this.src = elems_src.shift();
+            });
+        }
+    }).each(function() {
+        elems_src.push(this.src);
+        // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
+        // data uri bypasses webkit log warning (thx doug jones)
+        this.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+    });
+
+    return this;
 };
 
 
 webmd.fundedArticleMod = {
 
-    nodeContentPanes : {"panes":{}},
+    nodeContentPanes: {
+        "panes": {}
+    },
 
-    smallestNodes : {"nodes":{}},
+    smallestNodes: {
+        "nodes": {}
+    },
 
-    parentPanes : [],
+    parentPanes: [],
 
-    allNodes : [],
+    allNodes: [],
 
-    smallestGridSize : null,
+    masonryPanes: {},
 
-    init : function(){
+    smallestGridSize: null,
+
+    init: function() {
         this.render();
     },
 
-    startWith : function(className) {
+    startWith: function(className) {
         var self = this,
             $nodes = $(className);
 
-        $nodes.each(function(index){
+        $nodes.each(function(index) {
             self.getAllParentPanes(this);
         });
 
         this.getAllNodes();
-        console.log(self.allNodes);
 
-        for (var i=0; i<this.allNodes.length; i++) {
+        for (var i = 0; i < this.allNodes.length; i++) {
             $(this.allNodes[i]).addClass('wbmd-grid-item');
 
             self.setInnerHTML(this.allNodes[i]);
             self.placeInGroup(this.allNodes[i]);
         }
-        
+
         this.setMasonryGridSizePerPane();
 
         this.addGridContainerToPanes();
     },
 
-    addToSessionHistory : function() {
+    addToSessionHistory: function() {
         var self = this,
             url = window.location.href,
             current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
-            json = sessionStorage.visitedPages || {"visited":[]},
+            json = sessionStorage.visitedPages || {
+                "visited": []
+            },
             visitedObj = (typeof json === "string") ? JSON.parse(json) : json,
             urlExists = false;
 
@@ -113,13 +120,15 @@ webmd.fundedArticleMod = {
         }
 
         if (!urlExists && current_url) {
-            visitedObj.visited.push({"page" : current_url});
+            visitedObj.visited.push({
+                "page": current_url
+            });
         }
 
         sessionStorage.visitedPages = JSON.stringify(visitedObj);
     },
 
-    setArticlesVisited : function() {
+    setArticlesVisited: function() {
         var self = this,
             article_data = this.article_data,
             articles = article_data.articles,
@@ -132,7 +141,7 @@ webmd.fundedArticleMod = {
             article = articles[key].article;
             article_link = article.link;
 
-            for(var j in history.visited) {
+            for (var j in history.visited) {
                 history_page = history.visited[j].page;
                 //console.log("article_link: " + article_link + "\nhistory_page: " + history_page);
 
@@ -143,7 +152,7 @@ webmd.fundedArticleMod = {
         }
     },
 
-    getAllParentPanes : function(myNode) {
+    getAllParentPanes: function(myNode) {
         var self = this,
             $parentNode = $(myNode).closest('div.pane')[0].id;
 
@@ -152,7 +161,7 @@ webmd.fundedArticleMod = {
         }
     },
 
-    addGridContainerToPanes : function() {
+    addGridContainerToPanes: function() {
         var self = this;
 
         $.each(this.parentPanes, function(index) {
@@ -165,7 +174,7 @@ webmd.fundedArticleMod = {
         });
     },
 
-    getAllNodes : function() {
+    getAllNodes: function() {
         var self = this,
             allNodes,
             $childNodes;
@@ -183,20 +192,24 @@ webmd.fundedArticleMod = {
         });
     },
 
-    placeInGroup : function(myNode) {
+    placeInGroup: function(myNode) {
         var self = this,
             gItemArticleId = Number($(myNode).data('articleNum')),
             $parentNode = $(myNode).closest('div.pane')[0].id;
 
         //Create Group if doesn't exist
         if (!($parentNode in this.nodeContentPanes.panes)) {
-            this.nodeContentPanes.panes[$parentNode] = {"nodes":[]};
+            this.nodeContentPanes.panes[$parentNode] = {
+                "nodes": []
+            };
         }
 
-        this.nodeContentPanes.panes[$parentNode].nodes.push({"el":myNode});
+        this.nodeContentPanes.panes[$parentNode].nodes.push({
+            "el": myNode
+        });
     },
 
-    setInnerHTML : function(myNode) {
+    setInnerHTML: function(myNode) {
         var self = this,
             article_data = this.article_data,
             $myNodeArticleNum = $(myNode).data('articleNum'),
@@ -207,7 +220,7 @@ webmd.fundedArticleMod = {
             article,
             nodeWidth;
 
-        for(var key in articles) {
+        for (var key in articles) {
             articleId = articles[key].id;
             article = articles[key].article;
 
@@ -216,14 +229,17 @@ webmd.fundedArticleMod = {
                     '<a href="' + article.link + '">' + newline +
                     '   <img src="' + article.images.image493x335 + '">' + newline +
                     '   <p>' + article.title + '</p>' + newline +
-                    '</a>'+ newline
+                    '</a>' + newline
                 );
 
                 nodeWidth = $(myNode).outerWidth();
 
                 if (!self.smallestGridSize || self.smallestGridSize > nodeWidth || !self.smallestNodes.nodes[$parentNode]) {
                     self.smallestGridSize = nodeWidth;
-                    self.smallestNodes.nodes[$parentNode] = {"el":myNode, "size": nodeWidth };
+                    self.smallestNodes.nodes[$parentNode] = {
+                        "el": myNode,
+                        "size": nodeWidth
+                    };
                 }
 
                 if (article.visited) {
@@ -235,7 +251,7 @@ webmd.fundedArticleMod = {
         }
     },
 
-    setMasonryGridSizePerPane : function() {
+    setMasonryGridSizePerPane: function() {
         var self = this;
 
         $.each(this.smallestNodes.nodes, function(key, value) {
@@ -243,9 +259,59 @@ webmd.fundedArticleMod = {
         });
     },
 
-    render: function(){ // uses handlebars template above
+    bindEvents: function() {
+        var self = this;
+
+		$(window).bind('resizeEnd', function() {
+            //if ($(window).width() > 675) {
+            	self.createMasonry(true);
+            //}
+        });
+
+		$(window).on('orientationchange', function() {
+            if (this.resizeTO) {
+                clearTimeout(this.resizeTO);
+            }
+
+            this.resizeTO = setTimeout(function() {
+                $(this).trigger('resizeEnd');
+            }, 500);
+        });
+    },
+
+    createMasonry: function(windowResized) {
         var self = this,
-            contentPanes;
+            contentPanes = this.parentPanes;
+
+        require(["masonry/1/masonry"], function(Masonry) {
+            $.each(contentPanes, function(key, value) {
+                var contentPane = "#" + contentPanes[key],
+                    masonryGrid = contentPane + " .wbmd-masonry-grid";
+
+                if (!self.masonryPanes[contentPane]) {
+                	self.masonryPanes[contentPane] = {"msnry":null};
+                }
+
+                if (windowResized) {
+                	self.masonryPanes[contentPane].msnry.reloadItems();
+                	self.masonryPanes[contentPane].msnry.layout();
+                }
+
+            	$(masonryGrid).imagesLoaded(function() {
+                    self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
+                        itemSelector: '.wbmd-grid-item',
+                        columnWidth: '.wbmd-grid-item',
+                        gutter: 10,
+                        isFitWidth: true,
+                        isResizable: false
+                    });
+                });
+            });
+        });
+    },
+
+    render: function() { // uses handlebars template above
+        var self = this;
 
         if (typeof article_data !== "undefined") {
 
@@ -257,27 +323,9 @@ webmd.fundedArticleMod = {
 
             self.startWith('.wbmd-grid-item');
 
-            contentPanes = self.parentPanes;
+            self.createMasonry(false);
 
-            require(["masonry/1/masonry"], function(Masonry) {
-                
-                $.each(contentPanes, function(key,value) {
-                    var contentPane = "#" + contentPanes[key],
-                        masonryGrid = contentPane + " .wbmd-masonry-grid";
-
-                    $(masonryGrid).imagesLoaded(function(){
-                        new Masonry(masonryGrid, {
-                            itemSelector : '.wbmd-grid-item',
-                            columnWidth : '.wbmd-grid-sizer',
-                            gutter : 20,
-                            isFitWidth : true,
-                            transitionDuration : '0.2s'
-                        });
-                    });
-
-                });
-
-            });
+            self.bindEvents();
         }
     }
 };
