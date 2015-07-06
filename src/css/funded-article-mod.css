@@ -1,7 +1,7 @@
 .wbmd-masonry-container {
   max-width: 980px;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .wbmd-masonry-grid {
@@ -9,11 +9,11 @@
 }
 
 .wbmd-grid-item {
-  width: 313px;
+  width: 320px;
   min-height: 305px;
   float: left;
   background-color: #fff;
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0 !important;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.125);
 }
 .wbmd-grid-item.ad {
@@ -78,7 +78,7 @@
     min-height: inherit;
     height: auto;
     float: none;
-    margin: 0 0 20px 0;
+    margin: 0 0 20px 0 !important;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.125);
   }
   .wbmd-masonry-container .wbmd-masonry-grid .wbmd-grid-item.col-2, .wbmd-masonry-container .wbmd-masonry-grid .wbmd-grid-item.x2wide {

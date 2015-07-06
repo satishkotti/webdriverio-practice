@@ -91,7 +91,9 @@ webmd.fundedArticleMod = {
         this.getAllNodes();
 
         for (var i = 0; i < this.allNodes.length; i++) {
-            $(this.allNodes[i]).addClass('wbmd-grid-item');
+            if (!$(this.allNodes[i]).hasClass('moduleSpacer_rdr')) {
+                $(this.allNodes[i]).addClass('wbmd-grid-item');
+            }
 
             self.setInnerHTML(this.allNodes[i]);
             self.placeInGroup(this.allNodes[i]);
