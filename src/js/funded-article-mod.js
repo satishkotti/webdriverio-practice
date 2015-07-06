@@ -76,13 +76,17 @@ webmd.fundedArticleMod = {
 
     smallestGridSize: null,
 
+    adIDarray: ['rightAd_rdr'],
+
     init: function() {
         this.render();
     },
 
     startWith: function(className) {
         var self = this,
-            $nodes = $(className);
+            $nodes = $(className),
+            adArray = self.adIDarray,
+            nodeIndex;
 
         $nodes.each(function(index) {
             self.getAllParentPanes(this);
@@ -91,8 +95,10 @@ webmd.fundedArticleMod = {
         this.getAllNodes();
 
         for (var i = 0; i < this.allNodes.length; i++) {
-            if (!$(this.allNodes[i]).hasClass('moduleSpacer_rdr')) {
-                $(this.allNodes[i]).addClass('wbmd-grid-item');
+            $nodeIndex = $(this.allNodes[i]);
+
+            if (!$nodeIndex.hasClass('moduleSpacer_rdr')) {
+                $nodeIndex.addClass('wbmd-grid-item');
             }
 
             self.setInnerHTML(this.allNodes[i]);
@@ -102,6 +108,29 @@ webmd.fundedArticleMod = {
         this.setMasonryGridSizePerPane();
 
         this.addGridContainerToPanes();
+    },
+
+    sizeAdFrames: function() {
+        var self = this,
+            adArray = this.adIDarray,
+            nodeIndex,
+            $gridItemAd,
+            $gridItemAdH,
+            $gridItem;
+
+        for (var i = 0; i < this.allNodes.length; i++) {
+            nodeIndex = this.allNodes[i];
+
+            if ( adArray.indexOf(nodeIndex.getAttribute('id')) !== -1 ) {
+                //$gridItemAd = $("div#" + nodeIndex.getAttribute('id') + ".wbmd-grid-item > div > div.ad_placeholder > div");
+                $gridItemAd = $("div#" + nodeIndex.getAttribute('id') + ".wbmd-grid-item > iframe");
+                $gridItemAdH = $gridItemAd.outerHeight();
+
+                $gridItem = $("div#" + nodeIndex.getAttribute('id') + ".wbmd-grid-item");
+                $gridItem.css({'height' : $gridItemAdH + 'px !important' });
+            }
+        }
+        self.createMasonry(true);
     },
 
     addToSessionHistory: function() {
@@ -279,6 +308,10 @@ webmd.fundedArticleMod = {
                 $(this).trigger('resizeEnd');
             }, 500);
         });
+
+        $(window).load(function() {
+            self.sizeAdFrames();
+        })
     },
 
     createMasonry: function(windowResized) {
