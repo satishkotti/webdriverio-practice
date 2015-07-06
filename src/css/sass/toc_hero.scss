@@ -2,7 +2,7 @@
     padding-top: 10px;
     display: table;
     font-size: 1rem;
-    margin-bottom: 15px;
+    //margin-bottom: 15px;
 
     .toc-img-link,
     .toc-desc-link {
@@ -204,10 +204,10 @@
             overflow: visible;
 
             .toc-hero-item {
-                width: 313px;
+                width: auto;
                 position: relative;
                 float: none;
-                margin: 0 auto 20px;
+                margin: 0 15px 20px;
                 box-shadow: 0 1px 2px 0 rgba(0,0,0,.125);
 
                 &:first-child {
@@ -275,8 +275,8 @@
                     margin-bottom: 20px;
                 }
                 .toc-hero-item {
-                    width: 313px;
-                    margin: 0 auto;
+                    width: auto;
+                    margin: 0 15px;
                     box-shadow: 0 1px 2px 0 rgba(0,0,0,.125);
                 }
                 .toc-hero-desc {
