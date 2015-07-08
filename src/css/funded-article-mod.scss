@@ -14,7 +14,7 @@
   }
 }
 
-.wbmd-grid-item {
+div.wbmd-grid-item {
   width: 320px;
   min-height: 308px;
   float: left;
@@ -43,16 +43,22 @@
   }
 
   &.x2wide {
-    width: 646px;
+    width: 650px;
   }
 
   &.col-2 {
-    width: 646px;
+    width: 650px;
   }
 
-  img {
-    width: 100%;
-    display: block;
+  &.icm_wrap, &.dbm_wrap {
+    border: 0 !important;
+  }
+
+  &:not(.icm_wrap):not(.dbm_wrap) {
+    img {
+      width: 100%;
+      display: block;
+    }
   }
 
   a {
