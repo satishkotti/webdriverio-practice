@@ -14,8 +14,11 @@
   }
 }
 
-div.wbmd-grid-item {
+.tile-width {
   width: 320px;
+}
+
+div.wbmd-grid-item {
   min-height: 308px;
   float: left;
   background-color: #fff;

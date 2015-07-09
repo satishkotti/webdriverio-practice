@@ -103,12 +103,18 @@ webmd.fundedArticleMod = {
             $nodeId = $nodeIndex.attr('id');
 
             if (!$nodeIndex.hasClass('moduleSpacer_rdr')) {
+                if (!$nodeIndex.hasClass('icm_wrap') && !$nodeIndex.hasClass('dbm_wrap')) {
+                    $nodeIndex.addClass('tile-width');
+                }
                 $nodeIndex.addClass('wbmd-grid-item');
             }
 
             if (regExPatt.test($nodeId)) {
                 $nodeIndex.addClass('x2wide');
             }
+
+            $nodeIndex.attr('data-orig-width', $nodeIndex.outerWidth());
+            $nodeIndex.attr('data-orig-height', $nodeIndex.outerHeight());
 
             self.setInnerHTML(this.allNodes[i]);
             self.placeInGroup(this.allNodes[i]);
@@ -123,6 +129,7 @@ webmd.fundedArticleMod = {
         var self = this,
             adArray = this.adIDarray,
             $gridItem,
+            gridItemW,
             gridItemH,
             multiplier,
             standardTileHeight = $('div.wbmd-grid-item:not(.icm_wrap):not(.dbm_wrap)').outerHeight(),
@@ -131,10 +138,11 @@ webmd.fundedArticleMod = {
 
         $('div.wbmd-masonry-container').find('.wbmd-grid-item').each(function() {
             $gridItem = $(this);
-            gridItemH = $gridItem.outerHeight();
+            gridItemH = $gridItem.data('orig-height');
+            gridItemW = $gridItem.data('orig-width');
 
             if ($gridItem.hasClass('icm_wrap') || $gridItem.hasClass('dbm_wrap')) {
-                if (windowW <= 736) {
+                if ((windowW < 1000 && gridItemW >= 650) || windowW < 736) {
                     $gridItem.css({'height' : 'auto'});
                 } else {
                     multiplier = Math.ceil(gridItemH / standardTileHeight);
