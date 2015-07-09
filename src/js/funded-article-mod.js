@@ -78,6 +78,8 @@ webmd.fundedArticleMod = {
 
     adIDarray: ['rightAd_rdr'],
 
+    masonryGutter: 10,
+
     init: function() {
         this.render();
     },
@@ -86,7 +88,9 @@ webmd.fundedArticleMod = {
         var self = this,
             $nodes = $(className),
             adArray = self.adIDarray,
-            nodeIndex;
+            regExPatt = new RegExp("2-col"),
+            $nodeIndex,
+            $nodeId;
 
         $nodes.each(function(index) {
             self.getAllParentPanes(this);
@@ -96,9 +100,14 @@ webmd.fundedArticleMod = {
 
         for (var i = 0; i < this.allNodes.length; i++) {
             $nodeIndex = $(this.allNodes[i]);
+            $nodeId = $nodeIndex.attr('id');
 
             if (!$nodeIndex.hasClass('moduleSpacer_rdr')) {
                 $nodeIndex.addClass('wbmd-grid-item');
+            }
+
+            if (regExPatt.test($nodeId)) {
+                $nodeIndex.addClass('x2wide');
             }
 
             self.setInnerHTML(this.allNodes[i]);
@@ -113,23 +122,29 @@ webmd.fundedArticleMod = {
     sizeAdFrames: function() {
         var self = this,
             adArray = this.adIDarray,
-            nodeIndex,
-            $gridItemAd,
-            $gridItemAdH,
-            $gridItem;
+            $gridItem,
+            gridItemH,
+            multiplier,
+            standardTileHeight = $('div.wbmd-grid-item:not(.icm_wrap):not(.dbm_wrap)').outerHeight(),
+            gutter = self.masonryGutter;
 
-        for (var i = 0; i < this.allNodes.length; i++) {
-            nodeIndex = this.allNodes[i];
+        $('div.wbmd-masonry-container').find('.wbmd-grid-item').each(function() {
+            $gridItem = $(this);
+            gridItemH = $gridItem.outerHeight();
 
-            if ( adArray.indexOf(nodeIndex.getAttribute('id')) !== -1 ) {
-                //$gridItemAd = $("div#" + nodeIndex.getAttribute('id') + ".wbmd-grid-item > div > div.ad_placeholder > div");
-                $gridItemAd = $("div#" + nodeIndex.getAttribute('id') + ".wbmd-grid-item > iframe");
-                $gridItemAdH = $gridItemAd.outerHeight();
+            if ($gridItem.hasClass('icm_wrap') || $gridItem.hasClass('dbm_wrap')) {
+                multiplier = Math.ceil(gridItemH / standardTileHeight);
+                $gridItem.height((standardTileHeight * multiplier) + (gutter * (multiplier - 1)));
 
-                $gridItem = $("div#" + nodeIndex.getAttribute('id') + ".wbmd-grid-item");
-                $gridItem.css({'height' : $gridItemAdH + 'px !important' });
+                //console.log('grid item height: ' + gridItemH);
+                //console.log('multiplier: ' + multiplier);
+            } else {
+                if (adArray.indexOf($(this).attr('id')) !== -1) {
+                    $gridItem.css({'height' : gridItemH + 'px !important' });
+                }
             }
-        }
+        });
+
         self.createMasonry(true);
     },
 
@@ -311,7 +326,7 @@ webmd.fundedArticleMod = {
 
         $(window).load(function() {
             self.sizeAdFrames();
-        })
+        });
     },
 
     createMasonry: function(windowResized) {
@@ -337,7 +352,7 @@ webmd.fundedArticleMod = {
                     self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
                         itemSelector: '.wbmd-grid-item',
                         columnWidth: columnWidth,
-                        gutter: 10,
+                        gutter: self.masonryGutter,
                         isFitWidth: true,
                         isResizable: true
                     });
