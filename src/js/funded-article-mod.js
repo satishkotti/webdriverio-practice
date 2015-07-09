@@ -126,18 +126,23 @@ webmd.fundedArticleMod = {
             gridItemH,
             multiplier,
             standardTileHeight = $('div.wbmd-grid-item:not(.icm_wrap):not(.dbm_wrap)').outerHeight(),
-            gutter = self.masonryGutter;
+            gutter = self.masonryGutter,
+            windowW = $(window).width();
 
         $('div.wbmd-masonry-container').find('.wbmd-grid-item').each(function() {
             $gridItem = $(this);
             gridItemH = $gridItem.outerHeight();
 
             if ($gridItem.hasClass('icm_wrap') || $gridItem.hasClass('dbm_wrap')) {
-                multiplier = Math.ceil(gridItemH / standardTileHeight);
-                $gridItem.height((standardTileHeight * multiplier) + (gutter * (multiplier - 1)));
+                if (windowW <= 736) {
+                    $gridItem.css({'height' : 'auto'});
+                } else {
+                    multiplier = Math.ceil(gridItemH / standardTileHeight);
+                    $gridItem.height((standardTileHeight * multiplier) + (gutter * (multiplier - 1)));
 
-                //console.log('grid item height: ' + gridItemH);
-                //console.log('multiplier: ' + multiplier);
+                    //console.log('grid item height: ' + gridItemH);
+                    //console.log('multiplier: ' + multiplier);
+                }
             } else {
                 if (adArray.indexOf($(this).attr('id')) !== -1) {
                     $gridItem.css({'height' : gridItemH + 'px !important' });
@@ -309,12 +314,10 @@ webmd.fundedArticleMod = {
         var self = this;
 
 		$(window).bind('resizeEnd', function() {
-            //if ($(window).width() > 675) {
-            	self.createMasonry(true);
-            //}
+            self.sizeAdFrames();
         });
 
-		$(window).on('orientationchange', function() {
+		$(window).on('resize orientationchange', function() {
             if (this.resizeTO) {
                 clearTimeout(this.resizeTO);
             }
