@@ -1,0 +1,215 @@
+.wbmd-moreabout-masonry-container {
+  max-width: 980px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.wbmd-moreabout-masonry-grid {
+  margin: 0 auto !important;
+}
+
+#rightAd_rdr {
+  &.wbmd-moreabout-grid-item {
+    width: 320px !important;
+  }
+}
+
+div.wbmd-moreabout-grid-item {
+  min-height: 308px;
+  float: left;
+  background-color: #fff;
+  margin: 0 0 10px 0 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.125);
+
+  &.tile-width {
+    width: 320px;
+  }
+
+  &.tile-width-x2 {
+    width: 650px;
+  }
+
+  &.tile-width-x3 {
+    width: 980px;
+  }
+
+  &.stamp {
+    position: absolute;
+  }
+
+  &.ad {
+    text-align: center;
+    
+    &.adLabel {
+      font-size: 10px;
+      color: #ddd;
+      display: block;
+      padding: 2px 0;
+    }
+
+    img {
+      width: auto !important;
+      margin: 0 auto;
+    }
+  }
+
+  &.x2tall {
+    height: 630px;
+  }
+
+  &.col-2 {
+    width: 650px;
+  }
+
+  &.icm_wrap, &.dbm_wrap {
+    border: 0 !important;
+  }
+
+  &:not(.icm_wrap):not(.dbm_wrap) {
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  a {
+    p {
+      padding: 10px 15px;
+      color: #333;
+
+      span {
+        display: block;
+        color: #999;
+        padding-bottom: 3px;
+        text-transform: uppercase;
+        font-size: 0.875em;
+      }
+    }
+  }
+
+  &.visited {
+    -webkit-filter: grayscale(100%);
+    -webkit-transition: .5s ease-in-out;
+    -moz-filter: grayscale(100%); 
+    -moz-transition: .5s ease-in-out;
+    -o-filter: grayscale(100%); 
+    -o-transition: .5s ease-in-out;
+    opacity: 0.5;
+
+    &:hover {
+      -webkit-filter: grayscale(0%);
+      -webkit-transition: .5s ease-in-out;
+      -moz-filter: grayscale(0%);
+      -moz-transition: .5s ease-in-out;
+      -o-filter: grayscale(0%);
+      -o-transition: .5s ease-in-out;
+      opacity: 1;
+    }
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  /* Styles */
+  .wbmd-moreabout-masonry-container {
+
+    .wbmd-moreabout-masonry-grid {
+      width: auto !important;
+
+      #rightAd_rdr {
+        &.wbmd-moreabout-grid-item {
+          width: 100% !important;
+        }
+      }
+
+      .wbmd-moreabout-grid-item {
+        width: 100% !important;
+        min-height: inherit;
+        height: auto;
+
+        &.col-2, &.x2wide {
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 736px) and (min-width: 320px) {
+  /* Styles */
+  .wbmd-moreabout-masonry-container {
+
+    .wbmd-moreabout-masonry-grid {
+      width: auto;
+      position: relative;
+      margin: 0 15px !important;
+
+    #rightAd_rdr {
+      &.wbmd-moreabout-grid-item {
+        width: 100% !important;
+      }
+    }
+    .wbmd-moreabout-grid-item {
+        width: 100%;
+        position: relative;
+        min-height: inherit;
+        height: auto;
+        float: none;
+        margin: 0 0 20px 0 !important;
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,.125);
+
+        &.col-2, &.x2wide {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 736px) and (min-width: 320px) and (orientation: portrait) {
+  /* Styles */
+  .wbmd-moreabout-masonry-container {
+
+    .wbmd-moreabout-masonry-grid {
+      width: auto !important;
+      margin: 0 15px !important;
+
+      #rightAd_rdr {
+        &.wbmd-moreabout-grid-item {
+          width: 100% !important;
+        }
+      }
+      .wbmd-moreabout-grid-item {
+        width: 100% !important;
+        min-height: auto;
+        height: auto;
+
+        &.col-2, &.x2wide {
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 736px) and (min-width: 320px) and (orientation: landscape) {
+  /* Styles */
+  .wbmd-moreabout-masonry-container {
+
+    .wbmd-moreabout-masonry-grid {
+      width: auto !important;
+      margin: 0 15px !important;
+
+      #rightAd_rdr {
+        &.wbmd-moreabout-grid-item {
+          width: 100% !important;
+        }
+      }
+      .wbmd-moreabout-grid-item {
+        width: 100% !important;
+        min-height: auto;
+        height: auto;
+
+        &.col-2, &.x2wide {
+        }
+      }
+    }
+  }
+}
