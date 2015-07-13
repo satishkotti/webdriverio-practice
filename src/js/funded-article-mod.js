@@ -110,7 +110,7 @@ webmd.fundedArticleMod = {
             }
 
             if (regExPatt.test($nodeId)) {
-                $nodeIndex.addClass('x2wide');
+                $nodeIndex.addClass('tile-width-x2');
             }
 
             $nodeIndex.attr('data-orig-width', $nodeIndex.outerWidth());
@@ -159,6 +159,16 @@ webmd.fundedArticleMod = {
         });
 
         self.createMasonry(true);
+    },
+
+    hasStorage : function() {
+      try {
+        sessionStorage.setItem('test', '1');
+        sessionStorage.removeItem('test');
+        return true;
+      } catch (e) {
+        return false;
+      }
     },
 
     addToSessionHistory: function() {
@@ -379,9 +389,10 @@ webmd.fundedArticleMod = {
 
             self.article_data = article_data;
 
-            self.addToSessionHistory();
-
-            self.setArticlesVisited();
+            if (self.hasStorage()) {
+                self.addToSessionHistory();
+                self.setArticlesVisited();
+            }
 
             self.startWith('.wbmd-grid-item');
 

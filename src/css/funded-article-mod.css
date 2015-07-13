@@ -5,15 +5,11 @@
 }
 
 .wbmd-masonry-grid {
-  margin: 0 auto;
+  margin: 0 auto !important;
 }
 
 #rightAd_rdr.wbmd-grid-item {
   width: 320px !important;
-}
-
-.tile-width {
-  width: 320px;
 }
 
 div.wbmd-grid-item {
@@ -22,6 +18,15 @@ div.wbmd-grid-item {
   background-color: #fff;
   margin: 0 0 10px 0 !important;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.125);
+}
+div.wbmd-grid-item.tile-width {
+  width: 320px;
+}
+div.wbmd-grid-item.tile-width-x2 {
+  width: 650px;
+}
+div.wbmd-grid-item.tile-width-x3 {
+  width: 980px;
 }
 div.wbmd-grid-item.ad {
   text-align: center;
@@ -38,9 +43,6 @@ div.wbmd-grid-item.ad img {
 }
 div.wbmd-grid-item.x2tall {
   height: 630px;
-}
-div.wbmd-grid-item.x2wide {
-  width: 650px;
 }
 div.wbmd-grid-item.col-2 {
   width: 650px;
@@ -94,7 +96,7 @@ div.wbmd-grid-item.visited:hover {
   .wbmd-masonry-container .wbmd-masonry-grid {
     width: auto;
     position: relative;
-    margin: 0 15px;
+    margin: 0 15px !important;
   }
   .wbmd-masonry-container .wbmd-masonry-grid #rightAd_rdr.wbmd-grid-item {
     width: 100% !important;
@@ -116,6 +118,7 @@ div.wbmd-grid-item.visited:hover {
   /* Styles */
   .wbmd-masonry-container .wbmd-masonry-grid {
     width: auto !important;
+    margin: 0 15px !important;
   }
   .wbmd-masonry-container .wbmd-masonry-grid #rightAd_rdr.wbmd-grid-item {
     width: 100% !important;
@@ -130,6 +133,7 @@ div.wbmd-grid-item.visited:hover {
   /* Styles */
   .wbmd-masonry-container .wbmd-masonry-grid {
     width: auto !important;
+    margin: 0 15px !important;
   }
   .wbmd-masonry-container .wbmd-masonry-grid #rightAd_rdr.wbmd-grid-item {
     width: 100% !important;

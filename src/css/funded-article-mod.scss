@@ -5,7 +5,7 @@
 }
 
 .wbmd-masonry-grid {
-  margin: 0 auto;
+  margin: 0 auto !important;
 }
 
 #rightAd_rdr {
@@ -14,16 +14,24 @@
   }
 }
 
-.tile-width {
-  width: 320px;
-}
-
 div.wbmd-grid-item {
   min-height: 308px;
   float: left;
   background-color: #fff;
   margin: 0 0 10px 0 !important;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.125);
+
+  &.tile-width {
+    width: 320px;
+  }
+
+  &.tile-width-x2 {
+    width: 650px;
+  }
+
+  &.tile-width-x3 {
+    width: 980px;
+  }
 
   &.ad {
     text-align: center;
@@ -43,10 +51,6 @@ div.wbmd-grid-item {
 
   &.x2tall {
     height: 630px;
-  }
-
-  &.x2wide {
-    width: 650px;
   }
 
   &.col-2 {
@@ -124,7 +128,7 @@ div.wbmd-grid-item {
     .wbmd-masonry-grid {
       width: auto;
       position: relative;
-      margin: 0 15px;
+      margin: 0 15px !important;
 
     #rightAd_rdr {
       &.wbmd-grid-item {
@@ -154,6 +158,7 @@ div.wbmd-grid-item {
 
     .wbmd-masonry-grid {
       width: auto !important;
+      margin: 0 15px !important;
 
       #rightAd_rdr {
         &.wbmd-grid-item {
@@ -178,6 +183,7 @@ div.wbmd-grid-item {
 
     .wbmd-masonry-grid {
       width: auto !important;
+      margin: 0 15px !important;
 
       #rightAd_rdr {
         &.wbmd-grid-item {
