@@ -357,6 +357,11 @@ webmd.fundedMoreAbout = {
                     self.masonryPanes[contentPane] = {"msnry":null};
                 }
 
+                if (windowResized) {
+                    self.masonryPanes[contentPane].msnry.reloadItems();
+                    self.masonryPanes[contentPane].msnry.layout();
+                }
+
                 $(masonryGrid).imagesLoaded(function() {
                     if (self.gridType === 'scaling') {
                         self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
@@ -365,11 +370,6 @@ webmd.fundedMoreAbout = {
                             percentPosition: true
                         });
                     } else {
-                        if (windowResized) {
-                            self.masonryPanes[contentPane].msnry.reloadItems();
-                            self.masonryPanes[contentPane].msnry.layout();
-                        }
-
                         self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
                             itemSelector: '.wbmd-moreabout-grid-item',
                             columnWidth: columnWidth,
@@ -399,9 +399,7 @@ webmd.fundedMoreAbout = {
 
             self.createMasonry(false);
 
-            if (self.gridType !== 'scaling') {
-                self.bindEvents();
-            }
+            self.bindEvents();
         }
     }
 };
