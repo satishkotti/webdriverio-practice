@@ -81,6 +81,10 @@ webmd.fundedMoreAbout = {
     gridType: 'scaling', // options: scaling, wrapping
 
     init: function() {
+        if (!this.gridType || this.gridType !== 'wrapping') {
+            this.gridType = 'scaling';
+        }
+
         this.render();
     },
 
@@ -270,9 +274,6 @@ webmd.fundedMoreAbout = {
 
             if (articleId === $myNodeArticleNum) {
                 switch (articles[key].type) {
-                    case 'type_toc':
-                        articleType = "";
-                        break;
                     case 'type_com':
                         articleType = "blog";
                         break;
@@ -285,11 +286,8 @@ webmd.fundedMoreAbout = {
                     case 'type_rmq':
                         articleType = "quiz";
                         break;
-                    case 'type_spon':
-                        articleType = "sponsored";
-                        break;
                     default:
-                        articleType = "article"; 
+                        articleType = (articles[key].sponsored) ? "sponsored" : "article";
                         break;
                 }
 
@@ -355,6 +353,10 @@ webmd.fundedMoreAbout = {
                 var contentPane = "#" + contentPanes[key],
                     masonryGrid = contentPane + " .wbmd-moreabout-masonry-grid";
 
+                if (!self.masonryPanes[contentPane]) {
+                    self.masonryPanes[contentPane] = {"msnry":null};
+                }
+
                 $(masonryGrid).imagesLoaded(function() {
                     if (self.gridType === 'scaling') {
                         self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
@@ -363,10 +365,6 @@ webmd.fundedMoreAbout = {
                             percentPosition: true
                         });
                     } else {
-                        if (!self.masonryPanes[contentPane]) {
-                            self.masonryPanes[contentPane] = {"msnry":null};
-                        }
-
                         if (windowResized) {
                             self.masonryPanes[contentPane].msnry.reloadItems();
                             self.masonryPanes[contentPane].msnry.layout();
