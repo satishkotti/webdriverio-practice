@@ -78,6 +78,8 @@ webmd.fundedMoreAbout = {
 
     masonryGutter: 10,
 
+    gridType: 'scaling', // options: scaling, wrapping
+
     init: function() {
         this.render();
     },
@@ -195,7 +197,7 @@ webmd.fundedMoreAbout = {
 
             $gridDiv.addClass('wbmd-moreabout-masonry-grid').html(html);
 
-            $("#" + this).html("").addClass("wbmd-moreabout-masonry-container").append($gridDiv);
+            $("#" + this).html("").addClass("wbmd-moreabout-masonry-container").addClass(self.gridType).append($gridDiv);
         });
     },
 
@@ -353,23 +355,31 @@ webmd.fundedMoreAbout = {
                 var contentPane = "#" + contentPanes[key],
                     masonryGrid = contentPane + " .wbmd-moreabout-masonry-grid";
 
-                if (!self.masonryPanes[contentPane]) {
-                    self.masonryPanes[contentPane] = {"msnry":null};
-                }
-
-                if (windowResized) {
-                    self.masonryPanes[contentPane].msnry.reloadItems();
-                    self.masonryPanes[contentPane].msnry.layout();
-                }
-
                 $(masonryGrid).imagesLoaded(function() {
-                    self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
-                        itemSelector: '.wbmd-moreabout-grid-item',
-                        columnWidth: columnWidth,
-                        gutter: self.masonryGutter,
-                        isFitWidth: true,
-                        isResizable: true
-                    });
+                    if (self.gridType === 'scaling') {
+                        self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
+                            itemSelector: '.wbmd-moreabout-grid-item',
+                            columnWidth: '.wbmd-grid-sizer',
+                            percentPosition: true
+                        });
+                    } else {
+                        if (!self.masonryPanes[contentPane]) {
+                            self.masonryPanes[contentPane] = {"msnry":null};
+                        }
+
+                        if (windowResized) {
+                            self.masonryPanes[contentPane].msnry.reloadItems();
+                            self.masonryPanes[contentPane].msnry.layout();
+                        }
+
+                        self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
+                            itemSelector: '.wbmd-moreabout-grid-item',
+                            columnWidth: columnWidth,
+                            gutter: self.masonryGutter,
+                            isFitWidth: true,
+                            isResizable: true
+                        });
+                    }
                 });
             });
         });
@@ -391,7 +401,9 @@ webmd.fundedMoreAbout = {
 
             self.createMasonry(false);
 
-            self.bindEvents();
+            if (self.gridType !== 'scaling') {
+                self.bindEvents();
+            }
         }
     }
 };
