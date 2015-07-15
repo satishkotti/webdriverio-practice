@@ -271,26 +271,9 @@ webmd.fundedMoreAbout = {
         for (var key in articles) {
             articleId = articles[key].id;
             article = articles[key].article;
-
+            articleType = (articles[key].sponsored) ? "From Our Sponsor" : "";
+            
             if (articleId === $myNodeArticleNum) {
-                switch (articles[key].type) {
-                    case 'type_com':
-                        articleType = "blog";
-                        break;
-                    case 'type_vid':
-                        articleType = "video";
-                        break;
-                    case 'type_ss':
-                        articleType = "slideshow";
-                        break;
-                    case 'type_rmq':
-                        articleType = "quiz";
-                        break;
-                    default:
-                        articleType = (articles[key].sponsored) ? "sponsored" : "article";
-                        break;
-                }
-
                 $(myNode).html(
                     '<a href="' + article.link + '">' + newline +
                     '   <img src="' + article.images.image493x335 + '">' + newline +
