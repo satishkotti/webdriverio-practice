@@ -58,7 +58,7 @@ $.fn.imagesLoaded = function(callback) {
 };
 
 
-webmd.fundedArticleMod = {
+webmd.fundedMoreAbout = {
 
     nodeContentPanes: {
         "panes": {}
@@ -76,19 +76,21 @@ webmd.fundedArticleMod = {
 
     smallestGridSize: null,
 
-    adIDarray: ['rightAd_rdr'],
-
     masonryGutter: 10,
 
+    gridType: 'scaling', // options: scaling, wrapping
+
     init: function() {
+        if (!this.gridType || this.gridType !== 'wrapping') {
+            this.gridType = 'scaling';
+        }
+
         this.render();
     },
 
     startWith: function(className) {
         var self = this,
             $nodes = $(className),
-            adArray = self.adIDarray,
-            regExPatt = new RegExp("2-col"),
             $nodeIndex,
             $nodeId;
 
@@ -98,67 +100,27 @@ webmd.fundedArticleMod = {
 
         this.getAllNodes();
 
+        this.H3title = $('h3.wbmd-moreabout-title');
+        this.H3title.remove();
+
         for (var i = 0; i < this.allNodes.length; i++) {
             $nodeIndex = $(this.allNodes[i]);
             $nodeId = $nodeIndex.attr('id');
 
-            if (!$nodeIndex.hasClass('moduleSpacer_rdr')) {
-                if (!$nodeIndex.hasClass('icm_wrap') && !$nodeIndex.hasClass('dbm_wrap')) {
-                    $nodeIndex.addClass('tile-width');
-                }
-                $nodeIndex.addClass('wbmd-grid-item');
+            if (!$nodeIndex.hasClass('wbmd-moreabout-title')) {
+                $nodeIndex.addClass('tile-width');
+                $nodeIndex.attr('data-orig-width', $nodeIndex.outerWidth());
+                $nodeIndex.attr('data-orig-height', $nodeIndex.outerHeight());
+                self.setInnerHTML(this.allNodes[i]);
+                self.placeInGroup(this.allNodes[i]);
             }
-
-            if (regExPatt.test($nodeId)) {
-                $nodeIndex.addClass('tile-width-x2');
-            }
-
-            $nodeIndex.attr('data-orig-width', $nodeIndex.outerWidth());
-            $nodeIndex.attr('data-orig-height', $nodeIndex.outerHeight());
-
-            self.setInnerHTML(this.allNodes[i]);
-            self.placeInGroup(this.allNodes[i]);
         }
 
         this.setMasonryGridSizePerPane();
 
         this.addGridContainerToPanes();
-    },
 
-    sizeAdFrames: function() {
-        var self = this,
-            adArray = this.adIDarray,
-            $gridItem,
-            gridItemW,
-            gridItemH,
-            multiplier,
-            standardTileHeight = $('div.wbmd-grid-item:not(.icm_wrap):not(.dbm_wrap)').outerHeight(),
-            gutter = self.masonryGutter,
-            windowW = $(window).width();
-
-        $('div.wbmd-masonry-container').find('.wbmd-grid-item').each(function() {
-            $gridItem = $(this);
-            gridItemH = $gridItem.data('orig-height');
-            gridItemW = $gridItem.data('orig-width');
-
-            if ($gridItem.hasClass('icm_wrap') || $gridItem.hasClass('dbm_wrap')) {
-                if ((windowW < 1000 && gridItemW >= 650) || windowW < 736) {
-                    $gridItem.css({'height' : 'auto'});
-                } else {
-                    multiplier = Math.ceil(gridItemH / standardTileHeight);
-                    $gridItem.height((standardTileHeight * multiplier) + (gutter * (multiplier - 1)));
-
-                    //console.log('grid item height: ' + gridItemH);
-                    //console.log('multiplier: ' + multiplier);
-                }
-            } else {
-                if (adArray.indexOf($(this).attr('id')) !== -1) {
-                    $gridItem.css({'height' : gridItemH + 'px !important' });
-                }
-            }
-        });
-
-        self.createMasonry(true);
+        this.moveTitleToTop();
     },
 
     hasStorage : function() {
@@ -237,10 +199,26 @@ webmd.fundedArticleMod = {
             var $gridDiv = $("<div></div>"),
                 html = $("#" + this).html();
 
-            $gridDiv.addClass('wbmd-masonry-grid').html(html);
+            $gridDiv.addClass('wbmd-moreabout-masonry-grid').html(html);
 
-            $("#" + this).html("").addClass("wbmd-masonry-container").append($gridDiv);
+            $("#" + this).html("").addClass("wbmd-moreabout-masonry-container").addClass(self.gridType).append($gridDiv);
         });
+    },
+
+    moveTitleToTop: function() {
+        var self = this,
+            $h3 = (self.H3title.length) ? self.H3title : $('<h3></h3>');
+
+        if (!$('h3.wbmd-moreabout-title').length) {
+            $h3.addClass('wbmd-moreabout-title');
+            $('div.wbmd-moreabout-masonry-container').prepend($h3);
+        } else {
+            $h3.parent().before($h3);
+        }
+        
+        if ($h3.text().length <= 0) {
+            $h3.text("More About");
+        }
     },
 
     getAllNodes: function() {
@@ -287,6 +265,7 @@ webmd.fundedArticleMod = {
             articles = article_data.articles,
             articleId,
             article,
+            articleType,
             nodeWidth;
 
         for (var key in articles) {
@@ -294,10 +273,28 @@ webmd.fundedArticleMod = {
             article = articles[key].article;
 
             if (articleId === $myNodeArticleNum) {
+                switch (articles[key].type) {
+                    case 'type_com':
+                        articleType = "blog";
+                        break;
+                    case 'type_vid':
+                        articleType = "video";
+                        break;
+                    case 'type_ss':
+                        articleType = "slideshow";
+                        break;
+                    case 'type_rmq':
+                        articleType = "quiz";
+                        break;
+                    default:
+                        articleType = (articles[key].sponsored) ? "sponsored" : "article";
+                        break;
+                }
+
                 $(myNode).html(
                     '<a href="' + article.link + '">' + newline +
                     '   <img src="' + article.images.image493x335 + '">' + newline +
-                    '   <p>' + article.title + '</p>' + newline +
+                    '   <p>' + '<span>' + articleType + '</span>' + newline + article.title + '</p>' + newline +
                     '</a>' + newline
                 );
 
@@ -331,11 +328,11 @@ webmd.fundedArticleMod = {
     bindEvents: function() {
         var self = this;
 
-		$(window).bind('resizeEnd', function() {
-            self.sizeAdFrames();
+        $(window).bind('resizeEnd', function() {
+            self.createMasonry(true);
         });
 
-		$(window).on('resize orientationchange', function() {
+        $(window).on('resize orientationchange', function() {
             if (this.resizeTO) {
                 clearTimeout(this.resizeTO);
             }
@@ -344,39 +341,43 @@ webmd.fundedArticleMod = {
                 $(this).trigger('resizeEnd');
             }, 500);
         });
-
-        $(window).load(function() {
-            self.sizeAdFrames();
-        });
     },
 
     createMasonry: function(windowResized) {
         var self = this,
             contentPanes = this.parentPanes,
-            columnWidth = '.wbmd-grid-item';
+            columnWidth = '.wbmd-moreabout-grid-item';
 
         require(["masonry/1/masonry"], function(Masonry) {
             $.each(contentPanes, function(key, value) {
                 var contentPane = "#" + contentPanes[key],
-                    masonryGrid = contentPane + " .wbmd-masonry-grid";
+                    masonryGrid = contentPane + " .wbmd-moreabout-masonry-grid";
 
                 if (!self.masonryPanes[contentPane]) {
-                	self.masonryPanes[contentPane] = {"msnry":null};
+                    self.masonryPanes[contentPane] = {"msnry":null};
                 }
 
                 if (windowResized) {
-                	self.masonryPanes[contentPane].msnry.reloadItems();
-                	self.masonryPanes[contentPane].msnry.layout();
+                    self.masonryPanes[contentPane].msnry.reloadItems();
+                    self.masonryPanes[contentPane].msnry.layout();
                 }
 
-            	$(masonryGrid).imagesLoaded(function() {
-                    self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
-                        itemSelector: '.wbmd-grid-item',
-                        columnWidth: columnWidth,
-                        gutter: self.masonryGutter,
-                        isFitWidth: true,
-                        isResizable: true
-                    });
+                $(masonryGrid).imagesLoaded(function() {
+                    if (self.gridType === 'scaling') {
+                        self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
+                            itemSelector: '.wbmd-moreabout-grid-item',
+                            columnWidth: '.wbmd-grid-sizer',
+                            percentPosition: true
+                        });
+                    } else {
+                        self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
+                            itemSelector: '.wbmd-moreabout-grid-item',
+                            columnWidth: columnWidth,
+                            gutter: self.masonryGutter,
+                            isFitWidth: true,
+                            isResizable: true
+                        });
+                    }
                 });
             });
         });
@@ -394,7 +395,7 @@ webmd.fundedArticleMod = {
                 self.setArticlesVisited();
             }
 
-            self.startWith('.wbmd-grid-item');
+            self.startWith('.wbmd-moreabout-grid-item');
 
             self.createMasonry(false);
 
@@ -404,5 +405,5 @@ webmd.fundedArticleMod = {
 };
 
 $(function() {
-    webmd.fundedArticleMod.init();
+    webmd.fundedMoreAbout.init();
 });

@@ -86,6 +86,16 @@ webmd.fundedNavigation = {
         }
     },
 
+    hasStorage : function() {
+      try {
+        sessionStorage.setItem('test', '1');
+        sessionStorage.removeItem('test');
+        return true;
+      } catch (e) {
+        return false;
+      }
+    },
+
     addToSessionHistory : function() {
         var self = this,
             url = window.location.href,
@@ -271,9 +281,10 @@ webmd.fundedNavigation = {
 
             self.setCurrentArticle();
 
-            self.addToSessionHistory();
-
-            self.setArticlesVisited();
+            if (self.hasStorage()) {
+                self.addToSessionHistory();
+                self.setArticlesVisited();
+            }
 
             if (self.hide_module_on_sponsor_pages && self.is_current_sponsored) {
                 return true;

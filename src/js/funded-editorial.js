@@ -28,7 +28,6 @@ webmd.fundedEditorial = {
         if(artObjParam == 1 && artObjParam !== undefined){
             this.showArticleObj();
         }
-
     },
 
     showArticleObj : function(){
@@ -173,6 +172,24 @@ webmd.fundedEditorial = {
                 self.unstickMasthead();
             }
         });
+
+        $(window).bind('resizeEnd', function() {
+            self.responsiveRRad();
+        });
+
+        $(window).on('resize orientationchange', function() {
+            if (this.resizeTO) {
+                clearTimeout(this.resizeTO);
+            }
+
+            this.resizeTO = setTimeout(function() {
+                $(this).trigger('resizeEnd');
+            }, 500);
+        });
+
+        $(window).load(function() {
+            self.responsiveRRad();
+        });
     },
 
     stickMasthead : function(mastheadH){
@@ -206,6 +223,17 @@ webmd.fundedEditorial = {
             //followScroll : false,
             top: 60
         });
+    },
+
+    responsiveRRad : function() {
+        var self = this,
+            windowW = $(window).width();
+
+        if (windowW < 676) {
+            $('.harmony #rightAd_rdr').parent().css({ 'margin' : '0 auto' });
+        } else {
+            $('.harmony #rightAd_rdr').parent().css({ 'margin' : '0' });
+        }
     }
 
 };
