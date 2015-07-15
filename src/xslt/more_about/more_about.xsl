@@ -29,7 +29,7 @@
         <xsl:for-each select="links/link">
             <xsl:element name="div">
                 <xsl:attribute name="class">
-                    <xsl:text>wbmd-moreabout-grid-item stamp</xsl:text>
+                    <xsl:text>wbmd-moreabout-grid-item</xsl:text>
                 </xsl:attribute>
                 <xsl:attribute name="data-article-num">
                     <xsl:apply-templates select="link_text"/>
