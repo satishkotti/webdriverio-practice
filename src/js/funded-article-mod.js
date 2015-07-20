@@ -133,6 +133,7 @@ webmd.fundedArticleMod = {
             gridItemH,
             multiplier,
             standardTileHeight = $('div.wbmd-grid-item:not(.icm_wrap):not(.dbm_wrap)').outerHeight(),
+            btmMargin,
             gutter = self.masonryGutter,
             windowW = $(window).width();
 
@@ -141,19 +142,24 @@ webmd.fundedArticleMod = {
             gridItemH = $gridItem.data('orig-height');
             gridItemW = $gridItem.data('orig-width');
 
-            if ($gridItem.hasClass('icm_wrap') || $gridItem.hasClass('dbm_wrap')) {
+            /* Need to use cssText in this section - $.css() and $.style() do not work correctly with adding margin-bottom */
+
+            if (!$gridItem.data('orig-csstext')) {
+                $gridItem.data('orig-csstext', $gridItem.attr('style'));
+            }
+
+            if ($gridItem.hasClass('icm_wrap') || $gridItem.children().hasClass('icm_wrap') || $gridItem.hasClass('dbm_wrap') || $gridItem.children().hasClass('dbm_wrap')) {
                 if ((windowW < 1000 && gridItemW >= 650) || windowW < 736) {
-                    $gridItem.css({'height' : 'auto'});
+                    $gridItem.css('margin-bottom', 0);
+                    $gridItem.css('cssText', $gridItem.data('orig-csstext'));
                 } else {
                     multiplier = Math.ceil(gridItemH / standardTileHeight);
-                    $gridItem.height((standardTileHeight * multiplier) + (gutter * (multiplier - 1)));
-
-                    //console.log('grid item height: ' + gridItemH);
-                    //console.log('multiplier: ' + multiplier);
+                    btmMargin = ((standardTileHeight * multiplier) + (gutter * (multiplier - 1)) - gridItemH + self.masonryGutter);
+                    $gridItem.css('cssText', $gridItem.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
                 }
             } else {
                 if (adArray.indexOf($(this).attr('id')) !== -1) {
-                    $gridItem.css({'height' : gridItemH + 'px !important' });
+                    $gridItem.css('height', gridItemH, 'important');
                 }
             }
         });
@@ -350,7 +356,7 @@ webmd.fundedArticleMod = {
         });
     },
 
-    createMasonry: function(windowResized) {
+    createMasonry: function(resetLayout) {
         var self = this,
             contentPanes = this.parentPanes,
             columnWidth = '.wbmd-grid-item';
@@ -364,20 +370,19 @@ webmd.fundedArticleMod = {
                 	self.masonryPanes[contentPane] = {"msnry":null};
                 }
 
-                if (windowResized) {
-                	self.masonryPanes[contentPane].msnry.reloadItems();
+                if (resetLayout) {
                 	self.masonryPanes[contentPane].msnry.layout();
-                }
-
-            	$(masonryGrid).imagesLoaded(function() {
-                    self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
-                        itemSelector: '.wbmd-grid-item',
-                        columnWidth: columnWidth,
-                        gutter: self.masonryGutter,
-                        isFitWidth: true,
-                        isResizable: true
+                } else {
+                	$(masonryGrid).imagesLoaded(function() {
+                        self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
+                            itemSelector: '.wbmd-grid-item',
+                            columnWidth: columnWidth,
+                            gutter: self.masonryGutter,
+                            isFitWidth: true,
+                            isResizable: true
+                        });
                     });
-                });
+                }
             });
         });
     },

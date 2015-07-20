@@ -21,9 +21,9 @@ webmd.fundedEditorial = {
             this.fundedPages();
         }
 
-        if(this.uaType !== 'mobile'){
+        /*if(this.uaType !== 'mobile'){
             this.stickIt();
-        }
+        }*/
 
         if(artObjParam == 1 && artObjParam !== undefined){
             this.showArticleObj();
