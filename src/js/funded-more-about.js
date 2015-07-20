@@ -326,7 +326,7 @@ webmd.fundedMoreAbout = {
         });
     },
 
-    createMasonry: function(windowResized) {
+    createMasonry: function(resetLayout) {
         var self = this,
             contentPanes = this.parentPanes,
             columnWidth = '.wbmd-moreabout-grid-item';
@@ -340,28 +340,27 @@ webmd.fundedMoreAbout = {
                     self.masonryPanes[contentPane] = {"msnry":null};
                 }
 
-                if (windowResized) {
-                    self.masonryPanes[contentPane].msnry.reloadItems();
+                if (resetLayout) {
                     self.masonryPanes[contentPane].msnry.layout();
+                } else {
+                    $(masonryGrid).imagesLoaded(function() {
+                        if (self.gridType === 'scaling') {
+                            self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
+                                itemSelector: '.wbmd-moreabout-grid-item',
+                                columnWidth: '.wbmd-grid-sizer',
+                                percentPosition: true
+                            });
+                        } else {
+                            self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
+                                itemSelector: '.wbmd-moreabout-grid-item',
+                                columnWidth: columnWidth,
+                                gutter: self.masonryGutter,
+                                isFitWidth: true,
+                                isResizable: true
+                            });
+                        }
+                    });
                 }
-
-                $(masonryGrid).imagesLoaded(function() {
-                    if (self.gridType === 'scaling') {
-                        self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
-                            itemSelector: '.wbmd-moreabout-grid-item',
-                            columnWidth: '.wbmd-grid-sizer',
-                            percentPosition: true
-                        });
-                    } else {
-                        self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
-                            itemSelector: '.wbmd-moreabout-grid-item',
-                            columnWidth: columnWidth,
-                            gutter: self.masonryGutter,
-                            isFitWidth: true,
-                            isResizable: true
-                        });
-                    }
-                });
             });
         });
     },
