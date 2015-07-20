@@ -141,6 +141,7 @@ webmd.fundedArticleMod = {
             $gridItem = $(this);
             gridItemH = $gridItem.data('orig-height');
             gridItemW = $gridItem.data('orig-width');
+            multiplier = Math.ceil(gridItemH / standardTileHeight);
 
             /* Need to use cssText in this section - $.css() and $.style() do not work correctly with adding margin-bottom */
 
@@ -153,13 +154,14 @@ webmd.fundedArticleMod = {
                     $gridItem.css('margin-bottom', 0);
                     $gridItem.css('cssText', $gridItem.data('orig-csstext'));
                 } else {
-                    multiplier = Math.ceil(gridItemH / standardTileHeight);
                     btmMargin = ((standardTileHeight * multiplier) + (gutter * (multiplier - 1)) - gridItemH + self.masonryGutter);
                     $gridItem.css('cssText', $gridItem.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
                 }
             } else {
                 if (adArray.indexOf($(this).attr('id')) !== -1) {
-                    $gridItem.css('height', gridItemH, 'important');
+                    $gridItem.css({'height' : gridItemH + 'px !important' });
+                } else {
+                    $gridItem.height((standardTileHeight * multiplier) + (gutter * (multiplier - 1)));
                 }
             }
         });
