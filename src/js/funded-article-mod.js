@@ -256,21 +256,24 @@ webmd.fundedArticleMod = {
                     btmMargin;
 
                 /* Need to use cssText in this section - $.css() does not work correctly with adding margin-bottom */
-                if (!$node.data('orig-csstext')) {
-                    $node.data('orig-csstext', $node.attr('style'));
+                if (!$node.attr('data-orig-csstext')) {
+                    $node.attr('data-orig-csstext', $node.attr('style'));
                 }
 
                 if ($node.is('.icm_wrap,.dbm_wrap') || $node.children().is('.icm_wrap,.dbm_wrap')) {
-                    if (windowW < 1000 && nodeW >= 650) {
-                        $node.css('cssText', $node.data('orig-csstext'));
-                    } else {
-                        if (multiplier > 2) {
-                            btmMargin = (standardTileHeight * (multiplier - 1)) + (gutter * (multiplier - 1)) - nodeH;
-                        } else {
-                            btmMargin = (standardTileHeight * (multiplier)) + (gutter * (multiplier)) - nodeH;
-                        }
 
-                        $node.css('cssText', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
+                    if (windowW < 1000 && nodeW >= 650) {
+                        $node.css('cssText', $node.attr('data-orig-csstext'));
+                    } else {
+                        if (windowW >= 650) {
+                            if (multiplier > 2) {
+                                btmMargin = (standardTileHeight * (multiplier - 1)) + (gutter * (multiplier - 1)) - nodeH;
+                            } else {
+                                btmMargin = (standardTileHeight * multiplier) + (gutter * multiplier) - nodeH;
+                            }
+
+                            $node.css('cssText', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
+                        }
                     }
                 } else {
                     if (adArray.indexOf($node.attr('id')) !== -1) {

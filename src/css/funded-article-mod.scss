@@ -75,6 +75,33 @@ div.icm_wrap, div.dbm_wrap {
   }
 }
 
+
+/* BEGIN ---- ICM Responsive FIX */
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px), /* iPhone 2G - 4S */
+              screen and (min-device-width : 320px) and (max-device-width : 568px), /* iPhone 5/5S */
+              screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : portrait) /* iPhone 6 Portrait */ {
+    /* STYLES GO HERE */
+    div.icm_wrap, div.dbm_wrap {
+      .icm_image {
+        padding: 15px 0 0 0;
+        float: none;
+      }
+    }
+  }
+
+  /* iPhone 6 - Landsacape */
+  @media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : landscape) {
+    /* STYLES GO HERE */
+    div.icm_wrap, div.dbm_wrap {
+      .icm_image {
+        padding: 15px 0 0 18px;
+        float: left;
+      }
+    }
+  }
+/* END ---- ICM Responsive FIX */
+
+
 @media only screen and (max-width: 320px) {
   /* Styles */
   .wbmd-masonry-container {
@@ -92,9 +119,6 @@ div.icm_wrap, div.dbm_wrap {
         width: 100% !important;
         min-height: inherit;
         height: auto;
-
-        &.col-2, &.x2wide {
-        }
       }
     }
   }
@@ -122,10 +146,6 @@ div.icm_wrap, div.dbm_wrap {
         float: none;
         margin: 0 0 20px 0 !important;
         box-shadow: 0 1px 2px 0 rgba(0,0,0,.125);
-
-        &.col-2, &.x2wide {
-          width: 100%;
-        }
       }
     }
   }
@@ -148,9 +168,6 @@ div.icm_wrap, div.dbm_wrap {
         width: 100% !important;
         min-height: auto;
         height: auto;
-
-        &.col-2, &.x2wide {
-        }
       }
     }
   }
@@ -173,9 +190,6 @@ div.icm_wrap, div.dbm_wrap {
         width: 100% !important;
         min-height: auto;
         height: auto;
-
-        &.col-2, &.x2wide {
-        }
       }
     }
   }
