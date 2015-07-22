@@ -60,77 +60,76 @@ $.fn.imagesLoaded = function(callback) {
 
 webmd.fundedMoreAbout = {
 
-    nodeContentPanes: {
-        "panes": {}
-    },
+    gridItemClass: 'wbmd-moreabout-grid-item', // class name on each <div> provided by the XSL
 
-    smallestNodes: {
-        "nodes": {}
-    },
-
-    parentPanes: [],
-
-    allNodes: [],
-
-    masonryPanes: {},
-
-    smallestGridSize: null,
+    contentPanes: {},
 
     masonryGutter: 10,
 
     gridType: 'scaling', // options: scaling, wrapping
 
     init: function() {
-        if (!this.gridType || this.gridType !== 'wrapping') {
-            this.gridType = 'scaling';
-        }
-
         this.render();
     },
 
-    startWith: function(className) {
+    start: function() {
         var self = this,
-            $nodes = $(className),
-            $nodeIndex,
-            $nodeId;
+            $nodes = $('.' + self.gridItemClass);
 
-        $nodes.each(function(index) {
-            self.getAllParentPanes(this);
-        });
-
-        this.getAllNodes();
-
-        this.H3title = $('h3.wbmd-moreabout-title');
-        this.H3title.remove();
-
-        for (var i = 0; i < this.allNodes.length; i++) {
-            $nodeIndex = $(this.allNodes[i]);
-            $nodeId = $nodeIndex.attr('id');
-
-            if (!$nodeIndex.hasClass('wbmd-moreabout-title')) {
-                $nodeIndex.addClass('tile-width');
-                $nodeIndex.attr('data-orig-width', $nodeIndex.outerWidth());
-                $nodeIndex.attr('data-orig-height', $nodeIndex.outerHeight());
-                self.setInnerHTML(this.allNodes[i]);
-                self.placeInGroup(this.allNodes[i]);
-            }
+        if (self.hasStorage()) {
+            self.addToSessionHistory();
+            self.setArticlesVisited();
         }
 
-        this.setMasonryGridSizePerPane();
+        // Setup keys in self.contentPanes object
+        $.each($nodes, function(index) {
+            var $node = $(this), // use the node from XSL
+                contentPaneId = $node.closest('div.pane')[0].id, // get the id of the parent content pane
+                contentPane,
+                $childNodes;
 
-        this.addGridContainerToPanes();
+            // Continue to setup key and nodes if not already in object
+            if (!(contentPaneId in self.contentPanes)) {
+                self.contentPanes[contentPaneId] = {
+                    'nodes': [],
+                    'msnry': null
+                }; // Set content pane id as key in self.contentPanes
 
-        this.moveTitleToTop();
+                contentPane = self.contentPanes[contentPaneId];
+
+                self.moduleTitle = $('#' + contentPaneId + '> h3.wbmd-moreabout-title');
+                $('#' + contentPaneId + '> h3.wbmd-moreabout-title').remove(); // Remove <h3> from content pane (NOTE: We will add it back later)
+
+                $childNodes = $("#" + contentPaneId).children('div');
+
+                $.each($childNodes, function(index) {
+                    var $child = $(this);
+
+                    if (!$child.hasClass('moduleSpacer_rdr')) {
+                        self.setupChild($child);
+
+                        //self.allNodes.push(this); //temporary - use the below line instead
+                        contentPane.nodes.push({
+                            'node': $child
+                        });
+                    }
+                });
+            }
+        });
+
+        self.createGridWrapper();
+        self.moveTitleToTop();
     },
 
-    hasStorage : function() {
-      try {
-        sessionStorage.setItem('test', '1');
-        sessionStorage.removeItem('test');
-        return true;
-      } catch (e) {
-        return false;
-      }
+    hasStorage: function() {
+        // Test session storage
+        try {
+            sessionStorage.setItem('test', '1');
+            sessionStorage.removeItem('test');
+            return true;
+        } catch (e) {
+            return false;
+        }
     },
 
     addToSessionHistory: function() {
@@ -161,11 +160,10 @@ webmd.fundedMoreAbout = {
 
     setArticlesVisited: function() {
         var self = this,
-            article_data = this.article_data,
-            articles = article_data.articles,
+            articles = self.article_data.articles,
+            history = JSON.parse(sessionStorage.visitedPages),
             article,
             article_link,
-            history = JSON.parse(sessionStorage.visitedPages),
             history_page;
 
         for (var key in articles) {
@@ -174,7 +172,6 @@ webmd.fundedMoreAbout = {
 
             for (var j in history.visited) {
                 history_page = history.visited[j].page;
-                //console.log("article_link: " + article_link + "\nhistory_page: " + history_page);
 
                 if (article_link === history_page) {
                     article.visited = true;
@@ -183,129 +180,83 @@ webmd.fundedMoreAbout = {
         }
     },
 
-    getAllParentPanes: function(myNode) {
+    setupChild: function($node) {
         var self = this,
-            $parentNode = $(myNode).closest('div.pane')[0].id;
-
-        if (this.parentPanes.indexOf($parentNode) === -1) {
-            this.parentPanes.push($parentNode);
-        }
-    },
-
-    addGridContainerToPanes: function() {
-        var self = this;
-
-        $.each(this.parentPanes, function(index) {
-            var $gridDiv = $("<div></div>"),
-                html = $("#" + this).html();
-
-            $gridDiv.addClass('wbmd-moreabout-masonry-grid').html(html);
-
-            $("#" + this).html("").addClass("wbmd-moreabout-masonry-container").addClass(self.gridType).append($gridDiv);
-        });
-    },
-
-    moveTitleToTop: function() {
-        var self = this,
-            $h3 = (self.H3title.length) ? self.H3title : $('<h3></h3>');
-
-        if (!$('h3.wbmd-moreabout-title').length) {
-            $h3.addClass('wbmd-moreabout-title');
-            $('div.wbmd-moreabout-masonry-container').prepend($h3);
-        } else {
-            $h3.parent().before($h3);
-        }
-        
-        if ($h3.text().length <= 0) {
-            $h3.text("More About");
-        }
-    },
-
-    getAllNodes: function() {
-        var self = this,
-            allNodes,
-            $childNodes;
-
-        $.each(this.parentPanes, function(index) {
-            allNodes = self.allNodes;
-            if (!self[this]) {
-                self[this] = true;
-                $childNodes = $("#" + this.toString() + " > div");
-
-                $.each($childNodes, function(index) {
-                    self.allNodes.push(this);
-                });
-            }
-        });
-    },
-
-    placeInGroup: function(myNode) {
-        var self = this,
-            gItemArticleId = Number($(myNode).data('articleNum')),
-            $parentNode = $(myNode).closest('div.pane')[0].id;
-
-        //Create Group if doesn't exist
-        if (!($parentNode in this.nodeContentPanes.panes)) {
-            this.nodeContentPanes.panes[$parentNode] = {
-                "nodes": []
-            };
-        }
-
-        this.nodeContentPanes.panes[$parentNode].nodes.push({
-            "el": myNode
-        });
-    },
-
-    setInnerHTML: function(myNode) {
-        var self = this,
-            article_data = this.article_data,
-            $myNodeArticleNum = $(myNode).data('articleNum'),
-            $parentNode = $(myNode).closest('div.pane')[0].id,
+            nodeArticleNum = $node.data('articleNum'),
+            articles = self.article_data.articles,
             newline = '\n',
-            articles = article_data.articles,
             articleId,
             article,
-            articleType,
-            nodeWidth;
+            articleType;
+
+
+        $node.addClass('wbmd-moreabout-grid-item'); // adds the masonry grid item class to node
+
+        if (self.gridType !== 'scaling') {
+            $node.addClass('tile-width');
+        }
 
         for (var key in articles) {
             articleId = articles[key].id;
             article = articles[key].article;
             articleType = (articles[key].sponsored) ? "From Our Sponsor" : "";
-            
-            if (articleId === $myNodeArticleNum) {
-                $(myNode).html(
+
+            if (articleId === nodeArticleNum) {
+                $node.html(
                     '<a href="' + article.link + '">' + newline +
                     '   <img src="' + article.images.image493x335 + '">' + newline +
                     '   <p>' + '<span>' + articleType + '</span>' + newline + article.title + '</p>' + newline +
                     '</a>' + newline
                 );
 
-                nodeWidth = $(myNode).outerWidth();
-
-                if (!self.smallestGridSize || self.smallestGridSize > nodeWidth || !self.smallestNodes.nodes[$parentNode]) {
-                    self.smallestGridSize = nodeWidth;
-                    self.smallestNodes.nodes[$parentNode] = {
-                        "el": myNode,
-                        "size": nodeWidth
-                    };
-                }
-
                 if (article.visited) {
-                    $(myNode).addClass('visited');
+                    $node.addClass('visited');
                 }
 
-                break;
+                return false;
             }
         }
     },
 
-    setMasonryGridSizePerPane: function() {
-        var self = this;
+    createGridWrapper: function() {
+        var self = this,
+            contentPanes = self.contentPanes;
 
-        $.each(this.smallestNodes.nodes, function(key, value) {
-            $(self.smallestNodes.nodes[key].el).addClass('wbmd-grid-sizer');
-        });
+        for (id in contentPanes) {
+            var $containerDiv = $('#' + id),
+                $gridDiv = $('<div></div>'),
+                contentPane_html = $containerDiv.html();
+
+            $gridDiv.addClass('wbmd-moreabout-masonry-grid').html(contentPane_html);
+
+            $containerDiv.html('').addClass('wbmd-moreabout-masonry-container').append($gridDiv);
+
+            if (self.gridType === 'scaling') {
+                $containerDiv.addClass(self.gridType);
+            } else {
+                $containerDiv.addClass('wrapping');
+            }
+        }
+
+        return true;
+    },
+
+    moveTitleToTop: function() {
+        var self = this,
+            $h3 = (self.moduleTitle) ? self.moduleTitle : $('<h3></h3>'),
+            contentPanes = self.contentPanes,
+            contentPane;
+
+        for (id in contentPanes) {
+            contentPane = contentPanes[id];
+
+            if (!$h3.hasClass('wbmd-moreabout-title')) {
+                $h3.addClass('wbmd-moreabout-title');
+                $('div#' + id + '.pane.wbmd-moreabout-masonry-container').prepend($h3);
+            } else {
+                $h3.parent().before($h3);
+            }
+        }
     },
 
     bindEvents: function() {
@@ -328,32 +279,28 @@ webmd.fundedMoreAbout = {
 
     createMasonry: function(resetLayout) {
         var self = this,
-            contentPanes = this.parentPanes,
-            columnWidth = '.wbmd-moreabout-grid-item';
+            contentPanes = self.contentPanes,
+            gridItemClass = '.' + self.gridItemClass;
 
         require(["masonry/1/masonry"], function(Masonry) {
-            $.each(contentPanes, function(key, value) {
-                var contentPane = "#" + contentPanes[key],
-                    masonryGrid = contentPane + " .wbmd-moreabout-masonry-grid";
-
-                if (!self.masonryPanes[contentPane]) {
-                    self.masonryPanes[contentPane] = {"msnry":null};
-                }
+            for (id in contentPanes) {
+                var contentPane = contentPanes[id],
+                    masonryGrid = "#" + id + ' .wbmd-moreabout-masonry-grid';
 
                 if (resetLayout) {
-                    self.masonryPanes[contentPane].msnry.layout();
+                    contentPane.msnry.layout();
                 } else {
                     $(masonryGrid).imagesLoaded(function() {
                         if (self.gridType === 'scaling') {
-                            self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
-                                itemSelector: '.wbmd-moreabout-grid-item',
-                                columnWidth: '.wbmd-grid-sizer',
+                            contentPane.msnry = new Masonry(masonryGrid, {
+                                itemSelector: gridItemClass,
+                                columnWidth: gridItemClass,
                                 percentPosition: true
                             });
                         } else {
-                            self.masonryPanes[contentPane].msnry = new Masonry(masonryGrid, {
-                                itemSelector: '.wbmd-moreabout-grid-item',
-                                columnWidth: columnWidth,
+                            contentPane.msnry = new Masonry(masonryGrid, {
+                                itemSelector: gridItemClass,
+                                columnWidth: gridItemClass,
                                 gutter: self.masonryGutter,
                                 isFitWidth: true,
                                 isResizable: true
@@ -361,7 +308,7 @@ webmd.fundedMoreAbout = {
                         }
                     });
                 }
-            });
+            }
         });
     },
 
@@ -372,12 +319,7 @@ webmd.fundedMoreAbout = {
 
             self.article_data = article_data;
 
-            if (self.hasStorage()) {
-                self.addToSessionHistory();
-                self.setArticlesVisited();
-            }
-
-            self.startWith('.wbmd-moreabout-grid-item');
+            self.start();
 
             self.createMasonry(false);
 

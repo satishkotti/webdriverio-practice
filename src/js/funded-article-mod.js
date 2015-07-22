@@ -81,8 +81,6 @@ webmd.fundedArticleMod = {
             self.setArticlesVisited();
         }
 
-        self.contentPanes = {};
-
         // Setup keys in self.contentPanes object
         $.each($nodes, function(index) {
             var $node = $(this), // use the node from XSL
@@ -186,7 +184,7 @@ webmd.fundedArticleMod = {
             articleId,
             article;
 
-        
+
         $node.addClass('wbmd-grid-item'); // adds the masonry grid item class to node
 
         if (!$node.hasClass('icm_wrap') && !$node.hasClass('dbm_wrap')) {
@@ -276,7 +274,9 @@ webmd.fundedArticleMod = {
                     }
                 } else {
                     if (adArray.indexOf($node.attr('id')) !== -1) {
-                        $node.css({'height' : nodeH + 'px !important' });
+                        $node.css({
+                            'height': nodeH + 'px !important'
+                        });
                     }
                 }
             });
