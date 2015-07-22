@@ -97,9 +97,6 @@ webmd.fundedMoreAbout = {
 
                 contentPane = self.contentPanes[contentPaneId];
 
-                self.moduleTitle = $('#' + contentPaneId + '> h3.wbmd-moreabout-title');
-                $('#' + contentPaneId + '> h3.wbmd-moreabout-title').remove(); // Remove <h3> from content pane (NOTE: We will add it back later)
-
                 $childNodes = $("#" + contentPaneId).children('div');
 
                 $.each($childNodes, function(index) {
@@ -243,12 +240,15 @@ webmd.fundedMoreAbout = {
 
     moveTitleToTop: function() {
         var self = this,
-            $h3 = (self.moduleTitle) ? self.moduleTitle : $('<h3></h3>'),
             contentPanes = self.contentPanes,
-            contentPane;
+            $h3;
 
         for (id in contentPanes) {
-            contentPane = contentPanes[id];
+            $h3 = $('#' + id + ' h3.wbmd-moreabout-title') || $('<h3></h3>');
+
+            if (!$h3.text()) {
+                $h3.text('More About');
+            }
 
             if (!$h3.hasClass('wbmd-moreabout-title')) {
                 $h3.addClass('wbmd-moreabout-title');
