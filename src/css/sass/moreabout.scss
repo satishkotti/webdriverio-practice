@@ -11,7 +11,7 @@
 
       .wbmd-grid-sizer,
       .wbmd-moreabout-grid-item {
-        width: 33.3334%;
+        width: calc(100%/3 - 7px);
       }
 
       .wbmd-moreabout-grid-item {

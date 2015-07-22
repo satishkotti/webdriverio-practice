@@ -295,7 +295,8 @@ webmd.fundedMoreAbout = {
                             contentPane.msnry = new Masonry(masonryGrid, {
                                 itemSelector: gridItemClass,
                                 columnWidth: gridItemClass,
-                                percentPosition: true
+                                percentPosition: true,
+                                gutter: 10
                             });
                         } else {
                             contentPane.msnry = new Masonry(masonryGrid, {
