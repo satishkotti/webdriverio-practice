@@ -64,7 +64,7 @@ div.icm_wrap img, div.dbm_wrap img {
 }
 
 /* BEGIN ---- ICM Responsive FIX */
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px), screen and (min-device-width: 320px) and (max-device-width: 568px), screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) {
+@media only screen and (min-width: 320px) and (max-width: 480px), screen and (min-width: 320px) and (max-width: 568px), screen and (min-width: 375px) and (max-width: 667px) and (orientation: portrait) {
   /* STYLES GO HERE */
   div.icm_wrap .icm_image, div.dbm_wrap .icm_image {
     padding: 15px 0 0 0;
@@ -72,7 +72,7 @@ div.icm_wrap img, div.dbm_wrap img {
   }
 }
 /* iPhone 6 - Landsacape */
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: landscape) {
+@media only screen and (min-width: 375px) and (max-width: 667px) and (orientation: landscape) {
   /* STYLES GO HERE */
   div.icm_wrap .icm_image, div.dbm_wrap .icm_image {
     padding: 15px 0 0 18px;

@@ -189,10 +189,6 @@ webmd.fundedArticleMod = {
 
         if (!$node.hasClass('icm_wrap') && !$node.hasClass('dbm_wrap')) {
             $node.addClass('tile-width'); // default size for all editorial tiles in TOC that are not ICM or DBM
-
-            if (!self.standardTileHeight) {
-                self.standardTileHeight = $node.outerHeight();
-            }
         } else {
             if (nodeId && regEx_3col.test(nodeId)) {
                 $node.addClass('tile-width-x3');
@@ -243,9 +239,13 @@ webmd.fundedArticleMod = {
     fixLayout: function() {
         var self = this,
             adArray = self.adIDarray,
-            standardTileHeight = self.standardTileHeight,
             gutter = self.masonryGutter,
-            windowW = $(window).outerWidth();
+            windowW = $(window).outerWidth(),
+            standardTileHeight;
+
+        if (!standardTileHeight) {
+            standardTileHeight = $('.wbmd-grid-item:not(.icm_wrap):not(.dbm_wrap').outerHeight();
+        }
 
         for (id in self.contentPanes) {
             $('div#' + id + '.pane.wbmd-masonry-container').find('.wbmd-grid-item').each(function() {
@@ -266,13 +266,19 @@ webmd.fundedArticleMod = {
                         $node.css('cssText', $node.attr('data-orig-csstext'));
                     } else {
                         if (windowW >= 650) {
-                            if (multiplier > 2) {
-                                btmMargin = (standardTileHeight * (multiplier - 1)) + (gutter * (multiplier - 1)) - nodeH;
+                            if (multiplier === 2) {
+                                $node.css({ 'height': nodeH + 'px !important' });
                             } else {
-                                btmMargin = (standardTileHeight * multiplier) + (gutter * multiplier) - nodeH;
+                                if (multiplier === 3) {
+                                    btmMargin = (standardTileHeight * multiplier) - nodeH;
+                                } else {
+                                    btmMargin = (standardTileHeight * (multiplier - 1)) + (gutter * (multiplier - 1)) - nodeH;
+                                }
+                                
+                                $node.css('cssText', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
                             }
-
-                            $node.css('cssText', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
+                        } else {
+                            $node.css('cssText', $node.attr('data-orig-csstext'));
                         }
                     }
                 } else {

@@ -77,9 +77,9 @@ div.icm_wrap, div.dbm_wrap {
 
 
 /* BEGIN ---- ICM Responsive FIX */
-  @media only screen and (min-device-width : 320px) and (max-device-width : 480px), /* iPhone 2G - 4S */
-              screen and (min-device-width : 320px) and (max-device-width : 568px), /* iPhone 5/5S */
-              screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : portrait) /* iPhone 6 Portrait */ {
+  @media only screen and (min-width : 320px) and (max-width : 480px), /* iPhone 2G - 4S */
+              screen and (min-width : 320px) and (max-width : 568px), /* iPhone 5/5S */
+              screen and (min-width : 375px) and (max-width : 667px) and (orientation : portrait) /* iPhone 6 Portrait */ {
     /* STYLES GO HERE */
     div.icm_wrap, div.dbm_wrap {
       .icm_image {
@@ -90,7 +90,7 @@ div.icm_wrap, div.dbm_wrap {
   }
 
   /* iPhone 6 - Landsacape */
-  @media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : landscape) {
+  @media only screen and (min-width : 375px) and (max-width : 667px) and (orientation : landscape) {
     /* STYLES GO HERE */
     div.icm_wrap, div.dbm_wrap {
       .icm_image {
