@@ -244,7 +244,7 @@ webmd.fundedArticleMod = {
             standardTileHeight;
 
         if (!standardTileHeight) {
-            standardTileHeight = $('.wbmd-grid-item:not(.icm_wrap):not(.dbm_wrap').outerHeight();
+            standardTileHeight = $('.wbmd-grid-item:not(.icm_wrap):not(.dbm_wrap)').outerHeight();
         }
 
         for (id in self.contentPanes) {
