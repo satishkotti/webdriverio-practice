@@ -177,6 +177,7 @@ webmd.fundedArticleMod = {
         var self = this,
             nodeId = $node.attr('id'),
             nodeArticleNum = $node.data('articleNum'),
+            regEx_1col = new RegExp("1-col"),
             regEx_2col = new RegExp("2-col"),
             regEx_3col = new RegExp("3-col"),
             articles = self.article_data.articles,
@@ -190,12 +191,14 @@ webmd.fundedArticleMod = {
         if (!$node.hasClass('icm_wrap') && !$node.hasClass('dbm_wrap')) {
             $node.addClass('tile-width'); // default size for all editorial tiles in TOC that are not ICM or DBM
         } else {
-            if (nodeId && regEx_3col.test(nodeId)) {
-                $node.addClass('tile-width-x3');
-            } else if (nodeId && regEx_2col.test(nodeId)) {
-                $node.addClass('tile-width-x2');
-            } else {
-                $node.addClass('tile-width');
+            if (nodeId) {
+                if (regEx_3col.test(nodeId)) {
+                    $node.addClass('tile-width-x3');
+                } else if (regEx_2col.test(nodeId)) {
+                    $node.addClass('tile-width-x2');
+                } else if (regEx_1col.test(nodeId)) {
+                    $node.addClass('tile-width');
+                }
             }
         }
 
