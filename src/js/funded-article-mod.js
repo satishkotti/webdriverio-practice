@@ -255,8 +255,8 @@ webmd.fundedArticleMod = {
                 var $node = $(this),
                     nodeH = $node.outerHeight(),
                     nodeW = $node.outerWidth(),
-                    multiplier = Math.ceil(nodeH / standardTileHeight),
-                    btmMargin;
+                    multiplier = Math.round((nodeH / standardTileHeight * 100) / 100), //round to 2 decimals
+                    btmMargin = Math.ceil((standardTileHeight * multiplier) + (gutter * multiplier) - nodeH);
 
                 /* Need to use cssText in this section - $.css() does not work correctly with adding margin-bottom */
                 if (!$node.attr('data-orig-csstext')) {
@@ -264,22 +264,11 @@ webmd.fundedArticleMod = {
                 }
 
                 if ($node.is('.icm_wrap,.dbm_wrap') || $node.children().is('.icm_wrap,.dbm_wrap')) {
-
                     if (windowW < 1000 && nodeW >= 650) {
                         $node.css('cssText', $node.attr('data-orig-csstext'));
                     } else {
                         if (windowW >= 650) {
-                            if (multiplier === 2) {
-                                $node.css({ 'height': nodeH + 'px !important' });
-                            } else {
-                                if (multiplier === 3) {
-                                    btmMargin = (standardTileHeight * multiplier) - nodeH;
-                                } else {
-                                    btmMargin = (standardTileHeight * (multiplier - 1)) + (gutter * (multiplier - 1)) - nodeH;
-                                }
-                                
-                                $node.css('cssText', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
-                            }
+                            $node.css('cssText', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
                         } else {
                             $node.css('cssText', $node.attr('data-orig-csstext'));
                         }
