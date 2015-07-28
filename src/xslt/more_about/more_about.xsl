@@ -20,25 +20,28 @@
     </xsl:template>
     
     <xsl:template match="module_data">
-        <xsl:element name="h3">
-            <xsl:attribute name="class">
-                <xsl:text>wbmd-moreabout-title</xsl:text>
-            </xsl:attribute>
-            <xsl:apply-templates select="module_title"/>
-        </xsl:element>
-        <xsl:for-each select="links/link">
-            <xsl:element name="div">
+        <xsl:variable name="length" select="count(links/link)"/>
+        <xsl:if test="($length mod 3) = 0">
+            <xsl:element name="h3">
                 <xsl:attribute name="class">
-                    <xsl:text>wbmd-moreabout-grid-item</xsl:text>
+                    <xsl:text>wbmd-moreabout-title</xsl:text>
                 </xsl:attribute>
-                <xsl:attribute name="data-article-num">
-                    <xsl:apply-templates select="link_text"/>
-                </xsl:attribute>
-                <xsl:comment><xsl:text>Article Unit</xsl:text></xsl:comment>
+                <xsl:apply-templates select="module_title"/>
             </xsl:element>
-        </xsl:for-each>
-        <xsl:element name="script">
-            <![CDATA[require(["funded/1/funded-more-about.min"]);]]>
-        </xsl:element>
+            <xsl:for-each select="links/link">
+                <xsl:element name="div">
+                    <xsl:attribute name="class">
+                        <xsl:text>wbmd-moreabout-grid-item</xsl:text>
+                    </xsl:attribute>
+                    <xsl:attribute name="data-article-num">
+                        <xsl:apply-templates select="link_text"/>
+                    </xsl:attribute>
+                    <xsl:comment><xsl:text>Article Unit</xsl:text></xsl:comment>
+                </xsl:element>
+            </xsl:for-each>
+            <xsl:element name="script">
+                <![CDATA[require(["funded/1/funded-more-about.min"]);]]>
+            </xsl:element>
+        </xsl:if>
     </xsl:template>
 </xsl:stylesheet>

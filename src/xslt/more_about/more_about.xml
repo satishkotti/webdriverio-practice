@@ -55,6 +55,24 @@
                             <link_url chronic_id="" directive="friendlyurl" wbmd_lookup_type="" wbmd_storage_value=""/>
                             <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt=""/>
                         </link>
+                        <link>
+                            <link_text>5</link_text>
+                            <link_link_view>Page Refresh(Default)</link_link_view>
+                            <link_url chronic_id="" directive="friendlyurl" wbmd_lookup_type="" wbmd_storage_value=""/>
+                            <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt=""/>
+                        </link>
+                        <link>
+                            <link_text>5</link_text>
+                            <link_link_view>Page Refresh(Default)</link_link_view>
+                            <link_url chronic_id="" directive="friendlyurl" wbmd_lookup_type="" wbmd_storage_value=""/>
+                            <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt=""/>
+                        </link>
+                        <link>
+                            <link_text>5</link_text>
+                            <link_link_view>Page Refresh(Default)</link_link_view>
+                            <link_url chronic_id="" directive="friendlyurl" wbmd_lookup_type="" wbmd_storage_value=""/>
+                            <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt=""/>
+                        </link>
                     </links>
                     <descriptions>
                         <description/>
