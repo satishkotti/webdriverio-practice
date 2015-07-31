@@ -41,6 +41,7 @@ module.exports = function (grunt) {
                     '<%= dirSrc %>/css/build/nextup.css' : '<%= dirSrc %>/css/sass/nextup.scss',
                     '<%= dirSrc %>/css/build/navigation.css' : '<%= dirSrc %>/css/sass/navigation.scss',
                     '<%= dirSrc %>/css/build/moreabout.css' : '<%= dirSrc %>/css/sass/moreabout.scss',
+                    '<%= dirSrc %>/css/build/poll.css' : '<%= dirSrc %>/css/sass/poll.scss',
                     '<%= dirSrc %>/css/build/toc_modules.css' : '<%= dirSrc %>/css/sass/toc_modules.scss',
                     '<%= dirSrc %>/css/build/toc_column_modules.css' : '<%= dirSrc %>/css/sass/toc_column_modules.scss',
                     '<%= dirSrc %>/css/build/article_sequence.css' : '<%= dirSrc %>/css/sass/article_sequence.scss',

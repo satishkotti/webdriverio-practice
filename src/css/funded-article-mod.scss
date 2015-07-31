@@ -15,7 +15,7 @@
 }
 
 div.wbmd-grid-item{
-  min-height: 308px;
+  min-height: 313px;
   margin: 0 0 10px 0 !important;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.125);
 
@@ -36,6 +36,10 @@ div.wbmd-grid-item{
       padding: 10px 15px;
       color: #333;
     }
+  }
+
+  div.poll {
+    border: 0;
   }
 }
 
@@ -74,6 +78,8 @@ div.icm_wrap, div.dbm_wrap {
     width: auto !important;
   }
 }
+
+
 
 
 /* BEGIN ---- ICM Responsive FIX */
@@ -119,6 +125,10 @@ div.icm_wrap, div.dbm_wrap {
         width: 100% !important;
         min-height: inherit;
         height: auto;
+
+        div.poll {
+          margin: 0 !important;
+        }
       }
     }
   }
@@ -146,6 +156,10 @@ div.icm_wrap, div.dbm_wrap {
         float: none;
         margin: 0 0 20px 0 !important;
         box-shadow: 0 1px 2px 0 rgba(0,0,0,.125);
+
+        div.poll {
+          margin: 0 !important;
+        }
       }
     }
   }
@@ -168,6 +182,10 @@ div.icm_wrap, div.dbm_wrap {
         width: 100% !important;
         min-height: auto;
         height: auto;
+
+        div.poll {
+          margin: 0 !important;
+        }
       }
     }
   }
@@ -190,6 +208,10 @@ div.icm_wrap, div.dbm_wrap {
         width: 100% !important;
         min-height: auto;
         height: auto;
+
+        div.poll {
+          margin: 0 !important;
+        }
       }
     }
   }
