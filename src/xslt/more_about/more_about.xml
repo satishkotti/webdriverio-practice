@@ -44,13 +44,19 @@
                             <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt=""/>
                         </link>
                         <link>
+                            <link_text>2</link_text>
+                            <link_link_view>Page Refresh(Default)</link_link_view>
+                            <link_url chronic_id="" directive="friendlyurl" wbmd_lookup_type="" wbmd_storage_value=""/>
+                            <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt=""/>
+                        </link>
+                        <link>
                             <link_text>3</link_text>
                             <link_link_view>Page Refresh(Default)</link_link_view>
                             <link_url chronic_id="" directive="friendlyurl" wbmd_lookup_type="" wbmd_storage_value=""/>
                             <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt=""/>
                         </link>
                         <link>
-                            <link_text>5</link_text>
+                            <link_text>4</link_text>
                             <link_link_view>Page Refresh(Default)</link_link_view>
                             <link_url chronic_id="" directive="friendlyurl" wbmd_lookup_type="" wbmd_storage_value=""/>
                             <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt=""/>
@@ -62,13 +68,25 @@
                             <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt=""/>
                         </link>
                         <link>
-                            <link_text>5</link_text>
+                            <link_text>6</link_text>
                             <link_link_view>Page Refresh(Default)</link_link_view>
                             <link_url chronic_id="" directive="friendlyurl" wbmd_lookup_type="" wbmd_storage_value=""/>
                             <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt=""/>
                         </link>
                         <link>
-                            <link_text>5</link_text>
+                            <link_text>7</link_text>
+                            <link_link_view>Page Refresh(Default)</link_link_view>
+                            <link_url chronic_id="" directive="friendlyurl" wbmd_lookup_type="" wbmd_storage_value=""/>
+                            <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt=""/>
+                        </link>
+                        <link>
+                            <link_text>8</link_text>
+                            <link_link_view>Page Refresh(Default)</link_link_view>
+                            <link_url chronic_id="" directive="friendlyurl" wbmd_lookup_type="" wbmd_storage_value=""/>
+                            <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt=""/>
+                        </link>
+                        <link>
+                            <link_text>9</link_text>
                             <link_link_view>Page Refresh(Default)</link_link_view>
                             <link_url chronic_id="" directive="friendlyurl" wbmd_lookup_type="" wbmd_storage_value=""/>
                             <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt=""/>
