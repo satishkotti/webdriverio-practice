@@ -1,0 +1,105 @@
+.article {
+    clear: both;
+    position: relative;
+    width: 100%;
+
+    .article-content p {
+        line-height: 182%;
+        margin-bottom: 20px;
+
+        &.dwnl {
+            margin-bottom: 10px;
+        }
+    }
+
+    .infographic-img {
+        margin-bottom: 15px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .adobe-link {
+        a {
+            background: url(data:image/gif;base64,R0lGODlhEgASAOZzAK+vr7Gxsfr6+vv7+/X19YiIiN/f3/Pz8/j4+Pn5+WUAANwMDNsKCrCwsNMAAPzT0+7u7rsAAPmsrPb29vT09EBAQOfn5/9OTv2vr6AAAIsAAKkAAN8AAP1MTLMAAP0mJtsAAPyvr/Ly8tra2u/v7/uJiR4eHvubm7S0tNjY2Pq/v3EAAG8AAP1aWuHh4f2MjMPDw/17e2IAAPvm5uAAAP2wsPm+vrKyssfHx3IAAMMAANACAmoAALy8vMHBwYYAAPtpafDw8MgAAG0AANLS0tgAAKCgoK6urqKiovoiIu0YGGgAAObm5sTExPfOzrIAAPp4eJOTk9EDA8LCwsDAwLu7u7a2tvxqauvr65SUlKurq+QREf58fPbPz/UfH6Wlpejo6NYHB9oKCssAAP09Pfmrq/6enuPj4+Dg4MIAAOzs7PvS0vz8/MbGxiUlJf39/ff39/7+/v///////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAHMALAAAAAASABIAAAfdgHOCg4SFhnMjKA0AiwAANxaHczACBAdBakxUBgAuhEUcNCAOY2kRTxtfAwZaaIMOSR9eSlsMOzoZBQOrR1iCHmILCwxhUkIRGkYFBVlIKYI/OSssQzxLCjIKEGBnOFE+hW0IBORQXQciJBBEVeEJcPBATnATBxQUVuEC8HASEvAT4CAIEO7NgAQIrpDhJyABQUJt3rBhM6OFig42yqwR8HBQxIlcHmAIcaJEDI4FH7yoMXHigDdvOgqKeMFMnJs45ciROafJG5xA4+gEUGhKBTdIkyI1UaGHpKeCAgEAOw==) no-repeat 0 0;
+            padding-left: 20px;
+        }
+    }
+    footer {
+        background: 0;
+
+        .copyright {
+            color: #666;
+        }
+    }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-width: 320px) and (max-width: 736px) {
+    /* STYLES GO HERE */
+    .byline,
+    .infographic-content,
+    .article-footer {
+        padding: 0 10px;
+    }
+
+    .adobe-link {
+        display: none;
+    }
+}
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: 321px) {
+    /* STYLES GO HERE */
+}
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: 320px) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (portrait and landscape) ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    /* STYLES GO HERE */
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Small screens ----------- */
+@media only screen and (min-width: 676px) {
+    /* STYLES GO HERE */
+}
+/* Small screens : Retina ----------- */
+@media only screen and (min-width: 676px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (landscape) ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (landscape) - Retina ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (portrait) ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (portrait) - Retina ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1025px) {
+    /* STYLES GO HERE */
+}
+/* Desktops and laptops - Retina ----------- */
+@media only screen and (min-width: 1025px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Large screens : Non-Retina ----------- */
+@media only screen and (min-width: 1824px) {
+    /* STYLES GO HERE */
+}
+/* Large screens : Retina ----------- */
+@media only screen and (min-width: 1824px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}

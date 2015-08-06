@@ -14,15 +14,16 @@ body {
 }
 .grid {
 	margin: 0 auto;
+	width: 100% !important;
 }
 .grid-item {
-	width: 313px;
-	/*width: 32.75%;*/
+	/*width: 313px;*/
+	width: 32.68%;
 	min-height: 305px;
 	/*height: 320px;*/
 	float: left;
 	background-color: #fff;
-	margin: 0 0 20px 0;
+	margin: 0 0 10px 0;
 }
 .grid-item.ad {
 	text-align: center;
@@ -60,27 +61,27 @@ and (max-width : 480px) {
 	width: 100%;
 }
 }
- 
+
 /* Smartphones (landscape) ----------- */
 @media only screen
 and (min-width : 321px) {
 /* Styles */
 }
- 
+
 /* Smartphones (portrait) ----------- */
 @media only screen
 and (max-width : 320px) {
 /* Styles */
 }
- 
+
 /* iPads (portrait and landscape) ----------- */
 @media only screen
 and (min-width : 768px)
 and (max-width : 1024px) {
 /* Styles */
-	
+
 }
- 
+
 /* iPads (landscape) ----------- */
 @media only screen
 and (min-width : 768px)
@@ -88,7 +89,7 @@ and (max-width : 1024px)
 and (orientation : landscape) {
 /* Styles */
 }
- 
+
 /* iPads (portrait) ----------- */
 @media only screen
 and (min-width : 768px)
@@ -102,19 +103,19 @@ and (orientation : portrait) {
 		width: 100%;
 	}
 }
- 
+
 /* Desktops and laptops ----------- */
 @media only screen
 and (min-width : 1224px) {
 /* Styles */
 }
- 
+
 /* Large screens ----------- */
 @media only screen
 and (min-width : 1824px) {
 /* Styles */
 }
- 
+
 /* iPhone 4 ----------- */
 @media
 only screen and (-webkit-min-device-pixel-ratio : 1.5),

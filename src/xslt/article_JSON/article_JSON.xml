@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <webmd_rendition>
   <content>
-<wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e811f82ef">
+<wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e812434d9">
     <webmd_module>
         <module_settings>
             <chronic_id>091e9c5e811f0312</chronic_id>
-            <r_object_id>091e9c5e811f82ef</r_object_id>
+            <r_object_id>091e9c5e812434d9</r_object_id>
             <title>article-data</title>
             <object_name>module_article-data_091e9c5e811f0312.xml</object_name>
             <object_type>wbmd_pb_templatemodule</object_type>
@@ -21,7 +21,7 @@
             <wbmd_pb_module_sp_program />
             <wbmd_pb_module_tier>0</wbmd_pb_module_tier>
             <wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
-            <r_modify_date>06/22/2015 12:27:42</r_modify_date>
+            <r_modify_date>08/05/2015 13:49:39</r_modify_date>
             <wbmd_c_channel_ids_group />
             <wbmd_pb_asset_css path="/webmd/PageBuilder_Assets/CSS/EditorialModule/Article Data/Standard_091e9c5e811f0311.css" object_type="wbmd_pb_css" chronic_id="091e9c5e811f0311" />
             <wbmd_pb_module_xsl path="/webmd/PageBuilder_Assets/XSL/EditorialModule/Article Data_091e9c5e811f0310.xsl" object_type="wbmd_pb_xsl" chronic_id="091e9c5e811f0310" />
@@ -32,9 +32,9 @@
             <class>EditorialModule</class>
         </module_settings>
         <module_data>
-            <module_title />
+            <module_title>Standard Funded Editorial Destination</module_title>
             <module_link_view>Page Refresh(Default)</module_link_view>
-            <module_link chronic_id="" directive="friendlyurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" />
+            <module_link chronic_id="091e9c5e811f9b21" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
             <links>
                 <link_bullet>false</link_bullet>
                 <link>
@@ -117,6 +117,20 @@
                     <link_url chronic_id="091e9c5e811f8072" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
                     <link_source_icon chronic_id="091e9c5e80eed53b" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/news/2014/05_2014/mers_news_story_/650x350_mers_news_story_.jpg" alt="MERS" />
                 </link>
+                <link>
+                    <link_text>Health Guide and Infographic</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e8123e859" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e811eda35" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/news/2015/06_2015/unadulterated_foods/650x350_unadulterated_foods.jpg" alt="olive oil packaging plant" />
+                </link>
+                <link>
+                    <link_text>Quiz: Best \&amp; Worst Foods for Belly Fat</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e8123a41e" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e81004728" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/quizzes/belly_fat_rmq/650x350_belly_fat_rmq.jpg" alt="hands pouring beer" />
+                </link>
             </links>
             <descriptions>
                 <description />
@@ -136,6 +150,9 @@
 </content>
   <friendlyurls />
   <referenced_objects>
+    <object chronic_id="091e9c5e811f9b21" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Program Title TOC_091e9c5e811f9b21/page_Program Title TOC_091e9c5e811f9b21.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/default.htm" />
+    </object>
     <object chronic_id="091e9c5e811f0a04" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 01_091e9c5e811f0a04/page_Article Title 01_091e9c5e811f0a04.wxml">
       <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/article-title-01" />
     </object>
@@ -168,6 +185,12 @@
     </object>
     <object chronic_id="091e9c5e811f8072" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Sponsored Title 01_091e9c5e811f8072/page_Sponsored Title 01_091e9c5e811f8072.wxml">
       <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/sponsored-title-01" />
+    </object>
+    <object chronic_id="091e9c5e8123e859" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Health Guide and Infographic_091e9c5e8123e859/page_Health Guide and Infographic_091e9c5e8123e859.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/health-guide-and-infographic" />
+    </object>
+    <object chronic_id="091e9c5e8123a41e" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Quiz 01_091e9c5e8123a41e/page_Quiz 01_091e9c5e8123a41e.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/quiz-01" />
     </object>
   </referenced_objects>
   <container_hierarchy />

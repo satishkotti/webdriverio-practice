@@ -46,6 +46,8 @@ module.exports = function (grunt) {
                     '<%= dirSrc %>/css/build/toc_column_modules.css' : '<%= dirSrc %>/css/sass/toc_column_modules.scss',
                     '<%= dirSrc %>/css/build/article_sequence.css' : '<%= dirSrc %>/css/sass/article_sequence.scss',
                     '<%= dirSrc %>/css/build/toc_hero.css' : '<%= dirSrc %>/css/sass/toc_hero.scss',
+                    '<%= dirSrc %>/css/build/infographic.css' : '<%= dirSrc %>/css/sass/infographic.scss',
+                    '<%= dirSrc %>/css/build/see_all.css' : '<%= dirSrc %>/css/sass/see_all.scss',
                     '<%= dirSrc %>/css/build/footer.css' : '<%= dirSrc %>/css/sass/footer.scss'
                 }
             }
