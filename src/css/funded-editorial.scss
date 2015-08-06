@@ -1,23 +1,23 @@
 // Variables
-@import 'sass/variables';
+@import 'partials/variables';
 
 // Mixins
-@import 'sass/mixins';
+@import 'partials/mixins';
 
 
 // Animations
-@import 'sass/animate';
+@import 'partials/animate';
 
 // Article Sequence
-@import 'sass/article_sequence';
+@import 'partials/article_sequence';
 
 // Media Queries
-@import 'sass/media-queries/desktops-laptops';
-@import 'sass/media-queries/small-desktops-laptops';
-@import 'sass/media-queries/large-screens';
-@import 'sass/media-queries/ipads-landscape';
-@import 'sass/media-queries/ipads-portrait';
-@import 'sass/media-queries/ipads-portrait-landscape';
-@import 'sass/media-queries/smartphones-landscape';
-@import 'sass/media-queries/smartphones-portrait-landscape';
-@import 'sass/media-queries/smartphones-portrait';
+@import 'partials/media-queries/desktops-laptops';
+@import 'partials/media-queries/small-desktops-laptops';
+@import 'partials/media-queries/large-screens';
+@import 'partials/media-queries/ipads-landscape';
+@import 'partials/media-queries/ipads-portrait';
+@import 'partials/media-queries/ipads-portrait-landscape';
+@import 'partials/media-queries/smartphones-landscape';
+@import 'partials/media-queries/smartphones-portrait-landscape';
+@import 'partials/media-queries/smartphones-portrait';
