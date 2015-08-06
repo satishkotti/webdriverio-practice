@@ -1,14 +1,28 @@
 module.exports = function (grunt) {
 
-	// Build all
-	grunt.registerTask('default', ['clean','sass','autoprefixer','cssmin','concat','copy','uglify']);
-	// Build CSS
-	grunt.registerTask('css', ['clean','sass','autoprefixer','cssmin']);
-	// Build JS
-	grunt.registerTask('js', ['clean','concat','copy','uglify']);
 
-	// Zip Files
-	grunt.registerTask('zip', ['webmd-zip']);
+	// By default just display a message
+	grunt.registerTask('default', ['tasks']);
+
+	// Instead of building all files we prompt the user on which build they want
+	grunt.registerTask('tasks', function() {
+		grunt.log.subhead('Please choose a grunt build:');
+		grunt.log.ok('grunt build		builds everything');
+		grunt.log.ok('grunt css		build css');
+		grunt.log.ok('grunt js		build js');
+		grunt.log.subhead('Ingestion targets:');
+		grunt.log.error('grunt webmd-ingest:live');
+		grunt.log.ok('grunt webmd-ingest:staging');
+		grunt.log.ok('grunt webmd-ingest:perf');
+		grunt.log.ok('grunt webmd-ingest:qa00');
+		grunt.log.ok('grunt webmd-ingest:qa01');
+	});
+	// Build all
+	grunt.registerTask('build', ['clean','sass','autoprefixer','cssmin','concat','copy','uglify','webmd-zip']);
+	// Build CSS
+	grunt.registerTask('css', ['clean','sass','autoprefixer','cssmin','webmd-zip']);
+	// Build JS
+	grunt.registerTask('js', ['clean','concat','copy','uglify','webmd-zip']);
 
 	require('load-grunt-tasks')(grunt);
 
@@ -21,11 +35,11 @@ module.exports = function (grunt) {
 		dirDctmPbJsRquirePath : 'webmd/consumer_assets/site_images/amd_modules',
 		dirDctmPbCssPath : 'webmd/PageBuilder_Assets/CSS/funded-editorial',
 		dirDctmPbImgPath : 'webmd/consumer_assets/site_images/funded-editorial',
-		fundedEditorialZip : 'zip/funded-editorial.zip',
+		fundedEditorialZip : 'ingest.zip',
 
 		// Build Tasks
 		clean: {
-			all: ['dist','build','sourcemaps','zip','src/css/build','src/js/build']
+			all: ['dist','build','sourcemaps']
 		},
 		sass: {
 			dist: {
@@ -33,24 +47,19 @@ module.exports = function (grunt) {
 					style: 'expanded',
 					sourcemap: 'none'
 				},
-				files: {
-					'<%= dirSrc %>/css/funded-editorial.css' : '<%= dirSrc %>/css/funded-editorial.scss',
-					'<%= dirSrc %>/css/funded-article-mod.css' : '<%= dirSrc %>/css/funded-article-mod.scss',
-					'<%= dirSrc %>/css/build/masthead.css' : '<%= dirSrc %>/css/sass/masthead.scss',
-					'<%= dirSrc %>/css/build/attribution.css' : '<%= dirSrc %>/css/sass/attribution.scss',
-					'<%= dirSrc %>/css/build/nextup.css' : '<%= dirSrc %>/css/sass/nextup.scss',
-					'<%= dirSrc %>/css/build/navigation.css' : '<%= dirSrc %>/css/sass/navigation.scss',
-					'<%= dirSrc %>/css/build/moreabout.css' : '<%= dirSrc %>/css/sass/moreabout.scss',
-					'<%= dirSrc %>/css/build/poll.css' : '<%= dirSrc %>/css/sass/poll.scss',
-					'<%= dirSrc %>/css/build/quiz.css' : '<%= dirSrc %>/css/sass/quiz.scss',
-					'<%= dirSrc %>/css/build/toc_modules.css' : '<%= dirSrc %>/css/sass/toc_modules.scss',
-					'<%= dirSrc %>/css/build/toc_column_modules.css' : '<%= dirSrc %>/css/sass/toc_column_modules.scss',
-					'<%= dirSrc %>/css/build/article_sequence.css' : '<%= dirSrc %>/css/sass/article_sequence.scss',
-					'<%= dirSrc %>/css/build/toc_hero.css' : '<%= dirSrc %>/css/sass/toc_hero.scss',
-					'<%= dirSrc %>/css/build/infographic.css' : '<%= dirSrc %>/css/sass/infographic.scss',
-					'<%= dirSrc %>/css/build/see_all.css' : '<%= dirSrc %>/css/sass/see_all.scss',
-					'<%= dirSrc %>/css/build/footer.css' : '<%= dirSrc %>/css/sass/footer.scss'
-				}
+				files: [{
+					expand: true,
+					cwd: '<%= dirSrc %>',
+					src: ['css/*.scss'],
+					dest: '<%= dirBuild %>/',
+					ext: '.css'
+				}, {
+					expand: true,
+					cwd: '<%= dirSrc %>',
+					src: ['css/modules/*.scss'],
+					dest: '<%= dirBuild %>/',
+					ext: '.css'
+				}]
 			}
 		},
 		autoprefixer: {
@@ -58,8 +67,7 @@ module.exports = function (grunt) {
 				options: {
 					browsers: ['last 2 versions', 'ie 8', 'ie 9']
 				},
-				src: '<%= dirSrc %>/css/funded-editorial.css',
-				dest: '<%= dirBuild %>/css/funded-editorial.css'
+				src: '<%= dirBuild %>/**/*.css'
 			}
 		},
 		cssmin: {
@@ -68,10 +76,19 @@ module.exports = function (grunt) {
 				roundingPrecision: -1
 			},
 			target: {
-				files: {
-					'<%= dirDist %>/<%= dirDctmPbCssPath %>/funded-editorial.min.css' : '<%= dirBuild %>/css/funded-editorial.css',
-					'<%= dirDist %>/<%= dirDctmPbCssPath %>/funded-article-mod.min.css' : '<%= dirBuild %>/css/funded-article-mod.css'
-				}
+				files: [{
+					expand: true,
+					cwd: '<%= dirBuild %>/css',
+					src: ['*.css'],
+					dest: '<%= dirDist %>/<%= dirDctmPbCssPath %>/'
+				},
+				{
+					expand: true,
+					cwd: '<%= dirBuild %>/css/modules/',
+					src: ['*.css'],
+					dest: '<%= dirBuild %>/css/modules/min/',
+					ext: '.min.css'
+				}]
 			}
 		},
 		concat: {
@@ -137,6 +154,43 @@ module.exports = function (grunt) {
 			all: {
 				src : '<%= dirDist %>/webmd',
 				dest : '<%= fundedEditorialZip %>'
+			}
+		},
+		'webmd-ingest' : {
+			live: {
+				src : '<%= fundedEditorialZip %>',
+				options : {
+					'env' : 'prod',
+					'lifeCycle' : 'active'
+				}
+			},
+			staging: {
+				src : '<%= fundedEditorialZip %>',
+				options : {
+					'env' : 'prod',
+					'lifeCycle' : 'staging'
+				}
+			},
+			perf: {
+				src : '<%= fundedEditorialZip %>',
+				options : {
+					'env' : 'perf',
+					'lifeCycle' : 'active'
+				}
+			},
+			qa00: {
+				src : '<%= fundedEditorialZip %>',
+				options : {
+					'env' : 'qa00',
+					'lifeCycle' : 'active'
+				}
+			},
+			qa01: {
+				src : '<%= fundedEditorialZip %>',
+				options : {
+					'env' : 'qa01',
+					'lifeCycle' : 'active'
+				}
 			}
 		},
 		watch: {
