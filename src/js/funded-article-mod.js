@@ -51,7 +51,7 @@ $.fn.imagesLoaded = function(callback) {
         elems_src.push(this.src);
         // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
         // data uri bypasses webkit log warning (thx doug jones)
-        this.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+        this.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
     });
 
     return this;
@@ -82,7 +82,7 @@ webmd.fundedArticleMod = {
         }
 
         // Setup keys in self.contentPanes object
-        $.each($nodes, function(index) {
+        $.each($nodes, function() {
             var $node = $(this), // use the node from XSL
                 contentPaneId = $node.closest('div.pane')[0].id, // get the id of the parent content pane
                 $childNodes;
@@ -94,9 +94,9 @@ webmd.fundedArticleMod = {
                     'msnry': null
                 }; // Set content pane id as key in self.contentPanes
 
-                $childNodes = $("#" + contentPaneId).children('div');
+                $childNodes = $('#' + contentPaneId).children('div');
 
-                $.each($childNodes, function(index) {
+                $.each($childNodes, function() {
                     var $child = $(this);
 
                     if (!$child.hasClass('moduleSpacer_rdr')) {
@@ -126,16 +126,15 @@ webmd.fundedArticleMod = {
     },
 
     addToSessionHistory: function() {
-        var self = this,
-            url = window.location.href,
-            current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
+        var url = window.location.href,
+            current_url = url.split('?')[0].split('#')[0], // remove querystring and hash from url
             json = sessionStorage.visitedPages || {
-                "visited": []
+                'visited': []
             },
-            visitedObj = (typeof json === "string") ? JSON.parse(json) : json,
+            visitedObj = (typeof json === 'string') ? JSON.parse(json) : json,
             urlExists = false;
 
-        for (key in visitedObj.visited) {
+        for (var key in visitedObj.visited) {
             if (visitedObj.visited[key].page === current_url) {
                 urlExists = true;
                 break;
@@ -144,7 +143,7 @@ webmd.fundedArticleMod = {
 
         if (!urlExists && current_url) {
             visitedObj.visited.push({
-                "page": current_url
+                'page': current_url
             });
         }
 
@@ -177,9 +176,9 @@ webmd.fundedArticleMod = {
         var self = this,
             nodeId = $node.attr('id'),
             nodeArticleNum = $node.data('articleNum'),
-            regEx_1col = new RegExp("1-col"),
-            regEx_2col = new RegExp("2-col"),
-            regEx_3col = new RegExp("3-col"),
+            regEx_1col = new RegExp('1-col'),
+            regEx_2col = new RegExp('2-col'),
+            regEx_3col = new RegExp('3-col'),
             articles = self.article_data.articles,
             newline = '\n',
             articleId,
@@ -227,13 +226,13 @@ webmd.fundedArticleMod = {
         var self = this,
             contentPanes = self.contentPanes;
 
-        for (id in contentPanes) {
-            var $gridDiv = $("<div></div>"),
-                contentPane_html = $("#" + id).html();
+        for (var id in contentPanes) {
+            var $gridDiv = $('<div></div>'),
+                contentPane_html = $('#' + id).html();
 
             $gridDiv.addClass('wbmd-masonry-grid').html(contentPane_html);
 
-            $("#" + id).html("").addClass("wbmd-masonry-container").append($gridDiv);
+            $('#' + id).html('').addClass('wbmd-masonry-container').append($gridDiv);
         }
 
         return true;
@@ -251,7 +250,14 @@ webmd.fundedArticleMod = {
             standardTileHeight = $('.wbmd-grid-item:not(.icm_wrap):not(.dbm_wrap)').outerHeight();
         }
 
-        for (id in self.contentPanes) {
+        for (var id in self.contentPanes) {
+            updateContentPane(id);
+        }
+
+        self.createMasonry(true);
+
+
+        function updateContentPane(id) {
             $('div#' + id + '.pane.wbmd-masonry-container').find('.wbmd-grid-item').each(function() {
                 var $node = $(this),
                     nodeH = $node.outerHeight(),
@@ -282,51 +288,49 @@ webmd.fundedArticleMod = {
                         }
                     }
                 } else {
-                	nodeH = parseInt($node.attr('data-orig-height'));
+                    nodeH = parseInt($node.attr('data-orig-height'));
 
-                	if (nodeH <= standardTileHeight) {
-                		multiplier = 1;
-                	} else if (
-                		(nodeH === (standardTileHeight * 2)) ||
-                		((nodeH > standardTileHeight) && (nodeH < (standardTileHeight * 2)))) {
-                		multiplier = 2;
-                	} else if (
-                		(nodeH === (standardTileHeight * 3)) ||
-                		((nodeH > (standardTileHeight * 2)) && (nodeH < (standardTileHeight * 3)))) {
-                		multiplier = 3;
-                	} else if (
-                		(nodeH === (standardTileHeight * 4)) ||
-                		((nodeH > (standardTileHeight * 3)) && (nodeH < (standardTileHeight * 4)))) {
-                		multiplier = 4;
-                	} else if (
-                		(nodeH === (standardTileHeight * 5)) ||
-                		((nodeH > (standardTileHeight * 4)) && (nodeH < (standardTileHeight * 5)))) {
-                		multiplier = 5;
-                	} else if (
-                		(nodeH === (standardTileHeight * 6)) ||
-                		((nodeH > (standardTileHeight * 5)) && (nodeH < (standardTileHeight * 6)))) {
-                		multiplier = 6;
-                	} else {
-                		multiplier = 7;
-                	}
+                    if (nodeH <= standardTileHeight) {
+                        multiplier = 1;
+                    } else if (
+                        (nodeH === (standardTileHeight * 2)) ||
+                        ((nodeH > standardTileHeight) && (nodeH < (standardTileHeight * 2)))) {
+                        multiplier = 2;
+                    } else if (
+                        (nodeH === (standardTileHeight * 3)) ||
+                        ((nodeH > (standardTileHeight * 2)) && (nodeH < (standardTileHeight * 3)))) {
+                        multiplier = 3;
+                    } else if (
+                        (nodeH === (standardTileHeight * 4)) ||
+                        ((nodeH > (standardTileHeight * 3)) && (nodeH < (standardTileHeight * 4)))) {
+                        multiplier = 4;
+                    } else if (
+                        (nodeH === (standardTileHeight * 5)) ||
+                        ((nodeH > (standardTileHeight * 4)) && (nodeH < (standardTileHeight * 5)))) {
+                        multiplier = 5;
+                    } else if (
+                        (nodeH === (standardTileHeight * 6)) ||
+                        ((nodeH > (standardTileHeight * 5)) && (nodeH < (standardTileHeight * 6)))) {
+                        multiplier = 6;
+                    } else {
+                        multiplier = 7;
+                    }
 
                     if (windowW > 675 && multiplier > 1) {
-                		newHeight = ((standardTileHeight * multiplier) + (gutter * multiplier)) - gutter;
+                        newHeight = ((standardTileHeight * multiplier) + (gutter * multiplier)) - gutter;
 
-                		if (adArray.indexOf($node.attr('id')) !== -1) {
-                			btmMargin = newHeight - nodeH;
-                			$node.css('cssText', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
-                		} else {
-                			$node.height(newHeight);
-                		}
+                        if (adArray.indexOf($node.attr('id')) !== -1) {
+                            btmMargin = newHeight - nodeH;
+                            $node.css('cssText', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
+                        } else {
+                            $node.height(newHeight);
+                        }
                     } else {
                         $node.css('cssText', $node.attr('data-orig-csstext'));
                     }
                 }
             });
         }
-
-        self.createMasonry(true);
     },
 
     createMasonry: function(resetLayout) {
@@ -334,26 +338,32 @@ webmd.fundedArticleMod = {
             contentPanes = self.contentPanes,
             gridItemClass = '.' + self.gridItemClass;
 
-        require(["masonry/1/masonry"], function(Masonry) {
-            for (id in contentPanes) {
-                var contentPane = contentPanes[id],
-                    masonryGrid = '#' + id + ' .wbmd-masonry-grid';
-
-                if (resetLayout) {
-                    contentPane.msnry.layout();
-                } else {
-                    $(masonryGrid).imagesLoaded(function() {
-                        contentPane.msnry = new Masonry(masonryGrid, {
-                            itemSelector: gridItemClass,
-                            columnWidth: '.tile-width',
-                            gutter: self.masonryGutter,
-                            isFitWidth: true,
-                            isResizable: true
-                        });
-                    });
-                }
+        
+            for (var id in contentPanes) {
+                createMasonryGrid(id);
             }
-        });
+
+            function createMasonryGrid(id) {
+                require(['masonry/1/masonry'], function(Masonry) {
+                    var contentPane = contentPanes[id],
+                        masonryGrid = '#' + id + ' .wbmd-masonry-grid';
+
+                    if (resetLayout) {
+                        contentPane.msnry.layout();
+                    } else {
+                        $(masonryGrid).imagesLoaded(function() {
+                            contentPane.msnry = new Masonry(masonryGrid, {
+                                itemSelector: gridItemClass,
+                                columnWidth: '.tile-width',
+                                gutter: self.masonryGutter,
+                                isFitWidth: true,
+                                isResizable: true
+                            });
+                        });
+                    }
+                });
+            }
+        
     },
 
     bindEvents: function() {
@@ -381,7 +391,7 @@ webmd.fundedArticleMod = {
     render: function() { // uses handlebars template above
         var self = this;
 
-        if (typeof article_data !== "undefined") {
+        if (typeof article_data !== 'undefined') {
 
             self.article_data = article_data;
 

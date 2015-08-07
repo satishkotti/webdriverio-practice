@@ -64,7 +64,7 @@ webmd.fundedNavigation = {
         var self = this,
             article_data = this.article_data,
             url = window.location.href,
-            current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
+            current_url = url.split('?')[0].split('#')[0], // remove querystring and hash from url
             articles = article_data.articles,
             article;
 
@@ -99,12 +99,12 @@ webmd.fundedNavigation = {
     addToSessionHistory : function() {
         var self = this,
             url = window.location.href,
-            current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
-            json = sessionStorage.visitedPages || {"visited":[]},
-            visitedObj = (typeof json === "string") ? JSON.parse(json) : json,
+            current_url = url.split('?')[0].split('#')[0], // remove querystring and hash from url
+            json = sessionStorage.visitedPages || {'visited':[]},
+            visitedObj = (typeof json === 'string') ? JSON.parse(json) : json,
             urlExists = false;
 
-        for (key in visitedObj.visited) {
+        for (var key in visitedObj.visited) {
             if (visitedObj.visited[key].page === current_url) {
                 urlExists = true;
                 break;
@@ -112,7 +112,7 @@ webmd.fundedNavigation = {
         }
 
         if (!urlExists && current_url) {
-            visitedObj.visited.push({"page" : current_url});
+            visitedObj.visited.push({'page' : current_url});
         }
 
         sessionStorage.visitedPages = JSON.stringify(visitedObj);
@@ -147,6 +147,7 @@ webmd.fundedNavigation = {
             article_data = this.article_data,
             current_article_id = article_data.current_article_id,
             articles = article_data.articles,
+            i,
             article,
             nextArticleFound = false,
             prevArticleFound = false;
@@ -184,7 +185,7 @@ webmd.fundedNavigation = {
         // Last article does not have a next
         // Set Next Article as first article in JSON Array that is not sponsored
         if (!nextArticleFound) {
-            for (var i=0; i<articles.length; i++) {
+            for (i=0; i<articles.length; i++) {
                 if (self.hide_sponsor_pages) {
                     if (!articles[i].sponsored) {
                         nextArticleFound = true;
@@ -202,7 +203,7 @@ webmd.fundedNavigation = {
         // First article does not have a previous
         // Set Previous Article as last article in JSON Array (treat articles as a loop)
         if (!prevArticleFound) {
-            for (var i=1; i<articles.length; i++) {
+            for (i=1; i<articles.length; i++) {
                 if (self.hide_sponsor_pages) {
                     if (!articles[articles.length-i].sponsored) {
                         prevArticleFound = true;
@@ -275,7 +276,7 @@ webmd.fundedNavigation = {
     render: function(){ // uses handlebars template above
         var self = this;
 
-        if (typeof article_data !== "undefined") {
+        if (typeof article_data !== 'undefined') {
 
             self.article_data = article_data;
 
@@ -291,13 +292,13 @@ webmd.fundedNavigation = {
             } else {
                 self.injectHBtemplateJS();
                 
-                require(["handlebars/1/handlebars"], function(Handlebars) {
-                    var $template = $("#entry-template"),
-                        $container = $(".article-nav-container"),
-                        $article_nav = $(".article-nav"),
+                require(['handlebars/1/handlebars'], function(Handlebars) {
+                    var $template = $('#entry-template'),
+                        $container = $('.article-nav-container'),
+                        $article_nav = $('.article-nav'),
                         source = $template.html(),
                         template = Handlebars.compile(source),
-                        context = {"article_data" : self.article_data} || {},
+                        context = {'article_data' : self.article_data} || {},
                         html = template(context);
 
                     $container.prepend(html);

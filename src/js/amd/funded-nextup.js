@@ -98,7 +98,7 @@ webmd.fundedNextUp = {
             visitedObj = (typeof json === "string") ? JSON.parse(json) : json,
             urlExists = false;
 
-        for (key in visitedObj.visited) {
+        for (var key in visitedObj.visited) {
             if (visitedObj.visited[key].page === current_url) {
                 urlExists = true;
                 break;
@@ -152,11 +152,11 @@ webmd.fundedNextUp = {
                 (articleIdArrLen < self.articles_to_display)) {
                 if (self.hide_sponsor_pages) {
                     if (!articles[key].sponsored) {
-                        self.nextup_article_data["articles"].push({"article" : article});
+                        self.nextup_article_data.articles.push({"article" : article});
                         self.article_ids_to_display.push(articles[key].id);
                     }
                 } else {
-                    self.nextup_article_data["articles"].push({"article" : article});
+                    self.nextup_article_data.articles.push({"article" : article});
                     self.article_ids_to_display.push(articles[key].id);
                 }
             }
@@ -179,12 +179,12 @@ webmd.fundedNextUp = {
                 if (!articleExists && (self.article_ids_to_display.length < self.articles_to_display)) {
                     if (self.hide_sponsor_pages) {
                         if (!articles[key].sponsored && !currentArticle) {
-                            self.nextup_article_data["articles"].push({article : articles[key].article});
+                            self.nextup_article_data.articles.push({article : articles[key].article});
                             self.article_ids_to_display.push(articles[key].id);
                         }
                     } else {
                         if (!currentArticle) {
-                            self.nextup_article_data["articles"].push({article : articles[key].article});
+                            self.nextup_article_data.articles.push({article : articles[key].article});
                             self.article_ids_to_display.push(articles[key].id);
                         }
                     }
