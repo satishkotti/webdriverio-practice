@@ -1,14 +1,28 @@
 module.exports = function (grunt) {
 
-	// Build all
-	grunt.registerTask('default', ['clean','sass','autoprefixer','cssmin','concat','copy','uglify']);
-	// Build CSS
-	grunt.registerTask('css', ['clean','sass','autoprefixer','cssmin']);
-	// Build JS
-	grunt.registerTask('js', ['clean','concat','copy','uglify']);
 
-	// Zip Files
-	grunt.registerTask('zip', ['webmd-zip']);
+	// By default just display a message
+	grunt.registerTask('default', ['tasks']);
+
+	// Instead of building all files we prompt the user on which build they want
+	grunt.registerTask('tasks', function() {
+		grunt.log.subhead('Please choose a grunt build:');
+		grunt.log.ok('grunt build		builds everything');
+		grunt.log.ok('grunt css		build css');
+		grunt.log.ok('grunt js		build js');
+		grunt.log.subhead('Ingestion targets:');
+		grunt.log.error('grunt webmd-ingest:live');
+		grunt.log.ok('grunt webmd-ingest:staging');
+		grunt.log.ok('grunt webmd-ingest:perf');
+		grunt.log.ok('grunt webmd-ingest:qa00');
+		grunt.log.ok('grunt webmd-ingest:qa01');
+	});
+	// Build all
+	grunt.registerTask('build', ['clean','sass','autoprefixer','cssmin','jshint','uglify','webmd-zip']);
+	// Build CSS
+	grunt.registerTask('css', ['clean','sass','autoprefixer','cssmin','webmd-zip']);
+	// Build JS
+	grunt.registerTask('js', ['clean','jshint','uglify','webmd-zip']);
 
 	require('load-grunt-tasks')(grunt);
 
@@ -21,11 +35,11 @@ module.exports = function (grunt) {
 		dirDctmPbJsRquirePath : 'webmd/consumer_assets/site_images/amd_modules',
 		dirDctmPbCssPath : 'webmd/PageBuilder_Assets/CSS/funded-editorial',
 		dirDctmPbImgPath : 'webmd/consumer_assets/site_images/funded-editorial',
-		fundedEditorialZip : 'zip/funded-editorial.zip',
+		fundedEditorialZip : 'ingest.zip',
 
 		// Build Tasks
 		clean: {
-			all: ['dist','build','sourcemaps','zip','src/css/build','src/js/build']
+			all: ['dist','build','sourcemaps','ingest.zip']
 		},
 		sass: {
 			dist: {
@@ -33,20 +47,19 @@ module.exports = function (grunt) {
 					style: 'expanded',
 					sourcemap: 'none'
 				},
-				files: {
-					'<%= dirSrc %>/css/funded-editorial.css' : '<%= dirSrc %>/css/funded-editorial.scss',
-					'<%= dirSrc %>/css/funded-article-mod.css' : '<%= dirSrc %>/css/funded-article-mod.scss',
-					'<%= dirSrc %>/css/build/masthead.css' : '<%= dirSrc %>/css/sass/masthead.scss',
-					'<%= dirSrc %>/css/build/attribution.css' : '<%= dirSrc %>/css/sass/attribution.scss',
-					'<%= dirSrc %>/css/build/nextup.css' : '<%= dirSrc %>/css/sass/nextup.scss',
-					'<%= dirSrc %>/css/build/navigation.css' : '<%= dirSrc %>/css/sass/navigation.scss',
-					'<%= dirSrc %>/css/build/moreabout.css' : '<%= dirSrc %>/css/sass/moreabout.scss',
-					'<%= dirSrc %>/css/build/toc_modules.css' : '<%= dirSrc %>/css/sass/toc_modules.scss',
-					'<%= dirSrc %>/css/build/toc_column_modules.css' : '<%= dirSrc %>/css/sass/toc_column_modules.scss',
-					'<%= dirSrc %>/css/build/article_sequence.css' : '<%= dirSrc %>/css/sass/article_sequence.scss',
-					'<%= dirSrc %>/css/build/toc_hero.css' : '<%= dirSrc %>/css/sass/toc_hero.scss',
-					'<%= dirSrc %>/css/build/footer.css' : '<%= dirSrc %>/css/sass/footer.scss'
-				}
+				files: [{
+					expand: true,
+					cwd: '<%= dirSrc %>/css',
+					src: ['*.scss'],
+					dest: '<%= dirBuild %>/<%= dirDctmPbCssPath %>/',
+					ext: '.css'
+				}, {
+					expand: true,
+					cwd: '<%= dirSrc %>/css/modules',
+					src: ['*.scss'],
+					dest: '<%= dirBuild %>/modules/css/',
+					ext: '.css'
+				}]
 			}
 		},
 		autoprefixer: {
@@ -54,8 +67,7 @@ module.exports = function (grunt) {
 				options: {
 					browsers: ['last 2 versions', 'ie 8', 'ie 9']
 				},
-				src: '<%= dirSrc %>/css/funded-editorial.css',
-				dest: '<%= dirBuild %>/css/funded-editorial.css'
+				src: '<%= dirBuild %>/**/*.css'
 			}
 		},
 		cssmin: {
@@ -64,13 +76,28 @@ module.exports = function (grunt) {
 				roundingPrecision: -1
 			},
 			target: {
-				files: {
-					'<%= dirDist %>/<%= dirDctmPbCssPath %>/funded-editorial.min.css' : '<%= dirBuild %>/css/funded-editorial.css',
-					'<%= dirDist %>/<%= dirDctmPbCssPath %>/funded-article-mod.min.css' : '<%= dirBuild %>/css/funded-article-mod.css'
-				}
+				files: [{
+					expand: true,
+					cwd: '<%= dirBuild %>',
+					src: ['<%= dirDctmPbCssPath %>/*.css'],
+					dest: '<%= dirDist %>/'
+				},
+				{
+					expand: true,
+					cwd: '<%= dirBuild %>/modules/css',
+					src: ['*.css'],
+					dest: '<%= dirBuild %>/modules/css/min/',
+					ext: '.min.css'
+				}]
 			}
 		},
-		concat: {
+		jshint: {
+			all: [
+				'Gruntfile.js',
+				'<%= dirSrc %>/js/**/*.js'
+			]
+		},
+/*		concat: {
 			js: {
 				options: {
 					separator: ';',
@@ -81,17 +108,7 @@ module.exports = function (grunt) {
 				],
 				dest: '<%= dirSrc %>/js/build/funded-editorial.js',
 			}
-		},
-		copy: {
-			target: {
-				files: {
-					'<%= dirSrc %>/js/build/funded-navigation.js' : '<%= dirSrc %>/js/funded-navigation.js',
-					'<%= dirSrc %>/js/build/funded-nextup.js' : '<%= dirSrc %>/js/funded-nextup.js',
-					'<%= dirSrc %>/js/build/funded-more-about.js' : '<%= dirSrc %>/js/funded-more-about.js',
-					'<%= dirSrc %>/js/build/funded-article-mod.js' : '<%= dirSrc %>/js/funded-article-mod.js'
-				}
-			}
-		},
+		},*/
 		uglify: {
 			build: {
 				options: {
@@ -102,14 +119,18 @@ module.exports = function (grunt) {
 						drop_console: false // removes all console.log incase there left in the code
 					}
 				},
-				files: {
-					'<%= dirBuild %>/js/funded-editorial.js' : '<%= dirSrc %>/js/build/funded-editorial.js',
-					'<%= dirBuild %>/js/funded-navigation.js' : '<%= dirSrc %>/js/build/funded-navigation.js',
-					'<%= dirBuild %>/js/funded-nextup.js' : '<%= dirSrc %>/js/build/funded-nextup.js',
-					'<%= dirBuild %>/js/funded-more-about.js' : '<%= dirSrc %>/js/build/funded-more-about.js',
-					'<%= dirBuild %>/js/funded-article-mod.js' : '<%= dirSrc %>/js/build/funded-article-mod.js',
-					'<%= dirBuild %>/js/responsive.js' : '<%= dirSrc %>/js/responsive.js'
-				}
+				files: [{
+					expand: true,
+					cwd: '<%= dirSrc %>/js',
+					src: ['*.js'],
+					dest: '<%= dirBuild %>/<%= dirDctmPbJsPath %>/'
+				},
+				{
+					expand: true,
+					cwd: '<%= dirSrc %>/js/amd',
+					src: ['*.js'],
+					dest: '<%= dirBuild %>/<%= dirDctmPbJsRquirePath %>/'
+				}]
 			},
 			dist: {
 				options: {
@@ -120,19 +141,61 @@ module.exports = function (grunt) {
 						drop_console: true // removes all console.log incase there left in the code
 					}
 				},
-				files: {
-					'<%= dirDist %>/<%= dirDctmPbJsPath %>/funded-editorial.min.js' : '<%= dirSrc %>/js/build/funded-editorial.js',
-					'<%= dirDist %>/<%= dirDctmPbJsPath %>/funded-article-mod.min.js' : '<%= dirSrc %>/js/funded-article-mod.js',
-					'<%= dirDist %>/<%= dirDctmPbJsRquirePath %>/funded/1/funded-navigation.min.js' : '<%= dirSrc %>/js/funded-navigation.js',
-					'<%= dirDist %>/<%= dirDctmPbJsRquirePath %>/funded/1/funded-nextup.min.js' : '<%= dirSrc %>/js/funded-nextup.js',
-					'<%= dirDist %>/<%= dirDctmPbJsRquirePath %>/funded/1/funded-more-about.min.js' : '<%= dirSrc %>/js/funded-more-about.js'
-				}
+				files:  [{
+					expand: true,
+					cwd: '<%= dirSrc %>/js',
+					src: ['*.js'],
+					dest: '<%= dirDist %>/<%= dirDctmPbJsPath %>/'
+				},
+				{
+					expand: true,
+					cwd: '<%= dirSrc %>/js/amd',
+					src: ['*.js'],
+					dest: '<%= dirDist %>/<%= dirDctmPbJsRquirePath %>/'
+				}]
 			}
 		},
 		"webmd-zip" : {
 			all: {
 				src : '<%= dirDist %>/webmd',
 				dest : '<%= fundedEditorialZip %>'
+			}
+		},
+		'webmd-ingest' : {
+			live: {
+				src : '<%= fundedEditorialZip %>',
+				options : {
+					'env' : 'prod',
+					'lifeCycle' : 'active'
+				}
+			},
+			staging: {
+				src : '<%= fundedEditorialZip %>',
+				options : {
+					'env' : 'prod',
+					'lifeCycle' : 'staging'
+				}
+			},
+			perf: {
+				src : '<%= fundedEditorialZip %>',
+				options : {
+					'env' : 'perf',
+					'lifeCycle' : 'active'
+				}
+			},
+			qa00: {
+				src : '<%= fundedEditorialZip %>',
+				options : {
+					'env' : 'qa00',
+					'lifeCycle' : 'active'
+				}
+			},
+			qa01: {
+				src : '<%= fundedEditorialZip %>',
+				options : {
+					'env' : 'qa01',
+					'lifeCycle' : 'active'
+				}
 			}
 		},
 		watch: {

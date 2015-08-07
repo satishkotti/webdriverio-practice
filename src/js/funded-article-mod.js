@@ -244,7 +244,8 @@ webmd.fundedArticleMod = {
             adArray = self.adIDarray,
             gutter = self.masonryGutter,
             windowW = $(window).outerWidth(),
-            standardTileHeight;
+            standardTileHeight,
+            newHeight;
 
         if (!standardTileHeight) {
             standardTileHeight = $('.wbmd-grid-item:not(.icm_wrap):not(.dbm_wrap)').outerHeight();
@@ -255,15 +256,22 @@ webmd.fundedArticleMod = {
                 var $node = $(this),
                     nodeH = $node.outerHeight(),
                     nodeW = $node.outerWidth(),
-                    multiplier = Math.round((nodeH / standardTileHeight * 100) / 100), //round to 2 decimals
-                    btmMargin = Math.ceil((standardTileHeight * multiplier) + (gutter * multiplier) - nodeH);
+                    multiplier,
+                    btmMargin;
 
                 /* Need to use cssText in this section - $.css() does not work correctly with adding margin-bottom */
                 if (!$node.attr('data-orig-csstext')) {
                     $node.attr('data-orig-csstext', $node.attr('style'));
                 }
 
+                if (!$node.attr('data-orig-height')) {
+                    $node.attr('data-orig-height', nodeH);
+                }
+
                 if ($node.is('.icm_wrap,.dbm_wrap') || $node.children().is('.icm_wrap,.dbm_wrap')) {
+                    multiplier = Math.round((nodeH / standardTileHeight * 100) / 100);
+                    btmMargin = Math.ceil((standardTileHeight * multiplier) + (gutter * multiplier) - nodeH);
+
                     if (windowW < 1000 && nodeW >= 650) {
                         $node.css('cssText', $node.attr('data-orig-csstext'));
                     } else {
@@ -274,10 +282,45 @@ webmd.fundedArticleMod = {
                         }
                     }
                 } else {
-                    if (adArray.indexOf($node.attr('id')) !== -1) {
-                        $node.css({
-                            'height': nodeH + 'px !important'
-                        });
+                	nodeH = parseInt($node.attr('data-orig-height'));
+
+                	if (nodeH <= standardTileHeight) {
+                		multiplier = 1;
+                	} else if (
+                		(nodeH === (standardTileHeight * 2)) ||
+                		((nodeH > standardTileHeight) && (nodeH < (standardTileHeight * 2)))) {
+                		multiplier = 2;
+                	} else if (
+                		(nodeH === (standardTileHeight * 3)) ||
+                		((nodeH > (standardTileHeight * 2)) && (nodeH < (standardTileHeight * 3)))) {
+                		multiplier = 3;
+                	} else if (
+                		(nodeH === (standardTileHeight * 4)) ||
+                		((nodeH > (standardTileHeight * 3)) && (nodeH < (standardTileHeight * 4)))) {
+                		multiplier = 4;
+                	} else if (
+                		(nodeH === (standardTileHeight * 5)) ||
+                		((nodeH > (standardTileHeight * 4)) && (nodeH < (standardTileHeight * 5)))) {
+                		multiplier = 5;
+                	} else if (
+                		(nodeH === (standardTileHeight * 6)) ||
+                		((nodeH > (standardTileHeight * 5)) && (nodeH < (standardTileHeight * 6)))) {
+                		multiplier = 6;
+                	} else {
+                		multiplier = 7;
+                	}
+
+                    if (windowW > 675 && multiplier > 1) {
+                		newHeight = ((standardTileHeight * multiplier) + (gutter * multiplier)) - gutter;
+
+                		if (adArray.indexOf($node.attr('id')) !== -1) {
+                			btmMargin = newHeight - nodeH;
+                			$node.css('cssText', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
+                		} else {
+                			$node.height(newHeight);
+                		}
+                    } else {
+                        $node.css('cssText', $node.attr('data-orig-csstext'));
                     }
                 }
             });
@@ -302,7 +345,7 @@ webmd.fundedArticleMod = {
                     $(masonryGrid).imagesLoaded(function() {
                         contentPane.msnry = new Masonry(masonryGrid, {
                             itemSelector: gridItemClass,
-                            columnWidth: gridItemClass,
+                            columnWidth: '.tile-width',
                             gutter: self.masonryGutter,
                             isFitWidth: true,
                             isResizable: true
