@@ -36,7 +36,6 @@ module.exports = function (grunt) {
 		dirDctmPbCssPath : 'webmd/PageBuilder_Assets/CSS/funded-editorial',
 		dirDctmPbImgPath : 'webmd/consumer_assets/site_images/funded-editorial',
 		fundedEditorialZip : 'ingest.zip',
-
 		// Build Tasks
 		clean: {
 			all: ['dist','build','sourcemaps','ingest.zip']
@@ -115,9 +114,6 @@ module.exports = function (grunt) {
 					preserveComments: true, // set to true to keep comments in the code
 					beautify: true, // set to true to expand the code
 					mangle: false, // set to false to preserve variable names
-					compress: {
-						drop_console: false // removes all console.log incase there left in the code
-					}
 				},
 				files: [{
 					expand: true,
@@ -135,11 +131,10 @@ module.exports = function (grunt) {
 			dist: {
 				options: {
 					preserveComments: false, // set to true to keep comments in the code
-					beautify: false, // set to true to expand the code
-					mangle: true, // set to false to preserve variable names
 					compress: {
 						drop_console: true // removes all console.log incase there left in the code
-					}
+					},
+					sourceMap: true
 				},
 				files:  [{
 					expand: true,
