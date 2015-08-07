@@ -32,7 +32,7 @@ module.exports = function (grunt) {
 		dirBuild : 'build',
 		dirDist : 'dist',
 		dirDctmPbJsPath : 'webmd/PageBuilder_Assets/JS/funded-editorial',
-		dirDctmPbJsRquirePath : 'webmd/consumer_assets/site_images/amd_modules/funded-editorial',
+		dirDctmPbJsRquirePath : 'webmd/consumer_assets/site_images/amd_modules/funded-editorial/1',
 		dirDctmPbCssPath : 'webmd/PageBuilder_Assets/CSS/funded-editorial',
 		dirDctmPbImgPath : 'webmd/consumer_assets/site_images/funded-editorial',
 		fundedEditorialZip : 'ingest.zip',
