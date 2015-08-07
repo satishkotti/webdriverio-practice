@@ -124,6 +124,12 @@ module.exports = function (grunt) {
 					cwd: '<%= dirSrc %>/js',
 					src: ['*.js'],
 					dest: '<%= dirBuild %>/<%= dirDctmPbJsPath %>/'
+				},
+				{
+					expand: true,
+					cwd: '<%= dirSrc %>/js/amd',
+					src: ['*.js'],
+					dest: '<%= dirBuild %>/<%= dirDctmPbJsRquirePath %>/'
 				}]
 			},
 			dist: {
@@ -140,6 +146,12 @@ module.exports = function (grunt) {
 					cwd: '<%= dirSrc %>/js',
 					src: ['*.js'],
 					dest: '<%= dirDist %>/<%= dirDctmPbJsPath %>/'
+				},
+				{
+					expand: true,
+					cwd: '<%= dirSrc %>/js/amd',
+					src: ['*.js'],
+					dest: '<%= dirDist %>/<%= dirDctmPbJsRquirePath %>/'
 				}]
 			}
 		},
