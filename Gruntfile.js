@@ -93,7 +93,8 @@ module.exports = function (grunt) {
 		jshint: {
 			all: [
 				'Gruntfile.js',
-				'<%= dirSrc %>/js/**/*.js'
+				'<%= dirSrc %>/js/*.js',
+				'<%= dirSrc %>/js/amd/*.js'
 			]
 		},
 /*		concat: {
