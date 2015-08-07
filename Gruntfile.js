@@ -18,11 +18,11 @@ module.exports = function (grunt) {
 		grunt.log.ok('grunt webmd-ingest:qa01');
 	});
 	// Build all
-	grunt.registerTask('build', ['clean','sass','autoprefixer','cssmin','concat','copy','uglify','webmd-zip']);
+	grunt.registerTask('build', ['clean','sass','autoprefixer','cssmin','uglify','webmd-zip']);
 	// Build CSS
 	grunt.registerTask('css', ['clean','sass','autoprefixer','cssmin','webmd-zip']);
 	// Build JS
-	grunt.registerTask('js', ['clean','concat','copy','uglify','webmd-zip']);
+	grunt.registerTask('js', ['clean','jshint','uglify','webmd-zip']);
 
 	require('load-grunt-tasks')(grunt);
 
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
 
 		// Build Tasks
 		clean: {
-			all: ['dist','build','sourcemaps']
+			all: ['dist','build','sourcemaps','ingest.zip']
 		},
 		sass: {
 			dist: {
@@ -49,15 +49,15 @@ module.exports = function (grunt) {
 				},
 				files: [{
 					expand: true,
-					cwd: '<%= dirSrc %>',
-					src: ['css/*.scss'],
-					dest: '<%= dirBuild %>/',
+					cwd: '<%= dirSrc %>/css',
+					src: ['*.scss'],
+					dest: '<%= dirBuild %>/<%= dirDctmPbCssPath %>/',
 					ext: '.css'
 				}, {
 					expand: true,
-					cwd: '<%= dirSrc %>',
-					src: ['css/modules/*.scss'],
-					dest: '<%= dirBuild %>/',
+					cwd: '<%= dirSrc %>/css/modules',
+					src: ['*.scss'],
+					dest: '<%= dirBuild %>/modules/css/',
 					ext: '.css'
 				}]
 			}
@@ -78,20 +78,26 @@ module.exports = function (grunt) {
 			target: {
 				files: [{
 					expand: true,
-					cwd: '<%= dirBuild %>/css',
-					src: ['*.css'],
-					dest: '<%= dirDist %>/<%= dirDctmPbCssPath %>/'
+					cwd: '<%= dirBuild %>',
+					src: ['<%= dirDctmPbCssPath %>/*.css'],
+					dest: '<%= dirDist %>/'
 				},
 				{
 					expand: true,
-					cwd: '<%= dirBuild %>/css/modules/',
+					cwd: '<%= dirBuild %>/modules/css',
 					src: ['*.css'],
-					dest: '<%= dirBuild %>/css/modules/min/',
+					dest: '<%= dirBuild %>/modules/css/min/',
 					ext: '.min.css'
 				}]
 			}
 		},
-		concat: {
+		jshint: {
+			all: [
+				'Gruntfile.js',
+				'<%= dirSrc %>/js/*.js'
+			]
+		},
+/*		concat: {
 			js: {
 				options: {
 					separator: ';',
@@ -102,17 +108,7 @@ module.exports = function (grunt) {
 				],
 				dest: '<%= dirSrc %>/js/build/funded-editorial.js',
 			}
-		},
-		copy: {
-			target: {
-				files: {
-					'<%= dirSrc %>/js/build/funded-navigation.js' : '<%= dirSrc %>/js/funded-navigation.js',
-					'<%= dirSrc %>/js/build/funded-nextup.js' : '<%= dirSrc %>/js/funded-nextup.js',
-					'<%= dirSrc %>/js/build/funded-more-about.js' : '<%= dirSrc %>/js/funded-more-about.js',
-					'<%= dirSrc %>/js/build/funded-article-mod.js' : '<%= dirSrc %>/js/funded-article-mod.js'
-				}
-			}
-		},
+		},*/
 		uglify: {
 			build: {
 				options: {
@@ -123,14 +119,12 @@ module.exports = function (grunt) {
 						drop_console: false // removes all console.log incase there left in the code
 					}
 				},
-				files: {
-					'<%= dirBuild %>/js/funded-editorial.js' : '<%= dirSrc %>/js/build/funded-editorial.js',
-					'<%= dirBuild %>/js/funded-navigation.js' : '<%= dirSrc %>/js/build/funded-navigation.js',
-					'<%= dirBuild %>/js/funded-nextup.js' : '<%= dirSrc %>/js/build/funded-nextup.js',
-					'<%= dirBuild %>/js/funded-more-about.js' : '<%= dirSrc %>/js/build/funded-more-about.js',
-					'<%= dirBuild %>/js/funded-article-mod.js' : '<%= dirSrc %>/js/build/funded-article-mod.js',
-					'<%= dirBuild %>/js/responsive.js' : '<%= dirSrc %>/js/responsive.js'
-				}
+				files: [{
+					expand: true,
+					cwd: '<%= dirSrc %>/js',
+					src: ['*.js'],
+					dest: '<%= dirBuild %>/<%= dirDctmPbJsPath %>/'
+				}]
 			},
 			dist: {
 				options: {
@@ -141,13 +135,12 @@ module.exports = function (grunt) {
 						drop_console: true // removes all console.log incase there left in the code
 					}
 				},
-				files: {
-					'<%= dirDist %>/<%= dirDctmPbJsPath %>/funded-editorial.min.js' : '<%= dirSrc %>/js/build/funded-editorial.js',
-					'<%= dirDist %>/<%= dirDctmPbJsPath %>/funded-article-mod.min.js' : '<%= dirSrc %>/js/funded-article-mod.js',
-					'<%= dirDist %>/<%= dirDctmPbJsRquirePath %>/funded/1/funded-navigation.min.js' : '<%= dirSrc %>/js/funded-navigation.js',
-					'<%= dirDist %>/<%= dirDctmPbJsRquirePath %>/funded/1/funded-nextup.min.js' : '<%= dirSrc %>/js/funded-nextup.js',
-					'<%= dirDist %>/<%= dirDctmPbJsRquirePath %>/funded/1/funded-more-about.min.js' : '<%= dirSrc %>/js/funded-more-about.js'
-				}
+				files:  [{
+					expand: true,
+					cwd: '<%= dirSrc %>/js',
+					src: ['*.js'],
+					dest: '<%= dirDist %>/<%= dirDctmPbJsPath %>/'
+				}]
 			}
 		},
 		"webmd-zip" : {
