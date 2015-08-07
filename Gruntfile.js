@@ -18,7 +18,7 @@ module.exports = function (grunt) {
 		grunt.log.ok('grunt webmd-ingest:qa01');
 	});
 	// Build all
-	grunt.registerTask('build', ['clean','sass','autoprefixer','cssmin','uglify','webmd-zip']);
+	grunt.registerTask('build', ['clean','sass','autoprefixer','cssmin','jshint','uglify','webmd-zip']);
 	// Build CSS
 	grunt.registerTask('css', ['clean','sass','autoprefixer','cssmin','webmd-zip']);
 	// Build JS
