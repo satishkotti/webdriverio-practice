@@ -139,7 +139,7 @@ webmd.fundedMoreAbout = {
             visitedObj = (typeof json === "string") ? JSON.parse(json) : json,
             urlExists = false;
 
-        for (key in visitedObj.visited) {
+        for (var key in visitedObj.visited) {
             if (visitedObj.visited[key].page === current_url) {
                 urlExists = true;
                 break;
@@ -219,7 +219,7 @@ webmd.fundedMoreAbout = {
         var self = this,
             contentPanes = self.contentPanes;
 
-        for (id in contentPanes) {
+        for (var id in contentPanes) {
             var $containerDiv = $('#' + id),
                 $gridDiv = $('<div></div>'),
                 contentPane_html = $containerDiv.html();
@@ -243,7 +243,7 @@ webmd.fundedMoreAbout = {
             contentPanes = self.contentPanes,
             $h3;
 
-        for (id in contentPanes) {
+        for (var id in contentPanes) {
             $h3 = $('#' + id + ' h3.wbmd-moreabout-title') || $('<h3></h3>');
 
             if (!$h3.text()) {
@@ -282,8 +282,13 @@ webmd.fundedMoreAbout = {
             contentPanes = self.contentPanes,
             gridItemClass = '.' + self.gridItemClass;
 
-        require(["masonry/1/masonry"], function(Masonry) {
-            for (id in contentPanes) {
+
+        for (var id in contentPanes) {
+            createMasonryGrid(id);
+        }
+
+        function createMasonryGrid(id) {
+            require(["masonry/1/masonry"], function(Masonry) {
                 var contentPane = contentPanes[id],
                     masonryGrid = "#" + id + ' .wbmd-moreabout-masonry-grid';
 
@@ -309,8 +314,8 @@ webmd.fundedMoreAbout = {
                         }
                     });
                 }
-            }
-        });
+            });
+        }
     },
 
     render: function() { // uses handlebars template above
