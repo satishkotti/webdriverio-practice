@@ -18,11 +18,11 @@ module.exports = function (grunt) {
 		grunt.log.ok('grunt webmd-ingest:qa01');
 	});
 	// Build all
-	grunt.registerTask('build', ['clean','sass','autoprefixer','cssmin','jshint','uglify','webmd-zip']);
+	grunt.registerTask('build', ['clean','sass','autoprefixer','cssmin','jshint','uglify','replace:sourceMappingURL','webmd-zip']);
 	// Build CSS
 	grunt.registerTask('css', ['clean','sass','autoprefixer','cssmin','webmd-zip']);
 	// Build JS
-	grunt.registerTask('js', ['clean','jshint','uglify','webmd-zip']);
+	grunt.registerTask('js', ['clean','jshint','uglify','replace:sourceMappingURL','webmd-zip']);
 
 	require('load-grunt-tasks')(grunt);
 
@@ -32,6 +32,7 @@ module.exports = function (grunt) {
 		dirBuild : 'build',
 		dirDist : 'dist',
 		dirDctmPbJsPath : 'webmd/PageBuilder_Assets/JS/funded-editorial',
+		dirDctmPbJsSourcemapPath : '../JS_static/funded-editorial',
 		dirDctmPbJsRquirePath : 'webmd/consumer_assets/site_images/amd_modules/funded-editorial/1',
 		dirDctmPbCssPath : 'webmd/PageBuilder_Assets/CSS/funded-editorial',
 		dirDctmPbImgPath : 'webmd/consumer_assets/site_images/funded-editorial',
@@ -135,7 +136,8 @@ module.exports = function (grunt) {
 					compress: {
 						drop_console: true // removes all console.log incase there left in the code
 					},
-					sourceMap: true
+					sourceMap: true,
+					sourceMapIncludeSources: true
 				},
 				files:  [{
 					expand: true,
@@ -148,6 +150,16 @@ module.exports = function (grunt) {
 					cwd: '<%= dirSrc %>/js/amd',
 					src: ['*.js'],
 					dest: '<%= dirDist %>/<%= dirDctmPbJsRquirePath %>/'
+				}]
+			}
+		},
+		replace: {
+			sourceMappingURL: {
+				src: ['<%= dirDist %>/<%= dirDctmPbJsPath %>/*.js'],
+				overwrite: true,
+				replacements: [{
+					from: 'sourceMappingURL=',
+					to: 'sourceMappingURL=<%= dirDctmPbJsSourcemapPath %>/'
 				}]
 			}
 		},
