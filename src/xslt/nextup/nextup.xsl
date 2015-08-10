@@ -17,10 +17,8 @@
             </xsl:attribute>
         </xsl:element>
         <xsl:element name="script">
-        <![CDATA[require(["funded/1/funded-nextup.min"]);]]>
+        <![CDATA[require(["funded-editorial/1/funded-nextup"]);]]>
         </xsl:element>
     </xsl:template>
 
 </xsl:stylesheet>
-
-
