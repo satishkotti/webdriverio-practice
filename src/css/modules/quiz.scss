@@ -6,17 +6,20 @@ $orange_color: #f67f00;
 $roboto_font: 'Roboto Slab', sans-serif;
 $lato_font: 'Lato', sans-serif;
 
-#s3 {
-	width: 100% !important;
-}
+.harmony #chrome {
+	#s3 {
+		width: 100% !important;
+		padding-right: 10px !important;
+	}
 
-#rightAd_rdr {
-	width: 320px !important;
+	#rightAd_rdr {
+		width: 320px !important;
+	}
 }
 
 #rmq_header {
     position: relative;
-    padding: 20px 20px 10px 20px;
+    padding: 20px 0 10px 0;
 
     h2 {
 	    color: #222;
@@ -190,7 +193,7 @@ $lato_font: 'Lato', sans-serif;
 					    zoom: 1;
 
 					    &.noimg {
-						    position: static;
+						    position: relative;
 						}
 
 						.rmq_progress {
@@ -527,15 +530,68 @@ $lato_font: 'Lato', sans-serif;
 	.harmony #chrome {
 		#s3 {
 			float: left !important;
-			padding-left: 15px !important;
-			padding-right: 15px !important;
+			padding-left: 10px !important;
+		}
+	}
+
+	#rmq_header {
+		h2 {
+			font-size: 1.75em;
 		}
 	}
 
 	.rich_media_quiz {
 		#rmq_slides {
 			.slide {
-				&.interstitial {
+				.slide_content {
+			    	.slide_media {
+			    		.slide_question {
+			    			position: relative !important;
+			    			padding: 20px 35px;
+			    			background-color: #eee;
+
+			    			h3 {
+			    				font-size: 1em;
+			    			}
+			    		}
+			    	}
+
+			    	.slide_text {
+			    		padding: 1.6em 35px;
+
+					    .radio_inputs {
+						    margin: 10px 0 1.25em 0;
+
+							a {
+								.input {
+								    width: 40px;
+								    height: 40px;
+								    line-height: 40px;
+								    font-size: 20px;
+								}
+							}
+
+							p {
+							    padding: 0 0 0 15px;
+							    font-size: 16px;
+							    height: 40px;
+							}
+						}
+
+						.rmq_answers {
+							.incorrect, .correct {
+								margin: 10px 0 1.25em 0;
+								height: 40px;
+
+						    	&:before {
+								    font-size: 40px;
+								}
+							}
+						}
+					}
+			    }
+
+			    &.interstitial {
 					.slide_text {
 						padding: 1.6em 10px  !important;
 					}
@@ -543,12 +599,21 @@ $lato_font: 'Lato', sans-serif;
 			}
 		}
 	}
+
+	.bottom_ad_rdr {
+	    margin: 0 0 10px;
+	    width: 320px;
+	    left: 50%;
+	    margin-left: -160px;
+	    float: left;
+	    display: block;
+	    position: relative;
+	}
 }
 
-@media only screen and (min-width: 320px) and (max-width: 736px) {
-    /* STYLES GO HERE */
+/*@media only screen and (min-width: 320px) and (max-width: 736px) {
     .harmony #chrome {
-    	width: 98% !important;
+    	width: 100% !important;
     }
 
 	#rmq_header {
@@ -556,12 +621,22 @@ $lato_font: 'Lato', sans-serif;
 			font-size: 24px;
 		}
 	}
-}
+}*/
 
 @media only screen and (min-width: 321px) and (max-width: 767px) {
 	.harmony #chrome {
 		#s3 {
-			padding-right: 15px !important;
+			padding-left: 10px !important;
+		}
+
+		#s4 {
+			padding-right: 10px !important;
+		}
+	}
+
+	#rmq_header {
+		h2 {
+			font-size: 1.75em;
 		}
 	}
 
