@@ -33,7 +33,7 @@ webmd.fundedEditorial = {
 	updateArticleObj : function() {
 		var self = this,
 			url = window.location.href.split("?")[0].split("#")[0], // remove querystring and hash from url
-			articles = self.articleData.articles;
+			articles = self.articleData ? self.articleData.articles : {};
 
 		$.each(articles, function(index) {
 			this.isCurrent = false;
