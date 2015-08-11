@@ -226,6 +226,7 @@ $lato_font: 'Lato', sans-serif;
 						li {
 						    cursor: pointer;
 						    padding-bottom: 10px;
+						    vertical-align: middle;
 
 						    &:before {
 							    display: inline-block;
@@ -285,15 +286,19 @@ $lato_font: 'Lato', sans-serif;
 
 						p {
 						    color: #222;
-						    float: left;
-						    padding: 10px 0 0 15px;
+						    padding: 0 0 0 15px;
 						    width: auto;
+						    height: 64px;
 						    font-size: 22px;
 						    line-height: 1.4em;
+						    display: table-cell;
+							vertical-align: middle;
 						}
 					}
 
 					.rmq_answers {
+						margin: 20px 0 2.5em 0;
+
 						.answer_text {
 							p {
 					    		display: inline;
@@ -301,6 +306,7 @@ $lato_font: 'Lato', sans-serif;
 					    }
 
 					    .answer_expl {
+						    clear: left;
 						    display: none;
 						    position: relative;
 
@@ -317,10 +323,13 @@ $lato_font: 'Lato', sans-serif;
 						}
 
 						.incorrect, .correct {
-							margin: 20px 0 2.5em 0;
+							display: block;
+							width: auto;
+						    height: 64px;
+						    margin: 20px 0 3em 0;
 
 							&:before {
-							    display: inline-block;
+							    float: left;
 							    font-family: 'icons';
 							    font-size: 64px;
 							    color: #fff;
@@ -328,9 +337,8 @@ $lato_font: 'Lato', sans-serif;
 							    border-top-right-radius: 50%;
 							    border-bottom-left-radius: 50%;
 							    border-bottom-right-radius: 50%;
-							    text-align: center;
-							    vertical-align: middle;
 							    margin-right: 10px;
+							    vertical-align: middle;
 							}
 						}
 
@@ -516,9 +524,12 @@ $lato_font: 'Lato', sans-serif;
 /* Media Queries */
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-width: 320px) and (max-width: 675px) {
-	#s3 {
-		padding-left: 15px !important;
-		padding-right: 15px !important;
+	.harmony #chrome {
+		#s3 {
+			float: left !important;
+			padding-left: 15px !important;
+			padding-right: 15px !important;
+		}
 	}
 
 	.rich_media_quiz {
@@ -547,18 +558,14 @@ $lato_font: 'Lato', sans-serif;
 	}
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (min-width: 321px) and (max-width: 767px) {
 	.harmony #chrome {
-    	width: 98% !important;
-
-    	#s3 {
-			float: left !important;
-			padding-left: 15px !important;
+		#s3 {
 			padding-right: 15px !important;
 		}
-    }
+	}
 
-    .rich_media_quiz {
+	.rich_media_quiz {
 		#rmq_slides {
 			.slide {
 				.slide_content {
@@ -590,17 +597,18 @@ $lato_font: 'Lato', sans-serif;
 							}
 
 							p {
-							    padding: 10px 0 0 15px;
+							    padding: 0 0 0 15px;
 							    font-size: 16px;
-							    width: 170px;
+							    height: 40px;
 							}
 						}
 
 						.rmq_answers {
 							.incorrect, .correct {
 								margin: 10px 0 1.25em 0;
+								height: 40px;
 
-								&:before {
+						    	&:before {
 								    font-size: 40px;
 								}
 							}
@@ -676,14 +684,16 @@ $lato_font: 'Lato', sans-serif;
 							}
 
 							p {
-							    padding: 10px 0 0 15px;
+							    padding: 0 0 0 15px;
 							    font-size: 22px;
+							    height: 50px;
 							}
 						}
 
 						.rmq_answers {
 							.incorrect, .correct {
 								margin: 10px 0 1.25em 0;
+								height: 50px;
 
 								&:before {
 								    font-size: 50px;
