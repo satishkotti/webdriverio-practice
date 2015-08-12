@@ -8,8 +8,6 @@ webmd.fundedEditorial = {
 
 		var artObjParam = webmd.url.getParam('artObj');
 
-		//this.addToSessionHistory();
-
 		this.updateArticleObj().bindEvents();
 
 		if($('#attribution_rdr').length) {
@@ -32,13 +30,12 @@ webmd.fundedEditorial = {
 
 	updateArticleObj : function() {
 		var self = this,
-			url = window.location.href.split("?")[0].split("#")[0], // remove querystring and hash from url
 			articles = self.articleData ? self.articleData.articles : {};
 
 		$.each(articles, function(index) {
 			this.isCurrent = false;
 
-			if (this.article.link === url) {
+			if (this.dctm === window.s_unique_id) {
 				self.articleData.currentArticleId = articles[index].id;
 				this.isCurrent = true;
 
@@ -165,26 +162,28 @@ webmd.fundedEditorial = {
 		}
 	},
 
-	addToSessionHistory : function() {
+	setArticlesVisited : function() {
 		var self = this,
-			url = window.location.href,
-			currentURL = url.split('?')[0].split('#')[0],
-			jsonStr = sessionStorage.visitedPages || '{}',
-			visitedObj = JSON.parse(jsonStr),
-			urlExists = false;
+			article_data = this.article_data,
+			articles = article_data.articles,
+			article,
+			article_link,
+			history = JSON.parse(sessionStorage.visitedPages),
+			history_page;
 
-		for (var key in visitedObj.visited) {
-			if (visitedObj.visited[key].page === currentURL) {
-				currentURLExists = true;
-				break;
+		for (var key in articles) {
+			article = articles[key].article;
+			article_link = article.link;
+
+			for(var j in history.visited) {
+				history_page = history.visited[j].page;
+				//console.log("article_link: " + article_link + "\nhistory_page: " + history_page);
+
+				if (article_link === history_page) {
+					article.visited = true;
+				}
 			}
 		}
-
-		if (!urlExists && currentURL) {
-			visitedObj.visited.push({'page' : currentURL});
-		}
-
-		sessionStorage.visitedPages = JSON.stringify(visitedObj);
 	},
 
 	bindEvents : function(){

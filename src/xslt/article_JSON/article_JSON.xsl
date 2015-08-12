@@ -15,7 +15,7 @@
 	<xsl:template match="module_data">
 
 		<xsl:element name="script">
-		<![CDATA[ /* DEPRECATED - use webmd.fundedEditorial.articleData below */
+		<![CDATA[ /* --- DEPRECATED - use webmd.fundedEditorial.articleData below --- */
 		var article_data = {
 			"program" : {
 				"title" : "]]><xsl:value-of select="normalize-space(module_title)" disable-output-escaping="yes"></xsl:value-of><![CDATA[",]]>
@@ -106,36 +106,35 @@ webmd.fundedEditorial.articleData = {
 			<xsl:value-of select="position()"></xsl:value-of>
 		</xsl:variable>
 		<![CDATA[{]]>
-			<![CDATA["id" :]]> <xsl:value-of select="position()"/><![CDATA[,]]>
-			<![CDATA["article" : {]]>
-				<![CDATA["title" : "]]><xsl:choose>
-					<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
-						<xsl:value-of select="normalize-space(substring-before(link_text,' ['))"/>
-					</xsl:when>
-					<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
-						<xsl:value-of select="normalize-space(substring-before(link_text,'['))"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="normalize-space(link_text)"/>
-					</xsl:otherwise>
-				</xsl:choose><![CDATA[",]]>
-				<![CDATA["description" : "]]><xsl:value-of select="normalize-space(action_text)" disable-output-escaping="yes"></xsl:value-of><![CDATA[",]]>
-				<![CDATA["link" : "]]><xsl:value-of select="$href"></xsl:value-of><![CDATA[",]]>
-				<![CDATA["images" : {]]>
-					<![CDATA["image650x350" : "]]><xsl:value-of select="link_source_icon/@path"/><![CDATA[",]]>
-					<![CDATA["image493x335" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">493</xsl:with-param><xsl:with-param name="height">335</xsl:with-param></xsl:call-template><![CDATA[",]]>
-					<![CDATA["image375x321" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">375</xsl:with-param><xsl:with-param name="height">321</xsl:with-param></xsl:call-template><![CDATA[",]]>
-					<![CDATA["image280x190" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">280</xsl:with-param><xsl:with-param name="height">190</xsl:with-param></xsl:call-template><![CDATA[",]]>
-					<![CDATA["image210x130" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">210</xsl:with-param><xsl:with-param name="height">130</xsl:with-param></xsl:call-template><![CDATA[",]]>
-					<![CDATA["image198x134" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">198</xsl:with-param><xsl:with-param name="height">134</xsl:with-param></xsl:call-template><![CDATA[",]]>
-					<![CDATA["image127x72" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">127</xsl:with-param><xsl:with-param name="height">72</xsl:with-param></xsl:call-template><![CDATA[",]]>
-					<![CDATA["image156x150" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">156</xsl:with-param><xsl:with-param name="height">150</xsl:with-param></xsl:call-template><![CDATA[",]]>
-					<![CDATA["image110x70" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">110</xsl:with-param><xsl:with-param name="height">70</xsl:with-param></xsl:call-template><![CDATA[",]]>
-					<![CDATA["image79x79" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">79</xsl:with-param><xsl:with-param name="height">79</xsl:with-param></xsl:call-template><![CDATA[",]]>
-					<![CDATA["image69x75" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">69</xsl:with-param><xsl:with-param name="height">75</xsl:with-param></xsl:call-template><![CDATA[",]]>
-					<![CDATA["image56x40" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">56</xsl:with-param><xsl:with-param name="height">40</xsl:with-param></xsl:call-template><![CDATA[",]]>
-					<![CDATA["image50x50" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">50</xsl:with-param><xsl:with-param name="height">50</xsl:with-param></xsl:call-template><![CDATA["]]>
-				<![CDATA[}]]>
+			<![CDATA["id" : ]]><xsl:value-of select="position()"/><![CDATA[,]]>
+			<![CDATA["dctm" : "]]><xsl:value-of select="link_url/@chronic_id"/><![CDATA[",]]>
+			<![CDATA["title" : "]]><xsl:choose>
+				<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
+					<xsl:value-of select="normalize-space(substring-before(link_text,' ['))"/>
+				</xsl:when>
+				<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
+					<xsl:value-of select="normalize-space(substring-before(link_text,'['))"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="normalize-space(link_text)"/>
+				</xsl:otherwise>
+			</xsl:choose><![CDATA[",]]>
+			<![CDATA["description" : "]]><xsl:value-of select="normalize-space(action_text)" disable-output-escaping="yes"></xsl:value-of><![CDATA[",]]>
+			<![CDATA["link" : "]]><xsl:value-of select="$href"></xsl:value-of><![CDATA[",]]>
+			<![CDATA["images" : {]]>
+				<![CDATA["image650x350" : "]]><xsl:value-of select="link_source_icon/@path"/><![CDATA[",]]>
+				<![CDATA["image493x335" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">493</xsl:with-param><xsl:with-param name="height">335</xsl:with-param></xsl:call-template><![CDATA[",]]>
+				<![CDATA["image375x321" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">375</xsl:with-param><xsl:with-param name="height">321</xsl:with-param></xsl:call-template><![CDATA[",]]>
+				<![CDATA["image280x190" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">280</xsl:with-param><xsl:with-param name="height">190</xsl:with-param></xsl:call-template><![CDATA[",]]>
+				<![CDATA["image210x130" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">210</xsl:with-param><xsl:with-param name="height">130</xsl:with-param></xsl:call-template><![CDATA[",]]>
+				<![CDATA["image198x134" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">198</xsl:with-param><xsl:with-param name="height">134</xsl:with-param></xsl:call-template><![CDATA[",]]>
+				<![CDATA["image127x72" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">127</xsl:with-param><xsl:with-param name="height">72</xsl:with-param></xsl:call-template><![CDATA[",]]>
+				<![CDATA["image156x150" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">156</xsl:with-param><xsl:with-param name="height">150</xsl:with-param></xsl:call-template><![CDATA[",]]>
+				<![CDATA["image110x70" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">110</xsl:with-param><xsl:with-param name="height">70</xsl:with-param></xsl:call-template><![CDATA[",]]>
+				<![CDATA["image79x79" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">79</xsl:with-param><xsl:with-param name="height">79</xsl:with-param></xsl:call-template><![CDATA[",]]>
+				<![CDATA["image69x75" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">69</xsl:with-param><xsl:with-param name="height">75</xsl:with-param></xsl:call-template><![CDATA[",]]>
+				<![CDATA["image56x40" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">56</xsl:with-param><xsl:with-param name="height">40</xsl:with-param></xsl:call-template><![CDATA[",]]>
+				<![CDATA["image50x50" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">50</xsl:with-param><xsl:with-param name="height">50</xsl:with-param></xsl:call-template><![CDATA["]]>
 			<![CDATA[},]]>
 			<![CDATA["type" : "]]><xsl:call-template name="GetLinkIconType">
 				<xsl:with-param name="link_href">
