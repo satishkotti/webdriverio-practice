@@ -91,7 +91,8 @@
 webmd.fundedEditorial.articleData = {
 	"program" : {
 		"title" : "]]><xsl:value-of select="normalize-space(module_title)" disable-output-escaping="yes"></xsl:value-of><![CDATA[",]]>
-		<![CDATA["tocLink" : "]]><xsl:call-template name="GetURLRef"><xsl:with-param name="ObjectID"><xsl:value-of select="module_link/@chronic_id"></xsl:value-of></xsl:with-param></xsl:call-template><![CDATA["]]>
+		<![CDATA["tocLink" : "]]><xsl:call-template name="GetURLRef"><xsl:with-param name="ObjectID"><xsl:value-of select="module_link/@chronic_id" /></xsl:with-param></xsl:call-template><![CDATA[",]]>
+		<![CDATA["tocDctm" : "]]><xsl:value-of select="module_link/@chronic_id" /><![CDATA["]]>
 	<![CDATA[},
 	"articles" : []]>
 	<xsl:for-each select="links/link">
