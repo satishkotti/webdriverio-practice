@@ -6,17 +6,23 @@ webmd.fundedEditorial = {
 
 	init : function(){
 
-		var artObjParam = webmd.url.getParam('artObj');
+		var self = this,
+			artObjParam = webmd.url.getParam('artObj');
 
-		this.updateArticleObj().bindEvents();
+		if (self.hasStorage()) {
+			self.visitedPages = JSON.parse(sessionStorage.getItem('visited')) || {};
+			self.addToVisitedPages();
+		}
+
+		self.updateArticleObj().bindEvents();
 
 		if($('#attribution_rdr').length) {
-			this.moveAttribution();
+			self.moveAttribution();
 		}
 
 		if(s_sponsor_program !== 'undefined' && s_sponsor_program !== ''){
 			// Funded Editorial Specific Method
-			this.fundedPages();
+			self.fundedPages();
 		}
 
 		/*if(this.uaType !== 'mobile'){
@@ -24,20 +30,50 @@ webmd.fundedEditorial = {
 		}*/
 
 		if(artObjParam == 1){
-			this.showArticleObj();
+			self.showArticleObj();
 		}
+	},
+
+	hasStorage : function() {
+		try {
+			sessionStorage.setItem('test', '1');
+			sessionStorage.removeItem('test');
+			return true;
+		} catch (e) {
+			return false;
+		}
+	},
+
+	addToVisitedPages : function() {
+		var self = this,
+			chronId = window.s_unique_id;
+
+		if (chronId && !self.visitedPages[chronId]) {
+			self.visitedPages[chronId] = 1;
+		}
+
+		sessionStorage.setItem('visited', JSON.stringify(self.visitedPages));
 	},
 
 	updateArticleObj : function() {
 		var self = this,
 			articles = self.articleData ? self.articleData.articles : {};
 
+		if (self.visitedPages[self.articleData.program.tocDctm]) {
+			self.articleData.program.tocVisited = true;
+		}
+
 		$.each(articles, function(index) {
 			this.isCurrent = false;
+
+			if (self.visitedPages[this.dctm]) {
+				this.visited = true;
+			}
 
 			if (this.dctm === window.s_unique_id) {
 				self.articleData.currentArticleId = articles[index].id;
 				this.isCurrent = true;
+				this.visited = true;
 
 				if (index === 0) {
 					self.articleData.prevArticleId = articles[articles.length-1].id;
@@ -158,30 +194,6 @@ webmd.fundedEditorial = {
 						});
 					});
 				});
-			}
-		}
-	},
-
-	setArticlesVisited : function() {
-		var self = this,
-			article_data = this.article_data,
-			articles = article_data.articles,
-			article,
-			article_link,
-			history = JSON.parse(sessionStorage.visitedPages),
-			history_page;
-
-		for (var key in articles) {
-			article = articles[key].article;
-			article_link = article.link;
-
-			for(var j in history.visited) {
-				history_page = history.visited[j].page;
-				//console.log("article_link: " + article_link + "\nhistory_page: " + history_page);
-
-				if (article_link === history_page) {
-					article.visited = true;
-				}
 			}
 		}
 	},
