@@ -124,41 +124,41 @@ webmd.fundedEditorial = {
 				})
 				.html(
 					'<table class="art-seq">' + newline +
-					'    <thead>' + newline +
-					'        <tr>' + newline +
-					'            <th>Id</th>' + newline +
-					'            <th>Title</th>' + newline +
-					'            <th>Description</th>' + newline +
-					'            <th>URL</th>' + newline +
-					'            <th>Image</th>' + newline +
-					'            <th>Funded</th>' + newline +
-					'            <th>Sponsored</th>' + newline +
-					'            <th>Type</th>' + newline +
-					'        </tr>' + newline +
-					'    </thead>' + newline +
-					'    <tbody>' + newline +
-					'        {{#each articles}}' + newline +
-					'        <tr>' + newline +
-					'            <td class="id cnt-mid">{{id}}</td>' + newline +
-					'            <td class="title mid">{{article.title}}</td>' + newline +
-					'            <td class="desc mid">{{article.description}}</td>' + newline +
-					'            <td class="link mid"><a href="{{article.link}}" target="_blank">{{article.link}}</a></td>' + newline +
-					'            <td class="img cnt-mid"><img src="{{article.images.image79x79}}" alt=""></td>' + newline +
-					'            <td class="fund cnt-mid">' + newline +
-					'                {{#unless sponsored}}' + newline +
-					'                <span class="icon-check"></span>' + newline +
-					'                {{/unless}}' + newline +
-					'            </td>' + newline +
-					'            <td class="spon cnt-mid">' + newline +
-					'                {{#if sponsored}}' + newline +
-					'                <span class="icon-check"></span>' + newline +
-					'                {{/if}}' + newline +
-					'            </td>' + newline +
-					'            <td class="typ cnt-mid">{{type}}</td>' + newline +
-					'        </tr>' + newline +
-					'        {{/each}}' + newline +
-					'    </tbody>' + newline +
-					'</table>'
+                    '    <thead>' + newline +
+                    '        <tr>' + newline +
+                    '            <th>Id</th>' + newline +
+                    '            <th>Title</th>' + newline +
+                    '            <th>Description</th>' + newline +
+                    '            <th>URL</th>' + newline +
+                    '            <th>Image</th>' + newline +
+                    '            <th>Funded</th>' + newline +
+                    '            <th>Sponsored</th>' + newline +
+                    '            <th>Type</th>' + newline +
+                    '        </tr>' + newline +
+                    '    </thead>' + newline +
+                    '    <tbody>' + newline +
+                    '        {{#each articles}}' + newline +
+                    '        <tr>' + newline +
+                    '            <td class="id cnt-mid">{{id}}</td>' + newline +
+                    '            <td class="title mid">{{title}}</td>' + newline +
+                    '            <td class="desc mid">{{description}}</td>' + newline +
+                    '            <td class="link mid"><a href="{{link}}" target="_blank">{{link}}</a></td>' + newline +
+                    '            <td class="img cnt-mid"><img src="'+ window.image_server_url +'{{images.image79x79}}" alt=""></td>' + newline +
+                    '            <td class="fund cnt-mid">' + newline +
+                    '                {{#unless sponsored}}' + newline +
+                    '                <span class="icon-check"></span>' + newline +
+                    '                {{/unless}}' + newline +
+                    '            </td>' + newline +
+                    '            <td class="spon cnt-mid">' + newline +
+                    '                {{#if sponsored}}' + newline +
+                    '                <span class="icon-check"></span>' + newline +
+                    '                {{/if}}' + newline +
+                    '            </td>' + newline +
+                    '            <td class="typ cnt-mid">{{type}}</td>' + newline +
+                    '        </tr>' + newline +
+                    '        {{/each}}' + newline +
+                    '    </tbody>' + newline +
+                    '</table>'
 				);
 
 			$('head').append($script);
