@@ -27,6 +27,13 @@ table.art-seq {
     }
     td {
         background-color: #fff;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
 
         &.cnt-mid {
             text-align: center;
