@@ -107,8 +107,7 @@ webmd.fundedEditorial.articleData = {
 			<xsl:value-of select="position()"></xsl:value-of>
 		</xsl:variable>
 		<![CDATA[{]]>
-			<![CDATA["id" : ]]><xsl:value-of select="position()"/><![CDATA[,]]>
-			<![CDATA["dctm" : "]]><xsl:value-of select="link_url/@chronic_id"/><![CDATA[",]]>
+			<![CDATA["id" : "]]><xsl:value-of select="link_url/@chronic_id"/><![CDATA[",]]>
 			<![CDATA["title" : "]]><xsl:choose>
 				<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
 					<xsl:value-of select="normalize-space(substring-before(link_text,' ['))"/>

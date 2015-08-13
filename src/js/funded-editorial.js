@@ -66,25 +66,25 @@ webmd.fundedEditorial = {
 		$.each(articles, function(index) {
 			this.isCurrent = false;
 
-			if (self.visitedPages[this.dctm]) {
+			if (self.visitedPages[this.id]) {
 				this.visited = true;
 			}
 
-			if (this.dctm === window.s_unique_id) {
-				self.articleData.currentArticleId = articles[index].id;
+			if (this.id === window.s_unique_id) {
+				self.articleData.currentArticle = index;
 				this.isCurrent = true;
 				this.visited = true;
 
 				if (index === 0) {
-					self.articleData.prevArticleId = articles[articles.length-1].id;
+					self.articleData.prevArticle = articles.length-1;
 				} else {
-					self.articleData.prevArticleId = articles[index-1].id;
+					self.articleData.prevArticle = index-1;
 				}
 
 				if (index === articles.length-1) {
-					self.articleData.nextArticleId = articles[0].id;
+					self.articleData.nextArticle = 0;
 				} else {
-					self.articleData.nextArticleId = articles[index+1].id;
+					self.articleData.nextArticle = index+1;
 				}
 
 			}
