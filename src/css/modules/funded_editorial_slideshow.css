@@ -1,3 +1,24 @@
+.loading_medium_png {
+	background:url('http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/modules/loading_medium.png');
+	height:53px;
+	width:53px;
+	margin: 0 auto;
+	animation-name: rotate;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+.loading_medium_png span {
+	display:none;
+}
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	} to {
+		transform: rotate(360deg);
+	}
+}
+
 .slideshow {
 	position: relative;
 	display: none;
@@ -55,13 +76,17 @@
 	background: rgba(0, 0, 0, .6);
 	top: 0;
 	z-index: 2;
-	padding: 20% 0 0;
+	padding: 100px 20% 0;
 }
 .slideshow .slide-end .loading_medium_png {
 	margin: 0 auto;
 }
 .slideshow .slide-end h4 {
 	color: #fff;
+	font-family: Lato,Arial,sans-serif;
+	font-size: 1.8rem;
+	margin: 10px 0 0;
 }
-
-
+.slideshow .slide-end h4 .next-art {
+	font-size: 2.4rem;
+}

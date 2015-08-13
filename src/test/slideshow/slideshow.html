@@ -75,22 +75,25 @@
 	<link rel="canonical" href="http://www.preview.webmd.com/cold-and-flu/features/stubborn-cough">
 	<link rel="shortcut icon" href="http://img.preview.webmd.com/dtmcms/preview/images/favicon/webmd.ico">
 
-	<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/Site/WebMD_091e9c5e8004a22468.css">
+	<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_static/Site/WebMD_091e9c5e8004a224.css">
 	<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/Flexible_Layout_CSS/Runtime/2_column_layout_harmony117.css">
 
-	<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Funded%20Flexible%20Layout%20Base%20Template_091e9c5e811d0d15/template_Funded%20Flexible%20Layout%20Base%20Template_091e9c5e811d0d15_tmodules_css_82.css">
 	<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/responsive/responsive.min16.css">
 	<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/funded-editorial/funded-editorial.min4.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 	<script type="text/javascript" src="http://js.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/JS/harmony/scripts_harmony80.js"></script>
 <script>
+if (!webmd.fundedEditorial) {webmd.fundedEditorial = {};}
 webmd.fundedEditorial.articleData = {
 	"program" : {
 		"title" : "Standard Funded Editorial Destination",
 		"tocLink" : "http://www.preview.webmd.com/zztest/funded-editorial-v2/standard/default.htm",
 		"tocDctm" : "091e9c5e811f9b21"
 	},
+	currentArticle: 7,
+	nextArticle: 8,
+	prevArticle: 6,
 	"articles" : [
 	
 		{
@@ -465,7 +468,6 @@ webmd.fundedEditorial.articleData = {
 };
 </script>
 
-
 </head>
 
 <body>
@@ -579,18 +581,24 @@ html body {
 	background: rgba(0, 0, 0, .6);
 	top: 0;
 	z-index: 2;
-	padding: 20% 0 0;
+	padding: 100px 20% 0;
 }
 .slideshow .slide-end .loading_medium_png {
 	margin: 0 auto;
 }
 .slideshow .slide-end h4 {
 	color: #fff;
+	font-family: Lato,Arial,sans-serif;
+	font-size: 1.8rem;
+	margin: 10px 0 0;
+}
+.slideshow .slide-end h4 .next-art {
+	font-size: 2.4rem;
 }
 
 </style>
 
-<script>
+<!--script>
 require(['bx_slider/1/bx_slider'], function() {
 	webmd.m.slider.init('.slideshow');
 });
@@ -666,22 +674,24 @@ webmd.m.slider = {
 	},
 
 	doEnding: function() {
-		var self = this;
+		var self = this,
+			nextArt = webmd.fundedEditorial.articleData.nextArticle,
+			url,
+			title;
 
 		if (self.settings.seamless) {
-
+			url = self.settings.seamless.link;
+			title = self.settings.seamless.title;
 		} else {
-
+			url = webmd.fundedEditorial.articleData.articles[nextArt].link;
+			title = webmd.fundedEditorial.articleData.articles[nextArt].title;
 		}
-	},
 
-	createRedirectSlide: function(url, title) {
-		var s
-	},
+		self.$ss.find('.slide-end').show().find('.next-art').html(title);
 
-	goToNextArticle: function(url) {
-		var self = this;
-
+		setTimeout(function(){
+			window.location = url; 
+		}, 1000);
 
 	},
 
@@ -704,13 +714,13 @@ webmd.m.slider = {
 
 };
 
-</script>
+</script-->
 
-<!--script>
+<script>
 	require(['funded-editorial/1/funded-slideshow'], function(ss) {
 		ss.init('.slideshow');
 	});
-</script-->
+</script>
 
 <div class="slideshow">
 	<div class="slides">

@@ -63,7 +63,7 @@ define(['bx_slider/1/bx_slider'], function(){
 			});
 
 			$ss.on('onSlideEnd', function(event) {
-
+				doEnding();
 			});
 
 			return self;
@@ -75,6 +75,27 @@ define(['bx_slider/1/bx_slider'], function(){
 			$ss.find('.bx-prev, .bx-next').css('top', imageHeight/2 - 24);
 
 			return this;
+		}
+
+		function doEnding() {
+			var nextArt = webmd.fundedEditorial.articleData.nextArticle,
+				url,
+				title;
+
+			if (settings.seamless) {
+				url = settings.seamless.link;
+				title = settings.seamless.title;
+			} else if (nextArt) {
+				url = webmd.fundedEditorial.articleData.articles[nextArt].link;
+				title = webmd.fundedEditorial.articleData.articles[nextArt].title;
+			}
+
+			$ss.find('.slide-end').show().find('.next-art').html(title);
+
+			// setTimeout(function(){
+			// 	window.location = url; 
+			// }, 1000);
+
 		}
 
 		function callMetrics(clickId, isLink) {

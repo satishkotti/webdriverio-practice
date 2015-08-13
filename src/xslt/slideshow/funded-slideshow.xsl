@@ -98,8 +98,10 @@
 					<xsl:element name="span">
 						<xsl:text>Loading...</xsl:text>
 					</xsl:element>
-					<xsl:element name="h4">Next <br />
-						<xsl:element name="next-art"></xsl:element>
+				</xsl:element>
+				<xsl:element name="h4">Next <br />
+					<xsl:element name="span">
+						<xsl:attribute name="class">next-art</xsl:attribute>
 					</xsl:element>
 				</xsl:element>
 			</xsl:element>
