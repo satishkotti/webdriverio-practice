@@ -63,7 +63,7 @@
             </xsl:for-each>
             
             <xsl:element name="script">
-                <![CDATA[require(["funded/1/funded-more-about.min"]);]]>
+                <![CDATA[require(["funded-editorial/1/funded-more-about"]);]]>
             </xsl:element>
         </xsl:if>
     </xsl:template>   

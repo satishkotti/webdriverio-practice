@@ -1,7 +1,7 @@
 var webmd;
 
 if (!webmd) {
-    webmd = {};
+	webmd = {};
 }
 
 // $('img.photo',this).imagesLoaded(myFunction)
@@ -25,315 +25,315 @@ if (!webmd) {
 
 
 $.fn.imagesLoaded = function(callback) {
-    var elems = this.find('img'),
-        elems_src = [],
-        self = this,
-        len = elems.length;
+	var elems = this.find('img'),
+		elems_src = [],
+		self = this,
+		len = elems.length;
 
-    if (!elems.length) {
-        callback.call(this);
-        return this;
-    }
+	if (!elems.length) {
+		callback.call(this);
+		return this;
+	}
 
-    elems.one('load error', function() {
-        if (--len === 0) {
-            // Rinse and repeat.
-            len = elems.length;
-            elems.one('load error', function() {
-                if (--len === 0) {
-                    callback.call(self);
-                }
-            }).each(function() {
-                this.src = elems_src.shift();
-            });
-        }
-    }).each(function() {
-        elems_src.push(this.src);
-        // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
-        // data uri bypasses webkit log warning (thx doug jones)
-        this.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-    });
+	elems.one('load error', function() {
+		if (--len === 0) {
+			// Rinse and repeat.
+			len = elems.length;
+			elems.one('load error', function() {
+				if (--len === 0) {
+					callback.call(self);
+				}
+			}).each(function() {
+				this.src = elems_src.shift();
+			});
+		}
+	}).each(function() {
+		elems_src.push(this.src);
+		// webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
+		// data uri bypasses webkit log warning (thx doug jones)
+		this.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+	});
 
-    return this;
+	return this;
 };
 
 
 webmd.fundedMoreAbout = {
 
-    gridItemClass: 'wbmd-moreabout-grid-item', // class name on each <div> provided by the XSL
+	gridItemClass: 'wbmd-moreabout-grid-item', // class name on each <div> provided by the XSL
 
-    contentPanes: {},
+	contentPanes: {},
 
-    masonryGutter: 10,
+	masonryGutter: 10,
 
-    gridType: 'scaling', // options: scaling, wrapping
+	gridType: 'scaling', // options: scaling, wrapping
 
-    init: function() {
-        this.render();
-    },
+	init: function() {
+		this.render();
+	},
 
-    start: function() {
-        var self = this,
-            $nodes = $('.' + self.gridItemClass);
+	start: function() {
+		var self = this,
+			$nodes = $('.' + self.gridItemClass);
 
-        if (self.hasStorage()) {
-            self.addToSessionHistory();
-            self.setArticlesVisited();
-        }
+		if (self.hasStorage()) {
+			self.addToSessionHistory();
+			self.setArticlesVisited();
+		}
 
-        // Setup keys in self.contentPanes object
-        $.each($nodes, function(index) {
-            var $node = $(this), // use the node from XSL
-                contentPaneId = $node.closest('div.pane')[0].id, // get the id of the parent content pane
-                contentPane,
-                $childNodes;
+		// Setup keys in self.contentPanes object
+		$.each($nodes, function(index) {
+			var $node = $(this), // use the node from XSL
+				contentPaneId = $node.closest('div.pane')[0].id, // get the id of the parent content pane
+				contentPane,
+				$childNodes;
 
-            // Continue to setup key and nodes if not already in object
-            if (!(contentPaneId in self.contentPanes)) {
-                self.contentPanes[contentPaneId] = {
-                    'nodes': [],
-                    'msnry': null
-                }; // Set content pane id as key in self.contentPanes
+			// Continue to setup key and nodes if not already in object
+			if (!(contentPaneId in self.contentPanes)) {
+				self.contentPanes[contentPaneId] = {
+					'nodes': [],
+					'msnry': null
+				}; // Set content pane id as key in self.contentPanes
 
-                contentPane = self.contentPanes[contentPaneId];
+				contentPane = self.contentPanes[contentPaneId];
 
-                $childNodes = $("#" + contentPaneId).children('div');
+				$childNodes = $("#" + contentPaneId).children('div');
 
-                $.each($childNodes, function(index) {
-                    var $child = $(this);
+				$.each($childNodes, function(index) {
+					var $child = $(this);
 
-                    if (!$child.hasClass('moduleSpacer_rdr')) {
-                        self.setupChild($child);
+					if (!$child.hasClass('moduleSpacer_rdr')) {
+						self.setupChild($child);
 
-                        //self.allNodes.push(this); //temporary - use the below line instead
-                        contentPane.nodes.push({
-                            'node': $child
-                        });
-                    }
-                });
-            }
-        });
+						//self.allNodes.push(this); //temporary - use the below line instead
+						contentPane.nodes.push({
+							'node': $child
+						});
+					}
+				});
+			}
+		});
 
-        self.createGridWrapper();
-        self.moveTitleToTop();
-    },
+		self.createGridWrapper();
+		self.moveTitleToTop();
+	},
 
-    hasStorage: function() {
-        // Test session storage
-        try {
-            sessionStorage.setItem('test', '1');
-            sessionStorage.removeItem('test');
-            return true;
-        } catch (e) {
-            return false;
-        }
-    },
+	hasStorage: function() {
+		// Test session storage
+		try {
+			sessionStorage.setItem('test', '1');
+			sessionStorage.removeItem('test');
+			return true;
+		} catch (e) {
+			return false;
+		}
+	},
 
-    addToSessionHistory: function() {
-        var self = this,
-            url = window.location.href,
-            current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
-            json = sessionStorage.visitedPages || {
-                "visited": []
-            },
-            visitedObj = (typeof json === "string") ? JSON.parse(json) : json,
-            urlExists = false;
+	addToSessionHistory: function() {
+		var self = this,
+			url = window.location.href,
+			current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
+			json = sessionStorage.visitedPages || {
+				"visited": []
+			},
+			visitedObj = (typeof json === "string") ? JSON.parse(json) : json,
+			urlExists = false;
 
-        for (var key in visitedObj.visited) {
-            if (visitedObj.visited[key].page === current_url) {
-                urlExists = true;
-                break;
-            }
-        }
+		for (var key in visitedObj.visited) {
+			if (visitedObj.visited[key].page === current_url) {
+				urlExists = true;
+				break;
+			}
+		}
 
-        if (!urlExists && current_url) {
-            visitedObj.visited.push({
-                "page": current_url
-            });
-        }
+		if (!urlExists && current_url) {
+			visitedObj.visited.push({
+				"page": current_url
+			});
+		}
 
-        sessionStorage.visitedPages = JSON.stringify(visitedObj);
-    },
+		sessionStorage.visitedPages = JSON.stringify(visitedObj);
+	},
 
-    setArticlesVisited: function() {
-        var self = this,
-            articles = self.article_data.articles,
-            history = JSON.parse(sessionStorage.visitedPages),
-            article,
-            article_link,
-            history_page;
+	setArticlesVisited: function() {
+		var self = this,
+			articles = self.article_data.articles,
+			history = JSON.parse(sessionStorage.visitedPages),
+			article,
+			article_link,
+			history_page;
 
-        for (var key in articles) {
-            article = articles[key].article;
-            article_link = article.link;
+		for (var key in articles) {
+			article = articles[key].article;
+			article_link = article.link;
 
-            for (var j in history.visited) {
-                history_page = history.visited[j].page;
+			for (var j in history.visited) {
+				history_page = history.visited[j].page;
 
-                if (article_link === history_page) {
-                    article.visited = true;
-                }
-            }
-        }
-    },
+				if (article_link === history_page) {
+					article.visited = true;
+				}
+			}
+		}
+	},
 
-    setupChild: function($node) {
-        var self = this,
-            nodeArticleNum = $node.data('articleNum'),
-            articles = self.article_data.articles,
-            newline = '\n',
-            articleId,
-            article,
-            articleType;
-
-
-        $node.addClass('wbmd-moreabout-grid-item'); // adds the masonry grid item class to node
-
-        if (self.gridType !== 'scaling') {
-            $node.addClass('tile-width');
-        }
-
-        for (var key in articles) {
-            articleId = articles[key].id;
-            article = articles[key].article;
-            articleType = (articles[key].sponsored) ? "From Our Sponsor" : "";
-
-            if (articleId === nodeArticleNum) {
-                $node.html(
-                    '<a href="' + article.link + '">' + newline +
-                    '   <img src="' + article.images.image493x335 + '">' + newline +
-                    '   <p>' + '<span>' + articleType + '</span>' + newline + article.title + '</p>' + newline +
-                    '</a>' + newline
-                );
-
-                if (article.visited) {
-                    $node.addClass('visited');
-                }
-
-                return false;
-            }
-        }
-    },
-
-    createGridWrapper: function() {
-        var self = this,
-            contentPanes = self.contentPanes;
-
-        for (var id in contentPanes) {
-            var $containerDiv = $('#' + id),
-                $gridDiv = $('<div></div>'),
-                contentPane_html = $containerDiv.html();
-
-            $gridDiv.addClass('wbmd-moreabout-masonry-grid').html(contentPane_html);
-
-            $containerDiv.html('').addClass('wbmd-moreabout-masonry-container').append($gridDiv);
-
-            if (self.gridType === 'scaling') {
-                $containerDiv.addClass(self.gridType);
-            } else {
-                $containerDiv.addClass('wrapping');
-            }
-        }
-
-        return true;
-    },
-
-    moveTitleToTop: function() {
-        var self = this,
-            contentPanes = self.contentPanes,
-            $h3;
-
-        for (var id in contentPanes) {
-            $h3 = $('#' + id + ' h3.wbmd-moreabout-title') || $('<h3></h3>');
-
-            if (!$h3.text()) {
-                $h3.text('More About');
-            }
-
-            if (!$h3.hasClass('wbmd-moreabout-title')) {
-                $h3.addClass('wbmd-moreabout-title');
-                $('div#' + id + '.pane.wbmd-moreabout-masonry-container').prepend($h3);
-            } else {
-                $h3.parent().before($h3);
-            }
-        }
-    },
-
-    bindEvents: function() {
-        var self = this;
-
-        $(window).bind('resizeEnd', function() {
-            self.createMasonry(true);
-        });
-
-        $(window).on('resize orientationchange', function() {
-            if (this.resizeTO) {
-                clearTimeout(this.resizeTO);
-            }
-
-            this.resizeTO = setTimeout(function() {
-                $(this).trigger('resizeEnd');
-            }, 500);
-        });
-    },
-
-    createMasonry: function(resetLayout) {
-        var self = this,
-            contentPanes = self.contentPanes,
-            gridItemClass = '.' + self.gridItemClass;
+	setupChild: function($node) {
+		var self = this,
+			nodeArticleNum = $node.data('articleNum'),
+			articles = self.article_data.articles,
+			newline = '\n',
+			articleId,
+			article,
+			articleType;
 
 
-        for (var id in contentPanes) {
-            createMasonryGrid(id);
-        }
+		$node.addClass('wbmd-moreabout-grid-item'); // adds the masonry grid item class to node
 
-        function createMasonryGrid(id) {
-            require(["masonry/1/masonry"], function(Masonry) {
-                var contentPane = contentPanes[id],
-                    masonryGrid = "#" + id + ' .wbmd-moreabout-masonry-grid';
+		if (self.gridType !== 'scaling') {
+			$node.addClass('tile-width');
+		}
 
-                if (resetLayout) {
-                    contentPane.msnry.layout();
-                } else {
-                    $(masonryGrid).imagesLoaded(function() {
-                        if (self.gridType === 'scaling') {
-                            contentPane.msnry = new Masonry(masonryGrid, {
-                                itemSelector: gridItemClass,
-                                columnWidth: gridItemClass,
-                                percentPosition: true,
-                                gutter: 10
-                            });
-                        } else {
-                            contentPane.msnry = new Masonry(masonryGrid, {
-                                itemSelector: gridItemClass,
-                                columnWidth: gridItemClass,
-                                gutter: self.masonryGutter,
-                                isFitWidth: true,
-                                isResizable: true
-                            });
-                        }
-                    });
-                }
-            });
-        }
-    },
+		for (var key in articles) {
+			articleId = articles[key].id;
+			article = articles[key].article;
+			articleType = (articles[key].sponsored) ? "From Our Sponsor" : "";
 
-    render: function() { // uses handlebars template above
-        var self = this;
+			if (articleId === nodeArticleNum) {
+				$node.html(
+					'<a href="' + article.link + '">' + newline +
+					'   <img src="' + article.images.image493x335 + '">' + newline +
+					'   <p>' + '<span>' + articleType + '</span>' + newline + article.title + '</p>' + newline +
+					'</a>' + newline
+				);
 
-        if (typeof article_data !== "undefined") {
+				if (article.visited) {
+					$node.addClass('visited');
+				}
 
-            self.article_data = article_data;
+				return false;
+			}
+		}
+	},
 
-            self.start();
+	createGridWrapper: function() {
+		var self = this,
+			contentPanes = self.contentPanes;
 
-            self.createMasonry(false);
+		for (var id in contentPanes) {
+			var $containerDiv = $('#' + id),
+				$gridDiv = $('<div></div>'),
+				contentPane_html = $containerDiv.html();
 
-            self.bindEvents();
-        }
-    }
+			$gridDiv.addClass('wbmd-moreabout-masonry-grid').html(contentPane_html);
+
+			$containerDiv.html('').addClass('wbmd-moreabout-masonry-container').append($gridDiv);
+
+			if (self.gridType === 'scaling') {
+				$containerDiv.addClass(self.gridType);
+			} else {
+				$containerDiv.addClass('wrapping');
+			}
+		}
+
+		return true;
+	},
+
+	moveTitleToTop: function() {
+		var self = this,
+			contentPanes = self.contentPanes,
+			$h3;
+
+		for (var id in contentPanes) {
+			$h3 = $('#' + id + ' h3.wbmd-moreabout-title') || $('<h3></h3>');
+
+			if (!$h3.text()) {
+				$h3.text('More About');
+			}
+
+			if (!$h3.hasClass('wbmd-moreabout-title')) {
+				$h3.addClass('wbmd-moreabout-title');
+				$('div#' + id + '.pane.wbmd-moreabout-masonry-container').prepend($h3);
+			} else {
+				$h3.parent().before($h3);
+			}
+		}
+	},
+
+	bindEvents: function() {
+		var self = this;
+
+		$(window).bind('resizeEnd', function() {
+			self.createMasonry(true);
+		});
+
+		$(window).on('resize orientationchange', function() {
+			if (this.resizeTO) {
+				clearTimeout(this.resizeTO);
+			}
+
+			this.resizeTO = setTimeout(function() {
+				$(this).trigger('resizeEnd');
+			}, 500);
+		});
+	},
+
+	createMasonry: function(resetLayout) {
+		var self = this,
+			contentPanes = self.contentPanes,
+			gridItemClass = '.' + self.gridItemClass;
+
+
+		for (var id in contentPanes) {
+			createMasonryGrid(id);
+		}
+
+		function createMasonryGrid(id) {
+			require(["masonry/1/masonry"], function(Masonry) {
+				var contentPane = contentPanes[id],
+					masonryGrid = "#" + id + ' .wbmd-moreabout-masonry-grid';
+
+				if (resetLayout) {
+					contentPane.msnry.layout();
+				} else {
+					$(masonryGrid).imagesLoaded(function() {
+						if (self.gridType === 'scaling') {
+							contentPane.msnry = new Masonry(masonryGrid, {
+								itemSelector: gridItemClass,
+								columnWidth: gridItemClass,
+								percentPosition: true,
+								gutter: 10
+							});
+						} else {
+							contentPane.msnry = new Masonry(masonryGrid, {
+								itemSelector: gridItemClass,
+								columnWidth: gridItemClass,
+								gutter: self.masonryGutter,
+								isFitWidth: true,
+								isResizable: true
+							});
+						}
+					});
+				}
+			});
+		}
+	},
+
+	render: function() { // uses handlebars template above
+		var self = this;
+
+		if (typeof article_data !== "undefined") {
+
+			self.article_data = article_data;
+
+			self.start();
+
+			self.createMasonry(false);
+
+			self.bindEvents();
+		}
+	}
 };
 
 $(function() {
-    webmd.fundedMoreAbout.init();
+	webmd.fundedMoreAbout.init();
 });
