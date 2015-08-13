@@ -127,6 +127,7 @@ webmd.fundedEditorial = {
                     '    <thead>' + newline +
                     '        <tr>' + newline +
                     '            <th>Id</th>' + newline +
+                    '            <th>DCTM Id</th>' + newline +
                     '            <th>Title</th>' + newline +
                     '            <th>Description</th>' + newline +
                     '            <th>URL</th>' + newline +
@@ -140,6 +141,7 @@ webmd.fundedEditorial = {
                     '        {{#each articles}}' + newline +
                     '        <tr>' + newline +
                     '            <td class="id cnt-mid">{{id}}</td>' + newline +
+                    '            <td class="dctm cnt-mid">{{dctm}}</td>' + newline +
                     '            <td class="title mid">{{title}}</td>' + newline +
                     '            <td class="desc mid">{{description}}</td>' + newline +
                     '            <td class="link mid"><a href="{{link}}" target="_blank">{{link}}</a></td>' + newline +
