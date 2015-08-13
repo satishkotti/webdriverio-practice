@@ -65,9 +65,9 @@
                         <xsl:attribute name="class"><xsl:text>toc-hero-img</xsl:text></xsl:attribute>
                         <xsl:element name="a">
                             <xsl:attribute name="class"><xsl:text>toc-img-link {{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.type}}</xsl:text></xsl:attribute>
-                            <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.article.link}}</xsl:text></xsl:attribute>
+                            <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
                             <xsl:element name="img">
-                                <xsl:attribute name="src"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.article.images.image650x350}}</xsl:text></xsl:attribute>
+                                <xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.images.image650x350}}</xsl:text></xsl:attribute>
                             </xsl:element>
                         </xsl:element>
                     </xsl:element>
@@ -76,9 +76,9 @@
                         <xsl:attribute name="style"><xsl:text>background-color:</xsl:text><xsl:value-of select="$bgc"/></xsl:attribute>
                         <xsl:element name="a">
                             <xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
-                            <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.article.link}}</xsl:text></xsl:attribute>
+                            <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
                             <xsl:element name="h3">
-                                <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.article.title}}</xsl:text>
+                                <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.title}}</xsl:text>
                             </xsl:element>
                         </xsl:element>
                     </xsl:element>
@@ -89,12 +89,12 @@
         <![CDATA[
         //$(function(){
             require(["handlebars/1/handlebars"], function(Handlebars) {
-                if (typeof article_data !== "undefined") {
+                if (typeof webmd.fundedEditorial.articleData !== "undefined") {
                     var template = $("#toc-hero-single-unit-template"),
                         container = $(".toc-hero-single-unit-shell"),
                         source = template.html(),
                         template = Handlebars.compile(source),
-                        context = article_data || {},
+                        context = webmd.fundedEditorial.articleData || {},
                         html = template(context);
 
                     container.prepend(html);
@@ -133,9 +133,9 @@
                         <xsl:attribute name="class"><xsl:text>toc-hero-img</xsl:text></xsl:attribute>
                         <xsl:element name="a">
                             <xsl:attribute name="class"><xsl:text>toc-img-link {{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.type}}</xsl:text></xsl:attribute>
-                            <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.article.link}}</xsl:text></xsl:attribute>
+                            <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
                             <xsl:element name="img">
-                                <xsl:attribute name="src"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.article.images.image493x335}}</xsl:text></xsl:attribute>
+                                <xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.images.image493x335}}</xsl:text></xsl:attribute>
                             </xsl:element>
                         </xsl:element>
                     </xsl:element>
@@ -144,9 +144,9 @@
                         <xsl:attribute name="style"><xsl:text>background-color:</xsl:text><xsl:value-of select="$bgc"/></xsl:attribute>
                         <xsl:element name="a">
                             <xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
-                            <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.article.link}}</xsl:text></xsl:attribute>
+                            <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
                             <xsl:element name="h3">
-                                <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.article.title}}</xsl:text>
+                                <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.title}}</xsl:text>
                             </xsl:element>
                         </xsl:element>
                     </xsl:element>
@@ -157,9 +157,9 @@
                         <xsl:attribute name="class"><xsl:text>toc-hero-img</xsl:text></xsl:attribute>
                         <xsl:element name="a">
                             <xsl:attribute name="class"><xsl:text>toc-img-link {{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.type}}</xsl:text></xsl:attribute>
-                            <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.article.link}}</xsl:text></xsl:attribute>
+                            <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.link}}</xsl:text></xsl:attribute>
                             <xsl:element name="img">
-                                <xsl:attribute name="src"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.article.images.image493x335}}</xsl:text></xsl:attribute>
+                                <xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.images.image493x335}}</xsl:text></xsl:attribute>
                             </xsl:element>
                         </xsl:element>
                     </xsl:element>
@@ -167,9 +167,9 @@
                         <xsl:attribute name="class"><xsl:text>toc-hero-desc</xsl:text></xsl:attribute>
                         <xsl:element name="a">
                             <xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
-                            <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.article.link}}</xsl:text></xsl:attribute>
+                            <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.link}}</xsl:text></xsl:attribute>
                             <xsl:element name="h3">
-                                <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.article.title}}</xsl:text>
+                                <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.title}}</xsl:text>
                             </xsl:element>
                         </xsl:element>
                     </xsl:element>
@@ -181,12 +181,12 @@
         <![CDATA[
         //$(function(){
             require(["handlebars/1/handlebars"], function(Handlebars) {
-                if (typeof article_data !== "undefined") {
+                if (typeof webmd.fundedEditorial.articleData !== "undefined") {
                     var template = $("#toc-hero-double-unit-template"),
                         container = $(".toc-hero-double-unit-shell"),
                         source = template.html(),
                         template = Handlebars.compile(source),
-                        context = article_data || {},
+                        context = webmd.fundedEditorial.articleData || {},
                         html = template(context);
 
                     container.prepend(html);
@@ -230,9 +230,9 @@
                             <xsl:attribute name="class"><xsl:text>toc-hero-img</xsl:text></xsl:attribute>
                             <xsl:element name="a">
                                 <xsl:attribute name="class"><xsl:text>toc-img-link {{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.type}}</xsl:text></xsl:attribute>
-                                <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.article.link}}</xsl:text></xsl:attribute>
+                                <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
                                 <xsl:element name="img">
-                                    <xsl:attribute name="src"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.article.images.image493x335}}</xsl:text></xsl:attribute>
+                                    <xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.images.image493x335}}</xsl:text></xsl:attribute>
                                 </xsl:element>
                             </xsl:element>
                         </xsl:element>
@@ -241,9 +241,9 @@
                             <xsl:attribute name="style"><xsl:text>background-color:</xsl:text><xsl:value-of select="$bgc"/></xsl:attribute>
                             <xsl:element name="a">
                                 <xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
-                                <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.article.link}}</xsl:text></xsl:attribute>
+                                <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
                                 <xsl:element name="h3">
-                                    <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.article.title}}</xsl:text>
+                                    <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.title}}</xsl:text>
                                 </xsl:element>
                             </xsl:element>
                         </xsl:element>
@@ -257,9 +257,9 @@
                             <xsl:attribute name="class"><xsl:text>toc-hero-img</xsl:text></xsl:attribute>
                             <xsl:element name="a">
                                 <xsl:attribute name="class"><xsl:text>toc-img-link {{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.type}}</xsl:text></xsl:attribute>
-                                <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.article.link}}</xsl:text></xsl:attribute>
+                                <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.link}}</xsl:text></xsl:attribute>
                                 <xsl:element name="img">
-                                    <xsl:attribute name="src"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.article.images.image493x335}}</xsl:text></xsl:attribute>
+                                    <xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.images.image493x335}}</xsl:text></xsl:attribute>
                                 </xsl:element>
                             </xsl:element>
                         </xsl:element>
@@ -267,9 +267,9 @@
                             <xsl:attribute name="class"><xsl:text>toc-hero-desc</xsl:text></xsl:attribute>
                             <xsl:element name="a">
                                 <xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
-                                <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.article.link}}</xsl:text></xsl:attribute>
+                                <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.link}}</xsl:text></xsl:attribute>
                                 <xsl:element name="h3">
-                                    <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.article.title}}</xsl:text>
+                                    <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.title}}</xsl:text>
                                 </xsl:element>
                             </xsl:element>
                         </xsl:element>
@@ -280,9 +280,9 @@
                             <xsl:attribute name="class"><xsl:text>toc-hero-img</xsl:text></xsl:attribute>
                             <xsl:element name="a">
                                 <xsl:attribute name="class"><xsl:text>toc-img-link {{articles.</xsl:text><xsl:value-of select="$itm-3"/><xsl:text>.type}}</xsl:text></xsl:attribute>
-                                <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-3"/><xsl:text>.article.link}}</xsl:text></xsl:attribute>
+                                <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-3"/><xsl:text>.link}}</xsl:text></xsl:attribute>
                                 <xsl:element name="img">
-                                    <xsl:attribute name="src"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-3"/><xsl:text>.article.images.image493x335}}</xsl:text></xsl:attribute>
+                                    <xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-3"/><xsl:text>.images.image493x335}}</xsl:text></xsl:attribute>
                                 </xsl:element>
                             </xsl:element>
                         </xsl:element>
@@ -290,9 +290,9 @@
                             <xsl:attribute name="class"><xsl:text>toc-hero-desc</xsl:text></xsl:attribute>
                             <xsl:element name="a">
                                 <xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
-                                <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-3"/><xsl:text>.article.link}}</xsl:text></xsl:attribute>
+                                <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-3"/><xsl:text>.link}}</xsl:text></xsl:attribute>
                                 <xsl:element name="h3">
-                                    <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-3"/><xsl:text>.article.title}}</xsl:text>
+                                    <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-3"/><xsl:text>.title}}</xsl:text>
                                 </xsl:element>
                             </xsl:element>
                         </xsl:element>
@@ -305,12 +305,12 @@
         <![CDATA[
         //$(function(){
             require(["handlebars/1/handlebars"], function(Handlebars) {
-                if (typeof article_data !== "undefined") {
+                if (typeof webmd.fundedEditorial.articleData !== "undefined") {
                     var template = $("#toc-hero-triple-unit-template"),
                         container = $(".toc-hero-triple-unit-shell"),
                         source = template.html(),
                         template = Handlebars.compile(source),
-                        context = article_data || {},
+                        context = webmd.fundedEditorial.articleData || {},
                         html = template(context);
 
                     container.prepend(html);

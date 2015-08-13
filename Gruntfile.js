@@ -215,7 +215,7 @@ module.exports = function (grunt) {
 					'<%= dirSrc %>/css/**/*.scss',
 					'<%= dirSrc %>/js/**/*.js'
 				],
-				tasks: ['default'],
+				tasks: ['build'],
 				options: {
 					spawn: false
 				},
