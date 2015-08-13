@@ -18,9 +18,9 @@ module.exports = function (grunt) {
 		grunt.log.ok('grunt webmd-ingest:qa01');
 	});
 	// Build all
-	grunt.registerTask('build', ['clean','sass','autoprefixer','cssmin','jshint','uglify','replace:sourceMappingURL','webmd-zip']);
+	grunt.registerTask('build', ['clean', 'copy:css','sass','autoprefixer','cssmin','jshint','uglify','replace:sourceMappingURL','webmd-zip']);
 	// Build CSS
-	grunt.registerTask('css', ['clean','sass','autoprefixer','cssmin','webmd-zip']);
+	grunt.registerTask('css', ['clean', 'copy:css','sass','autoprefixer','cssmin','webmd-zip']);
 	// Build JS
 	grunt.registerTask('js', ['clean','jshint','uglify','replace:sourceMappingURL','webmd-zip']);
 
@@ -40,6 +40,23 @@ module.exports = function (grunt) {
 		// Build Tasks
 		clean: {
 			all: ['dist','build','sourcemaps','ingest.zip']
+		},
+		copy: {
+			css: {
+				files: [{
+					expand: true,
+					cwd: '<%= dirSrc %>/css',
+					src: ['*.css'],
+					dest: '<%= dirBuild %>/<%= dirDctmPbCssPath %>/',
+					ext: '.css'
+				}, {
+					expand: true,
+					cwd: '<%= dirSrc %>/css/modules',
+					src: ['*.css'],
+					dest: '<%= dirBuild %>/modules/css/',
+					ext: '.css'
+				}]
+			}
 		},
 		sass: {
 			dist: {
