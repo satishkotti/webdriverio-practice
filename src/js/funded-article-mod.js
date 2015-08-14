@@ -58,7 +58,7 @@ $.fn.imagesLoaded = function(callback) {
 };
 
 
-webmd.fundedArticleMod = {
+webmd.fundedEditorial.articleMod = {
 
     gridItemClass: 'wbmd-grid-item', // class name on each <div> provided by the XSL
 
@@ -75,11 +75,6 @@ webmd.fundedArticleMod = {
     start: function() {
         var self = this,
             $nodes = $('.' + self.gridItemClass);
-
-        if (self.hasStorage()) {
-            self.addToSessionHistory();
-            self.setArticlesVisited();
-        }
 
         // Setup keys in self.contentPanes object
         $.each($nodes, function() {
@@ -114,64 +109,6 @@ webmd.fundedArticleMod = {
         self.createGridWrapper();
     },
 
-    hasStorage: function() {
-        // Test session storage
-        try {
-            sessionStorage.setItem('test', '1');
-            sessionStorage.removeItem('test');
-            return true;
-        } catch (e) {
-            return false;
-        }
-    },
-
-    addToSessionHistory: function() {
-        var url = window.location.href,
-            current_url = url.split('?')[0].split('#')[0], // remove querystring and hash from url
-            json = sessionStorage.visitedPages || {
-                'visited': []
-            },
-            visitedObj = (typeof json === 'string') ? JSON.parse(json) : json,
-            urlExists = false;
-
-        for (var key in visitedObj.visited) {
-            if (visitedObj.visited[key].page === current_url) {
-                urlExists = true;
-                break;
-            }
-        }
-
-        if (!urlExists && current_url) {
-            visitedObj.visited.push({
-                'page': current_url
-            });
-        }
-
-        sessionStorage.visitedPages = JSON.stringify(visitedObj);
-    },
-
-    setArticlesVisited: function() {
-        var self = this,
-            articles = self.article_data.articles,
-            history = JSON.parse(sessionStorage.visitedPages),
-            article,
-            article_link,
-            history_page;
-
-        for (var key in articles) {
-            article = articles[key].article;
-            article_link = article.link;
-
-            for (var j in history.visited) {
-                history_page = history.visited[j].page;
-
-                if (article_link === history_page) {
-                    article.visited = true;
-                }
-            }
-        }
-    },
-
     setupChild: function($node) {
         var self = this,
             nodeId = $node.attr('id'),
@@ -202,13 +139,13 @@ webmd.fundedArticleMod = {
         }
 
         for (var key in articles) {
-            articleId = articles[key].id;
-            article = articles[key].article;
+            article = articles[key];
+            articleIndex = articles.indexOf(article) + 1;
 
-            if (articleId === nodeArticleNum) {
+            if (articleIndex === nodeArticleNum) {
                 $node.html(
                     '<a href="' + article.link + '">' + newline +
-                    '   <img src="' + article.images.image493x335 + '">' + newline +
+                    '   <img src="' + image_server_url + article.images.image493x335 + '">' + newline +
                     '   <p>' + article.title + '</p>' + newline +
                     '</a>' + newline
                 );
@@ -393,7 +330,7 @@ webmd.fundedArticleMod = {
 
         if (typeof article_data !== 'undefined') {
 
-            self.article_data = article_data;
+            self.article_data = webmd.fundedEditorial.articleData;
 
             self.start();
 
@@ -405,5 +342,5 @@ webmd.fundedArticleMod = {
 };
 
 $(function() {
-    webmd.fundedArticleMod.init();
+    webmd.fundedEditorial.articleMod.init();
 });

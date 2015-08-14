@@ -85,7 +85,8 @@ define(['bx_slider/1/bx_slider'], {
 				case 'interstitial':
 
 					$(".ed_disclaimer").hide();
-					$('div.rmq_footer').find(':eq(2)').hide();
+					$('.rmq_footer').find(':eq(0)').hide();
+					$('.rmq_footer').find(':eq(2)').hide();
 					$(".rmq_footer").find(".tool_copyright").hide();
 					$("#rmq_scorebox").find(".score_text").children().hide();
 
@@ -94,7 +95,8 @@ define(['bx_slider/1/bx_slider'], {
 				case 'results':
 
 					$(".ed_disclaimer").show();
-					$('div.rmq_footer').find(':eq(2)').show();
+					$('.rmq_footer').find(':eq(0)').show();
+					$('.rmq_footer').find(':eq(2)').show();
 					$(".rmq_footer").find(".tool_copyright").show();
 					$('#rmq_scorebox').find('.score_text').children().hide();
 					$('#resource_rdr').fadeIn(300);
