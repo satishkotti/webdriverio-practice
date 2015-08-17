@@ -65,6 +65,23 @@
 			</xsl:with-param>
 		</xsl:call-template>
 	</xsl:variable>
+	<xsl:variable name="options">
+		<xsl:text>{</xsl:text>
+			<xsl:if	test="/webmd_rendition/content/wbmd_asset/webmd_module/module_data/slide_redirect/slide_has_redirect_link = 'true'">
+				<xsl:text>seamless: {
+					link: "</xsl:text><xsl:call-template name="GetURLRef">
+						<xsl:with-param name="ObjectID">
+							<xsl:value-of select="/webmd_rendition/content/wbmd_asset/webmd_module/module_data/slide_redirect/slide_redirect_link/@chronic_id"/>
+						</xsl:with-param>
+					</xsl:call-template>
+				<xsl:text>",
+					title: "</xsl:text>
+					<xsl:value-of select="/webmd_rendition/content/wbmd_asset/webmd_module/module_data/slide_redirect/interstitial_title"/>
+				<xsl:text>"
+					}</xsl:text>
+			</xsl:if>
+		<xsl:text>}</xsl:text>
+	</xsl:variable>
 
 	<!-- Start SS Template -->
 	<xsl:template match="/">
@@ -486,10 +503,12 @@
 	<xsl:template name="CreateRequireScript">
 		<xsl:element name="script">
 			<xsl:text disable-output-escaping="yes">
-	requirejs(['funded-editorial/1/funded-slideshow'],function(ss){
+	requirejs(['funded-editorial/1/funded-slideshow'], function(ss){
 		ss.init('#</xsl:text>
 		<xsl:value-of select="$moduletitle"/>
-		<xsl:text disable-output-escaping="yes">');
+		<xsl:text>', </xsl:text>
+			<xsl:value-of select="$options"/>
+		<xsl:text>);
 	});</xsl:text>
 		</xsl:element>
 	</xsl:template>

@@ -732,7 +732,13 @@ webmd.m.slider = {
 
 <script>
 	require(['funded-editorial/1/funded-slideshow'], function(ss) {
-		ss.init('.slideshow');
+		var options = {
+			seamless: {
+				link: 'http://www.google.com',
+				title: 'Google'
+			}
+		};
+		ss.init('.slideshow', options);
 	});
 </script>
 
