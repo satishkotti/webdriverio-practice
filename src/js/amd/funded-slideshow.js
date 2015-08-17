@@ -92,9 +92,9 @@ define(['bx_slider/1/bx_slider'], function(){
 
 			$ss.find('.slide-end').show().find('.next-art').html(title);
 
-			// setTimeout(function(){
-			// 	window.location = url; 
-			// }, 1000);
+			setTimeout(function(){
+				window.location = url; 
+			}, 1000);
 
 		}
 
