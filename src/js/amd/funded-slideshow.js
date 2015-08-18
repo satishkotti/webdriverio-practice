@@ -72,13 +72,19 @@ define(['bx_slider/1/bx_slider'], function(){
 		function positionArrows(index) {
 			var imageHeight = $ss.find('.slide:not(.bx-clone) .image').eq(index).height();
 
+			if (index === 0) {
+				$ss.find('.bx-prev').hide();
+			} else {
+				$ss.find('.bx-prev').show();
+			}
+
 			$ss.find('.bx-prev, .bx-next').css('top', imageHeight/2 - 24);
 
 			return this;
 		}
 
 		function doEnding() {
-			var nextArt = webmd.fundedEditorial.articleData.nextArticle,
+			var artData = webmd.fundedEditorial.articleData,
 				url,
 				title;
 
@@ -86,10 +92,11 @@ define(['bx_slider/1/bx_slider'], function(){
 				url = settings.seamless.link;
 				title = settings.seamless.title;
 			} else if (nextArt) {
-				url = webmd.fundedEditorial.articleData.articles[nextArt].link;
-				title = webmd.fundedEditorial.articleData.articles[nextArt].title;
+				url = artData.articles[artData.nextArticle].link;
+				title = artData.articles[artData.nextArticle].title;
 			}
 
+			$ss.find('.bx-prev, .bx-next').hide();
 			$ss.find('.slide-end').show().find('.next-art').html(title);
 
 			setTimeout(function(){
