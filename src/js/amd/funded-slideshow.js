@@ -44,6 +44,7 @@ define(['bx_slider/1/bx_slider'], function(){
 		function attachEventHandlers() {
 			$ss.on('onSliderLoad', function(event) {
 				positionArrows(0);
+				$ss.find('.slide-count .current').html('1');
 			});
 
 			$ss.on('onSlideBefore', function(event) {
