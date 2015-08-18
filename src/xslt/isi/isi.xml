@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<webmd_rendition>
+  <content>
+<wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e81258298">
+    <webmd_module>
+        <module_settings>
+            <chronic_id>091e9c5e81257bb4</chronic_id>
+            <r_object_id>091e9c5e81258298</r_object_id>
+            <title>isi</title>
+            <object_name>module_isi_091e9c5e81257bb4.xml</object_name>
+            <object_type>wbmd_pb_templatemodule</object_type>
+            <wbmd_pb_module_category />
+            <wbmd_pb_module_subcategory />
+            <wbmd_pb_dyn_module_category />
+            <md_pb_module_label1_group>
+                <wbmd_pb_module_label1 />
+            </md_pb_module_label1_group>
+            <md_pb_module_label2_group>
+                <wbmd_pb_module_label2 object_type="wbmd_lookup" wbmd_lookup_type="wbmd_module_label2" i_chronicle_id="091e9c5e81122957" wbmd_disp_nm="List" wbmd_storage_val="list" />
+            </md_pb_module_label2_group>
+            <wbmd_pb_module_sp_program />
+            <wbmd_pb_module_tier>0</wbmd_pb_module_tier>
+            <wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
+            <r_modify_date>08/18/2015 10:55:57</r_modify_date>
+            <wbmd_c_channel_ids_group />
+            <wbmd_pb_asset_css path="/webmd/PageBuilder_Assets/CSS/HTML/ISI/Standard_091e9c5e81256841.css" object_type="wbmd_pb_css" chronic_id="091e9c5e81256841" />
+            <wbmd_pb_module_xsl path="/webmd/PageBuilder_Assets/XSL/HTML/ISI_091e9c5e81256840.xsl" object_type="wbmd_pb_xsl" chronic_id="091e9c5e81256840" />
+            <wbmd_pb_moduledataschema path="/webmd_uk/PageBuilder_Assets/schemas/module_schemas/HTMLModule.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e8000511c" />
+            <wbmd_pb_moduledataschema path="/webmd/PageBuilder_Assets/schemas/module_schemas/HTMLModule.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e8000511c" />
+            <wbmd_pb_owner_page_id path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Templates/Program Title Sponsored Articles_091e9c5e81257bb1/template_Program Title Sponsored Articles_091e9c5e81257bb1.xml" object_type="wbmd_pb_template" chronic_id="091e9c5e81257bb1" />
+            <dnn_id>0</dnn_id>
+            <class>HTML</class>
+        </module_settings>
+        <module_data>
+            <contentText>					&lt;h3&gt;Important Safety Information about Your Brand (posuerous sapien lobordstis tablets)&lt;/h3&gt;
+					&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget nunc laoreet,&lt;span class="isi-min-show-mobile"&gt;&lt;/span&gt; gravida risus consequat, iaculis augue. Nam non ligula euismod ex porttitor rutrum vitae varius nunc. Nunc ut dapibus lectus. Nunc porttitor ornare sapien, vel rhoncus quam. Phasellus eu suscipit eros, lacinia sodales diam. Nam commodo ipsum sit amet nisi feugiat vestibulum. Fusce ac tincidunt mauris, non vestibulum enim. Vivamus id viverra risus. Vivamus auctor in urna porttitor condimentum.&lt;/p&gt;
+					&lt;p&gt;&lt;span class="isi-min-show-desktop"&gt;&lt;/span&gt;Pellentesque luctus tellus vel efficitur venenatis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras venenatis congue maximus. Nam in tortor ut purus imperdiet blandit nec in turpis. Aenean vitae ipsum nisi. Quisque pharetra eget eros eu pulvinar. Donec a egestas elit. Donec massa leo, imperdiet in tortor semper, laoreet feugiat quam. Morbi eleifend arcu sed diam rutrum interdum. Pellentesque ultricies ante lectus, eget interdum neque bibendum eget. Ut sit amet mauris libero. Curabitur dapibus, enim a euismod viverra, risus magna laoreet risus, in malesuada urna est non metus.&lt;/p&gt;
+					&lt;p&gt;Nulla pulvinar mollis tellus, eget porta ex fringilla a. Quisque feugiat eros sed nulla maximus, et sollicitudin metus venenatis. Nam tempus ante libero, et eleifend odio auctor ultrices. Phasellus interdum blandit blandit. Praesent egestas ipsum in metus pellentesque luctus vel vel lorem. Morbi faucibus varius dui vel blandit. Vivamus in mauris non risus condimentum ultricies eu sed ipsum. Integer ultricies metus tellus, molestie varius elit tincidunt sit amet. Sed vel arcu in velit iaculis tempus a id nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend sem nisi, in maximus lectus sodales sed. Fusce luctus felis ex, malesuada sollicitudin magna efficitur at. Aenean in gravida enim.&lt;/p&gt;
+					&lt;p&gt;Etiam id sapien vitae diam semper ultricies eu a sapien. Vivamus arcu lacus, molestie sed ligula porta, eleifend venenatis eros. Sed ac bibendum tortor, ut eleifend metus. Nulla vitae lectus leo. Etiam mollis orci nec leo consequat placerat. Maecenas ullamcorper odio quis tincidunt dictum. Aenean eleifend laoreet orci eu facilisis. Suspendisse a nisi lobortis, dignissim libero quis, finibus justo. Quisque sit amet ante sodales turpis pulvinar aliquet quis id quam. Mauris sodales pretium nunc sed pellentesque. Etiam commodo ultricies justo, commodo malesuada sapien varius eu.&lt;/p&gt;
+					&lt;p&gt;Phasellus enim mi, dignissim efficitur diam ut, bibendum mattis magna. Donec tincidunt lacus urna, vel aliquet elit sodales et. Sed magna nulla, consectetur rhoncus auctor quis, interdum accumsan neque. Aenean accumsan elementum magna, sit amet varius erat fringilla porttitor. Etiam eu massa est. Sed faucibus, arcu rhoncus finibus ultrices, sem nulla aliquet augue, nec faucibus ante ligula et neque. Aliquam mi neque, congue non interdum id, tempor ut quam. In auctor ullamcorper erat sit amet placerat. Praesent malesuada non sapien a lacinia. Suspendisse vitae augue consectetur ex porttitor sollicitudin. Nam urna massa, tristique in pretium a, tristique et massa. Fusce sed velit ut orci viverra consectetur.&lt;/p&gt;
+					&lt;p&gt;Vestibulum porttitor massa mauris, sagittis feugiat nisi sollicitudin in. Etiam fringilla nulla nec sodales mollis. Nam vehicula nibh augue, ac auctor nulla elementum sit amet. Pellentesque massa ante, aliquam sed faucibus et, luctus non purus. Praesent dapibus ligula et nisi elementum, a feugiat velit pulvinar. Praesent facilisis ipsum nec vehicula semper. Aliquam euismod mauris at pretium tincidunt. Aenean tortor felis, pretium vel commodo a, blandit eget ipsum. Aliquam arcu nulla, tempus eu mi ut, facilisis luctus arcu.&lt;/p&gt;
+					&lt;p&gt;Curabitur vehicula erat nec venenatis efficitur. Aenean at tortor sed risus vulputate laoreet. Vivamus sed semper risus. In ut odio quam. Proin in facilisis risus, aliquet fermentum mi. Curabitur consectetur blandit enim, vel tristique elit. Curabitur lobortis, diam id convallis dictum, urna risus convallis nisi, ut condimentum nunc eros vitae diam. Nam libero lectus, porta vitae varius eu, pretium eget quam. Nulla dui enim, maximus non elit vel, ultricies egestas dui. Maecenas cursus imperdiet velit, placerat pharetra odio hendrerit varius. Morbi diam justo, egestas a ante quis, porttitor congue odio. Aliquam id lectus consequat, vestibulum justo non, lacinia tellus. Integer auctor dui sit amet orci molestie tempus. Sed gravida viverra dolor, porta faucibus tortor suscipit ut. Pellentesque magna libero, feugiat quis enim sit amet, scelerisque rhoncus lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.&lt;/p&gt;
+					&lt;p&gt;Quisque egestas, tellus vitae faucibus fermentum, massa elit tristique lacus, sed blandit est erat ac nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean in egestas lacus. Aenean condimentum consectetur tortor non vulputate. Phasellus magna ipsum, congue vel porttitor posuere, commodo et ante. In erat mauris, posuere ut hendrerit sit amet, tincidunt a metus. Cras lacus mi, euismod eu congue sit amet, finibus in turpis. Aliquam non molestie elit.&lt;/p&gt;
+					&lt;p&gt;Morbi quis ultrices lectus. Nullam dignissim ligula non tincidunt auctor. Ut rhoncus orci eget nunc sagittis, ut rutrum tellus suscipit. Donec eget dictum nisl. Fusce quis eros faucibus, fringilla nunc ac, lobortis risus. Morbi pharetra ex porttitor, placerat dui quis, imperdiet metus. Nulla nec faucibus eros, non pharetra odio. In non neque faucibus, maximus orci id, lacinia nunc. Curabitur rhoncus efficitur tincidunt. Fusce eu ante non ex molestie lacinia nec eget purus. In sit amet leo at arcu mollis tempor ac at eros. Praesent non gravida justo, ac imperdiet elit. Integer vitae tincidunt ex.&lt;/p&gt;
+					&lt;p&gt;Vestibulum id mi ex. Mauris congue ligula a tellus consequat, non hendrerit augue mattis. Donec consectetur sodales semper. Ut tincidunt viverra neque, placerat porta velit dictum vel. Donec eu nulla lobortis, vulputate neque vitae, placerat neque. Morbi eget odio nunc. Suspendisse dapibus sodales ornare. Nulla pharetra purus urna, non consectetur quam condimentum eget. Maecenas mollis ac ex vitae eleifend. Donec viverra purus nisl, vitae accumsan elit fermentum maximus. Vivamus id nisi et sem facilisis congue eget vel elit. Nam facilisis mattis nisl at finibus. Sed finibus velit velit, vel venenatis urna faucibus at. Praesent fermentum tristique elit dictum molestie. Aliquam feugiat risus vitae eros vestibulum, congue hendrerit ante porta. Praesent viverra elementum massa nec commodo.	&lt;/p&gt;
+</contentText>
+        </module_data>
+    </webmd_module>
+</wbmd_asset>
+</content>
+  <friendlyurls />
+  <referenced_objects />
+  <container_hierarchy />
+  <expanded_objects />
+</webmd_rendition>

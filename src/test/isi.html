@@ -1231,7 +1231,7 @@ webmd.fundedEditorial.articleData = {
 					<i class="isi-toggle-arw icon-arrow-up"></i>
 				</a>
 			</div>
-			<div class="isi-container">
+			<div id="isi-as" class="isi-container">
 				<div class="isi-content">
 					<h3>Important Safety Information about Your Brand (posuerous sapien lobordstis tablets)</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget nunc laoreet,<span class="isi-min-show-mobile"></span> gravida risus consequat, iaculis augue. Nam non ligula euismod ex porttitor rutrum vitae varius nunc. Nunc ut dapibus lectus. Nunc porttitor ornare sapien, vel rhoncus quam. Phasellus eu suscipit eros, lacinia sodales diam. Nam commodo ipsum sit amet nisi feugiat vestibulum. Fusce ac tincidunt mauris, non vestibulum enim. Vivamus id viverra risus. Vivamus auctor in urna porttitor condimentum.</p>
@@ -1247,10 +1247,23 @@ webmd.fundedEditorial.articleData = {
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript" src="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/modules/icm/autoscroll.js"></script>
 		<script>
 		$(function () {
 			(function(){
-				function setIsiH () {
+				var isiIntH = null,
+					as,
+					asSettings = {
+						delay : 1500,
+						id : 'isi-as', /* isi_content class also gets this id */
+						interval : 40,
+						reset_position_on_load : true,
+						reset_position_on_end : true,
+						scroll_on_load : true
+					};
+
+				// Set ISI Height
+				function setIsiH() {
 					var device = webmd.useragent.getType();
 						isiMinShwDeskPos = $('.isi-min-show-desktop').position().top,
 						isiMinShwMblPos = $('.isi-min-show-mobile').position().top,
@@ -1264,18 +1277,36 @@ webmd.fundedEditorial.articleData = {
 						isiMinH = isiMinShwMblPos + isiBtnH + isiContPadTop;
 					}
 
+					isiIntH = isiMinH;
+
 					$('.isi').css('margin-top', -isiMinH);
+				}
+
+				// Close ISI to Original Height
+				function closeIsi() {
+					$('.isi').css('margin-top', -isiIntH);
 				}
 
 				// Set Min Height of ISI on Page Load
 				setIsiH();
 
+				// Set Up Auto Scroller
+				if($('#isi-as').length > 0){
+					as = new Autoscroller(asSettings);
+				}
+
 				// Re Calc Min Height of ISI if window size changes
 				$(window).resize(function(){
 					var isi = $('.isi');
 
+					as.reset_scroller();
+
 					if(!isi.hasClass('open')){
 						setIsiH();
+
+						if($('#isi-as').length > 0){
+							as = new Autoscroller(asSettings);
+						}
 					}
 				});
 
@@ -1289,7 +1320,7 @@ webmd.fundedEditorial.articleData = {
 						isi.removeClass('open');
 						isiArw.removeClass('icon-arrow-down');
 						isiBtnTxt.text('More');
-						setIsiH();
+						closeIsi();
 					} else {
 						isi.addClass('open');
 						isiArw.addClass('icon-arrow-down');
