@@ -88,7 +88,7 @@ define(['bx_slider/1/bx_slider'], function(){
 		}
 
 		function doEnding() {
-			var artData = webmd.fundedEditorial.articleData,
+			var nextArt = webmd.fundedEditorial.articleData.articles[webmd.fundedEditorial.articleData.nextArticle],
 				url,
 				title;
 
@@ -96,8 +96,8 @@ define(['bx_slider/1/bx_slider'], function(){
 				url = settings.seamless.link;
 				title = settings.seamless.title;
 			} else if (nextArt) {
-				url = artData.articles[artData.nextArticle].link;
-				title = artData.articles[artData.nextArticle].title;
+				url = nextArt.link;
+				title = nextArt.title;
 			}
 
 			$ss.find('.bx-prev, .bx-next').hide();

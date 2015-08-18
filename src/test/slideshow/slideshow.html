@@ -79,7 +79,7 @@
 	<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/Flexible_Layout_CSS/Runtime/2_column_layout_harmony117.css">
 
 	<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/responsive/responsive.min16.css">
-	<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/funded-editorial/funded-editorial.min4.css">
+	<link rel="stylesheet" href="../../../build/webmd/PageBuilder_Assets/CSS/funded-editorial/funded-editorial.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 	<script type="text/javascript" src="http://js.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/JS/harmony/scripts_harmony80.js"></script>
@@ -565,6 +565,30 @@ html body {
 	right: 5px;
 	background-position: 100%;
 }
+.slideshow .touch-instructions {
+	display: none;
+	position: absolute;
+	top: 0;
+	background: rgba(0, 0, 0, .5);
+	color: #fff;
+	height: 20px;
+	width: 100%;
+	text-align: center;
+	font-size: 1.3rem;
+	line-height: 20px;
+}
+.slideshow .slide .caption .touch-slide-count {
+	display: none;
+	font-size: 1.6rem;
+	line-height: 2.0rem;
+	color: #666;
+	text-transform: uppercase;
+	margin: 0 0 0.2em;
+}
+.touch .slideshow .touch-instructions,
+.touch .slideshow .slide .caption .touch-slide-count {
+	display: block;
+}
 .slideshow .slide-count {
 	position: absolute;
 	top: 0;
@@ -572,6 +596,9 @@ html body {
 	background: rgba(102, 102, 102, .8);
 	padding: 10px 15px;
 	color: #fff;
+}
+.touch .slideshow .slide-count {
+	display: none;
 }
 .slideshow .slide-end {
 	display: none;
@@ -590,12 +617,13 @@ html body {
 	color: #fff;
 	font-family: Lato,Arial,sans-serif;
 	font-size: 1.8rem;
-	margin: 10px 0 0;
+	margin: 35px 0 0;
+	line-height: 2.5rem;
 }
 .slideshow .slide-end h4 .next-art {
 	font-size: 2.4rem;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (min-width: 676px) and (max-width: 915px), only screen and (max-width: 530px) {
 	.slideshow .slide .caption p {
 		font-size: 1.6rem;
 	}
@@ -605,6 +633,7 @@ html body {
 	.slideshow .slide-end h4 {
 		font-size: 1.3rem;
 		margin: 10px 0 0;
+		line-height: 2.0rem;
 	}
 	.slideshow .slide-end h4 .next-art {
 		font-size: 1.5rem;
@@ -735,7 +764,7 @@ webmd.m.slider = {
 		var options = {
 			seamless: {
 				link: 'http://www.google.com',
-				title: 'Google'
+				title: 'Rheumatoid Arthritis: Biologic Drugs at a Glance'
 			}
 		};
 		ss.init('.slideshow', options);
@@ -749,6 +778,7 @@ webmd.m.slider = {
 				<img src="slide_image.jpg" />
 			</div>
 			<div class="caption">
+				<p class="touch-slide-count">Slide 1/5</p>
 				<h3>Slide 1</h3>
 				<p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
 			</div>
@@ -758,6 +788,7 @@ webmd.m.slider = {
 				<img src="slide_image_2.jpg" />
 			</div>
 			<div class="caption">
+				<p class="touch-slide-count">Slide 2/5</p>
 				<h3>Slide 2</h3>
 				<p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
 				<p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
@@ -768,6 +799,7 @@ webmd.m.slider = {
 				<img src="slide_image_3.jpg" />
 			</div>
 			<div class="caption">
+				<p class="touch-slide-count">Slide 3/5</p>
 				<h3>Slide 3</h3>
 				<p>Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
 			</div>
@@ -777,6 +809,7 @@ webmd.m.slider = {
 				<img src="slide_image.jpg" />
 			</div>
 			<div class="caption">
+				<p class="touch-slide-count">Slide 4/5</p>
 				<h3>Slide 4</h3>
 				<p>Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate extensible testing procedures for reliable supply chains. Dramatically engage top-line web services vis-a-vis cutting-edge deliverables.</p>
 			</div>
@@ -786,11 +819,13 @@ webmd.m.slider = {
 				<img src="slide_image.jpg" />
 			</div>
 			<div class="caption">
+				<p class="touch-slide-count">Slide 5/5</p>
 				<h3>Slide 5</h3>
 				<p>Proactively envisioned multimedia based expertise and cross-media growth strategies. Seamlessly visualize quality intellectual capital without superior collaboration and idea-sharing. Holistically pontificate installed base portals after maintainable products.</p>
 			</div>
 		</div>
 	</div>
+	<div class="touch-instructions">Swipe the photo for the next slide</div>
 	<div class="slide-count">
 		<span class="current">1</span>/<span class="total"></span>
 	</div>

@@ -96,6 +96,8 @@
 			<xsl:call-template name="CreateSSTitle"/>
 			<xsl:call-template name="CreateSlides"/>
 			
+			<div class="touch-instructions">Swipe the photo for the next slide</div>
+			
 			<!-- Slide Count -->
 			<xsl:element name="div">
 				<xsl:attribute name="class">slide-count</xsl:attribute>
@@ -198,13 +200,19 @@
 	<xsl:template name="CreateSlides">
 		<xsl:element name="div">
 			<xsl:attribute name="class">slides</xsl:attribute>
+			<xsl:variable name="totalSlides"><xsl:value-of select="count(/webmd_rendition/webmd_rendition/content/wbmd_asset/content_section/cons_slideshow/slide_group)"/></xsl:variable>
 			<xsl:for-each
 				select="/webmd_rendition/webmd_rendition/content/wbmd_asset/content_section/cons_slideshow/slide_group">
-				<xsl:call-template name="CreateSlide"/>
+				<xsl:call-template name="CreateSlide">
+					<xsl:with-param name="index"><xsl:value-of select="position()"/></xsl:with-param>
+					<xsl:with-param name="total"><xsl:value-of select="$totalSlides"/></xsl:with-param>
+				</xsl:call-template>
 			</xsl:for-each>
 		</xsl:element>
 	</xsl:template>
 	<xsl:template name="CreateSlide">
+		<xsl:param name="index"/>
+		<xsl:param name="total"/>
 		<xsl:element name="div">
 			<xsl:choose>
 				<xsl:when test="slide_title='interstitial'">
@@ -223,16 +231,14 @@
 					</xsl:attribute>
 				</xsl:element>
 			</xsl:element>
-			<xsl:call-template name="CreateCaption"/>
+			<div class="caption">
+				<p class="touch-slide-count">Slide <xsl:value-of select="$index"/>/<xsl:value-of select="$total"/></p>
+				<h3>
+					<xsl:value-of select="slide_caption_title" disable-output-escaping="yes"/>
+				</h3>
+				<xsl:copy-of select="slide_caption_text/*"/>
+			</div>
 		</xsl:element>
-	</xsl:template>
-	<xsl:template name="CreateCaption">
-		<div class="caption">
-			<h3>
-				<xsl:value-of select="slide_caption_title" disable-output-escaping="yes"/>
-			</h3>
-			<xsl:copy-of select="slide_caption_text/*"/>
-		</div>
 	</xsl:template>
 	<!--xsl:template name="CreateAttrib">
 		<div class="sources addOn">

@@ -60,6 +60,30 @@
 	right: 5px;
 	background-position: 100%;
 }
+.slideshow .touch-instructions {
+	display: none;
+	position: absolute;
+	top: 0;
+	background: rgba(0, 0, 0, .5);
+	color: #fff;
+	height: 20px;
+	width: 100%;
+	text-align: center;
+	font-size: 1.3rem;
+	line-height: 20px;
+}
+.slideshow .slide .caption .touch-slide-count {
+	display: none;
+	font-size: 1.6rem;
+	line-height: 2.0rem;
+	color: #666;
+	text-transform: uppercase;
+	margin: 0 0 0.2em;
+}
+.touch .slideshow .touch-instructions,
+.touch .slideshow .slide .caption .touch-slide-count {
+	display: block;
+}
 .slideshow .slide-count {
 	position: absolute;
 	top: 0;
@@ -67,6 +91,9 @@
 	background: rgba(102, 102, 102, .8);
 	padding: 10px 15px;
 	color: #fff;
+}
+.touch .slideshow .slide-count {
+	display: none;
 }
 .slideshow .slide-end {
 	display: none;
@@ -85,13 +112,14 @@
 	color: #fff;
 	font-family: Lato,Arial,sans-serif;
 	font-size: 1.8rem;
-	margin: 10px 0 0;
+	margin: 35px 0 0;
+	line-height: 2.5rem;
 }
 .slideshow .slide-end h4 .next-art {
 	font-size: 2.4rem;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (min-width: 676px) and (max-width: 915px), only screen and (max-width: 530px) {
 	.slideshow .slide .caption p {
 		font-size: 1.6rem;
 	}
@@ -101,6 +129,7 @@
 	.slideshow .slide-end h4 {
 		font-size: 1.3rem;
 		margin: 10px 0 0;
+		line-height: 2.0rem;
 	}
 	.slideshow .slide-end h4 .next-art {
 		font-size: 1.5rem;
