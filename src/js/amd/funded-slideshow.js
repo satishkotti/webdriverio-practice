@@ -66,6 +66,10 @@ define(['bx_slider/1/bx_slider'], function(){
 				doEnding();
 			});
 
+			$(window).on('resize', function() {
+				slider.reloadSlider();
+			});
+
 			return self;
 		}
 
