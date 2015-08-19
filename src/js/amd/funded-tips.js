@@ -64,6 +64,8 @@ define(['bx_slider/1/bx_slider'], {
             $nextBtn = self._selectNextBtn(i);
         });
 
+        webmd.fundedEditorial.tocTips.ready = true;
+
         return self;
     },
 
