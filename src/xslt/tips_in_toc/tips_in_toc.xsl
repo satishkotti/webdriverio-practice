@@ -47,39 +47,6 @@
                                 <xsl:attribute name="class">
                                     <xsl:text>slide_content</xsl:text>
                                 </xsl:attribute>
-                                
-                                <xsl:element name="div">
-                                    <xsl:attribute name="class">
-                                        <xsl:text>slide_media</xsl:text>
-                                    </xsl:attribute>
-                                
-                                    <xsl:element name="div">
-                                        <xsl:attribute name="class">
-                                            <xsl:text>slide_controls</xsl:text>
-                                        </xsl:attribute>
-                                        
-                                        <xsl:element name="ul">
-                                            <xsl:element name="li">
-                                                <xsl:element name="a">
-                                                    <xsl:attribute name="href">#</xsl:attribute>
-                                                    <xsl:attribute name="class">tips_prev</xsl:attribute>
-                                                    <xsl:element name="span">
-                                                        <xsl:attribute name="class">icon-arrow-left</xsl:attribute>
-                                                    </xsl:element>
-                                                </xsl:element>
-                                            </xsl:element>
-                                            <xsl:element name="li">
-                                                <xsl:element name="a">
-                                                    <xsl:attribute name="href">#</xsl:attribute>
-                                                    <xsl:attribute name="class">tips_next</xsl:attribute>
-                                                    <xsl:element name="span">
-                                                        <xsl:attribute name="class">icon-arrow-right</xsl:attribute>
-                                                    </xsl:element>
-                                                </xsl:element>
-                                            </xsl:element>
-                                        </xsl:element>
-                                    </xsl:element>
-                                </xsl:element>
                             
                                 <xsl:element name="div">
                                     <xsl:attribute name="class">
@@ -115,6 +82,33 @@
                         </xsl:element>
                     </xsl:if>
                 </xsl:for-each>
+            </xsl:element>
+            
+            <xsl:element name="div">
+                <xsl:attribute name="class">
+                    <xsl:text>slide_controls</xsl:text>
+                </xsl:attribute>
+                
+                <xsl:element name="ul">
+                    <xsl:element name="li">
+                        <xsl:element name="a">
+                            <xsl:attribute name="href">#</xsl:attribute>
+                            <xsl:attribute name="class">tips_prev</xsl:attribute>
+                            <xsl:element name="span">
+                                <xsl:attribute name="class">icon-arrow-left</xsl:attribute>
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:element>
+                    <xsl:element name="li">
+                        <xsl:element name="a">
+                            <xsl:attribute name="href">#</xsl:attribute>
+                            <xsl:attribute name="class">tips_next</xsl:attribute>
+                            <xsl:element name="span">
+                                <xsl:attribute name="class">icon-arrow-right</xsl:attribute>
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:element>
             </xsl:element>
         </xsl:element>
 
