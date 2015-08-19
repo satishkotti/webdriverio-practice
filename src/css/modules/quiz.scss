@@ -107,7 +107,8 @@ $lato_font: 'Lato', sans-serif;
 	    			position: relative;
 
 					img {
-					    display: block;
+					    display: none;
+					    visibility: hidden;
 					    width: 100%;
 					    height: auto;
 					    max-height: 346px;
@@ -328,7 +329,8 @@ $lato_font: 'Lato', sans-serif;
 						.incorrect, .correct {
 							display: block;
 							width: auto;
-						    height: 64px;
+						    height: auto;
+						    min-height:64px;
 						    margin: 20px 0 3em 0;
 
 							&:before {
@@ -536,7 +538,7 @@ $lato_font: 'Lato', sans-serif;
 
 	#rmq_header {
 		h2 {
-			font-size: 1.75em;
+			font-size: 20px;
 		}
 	}
 
@@ -581,7 +583,7 @@ $lato_font: 'Lato', sans-serif;
 						.rmq_answers {
 							.incorrect, .correct {
 								margin: 10px 0 1.25em 0;
-								height: 40px;
+								min-height:40px;
 
 						    	&:before {
 								    font-size: 40px;
@@ -681,7 +683,7 @@ $lato_font: 'Lato', sans-serif;
 						.rmq_answers {
 							.incorrect, .correct {
 								margin: 10px 0 1.25em 0;
-								height: 40px;
+								min-height:40px;
 
 						    	&:before {
 								    font-size: 40px;
@@ -768,7 +770,7 @@ $lato_font: 'Lato', sans-serif;
 						.rmq_answers {
 							.incorrect, .correct {
 								margin: 10px 0 1.25em 0;
-								height: 50px;
+								min-height:50px;
 
 								&:before {
 								    font-size: 50px;
