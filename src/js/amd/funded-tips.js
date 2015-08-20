@@ -10,7 +10,7 @@ define(['bx_slider/1/bx_slider'], {
     container: '#tips_slides',
     sSettings: {
         // GENERAL
-        mode: 'fade', // fade produces the best functionality of all transition options
+        mode: 'horizontal', // fade produces the best functionality of all transition options
         infiniteLoop: true, // enable looping since the tips is not a true slider
         preloadImages: 'all', // preload every image before initializing the slider
 
@@ -97,8 +97,6 @@ define(['bx_slider/1/bx_slider'], {
                     // set the new window dimens
                     windowWidth = windowWidthNew;
                     windowHeight = windowHeightNew;
-                    // update all dynamic elements
-                    self.slider.redrawSlider();
                 }
             }, 500);
         });

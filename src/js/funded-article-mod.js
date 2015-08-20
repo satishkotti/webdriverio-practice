@@ -275,14 +275,43 @@ webmd.fundedEditorial.articleMod = {
     layoutOn_TipsModuleReady: function() {
         var self = this;
 
-        webmd.fundedEditorial.tocTips = {};
+        // this is very similar to using Object.watch()
+        // instead we attach multiple listeners
+        webmd.fundedEditorial.tocTips = (function () {
+            var initVal,
+                interceptors = [];
 
-        Object.observe(webmd.fundedEditorial.tocTips, function(changes) {
-            $.each(changes, function() {
-                if (this.object.ready) {
-                    self.createMasonry(true);
+            function callInterceptors(newVal) {
+                for (var i = 0; i < interceptors.length; i += 1) {
+                    interceptors[i](newVal);
                 }
-            });
+            }
+
+            return {
+                get ready() {
+                    // user never has access to the private variable "initVal"
+                    // we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
+                    return initVal;
+                },
+
+                set ready(newVal) {
+                    callInterceptors(newVal);
+                    initVal = newVal;
+                },
+
+                listen : function (fn) {
+                    if (typeof fn === 'function') {
+                        interceptors.push(fn);
+                    }
+                }
+            };
+        }());
+
+        // add a listener
+        webmd.fundedEditorial.tocTips.listen(function (passedValue) {
+            if (passedValue === true) {
+                self.createMasonry(true);
+            }
         });
     },
 

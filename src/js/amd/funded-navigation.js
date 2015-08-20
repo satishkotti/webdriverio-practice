@@ -99,21 +99,51 @@ webmd.fundedEditorial.navigation = {
                 self.identifier = '.article';
                 break;
             case 'type_rmq':
-                webmd.fundedEditorial.rmqSlide = {};
+                $('.article-nav-container').hide(); // hide nav
 
-                Object.observe(webmd.fundedEditorial.rmqSlide, function(changes) {
-                    $.each(changes, function() {
-                        var type = this.object.type;
+                // this is very similar to using Object.watch()
+                // instead we attach multiple listeners
+                webmd.fundedEditorial.rmqSlide = (function () {
+                    var initVal,
+                        interceptors = [];
 
-                        $('.article-nav-container').hide();
-
-                        if (type === 'results') { //only show paddles on RMQ results page
-                            $('.article-nav-container').show();
-                            self.percent_after_article_start_to_show = 10;
+                    function callInterceptors(newVal) {
+                        for (var i = 0; i < interceptors.length; i += 1) {
+                            interceptors[i](newVal);
                         }
-                    });
+                    }
+
+                    return {
+                        get type() {
+                            // user never has access to the private variable "initVal"
+                            // we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
+                            return initVal;
+                        },
+
+                        set type(newVal) {
+                            callInterceptors(newVal);
+                            initVal = newVal;
+                        },
+
+                        listen : function (fn) {
+                            if (typeof fn === 'function') {
+                                interceptors.push(fn);
+                            }
+                        }
+                    };
+                }());
+
+                // add a listener
+                webmd.fundedEditorial.rmqSlide.listen(function (passedValue) {
+                    if (passedValue === 'results') {
+                        $('.article-nav-container').show();
+                    } else {
+                        self.hideElement('.article-nav');
+                        window.setTimeout(function() { $('.article-nav-container').hide(); }, 1000);
+                    }
                 });
 
+                self.percent_after_article_start_to_show = 10;
                 self.identifier = '.rich_media_quiz';
                 self.mobile_only = true;
                 break;
