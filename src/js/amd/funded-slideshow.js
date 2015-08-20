@@ -50,6 +50,13 @@ define(['bx_slider/1/bx_slider'], function(){
 			$ss.on('onSlideBefore', function(event) {
 				$ss.find('.slide-count .current').html(event.newIndex + 1);
 				positionArrows(event.newIndex);
+
+				// check for interstitial slide
+				if ($ss.find('.slide').eq(event.newIndex).hasClass('sponsored')) {
+					doInterstitial(true);
+				} else {
+					doInterstitial(false);
+				}
 			});
 
 			$ss.on('onSlideAfter', function(event) {
@@ -60,7 +67,6 @@ define(['bx_slider/1/bx_slider'], function(){
 			});
 
 			$ss.on('onSlideNext', function(event) {
-				console.log('next');
 				callMetrics('next');
 			});
 
@@ -90,6 +96,15 @@ define(['bx_slider/1/bx_slider'], function(){
 			$ss.find('.bx-prev, .bx-next').css('top', imageHeight/2 - 24);
 
 			return this;
+		}
+
+		function doInterstitial(isInterstitial) {
+			var $elements = $('.sources, .ed_disclaimer, .attrib_right_fmt');
+			if (isInterstitial) {
+				$elements.hide();
+			} else {
+				$elements.show();
+			}
 		}
 
 		function doEnding() {
