@@ -60,6 +60,7 @@ define(['bx_slider/1/bx_slider'], function(){
 			});
 
 			$ss.on('onSlideNext', function(event) {
+				console.log('next');
 				callMetrics('next');
 			});
 
@@ -68,7 +69,10 @@ define(['bx_slider/1/bx_slider'], function(){
 			});
 
 			$(window).on('resize', function() {
+				var current = slider.getCurrentSlide();
+
 				slider.reloadSlider();
+				slider.goToSlide(current);
 			});
 
 			return self;

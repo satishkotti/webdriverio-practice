@@ -126,7 +126,7 @@
 			</xsl:element>
 			
 		</xsl:element>
-		<!--xsl:call-template name="CreateAttrib"/-->
+		<xsl:call-template name="CreateAttrib"/>
 		<xsl:call-template name="CreateRequireScript"/>
 	</xsl:template>
 	<xsl:template name="CreateSSTitle">
@@ -154,7 +154,7 @@
 					<xsl:text>Reviewed</xsl:text>
 					<xsl:if
 						test="/webmd_rendition/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr/wbmd_first_nm != ''">
-						<xsl:text>by</xsl:text>
+						<xsl:text> by </xsl:text>
 						<xsl:for-each
 							select="/webmd_rendition/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr">
 							<xsl:variable name="rev_link">
@@ -184,7 +184,7 @@
 					</xsl:if>
 					<xsl:if
 						test="/webmd_rendition/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_revw_dt != 'nulldate'">
-						<xsl:text>on</xsl:text>
+						<xsl:text> on </xsl:text>
 						<xsl:call-template name="Convert_Date">
 							<xsl:with-param name="date">
 								<xsl:value-of
@@ -240,47 +240,97 @@
 			</div>
 		</xsl:element>
 	</xsl:template>
-	<!--xsl:template name="CreateAttrib">
-		<div class="sources addOn">
-			<div>
-				<div>
-					<p class="sLink">
-						<a
-							onclick="$(this).toggleClass('expanded'); $('.source.sContent').toggleClass('hidden'); return false;"
-							href="#">Sources</a>
-					</p>
-				</div>
-				<div class="source sContent hidden">
+	<xsl:template name="CreateAttrib">
+		<div class="sources">
+			<p class="sLink">
+				<a
+					onclick="$(this).toggleClass('expanded'); $('.source.sContent').toggleClass('hidden'); return false;"
+					href="#">Sources</a>
+			</p>
+
+			<div class="source sContent hidden">
+				<xsl:if
+					test="/webmd_rendition/webmd_rendition/content/wbmd_asset/content_section/cons_slideshow/citations != ''">
+					<xsl:copy-of
+						select="/webmd_rendition/webmd_rendition/content/wbmd_asset/content_section/cons_slideshow/citations/*"
+					/>
+				</xsl:if>
+			</div>
+
+			<xsl:if
+				test="/webmd_rendition/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr/wbmd_first_nm != '' or /webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_revw_dt != 'nulldate'">
+				<xsl:element name="p">
+					<xsl:attribute name="class">
+						<xsl:text>reviewer</xsl:text>
+					</xsl:attribute>
+					<xsl:attribute name="data-metrics-module">
+						<xsl:value-of select="''"/>
+					</xsl:attribute>
+					<xsl:text>Reviewed</xsl:text>
 					<xsl:if
-						test="/webmd_rendition/webmd_rendition/content/wbmd_asset/content_section/cons_slideshow/citations != ''">
-						<xsl:copy-of
-							select="/webmd_rendition/webmd_rendition/content/wbmd_asset/content_section/cons_slideshow/citations/*"
-						/>
+						test="/webmd_rendition/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr/wbmd_first_nm != ''">
+						<xsl:text> by </xsl:text>
+						<xsl:for-each
+							select="/webmd_rendition/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr">
+							<xsl:variable name="rev_link">
+								<xsl:call-template name="GetURLRef">
+									<xsl:with-param name="ObjectID">
+										<xsl:value-of select="wbmd_bio_obj_id/@chronic_id"/>
+									</xsl:with-param>
+								</xsl:call-template>
+							</xsl:variable>
+							<xsl:choose>
+								<xsl:when test="$rev_link != ''">
+									<xsl:element name="a">
+										<xsl:attribute name="data-metrics-link">
+											<xsl:text>review-lnk</xsl:text>
+										</xsl:attribute>
+										<xsl:attribute name="href">
+											<xsl:value-of select="$rev_link"/>
+										</xsl:attribute>
+										<xsl:call-template name="GetFullName"/>
+									</xsl:element>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:call-template name="GetFullName"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:for-each>
 					</xsl:if>
-				</div>
+					<xsl:if
+						test="/webmd_rendition/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_revw_dt != 'nulldate'">
+						<xsl:text> on </xsl:text>
+						<xsl:call-template name="Convert_Date">
+							<xsl:with-param name="date">
+								<xsl:value-of
+									select="/webmd_rendition/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_revw_dt"
+								/>
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:if>
+				</xsl:element>
+			</xsl:if>
+
+			<p class="disclaimer dLink">This tool does not provide medical advice. <a
+					onclick="$(this).toggleClass('expanded'); $('.disc.dContent').toggleClass('hidden'); return false;"
+					href="#">See additional information</a></p>
+
+			<div class="disc dContent hidden">
+				<xsl:for-each
+					select="/webmd_rendition/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_disclmr/wbmd_disclaimer/disclaimer_statement">
+					<p class="disclaimer dContent">
+						<xsl:value-of select="normalize-space()"/>
+					</p>
+				</xsl:for-each>
 			</div>
-			<div>
-				<div>
-					<p class="disclaimer dLink">This tool does not provide medical advice.<a
-							onclick="$(this).toggleClass('expanded'); $('.disc.dContent').toggleClass('hidden'); return false;"
-							href="#">See additional information</a></p>
-				</div>
-				<div class="disc dContent hidden">
-					<xsl:for-each
-						select="/webmd_rendition/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_disclmr/wbmd_disclaimer/disclaimer_statement">
-						<p class="disclaimer dContent">
-							<xsl:value-of select="normalize-space()"/>
-						</p>
-					</xsl:for-each>
-				</div>
-			</div>
+			
 			<p class="copyright">
 				<xsl:value-of
 					select="/webmd_rendition/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_cpyrt/wbmd_copyright/wbmd_copyright_statement"
 				/>
 			</p>
 		</div>
-	</xsl:template-->
+	</xsl:template>
 	<xsl:template name="GetURLRef">
 		<xsl:param name="ObjectID"/>
 		<xsl:if
