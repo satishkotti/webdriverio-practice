@@ -69,6 +69,8 @@ webmd.fundedEditorial.articleMod = {
     masonryGutter: 10,
 
     init: function() {
+        this.layoutOn_TipsModuleReady();
+
         this.render();
     },
 
@@ -268,6 +270,20 @@ webmd.fundedEditorial.articleMod = {
                 }
             });
         }
+    },
+
+    layoutOn_TipsModuleReady: function() {
+        var self = this;
+
+        webmd.fundedEditorial.tocTips = {};
+
+        Object.observe(webmd.fundedEditorial.tocTips, function(changes) {
+            $.each(changes, function() {
+                if (this.object.ready) {
+                    self.createMasonry(true);
+                }
+            });
+        });
     },
 
     createMasonry: function(resetLayout) {
