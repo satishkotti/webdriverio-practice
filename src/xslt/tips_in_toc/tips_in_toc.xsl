@@ -115,7 +115,7 @@
         <xsl:element name="script">
             <xsl:text disable-output-escaping="yes">
                 <![CDATA[
-                    $(window).load(function() {
+                    $(function() {
                         require(['funded-editorial/1/funded-tips'], function(tips) {
                             tips.init();
                         });

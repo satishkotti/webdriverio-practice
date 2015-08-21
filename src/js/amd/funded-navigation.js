@@ -21,6 +21,7 @@ webmd.fundedEditorial.navigation = {
     pixels_after_article_end_to_hide: 200, // Hides Next|Prev nav defined # of pixels after end of article
 
     init: function() {
+        console.log('dev');
         this.getIdentifier();
     },
 
@@ -143,7 +144,8 @@ webmd.fundedEditorial.navigation = {
                     }
                 });
 
-                self.percent_after_article_start_to_show = 10;
+                self.percent_after_article_start_to_show = 0;
+                self.pixels_after_article_end_to_hide = 300;
                 self.identifier = '.rich_media_quiz';
                 self.mobile_only = true;
                 break;

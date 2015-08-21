@@ -15,14 +15,10 @@ define(['bx_slider/1/bx_slider'], {
         preloadImages: 'all', // preload every image before initializing the slider
 
         // TOUCH
-        touchEnabled: true,
-        swipeThreshold: 50,
-        oneToOneTouch: true,
-        preventDefaultSwipeX: true,
-        preventDefaultSwipeY: false,
+        touchEnabled: false,
 
         // PAGER
-        pager: true, // no pagination is needed for tips
+        pager: true,
         pagerType: "short",
         pagerShortSeparator: ' of ',
 
@@ -42,6 +38,11 @@ define(['bx_slider/1/bx_slider'], {
     init: function(settings) {
         var self = this;
 
+        if (webmd.fundedEditorial.tocTiles.tocTips === "loaded") { // initializing masonry causes 2 instances
+            webmd.fundedEditorial.tocTiles.tocTips = null; // allow multiple tips modules
+            return;
+        }
+
         self.slideInfo = [];
 
         // Add slide data and additional parameters to the Tips object
@@ -51,6 +52,7 @@ define(['bx_slider/1/bx_slider'], {
         // Show the quiz container once it is fully loaded and ready
         self.sSettings.onSliderLoad = function() {
             $('.wbmd-tips').css('visibility', 'visible');
+            webmd.fundedEditorial.tocTiles.tocTips = "loaded";
         };
 
         // Create a bxSlider instance from the Tips slide container
@@ -63,8 +65,6 @@ define(['bx_slider/1/bx_slider'], {
         $.each(self.slides, function(i) {
             $nextBtn = self._selectNextBtn(i);
         });
-
-        webmd.fundedEditorial.tocTips.ready = true;
 
         return self;
     },
@@ -97,6 +97,8 @@ define(['bx_slider/1/bx_slider'], {
                     // set the new window dimens
                     windowWidth = windowWidthNew;
                     windowHeight = windowHeightNew;
+                    // update all dynamic elements
+                    self.slider.redrawSlider();
                 }
             }, 500);
         });
