@@ -1,0 +1,52 @@
+$blue_color: #1b88bf;
+
+.wbmd-restricted-email {
+	clear: both;
+    position: relative;
+    width: 100%;
+    border-bottom: 0;
+    padding: 10px 15px;
+    font-family: 'Lato-Regular', Arial, sans-serif;
+    box-sizing: border-box;
+
+    .title {
+    	font-size: 30px;
+    }
+
+    .message {
+    	font-size: 18px;
+    	line-height: 28px;
+    	margin-top: 15px;
+    }
+
+    .info {
+    	font-size: 18px;
+    	line-height: 28px;
+    	font-weight: 600;
+    	margin-top: 15px;
+    }
+
+    form {
+    	margin-top: 15px;
+
+    	input {
+    		float: left;
+    		font-size: 16px;
+    		padding: 10px;
+    		font-weight: 400;
+    	}
+    	input[type=email] {
+    		background-color: #fff;
+    		border: 1px solid #eee;
+    	}
+
+    	input[type=submit] {
+    		background-color: $blue_color;
+    		border: 0;
+    		border-top: 1px solid $blue_color;
+    		border-bottom: 1px solid $blue_color;
+    		margin-left: 1px;
+    		color: #fff;
+    	}
+    }
+}
