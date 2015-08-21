@@ -30,6 +30,11 @@ define(['bx_slider/1/bx_slider'], function(){
 			}
 
 			$ss = $(selector);
+
+			if (webmd.useragent.getType() === 'mobile') {
+				swapMobileInterstitial();
+			}
+
 			$ss.show();
 
 			attachEventHandlers();
@@ -46,9 +51,6 @@ define(['bx_slider/1/bx_slider'], function(){
 				positionArrows(0);
 				$ss.find('.slide-count .current').html('1');
 
-				if (webmd.useragent.getType() === 'mobile') {
-					swapMobileInterstitial();
-				}
 			});
 
 			$ss.on('onSlideBefore', function(event) {
@@ -113,15 +115,21 @@ define(['bx_slider/1/bx_slider'], function(){
 
 		function swapMobileInterstitial() {
 			var $sponImg = $ss.find('.slide.sponsored .image img'),
-				imgSrc = $sponImg.attr('src'),
+				orgImgSrc = $sponImg.attr('src'),
+				imgSrc = orgImgSrc,
 				imgSplit,
 				imgType;
 			
-			if (imgSrc && imgSrc.indexOf('_mobile') === -1) {
+			if (imgSrc) {
 				imgSplit = imgSrc.split('.');
 				imgType= imgSplit.pop();
-				
-				$sponImg.attr('src', imgSplit.join('.') + '_mobile.' + imgType);
+				imgSrc = imgSplit.join('.') + '_mobile.' + imgType;
+
+				// attach error handler to swith back to original image if mobile doesn't exist
+				$sponImg.error(function() {
+					$(this).attr('src', orgImgSrc);
+				}).attr('src', imgSrc);
+
 			}
 		}
 
