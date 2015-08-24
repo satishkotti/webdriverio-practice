@@ -10,15 +10,11 @@
     <xsl:param name="site_id">3</xsl:param>
     <xsl:param name="domain">webmd.com</xsl:param>
     
-    <xsl:variable name="max-header-length" select="55"/>
-    <xsl:variable name="max-text-length" select="200"/>
-    
     <xsl:template match="/">
         <xsl:apply-templates select="webmd_rendition/content/wbmd_asset/webmd_module/module_data" />
     </xsl:template>
     
     <xsl:template match="module_data">
-        <xsl:variable name="headline"></xsl:variable>
         <xsl:variable name="href">
             <xsl:call-template name="GetURLRef">
                 <xsl:with-param name="ObjectID">
@@ -34,14 +30,14 @@
             
             <xsl:element name="div">
                 <xsl:attribute name="class">
-                    <xsl:text>title</xsl:text>
+                    <xsl:text>heading</xsl:text>
                 </xsl:attribute>
                 <xsl:choose>
                     <xsl:when test="(module_title != '')">
                         <xsl:value-of select="module_title"></xsl:value-of>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:text><![CDATA[Raincheck!]]></xsl:text>
+                        <xsl:text disable-output-escaping="yes"><![CDATA[Raincheck!]]></xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:element>
@@ -52,14 +48,14 @@
                 <xsl:if test="$index = '1'">
                     <xsl:element name="div">
                         <xsl:attribute name="class">
-                            <xsl:text>message</xsl:text>
+                            <xsl:text>description</xsl:text>
                         </xsl:attribute>
                         <xsl:choose>
                             <xsl:when test="link_text != ''">
                                 <xsl:value-of select="$message"></xsl:value-of>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:text><![CDATA[This information is restricted on mobile devices but can be viewed on a computer or tablet.]]></xsl:text>
+                                <xsl:text disable-output-escaping="yes"><![CDATA[This information is restricted on mobile devices but can be viewed on a computer or tablet.]]></xsl:text>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:element>
@@ -68,32 +64,140 @@
             
             <xsl:element name="div">
                 <xsl:attribute name="class">
-                    <xsl:text>info</xsl:text>
+                    <xsl:text>assetContainer</xsl:text>
                 </xsl:attribute>
-                <xsl:value-of select="concat('Get a one-time reminder email to read ', $headline, ' later.')"></xsl:value-of>
+                
+                
+                <xsl:element name="div">
+                    <xsl:attribute name="class">
+                        <xsl:text>info</xsl:text>
+                    </xsl:attribute>
+                
+                    <xsl:text disable-output-escaping="yes"><![CDATA[Get a one-time reminder email to read, "]]></xsl:text>
+                
+                    <xsl:element name="span">
+                        <xsl:attribute name="class">
+                            <xsl:text>assetTitle</xsl:text>
+                        </xsl:attribute>
+                    </xsl:element>
+                    
+                    <xsl:text disable-output-escaping="yes"><![CDATA[" later.]]></xsl:text>
+                </xsl:element>
             </xsl:element>
             
-            <xsl:element name="form">
-                <xsl:attribute name="method">
-                    <xsl:text>post</xsl:text>                      
+            <xsl:element name="div">
+                <xsl:attribute name="class">
+                    <xsl:text>modal modalForm</xsl:text>
                 </xsl:attribute>
-                <xsl:element name="input">
-                    <xsl:attribute name="type">
-                        <xsl:text>email</xsl:text>                      
+                
+                <xsl:element name="form">
+                    <xsl:attribute name="action">
+                        <xsl:text>#</xsl:text>
                     </xsl:attribute>
-                    <xsl:attribute name="placeholder">
-                        <xsl:text>Enter Your Email Address</xsl:text>
+                    <xsl:attribute name="method">
+                        <xsl:text>GET</xsl:text>
                     </xsl:attribute>
-                </xsl:element>
-                <xsl:element name="input">
-                    <xsl:attribute name="type">
-                        <xsl:text>submit</xsl:text>                      
-                    </xsl:attribute>
-                    <xsl:attribute name="name">
-                        <xsl:text>submit</xsl:text>                      
-                    </xsl:attribute>
-                    <xsl:attribute name="placeholder">
+                    
+                    <xsl:element name="input">
+                        <xsl:attribute name="type">
+                            <xsl:text>hidden</xsl:text>
+                        </xsl:attribute>
+                        <xsl:attribute name="name">
+                            <xsl:text>fromAddress</xsl:text>
+                        </xsl:attribute>
+                        <xsl:attribute name="value">
+                            <xsl:text>noreply@webmd.com</xsl:text>
+                        </xsl:attribute>
+                    </xsl:element>
+                    
+                    <xsl:element name="input">
+                        <xsl:attribute name="type">
+                            <xsl:text>hidden</xsl:text>
+                        </xsl:attribute>
+                        <xsl:attribute name="name">
+                            <xsl:text>fromName</xsl:text>
+                        </xsl:attribute>
+                        <xsl:attribute name="value">
+                            <xsl:text>WebMD</xsl:text>
+                        </xsl:attribute>
+                    </xsl:element>
+                    
+                    <xsl:element name="div">
+                        <xsl:attribute name="class">
+                            <xsl:text>errors</xsl:text>
+                        </xsl:attribute>
+                    </xsl:element>
+                    
+                    <xsl:element name="input">
+                        <xsl:attribute name="type">
+                            <xsl:text>email</xsl:text>
+                        </xsl:attribute>
+                        <xsl:attribute name="name">
+                            <xsl:text>toAddress</xsl:text>
+                        </xsl:attribute>
+                        <xsl:attribute name="placeholder">
+                            <xsl:text>Email Address</xsl:text>
+                        </xsl:attribute>
+                    </xsl:element>
+                    
+                    <xsl:element name="button">
+                        <xsl:attribute name="type">
+                            <xsl:text>submit</xsl:text>                      
+                        </xsl:attribute>
                         <xsl:text>Send</xsl:text>
+                    </xsl:element>
+                    
+                    <xsl:element name="p">
+                        <xsl:attribute name="class">
+                            <xsl:text>disclaimer</xsl:text>
+                        </xsl:attribute>
+                        
+                        <xsl:text>Clicking the send button signifies that you have read and agree to our </xsl:text>
+                        <xsl:element name="a">
+                            <xsl:attribute name="href">
+                                <xsl:text>http://www.webmd.com/about-webmd-policies/about-privacy-policy</xsl:text>
+                            </xsl:attribute>
+                            <xsl:text>Privacy Policy</xsl:text>
+                        </xsl:element>
+                        <xsl:text>.</xsl:text>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:element>
+                
+            <xsl:element name="div">
+                <xsl:attribute name="class">
+                    <xsl:text>modal modalBusy</xsl:text>
+                </xsl:attribute>
+                
+                <xsl:element name="div">
+                    <xsl:attribute name="class">
+                        <xsl:text>loading_medium</xsl:text>
+                    </xsl:attribute>
+                    
+                    <xsl:text>Loading...</xsl:text>
+                </xsl:element>
+                
+                <xsl:element name="p">                       
+                    <xsl:text>Sending your email...</xsl:text>
+                </xsl:element>
+            </xsl:element>
+                
+            <xsl:element name="div">
+                <xsl:attribute name="class">
+                    <xsl:text>modal modalDone</xsl:text>
+                </xsl:attribute>
+                
+                <xsl:element name="h3">
+                    <xsl:text>Thank You!</xsl:text>
+                </xsl:element>
+                
+                <xsl:element name="p">
+                    <xsl:text>Your email has been sent to:</xsl:text>
+                </xsl:element>
+                
+                <xsl:element name="p">
+                    <xsl:attribute name="class">
+                        <xsl:text>doneAddresses</xsl:text>
                     </xsl:attribute>
                 </xsl:element>
             </xsl:element>
@@ -101,7 +205,11 @@
         
         <xsl:element name="script">
             <xsl:text disable-output-escaping="yes">
-                <![CDATA[require(["funded-editorial/1/funded-restricted-email"]);]]>
+                <![CDATA[require(["funded-editorial/1/funded-restricted-email"],
+                    function(email_form) {
+                        email_form.init();
+                    }
+                );]]>
             </xsl:text>
         </xsl:element>
     </xsl:template>
