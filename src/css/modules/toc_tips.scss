@@ -4,13 +4,14 @@ $blue_color: #1b88bf;
 	position: relative;
     margin-bottom: 1em;
     width: 100%;
+    max-height: 313px; /* tile height for TOC */
 	font-family: 'Lato-Regular', Arial, sans-serif;
 	color: #000;
 	background-color: #f9f9f9 !important;
 
 	#tips_slides {
 		display: none;
-		height: 310px;
+		height: auto;
 		margin: 0;
 	    padding: 0;
 	    list-style: none;
@@ -58,6 +59,7 @@ $blue_color: #1b88bf;
 	    bottom: 0;
 	    left: 0;
 	    width: 100%;
+	    height: 50px;
 	    top: 40%;
 	    z-index: 1000;
 
@@ -111,6 +113,13 @@ $blue_color: #1b88bf;
 		color: #808080;
 		line-height: 22px;
 		text-align: center;
-		margin-bottom: 20px;
+		margin-top: -10px;
+		margin-bottom: 10px;
+	}
+}
+
+@media only screen and (min-width: 320px) and (max-width: 675px) {
+	.wbmd-tips {
+		max-height: 100% !important;
 	}
 }
