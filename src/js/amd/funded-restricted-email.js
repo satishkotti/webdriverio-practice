@@ -47,12 +47,12 @@ define(
              * @type Object
              */
             msg: {
-                errorHeading: '<div>We found a problem, please correct the following:</div>',
+                errorHeading: '',
                 fromAddressEmpty: 'Enter your email address.',
                 fromAddressInvalid: 'Your email address is not a valid email format.',
                 fromNameEmpty: 'Enter your name.',
-                toAddressEmpty: 'Enter a recipient email address (or select <em>Send a copy to me</em>).',
-                toAddressInvalid: 'The recipient address is not a valid email format.',
+                toAddressEmpty: 'Enter a valid email address',
+                toAddressInvalid: 'Enter a valid email address',
                 servicePartial: 'Email was successfully sent to some addresses, but one or more addresses had errors.',
                 serviceError: 'An error occurred sending the email.',
                 maxRecipients: 'You can send to a maximum of {max} recipients.',
@@ -176,6 +176,10 @@ define(
                     e.preventDefault();
                     self._handleSubmit();
                     return false;
+                });
+
+                dom.inputToAddress.bind('focus blur', function() {
+                    $(this).css('color', '#808080');
                 });
 
                 if (options.id) {
@@ -544,7 +548,7 @@ define(
 
                 // Check against a regular expression to match email address format,
                 // and return boolean result
-                return (/^([\w-\.]+@([\w\-]+\.)+[\w\-]{2,4})?$/i).test(email);
+                return (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i).test(email);
             },
 
 
@@ -561,6 +565,7 @@ define(
             _error: function(msg) {
                 if (msg) {
                     this.dom.errors.html(this.msg.errorHeading + msg).show();
+                    this.dom.inputToAddress.css('color','#ff0000');
                 } else {
                     this.dom.errors.empty().hide();
                 }

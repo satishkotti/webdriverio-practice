@@ -122,12 +122,6 @@
                             </xsl:attribute>
                         </xsl:element>
                         
-                        <xsl:element name="div">
-                            <xsl:attribute name="class">
-                                <xsl:text>errors</xsl:text>
-                            </xsl:attribute>
-                        </xsl:element>
-                        
                         <xsl:element name="input">
                             <xsl:attribute name="type">
                                 <xsl:text>email</xsl:text>
@@ -145,6 +139,17 @@
                                 <xsl:text>submit</xsl:text>                      
                             </xsl:attribute>
                             <xsl:text>Send</xsl:text>
+                        </xsl:element>
+                        
+                        <xsl:element name="div">
+                            <xsl:attribute name="class">
+                                <xsl:text>errors arrow_up</xsl:text>
+                            </xsl:attribute>
+                        </xsl:element>
+                        <xsl:element name="div">
+                            <xsl:attribute name="class">
+                                <xsl:text>errors</xsl:text>
+                            </xsl:attribute>
                         </xsl:element>
                         
                         <xsl:element name="p">
