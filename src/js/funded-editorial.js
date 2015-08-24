@@ -654,6 +654,14 @@ webmd.fundedEditorial = {
 	}
 };
 
+// Check to see if Page should be seen on Mobile
+// We set a value in the Client Brand Program Name that says MobileNo.
+// If it has this flag we suppress the pageview and ad calls. We
+// then redirect them to a restricted page.
+if(typeof s_sponsor_program !== 'undefined' && typeof s_sponsor_program !== '' && s_sponsor_program.indexOf('MobileNo') > -1){
+	webmd.fundedEditorial.mobileNo();
+}
+
 $(function() {
 	webmd.fundedEditorial.init();
 	webmd.fundedEditorial.tocTiles.init();
