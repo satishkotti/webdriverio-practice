@@ -86,9 +86,9 @@
 				$(window).resize(function(){
 					var isi = $('.isi');
 
-					as.reset_scroller();
-
 					if(!isi.hasClass('open')){
+						$('.isi-container').scrollTop(0);
+
 						setIsiH();
 
 						if($('#isi-as').length > 0){

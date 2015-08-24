@@ -1262,7 +1262,7 @@ webmd.fundedEditorial.articleData = {
         </script>
 
 		<!-- Start ISI -->
-		<div class="isi">
+		<div id="isi" class="isi">
 			<div class="isi-btn">
 				<a href="#" class="isi-toggle">
 					<span class="isi-toggle-txt">Show <span>More</span></span>
@@ -1270,6 +1270,7 @@ webmd.fundedEditorial.articleData = {
 				</a>
 			</div>
 			<div id="isi-as" class="isi-container">
+			<!-- <div class="isi-container"> -->
 				<div class="isi-content">
 					<h3>Important Safety Information about Your Brand (posuerous sapien lobordstis tablets)</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget nunc laoreet,<span class="isi-min-show-mobile"></span> gravida risus consequat, iaculis augue. Nam non ligula euismod ex porttitor rutrum vitae varius nunc. Nunc ut dapibus lectus. Nunc porttitor ornare sapien, vel rhoncus quam. Phasellus eu suscipit eros, lacinia sodales diam. Nam commodo ipsum sit amet nisi feugiat vestibulum. Fusce ac tincidunt mauris, non vestibulum enim. Vivamus id viverra risus. Vivamus auctor in urna porttitor condimentum.</p>
@@ -1345,11 +1346,9 @@ webmd.fundedEditorial.articleData = {
 				$(window).resize(function(){
 					var isi = $('.isi');
 
-					if(typeof as !== 'undefined'){
-						as.reset_scroller();
-					}
-
 					if(!isi.hasClass('open')){
+						$('.isi-container').scrollTop(0);
+
 						setIsiH();
 
 						if($('#isi-as').length > 0){
