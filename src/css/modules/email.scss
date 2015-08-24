@@ -45,10 +45,6 @@ $blue_color: #1b88bf;
     		font-weight: 400;
     	}
 
-        .errors {
-            color: #ff0000;
-        }
-
     	input[type=email] {
             color: #808080;
             background-color: #fff;
@@ -65,6 +61,28 @@ $blue_color: #1b88bf;
     		color: #fff;
             width: calc(25% - 10px);
     	}
+
+        .errors {
+            display: none;
+            color: #000000;
+            width: calc(75% - 2px);
+            background-color: #ddd;
+            padding: 5px;
+
+            &.arrow_up {
+                position: relative;
+                width: 0;
+                height: 0;
+                color: transparent;
+                background-color: transparent;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-bottom: 10px solid #ddd;
+                margin-left: 10px;
+                margin-top: -10px;
+                padding: 0;
+            }
+        }
     }
 
     .disclaimer {
