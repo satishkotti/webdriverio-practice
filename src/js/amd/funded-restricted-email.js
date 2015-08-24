@@ -201,7 +201,7 @@ define(
              * @see emailAssetOverlay.metricsModule
              */
             _metrics: function(linkId, pageViewFollows) {
-                /*var metricsFunction;
+                var metricsFunction;
 
                 if (pageViewFollows) {
                 	metricsFunction = window.wmdTrack;
@@ -211,8 +211,7 @@ define(
 
                 if (metricsFunction) {
                 	metricsFunction(this.metricsModule + '_' + linkId);
-                }*/
-                console.log('metrics call'); // Uncomment when ready to test metrics
+                }
             },
 
 
