@@ -1,0 +1,86 @@
+$blue_color: #1b88bf;
+
+.wbmd-restricted-email {
+	clear: both;
+    background-color: #fff;
+    position: relative;
+    width: 100%;
+    border-bottom: 0;
+    padding: 10px 15px;
+    font-family: 'Lato-Regular', Arial, sans-serif;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+
+    .heading {
+    	font-size: 30px;
+    }
+
+    .description {
+    	font-size: 18px;
+    	line-height: 28px;
+    	margin-top: 15px;
+    }
+
+    .info {
+    	font-size: 18px;
+    	line-height: 28px;
+    	font-weight: 600;
+    	margin-top: 15px;
+    }
+
+    form {
+    	margin-top: 15px;
+        font-size: 0;
+
+    	input, button {
+    		display: inline;
+    		font-size: 16px;
+    		padding: 10px;
+    		font-weight: 400;
+    	}
+
+        .errors {
+            color: #ff0000;
+        }
+
+    	input[type=email] {
+    		background-color: #fff;
+    		border: 1px solid #eee;
+            width: calc(75% - 2px);
+    	}
+
+    	button[type=submit] {
+    		background-color: $blue_color;
+    		border: 0;
+    		border-top: 1px solid $blue_color;
+    		border-bottom: 1px solid $blue_color;
+    		margin-left: 1px;
+    		color: #fff;
+            width: 25%;
+    	}
+    }
+
+    .disclaimer {
+        font-size: 14px;
+        line-height: 18px;
+        margin-top: 15px;
+    }
+
+    .modal {
+        margin-top: 15px;
+    }
+
+    .modalBusy, .modalDone {
+        text-align: center;
+        display: none;
+    }
+
+    .modalBusy {
+        .loading_medium {
+            position: relative;
+            margin-left: -26px;
+            left: 50%;
+            text-indent: 0;
+        }
+    }
+}
