@@ -242,21 +242,6 @@
 	</xsl:template>
 	<xsl:template name="CreateAttrib">
 		<div class="sources">
-			<p class="sLink">
-				<a
-					onclick="$(this).toggleClass('expanded'); $('.source.sContent').toggleClass('hidden'); return false;"
-					href="#">Sources</a>
-			</p>
-
-			<div class="source sContent hidden">
-				<xsl:if
-					test="/webmd_rendition/webmd_rendition/content/wbmd_asset/content_section/cons_slideshow/citations != ''">
-					<xsl:copy-of
-						select="/webmd_rendition/webmd_rendition/content/wbmd_asset/content_section/cons_slideshow/citations/*"
-					/>
-				</xsl:if>
-			</div>
-
 			<xsl:if
 				test="/webmd_rendition/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr/wbmd_first_nm != '' or /webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_revw_dt != 'nulldate'">
 				<xsl:element name="p">
@@ -310,6 +295,22 @@
 					</xsl:if>
 				</xsl:element>
 			</xsl:if>
+
+			<p class="sLink">
+				<a
+					onclick="$(this).toggleClass('expanded'); $('.source.sContent').toggleClass('hidden'); return false;"
+					href="#">Sources</a>
+			</p>
+
+			<div class="source sContent hidden">
+				<xsl:if
+					test="/webmd_rendition/webmd_rendition/content/wbmd_asset/content_section/cons_slideshow/citations != ''">
+					<xsl:copy-of
+						select="/webmd_rendition/webmd_rendition/content/wbmd_asset/content_section/cons_slideshow/citations/*"
+					/>
+				</xsl:if>
+			</div>
+
 
 			<p class="disclaimer dLink">This tool does not provide medical advice. <a
 					onclick="$(this).toggleClass('expanded'); $('.disc.dContent').toggleClass('hidden'); return false;"
