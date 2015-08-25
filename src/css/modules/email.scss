@@ -1,4 +1,12 @@
 $blue_color: #1b88bf;
+$url_blue_color: #009be8;
+$dark_grey_color: #333132;
+$grey_color: #3b3b3c;
+$lato_font: 'Lato', Arial, sans-serif;;
+
+#s3 {
+    display: block;
+}
 
 .wbmd-restricted-email {
 	clear: both;
@@ -7,20 +15,21 @@ $blue_color: #1b88bf;
     width: 100%;
     border-bottom: 0;
     padding: 25px 15px;
-    font-family: 'Lato-Regular', Arial, sans-serif;
+    font-family: $lato_font;
     box-sizing: border-box;
     margin-bottom: 20px;
 
     .heading {
-    	font-family: 'Lato-Bold', Arial, sans-serif;
+    	font-family: $lato_font;
         font-size: 28px;
+        font-weight: 600;
         line-height: 30px;
-        color: #333132;
+        color: $dark_grey_color;
     }
 
     .description {
     	font-size: 18px;
-        color: #3b3b3c;
+        color: $grey_color;
     	line-height: 21px;
     	margin-top: 15px;
     }
@@ -38,7 +47,7 @@ $blue_color: #1b88bf;
 
     	input, button {
     		display: inline;
-    		font-family: 'Lato-Regular', Arial, sans-serif;
+    		font-family: $lato_font;
             font-size: 16px;
             line-height: 21px;
     		padding: 10px;
@@ -87,20 +96,58 @@ $blue_color: #1b88bf;
 
     .disclaimer {
         font-size: 14px;
-        line-height: 21px;
+        line-height: 18px;
         margin-top: 15px;
-        color: #3b3b3c;
+        color: $grey_color;
+
+        a {
+            color: $url_blue_color;
+        }
     }
 
-    .modal {
-        margin-top: 15px;
-    }
-
-    .modalBusy, .modalDone {
+    .modalDone {
         display: none;
+
+        h3 {
+            font-family: $lato_font;
+            font-size: 28px;
+            line-height: 30px;
+            font-weight: 600;
+            color: $dark_grey_color;
+        }
+
+        p {
+            font-family: $lato_font;
+            font-size: 16px;
+            line-height: 21px;
+            font-weight: 600;
+            color: $grey_color;
+        }
+
+        div.extra {
+            margin-top: 25px;
+
+            span {
+                font-family: $lato_font;
+                font-size: 22px;
+                line-height: 21px;
+                color: $grey_color;
+            }
+
+            a {
+                font-family: $lato_font;
+                display: block;
+                font-size: 16px;
+                line-height: 21px;
+                font-weight: 600;
+                color: $url_blue_color;
+            }
+        }
     }
 
-    .modalBusy {
+    /*.modalBusy {
+        display: none;
+
         .loading_medium {
             position: relative;
             display: table-cell;
@@ -109,5 +156,5 @@ $blue_color: #1b88bf;
             text-indent: 0;
             width: 100%;
         }
-    }
+    }*/
 }

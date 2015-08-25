@@ -30,66 +30,65 @@
             
             <xsl:element name="div">
                 <xsl:attribute name="class">
-                    <xsl:text>heading</xsl:text>
+                    <xsl:text>modal modalForm</xsl:text>
                 </xsl:attribute>
-                <xsl:choose>
-                    <xsl:when test="(module_title != '')">
-                        <xsl:value-of select="module_title"></xsl:value-of>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:text disable-output-escaping="yes"><![CDATA[Raincheck!]]></xsl:text>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:element>
-            
-            <xsl:for-each select="links/link">
-                <xsl:variable name="index" select="position()" />
-                <xsl:variable name="message" select="normalize-space(link_text)" />
-                <xsl:if test="$index = '1'">
-                    <xsl:element name="div">
-                        <xsl:attribute name="class">
-                            <xsl:text>description</xsl:text>
-                        </xsl:attribute>
-                        <xsl:choose>
-                            <xsl:when test="link_text != ''">
-                                <xsl:value-of select="$message"></xsl:value-of>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:text disable-output-escaping="yes"><![CDATA[This information is restricted on mobile devices but can be viewed on a computer or tablet.]]></xsl:text>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:element>
-                </xsl:if>
-            </xsl:for-each>
-            
-            <xsl:element name="div">
-                <xsl:attribute name="class">
-                    <xsl:text>assetContainer</xsl:text>
-                </xsl:attribute>
-                
                 
                 <xsl:element name="div">
                     <xsl:attribute name="class">
-                        <xsl:text>info</xsl:text>
+                        <xsl:text>heading</xsl:text>
                     </xsl:attribute>
-                
-                    <xsl:text disable-output-escaping="yes"><![CDATA[Get a one-time reminder email to read, "]]></xsl:text>
-                
-                    <xsl:element name="span">
-                        <xsl:attribute name="class">
-                            <xsl:text>assetTitle</xsl:text>
-                        </xsl:attribute>
-                    </xsl:element>
-                    
-                    <xsl:text disable-output-escaping="yes"><![CDATA[" later.]]></xsl:text>
+                    <xsl:choose>
+                        <xsl:when test="(module_title != '')">
+                            <xsl:value-of select="module_title"></xsl:value-of>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text disable-output-escaping="yes"><![CDATA[Raincheck!]]></xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:element>
             
+                <xsl:for-each select="links/link">
+                    <xsl:variable name="index" select="position()" />
+                    <xsl:variable name="message" select="normalize-space(link_text)" />
+                    <xsl:if test="$index = '1'">
+                        <xsl:element name="div">
+                            <xsl:attribute name="class">
+                                <xsl:text>description</xsl:text>
+                            </xsl:attribute>
+                            <xsl:choose>
+                                <xsl:when test="link_text != ''">
+                                    <xsl:value-of select="$message"></xsl:value-of>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:text disable-output-escaping="yes"><![CDATA[This information is restricted on mobile devices but can be viewed on a computer or tablet.]]></xsl:text>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:element>
+                    </xsl:if>
+                </xsl:for-each>
             
                 <xsl:element name="div">
                     <xsl:attribute name="class">
-                        <xsl:text>modal modalForm</xsl:text>
+                        <xsl:text>assetContainer</xsl:text>
                     </xsl:attribute>
                     
+                    
+                    <xsl:element name="div">
+                        <xsl:attribute name="class">
+                            <xsl:text>info</xsl:text>
+                        </xsl:attribute>
+                    
+                        <xsl:text disable-output-escaping="yes"><![CDATA[Get a one-time reminder email to read, "]]></xsl:text>
+                    
+                        <xsl:element name="span">
+                            <xsl:attribute name="class">
+                                <xsl:text>assetTitle</xsl:text>
+                            </xsl:attribute>
+                        </xsl:element>
+                        
+                        <xsl:text disable-output-escaping="yes"><![CDATA[" later.]]></xsl:text>
+                    </xsl:element>
+
                     <xsl:element name="form">
                         <xsl:attribute name="action">
                             <xsl:text>#</xsl:text>
@@ -170,7 +169,7 @@
                 </xsl:element>
             </xsl:element>
                 
-            <xsl:element name="div">
+            <!--<xsl:element name="div">
                 <xsl:attribute name="class">
                     <xsl:text>modal modalBusy</xsl:text>
                 </xsl:attribute>
@@ -184,9 +183,7 @@
                     <xsl:element name="br"></xsl:element>
                     <xsl:text disable-output-escaping="yes"><![CDATA[Sending your email...]]></xsl:text>
                 </xsl:element>
-                
-                
-            </xsl:element>
+            </xsl:element>-->
                 
             <xsl:element name="div">
                 <xsl:attribute name="class">
@@ -194,22 +191,36 @@
                 </xsl:attribute>
                 
                 <xsl:element name="h3">
-                    <xsl:text disable-output-escaping="yes"><![CDATA[Thank You!]]></xsl:text>
+                    <xsl:text disable-output-escaping="yes"><![CDATA[Thank You for your request.]]></xsl:text>
                 </xsl:element>
                 
                 <xsl:element name="p">
-                    <xsl:text disable-output-escaping="yes"><![CDATA[Your email has been sent to:]]></xsl:text>
+                    <xsl:text disable-output-escaping="yes"><![CDATA[A reminder email is on the way.]]></xsl:text>
                 </xsl:element>
                 
-                <xsl:element name="p">
+                <xsl:element name="div">
                     <xsl:attribute name="class">
-                        <xsl:text>doneAddresses</xsl:text>
+                        <xsl:text>extra</xsl:text>
                     </xsl:attribute>
+                    
+                    <xsl:element name="span">
+                        <xsl:text disable-output-escaping="yes"><![CDATA[Meanwhile,]]></xsl:text>
+                    </xsl:element>
+                    
+                    <xsl:element name="a">
+                        <xsl:attribute name="href">
+                            <xsl:text>http://www.webmd.com</xsl:text>
+                        </xsl:attribute>
+                        <xsl:text disable-output-escaping="yes"><![CDATA[find more information on WebMD.]]></xsl:text>
+                    </xsl:element>
                 </xsl:element>
             </xsl:element>
         </xsl:element>
         
         <xsl:element name="script">
+            <xsl:attribute name="type">
+                <xsl:text>text/javascript</xsl:text>
+            </xsl:attribute>
             <xsl:text disable-output-escaping="yes">
                 <![CDATA[require(["funded-editorial/1/funded-restricted-email"],
                     function(email_form) {

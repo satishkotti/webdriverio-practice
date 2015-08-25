@@ -179,6 +179,7 @@ define(
                 });
 
                 dom.inputToAddress.bind('focus blur', function() {
+                    self.dom.errors.empty().hide();
                     $(this).css('color', '#808080');
                 });
 
@@ -245,8 +246,6 @@ define(
                 var self, serviceOptions, toArray;
 
                 self = this;
-
-                //console.log('type:' + self.options.type + '\nparams:' + self.options.params + '\ntimeout:' + self.timeout);
 
                 if (!self._validateForm()) {
                     return;
@@ -351,11 +350,10 @@ define(
                 }
 
                 // Before we call the service, hide the form and display the busy pane
-                self._showModal('Busy');
+                //self._showModal('Busy');
 
                 // Call the service (asynchronously)
                 emailService.send(serviceOptions);
-                console.log(emailService);
             },
 
 
