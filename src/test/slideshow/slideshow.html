@@ -550,20 +550,35 @@ html body {
 }
 .slideshow .bx-controls .bx-prev,
 .slideshow .bx-controls .bx-next  {
+	font-family: icons;
+	font-size: 4.0rem;
+	line-height: 5.0rem;
+	color: #fff;
 	position: absolute;
 	z-index: 2;
 	top: 150px;
-	text-indent: -10000px;
-	background: url(arrows.png);
 	height: 48px;
-	width: 34px;
+	width: 27px;
+}
+.slideshow .bx-controls .bx-prev label,
+.slideshow .bx-controls .bx-next label {
+	display: block;
+	text-indent: -10000px;
 }
 .slideshow .bx-controls .bx-prev {
-	left: 5px;
+	left: 10px;
+}
+.slideshow .bx-controls .bx-prev:before {
+	content: "\e61a";
+	text-shadow: 0 0 8px #000, 0 0 20px #000;
 }
 .slideshow .bx-controls .bx-next {
 	right: 5px;
 	background-position: 100%;
+}
+.slideshow .bx-controls .bx-next:before {
+	content: "\e61b";
+	text-shadow: 0 0 8px #000, 0 0 20px #000;
 }
 .slideshow .touch-instructions {
 	display: none;

@@ -18,8 +18,8 @@ define(['bx_slider/1/bx_slider'], function(){
 				metricsModuleName: 'ss',
 				adaptiveHeight: true,
 				pager: false,
-				nextText: 'Next Slide',
-				prevText: 'Previous Slide',
+				nextText: '<label>Next Slide</label>',
+				prevText: '<label>Previous Slide</label>',
 				preloadImages: 'visible',
 				infiniteLoop: false
 			};
