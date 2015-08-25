@@ -4,7 +4,7 @@ if(!webmd){
 	webmd = {};
 }
 
-webmd.fundedNextUp = {
+webmd.fundedEditorial.nextUp = {
 
 	articles_to_display : 3,
 
@@ -57,107 +57,29 @@ webmd.fundedNextUp = {
 		$('head').append($script);
 	},
 
-	setCurrentArticle : function() {
-		var self = this,
-			article_data = this.article_data,
-			url = window.location.href,
-			current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
-			articles = article_data.articles,
-			article;
-
-		for(var key in articles) {
-			article = articles[key].article;
-			articles[key].current = false;
-
-			if (article.link === current_url) {
-				article_data.current_article_id = articles[key].id;
-				articles[key].current = true;
-
-				if (articles[key].sponsored) {
-					self.is_current_sponsored = true;
-				} 
-			}
-		}
-	},
-
-	hasStorage : function() {
-	  try {
-		sessionStorage.setItem('test', '1');
-		sessionStorage.removeItem('test');
-		return true;
-	  } catch (e) {
-		return false;
-	  }
-	},
-
-	addToSessionHistory : function() {
-		var self = this,
-			url = window.location.href,
-			current_url = url.split("?")[0].split("#")[0], // remove querystring and hash from url
-			json = sessionStorage.visitedPages || {"visited":[]},
-			visitedObj = (typeof json === "string") ? JSON.parse(json) : json,
-			urlExists = false;
-
-		for (var key in visitedObj.visited) {
-			if (visitedObj.visited[key].page === current_url) {
-				urlExists = true;
-				break;
-			}
-		}
-
-		if (!urlExists && current_url) {
-			visitedObj.visited.push({"page" : current_url});
-		}
-
-		sessionStorage.visitedPages = JSON.stringify(visitedObj);
-	},
-
-	setArticlesVisited : function() {
-		var self = this,
-			article_data = this.article_data,
-			articles = article_data.articles,
-			article,
-			article_link,
-			history = JSON.parse(sessionStorage.visitedPages),
-			history_page;
-
-		for (var key in articles) {
-			article = articles[key].article;
-			article_link = article.link;
-
-			for(var j in history.visited) {
-				history_page = history.visited[j].page;
-				//console.log("article_link: " + article_link + "\nhistory_page: " + history_page);
-
-				if (article_link === history_page) {
-					article.visited = true;
-				}
-			}
-		}
-	},
-
 	setNextUpArticles : function() {
 		var self = this,
-			article_data = this.article_data,
-			articles = this.article_data.articles,
-			current_article_id = this.article_data.current_article_id,
+			article_data = webmd.fundedEditorial.articleData,
+			articles = article_data.articles,
 			article,
+			articleIndex,
 			articleIdArrLen;
 
 		for(var key in articles) {
-			article = articles[key].article;
+			article = articles[key];
+			articleIndex = articles.indexOf(article);
 			articleIdArrLen = self.article_ids_to_display.length;
 
-			if ((articles[key].id > current_article_id) &&
+			if ((articleIndex > webmd.fundedEditorial.articleData.currentArticle) &&
 				(articleIdArrLen < self.articles_to_display)) {
 				if (self.hide_sponsor_pages) {
 					if (!articles[key].sponsored) {
 						self.nextup_article_data.articles.push({"article" : article});
-						self.article_ids_to_display.push(articles[key].id);
+						self.article_ids_to_display.push(articleIndex);
 					}
 				} else {
 					self.nextup_article_data.articles.push({"article" : article});
-					self.article_ids_to_display.push(articles[key].id);
+					self.article_ids_to_display.push(articleIndex);
 				}
 			}
 		}
@@ -170,22 +92,24 @@ webmd.fundedNextUp = {
 
 		function loopArticleData() {
 			var articleExists,
-				currentArticle;
+				articleIndex,
+				article;
 
 			for(var key in articles) {
-				articleExists = (self.article_ids_to_display.indexOf(articles[key].id) != -1);
-				currentArticle = (articles[key].id === current_article_id);
+				article = articles[key];
+				articleIndex = articles.indexOf(article);
+				articleExists = (self.article_ids_to_display.indexOf(articleIndex) != -1);
 
 				if (!articleExists && (self.article_ids_to_display.length < self.articles_to_display)) {
 					if (self.hide_sponsor_pages) {
-						if (!articles[key].sponsored && !currentArticle) {
-							self.nextup_article_data.articles.push({article : articles[key].article});
-							self.article_ids_to_display.push(articles[key].id);
+						if (!article.sponsored && !article.isCurrent) {
+							self.nextup_article_data.articles.push({article : article});
+							self.article_ids_to_display.push(articleIndex);
 						}
 					} else {
-						if (!currentArticle) {
-							self.nextup_article_data.articles.push({article : articles[key].article});
-							self.article_ids_to_display.push(articles[key].id);
+						if (!article.isCurrent) {
+							self.nextup_article_data.articles.push({article : article});
+							self.article_ids_to_display.push(articleIndex);
 						}
 					}
 				}
@@ -213,47 +137,35 @@ webmd.fundedNextUp = {
 		var self = this,
 			next_up_articles_len;
 
-		if (typeof article_data !== "undefined") {
+		if (self.hide_module_on_sponsor_pages && self.is_current_sponsored) {
+			return true;
+		} else {
+			self.setNextUpArticles();
 
-			self.article_data = article_data;
+			next_up_articles_len = self.nextup_article_data.articles.length;
 
-			self.setCurrentArticle();
+			// Do no create module if not enough articles in data object
+			if (next_up_articles_len > 0) {
+				self.injectHBtemplateJS();
 
-			if (self.hasStorage()) {
-				self.addToSessionHistory();
-				self.setArticlesVisited();
-			}
+				require(["handlebars/1/handlebars"], function(Handlebars) {
+					var $template = $("#funded-nextup"),
+						$container = $(".article-list-container"),
+						$articles = $(".articles"),
+						source = $template.html(),
+						template = Handlebars.compile(source),
+						context = {"nextup_article_data" : self.nextup_article_data} || {},
+						html = template(context);
 
-			if (self.hide_module_on_sponsor_pages && self.is_current_sponsored) {
-				return true;
-			} else {
-				self.setNextUpArticles();
+					$container.prepend(html);
 
-				next_up_articles_len = self.nextup_article_data.articles.length;
-
-				// Do no create module if not enough articles in data object
-				if (next_up_articles_len > 0) {
-					self.injectHBtemplateJS();
-
-					require(["handlebars/1/handlebars"], function(Handlebars) {
-						var $template = $("#funded-nextup"),
-							$container = $(".article-list-container"),
-							$articles = $(".articles"),
-							source = $template.html(),
-							template = Handlebars.compile(source),
-							context = {"nextup_article_data" : self.nextup_article_data} || {},
-							html = template(context);
-
-						$container.prepend(html);
-
-						self.bindEvents();
-					});
-				}
+					self.bindEvents();
+				});
 			}
 		}
 	}
 };
 
 $(function() {
-	webmd.fundedNextUp.init();
+	webmd.fundedEditorial.nextUp.init();
 });

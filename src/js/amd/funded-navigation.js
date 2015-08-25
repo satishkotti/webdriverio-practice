@@ -1,315 +1,241 @@
 var webmd;
 
-if(!webmd){
-	webmd = {};
+if (!webmd) {
+    webmd = {};
 }
 
-webmd.fundedNavigation = {
+webmd.fundedEditorial.navigation = {
 
-	hide_sponsor_pages : false,
+    mobile_only: false,
 
-	hide_module_on_sponsor_pages : false,
+    identifier: null,
 
-	is_current_sponsored : false,
+    hide_sponsor_pages: false,
 
-	percent_after_article_start_to_show : 60, // Shows Next|Prev nav defined percentage after start of article
+    hide_module_on_sponsor_pages: false,
 
-	pixels_after_article_end_to_hide : 200, // Hides Next|Prev nav defined # of pixels after end of article
+    is_current_sponsored: false,
 
-	init : function(){
-		this.render();
-	},
+    percent_after_article_start_to_show: 60, // Shows Next|Prev nav defined percentage after start of article
 
-	injectHBtemplateJS: function() { // inject embedded script to reduce http calls
-		var self = this,
-			$script = $('<script></script>'),
-			newline = '\n'; //allows readability using inspector
+    pixels_after_article_end_to_hide: 200, // Hides Next|Prev nav defined # of pixels after end of article
 
-		$script
-			.attr({
-				id   : 'entry-template',
-				type : 'text/x-handlebars-template'
-			})
-			.html(
-				'<div class="article-nav">' + newline +
-				'   {{#article_data}}' + newline +
-				'       {{#each articles}}' + newline +
-				'           {{#if article.previous}}' + newline +
-				'           <a class="prev {{#if article.visited}}visited{{/if}}" href="{{article.link}}">' + newline +
-				'               <span class="arrow"></span>' + newline +
-				'               <span class="text">' + newline +
-				'                   <span class="nav">Previous</span>' + newline +
-				'                   <span class="title">{{article.title}}</span>' + newline +
-				'               </span>' + newline +
-				'           </a>' + newline +
-				'           {{/if}}' + newline +
-				'           {{#if article.next}}' + newline +
-				'           <a class="next {{#if article.visited}}visited{{/if}}" href="{{article.link}}">' + newline +
-				'               <span class="text">' + newline +
-				'                   <span class="nav">Next</span>' + newline +
-				'                   <span class="title">{{article.title}}</span>' + newline +
-				'               </span>' + newline +
-				'               <span class="arrow"></span>' + newline +
-				'           </a>' + newline +
-				'           {{/if}}' + newline +
-				'       {{/each}}' + newline +
-				'   {{/article_data}}' + newline +
-				'</div>'
-			);
+    init: function() {
+        console.log('dev');
+        this.getIdentifier();
+    },
 
-		$('head').append($script);
-	},
+    injectHBtemplateJS: function() { // inject embedded script to reduce http calls
+        var self = this,
+            $script = $('<script></script>'),
+            newline = '\n'; //allows readability using inspector
 
-	setCurrentArticle : function() {
-		var self = this,
-			article_data = this.article_data,
-			url = window.location.href,
-			current_url = url.split('?')[0].split('#')[0], // remove querystring and hash from url
-			articles = article_data.articles,
-			article;
+        $script
+            .attr({
+                id: 'navigation_template',
+                type: 'text/x-handlebars-template'
+            })
+            .html(
+                '<div class="article-nav">' + newline +
+                '   <a class="prev {{#if visited}}visited{{/if}}" href="{{prev.link}}">' + newline +
+                '       <span class="arrow"></span>' + newline +
+                '       <span class="text">' + newline +
+                '           <span class="nav">Previous</span>' + newline +
+                '           <span class="title">{{prev.title}}</span>' + newline +
+                '       </span>' + newline +
+                '   </a>' + newline +
+                '   <a class="next {{#if visited}}visited{{/if}}" href="{{next.link}}">' + newline +
+                '       <span class="text">' + newline +
+                '           <span class="nav">Next</span>' + newline +
+                '           <span class="title">{{next.title}}</span>' + newline +
+                '       </span>' + newline +
+                '       <span class="arrow"></span>' + newline +
+                '   </a>' + newline +
+                '</div>'
+            );
 
-		for(var key in articles) {
-			article = articles[key].article;
-			articles[key].current = false;
+        $('head').append($script);
+    },
 
-			if (article.link === current_url) {
-				article_data.current_article_id = articles[key].id;
-				articles[key].current = true;
+    bindEvents: function() {
+        var self = this;
 
-				if (articles[key].sponsored) {
-					self.is_current_sponsored = true;
-				}
+        $(window).bind('resizeEnd', function() {
+            // do something, window hasn't changed size in 500ms
+            self.setNavPalette();
+        });
 
-				self.setNavArticles();
-				break;
-			}
-		}
-	},
+        $(window).bind('touchstart', function() {
+            return true;
+        });
 
-	hasStorage : function() {
-	  try {
-		sessionStorage.setItem('test', '1');
-		sessionStorage.removeItem('test');
-		return true;
-	  } catch (e) {
-		return false;
-	  }
-	},
+        $(window).scroll(function() {
+            self.setNavPalette();
+        });
 
-	addToSessionHistory : function() {
-		var self = this,
-			url = window.location.href,
-			current_url = url.split('?')[0].split('#')[0], // remove querystring and hash from url
-			json = sessionStorage.visitedPages || {'visited':[]},
-			visitedObj = (typeof json === 'string') ? JSON.parse(json) : json,
-			urlExists = false;
+        $(window).resize(function() {
+            if (this.resizeTO) {
+                clearTimeout(this.resizeTO);
+            }
 
-		for (var key in visitedObj.visited) {
-			if (visitedObj.visited[key].page === current_url) {
-				urlExists = true;
-				break;
-			}
-		}
+            this.resizeTO = setTimeout(function() {
+                $(this).trigger('resizeEnd');
+            }, 500);
+        });
+    },
 
-		if (!urlExists && current_url) {
-			visitedObj.visited.push({'page' : current_url});
-		}
+    getIdentifier: function() {
+        var self = this,
+            currentArticleIndex = webmd.fundedEditorial.articleData.currentArticle,
+            currentArticleType;
 
-		sessionStorage.visitedPages = JSON.stringify(visitedObj);
-	},
+        if (!currentArticleIndex) {
+            return;
+        }
 
-	setArticlesVisited : function() {
-		var self = this,
-			article_data = this.article_data,
-			articles = article_data.articles,
-			article,
-			article_link,
-			history = JSON.parse(sessionStorage.visitedPages),
-			history_page;
+        currentArticleType = webmd.fundedEditorial.articleData.articles[currentArticleIndex].type;
 
-		for (var key in articles) {
-			article = articles[key].article;
-			article_link = article.link;
+        switch (currentArticleType) {
+            case 'type_art':
+                self.identifier = '.article';
+                break;
+            case 'type_rmq':
+                $('.article-nav-container').hide(); // hide nav
 
-			for(var j in history.visited) {
-				history_page = history.visited[j].page;
-				//console.log("article_link: " + article_link + "\nhistory_page: " + history_page);
+                // this is very similar to using Object.watch()
+                // instead we attach multiple listeners
+                webmd.fundedEditorial.rmqSlide = (function () {
+                    var initVal,
+                        interceptors = [];
 
-				if (article_link === history_page) {
-					article.visited = true;
-				}
-			}
-		}
-	},
+                    function callInterceptors(newVal) {
+                        for (var i = 0; i < interceptors.length; i += 1) {
+                            interceptors[i](newVal);
+                        }
+                    }
 
-	setNavArticles : function() {
-		var self = this,
-			article_data = this.article_data,
-			current_article_id = article_data.current_article_id,
-			articles = article_data.articles,
-			i,
-			article,
-			nextArticleFound = false,
-			prevArticleFound = false;
-			
-		for(var key in articles) {
-			article = articles[key].article;
-			article.next = false;
-			article.previous = false;
+                    return {
+                        get type() {
+                            // user never has access to the private variable "initVal"
+                            // we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
+                            return initVal;
+                        },
 
-			if (self.hide_sponsor_pages) {
-				if (!articles[key].sponsored) {
-					if (!nextArticleFound && (articles[key].id === (current_article_id + 1))) {
-						nextArticleFound = true;
-						article.next = true;
-					}
+                        set type(newVal) {
+                            callInterceptors(newVal);
+                            initVal = newVal;
+                        },
 
-					if (!prevArticleFound && (articles[key].id === (current_article_id - 1))) {
-						prevArticleFound = true;
-						article.previous = true;
-					}
-				}
-			} else {
-				if (!nextArticleFound && (articles[key].id === (current_article_id + 1))) {
-					nextArticleFound = true;
-					article.next = true;
-				}
+                        listen : function (fn) {
+                            if (typeof fn === 'function') {
+                                interceptors.push(fn);
+                            }
+                        }
+                    };
+                }());
 
-				if (!prevArticleFound && (articles[key].id === (current_article_id - 1))) {
-					prevArticleFound = true;
-					article.previous = true;
-				}
-			}
-		}
+                // add a listener
+                webmd.fundedEditorial.rmqSlide.listen(function (passedValue) {
+                    if (passedValue === 'results') {
+                        $('.article-nav-container').show();
+                    } else {
+                        self.hideElement('.article-nav');
+                        window.setTimeout(function() { $('.article-nav-container').hide(); }, 1000);
+                    }
+                });
 
-		// Last article does not have a next
-		// Set Next Article as first article in JSON Array that is not sponsored
-		if (!nextArticleFound) {
-			for (i=0; i<articles.length; i++) {
-				if (self.hide_sponsor_pages) {
-					if (!articles[i].sponsored) {
-						nextArticleFound = true;
-						articles[i].article.next = true;
-						break;
-					}
-				} else {
-					nextArticleFound = true;
-					articles[i].article.next = true;
-					break;
-				}
-			}
-		}
+                self.percent_after_article_start_to_show = 0;
+                self.pixels_after_article_end_to_hide = 300;
+                self.identifier = '.rich_media_quiz';
+                self.mobile_only = true;
+                break;
+            default:
+                break;
+        }
 
-		// First article does not have a previous
-		// Set Previous Article as last article in JSON Array (treat articles as a loop)
-		if (!prevArticleFound) {
-			for (i=1; i<articles.length; i++) {
-				if (self.hide_sponsor_pages) {
-					if (!articles[articles.length-i].sponsored) {
-						prevArticleFound = true;
-						articles[articles.length-i].article.previous = true;
-						break;
-					}
-				} else {
-					prevArticleFound = true;
-					articles[articles.length-i].article.previous = true;
-					break;
-				}
-			}
-		}
-	},
+        if (!self.identifier || (this.mobile_only && webmd.fundedEditorial.uaType !== 'mobile')) {
+            return false;
+        }
 
-	bindEvents : function(){
-		var self = this;
+        this.render();
+    },
 
-		$(window).bind('resizeEnd', function() {
-			// do something, window hasn't changed size in 500ms
-			self.setNavPalette();
-		});
+    setNavPalette: function() { // get nav coordinates to show and hide
+        var self = this,
+            articleIndentifier,
+            articleTop,
+            articleBottom,
+            articleHeight,
+            scrollTop,
+            scrollBottom,
+            showNavLocation,
+            hideNavLocation;
 
-		$(window).bind('touchstart', function () {
-			return true;
-		});
+        articleTop = $('.chrome').position().top + $(self.identifier).position().top;
+        articleBottom = $(self.identifier).outerHeight(true) + articleTop;
+        articleHeight = $(self.identifier).innerHeight();
+        scrollTop = $(window).scrollTop();
+        scrollBottom = scrollTop + $(window).height();
+        showNavLocation = (scrollBottom >= (articleHeight * (self.percent_after_article_start_to_show / 100))); //show at specified percentage of article
+        hideNavLocation = ((scrollBottom >= (articleBottom + self.pixels_after_article_end_to_hide)) || // hide at specified pixels after the article
+            (scrollBottom === $(document).height()) || // hide when scroll bottom reaches the bottom of the document
+            (scrollTop < articleTop)); // hide when scroll top is above the article
 
-		$(window).scroll(function() {
-			self.setNavPalette();
-		});
+        if (showNavLocation && !hideNavLocation) {
+            self.showElement('.article-nav');
+        } else {
+            self.hideElement('.article-nav');
+        }
+    },
 
-		$(window).resize(function() {
-			if(this.resizeTO) {
-				clearTimeout(this.resizeTO);
-			}
+    showElement: function(el) {
+        $(el).addClass('show');
+    },
 
-			this.resizeTO = setTimeout(function() {
-				$(this).trigger('resizeEnd');
-			}, 500);
-		});
-	},
+    hideElement: function(el) {
+        $(el).removeClass('show');
+    },
 
-	setNavPalette: function() { // get nav coordinates to show and hide
-		var self = this,
-			articleTop = $('.chrome').position().top + $('.article').position().top,
-			articleBottom = $('.article').outerHeight(true) + articleTop,
-			articleHeight = $('.article').innerHeight(),
-			scrollTop = $(window).scrollTop(),
-			scrollBottom = scrollTop + $(window).height(),
-			showNavLocation = (scrollBottom >= (articleHeight * (self.percent_after_article_start_to_show / 100))), //show at specified percentage of article
-			hideNavLocation = ((scrollBottom >= (articleBottom + self.pixels_after_article_end_to_hide)) || // hide at specified pixels after the article
-							   (scrollBottom === $(document).height()) || // hide when scroll bottom reaches the bottom of the document
-							   (scrollTop < articleTop)); // hide when scroll top is above the article
+    render: function() { // uses handlebars template above
+        var self = this;
 
-		if(showNavLocation && !hideNavLocation) {
-			self.showElement('.article-nav');
-		} else {
-			self.hideElement('.article-nav');
-		}
-	},
+        $.each(webmd.fundedEditorial.articleData.articles, function() {
+            var articleIndex = webmd.fundedEditorial.articleData.articles.indexOf(this);
 
-	showElement: function(el) {
-		$(el).addClass('show');
-	},
+            if (articleIndex === webmd.fundedEditorial.articleData.prevArticle) {
+                self.prev_article = this;
+            }
 
-	hideElement: function(el) {
-		$(el).removeClass('show');
-	},
+            if (articleIndex === webmd.fundedEditorial.articleData.nextArticle) {
+                self.next_article = this;
+            }
+        });
 
-	render: function(){ // uses handlebars template above
-		var self = this;
+        if (self.hide_module_on_sponsor_pages && self.is_current_sponsored) {
+            return true;
+        } else {
+            self.injectHBtemplateJS();
 
-		if (typeof article_data !== 'undefined') {
+            require(['handlebars/1/handlebars'], function(Handlebars) {
+                var $template = $('#navigation_template'),
+                    $container = $('.article-nav-container'),
+                    $article_nav = $('.article-nav'),
+                    source = $template.html(),
+                    template = Handlebars.compile(source),
+                    context = {
+                        'prev': self.prev_article,
+                        'next': self.next_article
+                    },
+                    html = template(context);
 
-			self.article_data = article_data;
+                $container.prepend(html);
 
-			self.setCurrentArticle();
-
-			if (self.hasStorage()) {
-				self.addToSessionHistory();
-				self.setArticlesVisited();
-			}
-
-			if (self.hide_module_on_sponsor_pages && self.is_current_sponsored) {
-				return true;
-			} else {
-				self.injectHBtemplateJS();
-				
-				require(['handlebars/1/handlebars'], function(Handlebars) {
-					var $template = $('#entry-template'),
-						$container = $('.article-nav-container'),
-						$article_nav = $('.article-nav'),
-						source = $template.html(),
-						template = Handlebars.compile(source),
-						context = {'article_data' : self.article_data} || {},
-						html = template(context);
-
-					$container.prepend(html);
-
-					self.bindEvents();
-				});
-			}
-		}
-	}
+                self.bindEvents();
+            });
+        }
+    }
 };
 
 $(function() {
-	webmd.fundedNavigation.init();
+    webmd.fundedEditorial.navigation.init();
 });

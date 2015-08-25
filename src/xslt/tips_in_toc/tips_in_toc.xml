@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<webmd_rendition>
+    <content>
+        <wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e81258c99">
+            <webmd_module>
+                <module_settings>
+                    <chronic_id>091e9c5e81258c99</chronic_id>
+                    <r_object_id>091e9c5e81258c99</r_object_id>
+                    <title>Tips Module</title>
+                    <object_name>module_Tips Module_091e9c5e81258c99.xml</object_name>
+                    <object_type>wbmd_pb_module</object_type>
+                    <wbmd_pb_module_category />
+                    <wbmd_pb_module_subcategory />
+                    <wbmd_pb_dyn_module_category />
+                    <md_pb_module_label1_group>
+                        <wbmd_pb_module_label1 />
+                    </md_pb_module_label1_group>
+                    <md_pb_module_label2_group>
+                        <wbmd_pb_module_label2 />
+                    </md_pb_module_label2_group>
+                    <wbmd_pb_module_sp_program />
+                    <wbmd_pb_module_tier>0</wbmd_pb_module_tier>
+                    <wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
+                    <r_modify_date>08/18/2015 15:24:37</r_modify_date>
+                    <wbmd_c_channel_ids_group />
+                    <wbmd_pb_asset_css path="/webmd/PageBuilder_Assets/CSS/EditorialModule/Funded Tips Module/Standard_091e9c5e81258270.css" object_type="wbmd_pb_css" chronic_id="091e9c5e81258270" />
+                    <wbmd_pb_module_xsl path="/webmd/PageBuilder_Assets/XSL/EditorialModule/Funded Tips Module_091e9c5e8125826f.xsl" object_type="wbmd_pb_xsl" chronic_id="091e9c5e8125826f" />
+                    <wbmd_pb_moduledataschema path="/webmd_uk/PageBuilder_Assets/schemas/module_schemas/EditorialModule.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005117" />
+                    <wbmd_pb_moduledataschema path="/webmd/PageBuilder_Assets/schemas/module_schemas/EditorialModule.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005117" />
+                    <wbmd_pb_owner_page_id path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Program Title TOC_091e9c5e811f9b21/page_Program Title TOC_091e9c5e811f9b21.xml" object_type="wbmd_pb_page" chronic_id="091e9c5e811f9b21" />
+                    <dnn_id>0</dnn_id>
+                    <class>EditorialModule</class>
+                </module_settings>
+                <module_data>
+                    <module_title />
+                    <module_link_view>Page Refresh(Default)</module_link_view>
+                    <module_link chronic_id="" directive="friendlyurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <links>
+                        <link_bullet>false</link_bullet>
+                        <link>
+                            <link_text>Look Good, Feel Good</link_text>
+                            <action_text>Boost your self-confidence with a new hairstyle that's easy to take care of.
+                                
+                                To keep your brain sharp, play word games or do crossword puzzles.
+                                
+                                Keep up with friends and make plans for the time of day you've got the most energy.
+                                
+                                To keep your muscles strong, work out with light weights or exercise bands a few times a week.
+                                
+                                If workouts are too much work, exercise in a pool. You'll put less pressure on your joints.
+                                
+                                See a physical therapist to get exercise tips to improve your balance.</action_text>
+                            <link_link_view>Page Refresh(Default)</link_link_view>
+                            <link_url chronic_id="091e9c5e811db236" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                            <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt="" />
+                        </link>
+                        <link>
+                            <link_text>Get Better Rest</link_text>
+                            <action_text>Take a nap to fight fatigue, but no more than 2 hours. Longer than that might keep you up at night.
+                                
+                                To fall asleep easier, listen to relaxing music before you get into bed.
+                                
+                                To sleep better at night, try meditation, deep breathing, or yoga during the day.
+                                
+                                Do you wake up at night with a need to go? Skip that glass of water before bed.</action_text>
+                            <link_link_view>Page Refresh(Default)</link_link_view>
+                            <link_url chronic_id="091e9c5e811db236" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                            <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt="" />
+                        </link>
+                        <link>
+                            <link_text>Watch What You Eat and Drink</link_text>
+                            <action_text>For an energy boost, instead of 3 big meals a day eat several smaller ones packed with nutrients.
+                                
+                                Eat low-fat, high-fiber foods to help prevent heart disease and diabetes, which make MS worse.
+                                
+                                To keep your bladder under better control, cut back on coffee. It increases your urge to go.
+                                
+                                Travel safely: Stay hydrated on vacation, but be cautious about local water and raw foods.</action_text>
+                            <link_link_view>Page Refresh(Default)</link_link_view>
+                            <link_url chronic_id="091e9c5e811db236" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                            <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt="" />
+                        </link>
+                        <link>
+                            <link_text>Put Gadgets to Work for You</link_text>
+                            <action_text>Put a fan at your desk to keep cool while you work.
+                                
+                                Get a motorized scooter to make shopping easier.
+                                
+                                Put hand controls in your car so you can speed up and apply the brakes without using your feet.
+                                
+                                Is food prep a real chore? Use electric can openers and forks and knives with easy-grip handles.
+                                
+                                Don't let the heat make you tired. Wear a cooling vest when you go outside in the summer.
+                                
+                                Wear lightweight shoes with good tread to avoid falling while you're out for walk.</action_text>
+                            <link_link_view>Page Refresh(Default)</link_link_view>
+                            <link_url chronic_id="091e9c5e811db236" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                            <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt="" />
+                        </link>
+                    </links>
+                    <descriptions>
+                        <description />
+                    </descriptions>
+                    <body_images>
+                        <body_image>
+                            <override_text />
+                            <image_link_view>Page Refresh(Default)</image_link_view>
+                            <alignment>left</alignment>
+                            <source chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt="" />
+                            <image_link chronic_id="" directive="friendlyurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" />
+                        </body_image>
+                    </body_images>
+                </module_data>
+            </webmd_module>
+        </wbmd_asset>
+    </content>
+    <friendlyurls />
+    <referenced_objects>
+        <object chronic_id="091e9c5e811db236" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Tips for Living with MS_091e9c5e811db236/page_Tips for Living with MS_091e9c5e811db236.wxml">
+            <target siteid="3" name="WebMD" prefix="www" friendlyurl="/multiple-sclerosis/live-thrive-15/ms-tips" />
+        </object>
+    </referenced_objects>
+    <container_hierarchy />
+    <expanded_objects />
+</webmd_rendition>
