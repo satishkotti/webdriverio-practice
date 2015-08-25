@@ -106,6 +106,7 @@ $blue_color: #1b88bf;
 	}
 
 	.bx-has-pager {
+		position: absolute;
 		display: block;
 		width: 100%;
 		font-family: 'Lato-Regular', Arial, sans-serif;
@@ -113,8 +114,7 @@ $blue_color: #1b88bf;
 		color: #808080;
 		line-height: 22px;
 		text-align: center;
-		margin-top: -10px;
-		margin-bottom: 10px;
+		bottom: 0;
 	}
 }
 
