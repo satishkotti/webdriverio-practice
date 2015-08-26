@@ -16,12 +16,13 @@ webmd.fundedEditorial.navigation = {
 
     is_current_sponsored: false,
 
+    show_on_element: null, // Shows Next|Prev nav when top of element specified reaches bottom of window
+
     percent_after_article_start_to_show: 60, // Shows Next|Prev nav defined percentage after start of article
 
     pixels_after_article_end_to_hide: 200, // Hides Next|Prev nav defined # of pixels after end of article
 
     init: function() {
-        console.log('dev');
         this.getIdentifier();
     },
 
@@ -89,7 +90,7 @@ webmd.fundedEditorial.navigation = {
             currentArticleIndex = webmd.fundedEditorial.articleData.currentArticle,
             currentArticleType;
 
-        if (!currentArticleIndex) {
+        if (currentArticleIndex === 'undefined' || currentArticleIndex === null) {
             return;
         }
 
@@ -144,8 +145,7 @@ webmd.fundedEditorial.navigation = {
                     }
                 });
 
-                self.percent_after_article_start_to_show = 0;
-                self.pixels_after_article_end_to_hide = 300;
+                self.show_on_element = '.rmq_footer';
                 self.identifier = '.rich_media_quiz';
                 self.mobile_only = true;
                 break;
@@ -162,24 +162,32 @@ webmd.fundedEditorial.navigation = {
 
     setNavPalette: function() { // get nav coordinates to show and hide
         var self = this,
-            articleIndentifier,
-            articleTop,
-            articleBottom,
-            articleHeight,
-            scrollTop,
-            scrollBottom,
-            showNavLocation,
-            hideNavLocation;
+            $chrome = $('.chrome'),
+            documentHeight = $(document).height(),
+            articleTop = $chrome.position().top + $(self.identifier).position().top,
+            articleBottom = $(self.identifier).outerHeight(true) + articleTop,
+            articleHeight = $(self.identifier).innerHeight(),
+            scrollTop = $(window).scrollTop(),
+            scrollBottom = scrollTop + $(window).height(),
+            elementTop,
+            elementBottom,
+            elementHeight,
+            showNavLocation = false,
+            hideNavLocation = false;
 
-        articleTop = $('.chrome').position().top + $(self.identifier).position().top;
-        articleBottom = $(self.identifier).outerHeight(true) + articleTop;
-        articleHeight = $(self.identifier).innerHeight();
-        scrollTop = $(window).scrollTop();
-        scrollBottom = scrollTop + $(window).height();
-        showNavLocation = (scrollBottom >= (articleHeight * (self.percent_after_article_start_to_show / 100))); //show at specified percentage of article
-        hideNavLocation = ((scrollBottom >= (articleBottom + self.pixels_after_article_end_to_hide)) || // hide at specified pixels after the article
-            (scrollBottom === $(document).height()) || // hide when scroll bottom reaches the bottom of the document
-            (scrollTop < articleTop)); // hide when scroll top is above the article
+        if (self.show_on_element) {
+            elementTop = articleBottom - $(self.show_on_element).innerHeight();
+            elementBottom = elementTop + $(self.show_on_element).innerHeight();
+            showNavLocation = (scrollBottom >= elementTop + 50);            
+        } else {
+            showNavLocation = (scrollBottom >= (articleTop + (articleHeight * (self.percent_after_article_start_to_show / 100)))); //show at specified percentage of article
+        }
+
+        hideNavLocation = (
+                (scrollBottom >= articleBottom + self.pixels_after_article_end_to_hide) || // hide at specified pixels after the article
+                (scrollBottom == documentHeight) || // hide when scroll bottom reaches the bottom of the document
+                (scrollTop === 0) // hide when scroll top is above the article top
+        );
 
         if (showNavLocation && !hideNavLocation) {
             self.showElement('.article-nav');

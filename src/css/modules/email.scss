@@ -158,3 +158,10 @@ $lato_font: 'Lato', Arial, sans-serif;;
         }
     }*/
 }
+
+@media only screen and (max-width: 675px) and (min-width: 320px) {
+    /* Styles */
+    #s3 {
+        float: left;
+    }
+}
