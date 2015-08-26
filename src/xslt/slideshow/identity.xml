@@ -1,0 +1,1384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<webmd_rendition>
+    <content>
+        <wbmd_asset object_type="wbmd_pb_module" id="091e9c5e81256779"
+            xmlns:xalan="http://xml.apache.org/xalan"
+            xmlns:fn="http://www.w3.org/2005/02/xpath-functions">
+            <webmd_module>
+                <module_settings>
+                    <chronic_id>091e9c5e8124a8a6</chronic_id>
+                    <r_object_id>091e9c5e81256779</r_object_id>
+                    <title>ss</title>
+                    <object_name>module_ss_091e9c5e8124a8a6.xml</object_name>
+                    <object_type>wbmd_pb_module</object_type>
+                    <wbmd_pb_module_category/>
+                    <wbmd_pb_module_subcategory/>
+                    <wbmd_pb_dyn_module_category/>
+                    <md_pb_module_label1_group>
+                        <wbmd_pb_module_label1/>
+                    </md_pb_module_label1_group>
+                    <md_pb_module_label2_group>
+                        <wbmd_pb_module_label2/>
+                    </md_pb_module_label2_group>
+                    <wbmd_pb_module_sp_program/>
+                    <wbmd_pb_module_tier>0</wbmd_pb_module_tier>
+                    <wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
+                    <r_modify_date>08/17/2015 12:56:58</r_modify_date>
+                    <wbmd_c_channel_ids_group/>
+                    <wbmd_pb_module_xsl
+                        path="/webmd/PageBuilder_Assets/XSL/SlideShow/Identity_091e9c5e80250b2f.xsl"
+                        object_type="wbmd_pb_xsl" chronic_id="091e9c5e80250b2f"/>
+                    <wbmd_pb_moduledataschema
+                        path="/webmd/PageBuilder_Assets/schemas/module_schemas/SlideShowModule.xsd"
+                        object_type="wbmd_pb_schemas" chronic_id="091e9c5e8022c604"/>
+                    <wbmd_pb_moduledataschema
+                        path="/webmd_uk/PageBuilder_Assets/schemas/module_schemas/SlideShowModule.xsd"
+                        object_type="wbmd_pb_schemas" chronic_id="091e9c5e8022c604"/>
+                    <wbmd_pb_owner_page_id
+                        path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Slideshow Better Butt_091e9c5e8124a8a5/page_Slideshow Better Butt_091e9c5e8124a8a5.xml"
+                        object_type="wbmd_pb_page" chronic_id="091e9c5e8124a8a5"/>
+                    <dnn_id>0</dnn_id>
+                    <class>SlideShow</class>
+                </module_settings>
+                <module_data>
+                    <module_title/>
+                    <slide_deck_text/>
+                    <last_slide_title/>
+                    <last_slide_sub_title/>
+                    <slide_deck chronic_id="091e9c5e805d7d7e" directive="friendlyurl"
+                        object_type="wbmd_cons_article" wbmd_lookup_type="" wbmd_storage_value=""/>
+                    <default_tiles>
+                        <disable-tile-1>false</disable-tile-1>
+                        <disable-tile-2>false</disable-tile-2>
+                        <disable-tile-3>false</disable-tile-3>
+                        <disable-tile-4>false</disable-tile-4>
+                        <disable-tile-5>false</disable-tile-5>
+                        <disable-tile-6>false</disable-tile-6>
+                    </default_tiles>
+                    <slide_redirect>
+                        <slide_has_redirect_link>true</slide_has_redirect_link>
+                        <show_interstitial>false</show_interstitial>
+                        <interstitial_title/>
+                        <interstitial_desc/>
+                        <slide_redirect_link chronic_id="091e9c5e811f9b21" directive="friendlyurl"
+                            object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value=""/>
+                    </slide_redirect>
+                    <shared_modules/>
+                    <related_links/>
+                    <tile_config chronic_id="091e9c5e8024902d" directive="friendlyurl"
+                        object_type="" wbmd_lookup_type="" wbmd_storage_value=""/>
+                </module_data>
+            </webmd_module>
+        </wbmd_asset>
+    </content>
+    <friendlyurls/>
+    <referenced_objects>
+        <object chronic_id="091e9c5e805d7d7e"
+            thmbnl="/webmd/consumer_assets/site_images/article_thumbnails/slideshows/build_a_better_butt/69x75_build_a_better_butt.jpg"
+            wbmd_c_alt_tag="close up of womans bottom doing squats" wbmd_c_width="" wbmd_c_ht=""
+            pointer="0"
+            path="/webmd/consumer_assets/editorial/articles/slideshows/slideshow_build_a_better_butt.wxml">
+            <target siteid="3" name="WebMD" prefix="www"
+                friendlyurl="/fitness-exercise/ss/slideshow-build-a-better-butt"/>
+            <target siteid="8" name="WebMD_Mobile" prefix="www"
+                friendlyurl="/fitness-exercise/ss/slideshow-build-a-better-butt"/>
+        </object>
+        <object chronic_id="091e9c5e811f9b21" thmbnl="" pointer="0"
+            path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Program Title TOC_091e9c5e811f9b21/page_Program Title TOC_091e9c5e811f9b21.wxml">
+            <target siteid="3" name="WebMD" prefix="www"
+                friendlyurl="/zztest/funded-editorial-v2/standard/default.htm"/>
+        </object>
+        <object chronic_id="091e9c5e8024902d" thmbnl="" pointer="0"
+            path="/webmd/consumer_assets/slidedeck/config_settings/tile_config.wxml"/>
+    </referenced_objects>
+    <container_hierarchy/>
+    <expanded_objects/>
+    <webmd_rendition>
+        <content>
+            <wbmd_asset object_type="wbmd_cons_article" id="091e9c5e80e6419a">
+                <metadata_section>
+                    <i_chronicle_id>091e9c5e805d7d7e</i_chronicle_id>
+                    <r_object_id>091e9c5e80e6419a</r_object_id>
+                    <title>Slideshow: How to Build a Better Butt</title>
+                    <object_name>slideshow_build_a_better_butt.xml</object_name>
+                    <content_template>consumer_article_Slideshow.xml</content_template>
+                    <r_object_id>091e9c5e80e6419a</r_object_id>
+                    <wbmd_archive_bool>0</wbmd_archive_bool>
+                    <wbmd_bus_ref object_type="wbmd_lookup" wbmd_lookup_type="business_reference"
+                        wbmd_storage_val="56" wbmd_disp_nm="Tool - Slide Show"/>
+                    <wbmd_cpyrt>
+                        <r_object_type>wbmd_copyright</r_object_type>
+                        <r_object_id>091e9c5e80de8163</r_object_id>
+                        <wbmd_legal_revw_dt>nulldate</wbmd_legal_revw_dt>
+                        <wbmd_copyright_strt_dt>01/01/2014 00:00:00</wbmd_copyright_strt_dt>
+                        <wbmd_copyright_end_dt>01/01/2015 00:00:00</wbmd_copyright_end_dt>
+                        <wbmd_copyright_holder>
+                            <r_object_type>wbmd_company</r_object_type>
+                            <r_object_id>091e9c5e80019138</r_object_id>
+                            <wbmd_bus_comp_nm>WebMD</wbmd_bus_comp_nm>
+                            <wbmd_comp_type object_type="wbmd_lookup"
+                                wbmd_lookup_type="company_type" wbmd_storage_val="6"
+                                wbmd_disp_nm="Internal"/>
+                            <wbmd_bus_logo chronic_id="091e9c5e802a487f" directive="imageurl"
+                                object_type="wbmd_cons_img"
+                                path="/webmd/consumer_assets/site_images/logos/webmd/web/webmd_logo_53x12.gif"
+                            />
+                        </wbmd_copyright_holder>
+                        <wbmd_legal_revr/>
+                        <wbmd_copyright>
+                            <wbmd_copyright_statement>© 2014 WebMD, LLC. All rights
+                                reserved.</wbmd_copyright_statement>
+                        </wbmd_copyright>
+                    </wbmd_cpyrt>
+                    <wbmd_ext_id/>
+                    <wbmd_med_ref_type/>
+                    <wbmd_wdw_ttl>Butt Exercises Slideshow: Workout Techniques for Slim and Shapely
+                        Glutes</wbmd_wdw_ttl>
+                    <wbmd_site_archv_ovrd_dt>nulldate</wbmd_site_archv_ovrd_dt>
+                    <wbmd_prim_revw_dt>03/04/2014 00:00:00</wbmd_prim_revw_dt>
+                    <wbmd_publ>
+                        <r_object_type>wbmd_publication</r_object_type>
+                        <r_object_id>091e9c5e80325938</r_object_id>
+                        <wbmd_publ_name>WebMD Health Tools</wbmd_publ_name>
+                        <wbmd_publ_type>1</wbmd_publ_type>
+                        <wbmd_publ_display>WebMD Health Tools</wbmd_publ_display>
+                        <wbmd_publ_bus_entity/>
+                    </wbmd_publ>
+                    <wbmd_prim_subj_cd/>
+                    <wbmd_desc_meta>Want a rear view that kicks butt? The right exercises, cardio,
+                        and style choices can help in the quest for the perfect
+                        butt.</wbmd_desc_meta>
+                    <wbmd_orig_pub_dt>03/16/2009 15:58:14</wbmd_orig_pub_dt>
+                    <wbmd_desc_user>Want a rear view that kicks butt? WebMD has the right exercises,
+                        cardio, and style guidance for a perfect butt. </wbmd_desc_user>
+                    <wbmd_lk_ttl>Slideshow: How to Build a Better Butt</wbmd_lk_ttl>
+                    <wbmd_disclmr>
+                        <r_object_type>wbmd_disclaimer</r_object_type>
+                        <r_object_id>091e9c5e80becb76</r_object_id>
+                        <wbmd_lgl_revw_dt>nulldate</wbmd_lgl_revw_dt>
+                        <wbmd_lgl_revr/>
+                        <wbmd_disclaimer>
+                            <disclaimer_statement>
+                                <p>THIS TOOL DOES NOT PROVIDE MEDICAL ADVICE. It is intended for
+                                    general informational purposes only and does not address
+                                    individual circumstances. It is not a substitute for
+                                    professional medical advice, diagnosis or treatment and should
+                                    not be relied on to make decisions about your health. Never
+                                    ignore professional medical advice in seeking treatment because
+                                    of something you have read on the WebMD Site. If you think you
+                                    may have a medical emergency, immediately call your doctor or
+                                    dial 911.</p>
+                            </disclaimer_statement>
+                        </wbmd_disclaimer>
+                    </wbmd_disclmr>
+                    <wbmd_prim_med_revr>
+                        <r_object_id>091e9c5e8045853a</r_object_id>
+                        <wbmd_first_nm>Michael</wbmd_first_nm>
+                        <wbmd_middle_name>W.</wbmd_middle_name>
+                        <wbmd_lst_nm>Smith</wbmd_lst_nm>
+                        <wbmd_person_prof_ttl/>
+                        <wbmd_bio_obj_id chronic_id="091e9c5e8000911f" directive="friendlyurl"
+                            path="/webmd/consumer_assets/editorial/articles/biographies/s/Smith_Michael_W.xml"
+                            object_type="wbmd_cons_article"/>
+                        <wbmd_person_suffix_group>
+                            <wbmd_person_suffix object_type="wbmd_lookup"
+                                wbmd_lookup_type="person_suffix" wbmd_storage_val="48"
+                                wbmd_disp_nm="MD"/>
+                        </wbmd_person_suffix_group>
+                    </wbmd_prim_med_revr>
+                    <wbmd_keywords>slideshow, slide show, slideshows, slide shows, pictures of butt
+                        exercises, butt workout, Brazilian butt lift workout, gluteal muscles,
+                        strength training, squats, leg lifts, bridge,jeans, skinny
+                        jeans</wbmd_keywords>
+                    <wbmd_relv1_subj_cd_group>
+                        <wbmd_relv1_subj_cd/>
+                    </wbmd_relv1_subj_cd_group>
+                    <wbmd_authr_prim_group>
+                        <wbmd_authr_prim/>
+                    </wbmd_authr_prim_group>
+                    <wbmd_relv2_subj_cd_group>
+                        <wbmd_relv2_subj_cd/>
+                    </wbmd_relv2_subj_cd_group>
+                    <wbmd_relv3_subj_cd_group>
+                        <wbmd_relv3_subj_cd>fit</wbmd_relv3_subj_cd>
+                    </wbmd_relv3_subj_cd_group>
+                    <r_object_id>091e9c5e80e6419a</r_object_id>
+                    <wbmd_c_cons_edtr/>
+                    <wbmd_c_cons_cpy_edtr/>
+                    <wbmd_c_cons_revw_dt>nulldate</wbmd_c_cons_revw_dt>
+                    <wbmd_c_sec_med_revw_dt>nulldate</wbmd_c_sec_med_revw_dt>
+                    <wbmd_c_sec_med_revr/>
+                    <wbmd_c_prim_top_id object_type="wbmd_lookup"
+                        wbmd_lookup_type="consumer_topic_id" wbmd_storage_val="1676"
+                        wbmd_disp_nm="Fitness and Exercise"/>
+                    <wbmd_c_edtr_revr_dt>nulldate</wbmd_c_edtr_revr_dt>
+                    <wbmd_c_stg_of_cond object_type="wbmd_lookup"
+                        wbmd_lookup_type="consumer_stage_of_condition" wbmd_storage_val="6"
+                        wbmd_disp_nm="None"/>
+                    <wbmd_c_sec_authr_group>
+                        <wbmd_c_sec_authr/>
+                    </wbmd_c_sec_authr_group>
+                    <wbmd_c_audnc_age_group>
+                        <wbmd_c_audnc_age object_type="wbmd_lookup"
+                            wbmd_lookup_type="consumer_audience_age" wbmd_storage_val="1"
+                            wbmd_disp_nm="All"/>
+                    </wbmd_c_audnc_age_group>
+                    <wbmd_c_audnc_geo_group>
+                        <wbmd_c_audnc_geo/>
+                    </wbmd_c_audnc_geo_group>
+                    <wbmd_c_sec_top_id_group>
+                        <wbmd_c_sec_top_id object_type="wbmd_lookup"
+                            wbmd_lookup_type="consumer_topic_id" wbmd_storage_val="1689"
+                            wbmd_disp_nm="Healthy Women"/>
+                    </wbmd_c_sec_top_id_group>
+                    <wbmd_c_audnc_gndr_group>
+                        <wbmd_c_audnc_gndr object_type="wbmd_lookup"
+                            wbmd_lookup_type="consumer_audience_gender" wbmd_storage_val="1"
+                            wbmd_disp_nm="Both"/>
+                    </wbmd_c_audnc_gndr_group>
+                    <wbmd_c_audnc_lfstyl_group>
+                        <wbmd_c_audnc_lfstyl object_type="wbmd_lookup"
+                            wbmd_lookup_type="consumer_audience_lifestyle" wbmd_storage_val="5"
+                            wbmd_disp_nm="Healthy Living / Eating"/>
+                        <wbmd_c_audnc_lfstyl object_type="wbmd_lookup"
+                            wbmd_lookup_type="consumer_audience_lifestyle" wbmd_storage_val="7"
+                            wbmd_disp_nm="College Life"/>
+                        <wbmd_c_audnc_lfstyl object_type="wbmd_lookup"
+                            wbmd_lookup_type="consumer_audience_lifestyle" wbmd_storage_val="1"
+                            wbmd_disp_nm="Active/Fitness"/>
+                    </wbmd_c_audnc_lfstyl_group>
+                    <wbmd_c_audnc_read_lvl_group>
+                        <wbmd_c_audnc_read_lvl/>
+                    </wbmd_c_audnc_read_lvl_group>
+                    <wbmd_c_audnc_ethn_group>
+                        <wbmd_c_audnc_ethn/>
+                    </wbmd_c_audnc_ethn_group>
+                    <wbmd_c_tm_of_yr_group>
+                        <wbmd_c_tm_of_yr object_type="wbmd_lookup"
+                            wbmd_lookup_type="consumer_time_of_year" wbmd_storage_val="5"
+                            wbmd_disp_nm="Any"/>
+                    </wbmd_c_tm_of_yr_group>
+                    <wbmd_c_clncl_tgt_pop_group/>
+                    <wbmd_c_art_thmbnl directive="imageurl" chronic_id="091e9c5e807c354c"
+                        path="/webmd/consumer_assets/site_images/article_thumbnails/slideshows/build_a_better_butt/69x75_build_a_better_butt.jpg"
+                        object_type="wbmd_cons_img"
+                        wbmd_c_alt_tag="close up of womans bottom doing squats" wbmd_c_width=""
+                        wbmd_c_ht=""/>
+                    <wbmd_c_channel_id object_type="wbmd_lookup"
+                        wbmd_lookup_type="consumer_channel_id" wbmd_storage_val="1046"
+                        wbmd_disp_nm="Fitness &amp; Exercise"/>
+                    <wbmd_c_frnd_nm>slideshow-build-a-better-butt</wbmd_c_frnd_nm>
+                    <wbmd_c_asset_name>slideshow-build-a-better-butt</wbmd_c_asset_name>
+                    <wbmd_c_teaser/>
+                    <wbmd_c_mini_article object_type="wbmd_cons_shrt_txt" directive="expand"
+                        chronic_id="0000000000000000"/>
+                </metadata_section>
+                <content_section>
+                    <cons_slideshow>
+                        <title>Slideshow: How to Build a Better Butt</title>
+                        <thumbnail_image directive="imageurl" chronic_id="091e9c5e807c354c"
+                            path="/webmd/consumer_assets/site_images/article_thumbnails/slideshows/build_a_better_butt/69x75_build_a_better_butt.jpg"
+                            object_type="wbmd_cons_img"/>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d280b"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/webmd_rf_photo_of_thighs_and_butt.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d280b</i_chronicle_id>
+                                <r_object_id>091e9c5e805d8f4d</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Woman Exercising Butt </wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e8004ec6c</wbmd_publ>
+                                <wbmd_desc_meta>Woman Exercising Butt </wbmd_desc_meta>
+                                <wbmd_desc_user>Woman Exercising Butt </wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Woman Exercising Butt </wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Booty Boot Camp</slide_caption_title>
+                            <slide_caption_text>
+                                <p>If you feel your "rear view" needs a makeover, the right fitness
+                                    routine can help give you a lift. Can you achieve the "perfect"
+                                    Brazilian beach butt seen on TV? That depends partly on your
+                                    body type and genes. But most everyone can shape up to look
+                                    better in jeans. These pictures show you the moves.</p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27b6"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/getty_rm_photo_of_hip_muscles.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27b6</i_chronicle_id>
+                                <r_object_id>091e9c5e805d27b6</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Diagram of the Pelvis Muscles</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e801802dc</wbmd_publ>
+                                <wbmd_desc_meta>Diagram of the Pelvis Muscles</wbmd_desc_meta>
+                                <wbmd_desc_user>Diagram of the Pelvis Muscles</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Diagram of the Pelvis Muscles</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Behind It All: Meet Your
+                                Glutes</slide_caption_title>
+                            <slide_caption_text>
+                                <p>The shape of the buttocks is defined by muscles known as the
+                                    glutes. That's the gluteus maximus, gluteus medius, and gluteus
+                                    minimus, as well as the fat that lies over them. Walking,
+                                    running, and climbing all work the glutes. Strength training
+                                    that targets these muscles can help give you a tighter, more
+                                    rounded look. Adding a few butt-busting moves to your routine
+                                    may be enough to see a change.</p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d280a"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/webmd_rf_photo_of_squat_toning_exercise.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d280a</i_chronicle_id>
+                                <r_object_id>091e9c5e805ef706</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Trainer Helping Woman With Squat
+                                    Exercise</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e8004ec6c</wbmd_publ>
+                                <wbmd_desc_meta>Trainer Helping Woman With Squat
+                                    Exercise</wbmd_desc_meta>
+                                <wbmd_desc_user>Trainer Helping Woman With Squat
+                                    Exercise</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Trainer Helping Woman With Squat
+                                    Exercise</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Squat and Tone</slide_caption_title>
+                            <slide_caption_text>
+                                <p>The squat tops every list of butt-sculpting exercises. It
+                                    directly works the glutes.You can build bigger bottom muscles by
+                                    adding hand-held weights.</p>
+                                <p><b>Form: </b>Keep feet parallel, shoulder-width apart. Slowly
+                                    lower the hips as if sitting in a chair; then return to
+                                    standing. Make sure your knees do not push out in front of your
+                                    toes. Keep your torso tight and back straight.</p>
+                                <p> </p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27da"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/webmd_rf_photo_of_ball_squat.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27da</i_chronicle_id>
+                                <r_object_id>091e9c5e805ef6fe</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Woman Doing Ball Squat Exercise</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e8004ec6c</wbmd_publ>
+                                <wbmd_desc_meta>Woman Doing Ball Squat Exercise</wbmd_desc_meta>
+                                <wbmd_desc_user>Woman Doing Ball Squat Exercise</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Woman Doing Ball Squat Exercise</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Or Try a Ball Squat</slide_caption_title>
+                            <slide_caption_text>
+                                <p>If you're just starting out, a large ball can help with balance
+                                    while you master the form. For each exercise on our list, aim
+                                    for three sets of 15 reps. Try to do each exercise three times a
+                                    week with cardio or exercises focused on other body parts on
+                                    other days.</p>
+                                <p><b>Form:</b> Keep the ball between your low back and a wall.
+                                    Slowly perform the classic squat. Walk your feet out in front so
+                                    the knees stay behind your toes.</p>
+                                <p> </p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27dc"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/webmd_rf_photo_of_forward_lunge.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27dc</i_chronicle_id>
+                                <r_object_id>091e9c5e805d8f41</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Forward Lunge Exercise</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e8004ec6c</wbmd_publ>
+                                <wbmd_desc_meta>Forward Lunge Exercise</wbmd_desc_meta>
+                                <wbmd_desc_user>Forward Lunge Exercise</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Forward Lunge Exercise</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Forward Lunge</slide_caption_title>
+                            <slide_caption_text>
+                                <p>This butt builder also tones the thighs and calves. It's a pretty
+                                    good fat burner, too.</p>
+                                <p><b>Form:</b> With your feet parallel and hip-distance apart, take
+                                    one giant step forward. Lower your body slowly, bending both
+                                    knees, and return to standing. Repeat on the other side. Bend
+                                    your knees no more than 90 degrees. Keep your front knee stacked
+                                    right over your front ankle. Do not rest your back knee on the
+                                    ground.</p>
+                                <p> </p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27d9"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/webmd_rf_photo_of_backward_lunge.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27d9</i_chronicle_id>
+                                <r_object_id>091e9c5e805ef6fc</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Sequence of a Backward Lunge</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e8004ec6c</wbmd_publ>
+                                <wbmd_desc_meta>Sequence of a Backward Lunge</wbmd_desc_meta>
+                                <wbmd_desc_user>Sequence of a Backward Lunge</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Sequence of a Backward Lunge</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Or Try a Backward Lunge</slide_caption_title>
+                            <slide_caption_text>
+                                <p>When you step backward into a lunge, it works the glutes a little
+                                    harder. Your workout gets variety, too. Lunges also add
+                                    flexibility to your hips. They align your body better, too,
+                                    something that can suffer when people spend long hours sitting
+                                    at a desk.</p>
+                                <p><b>Form:</b> Use the same posture as in a forward lunge, but step
+                                    backward to position the lower leg. Don't let the front knee
+                                    push out in front of your toes.</p>
+                                <p> </p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27fe"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/webmd_rf_photo_of_side_lunge.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27fe</i_chronicle_id>
+                                <r_object_id>091e9c5e805d8f49</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Man Doing a Side Lunge</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e8004ec6c</wbmd_publ>
+                                <wbmd_desc_meta>Man Doing a Side Lunge</wbmd_desc_meta>
+                                <wbmd_desc_user>Man Doing a Side Lunge</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Man Doing a Side Lunge</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Or Try a Side Lunge</slide_caption_title>
+                            <slide_caption_text>
+                                <p>The side lunge targets the muscle on the outside of the hips, the
+                                    glutes, and tones the inner thighs, too.</p>
+                                <p><b>Form: </b>From a wide stance, bend one knee. Keep the shinbone
+                                    under that knee straight up from the floor. If the knee falls
+                                    inside the foot, use a shorter stance. Lean forward slightly,
+                                    but keep your shoulders behind your knees to keep from hurting
+                                    yourself. Put your hands where they help with balance.</p>
+                                <p> </p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27fa"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/webmd_rf_photo_of_leg_ball_lift.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27fa</i_chronicle_id>
+                                <r_object_id>091e9c5e805d27fa</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Leg Lift with Ball</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e8004ec6c</wbmd_publ>
+                                <wbmd_desc_meta>Leg Lift with Ball</wbmd_desc_meta>
+                                <wbmd_desc_user>Leg Lift with Ball</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Leg Lift with Ball</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>On the Ball: Leg Lift</slide_caption_title>
+                            <slide_caption_text>
+                                <p>Leg lifts done while you balance on an exercise ball will
+                                    strengthen your shoulders and abs, as well as your glutes. As
+                                    you get more fit, try lifting both legs at the same time for a
+                                    harder, beautiful-butt move.</p>
+                                <p><b>Form</b>: Keep your abs tight and back flat. Squeeze your
+                                    glute muscles tight as you lift one leg. Just a few inches is
+                                    fine when you're just starting out. Be careful not to use your
+                                    lower back muscles.</p>
+                                <p> </p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27dd"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/webmd_rf_photo_of_hip_lift.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27dd</i_chronicle_id>
+                                <r_object_id>091e9c5e805ef700</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Hip Lift with Ball</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e8004ec6c</wbmd_publ>
+                                <wbmd_desc_meta>Hip Lift with Ball</wbmd_desc_meta>
+                                <wbmd_desc_user>Hip Lift with Ball</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Hip Lift with Ball</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>On the Ball: Hip Lift</slide_caption_title>
+                            <slide_caption_text>
+                                <p>This small movement focuses on the gluteus maximus, the largest
+                                    muscle in the body. Be careful not to use the back muscles; the
+                                    glutes should do the work.</p>
+                                <p><b>Form</b>: Bend the knees 90 degrees, feet together. Squeeze
+                                    the glutes and slowly move the thighs up off the ball. A small,
+                                    controlled, 2-inch movement is the goal.</p>
+                                <p> </p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27db"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/webmd_rf_photo_of_bridge_exercise_on_floor.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27db</i_chronicle_id>
+                                <r_object_id>091e9c5e805d8f3f</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Woman Doing a Bridge Exercise</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e8004ec6c</wbmd_publ>
+                                <wbmd_desc_meta>Woman Doing a Bridge Exercise</wbmd_desc_meta>
+                                <wbmd_desc_user>Woman Doing a Bridge Exercise</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Woman Doing a Bridge Exercise</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Floor Work: Bridge</slide_caption_title>
+                            <slide_caption_text>
+                                <p>This classic is a super workout for the glutes, as well as the
+                                    hamstrings and hips.</p>
+                                <p><b>Form</b>: Begin on your back with your knees bent, feet
+                                    hip-width apart. Slowly peel your spine off the floor from the
+                                    tailbone. Tighten the glutes and hamstrings as you do this. When
+                                    your body has formed a long, slanted line from shoulders to
+                                    knees, hold for a few seconds. Then lower slowly.</p>
+                                <p> </p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27fd"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/webmd_rf_photo_of_side_leg_raise.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27fd</i_chronicle_id>
+                                <r_object_id>091e9c5e805ef704</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Side Leg Raise Exercise</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e8004ec6c</wbmd_publ>
+                                <wbmd_desc_meta>Side Leg Raise Exercise</wbmd_desc_meta>
+                                <wbmd_desc_user>Side Leg Raise Exercise</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Side Leg Raise Exercise</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Floor Work: Side Leg Raises</slide_caption_title>
+                            <slide_caption_text>
+                                <p>This move targets the two smaller muscle groups in the buttocks,
+                                    the gluteus medius and minimus.</p>
+                                <p><b>Form: </b>Lift the top leg while lying on your side. Keep the
+                                    hips stacked and the torso still. Both knees should face
+                                    forward. To work slightly different muscles, you can turn the
+                                    top leg out from the hip.</p>
+                                <p> </p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27fc"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/webmd_rf_photo_of_side_kick_exercise.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27fc</i_chronicle_id>
+                                <r_object_id>091e9c5e805ef702</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Proper Technique for the Dirty Dog
+                                    Exercise</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e8004ec6c</wbmd_publ>
+                                <wbmd_desc_meta>Proper Technique for the Dirty Dog
+                                    Exercise</wbmd_desc_meta>
+                                <wbmd_desc_user>Proper Technique for the Dirty Dog
+                                    Exercise</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Proper Technique for the Dirty Dog
+                                    Exercise</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Floor Work: Dirty Dog</slide_caption_title>
+                            <slide_caption_text>
+                                <p>This bottom builder gained fame in the exercise videos of the
+                                    1970s as the "fire hydrant." It targets two of the muscle groups
+                                    in the buttocks.</p>
+                                <p><b>Form: </b>Keep your knees hip-width apart and your hands
+                                    directly under your shoulders, elbows straight. Gently stiffen
+                                    the abs and keep your back in a neutral position with no sagging
+                                    or arching. Slowly draw one knee up. Rotate the hip to bring the
+                                    leg toward the torso, then away.</p>
+                                <p> </p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27fb"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/webmd_rf_photo_of_running_plank_exercise.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27fb</i_chronicle_id>
+                                <r_object_id>091e9c5e805d8f43</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Sequence of the Running Plank</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e8004ec6c</wbmd_publ>
+                                <wbmd_desc_meta>Sequence of the Running Plank</wbmd_desc_meta>
+                                <wbmd_desc_user>Sequence of the Running Plank</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Sequence of the Running Plank</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Floor Work: Mountain Climbers</slide_caption_title>
+                            <slide_caption_text>
+                                <p>Along with pushing your glutes, mountain climbers work the
+                                    shoulders, hips, and core muscles. Do it quickly to burn
+                                    calories while building muscle.</p>
+                                <p><b>Form: </b>Tighten the abs to protect the lower back. Spread
+                                    your fingers wide to protect the wrists. Bring one leg in at a
+                                    time -- bending the knee, like you were running. Keep your upper
+                                    body steady. Repeat as if you’re running in place.</p>
+                                <p> </p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27c3"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/getty_rm_photo_of_woman_walking_up_hill.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27c3</i_chronicle_id>
+                                <r_object_id>091e9c5e805d27c3</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Walking the Hills for a Great Butt
+                                    Workout</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e801802dc</wbmd_publ>
+                                <wbmd_desc_meta>Walking the Hills for a Great Butt
+                                    Workout</wbmd_desc_meta>
+                                <wbmd_desc_user>Walking the Hills for a Great Butt
+                                    Workout</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Walking the Hills for a Great Butt
+                                    Workout</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Walk the Hills</slide_caption_title>
+                            <slide_caption_text>
+                                <p>For a no-fuss butt workout, all you have to do is walk. Tackle
+                                    hills for the most glute-shaping impact. You'll burn extra
+                                    calories, too. On a treadmill, you can get this effect using a
+                                    5% to 7% incline.</p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27c2"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/getty_rm_photo_of_woman_in_gym_working_out.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27c2</i_chronicle_id>
+                                <r_object_id>091e9c5e805d27c2</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Woman Strength Training in Gym</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e801802dc</wbmd_publ>
+                                <wbmd_desc_meta>Woman Strength Training in Gym</wbmd_desc_meta>
+                                <wbmd_desc_user>Woman Strength Training in Gym</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Woman Strength Training in Gym</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Tone Your Tush With Cardio</slide_caption_title>
+                            <slide_caption_text>
+                                <p>In the gym, try stair steppers, arc trainers, and elliptical
+                                    machines.They challenge the glutes while giving your heart and
+                                    lungs a healthy workout. Inline skating and cycling are other
+                                    choices that help both heart and tush. </p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27b5"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/getty_rf_photo_of_women_working_out.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27b5</i_chronicle_id>
+                                <r_object_id>091e9c5e805d27b5</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Women Exercising Their Gluteal Muscles</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e801822a9</wbmd_publ>
+                                <wbmd_desc_meta>Women Exercising Their Gluteal
+                                    Muscles</wbmd_desc_meta>
+                                <wbmd_desc_user>Women Exercising Their Gluteal
+                                    Muscles</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Women Exercising Their Gluteal
+                                    Muscles</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Firm Up Without Bulking Up</slide_caption_title>
+                            <slide_caption_text>
+                                <p>Don't worry about building a bulky butt. Women aren't genetically
+                                    built that way. Resistance exercises are a must for a toned
+                                    behind. Keep the reps on the higher side (15 reps per set) to
+                                    focus on firming rather than bulking. The last few reps should
+                                    still be challenging. Don't forget the cardio to round out your
+                                    butt-toning exercise routine.</p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27b3"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/getty_rf_photo_of_woman_eating_salad.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27b3</i_chronicle_id>
+                                <r_object_id>091e9c5e805d27b3</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Woman Eating a Healthy Salad</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e801822a9</wbmd_publ>
+                                <wbmd_desc_meta>Woman Eating a Healthy Salad</wbmd_desc_meta>
+                                <wbmd_desc_user>Woman Eating a Healthy Salad</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Woman Eating a Healthy Salad</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Slim Your Assets</slide_caption_title>
+                            <slide_caption_text>
+                                <p>Targeted exercises alone may give you a firmer behind but not
+                                    always a smaller one. For more impact, watch your diet, burn
+                                    more calories, and lose weight. You'll reduce the fat pad lying
+                                    over the gluteal muscles, giving you tight, trim curves back
+                                    there.</p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27b4"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/getty_rf_photo_of_woman_on_exercise_bike.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27b4</i_chronicle_id>
+                                <r_object_id>091e9c5e805d27b4</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Working Your Gluteal Muscles</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e801822a9</wbmd_publ>
+                                <wbmd_desc_meta>Working Your Gluteal Muscles</wbmd_desc_meta>
+                                <wbmd_desc_user>Working Your Gluteal Muscles</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Working Your Gluteal Muscles</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>How To Go for the Maximum</slide_caption_title>
+                            <slide_caption_text>
+                                <p>If bigger is better to you, you'll want to really challenge the
+                                    glute muscles. Dial up the resistance on a stationary bike or
+                                    other cardio machine. During strength training, go for more
+                                    weight that challenges you in 6 to 12 reps. Rest 30 to 90
+                                    seconds in between sets. A high-quality diet also helps build
+                                    muscle mass.</p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27c4"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/photolibrary_rf_photo_of_woman_in_jeans.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27c4</i_chronicle_id>
+                                <r_object_id>091e9c5e805d27c4</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Group Of Women With Different Shapes</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e8027d066</wbmd_publ>
+                                <wbmd_desc_meta>Group Of Women With Different
+                                    Shapes</wbmd_desc_meta>
+                                <wbmd_desc_user>Group Of Women With Different
+                                    Shapes</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Group Of Women With Different
+                                    Shapes</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Can You Shift Your Shape?</slide_caption_title>
+                            <slide_caption_text>
+                                <p>There's much talk in beauty magazines about a rounded,
+                                    "Brazilian-style" butt. Targeted exercises can move a flat fanny
+                                    closer to this beauty ideal. But a workout will most likely
+                                    enhance the shape your behind already has: heart-like, pear,
+                                    bubble, or another. For total reshaping, after a huge weight
+                                    loss, for instance, cosmetic surgeons offer implants, lifts, and
+                                    reshaping.</p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27c1"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/getty_rm_photo_of_padded_girdle.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27c1</i_chronicle_id>
+                                <r_object_id>091e9c5e805d8f39</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Woman’s Padded Undergarment </wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e801802dc</wbmd_publ>
+                                <wbmd_desc_meta>Woman’s Padded Undergarment </wbmd_desc_meta>
+                                <wbmd_desc_user>Woman’s Padded Undergarment </wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Woman's Padded Undergarment</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Shapewear for Your Tush</slide_caption_title>
+                            <slide_caption_text>
+                                <p>Lots of underwear now aims to "separate and lift" your bottom.
+                                    Some styles rein in skin with elastic panels. Others enhance
+                                    your rear view with padding. You can even find padded inserts
+                                    and lifting Spandex panels in jeans.</p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27c5"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/photolibrary_rm_photo_of_woman_laying_on_couch_in_jeans.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27c5</i_chronicle_id>
+                                <r_object_id>091e9c5e805d27c5</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Woman Wearing Flared Jeans</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e8027d066</wbmd_publ>
+                                <wbmd_desc_meta>Woman Wearing Flared Jeans</wbmd_desc_meta>
+                                <wbmd_desc_user>Woman Wearing Flared Jeans</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Woman Wearing Flared Jeans</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Dress Your Assets Down</slide_caption_title>
+                            <slide_caption_text>
+                                <p>Boot-cut and flared jeans balance out the hips and rear for a
+                                    slimming effect. Long pant legs make your legs look longer and
+                                    your booty smaller. And back pockets can do much to buff up your
+                                    butt. Just beware of super-long back pockets. They can make your
+                                    behind look flat or saggy instead of showing off those sexy
+                                    contours you earned at the gym.</p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <slide_group>
+                            <slide_title/>
+                            <slide_img directive="imageurl" chronic_id="091e9c5e805d27b2"
+                                path="/webmd/consumer_assets/site_images/articles/health_tools/better_butt_slideshow/getty_rf_photo_of_rear_view_of_woman.jpg"
+                                object_type="wbmd_cons_img">
+                                <i_chronicle_id>091e9c5e805d27b2</i_chronicle_id>
+                                <r_object_id>091e9c5e805d27b2</r_object_id>
+                                <r_object_type>wbmd_cons_img</r_object_type>
+                                <title>slideshow_build_a_better_butt.xml</title>
+                                <wbmd_wdw_ttl>Butt Enhancing Jeans</wbmd_wdw_ttl>
+                                <wbmd_lk_ttl/>
+                                <wbmd_publ>091e9c5e801822a9</wbmd_publ>
+                                <wbmd_desc_meta>Butt Enhancing Jeans</wbmd_desc_meta>
+                                <wbmd_desc_user>Butt Enhancing Jeans</wbmd_desc_user>
+                                <wbmd_keywords>picture, photo, image, slideshow, slide show,
+                                    slideshows, slide shows, pictures of butt exercises, butt
+                                    workout, Brazilian butt lift workout, gluteal muscles, strength
+                                    training, squats, leg lifts, bridge,jeans, skinny
+                                    jeans</wbmd_keywords>
+                                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                                <wbmd_c_prim_top_id>3836</wbmd_c_prim_top_id>
+                                <wbmd_c_sec_top_id/>
+                                <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+                                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                                <wbmd_c_alt_tag>Butt Enhancing Jeans</wbmd_c_alt_tag>
+                                <wbmd_c_width>493</wbmd_c_width>
+                                <wbmd_c_ht>335</wbmd_c_ht>
+                            </slide_img>
+                            <slide_caption_title>Dress Your Assets Up</slide_caption_title>
+                            <slide_caption_text>
+                                <p>Skip the peg leg and ankle jeans. They widen the hips and make
+                                    your body look like an ice cream cone with a big, round scoop on
+                                    top. A better choice to really show off your curves are
+                                    skinny-fit pant legs or leggings. Look for a tight, form-fitting
+                                    rear panel for head-turning style.</p>
+                            </slide_caption_text>
+                        </slide_group>
+                        <citations>
+                            <p>IMAGES PROVIDED BY:</p>
+                            <p>1) Steve Pomberg/WebMD<br/> 2) 3D4Medical.com<br/> 3) Steve
+                                Pomberg/WebMD<br/> 4) Steve Pomberg/WebMD<br/> 5) Steve
+                                Pomberg/WebMD<br/> 6) Steve Pomberg/WebMD<br/> 7) Steve
+                                Pomberg/WebMD<br/> 8) Steve Pomberg/WebMD<br/> 9) Steve
+                                Pomberg/WebMD<br/> 10) Steve Pomberg/WebMD<br/> 11) Steve
+                                Pomberg/WebMD<br/> 12) Steve Pomberg/WebMD<br/> 13) Steve
+                                Pomberg/WebMD<br/> 14) Noah Clayton/Workbook Stock<br/> 15) Altrendo
+                                Images<br/> 16) Purestock<br/> 17) Jupiterimages<br/> 18) Caroline
+                                Woodham/Digital Vision<br/> 19) Medioimages<br/> 20) Tom
+                                Schierlitz/Stone<br/> 21) Jed Share and Kaoru/Flirt Collection<br/>
+                                22) Liane Ri/Getty</p>
+                            <p>SOURCES:</p>
+                            <p>American Council on Exercise: "Mountain Climbers," "Side Lunge,"
+                                "Side Lying Hip Abduction."</p>
+                            <p>Marilyn Gansel, founder, Fitness Matters personal training studios,
+                                Stanford and Kent, Conn.</p>
+                            <p>Dori Ricci, NASM, CPT.</p>
+                            <p>Janet Roget, NASM, certified personal trainer, Little Rock, Ark.</p>
+                            <p>Jonathan Ross, NSCA, NASM, ACE personal trainer; speaker; consultant;
+                                owner, Aion Fitness, Bowie, Md.</p>
+                            <p>Paul Sorace, MA, CSCS, ACSM RCEP, exercise physiologist, trainer,
+                                Bayonne, N.J.</p>
+                            <p> </p>
+                        </citations>
+                        <related_links_type/>
+                        <related_links_header/>
+                        <related_links_text>
+                            <ul>
+                                <li>
+                                    <a
+                                        href="/consumer_assets/editorial/articles/features/healthy_living/fitness_and_exercise/the_skinny_jeans_workout.xml"
+                                        directive="friendlyurl" chronic_id="091e9c5e80439b99"
+                                        object_type="wbmd_cons_article"
+                                        path="/webmd/consumer_assets/editorial/articles/features/healthy_living/fitness_and_exercise/the_skinny_jeans_workout.xml"
+                                        >Skinny Jeans Workout</a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="/consumer_assets/editorial/articles/news/miscellaneous/does_this_plastic_surgery_make_my_butt_look_big.xml"
+                                        directive="friendlyurl" chronic_id="091e9c5e80570da7"
+                                        object_type="wbmd_cons_article"
+                                        path="/webmd/consumer_assets/editorial/articles/news/miscellaneous/does_this_plastic_surgery_make_my_butt_look_big.xml"
+                                        >Butt Lifts on the Rise</a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="http://blogs.webmd.com/pamela-peeke-md/2010/05/bun-basics-how-to-minimize-your-butt.html"
+                                        directive="friendlyurl" chronic_id="" object_type=""
+                                        path="/webmdhttp://blogs.webmd.com/pamela-peeke-md/2010/05/bun-basics-how-to-minimize-your-butt.html"
+                                        >How to Minimize Your Butt</a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="/consumer_assets/editorial/articles/features/healthy_living/fitness_and_exercise/butt_workout_exercises_sculpt_better_backside.xml"
+                                        directive="friendlyurl" chronic_id="091e9c5e80534c86"
+                                        object_type="wbmd_cons_article"
+                                        path="/webmd/consumer_assets/editorial/articles/features/healthy_living/fitness_and_exercise/butt_workout_exercises_sculpt_better_backside.xml"
+                                        >The Butt Workout</a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Look Sexy in Your Swimsuit/page_Look Sexy in Your Swimsuit_091e9c5e800482ec.xml"
+                                        directive="friendlyurl" chronic_id="091e9c5e800482ec"
+                                        object_type="wbmd_pb_page"
+                                        path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Look Sexy in Your Swimsuit/page_Look Sexy in Your Swimsuit_091e9c5e800482ec.xml"
+                                        >Video: Prepare for Swimsuit Season</a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/FFP landing page toc_091e9c5e805d113c/page_FFP landing page toc_091e9c5e805d113c.xml"
+                                        directive="friendlyurl" chronic_id="091e9c5e805d113c"
+                                        object_type="wbmd_pb_page"
+                                        path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/FFP landing page toc_091e9c5e805d113c/page_FFP landing page toc_091e9c5e805d113c.xml"
+                                        >Free Food &amp; Fitness Tracker</a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="/consumer_assets/editorial/articles/health_and_medical_reference/mens_health/miscellaneous/good_protein_sources.xml"
+                                        directive="friendlyurl" chronic_id="091e9c5e80011198"
+                                        object_type="wbmd_cons_article"
+                                        path="/webmd/consumer_assets/editorial/articles/health_and_medical_reference/mens_health/miscellaneous/good_protein_sources.xml"
+                                        >Muscle-Building Protein Sources</a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="http://exchanges.webmd.com/fitness-and-exercise-exchange"
+                                        directive="friendlyurl" chronic_id="" object_type=""
+                                        path="/webmdhttp://exchanges.webmd.com/fitness-and-exercise-exchange"
+                                        >Fitness &amp; Exercise Community</a>
+                                </li>
+                            </ul>
+                        </related_links_text>
+                    </cons_slideshow>
+                </content_section>
+            </wbmd_asset>
+        </content>
+        <friendlyurls>
+            <target siteid="3" name="WebMD" issearchable="true" prefix="www"
+                friendlyurl="/fitness-exercise/ss/slideshow-build-a-better-butt" owner="false">
+                <breadcrumb>
+                    <bread piece="Fitness &amp; Exercise" prefix="www"
+                        friendlyurl="/fitness-exercise/default.htm"/>
+                </breadcrumb>
+                <centers>
+                    <Package id="15269" name="slide show" chronicid="" prefix="www"
+                        friendlyurl="/fitness-exercise/ss/default.htm" type="">Fitness &amp;
+                        Exercise Slideshows</Package>
+                    <Health id="960" name="health center" chronicid="091e9c5e80688e40" prefix="www"
+                        friendlyurl="/fitness-exercise/default.htm" type="">Health &amp;
+                        Fitness</Health>
+                </centers>
+            </target>
+            <target siteid="8" name="WebMD_Mobile" issearchable="true" prefix="www"
+                friendlyurl="/fitness-exercise/ss/slideshow-build-a-better-butt" owner="false">
+                <breadcrumb>
+                    <bread piece="Health &amp; Fitness Center" prefix="www"
+                        friendlyurl="/fitness-exercise/default.htm"/>
+                    <bread piece="Slideshows A-Z" prefix="www"
+                        friendlyurl="/fitness-exercise/ss/default.htm"/>
+                </breadcrumb>
+                <centers>
+                    <Package id="12463" name="slide show" chronicid="" prefix="www"
+                        friendlyurl="/fitness-exercise/ss/default.htm" type="">Health &amp; Fitness
+                        Slideshows</Package>
+                    <Health id="11156" name="health center" chronicid="091e9c5e80688e40"
+                        prefix="www" friendlyurl="/fitness-exercise/default.htm" type="">Health
+                        &amp; Fitness</Health>
+                </centers>
+            </target>
+        </friendlyurls>
+        <referenced_objects>
+            <object chronic_id="091e9c5e8000911f" thmbnl="" pointer="0"
+                path="/webmd/consumer_assets/editorial/articles/biographies/s/Smith_Michael_W.wxml">
+                <target siteid="3" name="" prefix="www" friendlyurl="/michael-w-smith"/>
+                <target siteid="8" name="" prefix="www" friendlyurl="/michael-w-smith"/>
+            </object>
+            <object chronic_id="091e9c5e80439b99" thmbnl="" pointer="0"
+                path="/webmd/consumer_assets/editorial/articles/features/healthy_living/fitness_and_exercise/the_skinny_jeans_workout.wxml">
+                <target siteid="3" name="" prefix="www"
+                    friendlyurl="/fitness-exercise/the-skinny-jeans-workout"/>
+                <target siteid="8" name="" prefix="www"
+                    friendlyurl="/fitness-exercise/features/the-skinny-jeans-workout"/>
+            </object>
+            <object chronic_id="091e9c5e80570da7"
+                thmbnl="/webmd/consumer_assets/site_images/articles/thumbnails_daily_images/2010/04_2010/rise_in_butt_enhancement_procedures.jpg"
+                wbmd_c_alt_tag="rise_in_butt_enhancement_procedures.jpg" wbmd_c_width=""
+                wbmd_c_ht="" pointer="0"
+                path="/webmd/consumer_assets/editorial/articles/news/miscellaneous/does_this_plastic_surgery_make_my_butt_look_big.wxml">
+                <target siteid="3" name="" prefix="www"
+                    friendlyurl="/beauty/treatments/20100428/does-this-plastic-surgery-make-my-butt-look-big"/>
+                <target siteid="8" name="" prefix="www"
+                    friendlyurl="/healthy-beauty/news/20100428/does-this-plastic-surgery-make-my-butt-look-big"
+                />
+            </object>
+            <object chronic_id="091e9c5e80534c86" thmbnl="" pointer="0"
+                path="/webmd/consumer_assets/editorial/articles/features/healthy_living/fitness_and_exercise/butt_workout_exercises_sculpt_better_backside.wxml">
+                <target siteid="3" name="" prefix="www"
+                    friendlyurl="/fitness-exercise/butt-workout-exercises-sculpt-better-backside"/>
+                <target siteid="8" name="" prefix="www"
+                    friendlyurl="/fitness-exercise/features/butt-workout-exercises-sculpt-better-backside"
+                />
+            </object>
+            <object chronic_id="091e9c5e800482ec" thmbnl="" pointer="0"
+                path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Look Sexy in Your Swimsuit/page_Look Sexy in Your Swimsuit_091e9c5e800482ec.wxml">
+                <target siteid="3" name="" prefix="www"
+                    friendlyurl="/video/look-sexy-in-your-swimsuit" status="deleted"/>
+            </object>
+            <object chronic_id="091e9c5e805d113c" thmbnl="" pointer="0"
+                path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/FFP landing page toc_091e9c5e805d113c/page_FFP landing page toc_091e9c5e805d113c.wxml">
+                <target siteid="3" name="WebMD" prefix="www"
+                    friendlyurl="/diet/food-fitness-planner/default.htm"/>
+            </object>
+            <object chronic_id="091e9c5e80011198" thmbnl="" pointer="0"
+                path="/webmd/consumer_assets/editorial/articles/health_and_medical_reference/mens_health/miscellaneous/good_protein_sources.wxml">
+                <target siteid="3" name="WebMD" prefix="www"
+                    friendlyurl="/fitness-exercise/guide/good-protein-sources"/>
+                <target siteid="8" name="WebMD_Mobile" prefix="www"
+                    friendlyurl="/fitness-exercise/guide/good-protein-sources"/>
+            </object>
+        </referenced_objects>
+        <container_hierarchy/>
+        <expanded_objects/>
+    </webmd_rendition>
+</webmd_rendition>
