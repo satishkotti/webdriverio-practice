@@ -317,14 +317,16 @@ webmd.fundedEditorial = {
 	},
 
 	mobileNo : function(){
+		// Add Mobile No class to HTML tag
 		$('html').addClass('mobile_no');
+
+		// Stop Pageview Call
+		window.s_not_pageview = "y";
 
 		/**
 		 * If Brand Page we want to redirect them to a Restricted Page and Suppress Pageview calls
 		 */
-		if(s_publication_source.indexOf('WebMD Sponsor') > -1){
-			// Stop Pageview Call
-			window.s_not_pageview = "y";
+		if(s_topic === "4121"){
 
 			// Stop Ads Call
 			webmd.ads2.disableInitialLoad();
@@ -339,11 +341,11 @@ webmd.fundedEditorial = {
 		 * If it was our WebMD content and we dont want to show attribution or pass package names in omniture
 		 */
 		else {
+			// Add Hide Branding class to HTML tag
 			$('html').addClass('hide_branding');
 
-			// Stop Pageview Call
-			window.s_not_pageview = "y";
-
+			// Fire off Pageview once the document is done loading.
+			// Also Reset some global variables
 			$(function () {
 				// Reset Global Vars
 				window.s_sponsor_program = "";
