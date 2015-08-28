@@ -8,6 +8,8 @@ webmd.fundedEditorial.navigation = {
 
     mobile_only: false,
 
+    hide_paddles: true,
+
     identifier: null,
 
     hide_sponsor_pages: false,
@@ -38,20 +40,20 @@ webmd.fundedEditorial.navigation = {
             })
             .html(
                 '<div class="article-nav">' + newline +
-                '   <a class="prev {{#if visited}}visited{{/if}}" href="{{prev.link}}">' + newline +
-                '       <span class="arrow"></span>' + newline +
-                '       <span class="text">' + newline +
-                '           <span class="nav">Previous</span>' + newline +
-                '           <span class="title">{{prev.title}}</span>' + newline +
-                '       </span>' + newline +
-                '   </a>' + newline +
-                '   <a class="next {{#if visited}}visited{{/if}}" href="{{next.link}}">' + newline +
-                '       <span class="text">' + newline +
-                '           <span class="nav">Next</span>' + newline +
-                '           <span class="title">{{next.title}}</span>' + newline +
-                '       </span>' + newline +
-                '       <span class="arrow"></span>' + newline +
-                '   </a>' + newline +
+                    '<a class="prev {{#if visited}}visited{{/if}}" href="{{prev.link}}">' + newline +
+                        '<span class="arrow"></span>' + newline +
+                        '<span class="text">' + newline +
+                            '<span class="nav">Previous</span>' + newline +
+                            '<span class="title">{{prev.title}}</span>' + newline +
+                        '</span>' + newline +
+                    '</a>' + newline +
+                    '<a class="next {{#if visited}}visited{{/if}}" href="{{next.link}}">' + newline +
+                        '<span class="text">' + newline +
+                            '<span class="nav">Next</span>' + newline +
+                            '<span class="title">{{next.title}}</span>' + newline +
+                        '</span>' + newline +
+                        '<span class="arrow"></span>' + newline +
+                    '</a>' + newline +
                 '</div>'
             );
 
@@ -95,6 +97,7 @@ webmd.fundedEditorial.navigation = {
         }
 
         currentArticleType = webmd.fundedEditorial.articleData.articles[currentArticleIndex].type;
+        self.is_current_sponsored = webmd.fundedEditorial.articleData.articles[currentArticleIndex].sponsored;
 
         switch (currentArticleType) {
             case 'type_art':
@@ -147,6 +150,7 @@ webmd.fundedEditorial.navigation = {
 
                 self.show_on_element = '.rmq_footer';
                 self.identifier = '.rich_media_quiz';
+                self.hide_paddles = false; // do not hide paddles on certain conditions (see setNavPalette below)
                 self.mobile_only = true;
                 break;
             default:
@@ -184,7 +188,7 @@ webmd.fundedEditorial.navigation = {
         }
 
         hideNavLocation = (
-                (scrollBottom >= articleBottom + self.pixels_after_article_end_to_hide) || // hide at specified pixels after the article
+                (self.hide_paddles && (scrollBottom >= articleBottom + self.pixels_after_article_end_to_hide)) || // hide at specified pixels after the article
                 (scrollBottom == documentHeight) || // hide when scroll bottom reaches the bottom of the document
                 (scrollTop === 0) // hide when scroll top is above the article top
         );

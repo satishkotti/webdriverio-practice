@@ -107,9 +107,9 @@ define(['bx_slider/1/bx_slider'], function(){
 		function doInterstitial(isInterstitial) {
 			var $elements = $('.sources, .ed_disclaimer, .attrib_right_fmt, .toolbar .share-open');
 			if (isInterstitial) {
-				$elements.hide();
+				$elements.css('visibility', 'hidden');
 			} else {
-				$elements.show();
+				$elements.css('visibility', 'visible');
 			}
 		}
 
