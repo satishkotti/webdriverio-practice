@@ -35,21 +35,21 @@ webmd.fundedEditorial.nextUp = {
 			.html(
 				'{{#nextup_article_data}}' + newline +
 				'<ul class="article-list">' + newline +
-				'   <li class="up-next-header">Up Next</li>' + newline +
-				'   <li>' + newline +
-				'       <ul class="articles">' + newline +
-				'           {{#each articles}}' + newline +
-				//'           <li class="{{#if article.visited}}visited{{/if}}">' + newline +
-				'           <li>' + newline +
-				'               <a href="{{article.link}}">' + newline +
-				'                   <span class="text">' + newline +
-				'                       <span class="title">{{article.title}}</span>' + newline +
-				'                   </span>' + newline +
-				'               </a>' + newline +
-				'           </li>' + newline +
-				'           {{/each}}' + newline +
-				'       </ul>' + newline +
-				'   </li>' + newline +
+					'<li class="up-next-header">Up Next</li>' + newline +
+					'<li>' + newline +
+						'<ul class="articles">' + newline +
+						'{{#each articles}}' + newline +
+							//'<li class="{{#if article.visited}}visited{{/if}}">' + newline +
+							'<li>' + newline +
+								'<a href="{{article.link}}">' + newline +
+									'<span class="text">' + newline +
+										'<span class="title">{{article.title}}</span>' + newline +
+									'</span>' + newline +
+								'</a>' + newline +
+							'</li>' + newline +
+						'{{/each}}' + newline +
+						'</ul>' + newline +
+					'</li>' + newline +
 				'</ul>' + newline +
 				'{{/nextup_article_data}}'
 			);
