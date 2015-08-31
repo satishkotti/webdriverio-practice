@@ -6,17 +6,12 @@ if(!webmd){
 
 webmd.fundedEditorial.nextUp = {
 
-	articles_to_display : 3,
-
-	hide_sponsor_pages : false,
-
-	hide_module_on_sponsor_pages : false,
-
-	is_current_sponsored : false,
-
-	article_ids_to_display : [],
-
-	nextup_article_data : {"articles":[]},
+	articles_to_display: 3, 				// number of articles to display in module
+	is_current_sponsored: false,			// flag for determinging if current page is sponsored
+	hide_sponsor_pages: false, 				// disable sponsor pages within the navigation (this will be configured globally within webmd.fundedEditorial and can be removed)
+	hide_on_sponsored: false,				// do not display paddles on sponsored pages
+	article_ids_to_display: [],
+	nextup_article_data: {"articles":[]},
 
 	init : function(){
 		this.render();
@@ -61,16 +56,15 @@ webmd.fundedEditorial.nextUp = {
 		var self = this,
 			article_data = webmd.fundedEditorial.articleData,
 			articles = article_data.articles,
-			article,
-			articleIndex,
-			articleIdArrLen;
+			caIndex = webmd.fundedEditorial.articleData.currentArticle,
+			article, articleIndex, articleIdArrLen;
 
 		for(var key in articles) {
 			article = articles[key];
 			articleIndex = articles.indexOf(article);
 			articleIdArrLen = self.article_ids_to_display.length;
 
-			if ((articleIndex > webmd.fundedEditorial.articleData.currentArticle) &&
+			if ((articleIndex > caIndex) &&
 				(articleIdArrLen < self.articles_to_display)) {
 				if (self.hide_sponsor_pages) {
 					if (!articles[key].sponsored) {
@@ -91,9 +85,7 @@ webmd.fundedEditorial.nextUp = {
 		//}
 
 		function loopArticleData() {
-			var articleExists,
-				articleIndex,
-				article;
+			var articleExists, articleIndex, article;
 
 			for(var key in articles) {
 				article = articles[key];
@@ -137,7 +129,7 @@ webmd.fundedEditorial.nextUp = {
 		var self = this,
 			next_up_articles_len;
 
-		if (self.hide_module_on_sponsor_pages && self.is_current_sponsored) {
+		if (self.hide_on_sponsored && self.is_current_sponsored) {
 			return true;
 		} else {
 			self.setNextUpArticles();

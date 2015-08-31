@@ -6,23 +6,15 @@ if (!webmd) {
 
 webmd.fundedEditorial.navigation = {
 
-    mobile_only: false,
-
-    hide_paddles: true,
-
-    identifier: null,
-
-    hide_sponsor_pages: false,
-
-    hide_module_on_sponsor_pages: false,
-
-    is_current_sponsored: false,
-
-    show_on_element: null, // Shows Next|Prev nav when top of element specified reaches bottom of window
-
-    percent_after_article_start_to_show: 60, // Shows Next|Prev nav defined percentage after start of article
-
-    pixels_after_article_end_to_hide: 200, // Hides Next|Prev nav defined # of pixels after end of article
+    mobile_only: false,                         // flag used if navigation paddles should be displayed on mobile only
+    hide_paddles: true,                         // default setting to hide paddles at speicific points on the page (very top, very bottom, specified pixels after the article)
+    identifier: null,                           // article type used to determine identifier on the page for calulation show/hide points
+    is_current_sponsored: false,                // flag for determinging if current page is sponsored
+    hide_sponsor_pages: false,                  // disable sponsor pages within the navigation (this will be configured globally within webmd.fundedEditorial and can be removed)
+    hide_on_sponsored: false,                   // do not display paddles on sponsored pages
+    show_on_element: null,                      // Shows Next|Prev nav when top of element specified reaches bottom of window (Example: top of RMQ footer - '.rmq_footer')
+    percent_to_show: 60,                        // Shows Next|Prev nav at set percentage of article
+    pixels_after_to_hide: 200,                  // Hides Next|Prev nav at set number of pixels after article end
 
     init: function() {
         this.getIdentifier();
@@ -65,7 +57,7 @@ webmd.fundedEditorial.navigation = {
 
         $(window).bind('resizeEnd', function() {
             // do something, window hasn't changed size in 500ms
-            self.setNavPalette();
+            self.setupNavPaddles();
         });
 
         $(window).bind('touchstart', function() {
@@ -73,7 +65,7 @@ webmd.fundedEditorial.navigation = {
         });
 
         $(window).scroll(function() {
-            self.setNavPalette();
+            self.setupNavPaddles();
         });
 
         $(window).resize(function() {
@@ -89,26 +81,28 @@ webmd.fundedEditorial.navigation = {
 
     getIdentifier: function() {
         var self = this,
-            currentArticleIndex = webmd.fundedEditorial.articleData.currentArticle,
-            currentArticleType;
+            $navContainer = $('.article-nav-container'),
+            caIndex = webmd.fundedEditorial.articleData.currentArticle,
+            ca, caType;
 
-        if (currentArticleIndex === 'undefined' || currentArticleIndex === null) {
+        if (caIndex === 'undefined' || caIndex === null) {
             return;
         }
 
-        currentArticleType = webmd.fundedEditorial.articleData.articles[currentArticleIndex].type;
-        self.is_current_sponsored = webmd.fundedEditorial.articleData.articles[currentArticleIndex].sponsored;
+        ca = webmd.fundedEditorial.articleData.articles[caIndex];
+        caType = ca.type;
+        self.is_current_sponsored = ca.sponsored;
 
-        switch (currentArticleType) {
+        switch (caType) {
             case 'type_art':
                 self.identifier = '.article';
                 break;
             case 'type_rmq':
-                $('.article-nav-container').hide(); // hide nav
+                $navContainer.hide(); // hide nav
 
                 // this is very similar to using Object.watch()
                 // instead we attach multiple listeners
-                webmd.fundedEditorial.rmqSlide = (function () {
+                webmd.fundedEditorial.rmqSlide = (function() {
                     var initVal,
                         interceptors = [];
 
@@ -130,7 +124,7 @@ webmd.fundedEditorial.navigation = {
                             initVal = newVal;
                         },
 
-                        listen : function (fn) {
+                        listen: function(fn) {
                             if (typeof fn === 'function') {
                                 interceptors.push(fn);
                             }
@@ -139,32 +133,34 @@ webmd.fundedEditorial.navigation = {
                 }());
 
                 // add a listener
-                webmd.fundedEditorial.rmqSlide.listen(function (passedValue) {
+                webmd.fundedEditorial.rmqSlide.listen(function(passedValue) {
                     if (passedValue === 'results') {
-                        $('.article-nav-container').show();
+                        $navContainer.show();
                     } else {
                         self.hideElement('.article-nav');
-                        window.setTimeout(function() { $('.article-nav-container').hide(); }, 1000);
+                        window.setTimeout(function() {
+                            $navContainer.hide();
+                        }, 1000);
                     }
                 });
 
                 self.show_on_element = '.rmq_footer';
                 self.identifier = '.rich_media_quiz';
-                self.hide_paddles = false; // do not hide paddles on certain conditions (see setNavPalette below)
+                self.hide_paddles = false; // do not hide paddles on certain conditions (see setupNavPaddles below)
                 self.mobile_only = true;
                 break;
             default:
                 break;
         }
 
-        if (!self.identifier || (this.mobile_only && webmd.fundedEditorial.uaType !== 'mobile')) {
+        if (!self.identifier || (self.mobile_only && webmd.fundedEditorial.uaType !== 'mobile')) {
             return false;
         }
 
-        this.render();
+        self.render();
     },
 
-    setNavPalette: function() { // get nav coordinates to show and hide
+    setupNavPaddles: function() { // get nav coordinates to show and hide
         var self = this,
             $chrome = $('.chrome'),
             documentHeight = $(document).height(),
@@ -182,15 +178,15 @@ webmd.fundedEditorial.navigation = {
         if (self.show_on_element) {
             elementTop = articleBottom - $(self.show_on_element).innerHeight();
             elementBottom = elementTop + $(self.show_on_element).innerHeight();
-            showNavLocation = (scrollBottom >= elementTop + 50);            
+            showNavLocation = (scrollBottom >= elementTop + 50);
         } else {
-            showNavLocation = (scrollBottom >= (articleTop + (articleHeight * (self.percent_after_article_start_to_show / 100)))); //show at specified percentage of article
+            showNavLocation = (scrollBottom >= (articleTop + (articleHeight * (self.percent_to_show / 100)))); //show at specified percentage of article
         }
 
         hideNavLocation = (
-                (self.hide_paddles && (scrollBottom >= articleBottom + self.pixels_after_article_end_to_hide)) || // hide at specified pixels after the article
-                (scrollBottom == documentHeight) || // hide when scroll bottom reaches the bottom of the document
-                (scrollTop === 0) // hide when scroll top is above the article top
+            (self.hide_paddles && (scrollBottom >= articleBottom + self.pixels_after_to_hide)) || // hide at specified pixels after the article
+            (scrollBottom == documentHeight) || // hide when scroll bottom reaches the bottom of the document
+            (scrollTop === 0) // hide when scroll top is above the article top
         );
 
         if (showNavLocation && !hideNavLocation) {
@@ -211,21 +207,22 @@ webmd.fundedEditorial.navigation = {
     render: function() { // uses handlebars template above
         var self = this;
 
-        $.each(webmd.fundedEditorial.articleData.articles, function() {
-            var articleIndex = webmd.fundedEditorial.articleData.articles.indexOf(this);
-
-            if (articleIndex === webmd.fundedEditorial.articleData.prevArticle) {
-                self.prev_article = this;
-            }
-
-            if (articleIndex === webmd.fundedEditorial.articleData.nextArticle) {
-                self.next_article = this;
-            }
-        });
-
-        if (self.hide_module_on_sponsor_pages && self.is_current_sponsored) {
+        if (self.hide_on_sponsored && self.is_current_sponsored) {
             return true;
         } else {
+            // Get previous and next articles by looking at class set in article data object
+            $.each(webmd.fundedEditorial.articleData.articles, function() {
+                var articleIndex = webmd.fundedEditorial.articleData.articles.indexOf(this);
+
+                if (articleIndex === webmd.fundedEditorial.articleData.prevArticle) {
+                    self.prev_article = this;
+                }
+
+                if (articleIndex === webmd.fundedEditorial.articleData.nextArticle) {
+                    self.next_article = this;
+                }
+            });
+
             self.injectHBtemplateJS();
 
             require(['handlebars/1/handlebars'], function(Handlebars) {

@@ -372,15 +372,12 @@ webmd.fundedEditorial = {
 	tocTiles: {
 
 		gridItemClass: 'wbmd-grid-item', // class name on each <div> provided by the XSL
-
-		adIDarray: ['rightAd_rdr'], // list of AD id's that may be placed inside the TOC
-
+		adIDarray: ['#bannerAd_fmt', '#leftAd_fmt', '#rightAd_fmt', '#slideshow_ad_300x250', '#cw_btm_ad_300x250', '#rmqAd_fmt'], // list of AD id's that might be placed inside the TOC
 		contentPanes: {},
-
 		masonryGutter: 10,
 
 		init: function() {
-			this.render();
+			this.toc_render();
 		},
 
 		start: function() {
@@ -636,7 +633,7 @@ webmd.fundedEditorial = {
 			});
 		},
 
-		render: function() { // uses handlebars template above
+		toc_render: function() { // uses handlebars template above
 			var self = this;
 
 			if (typeof article_data !== 'undefined') {
