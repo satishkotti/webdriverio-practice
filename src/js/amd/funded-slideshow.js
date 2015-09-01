@@ -12,6 +12,8 @@ define(['bx_slider/1/bx_slider'], function(){
 		var $ss,
 			slider,
 			totalSlides,
+			currentWidth,
+			timeOut,
 			settings = {
 				slideSelector: '.slide',
 				slidesSelector: '.slides',
@@ -42,6 +44,7 @@ define(['bx_slider/1/bx_slider'], function(){
 			slider = $ss.find(settings.slidesSelector).bxSlider(settings);
 
 			totalSlides = slider.getSlideCount();
+			currentWidth = $(window).width();
 			$ss.find('.slide-count .total').html(totalSlides);
 
 		}
@@ -83,8 +86,18 @@ define(['bx_slider/1/bx_slider'], function(){
 			$(window).on('resize', function() {
 				var current = slider.getCurrentSlide();
 
-				slider.reloadSlider();
-				slider.goToSlide(current);
+				// prevent more than one at a time
+				clearTimeout(timeOut);
+
+				timeOut = setTimeout(function() {
+					// only run if width changed to prevent it triggering on iPhone scroll
+					if (currentWidth !== $(window).width()) {
+						currentWidth = $(window).width();
+						slider.reloadSlider();
+						slider.goToSlide(current);						
+					}
+				}, 200);
+
 			});
 
 			return self;
