@@ -256,13 +256,6 @@ $lato_font: 'Lato', sans-serif;
 						    display: block;
 						    overflow: hidden;
 
-						    &:hover {
-						    	.input {
-								    background: $blue_color;
-								    color: #fff;
-								}
-							}
-
 							.input {
 							    color: #797979;
 							    font-family: $lato_font;
@@ -509,6 +502,17 @@ $lato_font: 'Lato', sans-serif;
 		#sources_fmt {
 			.references {
 			    margin-top: 2em;
+			}
+		}
+	}
+}
+
+.no-touch :hover {
+	#rmq_slides {
+		.slide {
+			.input {
+			    background: $blue_color;
+			    color: #fff;
 			}
 		}
 	}
