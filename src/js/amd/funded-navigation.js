@@ -167,7 +167,7 @@ webmd.fundedEditorial.navigation = {
     setupNavPaddles: function() { // get nav coordinates to show and hide
         var self = this,
             $chrome = $('.chrome'),
-            documentHeight = $(document).height(),
+            bodyHeight = $('body').height(),
             articleTop = $chrome.position().top + $(self.identifier).position().top,
             articleBottom = $(self.identifier).outerHeight(true) + articleTop,
             articleHeight = $(self.identifier).innerHeight(),
@@ -189,7 +189,7 @@ webmd.fundedEditorial.navigation = {
 
         hideNavLocation = (
             (self.hide_paddles && (scrollBottom >= articleBottom + self.pixels_after_to_hide)) || // hide at specified pixels after the article
-            (scrollBottom == documentHeight) || // hide when scroll bottom reaches the bottom of the document
+            (bodyHeight <= scrollBottom) || // hide when scroll bottom reaches the bottom of the page
             (scrollTop === 0) // hide when scroll top is above the article top
         );
 
