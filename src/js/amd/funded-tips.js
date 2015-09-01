@@ -147,6 +147,7 @@ define(['bx_slider/1/bx_slider'], {
             $nextBtn = self._selectNextBtn(n);
 
         self.metrics('pageClick', 'tips-prev');
+        self.slider.stopAuto();
         self.slider.goToPrevSlide();
     },
 
@@ -161,6 +162,7 @@ define(['bx_slider/1/bx_slider'], {
             $nextBtn = self._selectNextBtn(n);
 
         self.metrics('pageClick', 'tips-next');
+        self.slider.stopAuto();
         self.slider.goToNextSlide();
     },
 
