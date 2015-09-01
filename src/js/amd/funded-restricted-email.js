@@ -101,7 +101,7 @@ define(
             init: function(options) {
 
                 var self = this,
-                	dctmId = self.getParameterByName('dctmId');
+                	dctmId = webmd.url.getParam('dctmId');
 
                 // Save the options for later use.
                 // Set a default for the "type" option.
@@ -116,14 +116,6 @@ define(
 
                 // Display the HTML in the overlay
                 self._init2();
-            },
-
-            /* Get querystring parameter from URL */
-            getParameterByName: function(name) {
-                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                    results = regex.exec(location.search);
-                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
             },
 
 

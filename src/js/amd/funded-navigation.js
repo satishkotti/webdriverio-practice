@@ -97,6 +97,10 @@ webmd.fundedEditorial.navigation = {
             case 'type_art':
                 self.identifier = '.article';
                 break;
+            case 'type_ss':
+                break;
+            case 'type_vid':
+                break;
             case 'type_rmq':
                 $navContainer.hide(); // hide nav
 
