@@ -23,6 +23,8 @@
         margin-bottom: 10px;
 
         a {
+          display: block;
+
           img {
             width: 100%;
           }
@@ -83,6 +85,8 @@
       }
 
       a {
+        display: block;
+
         img {
           width: 100%;
         }
@@ -112,20 +116,22 @@
 }
 
 .no-touch {
-  div.wbmd-moreabout-grid-item {
-    &.visited {
-      -webkit-transition: .5s ease-in-out;
-      -moz-transition: .5s ease-in-out;
-      -o-transition: .5s ease-in-out;
-
-      &:hover {
-        -webkit-filter: grayscale(0%);
+  .wbmd-moreabout-masonry-grid {
+    div.wbmd-moreabout-grid-item {
+      &.visited {
         -webkit-transition: .5s ease-in-out;
-        -moz-filter: grayscale(0%);
         -moz-transition: .5s ease-in-out;
-        -o-filter: grayscale(0%);
         -o-transition: .5s ease-in-out;
-        opacity: 1;
+
+        &:hover {
+          -webkit-filter: grayscale(0%);
+          -webkit-transition: .5s ease-in-out;
+          -moz-filter: grayscale(0%);
+          -moz-transition: .5s ease-in-out;
+          -o-filter: grayscale(0%);
+          -o-transition: .5s ease-in-out;
+          opacity: 1;
+        }
       }
     }
   }
