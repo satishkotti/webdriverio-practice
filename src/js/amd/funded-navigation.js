@@ -138,13 +138,20 @@ webmd.fundedEditorial.navigation = {
 
                 // add a listener
                 webmd.fundedEditorial.rmqSlide.listen(function(passedValue) {
+                    var myTimeout;
+
                     if (passedValue === 'results') {
                         $navContainer.show();
-                    } else {
+                    } else if (passedValue === 'reset') {
                         self.hideElement('.article-nav');
-                        window.setTimeout(function() {
+                        myTimeout = setTimeout(function() {
                             $navContainer.hide();
+                            clearTimeout(myTimeout);
                         }, 1000);
+                    } else {
+                        if (typeof myTimeout === 'undefined') {
+                            $navContainer.hide();
+                        }
                     }
                 });
 

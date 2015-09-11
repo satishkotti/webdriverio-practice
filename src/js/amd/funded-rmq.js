@@ -324,6 +324,11 @@ define(['bx_slider/1/bx_slider'], {
                         $('#results_controls').find('.rmq_retake').click(function(e) {
 
                             e.preventDefault();
+                            
+                            if (typeof webmd.fundedEditorial.rmqSlide !== 'undefined') {
+                                webmd.fundedEditorial.rmqSlide.type = 'reset';
+                            }
+
                             self.metrics('pageClick', 'rmq-strt-ovr');
                             self.resetQuiz();
                             //self.topBannerAd();
