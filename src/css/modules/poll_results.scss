@@ -3,7 +3,7 @@ $blue_color: #1b88bf;
 $dark_grey_color: #333132;
 $disclaimer_text_color: #868686;
 $lato_font: 'Lato', Arial, sans-serif;
-$lato_black_font: 'Lato Black', Arial, sans-serif;
+$lato_bold_font: 'Lato Bold', Arial, sans-serif;
 
 .pollResults_rdr {
 	padding: 7px 9px 7px 9px;
@@ -14,8 +14,9 @@ $lato_black_font: 'Lato Black', Arial, sans-serif;
 	}
 
 	h2 {
-		font-family: $lato_black_font;
+		font-family: $lato_bold_font;
 		font-size: 200%;
+		font-weight: bold;
 	}
 
 	h3 {
@@ -30,7 +31,7 @@ $lato_black_font: 'Lato Black', Arial, sans-serif;
 	.resultLines_fmt {
 		display: table;
 		height: auto;
-		padding-top: 9px;
+		padding-top: 25px;
 		padding-bottom: 9px;
 
 		.resultLine {
@@ -39,16 +40,16 @@ $lato_black_font: 'Lato Black', Arial, sans-serif;
 			.percent {
 				position: relative;
 				display: table-cell;
-				height: 75px;
-				font-size: 275%;
-				vertical-align: middle;
-				font-family: $lato_black_font;
+				font-size: 250%;
+				line-height: 100%;
+				vertical-align: bottom;
+				font-family: $lato_bold_font;
 				font-weight: bold;
 				color: $blue_color;
 				text-align: right;
 
 				.symbol {
-					font-family: $lato_black_font;
+					font-family: $lato_bold_font;
 					font-weight: bold;
 					color: $blue_color;
 					font-size: 50%;
@@ -59,9 +60,8 @@ $lato_black_font: 'Lato Black', Arial, sans-serif;
 				position: relative;
 				display: table-cell;
 		    	width: 100%;
-				height: 75px;
-				vertical-align: middle;
-				padding-left: 10px;
+				vertical-align: bottom;
+				padding: 10px 0px 12px 10px;
 
 			    .filler_wrapper_fmt {
 					background: $light_blue_color;

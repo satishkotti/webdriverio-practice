@@ -107,8 +107,8 @@
             </xsl:attribute>
             <xsl:attribute name="style">
               <xsl:text>width:</xsl:text>
-              <xsl:value-of select="round(4 * votepercentage)"></xsl:value-of>
-              <xsl:text>px</xsl:text>
+              <xsl:value-of select="votepercentage"></xsl:value-of>
+              <xsl:text>%</xsl:text>
             </xsl:attribute>
           </xsl:element>
         </xsl:element>
