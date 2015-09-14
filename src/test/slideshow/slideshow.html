@@ -78,11 +78,11 @@
 	<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_static/Site/WebMD_091e9c5e8004a224.css">
 	<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/Flexible_Layout_CSS/Runtime/2_column_layout_harmony117.css">
 
-	<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/responsive/responsive.min16.css">
+	<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_static/responsive/responsive.min.css">
 	<link rel="stylesheet" href="../../../build/webmd/PageBuilder_Assets/CSS/funded-editorial/funded-editorial.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-	<script type="text/javascript" src="http://js.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/JS/harmony/scripts_harmony80.js"></script>
+	<script type="text/javascript" src="http://js.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/JS_static/harmony/scripts_harmony.js"></script>
 <script>
 if (!webmd.fundedEditorial) {webmd.fundedEditorial = {};}
 webmd.fundedEditorial.articleData = {
@@ -529,13 +529,41 @@ html body {
 	position: relative;
 	display: none;
 }
+.slideshow .slide {
+	background: #ccc;
+	text-align: center;
+}
+.slideshow .slide .image {
+	display: inline-block;
+	position: relative;
+}
+.slideshow .slide .image:before,
+.slideshow .slide .image:after {
+	content: "";
+	background: #fff;
+	width: 3px;
+	height: 100%;
+	position: absolute;
+	top: 0;
+}
+.slideshow .slide .image:before {
+	left: -3px;
+}
+.slideshow .slide .image:after {
+	right: -3px;
+}
 .slideshow .slide img {
 	width: 100%;
 }
+.slideshow .slide img:before {
+	content: "hello";
+	border-right: 5px solid #fff;
+	border-left: 5px solid #fff;
+}
 .slideshow .slide .caption {
-	background: #f7f7f7;
 	padding: 20px;
-	border: 1px solid #eee;
+	background: #fff;
+	text-align: left;
 }
 .slideshow .slide .caption h3 {
 	font-family: Lato,Arial,sans-serif;
@@ -556,29 +584,32 @@ html body {
 	color: #fff;
 	position: absolute;
 	z-index: 2;
-	top: 150px;
+	top: 0px;
 	height: 48px;
-	width: 27px;
-}
-.slideshow .bx-controls .bx-prev label,
-.slideshow .bx-controls .bx-next label {
-	display: block;
-	text-indent: -10000px;
+	width: 40px;
+	padding: 0 10px;
 }
 .slideshow .bx-controls .bx-prev {
-	left: 10px;
+	left: 0;
 }
 .slideshow .bx-controls .bx-prev:before {
 	content: "\e61a";
 	text-shadow: 0 0 8px #000, 0 0 20px #000;
+	position: absolute;
 }
 .slideshow .bx-controls .bx-next {
-	right: 5px;
+	right: 0;
 	background-position: 100%;
 }
 .slideshow .bx-controls .bx-next:before {
 	content: "\e61b";
 	text-shadow: 0 0 8px #000, 0 0 20px #000;
+	position: absolute;
+}
+.slideshow .bx-controls .bx-prev label,
+.slideshow .bx-controls .bx-next label {
+	display: block;
+	text-indent: -10000px;
 }
 .slideshow .touch-instructions {
 	display: none;
