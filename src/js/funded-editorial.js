@@ -335,7 +335,7 @@ webmd.fundedEditorial = {
 			var url = "http://www" + webmd.url.getLifecycle() + ".webmd.com/alerts/restricted",
 				dctmId = window.s_unique_id;
 
-			//window.location.replace(url + "?dctmId=" + dctmId);
+			window.location.replace(url + "?dctmId=" + dctmId);
 		}
 		/**
 		 * If it was our WebMD content and we dont want to show attribution or pass package names in omniture
