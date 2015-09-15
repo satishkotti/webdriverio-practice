@@ -105,10 +105,11 @@
 							if(direction == "up"){
 								$('.isi').removeClass('hide');
 							} else {
+								$('.isi-container').scrollTop(0);
 								$('.isi').addClass('hide');
 							}
 						},
-						offset: '100%'
+						offset: '98%'
 					});
 				}
 

@@ -659,6 +659,13 @@ if(typeof s_sponsor_program !== 'undefined' && s_sponsor_program.indexOf('Mobile
 	webmd.fundedEditorial.mobileNo();
 }
 
+// Check to see if document is smaller than 768 if it is we will not make ad calls on desktop
+// if(document.body.scrollWidth <= 767){
+// 	console.log('small screen');
+// }
+
+// console.log(navigator.userAgent);
+
 $(function() {
 	webmd.fundedEditorial.init();
 	webmd.fundedEditorial.tocTiles.init();
