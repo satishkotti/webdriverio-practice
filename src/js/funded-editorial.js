@@ -507,12 +507,16 @@ webmd.fundedEditorial = {
 					var $node = $(this),
 						nodeH = $node.outerHeight(),
 						nodeW = $node.outerWidth(),
-						multiplier,
+						multiplier = 1,
 						btmMargin;
 
 					/* Need to use cssText in this section - $.css() does not work correctly with adding margin-bottom */
 					if (!$node.attr('data-orig-csstext')) {
 						$node.attr('data-orig-csstext', $node.attr('style'));
+					}
+
+					if (!$node.attr('data-orig-left')) {
+						$node.attr('data-orig-left', $node.position().left + 'px');
 					}
 
 					if (!$node.attr('data-orig-height')) {
@@ -524,41 +528,40 @@ webmd.fundedEditorial = {
 						btmMargin = Math.ceil((standardTileHeight * multiplier) + (gutter * multiplier) - nodeH);
 
 						if (windowW < 1000 && nodeW >= 650) {
-							$node.css('cssText', $node.attr('data-orig-csstext'));
+							$node.attr('style', $node.attr('data-orig-csstext'));
 						} else {
 							if (windowW >= 650) {
-								$node.css('cssText', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
+								$node.attr('style', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
 							} else {
-								$node.css('cssText', $node.attr('data-orig-csstext'));
+								$node.attr('style', $node.attr('data-orig-csstext'));
 							}
 						}
 					} else {
 						nodeH = parseInt($node.attr('data-orig-height'));
 
-						if (nodeH <= standardTileHeight) {
-							multiplier = 1;
-						} else if (
-							(nodeH === (standardTileHeight * 2)) ||
-							((nodeH > standardTileHeight) && (nodeH < (standardTileHeight * 2)))) {
-							multiplier = 2;
-						} else if (
-							(nodeH === (standardTileHeight * 3)) ||
-							((nodeH > (standardTileHeight * 2)) && (nodeH < (standardTileHeight * 3)))) {
-							multiplier = 3;
-						} else if (
-							(nodeH === (standardTileHeight * 4)) ||
-							((nodeH > (standardTileHeight * 3)) && (nodeH < (standardTileHeight * 4)))) {
-							multiplier = 4;
-						} else if (
-							(nodeH === (standardTileHeight * 5)) ||
-							((nodeH > (standardTileHeight * 4)) && (nodeH < (standardTileHeight * 5)))) {
-							multiplier = 5;
-						} else if (
-							(nodeH === (standardTileHeight * 6)) ||
-							((nodeH > (standardTileHeight * 5)) && (nodeH < (standardTileHeight * 6)))) {
-							multiplier = 6;
-						} else {
-							multiplier = 7;
+						if (nodeH > standardTileHeight) {
+							if ((nodeH === (standardTileHeight * 2)) ||
+								((nodeH > standardTileHeight) && (nodeH < (standardTileHeight * 2)))) {
+								multiplier = 2;
+							} else if (
+								(nodeH === (standardTileHeight * 3)) ||
+								((nodeH > (standardTileHeight * 2)) && (nodeH < (standardTileHeight * 3)))) {
+								multiplier = 3;
+							} else if (
+								(nodeH === (standardTileHeight * 4)) ||
+								((nodeH > (standardTileHeight * 3)) && (nodeH < (standardTileHeight * 4)))) {
+								multiplier = 4;
+							} else if (
+								(nodeH === (standardTileHeight * 5)) ||
+								((nodeH > (standardTileHeight * 4)) && (nodeH < (standardTileHeight * 5)))) {
+								multiplier = 5;
+							} else if (
+								(nodeH === (standardTileHeight * 6)) ||
+								((nodeH > (standardTileHeight * 5)) && (nodeH < (standardTileHeight * 6)))) {
+								multiplier = 6;
+							} else {
+								multiplier = 7;
+							}
 						}
 
 						if (windowW > 675 && multiplier > 1) {
@@ -566,13 +569,33 @@ webmd.fundedEditorial = {
 
 							if (adArray.indexOf($node.attr('id')) !== -1) {
 								btmMargin = newHeight - nodeH;
-								$node.css('cssText', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
-							} else {
-								$node.height(newHeight);
+								$node.attr('style', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
 							}
 						} else {
 							$node.css('cssText', $node.attr('data-orig-csstext'));
 						}
+					}
+				});
+			}
+		},
+
+		adjustPositions: function() {
+			var self = this;
+
+			for (var id in self.contentPanes) {
+				fixNodesInPane(id);
+			}
+
+			function fixNodesInPane(id) {
+				$('div#' + id + '.pane.wbmd-masonry-container').find('.wbmd-grid-item').each(function() {
+					var $node = $(this),
+						leftPos = $node.position().left + 'px';
+
+					if ($node.attr('data-updated-csstext')) {
+						$node.attr('style', $node.attr('data-updated-csstext'));
+					} else if (leftPos !== $node.attr('data-orig-left')) {
+						$node.css({ left : $node.attr('data-orig-left') });
+						$node.attr('data-updated-csstext', $node.attr('style'));
 					}
 				});
 			}
@@ -595,6 +618,12 @@ webmd.fundedEditorial = {
 
 					if (resetLayout) {
 						contentPane.msnry.layout();
+
+						if ($(window).width() >= 980) {
+							setTimeout(function() {
+				            	self.adjustPositions();
+				            }, 500);
+						}
 					} else {
 						$(masonryGrid).imagesLoaded(function() {
 							contentPane.msnry = new Masonry(masonryGrid, {
@@ -612,9 +641,11 @@ webmd.fundedEditorial = {
 		},
 
 		bindEvents: function() {
-			var self = this;
+			var self = this,
+				origWinW = $(window).width();
 
 			$(window).bind('resizeEnd', function() {
+				origWinW = $(window).width();
 				self.fixLayout();
 			});
 
@@ -624,13 +655,18 @@ webmd.fundedEditorial = {
 				}
 
 				this.resizeTO = setTimeout(function() {
-					$(this).trigger('resizeEnd');
+					var newWinW = $(window).width();
+
+					if ((origWinW < 980 && newWinW >= 980) || newWinW < 980) {
+						$(this).trigger('resizeEnd');
+					}
 				}, 500);
 			});
-
-			$(window).load(function() {
-				self.fixLayout();
-			});
+        
+        	$(window).load(function() {
+        		self.fixLayout();
+        	});
+	        
 		},
 
 		toc_render: function() { // uses handlebars template above

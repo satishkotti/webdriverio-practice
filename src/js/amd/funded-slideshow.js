@@ -23,7 +23,8 @@ define(['bx_slider/1/bx_slider'], function(){
 				nextText: '<label>Next Slide</label>',
 				prevText: '<label>Previous Slide</label>',
 				preloadImages: 'visible',
-				infiniteLoop: false
+				infiniteLoop: false,
+				slideMargin: 5
 			};
 
 		function init(selector, options) {
@@ -38,6 +39,8 @@ define(['bx_slider/1/bx_slider'], function(){
 			}
 
 			$ss.show();
+
+			setImageMaxWidths();
 
 			attachEventHandlers();
 
@@ -93,8 +96,7 @@ define(['bx_slider/1/bx_slider'], function(){
 					// only run if width changed to prevent it triggering on iPhone scroll
 					if (currentWidth !== $(window).width()) {
 						currentWidth = $(window).width();
-						slider.reloadSlider();
-						slider.goToSlide(current);						
+						positionArrows(current);
 					}
 				}, 200);
 
@@ -112,7 +114,10 @@ define(['bx_slider/1/bx_slider'], function(){
 				$ss.find('.bx-prev').show();
 			}
 
-			$ss.find('.bx-prev, .bx-next').css('top', imageHeight/2 - 24);
+			$ss.find('.bx-prev, .bx-next').css({
+				'height' : imageHeight + "px",
+				"line-height" : imageHeight + "px"
+			});
 
 			return this;
 		}
@@ -166,6 +171,21 @@ define(['bx_slider/1/bx_slider'], function(){
 				window.location = url; 
 			}, 1000);
 
+		}
+
+		function setImageMaxWidths() {
+			$ss.find('.image img').each( function(index) {
+				$(this).css('max-width', getNaturalWidth(this));
+			});
+		}
+
+		function getNaturalWidth(img) {
+			var $img = $(img);
+			if ($img.prop('naturalWidth') === undefined) {
+				var $tmpImg = $('<img/>').attr('src', $img.attr('src'));
+				$img.prop('naturalWidth', $tmpImg[0].width);
+			}
+			return $img.prop('naturalWidth');
 		}
 
 		function callMetrics(clickId, isLink) {
