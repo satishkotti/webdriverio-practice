@@ -329,13 +329,13 @@ webmd.fundedEditorial = {
 		if(s_topic === "4121"){
 
 			// Stop Ads Call
-			webmd.ads2.disableInitialLoad();
+			window.ads2_ignore = {all:true};
 
 			// Redirect to Email Page
 			var url = "http://www" + webmd.url.getLifecycle() + ".webmd.com/alerts/restricted",
 				dctmId = window.s_unique_id;
 
-			window.location.replace(url + "?dctmId=" + dctmId);
+			//window.location.replace(url + "?dctmId=" + dctmId);
 		}
 		/**
 		 * If it was our WebMD content and we dont want to show attribution or pass package names in omniture
@@ -662,11 +662,11 @@ webmd.fundedEditorial = {
 					}
 				}, 500);
 			});
-        
+
         	$(window).load(function() {
         		self.fixLayout();
         	});
-	        
+
 		},
 
 		toc_render: function() { // uses handlebars template above
