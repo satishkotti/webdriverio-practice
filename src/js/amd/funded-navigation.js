@@ -85,7 +85,7 @@ webmd.fundedEditorial.navigation = {
             caIndex = webmd.fundedEditorial.articleData.currentArticle,
             ca, caType;
 
-        if (caIndex === 'undefined' || caIndex === null) {
+        if (!caIndex || caIndex === 'undefined' || caIndex === null) {
             return;
         }
 
