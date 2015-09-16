@@ -64,6 +64,10 @@ webmd.fundedEditorial.navigation = {
             return true;
         });
 
+        $(window).load(function() {
+            self.setupNavPaddles();
+        });
+
         $(window).scroll(function() {
             self.setupNavPaddles();
         });
@@ -76,6 +80,46 @@ webmd.fundedEditorial.navigation = {
             this.resizeTO = setTimeout(function() {
                 $(this).trigger('resizeEnd');
             }, 500);
+        });
+
+        // this is very similar to using Object.watch()
+        // instead we attach multiple listeners
+        webmd.fundedEditorial.menuTab = (function() {
+            var initVal,
+                interceptors = [];
+
+            function callInterceptors(newVal) {
+                for (var i = 0; i < interceptors.length; i += 1) {
+                    interceptors[i](newVal);
+                }
+            }
+
+            return {
+                get display() {
+                    // user never has access to the private variable "initVal"
+                    // we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
+                    return initVal;
+                },
+
+                set display(newVal) {
+                    callInterceptors(newVal);
+                    initVal = newVal;
+                },
+
+                listen: function(fn) {
+                    if (typeof fn === 'function') {
+                        interceptors.push(fn);
+                    }
+                }
+            };
+        }());
+
+        webmd.fundedEditorial.menuTab.listen(function(passedValue) {
+            if (passedValue === true) {
+                self.hideElement('.article-nav');
+            } else {
+                self.setupNavPaddles();
+            }
         });
     },
 
