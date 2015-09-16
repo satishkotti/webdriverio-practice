@@ -19,9 +19,6 @@ webmd.fundedEditorial.menuTab = {
             return;
         }
 
-        /* Display Menu Tab */
-        $('.wbmd-menutab').show();
-
         /* Initialize Panel Slider Plugin*/
         this.initPanelSlider();
 
@@ -52,23 +49,26 @@ webmd.fundedEditorial.menuTab = {
 
         $panel.attr({
             id: this.panel
-        }).addClass(this.panel).addClass('scroll');
+        }).addClass(this.panel);
 
         $('body').append($panel);
     },
 
     addElementsToPanel: function() {
         var $panel = $('.' + this.panel),
+            $panelContent = $('<div></div>'),
             $el;
+
+        $panelContent.addClass('wbmd-panel-content').addClass('scroll');
 
         for (var i = 0; i < this.panelElements.length; i++) {
             $el = $(this.panelElements[i]) || $(this.panelElements[i])[0];
 
-            $el.addClass('transform');
-
-            $panel.append($el);
+            $panelContent.append($el);
             $el.show();
         }
+
+        $panel.append($panelContent);
     },
 
     positionElement: function(el) {
@@ -80,9 +80,15 @@ webmd.fundedEditorial.menuTab = {
     		$el = $(el);
 
     	mastheadBottom = offsetBottom('.masthead');
-    	mastheadBottom = (mastheadBottom === 0) ? 45 : mastheadBottom; // The bottom is 0 when switching between unsticky and sticky masthead (set to the new position which is 45)
+        if (mastheadBottom < 0) {
+            mastheadBottom = 0;
+        } else if (mastheadBottom === 0) {
+            mastheadBottom = 45;
+        }
 
     	$el.css({ 'top' : mastheadBottom + 'px' });
+
+        $('.wbmd-panel-content').css({ height : 'calc(100% - ' + mastheadBottom + 'px)' });
 
     	function offsetBottom(el, i) {
     		i = i || 0;
@@ -94,40 +100,38 @@ webmd.fundedEditorial.menuTab = {
         var self = this;
 
         $('#' + self.panel).on('psOpen', function(e) {
-            console.log(e.type);
-            $('.' + self.panel).show();
-            $('#wbmd-panel-link').html('CLOSE');
+            //console.log(e.type);
         }).on('psClose', function(e) {
-            console.log(e.type);
-            $('#wbmd-panel-link').html('MENU');
+            //console.log(e.type);
         }).on('psBeforeOpen', function(e) {
-            console.log(e.type);
+            //console.log(e.type);
             $('body').addClass('no-scroll');
             webmd.fundedEditorial.menuTab.display = true;
+            $('#wbmd-panel-link').html('CLOSE');
         }).on('psBeforeClose', function(e) {
-            console.log(e.type);
+            //console.log(e.type);
             $('body').removeClass('no-scroll');
-            $('.' + self.panel).hide();
             webmd.fundedEditorial.menuTab.display = false;
+            $('#wbmd-panel-link').html('MENU');
         });
 
         $(window).load(function() {
-            self.positionElement('.wbmd-navbar');
-            $('.' + self.panel).hide();
+            //self.positionElement('.wbmd-navbar');
             self.positionElement('.' + self.panel);
+            
+            /* Display Menu Tab */
+            $('.wbmd-menutab').show();
         });
 
         $(window).bind('scrollEnd', function() {
             // do something, window hasn't changed size in 500ms
-            self.positionElement('.wbmd-navbar');
-            $('.' + self.panel).hide();
+            //self.positionElement('.wbmd-navbar');
             self.positionElement('.' + self.panel);
         });
 
         $(window).scroll(function() {
-            self.positionElement('.wbmd-navbar');
-            $('.' + self.panel).hide();
-            self.positionElement('.' + self.panel);
+            //self.positionElement('.wbmd-navbar');
+            //self.positionElement('.' + self.panel);
 
             if (this.scrollTO) {
                 clearTimeout(this.scrollTO);
@@ -140,7 +144,7 @@ webmd.fundedEditorial.menuTab = {
 
         $(window).bind('resizeEnd', function() {
             // do something, window hasn't changed size in 500ms
-            self.positionElement('.wbmd-navbar');
+            //self.positionElement('.wbmd-navbar');
         });
 
         $(window).resize(function() {

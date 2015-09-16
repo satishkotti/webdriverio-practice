@@ -1,22 +1,58 @@
+.masthead {
+	z-index: 100000;
+    position: relative;
+}
+
 /* Panel opening and closing animation lasts 200ms */
-.top_ad_rdr, .chrome {
+.top_ad_rdr, .chrome, .wbmd-navbar, .wbmd-panel-content, .footer {
   transition: transform .2s;
 }
 
 /* Slide page 200px to the right when panel is opened */
 body.ps-active {
-	.top_ad_rdr, .chrome, .wbmd-navbar {
+	.top_ad_rdr, .chrome, .wbmd-navbar, .footer {
   		transform: translateX(90%);
   	}
+
+  	.wbmd-panel-content {
+  		transform: translateX(100%);
+  	}
+
+  	.wbmd-navbar.left, .wbmd-navbar.right {
+		-webkit-transition-delay: 0s;
+		-moz-transition-delay: 0s;
+		-o-transition-delay: 0s;
+		-ms-transition-delay: 0s;
+		transition-delay: 0s;
+    }
+
+    .wbmd-navbar.left {
+    	left: 90%;
+	}
+
+	.wbmd-navbar.right {
+    	right: 90%;
+	}
+
+	.wbmd-panel-content {
+		position: relative;
+		width: 100%;
+    	background-color: #ffffff;
+	}
+
+	.ps-active-panel {
+		z-index: 1001;
+	}
 }
 
 .wbmd-menutab {
-	position: relative;
+	position: absolute;
 	display: none;
-	z-index: 1001;
+	z-index: 10001;
 
 	.wbmd-navbar {
 		position: fixed;
+		top: 0px;
 	    width: 3px;
 	    height: 100%;
 
@@ -24,7 +60,7 @@ body.ps-active {
 
 	    	li {
 	    		position: absolute;
-			    top: 100px;
+			    top: 150px;
 			    width: auto;
 			    margin: 0;
 			    padding: 0 5px;
@@ -37,6 +73,15 @@ body.ps-active {
 	    			text-transform: uppercase;
 	    		}
 	    	}
+	    }
+
+	    &.left, &.right {
+	    	-webkit-transition: all 0.2s ease;
+		    -moz-transition: all 0.2s ease;
+		    -o-transition: all 0.2s ease;
+		    -ms-transition: all 0.2s ease;
+		    transition: all 0.2s ease;
+		    transform: translate3d(0,0,0);
 	    }
 
 	    &.left {
@@ -57,23 +102,6 @@ body.ps-active {
 	}
 }
 
-.ps-active {
-	.ps-active-panel {
-		background-color: #ffffff;
-		z-index: 1001;
-	}
-
-	.wbmd-navbar.left {
-		transform: translate3d(0,0,0);
-    	left: 90%;
-	}
-
-	.wbmd-navbar.right {
-		transform: translate3d(0,0,0);
-    	right: 90%;
-	}
-}
-
 .wbmd-menutab-left-panel, .wbmd-menutab-right-panel {
 	position: fixed;
 	width: 90%;
@@ -90,14 +118,28 @@ body.ps-active {
 	right: 0;
 }
 
-.transform {
-	transform: translateX(100%) !important;
-}
-
 .no-scroll {
-	overflow-y:hidden;
+	overflow-y: hidden;
 }
 
 .scroll {
-	overflow-y:visible;
+	overflow-y: scroll;
+}
+
+@media only screen and (max-width: 767px) and (min-width: 320px) {
+	.harmony #chrome {
+		padding: 0 23px; /* keeps menu tab from covering content */
+	}
+
+	#s4 {
+		padding-right: 0!important;
+		clear: both;
+		width: 320px;
+		margin-left: -23px; /* account for new padding on chrome */
+	}
+
+	.wbmd-moreabout-masonry-container {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
 }
