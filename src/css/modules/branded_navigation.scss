@@ -1,68 +1,40 @@
 // Variables
 @import '../partials/variables';
-.article-list-container {
+.branded-nav-container {
     position: relative;
     display: none;
     width: 100%;
     padding: 20px;
     margin-bottom: 1em;
-    background-color: #faf8f7;
+    background-color: #f5f5f5;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.125);
 
     .wbmd-brand {
       font-family: 'Lato', Arial, sans-serif;
       font-weight: bold;
-      font-size: 0.9em;
-      color: #808080;
+      font-size: 13px;
     }
 
     .wbmd-title {
       font-family: 'Lato', Arial, sans-serif;
       font-weight: bold;
-      font-size: 1.9em;
-      line-height: 1.1em;
-      color: #333132;
+      font-size: 30px;
+      line-height: 30px;
     }
 
     .wbmd-nav-links {
-      div {
+      a {
+        display: block;
+        font-family: 'Lato', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 22px;
+        color: #3b3b3c;
         padding-top: 20px;
         padding-left: 20px;
-
-        .wbmd-type {
-            display: block;
-            font-family: 'Roboto Condensed', Arial, sans-serif;
-            font-size: 0.8em;
-            text-transform: uppercase;
-            color: #74b0b0;
-            margin: 0;
-            padding: 0;
-        }
-
-        a {
-            display: block;
-            font-family: 'Lato', Arial, sans-serif;
-            font-size: 1em;
-            line-height: 1.2em;
-            color: #3b3b3c;
-            padding: 0;
-            margin: 0;
-        }
       }
-
-      
     }
 
     .wbmd-see-all {
-        padding-top: 20px;
-        padding-left: 20px;
-
-        a {
-            font-family: 'Lato', Arial, sans-serif;
-            font-weight: bold;
-            font-size: 0.9em;
-            color: #333132;
-        }
     }
 }
 
@@ -103,7 +75,7 @@
 
 @media only screen and (min-width: 676px) {
     /* STYLES GO HERE */
-    .article-list-container {
+    .branded-nav-container {
         display: block !important;
     }
 }
@@ -134,15 +106,6 @@
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
     /* STYLES GO HERE */
-    .article-list-container {
-        .article-list {
-            .articles {
-                .text {
-                    padding: 10px 0px !important;
-                }
-            }
-        }
-    }
 }
 
 
