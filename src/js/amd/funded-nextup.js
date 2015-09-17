@@ -6,14 +6,19 @@ if(!webmd){
 
 webmd.fundedEditorial.nextUp = {
 
-	articles_to_display: 4, 				// number of articles to display in module
+	articles_to_display: $('.article-list-container').data('linkCount'), 	// number of articles 
 	article_ids_to_display: [],
 	article_data: {"articles":[]},
 
 	init : function(){
+		if (this.articles_to_display <= 0) {
+			$('.article-list-container').addClass('hide');
+			return;
+		}
+
 		this.setSegmentTitle();
 
-		if (this.articles_to_display > 2) {
+		if (this.articles_to_display >= 8) {
 			this.setSeeAllLink();
 		}
 
@@ -28,14 +33,15 @@ webmd.fundedEditorial.nextUp = {
 	},
 
 	setSeeAllLink : function() {
-		var currentURL = window.location.href.split("?")[0].split("#")[0],
-			$seeAllContainer = $('.article-list-container > .wbmd-see-all'),
+		var $seeAllContainer = $('.article-list-container > .wbmd-see-all'),
 			$a = $('<a></a>'),
-			href = currentURL.split('/').slice(0, -1).join('/') + '/see-all-page';
+			overrideText = /*webmd.fundedEditorial.articleData.program.seeAllText*/'',
+			linkText = (overrideText.length > 0) ? overrideText : "SEE ALL",
+			linkUrl = webmd.fundedEditorial.articleData.program.seeAllLink + '#see-all-non-spon';
 
-		$a.attr({ href : href }).html("SEE ALL");
+		$a.attr({ href : linkUrl }).html(linkText);
 
-		$seeAllContainer.append($a);
+		$seeAllContainer.append($a).show();
 	},
 
 	getArticleLinks : function() {
@@ -85,7 +91,6 @@ webmd.fundedEditorial.nextUp = {
 	},
 
 	render: function() {
-		console.log('render');
 		var self = this,
 			$container = $(".article-list-container > .wbmd-nav-links"),
 			links;

@@ -54,6 +54,7 @@
     }
 
     .wbmd-see-all {
+        display: none;
         padding-top: 20px;
         padding-left: 20px;
 
@@ -63,6 +64,10 @@
             font-size: 0.9em;
             color: #333132;
         }
+    }
+
+    &.hide {
+        display: none !important;
     }
 }
 

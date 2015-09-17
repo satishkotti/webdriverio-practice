@@ -11,9 +11,16 @@
     </xsl:param>
 
     <xsl:template match="/">
+        <xsl:apply-templates select="webmd_rendition/content/wbmd_asset/webmd_module/module_data"></xsl:apply-templates>
+    </xsl:template>
+    
+    <xsl:template match="module_data">
         <xsl:element name="div">
             <xsl:attribute name="class">
                 <xsl:text>article-list-container</xsl:text>
+            </xsl:attribute>
+            <xsl:attribute name="data-link-count">
+                <xsl:value-of select="descriptions/description/description_text"></xsl:value-of>
             </xsl:attribute>
         
             <xsl:element name="div">
