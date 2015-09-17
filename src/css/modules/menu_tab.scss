@@ -1,121 +1,75 @@
 .masthead {
-	z-index: 100000;
-    position: relative;
+	position: relative;
+	z-index: 100001;
 }
 
 /* Panel opening and closing animation lasts 200ms */
-.top_ad_rdr, .chrome, .wbmd-navbar, .wbmd-panel-content, .footer {
+.top_ad_rdr, .chrome, .wbmd-navbar, .wbmd-menutab-left-panel, .footer {
   transition: transform .2s;
 }
 
-/* Slide page 200px to the right when panel is opened */
-body.ps-active {
+/* Slide page 90% to the right when panel is opened */
+body.menu-panel-active {
 	.top_ad_rdr, .chrome, .wbmd-navbar, .footer {
   		transform: translateX(90%);
   	}
 
-  	.wbmd-panel-content {
-  		transform: translateX(100%);
+  	.wbmd-menutab-left-panel, .webmd-panel-content {
+  		transform: translate(100%);
   	}
-
-  	.wbmd-navbar.left, .wbmd-navbar.right {
-		-webkit-transition-delay: 0s;
-		-moz-transition-delay: 0s;
-		-o-transition-delay: 0s;
-		-ms-transition-delay: 0s;
-		transition-delay: 0s;
-    }
-
-    .wbmd-navbar.left {
-    	left: 90%;
-	}
-
-	.wbmd-navbar.right {
-    	right: 90%;
-	}
 
 	.wbmd-panel-content {
 		position: relative;
-		width: 100%;
     	background-color: #ffffff;
 	}
 
-	.ps-active-panel {
+	.active-panel {
 		z-index: 1001;
 	}
 }
 
 .wbmd-menutab {
-	position: absolute;
+	position: fixed;
 	display: none;
 	z-index: 10001;
+	width: 100%;
 
 	.wbmd-navbar {
-		position: fixed;
-		top: 0px;
 	    width: 3px;
 	    height: 100%;
 
 	    ul {
-
 	    	li {
 	    		position: absolute;
 			    top: 150px;
+			    left: -12px;
 			    width: auto;
+			    height: auto;
 			    margin: 0;
-			    padding: 0 5px;
+			    padding: 0 3px;
 	    		transform: rotate(90deg);
+	    		line-height: 1em;
 
 	    		a {
 	    			font-family: Lato, Arial, sans-serif;
-	    			font-size: 12px;
+	    			font-size: 0.75em;
     				color: #fff;
 	    			text-transform: uppercase;
 	    		}
 	    	}
 	    }
-
-	    &.left, &.right {
-	    	-webkit-transition: all 0.2s ease;
-		    -moz-transition: all 0.2s ease;
-		    -o-transition: all 0.2s ease;
-		    -ms-transition: all 0.2s ease;
-		    transition: all 0.2s ease;
-		    transform: translate3d(0,0,0);
-	    }
-
-	    &.left {
-	    	left: 0px;
-
-	    	li {
-	    		left: -11px;
-	    	}
-	    }
-
-	    &.right {
-	    	right: 0px;
-
-	    	li {
-	    		right: -11px;
-	    	}
-	    }
 	}
 }
 
-.wbmd-menutab-left-panel, .wbmd-menutab-right-panel {
-	position: fixed;
+.wbmd-menutab-left-panel {
+	left: -90%;
 	width: 90%;
 	height: 100%;  /* remember to set 100% height for all its parents too, including html and body */
 	background-color: #ffffff;
-	transform: translateX(-100%);
-}
 
-.wbmd-menutab-left-panel {
-	left: 0;
-}
-
-.wbmd-menutab-right-panel {
-	right: 0;
+	.webmd-panel-content {
+		width: 90%;
+	}
 }
 
 .no-scroll {

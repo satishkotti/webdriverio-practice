@@ -5,43 +5,23 @@ if (!webmd) {
 }
 
 webmd.fundedEditorial.menuTab = {
-    sliderOptions: {
-        side: 'left', // panel side: left or right
-        duration: 200, // Transition duration in miliseconds
-        clickClose: true, // If true closes panel when clicking outside it
-        onOpen: null // When supplied, function is called after the panel opens
-    },
-
-    panelElements: ['.article-list-container'], // List in order top to bottom
+    side: 'left', // left or right
+    panelElements: ['.article-list-container', '.branded-nav-container'], // List in order top to bottom
 
     init: function() {
         if (webmd.fundedEditorial.uaType !== 'mobile') {
             return;
         }
 
-        /* Initialize Panel Slider Plugin*/
-        this.initPanelSlider();
-
-        this.panel = 'wbmd-menutab-' + this.sliderOptions.side + '-panel';
+        this.panel = 'wbmd-menutab-' + this.side + '-panel';
 
         /* Position the Menu Tab on left or right (specified in options) */
-        $('.wbmd-navbar').addClass(this.sliderOptions.side);
+        $('.wbmd-navbar').addClass(this.side);
 
         $('#wbmd-panel-link').attr({ href : '#' + this.panel });
         //$('#wbmd-panel-close-link').attr({ href : '#' + this.panel });
 
         this.render();
-    },
-
-    initPanelSlider: function(id) {
-        /*
-         * jQuery Panel Slider plugin v1.0.0
-         * https://github.com/eduardomb/jquery-panelslider
-         */
-        /* jshint ignore:start */
-        (function(e){"use strict";function r(r){var i=r.data("ps-options");if(e("body").hasClass(i.bodyClass)||n)return;r.trigger("psBeforeOpen"),n=!0,r.addClass("ps-active-panel"),e("body").addClass(i.bodyClass).one(t,function(e){n=!1,r.trigger("psOpen"),typeof i.onOpen=="function"&&i.onOpen()})}var t=["transitionend","webkitTransitionEnd","oTransitionEnd","MSTransitionEnd"].join(" "),n=!1;e.panelslider=function(e,t){e.panelslider(t)},e.panelslider.close=function(r){var i=e(".ps-active-panel"),s=i.data("ps-options");if(!i.length||n)return;i.trigger("psBeforeClose"),n=!0,i.removeClass("ps-active-panel"),e("body").removeClass(s.bodyClass).one(t,function(e){n=!1,i.trigger("psClose"),r&&setTimeout(function(){r()},0)})},e(document).on("click keyup",function(t){var n=e(".ps-active-panel");if(t.type=="keyup"&&t.keyCode!=27)return;n.length&&n.data("ps-options").clickClose&&e.panelslider.close()}),e(document).on("click",".ps-active-panel",function(e){e.stopPropagation()}),e.fn.panelslider=function(t){var n={bodyClass:"ps-active",clickClose:!0,onOpen:null},i=e(this.attr("href"));return i.data("ps-options",e.extend({},n,t)),this.click(function(t){var n=e(".ps-active-panel");n.length?n[0]==i[0]?e.panelslider.close():e.panelslider.close(function(){r(i)}):r(i),t.preventDefault(),t.stopPropagation()}),this}})(jQuery);
-        /* jshint ignore:end */
-
     },
 
     createPanel: function(side) {
@@ -64,11 +44,19 @@ webmd.fundedEditorial.menuTab = {
         for (var i = 0; i < this.panelElements.length; i++) {
             $el = $(this.panelElements[i]) || $(this.panelElements[i])[0];
 
-            $panelContent.append($el);
-            $el.show();
+            if (!$el.hasClass('hide')) {
+                $el.show();
+                $panelContent.append($el);
+            }
         }
 
-        $panel.append($panelContent);
+        if (!$panelContent.is(':empty')) {
+            $panel.append($panelContent);
+        } else {
+            $('.wbmd-menutab').hide(); // Nothing will appear in the menu tab, so hide it completely
+        }
+
+        return;
     },
 
     positionElement: function(el) {
@@ -97,39 +85,61 @@ webmd.fundedEditorial.menuTab = {
     },
 
     bindEvents: function() {
-        var self = this;
+        var self = this,
+            panelClass = '.' + this.panel,
+            $window = $(window),
+            $body = $('body'),
+            $panel = $(panelClass),
+            $menuTab = $('.wbmd-menutab'),
+            $menuTabBtn = $('#wbmd-panel-link');
 
-        $('#' + self.panel).on('psOpen', function(e) {
-            //console.log(e.type);
-        }).on('psClose', function(e) {
-            //console.log(e.type);
-        }).on('psBeforeOpen', function(e) {
-            //console.log(e.type);
-            $('body').addClass('no-scroll');
-            webmd.fundedEditorial.menuTab.display = true;
-            $('#wbmd-panel-link').html('CLOSE');
-        }).on('psBeforeClose', function(e) {
-            //console.log(e.type);
-            $('body').removeClass('no-scroll');
-            webmd.fundedEditorial.menuTab.display = false;
-            $('#wbmd-panel-link').html('MENU');
+        $('html').click(function() {
+            resetPanel();
         });
 
-        $(window).load(function() {
+        $menuTab.click(function(e) {
+            e.stopPropagation();
+        });
+
+        $menuTabBtn.click(function(e) {
+            var tabLabel;
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            $body.toggleClass('menu-panel-active');
+            $body.toggleClass('no-scroll');
+            $panel.toggleClass('active-panel');
+
+            
+            tabLabel = ($panel.hasClass('active-panel')) ? 'CLOSE' : 'MENU';
+            $menuTabBtn.html(tabLabel);
+        });
+
+        $body.on('change', function() {
+            if (this.hasClass('menu-panel-active')) {
+                webmd.fundedEditorial.menuTab.display = false;
+            } else {
+                webmd.fundedEditorial.menuTab.display = true;
+            }
+        });
+
+        $window.load(function() {
             //self.positionElement('.wbmd-navbar');
-            self.positionElement('.' + self.panel);
+            self.positionElement(panelClass);
             
             /* Display Menu Tab */
-            $('.wbmd-menutab').show();
+            $menuTab.show();
+            resetPanel();
         });
 
-        $(window).bind('scrollEnd', function() {
+        $window.bind('scrollEnd', function() {
             // do something, window hasn't changed size in 500ms
             //self.positionElement('.wbmd-navbar');
-            self.positionElement('.' + self.panel);
+            self.positionElement(panelClass);
         });
 
-        $(window).scroll(function() {
+        $window.scroll(function() {
             //self.positionElement('.wbmd-navbar');
             //self.positionElement('.' + self.panel);
 
@@ -139,23 +149,15 @@ webmd.fundedEditorial.menuTab = {
 
             this.scrollTO = setTimeout(function() {
                 $(this).trigger('scrollEnd');
-            }, 250);
-        });
-
-        $(window).bind('resizeEnd', function() {
-            // do something, window hasn't changed size in 500ms
-            //self.positionElement('.wbmd-navbar');
-        });
-
-        $(window).resize(function() {
-            if (this.resizeTO) {
-                clearTimeout(this.resizeTO);
-            }
-
-            this.resizeTO = setTimeout(function() {
-                $(this).trigger('resizeEnd');
             }, 500);
         });
+
+        function resetPanel() {
+            $body.removeClass('menu-panel-active');
+            $body.removeClass('no-scroll');
+            $panel.removeClass('active-panel');
+            $menuTabBtn.html('MENU');
+        }
     },
 
     render: function() {
@@ -163,7 +165,7 @@ webmd.fundedEditorial.menuTab = {
 
         this.addElementsToPanel();
 
-        $('a#wbmd-panel-link').panelslider(this.sliderOptions);
+        //$('a#wbmd-panel-link').panelslider(this.sliderOptions);
 
         this.bindEvents();
     }
