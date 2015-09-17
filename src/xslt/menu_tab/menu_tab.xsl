@@ -39,26 +39,24 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:attribute>
-                <xsl:element name="ul">
-                    <xsl:element name="li">
-                        <xsl:attribute name="style">
-                            <xsl:text>background-color: </xsl:text>
-                            <xsl:choose>
-                                <xsl:when test="module_title != ''">
-                                    <xsl:value-of select="module_title"></xsl:value-of>
-                                    <xsl:text>;</xsl:text>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:text>#1b88bf;</xsl:text>
-                                </xsl:otherwise>
-                            </xsl:choose>
+                <xsl:element name="div">
+                    <xsl:attribute name="style">
+                        <xsl:text>background-color: </xsl:text>
+                        <xsl:choose>
+                            <xsl:when test="module_title != ''">
+                                <xsl:value-of select="module_title"></xsl:value-of>
+                                <xsl:text>;</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>#1b88bf;</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                    <xsl:element name="a">
+                        <xsl:attribute name="id">
+                            <xsl:text>wbmd-panel-link</xsl:text>
                         </xsl:attribute>
-                        <xsl:element name="a">
-                            <xsl:attribute name="id">
-                                <xsl:text>wbmd-panel-link</xsl:text>
-                            </xsl:attribute>
-                            <xsl:text>MENU</xsl:text>
-                        </xsl:element>
+                        <xsl:text>MENU</xsl:text>
                     </xsl:element>
                 </xsl:element>
             </xsl:element>

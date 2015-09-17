@@ -5,7 +5,6 @@ if (!webmd) {
 }
 
 webmd.fundedEditorial.menuTab = {
-    side: 'left', // left or right
     panelElements: ['.article-list-container', '.branded-nav-container'], // List in order top to bottom
 
     init: function() {
@@ -13,10 +12,7 @@ webmd.fundedEditorial.menuTab = {
             return;
         }
 
-        this.panel = 'wbmd-menutab-' + this.side + '-panel';
-
-        /* Position the Menu Tab on left or right (specified in options) */
-        $('.wbmd-navbar').addClass(this.side);
+        this.panel = 'wbmd-menutab-panel';
 
         $('#wbmd-panel-link').attr({ href : '#' + this.panel });
         //$('#wbmd-panel-close-link').attr({ href : '#' + this.panel });
@@ -24,7 +20,7 @@ webmd.fundedEditorial.menuTab = {
         this.render();
     },
 
-    createPanel: function(side) {
+    createPanel: function() {
         var $panel = $('<div></div>');
 
         $panel.attr({
@@ -111,21 +107,17 @@ webmd.fundedEditorial.menuTab = {
             $body.toggleClass('no-scroll');
             $panel.toggleClass('active-panel');
 
-            
+            if ($body.hasClass('menu-panel-active')) {
+                webmd.fundedEditorial.menuTab.display = true;
+            } else {
+                webmd.fundedEditorial.menuTab.display = false;
+            }
+
             tabLabel = ($panel.hasClass('active-panel')) ? 'CLOSE' : 'MENU';
             $menuTabBtn.html(tabLabel);
         });
 
-        $body.on('change', function() {
-            if (this.hasClass('menu-panel-active')) {
-                webmd.fundedEditorial.menuTab.display = false;
-            } else {
-                webmd.fundedEditorial.menuTab.display = true;
-            }
-        });
-
         $window.load(function() {
-            //self.positionElement('.wbmd-navbar');
             self.positionElement(panelClass);
             
             /* Display Menu Tab */
@@ -135,14 +127,10 @@ webmd.fundedEditorial.menuTab = {
 
         $window.bind('scrollEnd', function() {
             // do something, window hasn't changed size in 500ms
-            //self.positionElement('.wbmd-navbar');
             self.positionElement(panelClass);
         });
 
         $window.scroll(function() {
-            //self.positionElement('.wbmd-navbar');
-            //self.positionElement('.' + self.panel);
-
             if (this.scrollTO) {
                 clearTimeout(this.scrollTO);
             }
@@ -164,8 +152,6 @@ webmd.fundedEditorial.menuTab = {
         this.createPanel();
 
         this.addElementsToPanel();
-
-        //$('a#wbmd-panel-link').panelslider(this.sliderOptions);
 
         this.bindEvents();
     }
