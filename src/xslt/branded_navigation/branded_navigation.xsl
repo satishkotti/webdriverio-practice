@@ -22,6 +22,9 @@
             <xsl:attribute name="data-color">
                 <xsl:value-of select="links/link/action_text"></xsl:value-of>
             </xsl:attribute>
+            <xsl:attribute name="data-link-count">
+                <xsl:value-of select="descriptions/description/description_text"></xsl:value-of>
+            </xsl:attribute>
             <xsl:element name="div">
                 <xsl:attribute name="class">
                     <xsl:text>wbmd-brand</xsl:text>

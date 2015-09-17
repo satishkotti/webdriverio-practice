@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <webmd_rendition>
     <content>
-        <wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e812a4634">
+        <wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e812a608b">
             <webmd_module>
                 <module_settings>
-                    <chronic_id>091e9c5e812a4634</chronic_id>
-                    <r_object_id>091e9c5e812a4634</r_object_id>
+                    <chronic_id>091e9c5e812a4cbd</chronic_id>
+                    <r_object_id>091e9c5e812a608b</r_object_id>
                     <title>Branded Page Navigation</title>
-                    <object_name>module_Branded Page Navigation_091e9c5e812a4634.xml</object_name>
+                    <object_name>module_Branded Page Navigation_091e9c5e812a4cbd.xml</object_name>
                     <object_type>wbmd_pb_templatemodule</object_type>
                     <wbmd_pb_module_category />
                     <wbmd_pb_module_subcategory />
@@ -21,7 +21,7 @@
                     <wbmd_pb_module_sp_program />
                     <wbmd_pb_module_tier>0</wbmd_pb_module_tier>
                     <wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
-                    <r_modify_date>09/16/2015 10:49:48</r_modify_date>
+                    <r_modify_date>09/17/2015 10:30:25</r_modify_date>
                     <wbmd_c_channel_ids_group />
                     <wbmd_pb_asset_css path="/webmd/PageBuilder_Assets/CSS/EditorialModule/Branded Page Navigation/Standard_091e9c5e812a434b.css" object_type="wbmd_pb_css" chronic_id="091e9c5e812a434b" />
                     <wbmd_pb_module_xsl path="/webmd/PageBuilder_Assets/XSL/EditorialModule/Branded Page Navigation_091e9c5e812a434a.xsl" object_type="wbmd_pb_xsl" chronic_id="091e9c5e812a434a" />
@@ -46,7 +46,9 @@
                         </link>
                     </links>
                     <descriptions>
-                        <description />
+                        <description>
+                            <description_text>4</description_text>
+                        </description>
                     </descriptions>
                     <body_images>
                         <body_image>

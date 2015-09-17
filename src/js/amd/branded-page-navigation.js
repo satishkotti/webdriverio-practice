@@ -5,13 +5,23 @@ if (!webmd) {
 }
 
 webmd.fundedEditorial.brandedNavigation = {
-	articles_to_display: 3, 				// number of articles 
+	articles_to_display: $('.branded-nav-container').data('linkCount'), 	// number of articles 
 	display_see_all: true,
 	article_ids_to_display: [],
 	article_data: {"articles":[]},
 
 	init : function() {
+		if (this.articles_to_display <= 0) {
+			$('.branded-nav-container').addClass('hide');
+			return;
+		}
+
 		this.setBrandColor();
+
+		if (this.articles_to_display >= 4) {
+			this.setSeeAllLink();
+		}
+
 		this.getArticleLinks();
 		this.render();
 	},
@@ -27,6 +37,18 @@ webmd.fundedEditorial.brandedNavigation = {
 		
 		$brand.css('color', containerColor);
 		$title.css('color', containerColor);
+	},
+
+	setSeeAllLink : function() {
+		var $seeAllContainer = $('.branded-nav-container > .wbmd-see-all'),
+			$a = $('<a></a>'),
+			overrideText = /*webmd.fundedEditorial.articleData.program.seeAllText*/'',
+			linkText = (overrideText.length > 0) ? overrideText : "SEE ALL",
+			linkUrl = webmd.fundedEditorial.articleData.program.seeAllLink + '#see-all-spon';
+
+		$a.attr({ href : linkUrl }).html(linkText);
+
+		$seeAllContainer.append($a).show();
 	},
 
 	getArticleLinks : function() {

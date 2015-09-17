@@ -35,6 +35,20 @@
     }
 
     .wbmd-see-all {
+        display: none;
+        padding-top: 20px;
+        padding-left: 20px;
+
+        a {
+            font-family: 'Lato', Arial, sans-serif;
+            font-weight: bold;
+            font-size: 0.9em;
+            color: #333132;
+        }
+    }
+
+    &.hide {
+        display: none !important;
     }
 }
 
