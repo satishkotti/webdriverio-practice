@@ -672,7 +672,7 @@ webmd.fundedEditorial = {
 		toc_render: function() { // uses handlebars template above
 			var self = this;
 
-			if (typeof article_data !== 'undefined') {
+			if (typeof webmd.fundedEditorial.articleData !== 'undefined') {
 
 				self.article_data = webmd.fundedEditorial.articleData;
 
