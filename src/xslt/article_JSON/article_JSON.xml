@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <webmd_rendition>
   <content>
-<wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e812434d9">
+<wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e812a5f60">
     <webmd_module>
         <module_settings>
             <chronic_id>091e9c5e811f0312</chronic_id>
-            <r_object_id>091e9c5e812434d9</r_object_id>
+            <r_object_id>091e9c5e812a5f60</r_object_id>
             <title>article-data</title>
             <object_name>module_article-data_091e9c5e811f0312.xml</object_name>
             <object_type>wbmd_pb_templatemodule</object_type>
@@ -21,7 +21,7 @@
             <wbmd_pb_module_sp_program />
             <wbmd_pb_module_tier>0</wbmd_pb_module_tier>
             <wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
-            <r_modify_date>08/05/2015 13:49:39</r_modify_date>
+            <r_modify_date>09/17/2015 09:27:36</r_modify_date>
             <wbmd_c_channel_ids_group />
             <wbmd_pb_asset_css path="/webmd/PageBuilder_Assets/CSS/EditorialModule/Article Data/Standard_091e9c5e811f0311.css" object_type="wbmd_pb_css" chronic_id="091e9c5e811f0311" />
             <wbmd_pb_module_xsl path="/webmd/PageBuilder_Assets/XSL/EditorialModule/Article Data_091e9c5e811f0310.xsl" object_type="wbmd_pb_xsl" chronic_id="091e9c5e811f0310" />
@@ -89,6 +89,13 @@
                     <link_source_icon chronic_id="091e9c5e811916a0" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/slideshows/concentration_killers/650x350_concentration_killers.jpg" alt="woman staring at social media" />
                 </link>
                 <link>
+                    <link_text>Slideshow: Bad Heart Habits</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e8124a8a5" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e81183303" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/slideshows/bad_heart_habits_slideshow/493x335_bad_heart_habits_slideshow.jpg" alt="women toasting with wine" />
+                </link>
+                <link>
                     <link_text>How to Treat the Flu</link_text>
                     <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
                     <link_link_view>Page Refresh(Default)</link_link_view>
@@ -114,7 +121,7 @@
                     <link_text>Sponsored Article 01 [sp]</link_text>
                     <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
                     <link_link_view>Page Refresh(Default)</link_link_view>
-                    <link_url chronic_id="091e9c5e811f8072" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_url chronic_id="091e9c5e81257bb5" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
                     <link_source_icon chronic_id="091e9c5e80eed53b" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/news/2014/05_2014/mers_news_story_/650x350_mers_news_story_.jpg" alt="MERS" />
                 </link>
                 <link>
@@ -125,11 +132,61 @@
                     <link_source_icon chronic_id="091e9c5e811eda35" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/news/2015/06_2015/unadulterated_foods/650x350_unadulterated_foods.jpg" alt="olive oil packaging plant" />
                 </link>
                 <link>
-                    <link_text>Quiz: Best \&amp; Worst Foods for Belly Fat</link_text>
+                    <link_text>Quiz: Best &amp; Worst Foods for Belly Fat</link_text>
                     <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
                     <link_link_view>Page Refresh(Default)</link_link_view>
                     <link_url chronic_id="091e9c5e8123a41e" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
                     <link_source_icon chronic_id="091e9c5e81004728" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/quizzes/belly_fat_rmq/650x350_belly_fat_rmq.jpg" alt="hands pouring beer" />
+                </link>
+                <link>
+                    <link_text>August Test Quiz</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e812433d1" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e81250e6a" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/reference_guide/fit_kids_stress_rumors_ref_guide/650x350_fit_kids_stress_rumors_ref_guide.jpg" alt="preteen boy looking stressed" />
+                </link>
+                <link>
+                    <link_text>Sponsored Article 02 [sp]</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e81257bb8" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e810c2022" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/reference_guide/heart_disease_and_angina_ref_guide/650x350_heart_disease_and_angina_ref_guide.jpg" alt="ekg stress test" />
+                </link>
+                <link>
+                    <link_text>Sponsored Article 03 [sp]</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e81257bba" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e811fbab6" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/other/christina_applegate_other/650x350_christina_applegate_other.jpg" alt="christina applegate" />
+                </link>
+                <link>
+                    <link_text>Video - Truth of the power nap</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e8126a999" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e81257c64" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/other/kids_stress_other/650x350_kids_stress_other.jpg" alt="girl being bullied" />
+                </link>
+                <link>
+                    <link_text>CAP - Are You Allergic to Mold?</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e812a2570" directive="friendlyurl" object_type="wbmd_cons_article" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e812a16c0" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/news/2012/08_2012/bp_meds_lip_cancer/650x350_bp_meds_lip_cancer.jpg" alt="blood pressure medication" />
+                </link>
+                <link>
+                    <link_text>CAP - High-Tech Tools to Help You Handle Diabetes</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e812a2571" directive="friendlyurl" object_type="wbmd_cons_article" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e81232205" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/slideshows/10_worst_cities_for_asthma_slideshow/650x350_10_worst_cities_for_asthma_slideshow.jpg" alt="crowded city street" />
+                </link>
+                <link>
+                    <link_text>Sponsored Article 04 [sp]
+</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e812a4639" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e810c2022" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/reference_guide/heart_disease_and_angina_ref_guide/650x350_heart_disease_and_angina_ref_guide.jpg" alt="ekg stress test" />
                 </link>
             </links>
             <descriptions>
@@ -137,11 +194,11 @@
             </descriptions>
             <body_images>
                 <body_image>
-                    <override_text />
+                    <override_text>See All Page Override Text</override_text>
                     <image_link_view>Page Refresh(Default)</image_link_view>
                     <alignment>left</alignment>
                     <source chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt="" />
-                    <image_link chronic_id="" directive="friendlyurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <image_link chronic_id="091e9c5e81242beb" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
                 </body_image>
             </body_images>
         </module_data>
@@ -174,6 +231,9 @@
     <object chronic_id="091e9c5e811f2482" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 07_091e9c5e811f2482/page_Article Title 07_091e9c5e811f2482.wxml">
       <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/article-title-07" />
     </object>
+    <object chronic_id="091e9c5e8124a8a5" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Slideshow Better Butt_091e9c5e8124a8a5/page_Slideshow Better Butt_091e9c5e8124a8a5.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/slideshow-bad-habits-heart" />
+    </object>
     <object chronic_id="091e9c5e811f2484" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 08_091e9c5e811f2484/page_Article Title 08_091e9c5e811f2484.wxml">
       <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/article-title-08" />
     </object>
@@ -183,14 +243,40 @@
     <object chronic_id="091e9c5e811f2d1e" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 10_091e9c5e811f2d1e/page_Article Title 10_091e9c5e811f2d1e.wxml">
       <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/article-title-10" />
     </object>
-    <object chronic_id="091e9c5e811f8072" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Sponsored Title 01_091e9c5e811f8072/page_Sponsored Title 01_091e9c5e811f8072.wxml">
-      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/sponsored-title-01" />
+    <object chronic_id="091e9c5e81257bb5" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Sponsored Title 01_091e9c5e81257bb5/page_Sponsored Title 01_091e9c5e81257bb5.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/sponsored-articles/sponsored-title-01" />
     </object>
     <object chronic_id="091e9c5e8123e859" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Health Guide and Infographic_091e9c5e8123e859/page_Health Guide and Infographic_091e9c5e8123e859.wxml">
       <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/health-guide-and-infographic" />
     </object>
     <object chronic_id="091e9c5e8123a41e" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Quiz 01_091e9c5e8123a41e/page_Quiz 01_091e9c5e8123a41e.wxml">
       <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/quiz-01" />
+    </object>
+    <object chronic_id="091e9c5e812433d1" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Quiz - Interstitial_091e9c5e812433d1/page_Quiz - Interstitial_091e9c5e812433d1.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/quiz-02" />
+    </object>
+    <object chronic_id="091e9c5e81257bb8" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Sponsored Title 02_091e9c5e81257bb8/page_Sponsored Title 02_091e9c5e81257bb8.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/sponsored-articles/sponsored-title-02" />
+    </object>
+    <object chronic_id="091e9c5e81257bba" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Sponsored Title 03_091e9c5e81257bba/page_Sponsored Title 03_091e9c5e81257bba.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/sponsored-articles/sponsored-title-03" />
+    </object>
+    <object chronic_id="091e9c5e8126a999" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Video Power Nap_091e9c5e8126a999/page_Video Power Nap_091e9c5e8126a999.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/video-power-nap" />
+    </object>
+    <object chronic_id="091e9c5e812a2570" thmbnl="" pointer="0" path="/webmd/consumer_assets/editorial/articles/TestFolder1/test_allergies_and_mold.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/household-mold-test" />
+      <target siteid="8" name="WebMD_Mobile" prefix="www" friendlyurl="/a-to-z-guides/household-mold-test" />
+    </object>
+    <object chronic_id="091e9c5e812a2571" thmbnl="" pointer="0" path="/webmd/consumer_assets/editorial/articles/TestFolder1/4_new_high_tech_tools_to_help_control_diabetes_test.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/new-high-tech-tools-to-help-control-diabetes-test" />
+      <target siteid="8" name="WebMD_Mobile" prefix="www" friendlyurl="/a-to-z-guides/features/new-high-tech-tools-to-help-control-diabetes-test" />
+    </object>
+    <object chronic_id="091e9c5e812a4639" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Sponsored Title 04_091e9c5e812a4639/page_Sponsored Title 04_091e9c5e812a4639.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/sponsored-articles/sponsored-title-04" />
+    </object>
+    <object chronic_id="091e9c5e81242beb" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/See All Page_091e9c5e81242beb/page_See All Page_091e9c5e81242beb.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/see-all-page" />
     </object>
   </referenced_objects>
   <container_hierarchy />
