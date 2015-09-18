@@ -9,6 +9,7 @@ webmd.fundedEditorial.brandedNavigation = {
 	display_see_all: true,
 	article_ids_to_display: [],
 	article_data: {"articles":[]},
+	items_to_display_see_all: 3,
 
 	init : function() {
 		if (this.articles_to_display <= 0) {
@@ -40,15 +41,28 @@ webmd.fundedEditorial.brandedNavigation = {
 	},
 
 	setSeeAllLink : function() {
-		var $seeAllContainer = $('.branded-nav-container > .wbmd-see-all'),
+		var articles = webmd.fundedEditorial.articleData.articles,
+			$seeAllContainer = $('.branded-nav-container > .wbmd-see-all'),
 			$a = $('<a></a>'),
 			overrideText = /*webmd.fundedEditorial.articleData.program.seeAllText*/'',
 			linkText = (overrideText.length > 0) ? overrideText : "SEE ALL",
-			linkUrl = webmd.fundedEditorial.articleData.program.seeAllLink + '#see-all-spon';
+			linkUrl = webmd.fundedEditorial.articleData.program.seeAllLink + '#see-all-spon',
+			count = 0;
 
-		$a.attr({ href : linkUrl }).html(linkText);
+		for (var i=0; i<articles.length; i++) {
+			if (articles[i].sponsored) {
+				count++;
+			}
+		}
 
-		$seeAllContainer.append($a).show();
+		console.log(count);
+
+		if (count > this.items_to_display_see_all) {
+			$a.attr({ href : linkUrl }).html(linkText);
+			$seeAllContainer.append($a).show();
+		}
+
+		return;
 	},
 
 	getArticleLinks : function() {
