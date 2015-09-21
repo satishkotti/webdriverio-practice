@@ -24,7 +24,7 @@
 		overflow: auto;
 	}
 	.isi-container {
-		height: 100%;
+		height: calc(100% - 40px);
 		position: relative;
 		background-color: #fff;
 		padding: 15px 10px 50px;
