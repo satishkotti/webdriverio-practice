@@ -17,27 +17,12 @@ webmd.fundedEditorial.brandedNavigation = {
 			return;
 		}
 
-		this.setBrandColor();
-
 		if (this.articles_to_display >= 4) {
 			this.setSeeAllLink();
 		}
 
 		this.getArticleLinks();
 		this.render();
-	},
-
-	setBrandColor: function() {
-		var containerColor = $('.branded-nav-container').data('color'),
-			$brand = $('.branded-nav-container > .wbmd-brand'),
-			$title = $('.branded-nav-container > .wbmd-title');
-
-		if (!containerColor || typeof containerColor === 'undefined' || containerColor === null) {
-			containerColor = "#000000";
-		}
-		
-		$brand.css('color', containerColor);
-		$title.css('color', containerColor);
 	},
 
 	setSeeAllLink : function() {

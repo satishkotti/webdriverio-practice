@@ -17,35 +17,36 @@
     <xsl:template match="module_data">
         <xsl:element name="div">
             <xsl:attribute name="class">
-                <xsl:text>branded-nav-container</xsl:text>
+                <xsl:text><![CDATA[branded-nav-container]]></xsl:text>
             </xsl:attribute>
-            <xsl:attribute name="data-color">
-                <xsl:value-of select="links/link/action_text"></xsl:value-of>
-            </xsl:attribute>
+            <!-- Use branded background color for module - currently disabled
+            <xsl:attribute name="class">
+                <xsl:text><![CDATA[branded-bg-color]]></xsl:text>
+            </xsl:attribute>-->
             <xsl:attribute name="data-link-count">
                 <xsl:value-of select="descriptions/description/description_text"></xsl:value-of>
             </xsl:attribute>
             <xsl:element name="div">
                 <xsl:attribute name="class">
-                    <xsl:text>wbmd-brand</xsl:text>
+                    <xsl:text><![CDATA[wbmd-brand branded-color]]></xsl:text>
                 </xsl:attribute>
                 <xsl:text><![CDATA[FROM ]]></xsl:text>
                 <xsl:value-of select="links/link/link_text"></xsl:value-of>
             </xsl:element>
             <xsl:element name="div">
                 <xsl:attribute name="class">
-                    <xsl:text>wbmd-title</xsl:text>
+                    <xsl:text><![CDATA[wbmd-title branded-color]]></xsl:text>
                 </xsl:attribute>
                 <xsl:value-of select="module_title"></xsl:value-of>
             </xsl:element>
             <xsl:element name="div">
                 <xsl:attribute name="class">
-                    <xsl:text>wbmd-nav-links</xsl:text>
+                    <xsl:text><![CDATA[wbmd-nav-links]]></xsl:text>
                 </xsl:attribute>
             </xsl:element>
             <xsl:element name="div">
                 <xsl:attribute name="class">
-                    <xsl:text>wbmd-see-all</xsl:text>
+                    <xsl:text><![CDATA[wbmd-see-all]]></xsl:text>
                 </xsl:attribute>
             </xsl:element>
         </xsl:element>
