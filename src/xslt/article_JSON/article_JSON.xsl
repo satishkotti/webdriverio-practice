@@ -15,14 +15,14 @@
 	<xsl:template match="module_data">
 
 	<xsl:if test="substring-before(substring-after(module_title, ' ['), ']') or substring-before(substring-after(module_title, '['), ']')">
-		<xsl:element name="style"><![CDATA[.brandedColor {color:]]><xsl:choose>
+		<xsl:element name="style"><![CDATA[.branded-color {color:]]><xsl:choose>
 				<xsl:when test="substring-before(substring-after(module_title, ' ['), ']')">
 					<xsl:value-of select="normalize-space(substring-before(substring-after(module_title, ' ['), ']'))"/>
 				</xsl:when>
 				<xsl:when test="substring-before(substring-after(module_title, '['), ']')">
 					<xsl:value-of select="normalize-space(substring-before(substring-after(module_title, '['), ']'))"/>
 				</xsl:when>
-			</xsl:choose><![CDATA[ !important}.brandedBGColor {background-color:]]><xsl:choose>
+			</xsl:choose><![CDATA[ !important}.branded-bg-color {background-color:]]><xsl:choose>
 				<xsl:when test="substring-before(substring-after(module_title, ' ['), ']')">
 					<xsl:value-of select="normalize-space(substring-before(substring-after(module_title, ' ['), ']'))"/>
 				</xsl:when>
