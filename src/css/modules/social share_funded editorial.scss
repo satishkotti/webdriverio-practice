@@ -1,10 +1,13 @@
 .social-share-tools {
-    margin: 10px 0;
+	margin: 10px 0;
 }
 .social-share-tools a {
-    margin: 0 5px;
+	margin: 0 10px;
+}
+.social-share-tools a:before {
+	font-size: 40px;
 }
 .social-share-tools a.plugin-socialshare-email {
-    margin: 0 5px 0 20px;
+	margin: 0 5px 0 20px;
 }
 
