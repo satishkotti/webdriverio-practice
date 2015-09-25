@@ -15,6 +15,9 @@
 	&.hide {
 		margin-top: 0 !important;
 	}
+	&.open.hide {
+		top: 100%;
+	}
 
 	.isi-btn,
 	.isi-container {
@@ -23,8 +26,11 @@
 		margin: 0 auto;
 		overflow: auto;
 	}
+	.isi-btn {
+		overflow: hidden;
+	}
 	.isi-container {
-		height: 100%;
+		height: calc(100% - 40px);
 		position: relative;
 		background-color: #fff;
 		padding: 15px 10px 50px;

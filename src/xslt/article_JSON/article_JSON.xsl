@@ -14,14 +14,53 @@
 	</xsl:template>
 	<xsl:template match="module_data">
 
+	<xsl:if test="substring-before(substring-after(module_title, ' ['), ']') or substring-before(substring-after(module_title, '['), ']')">
+		<xsl:element name="style"><![CDATA[.branded-color {color:]]><xsl:choose>
+				<xsl:when test="substring-before(substring-after(module_title, ' ['), ']')">
+					<xsl:value-of select="normalize-space(substring-before(substring-after(module_title, ' ['), ']'))"/>
+				</xsl:when>
+				<xsl:when test="substring-before(substring-after(module_title, '['), ']')">
+					<xsl:value-of select="normalize-space(substring-before(substring-after(module_title, '['), ']'))"/>
+				</xsl:when>
+			</xsl:choose><![CDATA[ !important}.branded-bg-color {background-color:]]><xsl:choose>
+				<xsl:when test="substring-before(substring-after(module_title, ' ['), ']')">
+					<xsl:value-of select="normalize-space(substring-before(substring-after(module_title, ' ['), ']'))"/>
+				</xsl:when>
+				<xsl:when test="substring-before(substring-after(module_title, '['), ']')">
+					<xsl:value-of select="normalize-space(substring-before(substring-after(module_title, '['), ']'))"/>
+				</xsl:when>
+			</xsl:choose><![CDATA[ !important}]]></xsl:element>
+	</xsl:if>
+
 	<xsl:element name="script"><![CDATA[
 	webmd.fundedEditorial.articleData = {
 		"program" : {
-			"title" : "]]><xsl:value-of select="normalize-space(module_title)" disable-output-escaping="yes"></xsl:value-of><![CDATA[",]]>
+			"title" : "]]><xsl:choose>
+				<xsl:when test="substring-before(substring-after(module_title, ' ['), ']')">
+					<xsl:value-of select="normalize-space(substring-before(module_title,' ['))"/>
+				</xsl:when>
+				<xsl:when test="substring-before(substring-after(module_title, '['), ']')">
+					<xsl:value-of select="normalize-space(substring-before(module_title,'['))"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="normalize-space(module_title)"/>
+				</xsl:otherwise>
+			</xsl:choose><![CDATA[",]]>
 			<![CDATA["tocLink" : "]]><xsl:call-template name="GetURLRef"><xsl:with-param name="ObjectID"><xsl:value-of select="module_link/@chronic_id" /></xsl:with-param></xsl:call-template><![CDATA[",]]>
 			<![CDATA["tocId" : "]]><xsl:value-of select="module_link/@chronic_id" /><![CDATA[",]]>
 			<![CDATA["seeAllLink" : "]]><xsl:call-template name="GetURLRef"><xsl:with-param name="ObjectID"><xsl:value-of select="body_images/body_image/image_link/@chronic_id" /></xsl:with-param></xsl:call-template><![CDATA[",]]>
-			<![CDATA["seeAllText" : "]]><xsl:value-of select="body_images/body_image/override_text" /><![CDATA["]]>
+			<![CDATA["seeAllText" : "]]><xsl:value-of select="body_images/body_image/override_text" /><![CDATA[",]]>
+			<![CDATA["brandedColor" : ]]><xsl:choose>
+				<xsl:when test="substring-before(substring-after(module_title, ' ['), ']')">
+					<xsl:text>"</xsl:text><xsl:value-of select="normalize-space(substring-before(substring-after(module_title, ' ['), ']'))"/><xsl:text>"</xsl:text>
+				</xsl:when>
+				<xsl:when test="substring-before(substring-after(module_title, '['), ']')">
+					<xsl:text>"</xsl:text><xsl:value-of select="normalize-space(substring-before(substring-after(module_title, '['), ']'))"/><xsl:text>"</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text>null</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose><![CDATA[]]>
 		<![CDATA[},
 		"articles" : []]>
 		<xsl:for-each select="links/link">

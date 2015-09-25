@@ -25,7 +25,7 @@
 
             <article id="art" class="article see-all" data-metrics-module="art">
                 <div class="article-content">
-                    <div class="see-all-items non-spon">
+                    <div id="see-all-non-spon" class="see-all-items non-spon">
                         <ul>
                             {{#each articles}}
                             <li class="see-all-item spon-{{sponsored}}">
@@ -39,7 +39,7 @@
                             {{/each}}
                         </ul>
                     </div>
-                    <div class="see-all-items spon">
+                    <div id="see-all-spon" class="see-all-items spon">
                         <h3>From Our Sponsor</h3>
                         <ul>
                             {{#each articles}}
