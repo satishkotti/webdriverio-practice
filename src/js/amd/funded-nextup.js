@@ -47,7 +47,7 @@ webmd.fundedEditorial.nextUp = {
 
 		if (count > this.articles_to_display) {
 			$a = $('<a></a>');
-			$a.attr({ href : linkUrl }).html(linkText);
+			$a.attr({ href : linkUrl }).html(linkText).attr('data-metrics-link', 'all');
 			$seeAllContainer.append($a).show();
 		}
 	},
@@ -116,14 +116,19 @@ webmd.fundedEditorial.nextUp = {
 				nodes = [],
 				article,
 				$div,
-				$link;
+				$link,
+				position,
+				articleId;
 
 			for (var i=0; i<articles_len; i++) {
 				article = self.article_data.articles[i].article;
+				position = i + 1; // add 1 (i starts from 0)
+				articleId = self.article_ids_to_display[i] + 1; // value inside array is from a 0 index array, add 1
 				$div = $('<div></div>');
 				$link = $('<a></a>');
 				$link.attr({ href : article.link });
 				$link.html(article.title);
+				$link.attr('data-metrics-link', position + '-' + articleId);
 				$div.append($link);
 				nodes.push($div);
 			}
