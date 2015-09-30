@@ -16,11 +16,10 @@ webmd.fundedEditorial.brandedNavigation = {
 			return;
 		}
 
-		if (this.articles_to_display >= 4) {
-			this.setSeeAllLink();
-		}
-
 		this.getArticleLinks();
+
+		this.setSeeAllLink();
+		
 		this.render();
 	},
 
