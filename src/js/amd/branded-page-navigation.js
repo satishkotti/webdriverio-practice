@@ -9,7 +9,6 @@ webmd.fundedEditorial.brandedNavigation = {
 	display_see_all: true,
 	article_ids_to_display: [],
 	article_data: {"articles":[]},
-	items_to_display_see_all: 3,
 
 	init : function() {
 		if (this.articles_to_display <= 0) {
@@ -40,9 +39,7 @@ webmd.fundedEditorial.brandedNavigation = {
 			}
 		}
 
-		console.log(count);
-
-		if (count > this.items_to_display_see_all) {
+		if (count > this.articles_to_display) {
 			$a.attr({ href : linkUrl }).html(linkText);
 			$seeAllContainer.append($a).show();
 		}

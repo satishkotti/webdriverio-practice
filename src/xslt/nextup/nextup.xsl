@@ -25,15 +25,15 @@
         
             <xsl:element name="div">
                 <xsl:attribute name="class">
-                    <xsl:text>wbmd-brand</xsl:text>
+                    <xsl:text>wbmd-segment</xsl:text>
                 </xsl:attribute>
-                <xsl:text><![CDATA[FROM WebMD]]></xsl:text>
             </xsl:element>
-        
+            
             <xsl:element name="div">
                 <xsl:attribute name="class">
-                    <xsl:text>wbmd-title</xsl:text>
+                    <xsl:text>wbmd-subhead</xsl:text>
                 </xsl:attribute>
+                <xsl:value-of select="links/link/link_text"></xsl:value-of>
             </xsl:element>
             
             <xsl:element name="div">
