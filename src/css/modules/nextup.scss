@@ -4,76 +4,73 @@
     position: relative;
     display: none;
     width: 100%;
-    padding: 20px;
+    padding: 14px 5px;
     margin-bottom: 1em;
-    background-color: #faf8f7;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.125);
+    background-color: #ffffff;
+    border-top: 7px solid #f0f0f0;
+    border-bottom: 1px solid #e2e3e4;
 
-    .wbmd-brand {
+    .wbmd-segment {
       font-family: 'Lato', Arial, sans-serif;
       font-weight: bold;
-      font-size: 0.9em;
-      color: #808080;
+      font-size: 1.2em;
+      line-height: 1.2em;
+      color: #333132;
+
+      a {
+        color: #333132;
+      }
     }
 
-    .wbmd-title {
-      font-family: 'Lato', Arial, sans-serif;
-      font-weight: bold;
-      font-size: 1.9em;
-      line-height: 1.1em;
-      color: #333132;
+    .wbmd-subhead {
+      font-family: 'Roboto Condensed', Arial, sans-serif;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      color: #74b0b0;
+      padding-top: 22px;
+      padding-bottom: 10px;
     }
 
     .wbmd-nav-links {
       div {
-        padding-top: 20px;
-        padding-left: 20px;
-
-        .wbmd-type {
-            display: block;
-            font-family: 'Roboto Condensed', Arial, sans-serif;
-            font-size: 0.8em;
-            text-transform: uppercase;
-            color: #74b0b0;
-            margin: 0;
-            padding: 0;
-        }
+        padding-top: 18px;
 
         a {
             display: block;
-            font-family: 'Lato', Arial, sans-serif;
+            font-family: 'Chivo', Arial, sans-serif;
             font-size: 1em;
             line-height: 1.2em;
             color: #3b3b3c;
             padding: 0;
             margin: 0;
         }
-        a:hover {
-            text-decoration: underline !important;
-        }
       }
 
+      div:first-child {
+        padding-top: 0px;
+      }
       
     }
 
     .wbmd-see-all {
         display: none;
-        padding-top: 20px;
-        padding-left: 20px;
+        padding-top: 22px;
 
         a {
-            font-family: 'Lato', Arial, sans-serif;
-            font-weight: bold;
+            font-family: 'Chivo', Arial, sans-serif;
             font-size: 0.9em;
-            color: #333132;
-        }
-        a:hover {
-            text-decoration: underline !important;
+            color: #1b88bf;
         }
     }
 
     &.hide {
         display: none !important;
+    }
+}
+
+.no-touch .article-list-container {
+    a:hover {
+        text-decoration: underline !important;
     }
 }
 
