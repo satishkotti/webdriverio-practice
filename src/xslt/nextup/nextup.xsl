@@ -22,6 +22,9 @@
             <xsl:attribute name="data-link-count">
                 <xsl:value-of select="descriptions/description/description_text"></xsl:value-of>
             </xsl:attribute>
+            <xsl:attribute name="data-metrics-module">
+                <xsl:text><![CDATA[lln-rspsvupnext]]></xsl:text>
+            </xsl:attribute>
         
             <xsl:element name="div">
                 <xsl:attribute name="class">
