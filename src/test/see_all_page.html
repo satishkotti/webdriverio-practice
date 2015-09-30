@@ -1237,30 +1237,11 @@ $(function(){
                     $(function(){
                         require(["handlebars/1/handlebars"], function(Handlebars) {
                             if (typeof webmd.fundedEditorial.articleData !== "undefined") {
-                                // var nonSponCounter = 1,
-                                //     sponCounter = 1;
-                                // Handlebars.registerHelper('each_when', function(list, k, v, opts) {
-                                //     var i, result = '';
-                                //     for(i = 0; i < list.length; ++i)
-                                //         if(list[i][k] == v)
-                                //             result = result + opts.fn(list[i]);
-                                //     return result;
-
-                                // });
-                                // Handlebars.registerHelper('image_server_url', function() {
-                                //     return image_server_url; //just return global variable value
-                                // });
-                                // Handlebars.registerHelper('nonSponPos', function() {
-                                //     return nonSponCounter++;
-                                // });
-                                // Handlebars.registerHelper('sponPos', function() {
-                                //     return sponCounter++;
-                                // });
                                 var nonSponCounter = 1,
                                     sponCounter = 1;
                                 Handlebars.registerHelper('each_when', function(list, k, v, opts) {
                                     var i, result = '';
-                                    for(i = 0; i &lt; list.length; ++i)
+                                    for(i = 0; i < list.length; ++i)
                                         if(list[i][k] == v)
                                             result = result + opts.fn(list[i]);
                                     return result;
