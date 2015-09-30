@@ -13,6 +13,7 @@ define(['video2/1/video'], function() {
 			$videoWrapper,
 			config = {
 				playeroverlay : {enabled : false},
+				autoplay: true,
 				media: {
 					source:[],
 					track : [
@@ -23,19 +24,7 @@ define(['video2/1/video'], function() {
 							src : "/captioning.xml"
 						}
 					]
-				}/*,
-				ima: {
-					enabled: true,
-					resources: [
-						{
-							src: "http://imasdk.googleapis.com/js/sdkloader/ima3.js",
-							type: "text/javascript"
-						}
-					],
-					version: 3,
-					adTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x360&iu=/8668145/consumer/webmd/vd2-conwebmd&ciu_szs=1x1,160x600,300x60,300x250&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=' + window.location.host + '&description_url= ' + window.location.host + '&correlator=' + new Date().toString(),
-					disableCompanionAds: "true"
-				}*/
+				}
 			};
 
 
