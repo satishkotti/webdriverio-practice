@@ -9,7 +9,6 @@ webmd.fundedEditorial.nextUp = {
 	articles_to_display: $('.article-list-container').data('linkCount'), 	// number of articles 
 	article_ids_to_display: [],
 	article_data: {"articles":[]},
-	items_to_display_see_all: 8,
 
 	init : function(){
 		if (this.articles_to_display <= 0) {
@@ -17,29 +16,28 @@ webmd.fundedEditorial.nextUp = {
 			return;
 		}
 
-		this.setSegmentTitle();
-
-		this.setSeeAllLink();
+		this.updateDOM();
 
 		this.getArticleLinks();
 
 		this.render();
 	},
 
-	setSegmentTitle : function() {
-		var segmentTitle = webmd.fundedEditorial.articleData.program.title;
-
-		$('.article-list-container > .wbmd-title').html(segmentTitle);
-	},
-
-	setSeeAllLink : function() {
-		var articles = webmd.fundedEditorial.articleData.articles,
+	updateDOM : function() {
+		var $segment = $('.article-list-container > .wbmd-segment'),
+			segmentTitle = webmd.fundedEditorial.articleData.program.title,
+			$subhead = $('.article-list-container > .wbmd-subhead'),
+			subheadText = ($subhead.text().length > 0) ? $subhead.text() : "Next In The Series",
+			articles = webmd.fundedEditorial.articleData.articles,
 			$seeAllContainer = $('.article-list-container > .wbmd-see-all'),
-			$a = $('<a></a>'),
-			overrideText = /*webmd.fundedEditorial.articleData.program.seeAllText*/'',
-			linkText = (overrideText.length > 0) ? overrideText : "SEE ALL",
+			seeAllOverrideText = /*webmd.fundedEditorial.articleData.program.seeAllText*/'',
+			linkText = (seeAllOverrideText.length > 0) ? seeAllOverrideText : "See All",
 			linkUrl = webmd.fundedEditorial.articleData.program.seeAllLink + '#see-all-non-spon',
-			count = 0;
+			count = 0,
+			$a;
+
+		$segment.html(segmentTitle);
+		$subhead.html(subheadText);
 
 		for (var i=0; i<articles.length; i++) {
 			if (!articles[i].sponsored) {
@@ -47,14 +45,11 @@ webmd.fundedEditorial.nextUp = {
 			}
 		}
 
-		console.log(count);
-
-		if (count > this.items_to_display_see_all) {
+		if (count > this.articles_to_display) {
+			$a = $('<a></a>');
 			$a.attr({ href : linkUrl }).html(linkText);
 			$seeAllContainer.append($a).show();
 		}
-
-		return;
 	},
 
 	getArticleLinks : function() {
@@ -120,54 +115,20 @@ webmd.fundedEditorial.nextUp = {
 			var articles_len = self.article_data.articles.length,
 				nodes = [],
 				article,
-				articleType,
 				$div,
-				$type,
 				$link;
 
 			for (var i=0; i<articles_len; i++) {
 				article = self.article_data.articles[i].article;
-				articleType = getType(self.article_data.articles[i].article.type);
 				$div = $('<div></div>');
-				$type = $('<div></div>');
-				$type.addClass('wbmd-type').html(articleType);
 				$link = $('<a></a>');
 				$link.attr({ href : article.link });
 				$link.html(article.title);
-				$div.append($type).append($link);
+				$div.append($link);
 				nodes.push($div);
 			}
 
 			return nodes;
-		}
-
-		function getType(type) {
-			var val = '';
-
-			switch (type) {
-				case "type_art":
-					val = "Article";
-					break;
-				case "type_ss":
-					val = "Slideshow";
-					break;
-				case "type_toc":
-					val = "Destination";
-					break;
-				case "type_com":
-					val = "Blog";
-					break;
-				case "type_vid":
-					val = "Video";
-					break;
-				case "type_rmq":
-					val = "Quiz";
-					break;
-				default:
-					break;
-			}
-
-			return val;
 		}
 	}
 };
