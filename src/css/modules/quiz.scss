@@ -9,7 +9,6 @@ $lato_font: 'Lato', sans-serif;
 
 .harmony #chrome {
 	#s3 {
-		width: 100% !important;
 		padding-right: 10px !important;
 	}
 
@@ -31,7 +30,6 @@ $lato_font: 'Lato', sans-serif;
 }
 
 #rmq_ad_placeholder {
-    padding: 10px 10px 30px;
     text-align: center;
 }
 
@@ -44,6 +42,7 @@ $lato_font: 'Lato', sans-serif;
     background: #fff;
     margin-bottom: 1em;
     width: 100%;
+    visibility: hidden;
 
     h2, h3 {
 	    color: #222;
@@ -255,13 +254,6 @@ $lato_font: 'Lato', sans-serif;
 						a {
 						    display: block;
 						    overflow: hidden;
-
-						    &:hover {
-						    	.input {
-								    background: $blue_color;
-								    color: #fff;
-								}
-							}
 
 							.input {
 							    color: #797979;
@@ -514,6 +506,17 @@ $lato_font: 'Lato', sans-serif;
 	}
 }
 
+.no-touch :hover {
+	#rmq_slides {
+		.slide {
+			.input {
+			    background: $blue_color;
+			    color: #fff;
+			}
+		}
+	}
+}
+
 .top_picks,
 .guide_nav_toc,
 .newsletterSignup,
@@ -530,8 +533,15 @@ $lato_font: 'Lato', sans-serif;
 @media only screen and (min-width: 320px) and (max-width: 675px) {
 	.harmony #chrome {
 		#s3 {
-			float: left !important;
-			padding-left: 10px !important;
+			padding-left: 10px;
+			padding-right: 10px !important;
+			width: 100% !important;
+		}
+
+		#s4 {
+			float: none !important;
+			padding-right: 0px !important;
+    		width: 100%;
 		}
 	}
 
@@ -615,25 +625,17 @@ $lato_font: 'Lato', sans-serif;
 	}
 }
 
-/*@media only screen and (min-width: 320px) and (max-width: 736px) {
-    .harmony #chrome {
-    	width: 100% !important;
-    }
-
-	#rmq_header {
-		h2 {
-			font-size: 24px;
-		}
-	}
-}*/
-
 @media only screen and (min-width: 321px) and (max-width: 767px) {
 	.harmony #chrome {
 		#s3 {
+			float: left;
 			padding-left: 10px !important;
+			padding-right: 10px !important;
+			width: calc(100% - 320px);
 		}
 
 		#s4 {
+			float: right !important;
 			padding-right: 10px !important;
 		}
 	}
@@ -702,6 +704,7 @@ $lato_font: 'Lato', sans-serif;
 		}
 	}
 }
+
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width: 321px) {
     /* STYLES GO HERE */

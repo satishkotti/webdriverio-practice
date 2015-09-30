@@ -7,11 +7,8 @@ if (!webmd) {
 webmd.fundedEditorial.moreAbout = {
 
 	gridItemClass: 'wbmd-moreabout-grid-item', // class name on each <div> provided by the XSL
-
 	contentPanes: {},
-
 	masonryGutter: 10,
-
 	gridType: 'scaling', // options: scaling, wrapping
 
 	init: function() {
@@ -76,14 +73,14 @@ webmd.fundedEditorial.moreAbout = {
 
 		for (var key in articles) {
 			article = articles[key];
-			articleIndex = articles.indexOf(article) + 1;
+			articleIndex = articles.indexOf(article) + 1; // article num set by editorial is not 0 relative like articles array, need to add 1
 			articlePrefix = (article.sponsored) ? "From Our Sponsor" : "";
 
 			if (articleIndex === nodeArticleNum) {
 				$node.html(
 					'<a href="' + article.link + '">' + newline +
-					'   <img src="' + image_server_url + article.images.image493x335 + '">' + newline +
-					'   <p>' + '<span>' + articlePrefix + '</span>' + newline + article.title + '</p>' + newline +
+						'<img src="' + image_server_url + article.images.image493x335 + '">' + newline +
+						'<p>' + '<span>' + articlePrefix + '</span>' + newline + article.title + '</p>' + newline +
 					'</a>' + newline
 				);
 

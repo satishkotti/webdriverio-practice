@@ -1,55 +1,49 @@
 var webmd;
 
-if(!webmd){
-	webmd = {};
+if (!webmd) {
+    webmd = {};
 }
 
-webmd.fundedEditorial.nextUp = {
-
-	articles_to_display: $('.article-list-container').data('linkCount'), 	// number of articles 
+webmd.fundedEditorial.brandedNavigation = {
+	articles_to_display: $('.branded-nav-container').data('linkCount'), 	// number of articles 
+	display_see_all: true,
 	article_ids_to_display: [],
 	article_data: {"articles":[]},
 
-	init : function(){
+	init : function() {
 		if (this.articles_to_display <= 0) {
-			$('.article-list-container').addClass('hide');
+			$('.branded-nav-container').addClass('hide');
 			return;
 		}
 
-		this.updateDOM();
-
 		this.getArticleLinks();
 
+		this.setSeeAllLink();
+		
 		this.render();
 	},
 
-	updateDOM : function() {
-		var $segment = $('.article-list-container > .wbmd-segment'),
-			segmentTitle = webmd.fundedEditorial.articleData.program.title,
-			$subhead = $('.article-list-container > .wbmd-subhead'),
-			subheadText = ($subhead.text().length > 0) ? $subhead.text() : "Next In The Series",
-			articles = webmd.fundedEditorial.articleData.articles,
-			$seeAllContainer = $('.article-list-container > .wbmd-see-all'),
-			seeAllOverrideText = /*webmd.fundedEditorial.articleData.program.seeAllText*/'',
-			linkText = (seeAllOverrideText.length > 0) ? seeAllOverrideText : "See All",
-			linkUrl = webmd.fundedEditorial.articleData.program.seeAllLink + '#see-all-non-spon',
-			count = 0,
-			$a;
-
-		$segment.html(segmentTitle);
-		$subhead.html(subheadText);
+	setSeeAllLink : function() {
+		var articles = webmd.fundedEditorial.articleData.articles,
+			$seeAllContainer = $('.branded-nav-container > .wbmd-see-all'),
+			$a = $('<a></a>'),
+			overrideText = /*webmd.fundedEditorial.articleData.program.seeAllText*/'',
+			linkText = (overrideText.length > 0) ? overrideText : "SEE ALL",
+			linkUrl = webmd.fundedEditorial.articleData.program.seeAllLink + '#see-all-spon',
+			count = 0;
 
 		for (var i=0; i<articles.length; i++) {
-			if (!articles[i].sponsored) {
+			if (articles[i].sponsored) {
 				count++;
 			}
 		}
 
 		if (count > this.articles_to_display) {
-			$a = $('<a></a>');
-			$a.attr({ href : linkUrl }).html(linkText).attr('data-metrics-link', 'all');
+			$a.attr({ href : linkUrl }).html(linkText);
 			$seeAllContainer.append($a).show();
 		}
+
+		return;
 	},
 
 	getArticleLinks : function() {
@@ -64,10 +58,10 @@ webmd.fundedEditorial.nextUp = {
 			articleIndex = articles.indexOf(article);
 			articleIdArrLen = self.article_ids_to_display.length;
 
-			if (!article.sponsored) {
+			if (article.sponsored) {
 				if ((articleIndex > caIndex) && (articleIdArrLen < self.articles_to_display)) {
-					self.article_data.articles.push({"article" : article});
-					self.article_ids_to_display.push(articleIndex);
+						self.article_data.articles.push({"article" : article});
+						self.article_ids_to_display.push(articleIndex);
 				}
 			}
 		}
@@ -86,7 +80,7 @@ webmd.fundedEditorial.nextUp = {
 				articleIndex = articles.indexOf(article);
 				articleExists = (self.article_ids_to_display.indexOf(articleIndex) != -1);
 
-				if (!article.sponsored && !articleExists && (self.article_ids_to_display.length < self.articles_to_display)) {
+				if (article.sponsored && !articleExists && (self.article_ids_to_display.length < self.articles_to_display)) {
 					if (!article.isCurrent) {
 						self.article_data.articles.push({article : article});
 						self.article_ids_to_display.push(articleIndex);
@@ -100,7 +94,7 @@ webmd.fundedEditorial.nextUp = {
 
 	render: function() {
 		var self = this,
-			$container = $(".article-list-container > .wbmd-nav-links"),
+			$container = $(".branded-nav-container > .wbmd-nav-links"),
 			links;
 
 		links = createArticleLinkNodes();
@@ -114,23 +108,14 @@ webmd.fundedEditorial.nextUp = {
 		function createArticleLinkNodes() {
 			var articles_len = self.article_data.articles.length,
 				nodes = [],
-				article,
-				$div,
-				$link,
-				position,
-				articleId;
+				article;
 
 			for (var i=0; i<articles_len; i++) {
 				article = self.article_data.articles[i].article;
-				position = i + 1; // add 1 (i starts from 0)
-				articleId = self.article_ids_to_display[i] + 1; // value inside array is from a 0 index array, add 1
-				$div = $('<div></div>');
-				$link = $('<a></a>');
-				$link.attr({ href : article.link });
-				$link.html(article.title);
-				$link.attr('data-metrics-link', position + '-' + articleId);
-				$div.append($link);
-				nodes.push($div);
+				link = $('<a></a>');
+				link.attr({ href : article.link });
+				link.html(article.title);
+				nodes.push(link);
 			}
 
 			return nodes;
@@ -139,5 +124,5 @@ webmd.fundedEditorial.nextUp = {
 };
 
 $(function() {
-	webmd.fundedEditorial.nextUp.init();
+    webmd.fundedEditorial.brandedNavigation.init();
 });

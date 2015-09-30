@@ -1,76 +1,62 @@
 // Variables
 @import '../partials/variables';
-.article-list-container {
+.branded-nav-container {
     position: relative;
     display: none;
     width: 100%;
-    padding: 14px 5px;
+    padding: 20px;
     margin-bottom: 1em;
-    background-color: #ffffff;
-    border-top: 7px solid #f0f0f0;
-    border-bottom: 1px solid #e2e3e4;
+    background-color: #f5f5f5;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.125);
 
-    .wbmd-segment {
+    .wbmd-brand {
       font-family: 'Lato', Arial, sans-serif;
       font-weight: bold;
-      font-size: 1.2em;
-      line-height: 1.2em;
+      font-size: 13px;
       color: #333132;
-
-      a {
-        color: #333132;
-      }
     }
 
-    .wbmd-subhead {
-      font-family: 'Roboto Condensed', Arial, sans-serif;
-      font-size: 0.8em;
-      text-transform: uppercase;
-      color: #74b0b0;
-      padding-top: 22px;
-      padding-bottom: 10px;
+    .wbmd-title {
+      font-family: 'Lato', Arial, sans-serif;
+      font-weight: bold;
+      font-size: 30px;
+      line-height: 30px;
+      color: #333132;
     }
 
     .wbmd-nav-links {
-      div {
-        padding-top: 18px;
-
-        a {
-            display: block;
-            font-family: 'Chivo', Arial, sans-serif;
-            font-size: 1em;
-            line-height: 1.2em;
-            color: #3b3b3c;
-            padding: 0;
-            margin: 0;
-        }
+      a {
+        display: block;
+        font-family: 'Lato', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 22px;
+        color: #3b3b3c;
+        margin-top: 20px;
+        padding-left: 20px;
       }
-
-      div:first-child {
-        padding-top: 0px;
+      a:hover {
+        text-decoration: underline !important;
       }
-      
     }
 
     .wbmd-see-all {
         display: none;
-        padding-top: 22px;
+        padding-top: 20px;
+        padding-left: 20px;
 
         a {
-            font-family: 'Chivo', Arial, sans-serif;
+            font-family: 'Lato', Arial, sans-serif;
+            font-weight: bold;
             font-size: 0.9em;
-            color: #1b88bf;
+            color: #333132;
+        }
+        a:hover {
+            text-decoration: underline !important;
         }
     }
 
     &.hide {
         display: none !important;
-    }
-}
-
-.no-touch .article-list-container {
-    a:hover {
-        text-decoration: underline !important;
     }
 }
 
@@ -111,7 +97,7 @@
 
 @media only screen and (min-width: 676px) {
     /* STYLES GO HERE */
-    .article-list-container {
+    .branded-nav-container {
         display: block !important;
     }
 }
@@ -142,15 +128,6 @@
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
     /* STYLES GO HERE */
-    .article-list-container {
-        .article-list {
-            .articles {
-                .text {
-                    padding: 10px 0px !important;
-                }
-            }
-        }
-    }
 }
 
 

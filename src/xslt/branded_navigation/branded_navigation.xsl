@@ -9,51 +9,50 @@
     <xsl:param name="image_server_url">
         <xsl:text>http://img.preview.webmd.com/dtmcms/preview</xsl:text>
     </xsl:param>
-
+    
     <xsl:template match="/">
         <xsl:apply-templates select="webmd_rendition/content/wbmd_asset/webmd_module/module_data"></xsl:apply-templates>
     </xsl:template>
-    
+
     <xsl:template match="module_data">
         <xsl:element name="div">
             <xsl:attribute name="class">
-                <xsl:text>article-list-container</xsl:text>
+                <xsl:text><![CDATA[branded-nav-container]]></xsl:text>
             </xsl:attribute>
+            <!-- Use branded background color for module - currently disabled
+            <xsl:attribute name="class">
+                <xsl:text><![CDATA[branded-bg-color]]></xsl:text>
+            </xsl:attribute>-->
             <xsl:attribute name="data-link-count">
                 <xsl:value-of select="descriptions/description/description_text"></xsl:value-of>
             </xsl:attribute>
-            <xsl:attribute name="data-metrics-module">
-                <xsl:text><![CDATA[lln-rspsvupnext]]></xsl:text>
-            </xsl:attribute>
-        
             <xsl:element name="div">
                 <xsl:attribute name="class">
-                    <xsl:text>wbmd-segment</xsl:text>
+                    <xsl:text><![CDATA[wbmd-brand branded-color]]></xsl:text>
                 </xsl:attribute>
-            </xsl:element>
-            
-            <xsl:element name="div">
-                <xsl:attribute name="class">
-                    <xsl:text>wbmd-subhead</xsl:text>
-                </xsl:attribute>
+                <xsl:text><![CDATA[FROM ]]></xsl:text>
                 <xsl:value-of select="links/link/link_text"></xsl:value-of>
             </xsl:element>
-            
             <xsl:element name="div">
                 <xsl:attribute name="class">
-                    <xsl:text>wbmd-nav-links</xsl:text>
+                    <xsl:text><![CDATA[wbmd-title branded-color]]></xsl:text>
+                </xsl:attribute>
+                <xsl:value-of select="module_title"></xsl:value-of>
+            </xsl:element>
+            <xsl:element name="div">
+                <xsl:attribute name="class">
+                    <xsl:text><![CDATA[wbmd-nav-links]]></xsl:text>
                 </xsl:attribute>
             </xsl:element>
-        
             <xsl:element name="div">
                 <xsl:attribute name="class">
-                    <xsl:text>wbmd-see-all</xsl:text>
+                    <xsl:text><![CDATA[wbmd-see-all]]></xsl:text>
                 </xsl:attribute>
             </xsl:element>
         </xsl:element>
         
         <xsl:element name="script">
-        <![CDATA[require(["funded-editorial/1/funded-nextup"]);]]>
+        <![CDATA[require(["funded-editorial/1/branded-page-navigation"]);]]>
         </xsl:element>
     </xsl:template>
 

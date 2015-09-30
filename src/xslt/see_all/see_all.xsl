@@ -25,31 +25,31 @@
 
             <article id="art" class="article see-all" data-metrics-module="art">
                 <div class="article-content">
-                    <div class="see-all-items non-spon">
+                    <div id="see-all-non-spon" class="see-all-items non-spon">
                         <ul>
                             {{#each articles}}
                             <li class="see-all-item spon-{{sponsored}}">
-                                <a href="{{article.link}}">
+                                <a href="{{link}}">
                                     <div class="see-all-img {{type}}">
-                                        <img src="{{article.images.image110x70}}" alt="{{article.title}}">
+                                        <img src="{{image_server_url}}/{{images.image110x70}}" alt="{{title}}">
                                     </div>
-                                    <p>{{article.title}}</p>
+                                    <p>{{title}}</p>
                                 </a>
                             </li>
                             {{/each}}
                         </ul>
                     </div>
-                    <div class="see-all-items spon">
+                    <div id="see-all-spon" class="see-all-items spon">
                         <h3>From Our Sponsor</h3>
                         <ul>
                             {{#each articles}}
                             <li class="see-all-item spon-{{sponsored}}">
-                                <a href="{{article.link}}">
+                                <a href="{{link}}">
                                     <div class="see-all-img {{type}}">
-                                        <img src="{{article.images.image110x70}}" alt="{{article.title}}">
+                                        <img src="{{image_server_url}}/{{images.image110x70}}" alt="{{title}}">
                                     </div>
                                     <p class="fos">From Our Sponsor</p>
-                                    <p>{{article.title}}</p>
+                                    <p>{{title}}</p>
                                 </a>
                             </li>
                             {{/each}}
@@ -65,12 +65,15 @@
         <![CDATA[
         $(function(){
             require(["handlebars/1/handlebars"], function(Handlebars) {
-                if (typeof article_data !== "undefined") {
+                if (typeof webmd.fundedEditorial.articleData !== "undefined") {
+                    Handlebars.registerHelper('image_server_url', function(block) {
+                        return image_server_url; //just return global variable value
+                    });
                     var template = $("#see-all-template"),
                         container = $(".see-all-shell"),
                         source = template.html(),
                         template = Handlebars.compile(source),
-                        context = article_data || {},
+                        context = webmd.fundedEditorial.articleData || {},
                         html = template(context);
 
                     container.prepend(html);

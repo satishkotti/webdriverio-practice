@@ -103,12 +103,15 @@
 						element: $('.isi-art-content'),
 						handler: function(direction) {
 							if(direction == "up"){
-								$('.isi').removeClass('hide');
+								$('.isi').removeClass('hide open');
+								$('.isi-toggle-arw').removeClass('icon-arrow-down');
+								$('.isi-toggle-txt span').text('More');
 							} else {
+								$('.isi-container').scrollTop(0);
 								$('.isi').addClass('hide');
 							}
 						},
-						offset: '100%'
+						offset: '98%'
 					});
 				}
 

@@ -1,0 +1,105 @@
+.masthead {
+	position: relative;
+	z-index: 10001;
+}
+
+/* Panel opening and closing animation lasts 200ms */
+.top_ad_rdr, .chrome, .wbmd-menutab, .wbmd-navbar, .wbmd-menutab-panel, .webmd-panel-content, .footer {
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+	-ms-transition: all .2s ease;
+	-o-transition: all .2s ease;
+	transition: all .2s ease;
+}
+
+/* Slide page 90% to the right when panel is opened */
+body.menu-panel-active {
+	.top_ad_rdr, .chrome, .footer {
+  		transform: translateX(90%);
+  	}
+
+  	.wbmd-menutab-panel, .webmd-panel-content {
+  		left: 0;
+  	}
+
+  	.wbmd-menutab, .wbmd-navbar {
+  		left: 90%;
+	}
+
+	.wbmd-navbar div {
+  		transform: translateX(90%) rotate(90%);
+  	}
+
+	.active-panel {
+		z-index: 10000;
+	}
+}
+
+.wbmd-menutab {
+	position: fixed;
+	display: none;
+	top: 0;
+	left: 0;
+	z-index: 10000;
+
+	.wbmd-navbar {
+	    position: fixed;
+	    left: 0;
+	    width: 3px;
+	    height: 100%;
+
+	    div {
+		    position: absolute;
+		    top: 200px;
+		    left: -12px;
+		    margin: 0;
+    		transform: translateX(0%) rotate(90deg);
+    		line-height: 1em;
+
+    		a {
+    			font-family: Lato, Arial, sans-serif;
+    			font-size: 0.75em;
+				color: #fff;
+    			text-transform: uppercase;
+    			padding: 0 3px;
+    		}
+	    }
+	}
+}
+
+.wbmd-menutab-panel {
+	position: fixed;
+	left: -90%;
+	width: 90%;
+	height: 100%;  /* remember to set 100% height for all its parents too, including html and body */
+
+	.webmd-panel-content {
+		width: 90%;
+	}
+}
+
+.no-scroll {
+	overflow-y: hidden;
+}
+
+.scroll {
+	overflow-y: scroll;
+}
+
+@media only screen and (max-width: 767px) and (min-width: 320px) {
+	.harmony #chrome {
+		padding: 0 23px; /* keeps menu tab from covering content */
+	}
+
+	#s4 {
+		padding-right: 0!important;
+		clear: both;
+		width: 320px;
+		margin-left: -23px; /* account for new padding on chrome */
+	}
+
+	.wbmd-moreabout-masonry-container {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+}
