@@ -280,6 +280,46 @@ webmd.fundedEditorial = {
 			}
 		});
 
+		$(window).load(function() {
+			webmd.scrollTo(true, null, 90, true, true, false);
+		});
+
+		/*
+		 * Scrolls to the specified element on page
+		 * @param {Boolean} on Indicates whether to use the URL hash value to scroll to (overrides elem param when on)
+		 * @param {String} elem The element on which to scroll to
+		 * @param {Number} value specifies extra padding (i.e. account fixed masthead or menu that may cover element)
+		 * @param {Boolean} on Indicates scrolling will be enabled on desktop
+		 * @param {Boolean} on Indicates scrolling will be enabled on tablet
+		 * @param {Boolean} on Indicates scrolling will be enabled on mobile
+		 *
+		 * Examples ---
+		 * URL Hash : scrollTo(true, null, 90, true, true, false);
+		 * DOM Element : scrollTo(false, '.element', 90, true, true, false);
+		 */
+		webmd.scrollTo = function(urlHash, domEl, extPad, desktop, tablet, mobile) {
+			var scrollInt,
+				element = (urlHash) ? (location.hash || window.location.hash) : domEl;
+
+			if (typeof element === 'string') {
+				scrollInt = setInterval(function() {
+					if ($(element).length > 0) {
+						var position = $(element).offset().top - extPad;
+
+						if ((desktop && (webmd.useragent.ua.type === 'desktop')) ||
+							(tablet  && (webmd.useragent.ua.type === 'tablet' )) ||
+							(mobile  && (webmd.useragent.ua.type === 'mobile' ))) {
+							$('html, body').animate({ scrollTop: position }, 10);
+						}
+
+						clearInterval(scrollInt);
+					}
+				}, 100);
+			}
+
+			return false;
+		};
+
 		return self;
 	},
 
