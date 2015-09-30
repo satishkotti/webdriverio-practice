@@ -32,17 +32,17 @@ webmd.fundedEditorial.navigation = {
             })
             .html(
                 '<div class="article-nav">' + newline +
-                    '<a class="prev {{#if visited}}visited{{/if}}" href="{{prev.link}}">' + newline +
+                    '<a class="prev {{#if visited}}visited{{/if}}" href="{{prev.article.link}}" data-metrics-link="l-{{prev.articleId}}">' + newline +
                         '<span class="arrow"></span>' + newline +
                         '<span class="text">' + newline +
                             '<span class="nav">Previous</span>' + newline +
-                            '<span class="title">{{prev.title}}</span>' + newline +
+                            '<span class="title">{{prev.article.title}}</span>' + newline +
                         '</span>' + newline +
                     '</a>' + newline +
-                    '<a class="next {{#if visited}}visited{{/if}}" href="{{next.link}}">' + newline +
+                    '<a class="next {{#if visited}}visited{{/if}}" href="{{next.article.link}}" data-metrics-link="r-{{next.articleId}}">' + newline +
                         '<span class="text">' + newline +
                             '<span class="nav">Next</span>' + newline +
-                            '<span class="title">{{next.title}}</span>' + newline +
+                            '<span class="title">{{next.article.title}}</span>' + newline +
                         '</span>' + newline +
                         '<span class="arrow"></span>' + newline +
                     '</a>' + newline +
@@ -260,7 +260,8 @@ webmd.fundedEditorial.navigation = {
     },
 
     render: function() { // uses handlebars template above
-        var self = this;
+        var self = this,
+            context = {prev : {}, next : {}};
 
         if (self.hide_on_sponsored && self.is_current_sponsored) {
             return true;
@@ -270,11 +271,13 @@ webmd.fundedEditorial.navigation = {
                 var articleIndex = webmd.fundedEditorial.articleData.articles.indexOf(this);
 
                 if (articleIndex === webmd.fundedEditorial.articleData.prevArticle) {
-                    self.prev_article = this;
+                    context.prev.article = this;
+                    context.prev.articleId = articleIndex + 1;
                 }
 
                 if (articleIndex === webmd.fundedEditorial.articleData.nextArticle) {
-                    self.next_article = this;
+                    context.next.article = this;
+                    context.next.articleId = articleIndex + 1;
                 }
             });
 
@@ -286,10 +289,6 @@ webmd.fundedEditorial.navigation = {
                     $article_nav = $('.article-nav'),
                     source = $template.html(),
                     template = Handlebars.compile(source),
-                    context = {
-                        'prev': self.prev_article,
-                        'next': self.next_article
-                    },
                     html = template(context);
 
                 $container.prepend(html);
