@@ -399,11 +399,11 @@ webmd.fundedEditorial = {
 
 					$childNodes = $('#' + contentPaneId).children('div');
 
-					$.each($childNodes, function() {
+					$.each($childNodes, function(index) {
 						var $child = $(this);
 
 						if (!$child.hasClass('moduleSpacer_rdr')) {
-							self.setupChild($child);
+							self.setupChild($child, index+1);
 
 							//self.allNodes.push(this); //temporary - use the below line instead
 							self.contentPanes[contentPaneId].nodes.push({
@@ -417,7 +417,7 @@ webmd.fundedEditorial = {
 			self.createGridWrapper();
 		},
 
-		setupChild: function($node) {
+		setupChild: function($node, position) {
 			var self = this,
 				nodeId = $node.attr('id'),
 				nodeArticleNum = $node.data('articleNum'),
@@ -452,7 +452,7 @@ webmd.fundedEditorial = {
 
 				if (articleIndex === nodeArticleNum) {
 					$node.html(
-						'<a href="' + article.link + '">' + newline +
+						'<a href="' + article.link + '" data-metrics="' + position + '_' + nodeArticleNum + '">' + newline +
 							'<img src="' + image_server_url + article.images.image493x335 + '">' + newline +
 							'<p>' + article.title + '</p>' + newline +
 						'</a>' + newline
@@ -640,9 +640,26 @@ webmd.fundedEditorial = {
 
 		},
 
+		metrics: function(id) {
+			var self = this;
+
+			webmd.metrics.dpv({
+	            moduleName: id
+	        });
+		},
+
 		bindEvents: function() {
 			var self = this,
 				origWinW = $(window).width();
+
+			$('.wbmd-grid-item:not(.wbmd-tips) a').click(function(e) { // Ignore Tips Module Clicks
+				var $el = $(e.currentTarget);
+
+				var moduleName = $(this).closest('.wbmd-grid-item').data('moduleName'),
+					metricsLink = $(this).data('metrics');
+
+				self.metrics(moduleName + metricsLink);
+			});
 
 			$(window).bind('resizeEnd', function() {
 				origWinW = $(window).width();

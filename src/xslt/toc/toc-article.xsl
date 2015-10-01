@@ -9,7 +9,7 @@
     <xsl:param name="moduletitle">test</xsl:param>
     <xsl:param name="site_id">3</xsl:param>
     <xsl:param name="domain">webmd.com</xsl:param>
-
+    
     <xsl:template match="/">
         <xsl:apply-templates select="webmd_rendition/content/wbmd_asset/webmd_module/module_data"></xsl:apply-templates>
     </xsl:template>
@@ -24,6 +24,9 @@
             <xsl:element name="div">
                 <xsl:attribute name="class">
                     <xsl:text>wbmd-grid-item</xsl:text>
+                </xsl:attribute>
+                <xsl:attribute name="data-module-name">
+                    <xsl:text><![CDATA[ed-rspsvtocprm-]]></xsl:text>
                 </xsl:attribute>
                 <xsl:attribute name="data-article-num">
                     <xsl:apply-templates select="link_text"/>
