@@ -64,6 +64,7 @@
 		<xsl:element name="script">
 			<xsl:text disable-output-escaping="yes">
 			<![CDATA[
+			$('html').addClass('funded-editorial-see-all');
 			$(function(){
 				require(["handlebars/1/handlebars"], function(Handlebars) {
 					if (typeof webmd.fundedEditorial.articleData !== "undefined") {
