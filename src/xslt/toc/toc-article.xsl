@@ -20,19 +20,17 @@
     </xsl:template>
     
     <xsl:template match="module_data">
-        <xsl:for-each select="links/link">
-            <xsl:element name="div">
-                <xsl:attribute name="class">
-                    <xsl:text>wbmd-grid-item</xsl:text>
-                </xsl:attribute>
-                <xsl:attribute name="data-module-name">
-                    <xsl:text><![CDATA[ed-rspsvtocprm-]]></xsl:text>
-                </xsl:attribute>
-                <xsl:attribute name="data-article-num">
-                    <xsl:apply-templates select="link_text"/>
-                </xsl:attribute>
-                <xsl:comment><xsl:text>Article Unit</xsl:text></xsl:comment>
-            </xsl:element>
-        </xsl:for-each>
+        <xsl:element name="div">
+            <xsl:attribute name="class">
+                <xsl:text>wbmd-grid-item msnry-article</xsl:text>
+            </xsl:attribute>
+            <xsl:attribute name="data-metrics-module">
+                <xsl:value-of select="module_title"></xsl:value-of>
+            </xsl:attribute>
+            <xsl:attribute name="data-article-num">
+                <xsl:apply-templates select="links/link/link_text"/>
+            </xsl:attribute>
+            <xsl:comment><xsl:text>Article Unit</xsl:text></xsl:comment>
+        </xsl:element>
     </xsl:template>
 </xsl:stylesheet>
