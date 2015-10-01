@@ -388,7 +388,8 @@ webmd.fundedEditorial = {
 			$.each($nodes, function() {
 				var $node = $(this), // use the node from XSL
 					contentPaneId = $node.closest('div.pane')[0].id, // get the id of the parent content pane
-					$childNodes;
+					$childNodes,
+					articlePos = 0;
 
 				// Continue to setup key and nodes if not already in object
 				if (!(contentPaneId in self.contentPanes)) {
@@ -399,11 +400,18 @@ webmd.fundedEditorial = {
 
 					$childNodes = $('#' + contentPaneId).children('div');
 
-					$.each($childNodes, function(index) {
+					$.each($childNodes, function() {
 						var $child = $(this);
 
 						if (!$child.hasClass('moduleSpacer_rdr')) {
-							self.setupChild($child, index+1);
+							self.setupChild($child);
+
+							if ($child.hasClass('msnry-article')) {
+								articlePos = articlePos + 1;
+								self.setupChild($child, articlePos);
+							} else {
+								self.setupChild($child, false);
+							}
 
 							//self.allNodes.push(this); //temporary - use the below line instead
 							self.contentPanes[contentPaneId].nodes.push({
@@ -427,7 +435,10 @@ webmd.fundedEditorial = {
 				articles = self.article_data.articles,
 				newline = '\n',
 				articleId,
-				article;
+				article,
+				$a = $('<a></a>'),
+				$img = $('<img/>'),
+				$p = $('<p></p>');
 
 
 			$node.addClass('wbmd-grid-item'); // adds the masonry grid item class to node
@@ -451,12 +462,12 @@ webmd.fundedEditorial = {
 				articleIndex = articles.indexOf(article) + 1;
 
 				if (articleIndex === nodeArticleNum) {
-					$node.html(
-						'<a href="' + article.link + '" data-metrics="' + position + '_' + nodeArticleNum + '">' + newline +
-							'<img src="' + image_server_url + article.images.image493x335 + '">' + newline +
-							'<p>' + article.title + '</p>' + newline +
-						'</a>' + newline
-					);
+					$a.attr({ 'href' : article.link, 'data-metrics-link' : position });
+					$img.attr({ 'src' : image_server_url + article.images.image493x335 });
+					$p.text(article.title);
+
+					$node.html('');
+					$node.append($a.append($img).append($p));
 
 					if (article.visited) {
 						$node.addClass('visited');
@@ -652,14 +663,14 @@ webmd.fundedEditorial = {
 			var self = this,
 				origWinW = $(window).width();
 
-			$('.wbmd-grid-item:not(.wbmd-tips) a').click(function(e) { // Ignore Tips Module Clicks
+			/*$('.wbmd-grid-item:not(.wbmd-tips) a').click(function(e) { // Ignore Tips Module Clicks
 				var $el = $(e.currentTarget);
 
 				var moduleName = $(this).closest('.wbmd-grid-item').data('moduleName'),
 					metricsLink = $(this).data('metrics');
 
 				self.metrics(moduleName + metricsLink);
-			});
+			});*/
 
 			$(window).bind('resizeEnd', function() {
 				origWinW = $(window).width();
