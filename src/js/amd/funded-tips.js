@@ -31,6 +31,7 @@ define(['bx_slider/1/bx_slider'], {
         autoStart: true,
         autoDirection: 'next'
     },
+    metricsModuleName: $('.wbmd-tips').data('moduleName'),
 
     /**
      * Init function
@@ -106,34 +107,14 @@ define(['bx_slider/1/bx_slider'], {
         return self;
     },
 
-    metrics: function(action, id) {
+    metrics: function(id) {
+        var self = this;
 
-        var self = this,
-            omniturePageURL = window.s_pagename,
-            URLFull;
-
-        switch (action) {
-            case 'pageView':
-                if (!omniturePageURL) {
-                    URLFull = document.location.href.split('?')[0];
-                    omniturePageURL = URLFull.split('#')[0];
-                }
-
-                omniturePageURL += '/' + id;
-                wmdPageview(omniturePageURL);
-                break;
-            case 'pageClick':
-                wmdTrack(id);
-                break;
-            case 'moduleClick':
-                wmdPageLink(id);
-                break;
-            default:
-                break;
-        }
-
-        return self;
-
+        webmd.metrics.dpv({
+            moduleName: self.metricsModuleName + id,
+            iCount: self.slider.getCurrentSlide(),
+            refresh: false // disable ad refresh
+        });
     },
 
     /**
@@ -146,9 +127,9 @@ define(['bx_slider/1/bx_slider'], {
             $slide = $(self.slides.eq(n)),
             $nextBtn = self._selectNextBtn(n);
 
-        self.metrics('pageClick', 'tips-prev');
-        self.slider.stopAuto();
+        self.metrics('prev');
         self.slider.goToPrevSlide();
+        self.slider.stopAuto();
     },
 
     /**
@@ -161,9 +142,9 @@ define(['bx_slider/1/bx_slider'], {
             $slide = $(self.slides.eq(n)),
             $nextBtn = self._selectNextBtn(n);
 
-        self.metrics('pageClick', 'tips-next');
-        self.slider.stopAuto();
+        self.metrics('next');
         self.slider.goToNextSlide();
+        self.slider.stopAuto();
     },
 
     /**
