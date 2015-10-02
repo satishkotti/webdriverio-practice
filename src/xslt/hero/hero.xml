@@ -16,7 +16,7 @@
                 <wbmd_pb_module_label1 object_type="wbmd_lookup" wbmd_lookup_type="wbmd_module_label1" i_chronicle_id="091e9c5e811fc5ff" wbmd_disp_nm="TOC" wbmd_storage_val="editorialmodule_toc" />
             </md_pb_module_label1_group>
             <md_pb_module_label2_group>
-                <wbmd_pb_module_label2 object_type="wbmd_lookup" wbmd_lookup_type="wbmd_module_label2" i_chronicle_id="091e9c5e811fc601" wbmd_disp_nm="Hero Double Unit" wbmd_storage_val="hero_triple_unit" />
+                <wbmd_pb_module_label2 object_type="wbmd_lookup" wbmd_lookup_type="wbmd_module_label2" i_chronicle_id="091e9c5e811fc601" wbmd_disp_nm="Hero Single Unit" wbmd_storage_val="hero_triple_unit" />
             </md_pb_module_label2_group>
             <wbmd_pb_module_sp_program />
             <wbmd_pb_module_tier>0</wbmd_pb_module_tier>

@@ -6,7 +6,7 @@
     <xsl:param name="image_server_url">
         <xsl:text>http://img.preview.webmd.com/dtmcms/preview</xsl:text>
     </xsl:param>
-    <xsl:param name="moduletitle">test</xsl:param>
+    <xsl:param name="moduletitle">prm-rspsvhero</xsl:param>
     <xsl:param name="site_id">3</xsl:param>
     <xsl:param name="domain">webmd.com</xsl:param>
     <xsl:param name="module_label_1">
@@ -15,14 +15,27 @@
     <xsl:param name="module_label_2">
         <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_settings/md_pb_module_label2_group/wbmd_pb_module_label2/@wbmd_disp_nm" />
     </xsl:param>
+    <xsl:param name="hero_number">
+        <xsl:if test="$module_label_1 = 'TOC'">
+            <xsl:choose>
+                <xsl:when test="$module_label_2 = 'Hero Single Unit'">
+                    <xsl:text>1</xsl:text>
+                </xsl:when>
+                <xsl:when test="$module_label_2 = 'Hero Double Unit'">
+                    <xsl:text>2</xsl:text>
+                </xsl:when>
+                <xsl:when test="$module_label_2 = 'Hero Triple Unit'">
+                    <xsl:text>3</xsl:text>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:param>
 
     <xsl:template match="/">
         <xsl:apply-templates select="webmd_rendition/content/wbmd_asset/webmd_module/module_data"></xsl:apply-templates>
     </xsl:template>
     <xsl:template match="module_data">
-
         <xsl:call-template name="getHeroTemplate"></xsl:call-template>
-
     </xsl:template>
 
     <!-- Get Hero Template -->
@@ -53,6 +66,8 @@
         <xsl:comment><xsl:text>Hero Single Unit</xsl:text></xsl:comment>
         <xsl:element name="div">
             <xsl:attribute name="class"><xsl:text>toc-hero-single-unit-shell</xsl:text></xsl:attribute>
+            <xsl:attribute name="id"><xsl:value-of select="$moduletitle"/></xsl:attribute>
+            <xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/></xsl:attribute>
         </xsl:element>
         <xsl:element name="script">
             <xsl:attribute name="id"><xsl:text>toc-hero-single-unit-template</xsl:text></xsl:attribute>
@@ -66,6 +81,8 @@
                         <xsl:element name="a">
                             <xsl:attribute name="class"><xsl:text>toc-img-link {{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.type}}</xsl:text></xsl:attribute>
                             <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
+                            <xsl:attribute name="data-metrics-section"><xsl:value-of select="$hero_number"/></xsl:attribute>
+                            <xsl:attribute name="data-metrics-link"><xsl:text>1</xsl:text></xsl:attribute>
                             <xsl:element name="img">
                                 <xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.images.image650x350}}</xsl:text></xsl:attribute>
                             </xsl:element>
@@ -77,6 +94,8 @@
                         <xsl:element name="a">
                             <xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
                             <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
+                            <xsl:attribute name="data-metrics-section"><xsl:value-of select="$hero_number"/></xsl:attribute>
+                            <xsl:attribute name="data-metrics-link"><xsl:text>1</xsl:text></xsl:attribute>
                             <xsl:element name="h3">
                                 <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.title}}</xsl:text>
                             </xsl:element>
@@ -120,6 +139,8 @@
         </xsl:variable>
         <xsl:element name="div">
             <xsl:attribute name="class"><xsl:text>toc-hero-double-unit-shell</xsl:text></xsl:attribute>
+            <xsl:attribute name="id"><xsl:value-of select="$moduletitle"/></xsl:attribute>
+            <xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/></xsl:attribute>
         </xsl:element>
         <xsl:element name="script">
             <xsl:attribute name="id"><xsl:text>toc-hero-double-unit-template</xsl:text></xsl:attribute>
@@ -134,6 +155,8 @@
                         <xsl:element name="a">
                             <xsl:attribute name="class"><xsl:text>toc-img-link {{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.type}}</xsl:text></xsl:attribute>
                             <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
+                            <xsl:attribute name="data-metrics-section"><xsl:value-of select="$hero_number"/></xsl:attribute>
+                            <xsl:attribute name="data-metrics-link"><xsl:text>1</xsl:text></xsl:attribute>
                             <xsl:element name="img">
                                 <xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.images.image493x335}}</xsl:text></xsl:attribute>
                             </xsl:element>
@@ -145,6 +168,8 @@
                         <xsl:element name="a">
                             <xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
                             <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
+                            <xsl:attribute name="data-metrics-section"><xsl:value-of select="$hero_number"/></xsl:attribute>
+                            <xsl:attribute name="data-metrics-link"><xsl:text>1</xsl:text></xsl:attribute>
                             <xsl:element name="h3">
                                 <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.title}}</xsl:text>
                             </xsl:element>
@@ -158,6 +183,8 @@
                         <xsl:element name="a">
                             <xsl:attribute name="class"><xsl:text>toc-img-link {{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.type}}</xsl:text></xsl:attribute>
                             <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.link}}</xsl:text></xsl:attribute>
+                            <xsl:attribute name="data-metrics-section"><xsl:value-of select="$hero_number"/></xsl:attribute>
+                            <xsl:attribute name="data-metrics-link"><xsl:text>2</xsl:text></xsl:attribute>
                             <xsl:element name="img">
                                 <xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.images.image493x335}}</xsl:text></xsl:attribute>
                             </xsl:element>
@@ -168,6 +195,8 @@
                         <xsl:element name="a">
                             <xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
                             <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.link}}</xsl:text></xsl:attribute>
+                            <xsl:attribute name="data-metrics-section"><xsl:value-of select="$hero_number"/></xsl:attribute>
+                            <xsl:attribute name="data-metrics-link"><xsl:text>2</xsl:text></xsl:attribute>
                             <xsl:element name="h3">
                                 <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.title}}</xsl:text>
                             </xsl:element>
@@ -215,6 +244,8 @@
         </xsl:variable>
         <xsl:element name="div">
             <xsl:attribute name="class"><xsl:text>toc-hero-triple-unit-shell</xsl:text></xsl:attribute>
+            <xsl:attribute name="id"><xsl:value-of select="$moduletitle"/></xsl:attribute>
+            <xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/></xsl:attribute>
         </xsl:element>
         <xsl:element name="script">
             <xsl:attribute name="id"><xsl:text>toc-hero-triple-unit-template</xsl:text></xsl:attribute>
@@ -231,6 +262,8 @@
                             <xsl:element name="a">
                                 <xsl:attribute name="class"><xsl:text>toc-img-link {{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.type}}</xsl:text></xsl:attribute>
                                 <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
+                                <xsl:attribute name="data-metrics-section"><xsl:value-of select="$hero_number"/></xsl:attribute>
+                                <xsl:attribute name="data-metrics-link"><xsl:text>1</xsl:text></xsl:attribute>
                                 <xsl:element name="img">
                                     <xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.images.image493x335}}</xsl:text></xsl:attribute>
                                 </xsl:element>
@@ -242,6 +275,8 @@
                             <xsl:element name="a">
                                 <xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
                                 <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
+                                <xsl:attribute name="data-metrics-section"><xsl:value-of select="$hero_number"/></xsl:attribute>
+                                <xsl:attribute name="data-metrics-link"><xsl:text>1</xsl:text></xsl:attribute>
                                 <xsl:element name="h3">
                                     <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.title}}</xsl:text>
                                 </xsl:element>
@@ -258,6 +293,8 @@
                             <xsl:element name="a">
                                 <xsl:attribute name="class"><xsl:text>toc-img-link {{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.type}}</xsl:text></xsl:attribute>
                                 <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.link}}</xsl:text></xsl:attribute>
+                                <xsl:attribute name="data-metrics-section"><xsl:value-of select="$hero_number"/></xsl:attribute>
+                                <xsl:attribute name="data-metrics-link"><xsl:text>2</xsl:text></xsl:attribute>
                                 <xsl:element name="img">
                                     <xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.images.image493x335}}</xsl:text></xsl:attribute>
                                 </xsl:element>
@@ -268,6 +305,8 @@
                             <xsl:element name="a">
                                 <xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
                                 <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.link}}</xsl:text></xsl:attribute>
+                                <xsl:attribute name="data-metrics-section"><xsl:value-of select="$hero_number"/></xsl:attribute>
+                                <xsl:attribute name="data-metrics-link"><xsl:text>2</xsl:text></xsl:attribute>
                                 <xsl:element name="h3">
                                     <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.title}}</xsl:text>
                                 </xsl:element>
@@ -281,6 +320,8 @@
                             <xsl:element name="a">
                                 <xsl:attribute name="class"><xsl:text>toc-img-link {{articles.</xsl:text><xsl:value-of select="$itm-3"/><xsl:text>.type}}</xsl:text></xsl:attribute>
                                 <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-3"/><xsl:text>.link}}</xsl:text></xsl:attribute>
+                                <xsl:attribute name="data-metrics-section"><xsl:value-of select="$hero_number"/></xsl:attribute>
+                                <xsl:attribute name="data-metrics-link"><xsl:text>3</xsl:text></xsl:attribute>
                                 <xsl:element name="img">
                                     <xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-3"/><xsl:text>.images.image493x335}}</xsl:text></xsl:attribute>
                                 </xsl:element>
@@ -291,6 +332,8 @@
                             <xsl:element name="a">
                                 <xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
                                 <xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-3"/><xsl:text>.link}}</xsl:text></xsl:attribute>
+                                <xsl:attribute name="data-metrics-section"><xsl:value-of select="$hero_number"/></xsl:attribute>
+                                <xsl:attribute name="data-metrics-link"><xsl:text>3</xsl:text></xsl:attribute>
                                 <xsl:element name="h3">
                                     <xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-3"/><xsl:text>.title}}</xsl:text>
                                 </xsl:element>
