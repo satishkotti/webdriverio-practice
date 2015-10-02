@@ -651,26 +651,9 @@ webmd.fundedEditorial = {
 
 		},
 
-		metrics: function(id) {
-			var self = this;
-
-			webmd.metrics.dpv({
-	            moduleName: id
-	        });
-		},
-
 		bindEvents: function() {
 			var self = this,
 				origWinW = $(window).width();
-
-			/*$('.wbmd-grid-item:not(.wbmd-tips) a').click(function(e) { // Ignore Tips Module Clicks
-				var $el = $(e.currentTarget);
-
-				var moduleName = $(this).closest('.wbmd-grid-item').data('moduleName'),
-					metricsLink = $(this).data('metrics');
-
-				self.metrics(moduleName + metricsLink);
-			});*/
 
 			$(window).bind('resizeEnd', function() {
 				origWinW = $(window).width();
