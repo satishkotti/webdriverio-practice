@@ -174,7 +174,7 @@ webmd.fundedEditorial = {
 					'<button>Show Article Object</button>'
 				);
 
-			$('#toolbar').prepend($div);
+			$('#ContentPane14').prepend($div);
 		}
 
 		function injectHBtemplateJS() {
