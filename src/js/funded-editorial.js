@@ -76,7 +76,7 @@ webmd.fundedEditorial = {
 		}
 
 		if ($('#attribution_rdr').length) {
-			self.moveAttribution();
+			//self.moveAttribution();
 		}
 
 		if (s_sponsor_program !== 'undefined' && s_sponsor_program !== '') {
