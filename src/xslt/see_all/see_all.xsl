@@ -39,7 +39,7 @@
 							{{/each_when}}
 						</ul>
 					</div>
-					<div class="see-all-items spon" data-metrics-module="ed-rspsvallspcon">
+					<div id="see-all-spon" class="see-all-items spon" data-metrics-module="ed-rspsvallspcon">
 						<h3>From Our Sponsor</h3>
 						<ul>
 							{{#each_when articles "sponsored" true}}

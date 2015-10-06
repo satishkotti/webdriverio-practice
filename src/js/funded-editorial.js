@@ -76,7 +76,7 @@ webmd.fundedEditorial = {
 		}
 
 		if ($('#attribution_rdr').length) {
-			self.moveAttribution();
+			//self.moveAttribution();
 		}
 
 		if (s_sponsor_program !== 'undefined' && s_sponsor_program !== '') {
@@ -174,7 +174,7 @@ webmd.fundedEditorial = {
 					'<button>Show Article Object</button>'
 				);
 
-			$('#toolbar').prepend($div);
+			$('#ContentPane14').prepend($div);
 		}
 
 		function injectHBtemplateJS() {
