@@ -93,8 +93,7 @@ webmd.fundedEditorial = {
 		}
 
 		if (self.segments.length > 0) {
-			console.log('get segment data');
-			self.addSegmentData_to_ArticleData();
+			self.getSegmentArticleData();
 		}
 	},
 
@@ -286,14 +285,8 @@ webmd.fundedEditorial = {
 		}
 	},
 
-	addSegmentData_to_ArticleData: function() {
-		var self = this,
-			$hiddenOutput = $('<output></output>');
-
-		$('#s3').append($hiddenOutput);
-
-		webmd.fundedEditorial.articleData.segments = [];
-
+	getSegmentArticleData: function() {
+		var self = this;
 
 		$.each(self.segments, function(index, data) {
   			$.ajax({
@@ -309,7 +302,8 @@ webmd.fundedEditorial = {
 			        segmentedData = segmentedData.replace(';','');
 			        segmentedData = $.parseJSON(segmentedData);
 
-	  				console.log('articleData' + index, segmentedData);
+			        self.segments[index].articleData = segmentedData;
+	  				//console.log('articleData' + index, segmentedData);
 			    }
 			});
 		});
