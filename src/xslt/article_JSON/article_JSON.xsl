@@ -32,7 +32,7 @@
 			</xsl:choose><![CDATA[ !important}]]></xsl:element>
 	</xsl:if>
 
-	<xsl:element name="script"><![CDATA[
+	<xsl:element name="script"><xsl:attribute name="id"><xsl:text>articleData</xsl:text></xsl:attribute><![CDATA[
 	webmd.fundedEditorial.articleData = {
 		"program" : {
 			"title" : "]]><xsl:choose>
