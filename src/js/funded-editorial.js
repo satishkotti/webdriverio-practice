@@ -92,7 +92,7 @@ webmd.fundedEditorial = {
 			self.showArticleObj();
 		}
 
-		if (self.segments.length > 0) {
+		if (self.segments && self.segments.length > 0) {
 			self.getSegmentArticleData();
 		}
 	},
