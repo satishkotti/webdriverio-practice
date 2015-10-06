@@ -98,6 +98,37 @@ webmd.fundedEditorial.nextUp = {
 		}
 	},
 
+	addSegmentLinks: function() {
+		var self = this,
+			$segments = $('<div></div>');
+
+		$segments.addClass('wbmd-upnext-segments');
+
+		$.each(webmd.fundedEditorial.segments, function(index, data) {
+			var checkData = setInterval(function() {
+				if ('articleData' in data) {
+					createUpNextSegment(data);
+					clearInterval(checkData);
+				}
+			}, 200);
+		});
+
+		$(".article-list-container").after($segments);
+
+		function createUpNextSegment(segmentData) {
+			var $segmentContainer = $('<div></div>'),
+				$segmentDiv = $('<div></div>'),
+				$segmentTitle = $('<a></a>');
+
+			
+			$segmentTitle.addClass('wbmd-segment-title').html(segmentData.articleData.program.title).attr('href', segmentData.articleData.program.tocLink);
+			$segmentDiv.addClass('wbmd-segment').append($segmentTitle);
+			$segmentContainer.addClass('wbmd-segment-container').append($segmentDiv);
+			$segments.append($segmentContainer);
+			$(".article-list-container").addClass('plus-segments');
+		}
+	},
+
 	render: function() {
 		var self = this,
 			$container = $(".article-list-container > .wbmd-nav-links"),
@@ -108,6 +139,10 @@ webmd.fundedEditorial.nextUp = {
 		$.each(links, function() {
 			$container.append(this);
 		});
+
+		if (webmd.fundedEditorial.segments && webmd.fundedEditorial.segments.length > 0) {
+			self.addSegmentLinks();
+		}
 
 		// Do no create module if not enough articles in data object
 		
