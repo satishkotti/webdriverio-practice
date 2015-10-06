@@ -91,6 +91,11 @@ webmd.fundedEditorial = {
 		if (artObjParam == 1) {
 			self.showArticleObj();
 		}
+
+		if (self.segments.length > 0) {
+			console.log('get segment data');
+			self.addSegmentData_to_ArticleData();
+		}
 	},
 
 	hasStorage: function() {
@@ -263,6 +268,47 @@ webmd.fundedEditorial = {
 					});
 				});
 			}
+		}
+	},
+
+	addSegmentData_to_ArticleData: function() {
+		var self = this,
+			$hiddenOutput = $('<output></output>');
+
+		$('#s3').append($hiddenOutput);
+
+		webmd.fundedEditorial.articleData.segments = [];
+
+
+		$.each(self.segments, function(index, data) {
+  			$.ajax({
+  				url: data.tocUrl,
+  				dataType: 'html',
+  				type: 'get',
+			    success: function(data) {
+			        var html = $.parseHTML(data, document, true),
+			        	domEl = findInParsed(html, 'script#articleData'),
+			        	segmentedData = domEl['0'].innerText;
+
+			        segmentedData = segmentedData.replace('	webmd.fundedEditorial.articleData = ', '');
+			        segmentedData = segmentedData.replace(';','');
+			        segmentedData = $.parseJSON(segmentedData);
+
+	  				console.log('articleData' + index, segmentedData);
+			    }
+			});
+		});
+
+		function findInParsed(html, selector) {
+		    var check = $(selector, html).get(0);
+
+		    if (check) {
+		        return $(check);
+		    }
+
+		    check = $(html).filter(selector).get(0);
+
+		    return (check) ? $(check) : false;
 		}
 	},
 
@@ -579,6 +625,7 @@ webmd.fundedEditorial = {
 							newHeight = ((standardTileHeight * multiplier) + (gutter * multiplier)) - gutter;
 
 							if (adArray.indexOf($node.attr('id')) !== -1) {
+								console.log($node.attr('id'));
 								btmMargin = newHeight - nodeH;
 								$node.attr('style', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
 							}
