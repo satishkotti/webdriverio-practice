@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<webmd_rendition>
+	<content>
+		<wbmd_asset object_type="wbmd_cons_video" id="091e9c5e80938e2e"
+			xmlns:xalan="http://xml.apache.org/xalan">
+			<metadata_section>
+				<i_chronicle_id>091e9c5e802c4f6f</i_chronicle_id>
+				<r_object_id>091e9c5e80938e2e</r_object_id>
+				<title>The Truth About the 'Power Nap'</title>
+				<object_name>breus-power-nap_091e9c5e802c4f6f.xml</object_name>
+				<r_object_id>091e9c5e80938e2e</r_object_id>
+				<wbmd_archive_bool>0</wbmd_archive_bool>
+				<wbmd_bus_ref object_type="wbmd_lookup" wbmd_lookup_type="business_reference"
+					wbmd_storage_val="117" wbmd_disp_nm="Feature - Video"/>
+				<wbmd_cpyrt>
+					<r_object_type>wbmd_copyright</r_object_type>
+					<r_object_id>091e9c5e80270e6b</r_object_id>
+					<wbmd_legal_revw_dt>nulldate</wbmd_legal_revw_dt>
+					<wbmd_copyright_strt_dt>1/1/2009 12:00:00 AM</wbmd_copyright_strt_dt>
+					<wbmd_copyright_end_dt>12/31/2009 12:00:00 AM</wbmd_copyright_end_dt>
+					<wbmd_copyright_holder>
+						<r_object_type>wbmd_company</r_object_type>
+						<r_object_id>091e9c5e80019138</r_object_id>
+						<wbmd_bus_comp_nm>WebMD</wbmd_bus_comp_nm>
+						<wbmd_comp_type object_type="wbmd_lookup" wbmd_lookup_type="company_type"
+							wbmd_storage_val="6" wbmd_disp_nm="Internal"/>
+						<wbmd_bus_logo chronic_id="091e9c5e802a487f" directive="imageurl"
+							object_type="wbmd_cons_img"
+							path="/webmd/consumer_assets/site_images/logos/webmd/web/webmd_logo_53x12.gif"
+						/>
+					</wbmd_copyright_holder>
+					<wbmd_legal_revr/>
+					<wbmd_copyright>
+						<wbmd_copyright_statement>© 2009 WebMD, LLC. All rights
+							reserved.</wbmd_copyright_statement>
+					</wbmd_copyright>
+				</wbmd_cpyrt>
+				<wbmd_ext_id>0903112d80084d06</wbmd_ext_id>
+				<wbmd_med_ref_type object_type="wbmd_lookup" wbmd_lookup_type="health_ref_type"
+					wbmd_storage_val="17" wbmd_disp_nm="Wellness - Expert Insights"/>
+				<wbmd_wdw_ttl>The Truth About the 'Power Nap' - Watch WebMD Video</wbmd_wdw_ttl>
+				<wbmd_site_archv_ovrd_dt>nulldate</wbmd_site_archv_ovrd_dt>
+				<wbmd_prim_revw_dt>2/21/2012 12:00:00 AM</wbmd_prim_revw_dt>
+				<wbmd_publ>
+					<r_object_type>wbmd_publication</r_object_type>
+					<r_object_id>091e9c5e802a55c9</r_object_id>
+					<wbmd_publ_name>WebMD Video</wbmd_publ_name>
+					<wbmd_publ_type>1</wbmd_publ_type>
+					<wbmd_publ_display>WebMD Video</wbmd_publ_display>
+					<wbmd_publ_bus_entity/>
+				</wbmd_publ>
+				<wbmd_prim_subj_cd/>
+				<wbmd_desc_meta>Lying awake nights wondering what a power nap is? Sleep expert
+					Michael Breus, PhD, has the answers.</wbmd_desc_meta>
+				<wbmd_orig_pub_dt>3/19/2009 12:00:00 AM</wbmd_orig_pub_dt>
+				<wbmd_desc_user>Sleep expert Michael Breus, PhD, explains the benefits of a power
+					nap.</wbmd_desc_user>
+				<wbmd_lk_ttl>The Truth About the 'Power Nap'</wbmd_lk_ttl>
+				<wbmd_disclmr/>
+				<wbmd_prim_med_revr>
+					<r_object_id>091e9c5e808d969a</r_object_id>
+					<wbmd_first_nm>Joseph</wbmd_first_nm>
+					<wbmd_middle_name/>
+					<wbmd_lst_nm>Goldberg</wbmd_lst_nm>
+					<wbmd_person_prof_ttl/>
+					<wbmd_bio_obj_id/>
+					<wbmd_person_suffix_group>
+						<wbmd_person_suffix object_type="wbmd_lookup"
+							wbmd_lookup_type="person_suffix" wbmd_storage_val="48" wbmd_disp_nm="MD"
+						/>
+					</wbmd_person_suffix_group>
+				</wbmd_prim_med_revr>
+				<wbmd_keywords>naps, power nap, sleep, Breus</wbmd_keywords>
+				<wbmd_relv1_subj_cd_group/>
+				<wbmd_authr_prim_group>
+					<wbmd_authr_prim>
+						<r_object_id>091e9c5e8000ac92</r_object_id>
+						<wbmd_first_nm>Sandee</wbmd_first_nm>
+						<wbmd_middle_name/>
+						<wbmd_lst_nm>LaMotte</wbmd_lst_nm>
+						<wbmd_person_prof_ttl/>
+						<wbmd_bio_obj_id chronic_id="091e9c5e80009a29" directive="friendlyurl"
+							path="/webmd/consumer_assets/editorial/articles/biographies/l/Lamotte_Sandee.xml"
+							object_type="wbmd_cons_article"/>
+						<wbmd_person_suffix_group/>
+					</wbmd_authr_prim>
+				</wbmd_authr_prim_group>
+				<wbmd_relv2_subj_cd_group/>
+				<wbmd_relv3_subj_cd_group/>
+				<r_object_id>091e9c5e80938e2e</r_object_id>
+				<wbmd_c_cons_edtr>
+					<r_object_id>091e9c5e8000ac92</r_object_id>
+					<wbmd_first_nm>Sandee</wbmd_first_nm>
+					<wbmd_middle_name/>
+					<wbmd_lst_nm>LaMotte</wbmd_lst_nm>
+					<wbmd_person_prof_ttl/>
+					<wbmd_bio_obj_id chronic_id="091e9c5e80009a29" directive="friendlyurl"
+						path="/webmd/consumer_assets/editorial/articles/biographies/l/Lamotte_Sandee.xml"
+						object_type="wbmd_cons_article"/>
+					<wbmd_person_suffix_group/>
+				</wbmd_c_cons_edtr>
+				<wbmd_c_cons_cpy_edtr>
+					<r_object_id>091e9c5e8025ee72</r_object_id>
+					<wbmd_first_nm>Jonathan</wbmd_first_nm>
+					<wbmd_middle_name/>
+					<wbmd_lst_nm>Mintz</wbmd_lst_nm>
+					<wbmd_person_prof_ttl/>
+					<wbmd_bio_obj_id chronic_id="091e9c5e8025ed78" directive="friendlyurl"
+						path="/webmd/consumer_assets/editorial/articles/biographies/m/Mintz_Jonathan.xml"
+						object_type="wbmd_cons_article"/>
+					<wbmd_person_suffix_group/>
+				</wbmd_c_cons_cpy_edtr>
+				<wbmd_c_cons_revw_dt>12/17/2008 12:00:00 PM</wbmd_c_cons_revw_dt>
+				<wbmd_c_sec_med_revw_dt>nulldate</wbmd_c_sec_med_revw_dt>
+				<wbmd_c_sec_med_revr/>
+				<wbmd_c_prim_top_id object_type="wbmd_lookup" wbmd_lookup_type="consumer_topic_id"
+					wbmd_storage_val="1836" wbmd_disp_nm="Sleep Disorders"/>
+				<wbmd_c_edtr_revr_dt>nulldate</wbmd_c_edtr_revr_dt>
+				<wbmd_c_stg_of_cond object_type="wbmd_lookup"
+					wbmd_lookup_type="consumer_stage_of_condition" wbmd_storage_val="6"
+					wbmd_disp_nm="None"/>
+				<wbmd_c_sec_authr_group>
+					<wbmd_c_sec_authr>
+						<r_object_id>091e9c5e8000ac92</r_object_id>
+						<wbmd_first_nm>Sandee</wbmd_first_nm>
+						<wbmd_middle_name/>
+						<wbmd_lst_nm>LaMotte</wbmd_lst_nm>
+						<wbmd_person_prof_ttl/>
+						<wbmd_bio_obj_id chronic_id="091e9c5e80009a29" directive="friendlyurl"
+							path="/webmd/consumer_assets/editorial/articles/biographies/l/Lamotte_Sandee.xml"
+							object_type="wbmd_cons_article"/>
+						<wbmd_person_suffix_group/>
+					</wbmd_c_sec_authr>
+				</wbmd_c_sec_authr_group>
+				<wbmd_c_audnc_age_group>
+					<wbmd_c_audnc_age object_type="wbmd_lookup"
+						wbmd_lookup_type="consumer_audience_age" wbmd_storage_val="1"
+						wbmd_disp_nm="All"/>
+				</wbmd_c_audnc_age_group>
+				<wbmd_c_audnc_geo_group>
+					<wbmd_c_audnc_geo object_type="wbmd_lookup"
+						wbmd_lookup_type="consumer_audience_geographic" wbmd_storage_val="1"
+						wbmd_disp_nm="All Countries"/>
+				</wbmd_c_audnc_geo_group>
+				<wbmd_c_sec_top_id_group>
+					<wbmd_c_sec_top_id/>
+				</wbmd_c_sec_top_id_group>
+				<wbmd_c_audnc_gndr_group>
+					<wbmd_c_audnc_gndr object_type="wbmd_lookup"
+						wbmd_lookup_type="consumer_audience_gender" wbmd_storage_val="1"
+						wbmd_disp_nm="Both"/>
+				</wbmd_c_audnc_gndr_group>
+				<wbmd_c_audnc_lfstyl_group>
+					<wbmd_c_audnc_lfstyl object_type="wbmd_lookup"
+						wbmd_lookup_type="consumer_audience_lifestyle" wbmd_storage_val="6"
+						wbmd_disp_nm="Any"/>
+				</wbmd_c_audnc_lfstyl_group>
+				<wbmd_c_audnc_read_lvl_group>
+					<wbmd_c_audnc_read_lvl object_type="wbmd_lookup"
+						wbmd_lookup_type="consumer_audience_reading_level" wbmd_storage_val="1"
+						wbmd_disp_nm="Basic (high school)"/>
+				</wbmd_c_audnc_read_lvl_group>
+				<wbmd_c_audnc_ethn_group>
+					<wbmd_c_audnc_ethn object_type="wbmd_lookup"
+						wbmd_lookup_type="consumer_audience_ethnicity" wbmd_storage_val="1"
+						wbmd_disp_nm="All"/>
+				</wbmd_c_audnc_ethn_group>
+				<wbmd_c_tm_of_yr_group>
+					<wbmd_c_tm_of_yr object_type="wbmd_lookup"
+						wbmd_lookup_type="consumer_time_of_year" wbmd_storage_val="5"
+						wbmd_disp_nm="Any"/>
+				</wbmd_c_tm_of_yr_group>
+				<wbmd_c_clncl_tgt_pop_group/>
+				<r_object_id>091e9c5e80938e2e</r_object_id>
+				<wbmd_c_vid_cc>0</wbmd_c_vid_cc>
+				<wbmd_c_loc_url>/delivery/34/01/34013f0a-af74-4ecf-b265-dd1cb79956f4/breus-power-nap_,1000k,750k,2500k,4500k,400k,.mp4</wbmd_c_loc_url>
+				<wbmd_c_alt_tag>Thank you for your patience! We are currently expe</wbmd_c_alt_tag>
+				<wbmd_c_duration>87.687</wbmd_c_duration>
+				<wbmd_c_vid_fmt/>
+				<wbmd_c_lic_insrt>nulldate</wbmd_c_lic_insrt>
+				<wbmd_c_sponsored>0</wbmd_c_sponsored>
+				<wbmd_c_video_cat object_type="wbmd_lookup" wbmd_lookup_type="video_category"
+					wbmd_storage_val="29" wbmd_disp_nm="Sleep"/>
+				<wbmd_c_vid_thmbnl>
+					<wbmd_c_width>48</wbmd_c_width>
+					<wbmd_c_ht>48</wbmd_c_ht>
+					<wbmd_c_alt_tag>woman napping on couch</wbmd_c_alt_tag>
+					<image_path>/webmd/consumer_assets/site_images/dam/editorial/healthy-living/sleep/breus-power-nap/graphics/thumbnails/final/breus-power-nap-48x48.jpg</image_path>
+				</wbmd_c_vid_thmbnl>
+				<wbmd_c_watm_img/>
+				<wbmd_c_md_vid_thmbnl>
+					<wbmd_c_width>128</wbmd_c_width>
+					<wbmd_c_ht>76</wbmd_c_ht>
+					<wbmd_c_alt_tag>woman napping on couch</wbmd_c_alt_tag>
+					<image_path>/webmd/consumer_assets/site_images/dam/editorial/healthy-living/sleep/breus-power-nap/graphics/thumbnails/final/breus-power-nap-128x73.jpg</image_path>
+				</wbmd_c_md_vid_thmbnl>
+				<wbmd_c_vid_trns directive="expandcontent" chronic_id="091e9c5e81202487"
+					path="/webmd/consumer_assets/site_images/transcript/breus_power_nap_transcript.wxml"/>
+				<wbmd_c_vid_fsize>-599759604</wbmd_c_vid_fsize>
+				<wbmd_c_vid_teaser/>
+				<wbmd_c_vid_citations>Michael J. Breus, PhD, American Board of Sleep Medicine,
+					Clinical Psychology, Clinical Sleep Disorders, Atlanta School of Sleep Medicine,
+					Atlanta.</wbmd_c_vid_citations>
+				<wbmd_c_vid_credits>Michael J. Breus, PhD</wbmd_c_vid_credits>
+				<wbmd_c_shot_dt>nulldate</wbmd_c_shot_dt>
+				<wbmd_c_shot_loc/>
+				<wbmd_c_vid_sp>0</wbmd_c_vid_sp>
+				<wbmd_c_lg_vid_thmbnl>
+					<wbmd_c_width>375</wbmd_c_width>
+					<wbmd_c_ht>321</wbmd_c_ht>
+					<wbmd_c_alt_tag>woman napping on couch</wbmd_c_alt_tag>
+					<image_path>/webmd/consumer_assets/site_images/dam/editorial/healthy-living/sleep/breus-power-nap/graphics/thumbnails/final/breus-power-nap-375x321.jpg</image_path>
+				</wbmd_c_lg_vid_thmbnl>
+				<wbmd_c_channel_id>1106</wbmd_c_channel_id>
+				<wbmd_c_frnd_nm>breus-power-nap</wbmd_c_frnd_nm>
+				<wbmd_c_asset_name>breus-power-nap</wbmd_c_asset_name>
+				<wbmd_c_bumpinloc/>
+				<wbmd_c_bumpindur>0</wbmd_c_bumpindur>
+				<wbmd_c_bumpoutloc/>
+				<wbmd_c_bumpoutdur>0</wbmd_c_bumpoutdur>
+				<wbmd_c_voice_ovr_group>
+					<wbmd_c_voice_ovr/>
+				</wbmd_c_voice_ovr_group>
+				<wbmd_c_parent_img_group/>
+			</metadata_section>
+			<content_section>
+				<tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1"
+					xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling">
+					<body>
+						<div xml:lang="en">
+							<p begin="00:00:04.00"> Michael Breus, PhD: From a napping standpoint,
+								there's the quick 20 minute power nap, which actually can be very
+								effective.</p>
+							<p begin="00:00:10.00">So a power nap is more stages one and stage two.
+								It usually last for approximately 20 minutes. Now a stage one or
+								stage two is sort of light sleep.</p>
+							<p begin="00:00:18.00">This is not the good wake up and feel great
+								sleep, this is a mechanism by which people seem to feel better even
+								though they got light sleep.</p>
+							<p begin="00:00:26.00"><br/><br/>Narrator: When you're doing a power nap
+								then, do you set a timer?</p>
+							<p begin="00:00:29.00"><br/><br/>Michael Breus, PhD: I often tell people
+								to do just that. I actually have people create little nap kits for
+								themselves.</p>
+							<p begin="00:00:36.00">And so, usually people are napping during the
+								day, so I ask them to have eye shades, I ask them to use ear
+								plugs</p>
+							<p begin="00:00:41.00">and I ask them to have one of those little travel
+								alarms that they can put somewhere close by, because the ear plug
+								may zonk out the ability to hear the travel alarm.</p>
+							<p begin="00:00:50.00">So usually, those 2 or 3 things can be good. The
+								biggest problem with naps is finding a safe, comfortable place for
+								people to nap.</p>
+							<p begin="00:00:58.00">So, if you're in an office where you can close
+								your door, that's one thing, but if you're in an environment where
+								that's not the case, a lot of people will go and nap in their
+								cars.</p>
+							<p begin="00:01:05.00">I hesitate to tell people to go nap in their cars
+								unless they have what I call a napping buddy,</p>
+							<p begin="00:01:10.00">where two people are in the car, where one person
+								may be reading and taking some relaxation time where the other
+								person can nap.</p>
+							<p begin="00:01:17.00" end="00:01:23.00" style="1">because what I don't
+								like is people alone in their cars in a parking lot asleep, because
+								then somebody could come by.</p>
+						</div>
+					</body>
+				</tt>
+			</content_section>
+		</wbmd_asset>
+	</content>
+	<friendlyurls>
+		<target siteid="3" name="WebMD" issearchable="true" prefix="www"
+			friendlyurl="/sleep-disorders/video/breus-power-nap" owner="false">
+			<breadcrumb>
+				<bread piece="Sleep Disorders Health Center" prefix="www"
+					friendlyurl="/sleep-disorders/default.htm"/>
+				<bread piece="Sleep Disorders Videos" prefix="www"
+					friendlyurl="/sleep-disorders/video/video-index"/>
+			</breadcrumb>
+			<centers>
+				<Package id="12876" name="webmd ros video" chronicid="" prefix="www"
+					friendlyurl="/sleep-disorders/video/default.htm" type="">Sleep Disorders
+					Video</Package>
+				<Health id="1206" name="health center" chronicid="091e9c5e80693f33" prefix="www"
+					friendlyurl="/sleep-disorders/default.htm" type="">Sleep Disorders</Health>
+			</centers>
+		</target>
+		<target siteid="8" name="WebMD_Mobile" issearchable="true" prefix="www"
+			friendlyurl="/sleep-disorders/video/breus-power-nap" owner="false">
+			<breadcrumb>
+				<bread piece="Sleep Disorders Health Center" prefix="www"
+					friendlyurl="/sleep-disorders/default.htm"/>
+				<bread piece="Videos A-Z" prefix="www"
+					friendlyurl="/sleep-disorders/video/default.htm"/>
+			</breadcrumb>
+			<centers>
+				<Health id="11125" name="health center" chronicid="091e9c5e80cd2d25" prefix="www"
+					friendlyurl="/sleep-disorders/default.htm" type="">Sleep Disorders</Health>
+			</centers>
+		</target>
+	</friendlyurls>
+	<referenced_objects>
+		<object chronic_id="091e9c5e80009a29" thmbnl="" pointer="0"
+			path="/webmd/consumer_assets/editorial/articles/biographies/l/Lamotte_Sandee.wxml">
+			<target siteid="3" name="" prefix="www" friendlyurl="/sandee-lamotte"/>
+			<target siteid="8" name="" prefix="www" friendlyurl="/sandee-lamotte"/>
+		</object>
+		<object chronic_id="091e9c5e8025ed78" thmbnl="" pointer="0"
+			path="/webmd/consumer_assets/editorial/articles/biographies/m/Mintz_Jonathan.wxml">
+			<target siteid="3" name="" prefix="www" friendlyurl="/jonathan-mintz"/>
+			<target siteid="8" name="" prefix="www" friendlyurl="/jonathan-mintz"/>
+		</object>
+	</referenced_objects>
+	<container_hierarchy/>
+	<expanded_objects/>
+	<module_data>
+		<VideoSource chronic_id="091e9c5e802c4f6f" directive="friendlyurl"
+			object_type="wbmd_cons_video" wbmd_lookup_type="" wbmd_storage_value=""/>
+		<WatermarkOverride chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type=""
+			wbmd_storage_value="" path="" alt=""/>
+	</module_data>
+</webmd_rendition>
