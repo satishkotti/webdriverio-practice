@@ -286,27 +286,64 @@ webmd.fundedEditorial = {
 	},
 
 	getSegmentArticleData: function() {
-		var self = this;
+		var self = this,
+			cacheSupport = self.hasStorage();
 
-		$.each(self.segments, function(index, data) {
-  			$.ajax({
-  				url: data.tocUrl,
-  				dataType: 'html',
-  				type: 'get',
-			    success: function(data) {
-			        var html = $.parseHTML(data, document, true),
-			        	domEl = findInParsed(html, 'script#articleData'),
-			        	segmentedData = domEl['0'].innerText;
+		if (!cacheSupport) {
+			getSegmentsByAjax();
+		} else {
+			getSegmentsByCache();
+		}
 
-			        segmentedData = segmentedData.replace('	webmd.fundedEditorial.articleData = ', '');
-			        segmentedData = segmentedData.replace(';','');
-			        segmentedData = $.parseJSON(segmentedData);
+		function getSegmentsByAjax() {
+			var total = webmd.fundedEditorial.segments.length;
 
-			        self.segments[index].articleData = segmentedData;
-	  				//console.log('articleData' + index, segmentedData);
-			    }
+			$.each(webmd.fundedEditorial.segments, function(index, data) {
+	  			$.ajax({
+	  				url: data.tocURL,
+	  				dataType: 'html',
+	  				type: 'get',
+				    success: function(data) {
+				        var html = $.parseHTML(data, document, true),
+				        	domEl = findInParsed(html, 'script#articleData'),
+				        	segmentedData = domEl['0'].innerText,
+				        	strData;
+
+				        segmentedData = segmentedData.replace('webmd.fundedEditorial.articleData', '');
+				        segmentedData = segmentedData.replace(/=/g, '');
+				        segmentedData = segmentedData.replace(/;/g, '');
+				        segmentedData = $.trim(segmentedData);
+				        segmentedData = $.parseJSON(segmentedData);
+
+				        webmd.fundedEditorial.segments[index].articleData = segmentedData;
+
+				        if (cacheSupport && (index === total - 1)) {
+							strData = JSON.stringify(webmd.fundedEditorial.segments);
+							sessionStorage.setItem('webmd_fundedEditorial_segments', strData);
+						}
+				    }
+				});
 			});
-		});
+		}
+
+		function getSegmentsByCache() {
+			var cachedSegmentData = sessionStorage.getItem('webmd_fundedEditorial_segments'),
+				parsedSegmentData;
+
+			if(cachedSegmentData === null) {
+				getSegmentsByAjax();
+			} else {
+				parsedSegmentData = JSON.parse(cachedSegmentData);
+				$.each(webmd.fundedEditorial.segments, function(index, data) {
+					if (!('articleData' in webmd.fundedEditorial.segments[index]) && ('articleData' in parsedSegmentData[index])) {
+						webmd.fundedEditorial.segments[index].articleData = parsedSegmentData[index].articleData;
+					} else {
+						getSegmentsByAjax();
+						return false;
+					}
+				});
+			}
+		}
 
 		function findInParsed(html, selector) {
 		    var check = $(selector, html).get(0);

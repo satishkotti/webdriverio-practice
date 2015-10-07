@@ -107,8 +107,8 @@ webmd.fundedEditorial.nextUp = {
 		$.each(webmd.fundedEditorial.segments, function(index, data) {
 			var checkData = setInterval(function() {
 				if ('articleData' in data) {
-					createUpNextSegment(data);
 					clearInterval(checkData);
+					createUpNextSegment(data);
 				}
 			}, 200);
 		});
@@ -120,7 +120,6 @@ webmd.fundedEditorial.nextUp = {
 				$segmentDiv = $('<div></div>'),
 				$segmentTitle = $('<a></a>');
 
-			
 			$segmentTitle.addClass('wbmd-segment-title').html(segmentData.articleData.program.title).attr('href', segmentData.articleData.program.tocLink);
 			$segmentDiv.addClass('wbmd-segment').append($segmentTitle);
 			$segmentContainer.addClass('wbmd-segment-container').append($segmentDiv);
