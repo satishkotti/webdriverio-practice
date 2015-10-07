@@ -286,7 +286,13 @@ webmd.fundedEditorial = {
 	},
 
 	getSegmentArticleData: function() {
-		var self = this;
+		var self = this,
+			segments = webmd.fundedEditorial.segments;
+
+		// remove current segment from array
+		webmd.fundedEditorial.segments = segments.filter(function (segment) {
+			return segment.currentSeg !== true;
+		});
 
 		getSegmentsByAjax();
 
