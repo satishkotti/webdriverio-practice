@@ -357,9 +357,13 @@ webmd.fundedEditorial = {
 		});
 
 		$(window).load(function() {
-			webmd.scrollTo(true, null, 90, true, true, false);
+			self.scrollTo(true, null, 90, true, true, false); // scroll using URL hash
 		});
 
+		return self;
+	},
+
+	scrollTo: function(urlHash, domEl, extPad, desktop, tablet, mobile) {
 		/*
 		 * Scrolls to the specified element on page
 		 * @param {Boolean} on Indicates whether to use the URL hash value to scroll to (overrides elem param when on)
@@ -373,30 +377,27 @@ webmd.fundedEditorial = {
 		 * URL Hash : scrollTo(true, null, 90, true, true, false);
 		 * DOM Element : scrollTo(false, '.element', 90, true, true, false);
 		 */
-		webmd.scrollTo = function(urlHash, domEl, extPad, desktop, tablet, mobile) {
-			var scrollInt,
-				element = (urlHash) ? (location.hash || window.location.hash) : domEl;
 
-			if (typeof element === 'string') {
-				scrollInt = setInterval(function() {
-					if ($(element).length > 0) {
-						var position = $(element).offset().top - extPad;
+		 var scrollInt,
+			element = (urlHash) ? (location.hash || window.location.hash) : domEl;
 
-						if ((desktop && (webmd.useragent.ua.type === 'desktop')) ||
-							(tablet  && (webmd.useragent.ua.type === 'tablet' )) ||
-							(mobile  && (webmd.useragent.ua.type === 'mobile' ))) {
-							$('html, body').animate({ scrollTop: position }, 10);
-						}
+		if (typeof element === 'string') {
+			scrollInt = setInterval(function() {
+				if ($(element).length > 0) {
+					var position = $(element).offset().top - extPad;
 
-						clearInterval(scrollInt);
+					if ((desktop && (webmd.useragent.ua.type === 'desktop')) ||
+						(tablet  && (webmd.useragent.ua.type === 'tablet' )) ||
+						(mobile  && (webmd.useragent.ua.type === 'mobile' ))) {
+						$('html, body').animate({ scrollTop: position }, 10);
 					}
-				}, 100);
-			}
 
-			return false;
-		};
+					clearInterval(scrollInt);
+				}
+			}, 100);
+		}
 
-		return self;
+		return false;
 	},
 
 	stickMasthead: function(mastheadH) {
