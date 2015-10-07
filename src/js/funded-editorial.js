@@ -295,8 +295,14 @@ webmd.fundedEditorial = {
 
 			//Loop through each segment
 			$.each(webmd.fundedEditorial.segments, function(index, data) {
-	  			//Perform an AJAX 'get' on segment TOC URL
-	  			$.get('http://www' + webmd.url.getLifecycle() + '.webmd.com/modules/sponsor-box?id=' + data.artDataId, function(data) {
+	  			//Perform an AJAX 'get' on segment documentum ID
+	  			$.ajax({
+	  				url: 'http://www' + webmd.url.getLifecycle() + '.webmd.com/modules/sponsor-box',
+	  				type: 'GET',
+	  				data: 'id=' + data.artDataId,
+	  				dataType: 'html',
+	  				cache: false,
+	  				success: function(data) {
 				        var html = $.parseHTML(data, document, true), //Parse HTML (returns array of nodes, including <script> nodes)
 				        	domEl = findInParsed(html, 'script#articleData'), //Find 'script#articleData' within Parsed HTML using function findInParsed
 				        	segmentedData = domEl['0'].innerText;
@@ -311,7 +317,7 @@ webmd.fundedEditorial = {
 				        //Store parsed JSON articleData in segment as new key/value
 				        webmd.fundedEditorial.segments[index].articleData = segmentedData;
 				    }
-				);
+				});
 			});
 		}
 
