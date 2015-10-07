@@ -15,39 +15,6 @@
 	<xsl:variable name="content" select="/webmd_rendition/content/wbmd_asset/content_section"/>
 	<xsl:variable name="metadata" select="/webmd_rendition/content/wbmd_asset/metadata_section"/>
 	<xsl:variable name="video_url" select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_loc_url[1]"/>
-	<xsl:variable name="video_desc">
-		<!--xsl:call-template name="ReplaceString">
-			<xsl:with-param name="string">
-				<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_desc_user"/>
-			</xsl:with-param>
-			<xsl:with-param name="find">
-				<xsl:text>	</xsl:text>
-			</xsl:with-param>
-			<xsl:with-param name="replace"><![CDATA[]]></xsl:with-param>
-		</xsl:call-template-->
-		<xsl:call-template name="insertBreaks">
-			<xsl:with-param name="pText">
-				<xsl:call-template name="ReplaceString">
-					<xsl:with-param name="string">
-						<xsl:call-template name="ReplaceString">
-							<xsl:with-param name="string">
-								<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_desc_user"/>
-							</xsl:with-param>
-							<xsl:with-param name="find">
-								<xsl:text>	</xsl:text>
-							</xsl:with-param>
-							<xsl:with-param name="replace"><![CDATA[]]></xsl:with-param>
-						</xsl:call-template>
-					</xsl:with-param>
-					<xsl:with-param name="find">
-						<xsl:text>
-</xsl:text>
-					</xsl:with-param>
-					<xsl:with-param name="replace"><![CDATA[[br]]]></xsl:with-param>
-				</xsl:call-template>
-			</xsl:with-param>
-		</xsl:call-template>
-	</xsl:variable>
 	
 	<xsl:template match="/">
 		<xsl:if test="$identity = 1">
@@ -62,27 +29,9 @@
 			</xsl:element>
 			<xsl:element name="div">
 				<xsl:attribute name="class">desc</xsl:attribute>
-				<!--xsl:value-of select="$video_desc"/-->
 				<xsl:call-template name="insertBreaks">
 					<xsl:with-param name="pText">
-						<xsl:call-template name="ReplaceString">
-							<xsl:with-param name="string">
-								<xsl:call-template name="ReplaceString">
-									<xsl:with-param name="string">
-										<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_desc_user"/>
-									</xsl:with-param>
-									<xsl:with-param name="find">
-										<xsl:text>	</xsl:text>
-									</xsl:with-param>
-									<xsl:with-param name="replace"><![CDATA[]]></xsl:with-param>
-								</xsl:call-template>
-							</xsl:with-param>
-							<xsl:with-param name="find">
-								<xsl:text>
-</xsl:text>
-							</xsl:with-param>
-							<xsl:with-param name="replace"><![CDATA[[br]]]></xsl:with-param>
-						</xsl:call-template>
+						<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_desc_user"/>
 					</xsl:with-param>
 				</xsl:call-template>
 			</xsl:element>
@@ -157,9 +106,11 @@
 	
 	<xsl:template match="text()" name="insertBreaks">
 		<xsl:param name="pText" select="." />
-		<xsl:param name="nl" select="'[br]'" />
+		<xsl:param name="nl">
+			<xsl:text>
+</xsl:text>
+		</xsl:param>
 
-		<!--xsl:value-of select="$pText" /-->
 		<xsl:choose>
 			<xsl:when test="not(contains($pText, $nl))">
 				<xsl:copy-of select="$pText"/>
