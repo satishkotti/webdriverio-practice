@@ -76,16 +76,16 @@
         <link rel="apple-touch-icon-precomposed" type="text/css" sizes="72x72" href="/favico/apple-touch-icon-72x72-precomposed.png"/>
         <link rel="apple-touch-icon-precomposed" type="text/css" sizes="114x114" href="/favico/apple-touch-icon-114x114-precomposed.png"/>
 
-        <link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/Site/WebMD_091e9c5e8004a224105.css"/>
+        <link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/Site/WebMD_091e9c5e8004a224116.css"/>
         <link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/Flexible_Layout_CSS/Runtime/2_column_layout_harmony117.css"/>
 
-        <link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Funded Flexible Layout Base Template_091e9c5e811bec4f/template_Responsive Flexible Layout Base Template_091e9c5e811bec4f_tmodules_css_142.css"/>
-        <link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Funded Flexible Layout Base Template_091e9c5e811d0d15/template_Funded Flexible Layout Base Template_091e9c5e811d0d15_tmodules_css_129.css"/>
-        <link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Program Title MAIN_091e9c5e811f02e4/template_Program Title MAIN_091e9c5e811f02e4_tmodules_css_399.css"/>
-        <link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Program Title ARTICLE_091e9c5e811f02e6/template_Program Title ARTICLE_091e9c5e811f02e6_tmodules_css_64.css"/>
-        <link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/See All Page_091e9c5e81242beb/page_See All Page_091e9c5e81242beb_pmodules_css_31.css"/>
-        <link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/responsive/responsive.min21.css"/>
+        <link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Funded Flexible Layout Base Template_091e9c5e811bec4f/template_Responsive Flexible Layout Base Template_091e9c5e811bec4f_tmodules_css_179.css"/>
+        <link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Funded Flexible Layout Base Template_091e9c5e811d0d15/template_Funded Flexible Layout Base Template_091e9c5e811d0d15_tmodules_css_143.css"/>
+        <link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Program Title MAIN_091e9c5e811f02e4/template_Program Title MAIN_091e9c5e811f02e4_tmodules_css_466.css"/>
+        <link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/See All Page_091e9c5e81242beb/page_See All Page_091e9c5e81242beb_pmodules_css_50.css"/>
+        <link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/responsive/responsive.min23.css"/>
         <link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/funded-editorial/funded-editorial16.css"/>
+
 
         <script type="text/javascript" src="http://js.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/JS/harmony/scripts_harmony104.js"></script>
         <script type="text/javascript" src="http://js.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/JS/oas168.js"></script>
@@ -1198,45 +1198,65 @@ $(function(){
                         <h1>All {{program.title}}</h1>
                     </header>
 
-                    <article id="art" class="article see-all" data-metrics-module="art">
+                    <article id="art" class="article see-all">
                         <div class="article-content">
-                            <div class="see-all-items non-spon">
+                            <div class="see-all-items non-spon" data-metrics-module="ed-rspsvalledcon">
                                 <ul>
-                                    {{#each articles}}
+                                    {{#each_when articles "sponsored" false}}
                                     <li class="see-all-item spon-{{sponsored}}">
-                                        <a href="{{link}}">
+                                        <a href="{{link}}" data-metrics-link="{{nonSponPos}}">
                                             <div class="see-all-img {{type}}">
-                                                <img src="{{images.image110x70}}" alt="{{title}}">
+                                                <img src="{{image_server_url}}/{{images.image110x70}}" alt="{{title}}">
                                             </div>
                                             <p>{{title}}</p>
                                         </a>
                                     </li>
-                                    {{/each}}
+                                    {{/each_when}}
                                 </ul>
                             </div>
-                            <div class="see-all-items spon">
+                            <div class="see-all-items spon" data-metrics-module="ed-rspsvallspcon">
                                 <h3>From Our Sponsor</h3>
                                 <ul>
-                                    {{#each articles}}
+                                    {{#each_when articles "sponsored" true}}
                                     <li class="see-all-item spon-{{sponsored}}">
-                                        <a href="{{link}}">
+                                        <a href="{{link}}" data-metrics-link="{{sponPos}}">
                                             <div class="see-all-img {{type}}">
-                                                <img src="{{images.image110x70}}" alt="{{title}}">
+                                                <img src="{{image_server_url}}/{{images.image110x70}}" alt="{{title}}">
                                             </div>
                                             <p class="fos">From Our Sponsor</p>
                                             <p>{{title}}</p>
                                         </a>
                                     </li>
-                                    {{/each}}
+                                    {{/each_when}}
                                 </ul>
                             </div>
                         </div>
                     </article>
                     </script>
                     <script>
+                    $('html').addClass('funded-editorial-see-all');
                     $(function(){
                         require(["handlebars/1/handlebars"], function(Handlebars) {
-                            if (typeof article_data !== "undefined") {
+                            if (typeof webmd.fundedEditorial.articleData !== "undefined") {
+                                var nonSponCounter = 1,
+                                    sponCounter = 1;
+                                Handlebars.registerHelper('each_when', function(list, k, v, opts) {
+                                    var i, result = '';
+                                    for(i = 0; i < list.length; ++i)
+                                        if(list[i][k] == v)
+                                            result = result + opts.fn(list[i]);
+                                    return result;
+
+                                });
+                                Handlebars.registerHelper('image_server_url', function() {
+                                    return image_server_url; //just return global variable value
+                                });
+                                Handlebars.registerHelper('nonSponPos', function() {
+                                    return nonSponCounter++;
+                                });
+                                Handlebars.registerHelper('sponPos', function() {
+                                    return sponCounter++;
+                                });
                                 var template = $("#see-all-template"),
                                     container = $(".see-all-shell"),
                                     source = template.html(),

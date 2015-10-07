@@ -22,6 +22,9 @@
             <xsl:attribute name="class">
                 <xsl:text>wbmd-tips</xsl:text>
             </xsl:attribute>
+            <xsl:attribute name="data-module-name">
+                <xsl:text><![CDATA[ed-rspsvtocprm-]]></xsl:text>
+            </xsl:attribute>
             
             <xsl:element name="ul">
                 <xsl:attribute name="id">tips_slides</xsl:attribute>

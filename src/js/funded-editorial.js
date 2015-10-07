@@ -76,7 +76,7 @@ webmd.fundedEditorial = {
 		}
 
 		if ($('#attribution_rdr').length) {
-			self.moveAttribution();
+			//self.moveAttribution();
 		}
 
 		if (s_sponsor_program !== 'undefined' && s_sponsor_program !== '') {
@@ -90,6 +90,10 @@ webmd.fundedEditorial = {
 
 		if (artObjParam == 1) {
 			self.showArticleObj();
+		}
+
+		if (self.segments && self.segments.length > 0) {
+			self.getSegmentArticleData();
 		}
 	},
 
@@ -174,7 +178,7 @@ webmd.fundedEditorial = {
 					'<button>Show Article Object</button>'
 				);
 
-			$('#toolbar').prepend($div);
+			$('#ContentPane14').prepend($div);
 		}
 
 		function injectHBtemplateJS() {
@@ -191,24 +195,26 @@ webmd.fundedEditorial = {
 					'<table class="art-seq">' + newline +
 						'<thead>' + newline +
 							'<tr>' + newline +
-								'<th>Id</th>' + newline +
+								'<th width="40px">Id</th>' + newline +
+								'<th>DCTM Id</th>' + newline +
 								'<th>Title</th>' + newline +
-								'<th>Description</th>' + newline +
+								//'<th>Description</th>' + newline +
 								'<th>URL</th>' + newline +
-								'<th>Image</th>' + newline +
-								'<th>Funded</th>' + newline +
-								'<th>Sponsored</th>' + newline +
+								//'<th>Image</th>' + newline +
+								'<th>Stand</th>' + newline +
+								'<th>Spon</th>' + newline +
 								'<th>Type</th>' + newline +
 							'</tr>' + newline +
 						'</thead>' + newline +
 						'<tbody>' + newline +
 							'{{#each articles}}' + newline +
 							'<tr>' + newline +
+								'<td width="40px" class="dctm cnt-mid">{{math @index "+" 1}}</td>' + newline +
 								'<td class="dctm cnt-mid">{{id}}</td>' + newline +
 								'<td class="title mid">{{title}}</td>' + newline +
-								'<td class="desc mid">{{description}}</td>' + newline +
+								//'<td class="desc mid">{{description}}</td>' + newline +
 								'<td class="link mid"><a href="{{link}}" target="_blank">{{link}}</a></td>' + newline +
-								'<td class="img cnt-mid"><img src="' + window.image_server_url + '{{images.image79x79}}" alt=""></td>' + newline +
+								//'<td class="img cnt-mid"><img src="' + window.image_server_url + '{{images.image79x79}}" alt=""></td>' + newline +
 								'<td class="fund cnt-mid">' + newline +
 									'{{#unless sponsored}}' + newline +
 									'<span class="icon-check"></span>' + newline +
@@ -238,6 +244,19 @@ webmd.fundedEditorial = {
 				injectHBtemplateJS();
 
 				require(['handlebars/1/handlebars'], function(Handlebars) {
+					Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
+						lvalue = parseFloat(lvalue);
+						rvalue = parseFloat(rvalue);
+
+						return {
+							"+": lvalue + rvalue,
+							"-": lvalue - rvalue,
+							"*": lvalue * rvalue,
+							"/": lvalue / rvalue,
+							"%": lvalue % rvalue
+						}[operator];
+					});
+
 					/* jshint ignore:start */
 					!function(a,b){"use strict";function c(c,g){var h=this;h.$el=a(c),h.el=c,h.id=e++,h.$el.bind("destroyed",a.proxy(h.teardown,h)),h.$clonedHeader=null,h.$originalHeader=null,h.isSticky=!1,h.hasBeenSticky=!1,h.leftOffset=null,h.topOffset=null,h.init=function(){h.setOptions(g),h.$el.each(function(){var b=a(this);b.css("padding",0),h.$originalHeader=a("thead:first",this),h.$clonedHeader=h.$originalHeader.clone(),b.trigger("clonedHeader."+d,[h.$clonedHeader]),h.$clonedHeader.addClass("tableFloatingHeader"),h.$clonedHeader.css("display","none"),h.$originalHeader.addClass("tableFloatingHeaderOriginal"),h.$originalHeader.after(h.$clonedHeader),h.$printStyle=a('<style type="text/css" media="print">.tableFloatingHeader{display:none !important;}.tableFloatingHeaderOriginal{position:static !important;}</style>'),h.$head.append(h.$printStyle)}),h.updateWidth(),h.toggleHeaders(),h.bind()},h.destroy=function(){h.$el.unbind("destroyed",h.teardown),h.teardown()},h.teardown=function(){h.isSticky&&h.$originalHeader.css("position","static"),a.removeData(h.el,"plugin_"+d),h.unbind(),h.$clonedHeader.remove(),h.$originalHeader.removeClass("tableFloatingHeaderOriginal"),h.$originalHeader.css("visibility","visible"),h.$printStyle.remove(),h.el=null,h.$el=null},h.bind=function(){h.$scrollableArea.on("scroll."+d,h.toggleHeaders),h.isWindowScrolling||(h.$window.on("scroll."+d+h.id,h.setPositionValues),h.$window.on("resize."+d+h.id,h.toggleHeaders)),h.$scrollableArea.on("resize."+d,h.toggleHeaders),h.$scrollableArea.on("resize."+d,h.updateWidth)},h.unbind=function(){h.$scrollableArea.off("."+d,h.toggleHeaders),h.isWindowScrolling||(h.$window.off("."+d+h.id,h.setPositionValues),h.$window.off("."+d+h.id,h.toggleHeaders)),h.$scrollableArea.off("."+d,h.updateWidth)},h.toggleHeaders=function(){h.$el&&h.$el.each(function(){var b,c=a(this),e=h.isWindowScrolling?isNaN(h.options.fixedOffset)?h.options.fixedOffset.outerHeight():h.options.fixedOffset:h.$scrollableArea.offset().top+(isNaN(h.options.fixedOffset)?0:h.options.fixedOffset),f=c.offset(),g=h.$scrollableArea.scrollTop()+e,i=h.$scrollableArea.scrollLeft(),j=h.isWindowScrolling?g>f.top:e>f.top,k=(h.isWindowScrolling?g:0)<f.top+c.height()-h.$clonedHeader.height()-(h.isWindowScrolling?0:e);j&&k?(b=f.left-i+h.options.leftOffset,h.$originalHeader.css({position:"fixed","margin-top":h.options.marginTop,left:b,"z-index":3}),h.leftOffset=b,h.topOffset=e,h.$clonedHeader.css("display",""),h.isSticky||(h.isSticky=!0,h.updateWidth(),c.trigger("enabledStickiness."+d)),h.setPositionValues()):h.isSticky&&(h.$originalHeader.css("position","static"),h.$clonedHeader.css("display","none"),h.isSticky=!1,h.resetWidth(a("td,th",h.$clonedHeader),a("td,th",h.$originalHeader)),c.trigger("disabledStickiness."+d))})},h.setPositionValues=function(){var a=h.$window.scrollTop(),b=h.$window.scrollLeft();!h.isSticky||0>a||a+h.$window.height()>h.$document.height()||0>b||b+h.$window.width()>h.$document.width()||h.$originalHeader.css({top:h.topOffset-(h.isWindowScrolling?0:a),left:h.leftOffset-(h.isWindowScrolling?0:b)})},h.updateWidth=function(){if(h.isSticky){h.$originalHeaderCells||(h.$originalHeaderCells=a("th,td",h.$originalHeader)),h.$clonedHeaderCells||(h.$clonedHeaderCells=a("th,td",h.$clonedHeader));var b=h.getWidth(h.$clonedHeaderCells);h.setWidth(b,h.$clonedHeaderCells,h.$originalHeaderCells),h.$originalHeader.css("width",h.$clonedHeader.width())}},h.getWidth=function(c){var d=[];return c.each(function(c){var e,f=a(this);if("border-box"===f.css("box-sizing")){var g=f[0].getBoundingClientRect();e=g.width?g.width:g.right-g.left}else{var i=a("th",h.$originalHeader);if("collapse"===i.css("border-collapse"))if(b.getComputedStyle)e=parseFloat(b.getComputedStyle(this,null).width);else{var j=parseFloat(f.css("padding-left")),k=parseFloat(f.css("padding-right")),l=parseFloat(f.css("border-width"));e=f.outerWidth()-j-k-l}else e=f.width()}d[c]=e}),d},h.setWidth=function(a,b,c){b.each(function(b){var d=a[b];c.eq(b).css({"min-width":d,"max-width":d})})},h.resetWidth=function(b,c){b.each(function(b){var d=a(this);c.eq(b).css({"min-width":d.css("min-width"),"max-width":d.css("max-width")})})},h.setOptions=function(b){h.options=a.extend({},f,b),h.$window=a(h.options.objWindow),h.$head=a(h.options.objHead),h.$document=a(h.options.objDocument),h.$scrollableArea=a(h.options.scrollableArea),h.isWindowScrolling=h.$scrollableArea[0]===h.$window[0]},h.updateOptions=function(a){h.setOptions(a),h.unbind(),h.bind(),h.updateWidth(),h.toggleHeaders()},h.init()}var d="stickyTableHeaders",e=0,f={fixedOffset:0,leftOffset:0,marginTop:0,objDocument:document,objHead:"head",objWindow:b,scrollableArea:b};a.fn[d]=function(b){return this.each(function(){var e=a.data(this,"plugin_"+d);e?"string"==typeof b?e[b].apply(e):e.updateOptions(b):"destroy"!==b&&a.data(this,"plugin_"+d,new c(this,b))})}}(jQuery,window);
 					/* jshint ignore:end */
@@ -266,6 +285,63 @@ webmd.fundedEditorial = {
 		}
 	},
 
+	getSegmentArticleData: function() {
+		var self = this,
+			segments = webmd.fundedEditorial.segments;
+
+		// remove current segment from array
+		webmd.fundedEditorial.segments = segments.filter(function (segment) {
+			return segment.currentSeg !== true;
+		});
+
+		getSegmentsByAjax();
+
+		function getSegmentsByAjax() {
+			var total = webmd.fundedEditorial.segments.length;
+
+			//Loop through each segment
+			$.each(webmd.fundedEditorial.segments, function(index, data) {
+				//Perform an AJAX 'get' on segment documentum ID
+				$.ajax({
+					url: 'http://www' + webmd.url.getLifecycle() + '.webmd.com/modules/sponsor-box',
+					type: 'GET',
+					data: 'id=' + data.artDataId,
+					dataType: 'html',
+					cache: false,
+					success: function(data) {
+						var html = $.parseHTML(data, document, true), //Parse HTML (returns array of nodes, including <script> nodes)
+							domEl = findInParsed(html, 'script#articleData'), //Find 'script#articleData' within Parsed HTML using function findInParsed
+							segmentedData = domEl['0'].innerText;
+
+						//Cleanup string found in segmentedData (need to parse as JSON)
+						segmentedData = segmentedData.replace('webmd.fundedEditorial.articleData', '');
+						segmentedData = segmentedData.replace(/=/g, '');
+						segmentedData = segmentedData.replace(/;/g, '');
+						segmentedData = $.trim(segmentedData);
+						segmentedData = $.parseJSON(segmentedData);
+
+						//Store parsed JSON articleData in segment as new key/value
+						webmd.fundedEditorial.segments[index].articleData = segmentedData;
+					}
+				});
+			});
+		}
+
+		function findInParsed(html, selector) {
+			// Look for the selector 'script#articleData' inside the parsed HTML array
+			// return the HTML DOM element if found
+			var check = $(selector, html).get(0);
+
+			if (check) {
+				return $(check);
+			}
+
+			check = $(html).filter(selector).get(0);
+
+			return (check) ? $(check) : false;
+		}
+	},
+
 	bindEvents: function() {
 		var self = this,
 			mastheadH = $('.masthead').outerHeight(true);
@@ -280,7 +356,48 @@ webmd.fundedEditorial = {
 			}
 		});
 
+		$(window).load(function() {
+			self.scrollTo(true, null, 90, true, true, false); // scroll using URL hash
+		});
+
 		return self;
+	},
+
+	scrollTo: function(urlHash, domEl, extPad, desktop, tablet, mobile) {
+		/*
+		 * Scrolls to the specified element on page
+		 * @param {Boolean} on Indicates whether to use the URL hash value to scroll to (overrides elem param when on)
+		 * @param {String} elem The element on which to scroll to
+		 * @param {Number} value specifies extra padding (i.e. account fixed masthead or menu that may cover element)
+		 * @param {Boolean} on Indicates scrolling will be enabled on desktop
+		 * @param {Boolean} on Indicates scrolling will be enabled on tablet
+		 * @param {Boolean} on Indicates scrolling will be enabled on mobile
+		 *
+		 * Examples ---
+		 * URL Hash : scrollTo(true, null, 90, true, true, false);
+		 * DOM Element : scrollTo(false, '.element', 90, true, true, false);
+		 */
+
+		var scrollInt,
+			element = (urlHash) ? (location.hash || window.location.hash) : domEl;
+
+		if (typeof element === 'string') {
+			scrollInt = setInterval(function() {
+				if ($(element).length > 0) {
+					var position = $(element).offset().top - extPad;
+
+					if ((desktop && (webmd.useragent.ua.type === 'desktop')) ||
+						(tablet  && (webmd.useragent.ua.type === 'tablet' )) ||
+						(mobile  && (webmd.useragent.ua.type === 'mobile' ))) {
+						$('html, body').animate({ scrollTop: position }, 10);
+					}
+
+					clearInterval(scrollInt);
+				}
+			}, 100);
+		}
+
+		return false;
 	},
 
 	stickMasthead: function(mastheadH) {
@@ -388,7 +505,8 @@ webmd.fundedEditorial = {
 			$.each($nodes, function() {
 				var $node = $(this), // use the node from XSL
 					contentPaneId = $node.closest('div.pane')[0].id, // get the id of the parent content pane
-					$childNodes;
+					$childNodes,
+					articlePos = 0;
 
 				// Continue to setup key and nodes if not already in object
 				if (!(contentPaneId in self.contentPanes)) {
@@ -405,6 +523,13 @@ webmd.fundedEditorial = {
 						if (!$child.hasClass('moduleSpacer_rdr')) {
 							self.setupChild($child);
 
+							if ($child.hasClass('msnry-article')) {
+								articlePos = articlePos + 1;
+								self.setupChild($child, articlePos);
+							} else {
+								self.setupChild($child, false);
+							}
+
 							//self.allNodes.push(this); //temporary - use the below line instead
 							self.contentPanes[contentPaneId].nodes.push({
 								'node': $child
@@ -417,7 +542,7 @@ webmd.fundedEditorial = {
 			self.createGridWrapper();
 		},
 
-		setupChild: function($node) {
+		setupChild: function($node, position) {
 			var self = this,
 				nodeId = $node.attr('id'),
 				nodeArticleNum = $node.data('articleNum'),
@@ -427,7 +552,10 @@ webmd.fundedEditorial = {
 				articles = self.article_data.articles,
 				newline = '\n',
 				articleId,
-				article;
+				article,
+				$a = $('<a></a>'),
+				$img = $('<img/>'),
+				$p = $('<p></p>');
 
 
 			$node.addClass('wbmd-grid-item'); // adds the masonry grid item class to node
@@ -451,12 +579,12 @@ webmd.fundedEditorial = {
 				articleIndex = articles.indexOf(article) + 1;
 
 				if (articleIndex === nodeArticleNum) {
-					$node.html(
-						'<a href="' + article.link + '">' + newline +
-							'<img src="' + image_server_url + article.images.image493x335 + '">' + newline +
-							'<p>' + article.title + '</p>' + newline +
-						'</a>' + newline
-					);
+					$a.attr({ 'href' : article.link, 'data-metrics-link' : position });
+					$img.attr({ 'src' : image_server_url + article.images.image493x335 });
+					$p.text(article.title);
+
+					$node.html('');
+					$node.append($a.append($img).append($p));
 
 					if (article.visited) {
 						$node.addClass('visited');
@@ -568,6 +696,7 @@ webmd.fundedEditorial = {
 							newHeight = ((standardTileHeight * multiplier) + (gutter * multiplier)) - gutter;
 
 							if (adArray.indexOf($node.attr('id')) !== -1) {
+								console.log($node.attr('id'));
 								btmMargin = newHeight - nodeH;
 								$node.attr('style', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
 							}
@@ -621,8 +750,8 @@ webmd.fundedEditorial = {
 
 						if ($(window).width() >= 980) {
 							setTimeout(function() {
-				            	self.adjustPositions();
-				            }, 500);
+								self.adjustPositions();
+							}, 500);
 						}
 					} else {
 						$(masonryGrid).imagesLoaded(function() {
@@ -663,9 +792,9 @@ webmd.fundedEditorial = {
 				}, 500);
 			});
 
-        	$(window).load(function() {
-        		self.fixLayout();
-        	});
+			$(window).load(function() {
+				self.fixLayout();
+			});
 
 		},
 

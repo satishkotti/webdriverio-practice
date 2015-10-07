@@ -15,6 +15,9 @@
             <xsl:attribute name="class">
                 <xsl:text>article-nav-container</xsl:text>
             </xsl:attribute>
+            <xsl:attribute name="data-metrics-module">
+                <xsl:text><![CDATA[lln-rspsvpddl]]></xsl:text>
+            </xsl:attribute>
         </xsl:element>
         <xsl:element name="script">
         <![CDATA[require(["funded-editorial/1/funded-navigation"]);]]>
