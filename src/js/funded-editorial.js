@@ -301,44 +301,44 @@ webmd.fundedEditorial = {
 
 			//Loop through each segment
 			$.each(webmd.fundedEditorial.segments, function(index, data) {
-	  			//Perform an AJAX 'get' on segment documentum ID
-	  			$.ajax({
-	  				url: 'http://www' + webmd.url.getLifecycle() + '.webmd.com/modules/sponsor-box',
-	  				type: 'GET',
-	  				data: 'id=' + data.artDataId,
-	  				dataType: 'html',
-	  				cache: false,
-	  				success: function(data) {
-				        var html = $.parseHTML(data, document, true), //Parse HTML (returns array of nodes, including <script> nodes)
-				        	domEl = findInParsed(html, 'script#articleData'), //Find 'script#articleData' within Parsed HTML using function findInParsed
-				        	segmentedData = domEl['0'].innerText;
+				//Perform an AJAX 'get' on segment documentum ID
+				$.ajax({
+					url: 'http://www' + webmd.url.getLifecycle() + '.webmd.com/modules/sponsor-box',
+					type: 'GET',
+					data: 'id=' + data.artDataId,
+					dataType: 'html',
+					cache: false,
+					success: function(data) {
+						var html = $.parseHTML(data, document, true), //Parse HTML (returns array of nodes, including <script> nodes)
+							domEl = findInParsed(html, 'script#articleData'), //Find 'script#articleData' within Parsed HTML using function findInParsed
+							segmentedData = domEl['0'].innerText;
 
-				        //Cleanup string found in segmentedData (need to parse as JSON)
-				        segmentedData = segmentedData.replace('webmd.fundedEditorial.articleData', '');
-				        segmentedData = segmentedData.replace(/=/g, '');
-				        segmentedData = segmentedData.replace(/;/g, '');
-				        segmentedData = $.trim(segmentedData);
-				        segmentedData = $.parseJSON(segmentedData);
+						//Cleanup string found in segmentedData (need to parse as JSON)
+						segmentedData = segmentedData.replace('webmd.fundedEditorial.articleData', '');
+						segmentedData = segmentedData.replace(/=/g, '');
+						segmentedData = segmentedData.replace(/;/g, '');
+						segmentedData = $.trim(segmentedData);
+						segmentedData = $.parseJSON(segmentedData);
 
-				        //Store parsed JSON articleData in segment as new key/value
-				        webmd.fundedEditorial.segments[index].articleData = segmentedData;
-				    }
+						//Store parsed JSON articleData in segment as new key/value
+						webmd.fundedEditorial.segments[index].articleData = segmentedData;
+					}
 				});
 			});
 		}
 
 		function findInParsed(html, selector) {
-		    // Look for the selector 'script#articleData' inside the parsed HTML array
-		    // return the HTML DOM element if found
-		    var check = $(selector, html).get(0);
+			// Look for the selector 'script#articleData' inside the parsed HTML array
+			// return the HTML DOM element if found
+			var check = $(selector, html).get(0);
 
-		    if (check) {
-		        return $(check);
-		    }
+			if (check) {
+				return $(check);
+			}
 
-		    check = $(html).filter(selector).get(0);
+			check = $(html).filter(selector).get(0);
 
-		    return (check) ? $(check) : false;
+			return (check) ? $(check) : false;
 		}
 	},
 
@@ -378,7 +378,7 @@ webmd.fundedEditorial = {
 		 * DOM Element : scrollTo(false, '.element', 90, true, true, false);
 		 */
 
-		 var scrollInt,
+		var scrollInt,
 			element = (urlHash) ? (location.hash || window.location.hash) : domEl;
 
 		if (typeof element === 'string') {
@@ -750,8 +750,8 @@ webmd.fundedEditorial = {
 
 						if ($(window).width() >= 980) {
 							setTimeout(function() {
-				            	self.adjustPositions();
-				            }, 500);
+								self.adjustPositions();
+							}, 500);
 						}
 					} else {
 						$(masonryGrid).imagesLoaded(function() {
@@ -792,9 +792,9 @@ webmd.fundedEditorial = {
 				}, 500);
 			});
 
-        	$(window).load(function() {
-        		self.fixLayout();
-        	});
+			$(window).load(function() {
+				self.fixLayout();
+			});
 
 		},
 
