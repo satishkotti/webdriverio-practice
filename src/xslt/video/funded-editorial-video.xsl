@@ -5,15 +5,28 @@
     <xsl:param name="domain">webmd.com</xsl:param>
     <xsl:param name="identity"/>
     <xsl:param name="image_server_url">http://img.preview.webmd.com/dtmcms/preview</xsl:param>
-    <xsl:param name="moduletitle"/>
+	<xsl:param name="moduletitle">fed-video-player</xsl:param>
     <xsl:param name="pg_furl"/>
     <xsl:param name="prefix"/>
     <xsl:param name="site_id">3</xsl:param>
     <xsl:param name="spon"/>
-    
+
+	
     <xsl:variable name="content" select="/webmd_rendition/content/wbmd_asset/content_section"/>
     <xsl:variable name="metadata" select="/webmd_rendition/content/wbmd_asset/metadata_section"/>
     <xsl:variable name="video_url" select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_loc_url[1]"/>
+	<xsl:variable name="video_desc">
+		<xsl:call-template name="ReplaceString">
+			<xsl:with-param name="string">
+				<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_desc_user"/>
+			</xsl:with-param>
+			<xsl:with-param name="find">
+				<xsl:text>
+</xsl:text>
+			</xsl:with-param>
+			<xsl:with-param name="replace"><![CDATA[<br />]]></xsl:with-param>
+		</xsl:call-template>
+	</xsl:variable>
     
     <xsl:template match="/">
         <xsl:if test="$identity = 1">
@@ -21,15 +34,24 @@
         </xsl:if>
         
         <xsl:element name="div">
-            <xsl:attribute name="id">funded-editorial-video</xsl:attribute>
+        	<xsl:attribute name="class">fed-video</xsl:attribute>
+        	<xsl:element name="div">
+        		<xsl:attribute name="id"><xsl:value-of select="$moduletitle" /></xsl:attribute>
+        		<xsl:attribute name="class">player</xsl:attribute>
+        	</xsl:element>
+        	<xsl:element name="div">
+        		<xsl:attribute name="class">desc</xsl:attribute>
+        		<xsl:value-of select="$video_desc"/>
+        	</xsl:element>
         </xsl:element>
 
+    	
         <xsl:element name="script"><![CDATA[
 
 			s_not_pageview='y';
 			
 			requirejs(['funded-editorial/1/video'], function(fundedEditorialVideo){
-				fundedEditorialVideo.init("funded-editorial-video", "]]><xsl:value-of select="$video_url"/><![CDATA[");
+				fundedEditorialVideo.init("]]><xsl:value-of select="$moduletitle" disable-output-escaping="yes" /><![CDATA[", "]]><xsl:value-of select="$video_url"/><![CDATA[");
 			});
 		]]></xsl:element>
     </xsl:template>
@@ -81,7 +103,7 @@
                 <xsl:call-template name="ReplaceString">
                     <xsl:with-param name="string" select="substring-after($string,$find)"/>
                     <xsl:with-param name="find" select="$find"/>
-                    <xsl:with-param name="replace" select="$replace"/>
+                	<xsl:with-param name="replace" select="$replace"/>
                 </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
