@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <webmd_rendition>
   <content>
-<wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e812bdab6">
+<wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e812bfab1">
     <webmd_module>
         <module_settings>
-            <chronic_id>091e9c5e812bdab6</chronic_id>
-            <r_object_id>091e9c5e812bdab6</r_object_id>
+            <chronic_id>091e9c5e812bf1fd</chronic_id>
+            <r_object_id>091e9c5e812bfab1</r_object_id>
             <title>seg-data</title>
-            <object_name>module_seg-data_091e9c5e812bdab6.xml</object_name>
+            <object_name>module_seg-data_091e9c5e812bf1fd.xml</object_name>
             <object_type>wbmd_pb_templatemodule</object_type>
             <wbmd_pb_module_category />
             <wbmd_pb_module_subcategory />
@@ -21,11 +21,13 @@
             <wbmd_pb_module_sp_program />
             <wbmd_pb_module_tier>0</wbmd_pb_module_tier>
             <wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
-            <r_modify_date>10/06/2015 11:36:17</r_modify_date>
+            <r_modify_date>10/07/2015 13:48:41</r_modify_date>
             <wbmd_c_channel_ids_group />
+            <wbmd_pb_asset_css path="/webmd/PageBuilder_Assets/CSS/EditorialModule/Segment Data/Standard_091e9c5e812bdab8.css" object_type="wbmd_pb_css" chronic_id="091e9c5e812bdab8" />
+            <wbmd_pb_module_xsl path="/webmd/PageBuilder_Assets/XSL/EditorialModule/Segment Data_091e9c5e812bdab7.xsl" object_type="wbmd_pb_xsl" chronic_id="091e9c5e812bdab7" />
             <wbmd_pb_moduledataschema path="/webmd_uk/PageBuilder_Assets/schemas/module_schemas/EditorialModule.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005117" />
             <wbmd_pb_moduledataschema path="/webmd/PageBuilder_Assets/schemas/module_schemas/EditorialModule.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005117" />
-            <wbmd_pb_owner_page_id path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Templates/FED2 Segment 1 Main_091e9c5e812bc47f/template_FED2 Segment 1 Main_091e9c5e812bc47f.xml" object_type="wbmd_pb_template" chronic_id="091e9c5e812bc47f" />
+            <wbmd_pb_owner_page_id path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Templates/FED2 Segment 3 Main_091e9c5e812bf1fb/template_FED2 Segment 3 Main_091e9c5e812bf1fb.xml" object_type="wbmd_pb_template" chronic_id="091e9c5e812bf1fb" />
             <dnn_id>0</dnn_id>
             <class>EditorialModule</class>
         </module_settings>
@@ -36,21 +38,24 @@
             <links>
                 <link_bullet>false</link_bullet>
                 <link>
-                    <link_text>1,2,3</link_text>
+                    <link_text>091e9c5e812bc480</link_text>
+                    <action_text>1,2,3</action_text>
                     <link_link_view>Page Refresh(Default)</link_link_view>
-                    <link_url chronic_id="091e9c5e811f9b21" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_url chronic_id="091e9c5e812bd72e" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
                     <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt="" />
                 </link>
                 <link>
-                    <link_text>3,4,5</link_text>
+                    <link_text>091e9c5e812bd97c [current]</link_text>
+                    <action_text>1,2,3</action_text>
                     <link_link_view>Page Refresh(Default)</link_link_view>
-                    <link_url chronic_id="091e9c5e811f9b21" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_url chronic_id="091e9c5e812bde36" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
                     <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt="" />
                 </link>
                 <link>
-                    <link_text>6,7,8</link_text>
+                    <link_text>091e9c5e812bf1fc</link_text>
+                    <action_text>1,2,3</action_text>
                     <link_link_view>Page Refresh(Default)</link_link_view>
-                    <link_url chronic_id="091e9c5e811f9b21" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_url chronic_id="091e9c5e812befbf" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
                     <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt="" />
                 </link>
             </links>
@@ -72,8 +77,14 @@
 </content>
   <friendlyurls />
   <referenced_objects>
-    <object chronic_id="091e9c5e811f9b21" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Program Title TOC_091e9c5e811f9b21/page_Program Title TOC_091e9c5e811f9b21.wxml">
-      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/funded-editorial-v2/standard/default.htm" />
+    <object chronic_id="091e9c5e812bd72e" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/FED2 Segment 1 TOC_091e9c5e812bd72e/page_FED2 Segment 1 TOC_091e9c5e812bd72e.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/revenue-products/funded-editorial-2/segment-1/default.htm" />
+    </object>
+    <object chronic_id="091e9c5e812bde36" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/TOC_091e9c5e812bde36/page_TOC_091e9c5e812bde36.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/revenue-products/funded-editorial-2/segment-2/default.htm" />
+    </object>
+    <object chronic_id="091e9c5e812befbf" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/FED2 Segment 3 TOC_091e9c5e812befbf/page_FED2 Segment 3 TOC_091e9c5e812befbf.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/revenue-products/funded-editorial-2/segment-3/default.htm" />
     </object>
   </referenced_objects>
   <container_hierarchy />

@@ -27,12 +27,33 @@
 				<xsl:value-of select="position()"></xsl:value-of>
 			</xsl:variable>
 			<![CDATA[{]]>
-				<![CDATA["tocURL" : "]]><xsl:value-of select="$href"/><![CDATA[",]]>
+				<![CDATA["artDataId" : "]]><xsl:choose>
+					<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
+						<xsl:value-of select="normalize-space(substring-before(link_text,' ['))"/>
+					</xsl:when>
+					<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
+						<xsl:value-of select="normalize-space(substring-before(link_text,'['))"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="normalize-space(link_text)"/>
+					</xsl:otherwise>
+				</xsl:choose><![CDATA[",]]>
+				<![CDATA["currentSeg" : ]]><xsl:choose>
+					<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
+						<xsl:text>true</xsl:text>
+					</xsl:when>
+					<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
+						<xsl:text>true</xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>false</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose><![CDATA[,]]>
 				<![CDATA["promotedArticles" : []]><xsl:call-template name="tokenize">
 					<xsl:with-param name="text">
-						<xsl:value-of select="link_text"/>
+						<xsl:value-of select="action_text"/>
 					</xsl:with-param>
-				</xsl:call-template><![CDATA[]]]>
+				</xsl:call-template><![CDATA[],]]>
 			<![CDATA[}]]><xsl:if test="position()!=last()"><xsl:text>,</xsl:text></xsl:if>
 		</xsl:for-each>
 	<![CDATA[];]]>

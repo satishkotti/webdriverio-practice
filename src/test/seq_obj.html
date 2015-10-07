@@ -363,10 +363,9 @@ var s_rspd = "true";
 				dataType: 'html',
 				url: 'http://www.preview.webmd.com/zztest/funded-editorial-v2/standard/default.htm',
 				success: function(data) {
-					var articleData = $(data);
+					var articleData = data;
 
-					console.log(articleData[76]);
-
+					console.log(articleData[value='*']);
 
 					// $.each(articleData, function(key, value){
 					// 	console.log(key + ":" + value);
