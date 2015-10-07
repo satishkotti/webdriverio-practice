@@ -286,66 +286,38 @@ webmd.fundedEditorial = {
 	},
 
 	getSegmentArticleData: function() {
-		var self = this,
-			cacheSupport = self.hasStorage();
+		var self = this;
 
-		if (!cacheSupport) {
-			getSegmentsByAjax();
-		} else {
-			getSegmentsByCache();
-		}
+		getSegmentsByAjax();
 
 		function getSegmentsByAjax() {
 			var total = webmd.fundedEditorial.segments.length;
 
+			//Loop through each segment
 			$.each(webmd.fundedEditorial.segments, function(index, data) {
-	  			$.ajax({
-	  				url: data.tocURL,
-	  				dataType: 'html',
-	  				type: 'get',
-				    success: function(data) {
-				        var html = $.parseHTML(data, document, true),
-				        	domEl = findInParsed(html, 'script#articleData'),
-				        	segmentedData = domEl['0'].innerText,
-				        	strData;
+	  			//Perform an AJAX 'get' on segment TOC URL
+	  			$.get('http://www' + webmd.url.getLifecycle() + '.webmd.com/modules/sponsor-box?id=' + data.artDataId, function(data) {
+				        var html = $.parseHTML(data, document, true), //Parse HTML (returns array of nodes, including <script> nodes)
+				        	domEl = findInParsed(html, 'script#articleData'), //Find 'script#articleData' within Parsed HTML using function findInParsed
+				        	segmentedData = domEl['0'].innerText;
 
+				        //Cleanup string found in segmentedData (need to parse as JSON)
 				        segmentedData = segmentedData.replace('webmd.fundedEditorial.articleData', '');
 				        segmentedData = segmentedData.replace(/=/g, '');
 				        segmentedData = segmentedData.replace(/;/g, '');
 				        segmentedData = $.trim(segmentedData);
 				        segmentedData = $.parseJSON(segmentedData);
 
+				        //Store parsed JSON articleData in segment as new key/value
 				        webmd.fundedEditorial.segments[index].articleData = segmentedData;
-
-				        if (cacheSupport && (index === total - 1)) {
-							strData = JSON.stringify(webmd.fundedEditorial.segments);
-							sessionStorage.setItem('webmd_fundedEditorial_segments', strData);
-						}
 				    }
-				});
+				);
 			});
 		}
 
-		function getSegmentsByCache() {
-			var cachedSegmentData = sessionStorage.getItem('webmd_fundedEditorial_segments'),
-				parsedSegmentData;
-
-			if(cachedSegmentData === null) {
-				getSegmentsByAjax();
-			} else {
-				parsedSegmentData = JSON.parse(cachedSegmentData);
-				$.each(webmd.fundedEditorial.segments, function(index, data) {
-					if (!('articleData' in webmd.fundedEditorial.segments[index]) && ('articleData' in parsedSegmentData[index])) {
-						webmd.fundedEditorial.segments[index].articleData = parsedSegmentData[index].articleData;
-					} else {
-						getSegmentsByAjax();
-						return false;
-					}
-				});
-			}
-		}
-
 		function findInParsed(html, selector) {
+		    // Look for the selector 'script#articleData' inside the parsed HTML array
+		    // return the HTML DOM element if found
 		    var check = $(selector, html).get(0);
 
 		    if (check) {
