@@ -6,7 +6,7 @@ if(!webmd){
 
 webmd.fundedEditorial.nextUp = {
 
-	articles_to_display: $('.article-list-container').data('linkCount'), 	// number of articles 
+	articles_to_display: $('.article-list-container').data('linkCount'), 	// number of articles
 	article_ids_to_display: [],
 	article_data: {"articles":[]},
 
@@ -122,7 +122,7 @@ webmd.fundedEditorial.nextUp = {
 
 			$segmentTitle.addClass('wbmd-segment-title').html(segmentData.articleData.program.title).attr('href', segmentData.articleData.program.tocLink);
 			$segmentDiv.addClass('wbmd-segment').append($segmentTitle);
-			$segmentContainer.addClass('wbmd-segment-container').append($segmentDiv);
+			$segmentContainer.addClass('wbmd-segment-container animated lightSpeedIn').append($segmentDiv);
 			$segments.append($segmentContainer);
 			$(".article-list-container").addClass('plus-segments');
 		}
@@ -144,7 +144,7 @@ webmd.fundedEditorial.nextUp = {
 		}
 
 		// Do no create module if not enough articles in data object
-		
+
 		function createArticleLinkNodes() {
 			var articles_len = self.article_data.articles.length,
 				nodes = [],
