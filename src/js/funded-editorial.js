@@ -301,7 +301,39 @@ webmd.fundedEditorial = {
 
 			//Loop through each segment
 			$.each(webmd.fundedEditorial.segments, function(index, data) {
-				//Perform an AJAX 'get' on segment documentum ID
+				// this is very similar to using Object.watch()
+		        // instead we attach multiple listeners
+		        webmd.fundedEditorial.segments[index].data = (function() {
+		            var initVal,
+		                interceptors = [];
+
+		            function callInterceptors(newVal) {
+		                for (var i = 0; i < interceptors.length; i += 1) {
+		                    interceptors[i](newVal);
+		                }
+		            }
+
+		            return {
+		                get ready() {
+		                    // user never has access to the private variable "initVal"
+		                    // we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
+		                    return initVal;
+		                },
+
+		                set ready(newVal) {
+		                    callInterceptors(newVal);
+		                    initVal = newVal;
+		                },
+
+		                listen: function(fn) {
+		                    if (typeof fn === 'function') {
+		                        interceptors.push(fn);
+		                    }
+		                }
+		            };
+		        }());
+
+        		//Perform an AJAX 'get' on segment documentum ID
 				$.ajax({
 					url: 'http://www' + webmd.url.getLifecycle() + '.webmd.com/modules/sponsor-box',
 					type: 'GET',
@@ -311,8 +343,9 @@ webmd.fundedEditorial = {
 					success: function(data) {
 						var html = $.parseHTML(data, document, true), //Parse HTML (returns array of nodes, including <script> nodes)
 							domEl = findInParsed(html, 'script#articleData'), //Find 'script#articleData' within Parsed HTML using function findInParsed
-							segmentedData = domEl['0'].innerText;
+							segmentedData = domEl['0'].innerHTML;
 
+						self.domEL = domEl;
 						//Cleanup string found in segmentedData (need to parse as JSON)
 						segmentedData = segmentedData.replace('webmd.fundedEditorial.articleData', '');
 						segmentedData = segmentedData.replace(/=/g, '');
@@ -322,6 +355,7 @@ webmd.fundedEditorial = {
 
 						//Store parsed JSON articleData in segment as new key/value
 						webmd.fundedEditorial.segments[index].articleData = segmentedData;
+						webmd.fundedEditorial.segments[index].data.ready = true;
 					}
 				});
 			});
@@ -494,6 +528,8 @@ webmd.fundedEditorial = {
 		masonryGutter: 10,
 
 		init: function() {
+			var self = this;
+
 			this.toc_render();
 		},
 
@@ -521,13 +557,13 @@ webmd.fundedEditorial = {
 						var $child = $(this);
 
 						if (!$child.hasClass('moduleSpacer_rdr')) {
-							self.setupChild($child);
-
-							if ($child.hasClass('msnry-article')) {
-								articlePos = articlePos + 1;
-								self.setupChild($child, articlePos);
-							} else {
-								self.setupChild($child, false);
+							if (!$child.hasClass('promoted-segment-article')) { // promoted segment setup separately
+								if ($child.hasClass('msnry-article')) {
+									articlePos = articlePos + 1;
+									self.setupChild($child, articlePos, self.article_data.articles);
+								} else {
+									self.setupChild($child, false, self.article_data.articles);
+								}
 							}
 
 							//self.allNodes.push(this); //temporary - use the below line instead
@@ -542,14 +578,60 @@ webmd.fundedEditorial = {
 			self.createGridWrapper();
 		},
 
-		setupChild: function($node, position) {
+		createTocSegment: function() {
+			var self = this,
+				$tocSegmentContentPane = $('.wbmd-toc-segments').closest('div.pane'),
+				$tocSegmentGridWrapper = $('<div></div>'),
+				metricsModuleName = $('.wbmd-toc-segments').data('metricsModule');
+
+			if (!$tocSegmentContentPane) {
+				return;
+			}
+
+			$tocSegmentContentPane.html(''); // remove everything from content pane to avoid masonry bugs
+
+			$.each(webmd.fundedEditorial.segments, function(index, data) {
+				webmd.fundedEditorial.segments[index].data.listen(function(passedValue) {
+		            if (passedValue === true) {
+		                createSegmentTiles(data);
+
+						if (index === webmd.fundedEditorial.segments.length - 1) {
+							self.start();
+						}
+		            }
+		        });
+			});
+
+			function createSegmentTiles(segmentData) {
+				var $segmentTitle = $('<div></div>'),
+					articles = segmentData.articleData.articles,
+					promotedArticles = segmentData.promotedArticles;
+
+				$segmentTitle.html(segmentData.articleData.program.title).addClass('wbmd-promo-seg-title');
+				$tocSegmentContentPane.append($segmentTitle);
+
+				$.each(promotedArticles, function(index, value) {
+					var position = index + 1,
+						$segmentTile = $('<div></div>');
+
+					$segmentTile
+						.addClass(self.gridItemClass)
+						.addClass('wbmd-promo-seg-tile')
+						.attr({'data-article-num' : value+1, 'data-metrics-module' : metricsModuleName });
+					$tocSegmentContentPane.append($segmentTile);
+
+					self.setupChild($segmentTile, position, articles);
+				});
+			}
+		},
+
+		setupChild: function($node, position, articles) {
 			var self = this,
 				nodeId = $node.attr('id'),
 				nodeArticleNum = $node.data('articleNum'),
 				regEx_1col = new RegExp('1-col'),
 				regEx_2col = new RegExp('2-col'),
 				regEx_3col = new RegExp('3-col'),
-				articles = self.article_data.articles,
 				newline = '\n',
 				articleId,
 				article,
@@ -558,7 +640,7 @@ webmd.fundedEditorial = {
 				$p = $('<p></p>');
 
 
-			$node.addClass('wbmd-grid-item'); // adds the masonry grid item class to node
+			$node.addClass(self.gridItemClass); // adds the masonry grid item class to node
 
 			if (!$node.hasClass('icm_wrap') && !$node.hasClass('dbm_wrap')) {
 				$node.addClass('tile-width'); // default size for all editorial tiles in TOC that are not ICM or DBM
@@ -608,7 +690,7 @@ webmd.fundedEditorial = {
 				$('#' + id).html('').addClass('wbmd-masonry-container').append($gridDiv);
 			}
 
-			return true;
+			self.createMasonry(false);
 		},
 
 		fixLayout: function() {
@@ -620,7 +702,7 @@ webmd.fundedEditorial = {
 				newHeight;
 
 			if (!standardTileHeight) {
-				standardTileHeight = $('.wbmd-grid-item:not(.icm_wrap):not(.dbm_wrap)').outerHeight();
+				standardTileHeight = $('.' + self.gridItemClass + ':not(.icm_wrap):not(.dbm_wrap)').outerHeight();
 			}
 
 			for (var id in self.contentPanes) {
@@ -631,7 +713,7 @@ webmd.fundedEditorial = {
 
 
 			function updateContentPane(id) {
-				$('div#' + id + '.pane.wbmd-masonry-container').find('.wbmd-grid-item').each(function() {
+				$('div#' + id + '.pane.wbmd-masonry-container').find('.' + self.gridItemClass).each(function() {
 					var $node = $(this),
 						nodeH = $node.outerHeight(),
 						nodeW = $node.outerWidth(),
@@ -716,7 +798,7 @@ webmd.fundedEditorial = {
 			}
 
 			function fixNodesInPane(id) {
-				$('div#' + id + '.pane.wbmd-masonry-container').find('.wbmd-grid-item').each(function() {
+				$('div#' + id + '.pane.wbmd-masonry-container').find('.' + self.gridItemClass).each(function() {
 					var $node = $(this),
 						leftPos = $node.position().left + 'px';
 
@@ -764,6 +846,10 @@ webmd.fundedEditorial = {
 							});
 						});
 					}
+
+					// Set segment title to be 3 columns instead of 1
+					$('.wbmd-promo-seg-title').removeClass('tile-width');
+					$('.wbmd-promo-seg-title').addClass('tile-width-x3');
 				});
 			}
 
@@ -805,9 +891,11 @@ webmd.fundedEditorial = {
 
 				self.article_data = webmd.fundedEditorial.articleData;
 
-				self.start();
-
-				self.createMasonry(false);
+				if (webmd.fundedEditorial.segments && webmd.fundedEditorial.segments.length > 0) {
+					self.createTocSegment();
+				} else {
+					self.start();
+				}		
 
 				self.bindEvents();
 			}

@@ -9,21 +9,17 @@
     <xsl:param name="image_server_url">
         <xsl:text>http://img.preview.webmd.com/dtmcms/preview</xsl:text>
     </xsl:param>
-
-    <xsl:template match="/">
-        <xsl:apply-templates select="webmd_rendition/content/wbmd_asset/webmd_module/module_data"></xsl:apply-templates>
-    </xsl:template>
     
-    <xsl:template match="module_data">
+    <xsl:template match="/">
         <xsl:element name="div">
             <xsl:attribute name="class">
                 <xsl:text>article-list-container</xsl:text>
             </xsl:attribute>
             <xsl:attribute name="data-link-count">
-                <xsl:value-of select="descriptions/description/description_text"></xsl:value-of>
+                <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_data/descriptions/description/description_text"></xsl:value-of>
             </xsl:attribute>
             <xsl:attribute name="data-metrics-module">
-                <xsl:text><![CDATA[lln-rspsvupnext]]></xsl:text>
+                <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_settings/title"></xsl:value-of>
             </xsl:attribute>
         
             <xsl:element name="div">

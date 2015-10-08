@@ -16,7 +16,7 @@
                 <xsl:text>article-nav-container</xsl:text>
             </xsl:attribute>
             <xsl:attribute name="data-metrics-module">
-                <xsl:text><![CDATA[lln-rspsvpddl]]></xsl:text>
+                <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_settings/title"></xsl:value-of>
             </xsl:attribute>
         </xsl:element>
         <xsl:element name="script">

@@ -105,12 +105,11 @@ webmd.fundedEditorial.nextUp = {
 		$segments.addClass('wbmd-upnext-segments');
 
 		$.each(webmd.fundedEditorial.segments, function(index, data) {
-			var checkData = setInterval(function() {
-				if ('articleData' in data) {
-					clearInterval(checkData);
-					createUpNextSegment(data);
-				}
-			}, 200);
+			webmd.fundedEditorial.segments[index].data.listen(function(passedValue) {
+	            if (passedValue === true) {
+	                createUpNextSegment(data);
+	            }
+	        });
 		});
 
 		$(".article-list-container").after($segments);
