@@ -582,7 +582,9 @@ webmd.fundedEditorial = {
 			var self = this,
 				$tocSegmentContentPane = $('.wbmd-toc-segments').closest('div.pane'),
 				$tocSegmentGridWrapper = $('<div></div>'),
-				metricsModuleName = $('.wbmd-toc-segments').data('metricsModule');
+				metricsModuleName = $('.wbmd-toc-segments').data('metricsModule'),
+				complete = 0,
+				segmentModules = new Array(webmd.fundedEditorial.segments.length);
 
 			if (!$tocSegmentContentPane) {
 				return;
@@ -591,24 +593,33 @@ webmd.fundedEditorial = {
 			$tocSegmentContentPane.html(''); // remove everything from content pane to avoid masonry bugs
 
 			$.each(webmd.fundedEditorial.segments, function(index, data) {
+				segmentModules[index] = [];
+
 				webmd.fundedEditorial.segments[index].data.listen(function(passedValue) {
 		            if (passedValue === true) {
-		                createSegmentTiles(data);
+		                createSegmentTiles(data, index);
+		                complete++;
 
-						if (index === webmd.fundedEditorial.segments.length - 1) {
+		                if (complete === webmd.fundedEditorial.segments.length) {
+							$.each(segmentModules, function(index, nodes) {
+								for (var i=0; i<nodes.length; i++) {
+									$tocSegmentContentPane.append(nodes[i]);
+								}
+							});
+
 							self.start();
 						}
 		            }
 		        });
 			});
 
-			function createSegmentTiles(segmentData) {
+			function createSegmentTiles(segmentData, pos) {
 				var $segmentTitle = $('<div></div>'),
 					articles = segmentData.articleData.articles,
 					promotedArticles = segmentData.promotedArticles;
 
 				$segmentTitle.html(segmentData.articleData.program.title).addClass('wbmd-promo-seg-title');
-				$tocSegmentContentPane.append($segmentTitle);
+				segmentModules[pos].push($segmentTitle);
 
 				$.each(promotedArticles, function(index, value) {
 					var position = index + 1,
@@ -618,10 +629,12 @@ webmd.fundedEditorial = {
 						.addClass(self.gridItemClass)
 						.addClass('wbmd-promo-seg-tile')
 						.attr({'data-article-num' : value+1, 'data-metrics-module' : metricsModuleName });
-					$tocSegmentContentPane.append($segmentTile);
 
 					self.setupChild($segmentTile, position, articles);
+					segmentModules[pos].push($segmentTile);
 				});
+
+				return true;
 			}
 		},
 

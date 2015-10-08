@@ -100,29 +100,53 @@ webmd.fundedEditorial.nextUp = {
 
 	addSegmentLinks: function() {
 		var self = this,
-			$segments = $('<div></div>');
+			$segments = $('<div></div>'),
+			segmentBlocks = new Array(webmd.fundedEditorial.segments.length),
+			complete = 0;
 
 		$segments.addClass('wbmd-upnext-segments');
 
 		$.each(webmd.fundedEditorial.segments, function(index, data) {
+			segmentBlocks[index] = [];
+
 			webmd.fundedEditorial.segments[index].data.listen(function(passedValue) {
 	            if (passedValue === true) {
-	                createUpNextSegment(data);
+	                createUpNextSegment(data, index);
+	                complete++;
+
+	                if (complete === webmd.fundedEditorial.segments.length) {
+						$.each(segmentBlocks, function(index, nodes) {
+							for (var i=0; i<nodes.length; i++) {
+								$segments.append(nodes[i]);
+							}
+						});
+					}
 	            }
 	        });
 		});
 
 		$(".article-list-container").after($segments);
 
-		function createUpNextSegment(segmentData) {
+		function createUpNextSegment(segmentData, pos) {
 			var $segmentContainer = $('<div></div>'),
 				$segmentDiv = $('<div></div>'),
 				$segmentTitle = $('<a></a>');
 
-			$segmentTitle.addClass('wbmd-segment-title').html(segmentData.articleData.program.title).attr('href', segmentData.articleData.program.tocLink);
-			$segmentDiv.addClass('wbmd-segment').append($segmentTitle);
-			$segmentContainer.addClass('wbmd-segment-container animated fadeIn').append($segmentDiv);
-			$segments.append($segmentContainer);
+			$segmentTitle
+				.addClass('wbmd-segment-title')
+				.html(segmentData.articleData.program.title)
+				.attr('href', segmentData.articleData.program.tocLink);
+
+			$segmentDiv
+				.addClass('wbmd-segment')
+				.append($segmentTitle);
+
+			$segmentContainer
+				.addClass('wbmd-segment-container animated fadeIn')
+				.append($segmentDiv);
+
+			segmentBlocks[pos].push($segmentContainer);
+
 			$(".article-list-container").addClass('plus-segments');
 		}
 	},
