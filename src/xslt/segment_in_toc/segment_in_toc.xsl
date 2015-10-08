@@ -13,15 +13,11 @@
     <xsl:template match="/">
         <xsl:element name="div">
             <xsl:attribute name="class">
-                <xsl:text>wbmd-grid-item msnry-article</xsl:text>
+                <xsl:text>wbmd-toc-segments</xsl:text>
             </xsl:attribute>
             <xsl:attribute name="data-metrics-module">
                 <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_settings/title"></xsl:value-of>
             </xsl:attribute>
-            <xsl:attribute name="data-article-num">
-                <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_data/links/link/link_text"/>
-            </xsl:attribute>
-            <xsl:comment><xsl:text>Article Unit</xsl:text></xsl:comment>
         </xsl:element>
     </xsl:template>
 </xsl:stylesheet>
