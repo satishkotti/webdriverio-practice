@@ -29,11 +29,13 @@
 			</xsl:element>
 			<xsl:element name="div">
 				<xsl:attribute name="class">desc</xsl:attribute>
-				<xsl:call-template name="insertBreaks">
-					<xsl:with-param name="pText">
-						<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_desc_user"/>
-					</xsl:with-param>
-				</xsl:call-template>
+				<xsl:element name="p">
+					<xsl:call-template name="insertBreaks">
+						<xsl:with-param name="pText">
+							<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_desc_user"/>
+						</xsl:with-param>
+					</xsl:call-template>
+				</xsl:element>
 			</xsl:element>
 		</xsl:element>
 
