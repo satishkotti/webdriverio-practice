@@ -122,7 +122,7 @@ webmd.fundedEditorial.nextUp = {
 
 			$segmentTitle.addClass('wbmd-segment-title').html(segmentData.articleData.program.title).attr('href', segmentData.articleData.program.tocLink);
 			$segmentDiv.addClass('wbmd-segment').append($segmentTitle);
-			$segmentContainer.addClass('wbmd-segment-container animated lightSpeedIn').append($segmentDiv);
+			$segmentContainer.addClass('wbmd-segment-container animated fadeIn').append($segmentDiv);
 			$segments.append($segmentContainer);
 			$(".article-list-container").addClass('plus-segments');
 		}
