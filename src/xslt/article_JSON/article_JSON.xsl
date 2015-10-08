@@ -48,6 +48,21 @@
 			</xsl:choose><![CDATA[",]]>
 			<![CDATA["tocLink" : "]]><xsl:call-template name="GetURLRef"><xsl:with-param name="ObjectID"><xsl:value-of select="module_link/@chronic_id" /></xsl:with-param></xsl:call-template><![CDATA[",]]>
 			<![CDATA["tocId" : "]]><xsl:value-of select="module_link/@chronic_id" /><![CDATA[",]]>
+			<![CDATA["tocImages" : {]]>
+					<![CDATA["image650x350" : "]]><xsl:value-of select="body_images/body_image/source/@path"/><![CDATA[",]]>
+					<![CDATA["image493x335" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="body_images/body_image/source/@path"/></xsl:with-param><xsl:with-param name="width">493</xsl:with-param><xsl:with-param name="height">335</xsl:with-param></xsl:call-template><![CDATA[",]]>
+					<![CDATA["image375x321" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="body_images/body_image/source/@path"/></xsl:with-param><xsl:with-param name="width">375</xsl:with-param><xsl:with-param name="height">321</xsl:with-param></xsl:call-template><![CDATA[",]]>
+					<![CDATA["image280x190" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="body_images/body_image/source/@path"/></xsl:with-param><xsl:with-param name="width">280</xsl:with-param><xsl:with-param name="height">190</xsl:with-param></xsl:call-template><![CDATA[",]]>
+					<![CDATA["image210x130" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="body_images/body_image/source/@path"/></xsl:with-param><xsl:with-param name="width">210</xsl:with-param><xsl:with-param name="height">130</xsl:with-param></xsl:call-template><![CDATA[",]]>
+					<![CDATA["image198x134" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="body_images/body_image/source/@path"/></xsl:with-param><xsl:with-param name="width">198</xsl:with-param><xsl:with-param name="height">134</xsl:with-param></xsl:call-template><![CDATA[",]]>
+					<![CDATA["image127x72" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="body_images/body_image/source/@path"/></xsl:with-param><xsl:with-param name="width">127</xsl:with-param><xsl:with-param name="height">72</xsl:with-param></xsl:call-template><![CDATA[",]]>
+					<![CDATA["image156x150" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="body_images/body_image/source/@path"/></xsl:with-param><xsl:with-param name="width">156</xsl:with-param><xsl:with-param name="height">150</xsl:with-param></xsl:call-template><![CDATA[",]]>
+					<![CDATA["image110x70" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="body_images/body_image/source/@path"/></xsl:with-param><xsl:with-param name="width">110</xsl:with-param><xsl:with-param name="height">70</xsl:with-param></xsl:call-template><![CDATA[",]]>
+					<![CDATA["image79x79" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="body_images/body_image/source/@path"/></xsl:with-param><xsl:with-param name="width">79</xsl:with-param><xsl:with-param name="height">79</xsl:with-param></xsl:call-template><![CDATA[",]]>
+					<![CDATA["image69x75" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="body_images/body_image/source/@path"/></xsl:with-param><xsl:with-param name="width">69</xsl:with-param><xsl:with-param name="height">75</xsl:with-param></xsl:call-template><![CDATA[",]]>
+					<![CDATA["image56x40" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="body_images/body_image/source/@path"/></xsl:with-param><xsl:with-param name="width">56</xsl:with-param><xsl:with-param name="height">40</xsl:with-param></xsl:call-template><![CDATA[",]]>
+					<![CDATA["image50x50" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="body_images/body_image/source/@path"/></xsl:with-param><xsl:with-param name="width">50</xsl:with-param><xsl:with-param name="height">50</xsl:with-param></xsl:call-template><![CDATA["]]>
+				<![CDATA[},]]>
 			<![CDATA["seeAllLink" : "]]><xsl:call-template name="GetURLRef"><xsl:with-param name="ObjectID"><xsl:value-of select="body_images/body_image/image_link/@chronic_id" /></xsl:with-param></xsl:call-template><![CDATA[",]]>
 			<![CDATA["seeAllText" : "]]><xsl:value-of select="body_images/body_image/override_text" /><![CDATA[",]]>
 			<![CDATA["brandedColor" : ]]><xsl:choose>
@@ -157,12 +172,30 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template name="getImgPathNew">
+	<!-- <xsl:template name="getImgPathNew">
 		<xsl:param name="width"/>
 		<xsl:param name="height"/>
 		<xsl:call-template name="string-replace-all">
 			<xsl:with-param name="text">
 				<xsl:value-of select="link_source_icon/@path"/>
+			</xsl:with-param>
+			<xsl:with-param name="replace">
+				<xsl:text>650x350</xsl:text>
+			</xsl:with-param>
+			<xsl:with-param name="by">
+				<xsl:value-of select="$width"/><xsl:text>x</xsl:text><xsl:value-of select="$height"/>
+			</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template> -->
+
+	<xsl:template name="getImgPathNew">
+		<xsl:param name="path"/>
+		<xsl:param name="width"/>
+		<xsl:param name="height"/>
+		<xsl:value-of select="$path"/>
+		<xsl:call-template name="string-replace-all">
+			<xsl:with-param name="path">
+				<xsl:value-of select="$path"/>
 			</xsl:with-param>
 			<xsl:with-param name="replace">
 				<xsl:text>650x350</xsl:text>

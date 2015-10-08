@@ -11,6 +11,7 @@
 	<xsl:param name="domain">webmd.com</xsl:param>
 
 	<xsl:template match="/">
+		<!-- See All Tiles -->
 		<xsl:element name="div">
 			<xsl:attribute name="class"><xsl:text>see-all-shell</xsl:text></xsl:attribute>
 		</xsl:element>
@@ -115,6 +116,94 @@
 			]]>
 			</xsl:text>
 		</xsl:element>
+
+		<!-- Segmentation See ALl -->
+		<xsl:element name="div">
+			<xsl:attribute name="class"><xsl:text>seg-all-shell</xsl:text></xsl:attribute>
+		</xsl:element>
+		<xsl:element name="script">
+			<xsl:attribute name="id"><xsl:text>seg-all-template</xsl:text></xsl:attribute>
+			<xsl:attribute name="type"><xsl:text>text/x-handlebars-template</xsl:text></xsl:attribute>
+
+			<xsl:text disable-output-escaping="yes">
+			<![CDATA[<article id="art" class="article seg-all">
+				<div class="article-content">
+					<div id="see-all-seg" class="see-all-seg-items" data-metrics-module="ed-rspsvallsegcon">
+						<h2>More On This Topic</h2>
+						<ul>
+							{{#each segments}}
+							<li class="see-all-seg-item">
+								<a href="{{articleData.program.tocLink}}" data-metrics-link="{{math @index "+" 1}}">
+									<div class="see-all-seg-img">
+										<img src="{{image_server_url}}{{articleData.program.tocImages.image493x335}}" alt="{{articleData.program.title}}">
+									</div>
+									<p>{{articleData.program.title}}</p>
+								</a>
+							</li>
+							{{/each}}
+						</ul>
+					</div>
+				</div>
+			</article>]]>
+			</xsl:text>
+
+		</xsl:element>
+
+		<xsl:element name="script">
+			<xsl:text disable-output-escaping="yes">
+			<![CDATA[
+			$(function(){
+				require(["handlebars/1/handlebars"], function(Handlebars) {
+					var segLength = webmd.fundedEditorial.segments.length,
+						segCount = 0;
+
+					if (typeof webmd.fundedEditorial.segments !== "undefined") {
+						$.each(webmd.fundedEditorial.segments, function(index, data) {
+							var checkData = setInterval(function() {
+								if ('articleData' in data) {
+									clearInterval(checkData);
+
+									segCount ++;
+									if (segLength == segCount){
+										buildSeeAllSegs();
+									}
+
+								}
+							}, 200);
+						});
+					}
+
+					function buildSeeAllSegs() {
+						Handlebars.registerHelper('image_server_url', function() {
+							return image_server_url; //just return global variable value
+						});
+						Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
+							lvalue = parseFloat(lvalue);
+							rvalue = parseFloat(rvalue);
+
+							return {
+								"+": lvalue + rvalue,
+								"-": lvalue - rvalue,
+								"*": lvalue * rvalue,
+								"/": lvalue / rvalue,
+								"%": lvalue % rvalue
+							}[operator];
+						});
+						var template = $("#seg-all-template"),
+							container = $(".seg-all-shell"),
+							source = template.html(),
+							template = Handlebars.compile(source),
+							context = webmd.fundedEditorial || {},
+							html = template(context);
+
+						container.prepend(html);
+					}
+				});
+			});
+			]]>
+			</xsl:text>
+		</xsl:element>
+
 	</xsl:template>
 
 </xsl:stylesheet>
