@@ -95,6 +95,10 @@ webmd.fundedEditorial = {
 		if (self.segments && self.segments.length > 0) {
 			self.getSegmentArticleData();
 		}
+
+		if (window.s_business_reference === 'TOC'){
+			$('html').addClass('funded-editorial-toc');
+		}
 	},
 
 	hasStorage: function() {
@@ -908,7 +912,7 @@ webmd.fundedEditorial = {
 					self.createTocSegment();
 				} else {
 					self.start();
-				}		
+				}
 
 				self.bindEvents();
 			}
