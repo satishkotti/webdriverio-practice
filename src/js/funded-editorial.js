@@ -64,6 +64,7 @@ webmd.fundedEditorial = {
 		var self = this,
 			artObjParam = webmd.url.getParam('artObj');
 
+
 		if (self.hasStorage()) {
 			self.visitedPages = JSON.parse(sessionStorage.getItem('visited')) || {};
 			self.addToVisitedPages();
@@ -94,10 +95,6 @@ webmd.fundedEditorial = {
 
 		if (self.segments && self.segments.length > 0) {
 			self.getSegmentArticleData();
-		}
-
-		if (window.s_business_reference === 'TOC'){
-			$('html').addClass('funded-editorial-toc');
 		}
 	},
 
@@ -453,11 +450,47 @@ webmd.fundedEditorial = {
 	},
 
 	fundedPages: function() {
-		// Set Global Class
-		$('html').addClass('funded-editorial');
+		this.setClass();
 
 		// Hide Elements
 		$('.healthSolutions').hide();
+	},
+
+	setClass: function(){
+		var busRef = window.s_business_reference || '',
+			htmlClass;
+
+		switch (busRef){
+			case 'TOC':
+				htmlClass = 'funded-editorial-toc';
+				break
+
+			case 'Feature':
+				htmlClass = 'funded-editorial-feature';
+				break
+
+			case 'Medical Reference':
+				htmlClass = 'funded-editorial-med-ref';
+				break
+
+			case 'Tool - Slide Show':
+				htmlClass = 'funded-editorial-slideshow';
+				break
+
+			case 'Tool - RMQ':
+				htmlClass = 'funded-editorial-rmq';
+				break
+
+			case 'Feature - Video':
+				htmlClass = 'funded-editorial-video';
+				break;
+
+			default:
+				htmlClass = 'funded-editorial-no-bus-ref';
+		}
+
+		// Set Global Class
+		$('html').addClass(htmlClass + ' funded-editorial');
 	},
 
 	stickIt: function() {
