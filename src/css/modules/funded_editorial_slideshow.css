@@ -75,30 +75,47 @@
 	font-family: icons;
 	font-size: 4.0rem;
 	line-height: 5.0rem;
-	color: #fff;
 	position: absolute;
 	z-index: 2;
 	top: 0px;
-	height: 48px;
-	width: 40px;
+	height: 60px;
 	padding: 0 10px;
+	display: block;
+}
+.slideshow .bx-controls .bx-prev:before,
+.slideshow .bx-controls .bx-next:before  {
+	color: #000;
+	background: rgba(255, 255, 255, .6);
+	border-radius: 30px;
+	height: 60px;
+	width: 60px;
+	line-height: 60px;
+	display: block;
+	text-align: center;
+	transition: background .5s, color .5s;
 }
 .slideshow .bx-controls .bx-prev {
 	left: 0;
+	width: 80px;
 }
 .slideshow .bx-controls .bx-prev:before {
 	content: "\e61a";
-	text-shadow: 0 0 8px #000, 0 0 20px #000;
-	position: absolute;
+	padding-right: 5px;
 }
 .slideshow .bx-controls .bx-next {
 	right: 0;
-	background-position: 100%;
+	width: calc(100% - 80px);
 }
 .slideshow .bx-controls .bx-next:before {
 	content: "\e61b";
-	text-shadow: 0 0 8px #000, 0 0 20px #000;
 	position: absolute;
+	right: 10px;
+	padding-left: 5px;
+}
+.slideshow .bx-controls .bx-prev:hover:before,
+.slideshow .bx-controls .bx-next:hover:before  {
+	background: rgba(0, 0, 0, .7);
+	color: #fff;
 }
 .slideshow .bx-controls .bx-prev label,
 .slideshow .bx-controls .bx-next label {
