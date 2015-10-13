@@ -106,7 +106,8 @@ define(['bx_slider/1/bx_slider'], function(){
 		}
 
 		function positionArrows(index) {
-			var imageHeight = $ss.find('.slide:not(.bx-clone) .image').eq(index).height();
+			var imageHeight = $ss.find('.slide:not(.bx-clone) .image').eq(index).height(),
+				arrowPadding = (imageHeight - 60) / 2;
 
 			if (index === 0) {
 				$ss.find('.bx-prev').hide();
@@ -115,8 +116,8 @@ define(['bx_slider/1/bx_slider'], function(){
 			}
 
 			$ss.find('.bx-prev, .bx-next').css({
-				'height' : imageHeight + "px",
-				"line-height" : imageHeight + "px"
+				'padding' : arrowPadding + "px 10px " + arrowPadding + "px 10px",
+				'height' : imageHeight + "px"
 			});
 
 			return this;
@@ -167,6 +168,8 @@ define(['bx_slider/1/bx_slider'], function(){
 			$ss.find('.bx-prev, .bx-next').hide();
 			$ss.find('.slide-end').show().find('.next-art').html(title);
 
+			callMetrics('next', true);
+
 			setTimeout(function(){
 				window.location = url; 
 			}, 1000);
@@ -189,14 +192,15 @@ define(['bx_slider/1/bx_slider'], function(){
 		}
 
 		function callMetrics(clickId, isLink) {
-/*			if (isLink) {
-
+			if (isLink) {
+				wmdTrack(settings.metricsModuleName + '-' + clickId);
 			} else {
 				webmd.metrics.dpv({
-					moduleName: settings.metricsModuleName + '_' + clickId,
-					iCount: slider.getCurrentSlide()
+					moduleName: settings.metricsModuleName + '-' + clickId,
+					pageName: window.s_pagename + "#" + (slider.getCurrentSlide() + 1),
+					iCount: slider.getCurrentSlide() + 1
 				});
-			}*/
+			}
 		}
 
 		// only expose init

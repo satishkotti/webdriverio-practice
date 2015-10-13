@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<webmd_rendition>
+    <content>
+        <wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e812c00f8">
+            <webmd_module>
+                <module_settings>
+                    <chronic_id>091e9c5e811f20a6</chronic_id>
+                    <r_object_id>091e9c5e812c00f8</r_object_id>
+                    <title>lln-rspsvpddl</title>
+                    <object_name>module_slide-up_091e9c5e811f20a6.xml</object_name>
+                    <object_type>wbmd_pb_templatemodule</object_type>
+                    <wbmd_pb_module_category />
+                    <wbmd_pb_module_subcategory />
+                    <wbmd_pb_dyn_module_category />
+                    <md_pb_module_label1_group>
+                        <wbmd_pb_module_label1 />
+                    </md_pb_module_label1_group>
+                    <md_pb_module_label2_group>
+                        <wbmd_pb_module_label2 />
+                    </md_pb_module_label2_group>
+                    <wbmd_pb_module_sp_program />
+                    <wbmd_pb_module_tier>0</wbmd_pb_module_tier>
+                    <wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
+                    <r_modify_date>10/07/2015 16:22:06</r_modify_date>
+                    <wbmd_c_channel_ids_group />
+                    <wbmd_pb_asset_css path="/webmd/PageBuilder_Assets/CSS/HTML/Funded Navigation/Standard_091e9c5e811f03f7.css" object_type="wbmd_pb_css" chronic_id="091e9c5e811f03f7" />
+                    <wbmd_pb_module_xsl path="/webmd/PageBuilder_Assets/XSL/HTML/Funded Navigation_091e9c5e811f03f6.xsl" object_type="wbmd_pb_xsl" chronic_id="091e9c5e811f03f6" />
+                    <wbmd_pb_moduledataschema path="/webmd_uk/PageBuilder_Assets/schemas/module_schemas/HTMLModule.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e8000511c" />
+                    <wbmd_pb_moduledataschema path="/webmd/PageBuilder_Assets/schemas/module_schemas/HTMLModule.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e8000511c" />
+                    <wbmd_pb_owner_page_id path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Templates/Program Title MAIN_091e9c5e811f02e4/template_Program Title MAIN_091e9c5e811f02e4.xml" object_type="wbmd_pb_template" chronic_id="091e9c5e811f02e4" />
+                    <dnn_id>0</dnn_id>
+                    <class>HTML</class>
+                </module_settings>
+                <module_data>
+                    <contentText />
+                </module_data>
+            </webmd_module>
+        </wbmd_asset>
+    </content>
+    <friendlyurls />
+    <referenced_objects />
+    <container_hierarchy />
+    <expanded_objects />
+</webmd_rendition>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <webmd_rendition>
     <content>
-        <wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e812bff4b">
+        <wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e812b7d65">
             <webmd_module>
                 <module_settings>
                     <chronic_id>091e9c5e81206b22</chronic_id>
-                    <r_object_id>091e9c5e812bff4b</r_object_id>
-                    <title>ed-rspsvtocprm-1</title>
+                    <r_object_id>091e9c5e812b7d65</r_object_id>
+                    <title>Article Module 1</title>
                     <object_name>module_Article Module 1_091e9c5e81206b22.xml</object_name>
                     <object_type>wbmd_pb_module</object_type>
                     <wbmd_pb_module_category />
@@ -21,7 +21,7 @@
                     <wbmd_pb_module_sp_program />
                     <wbmd_pb_module_tier>0</wbmd_pb_module_tier>
                     <wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
-                    <r_modify_date>10/07/2015 15:45:30</r_modify_date>
+                    <r_modify_date>10/01/2015 11:46:25</r_modify_date>
                     <wbmd_c_channel_ids_group />
                     <wbmd_pb_asset_css path="/webmd/PageBuilder_Assets/CSS/EditorialModule/Funded Article Module/Standard_091e9c5e8120387c.css" object_type="wbmd_pb_css" chronic_id="091e9c5e8120387c" />
                     <wbmd_pb_module_xsl path="/webmd/PageBuilder_Assets/XSL/EditorialModule/Funded Article Module_091e9c5e8120387b.xsl" object_type="wbmd_pb_xsl" chronic_id="091e9c5e8120387b" />
@@ -32,7 +32,7 @@
                     <class>EditorialModule</class>
                 </module_settings>
                 <module_data>
-                    <module_title />
+                    <module_title>ed-rspsvtocprm-1</module_title>
                     <module_link_view>Page Refresh(Default)</module_link_view>
                     <module_link chronic_id="" directive="friendlyurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" />
                     <links>
