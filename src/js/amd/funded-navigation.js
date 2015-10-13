@@ -141,6 +141,7 @@ webmd.fundedEditorial.navigation = {
             case 'type_art':
                 break;
             case 'type_ss':
+                self.identifier = null;
                 break;
             case 'type_vid':
                 break;
