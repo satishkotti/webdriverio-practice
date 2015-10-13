@@ -603,7 +603,7 @@ webmd.fundedEditorial = {
 								}
 							}
 
-							
+
 							if (childId !== 'undefined' && (self.adIDarray.indexOf(childId) > -1)) {
 								// Store ads found in TOC. Finish loading after masonry layout completes
 								self.contentPanes[contentPaneId].nodes.push({
