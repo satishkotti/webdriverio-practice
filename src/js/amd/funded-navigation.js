@@ -8,7 +8,7 @@ webmd.fundedEditorial.navigation = {
 
     mobile_only: false,                         // flag used if navigation paddles should be displayed on mobile only
     hide_paddles: true,                         // default setting to hide paddles at speicific points on the page (very top, very bottom, specified pixels after the article)
-    identifier: null,                           // article type used to determine identifier on the page for calulation show/hide points
+    identifier: "#s3",                           // article type used to determine identifier on the page for calulation show/hide points
     is_current_sponsored: false,                // flag for determinging if current page is sponsored
     hide_sponsor_pages: false,                  // disable sponsor pages within the navigation (this will be configured globally within webmd.fundedEditorial and can be removed)
     hide_on_sponsored: false,                   // do not display paddles on sponsored pages
@@ -139,7 +139,6 @@ webmd.fundedEditorial.navigation = {
 
         switch (caType) {
             case 'type_art':
-                self.identifier = '.article';
                 break;
             case 'type_ss':
                 break;
