@@ -5,7 +5,7 @@
 		<xsl:apply-templates select="//contentText"/>
 	</xsl:template>
 	<xsl:template match="contentText">
-		<div class="ed_disclaimer">
+		<div class="ed_disclaimer" data-metrics-module="disclaimer">
 			<xsl:value-of select="." disable-output-escaping="yes"/>
 		</div>
 		<xsl:element name="script">
@@ -18,9 +18,39 @@
 						$(function(){
 							var platform = (webmd.useragent.ua.type === 'mobile') ? "mobile" : "core";
 							if(platform == "mobile"){
-								$(".ed_disclaimer a").webmdTooltip({ajax:true, content:{button:true},trigger:"click",position:{corner:{target:"bottom"}}});
+								$(".ed_disclaimer a").webmdTooltip({
+									ajax:true,
+									content:{
+										button:true
+									},
+									trigger:"click",
+									position:{
+										corner:{
+											target:"bottom"
+										}
+									},
+									api: {
+										onShow: function(){
+											wmdPageLink('disclaimer');
+										}
+									}
+								});
 							}else{
-								$(".ed_disclaimer a").webmdTooltip({ajax:true, trigger:"click",position:{corner:{target:"bottom",tooltip:"left"}}});
+								$(".ed_disclaimer a").webmdTooltip({
+									ajax:true,
+									trigger:"click",
+									position:{
+										corner:{
+											target:"bottom",
+											tooltip:"left"
+										}
+									},
+									api: {
+										onShow: function(){
+											wmdPageLink('disclaimer');
+										}
+									}
+								});
 							}
 						});
 					});]]>

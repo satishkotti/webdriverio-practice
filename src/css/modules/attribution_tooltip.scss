@@ -1,0 +1,80 @@
+.attrib_right_fmt {
+    float: right;
+    margin: 0 auto 10px;
+}
+.attrib_content {
+   overflow: hidden;
+   padding: 4px 10px;
+}
+.attrib_right_fmt .link_fmt {
+   font-size: 90%;
+}
+.attrib_right_fmt img {
+    border: medium none;
+    margin-left:8px;
+    vertical-align:middle;
+}
+
+/* Media Queries */
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-width: 320px) and (max-width: 736px) {
+    /* STYLES GO HERE */
+    .attrib_right_fmt {
+        display: none;
+    }
+}
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: 321px) {
+    /* STYLES GO HERE */
+}
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: 320px) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (portrait and landscape) ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    /* STYLES GO HERE */
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Small screens ----------- */
+@media only screen and (min-width: 676px) {
+    /* STYLES GO HERE */
+}
+/* Small screens : Retina ----------- */
+@media only screen and (min-width: 676px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (landscape) ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (landscape) - Retina ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (portrait) ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    /* STYLES GO HERE */
+}
+/* Tablets, iPads (portrait) - Retina ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1025px) {
+    /* STYLES GO HERE */
+}
+/* Desktops and laptops - Retina ----------- */
+@media only screen and (min-width: 1025px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+/* Large screens : Non-Retina ----------- */
+@media only screen and (min-width: 1824px) {
+    /* STYLES GO HERE */
+}
+/* Large screens : Retina ----------- */
+@media only screen and (min-width: 1824px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
