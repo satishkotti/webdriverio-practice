@@ -168,6 +168,8 @@ define(['bx_slider/1/bx_slider'], function(){
 			$ss.find('.bx-prev, .bx-next').hide();
 			$ss.find('.slide-end').show().find('.next-art').html(title);
 
+			callMetrics('next', true);
+
 			setTimeout(function(){
 				window.location = url; 
 			}, 1000);
@@ -191,7 +193,7 @@ define(['bx_slider/1/bx_slider'], function(){
 
 		function callMetrics(clickId, isLink) {
 			if (isLink) {
-
+				wmdTrack(settings.metricsModuleName + '-' + clickId);
 			} else {
 				webmd.metrics.dpv({
 					moduleName: settings.metricsModuleName + '-' + clickId,
