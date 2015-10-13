@@ -602,17 +602,9 @@ webmd.fundedEditorial = {
 								}
 							}
 
-							if (childId !== 'undefined' && (self.adIDarray.indexOf(childId) > -1)) {
-								// Store ads found in TOC. Finish loading after masonry layout completes
-								self.contentPanes[contentPaneId].nodes.push({
-									'node': { 'id' : childId, 'ad_html' : $child.html() }
-								});
-								$child.html('');
-							} else {
-								self.contentPanes[contentPaneId].nodes.push({
-									'node': $child
-								});
-							}
+							self.contentPanes[contentPaneId].nodes.push({
+								'node': $child
+							});
 						}
 					});
 				}
