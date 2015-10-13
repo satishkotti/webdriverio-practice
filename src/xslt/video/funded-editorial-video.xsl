@@ -41,9 +41,6 @@
 
 		
 		<xsl:element name="script"><![CDATA[
-
-			s_not_pageview='y';
-			
 			requirejs(['funded-editorial/1/video'], function(fundedEditorialVideo){
 				fundedEditorialVideo.init("]]><xsl:value-of select="$moduletitle" disable-output-escaping="yes" /><![CDATA[", "]]><xsl:value-of select="$video_url"/><![CDATA[");
 			});
