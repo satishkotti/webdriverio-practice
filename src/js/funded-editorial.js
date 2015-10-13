@@ -64,7 +64,6 @@ webmd.fundedEditorial = {
 		var self = this,
 			artObjParam = webmd.url.getParam('artObj');
 
-
 		if (self.hasStorage()) {
 			self.visitedPages = JSON.parse(sessionStorage.getItem('visited')) || {};
 			self.addToVisitedPages();
@@ -603,7 +602,6 @@ webmd.fundedEditorial = {
 								}
 							}
 
-
 							if (childId !== 'undefined' && (self.adIDarray.indexOf(childId) > -1)) {
 								// Store ads found in TOC. Finish loading after masonry layout completes
 								self.contentPanes[contentPaneId].nodes.push({
@@ -783,6 +781,10 @@ webmd.fundedEditorial = {
 				btmMargin,
 				newHeight;
 
+			if ($node === 'undefined' || typeof $node === null) {
+				return;
+			}
+
 			if (!standardTileHeight) {
 				standardTileHeight = $('.' + self.gridItemClass + ':not(.icm_wrap):not(.dbm_wrap)').outerHeight();
 			}
@@ -935,17 +937,15 @@ webmd.fundedEditorial = {
 									self.msnry_complete = true;
 
 									$.each(contentPane.nodes, function(index) {
-										var node = this.node,
-											$ad = $('#' + node.id);
+										var $node = $(this.node);
 
-										if ('ad_html' in node) {
-											$ad.html(node.ad_html);
-											self.fixSingleTile($ad);
-										}
+										self.fixSingleTile($node);
 									});
 
-									webmd.ads2.display();
+									contentPane.msnry.layout();
 								}
+
+								webmd.ads2.display();
 							});
 
 							contentPane.msnry.layout();
