@@ -88,7 +88,8 @@ div.icm_wrap, div.dbm_wrap {
 
 .wbmd-promo-seg-title {
   width: 100% !important;
-  min-height: auto !important;
+  height: auto !important;
+  min-height: 0px !important;
   background-color: transparent !important;
   box-shadow: none !important;
   font-family: 'Lato', Arial, sans-serif;
