@@ -154,7 +154,8 @@
 	padding: 10px 15px;
 	color: #fff;
 }
-.touch .slideshow .slide-count {
+.touch .slideshow .slide-count,
+.touch .slideshow .bx-controls {
 	display: none;
 }
 .slideshow .slide-end {
