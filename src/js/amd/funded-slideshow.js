@@ -56,7 +56,7 @@ define(['bx_slider/1/bx_slider'], function(){
 			$ss.on('onSliderLoad', function(event) {
 				positionArrows(0);
 				$ss.find('.slide-count .current').html('1');
-
+				callMetrics();
 			});
 
 			$ss.on('onSlideBefore', function(event) {
@@ -194,11 +194,16 @@ define(['bx_slider/1/bx_slider'], function(){
 		function callMetrics(clickId, isLink) {
 			if (isLink) {
 				wmdTrack(settings.metricsModuleName + '-' + clickId);
-			} else {
+			} else if (clickId) {
 				webmd.metrics.dpv({
 					moduleName: settings.metricsModuleName + '-' + clickId,
 					pageName: window.s_pagename + "#" + (slider.getCurrentSlide() + 1),
 					iCount: slider.getCurrentSlide() + 1
+				});
+			} else {
+				webmd.metrics.dpv({
+					pageName: window.s_pagename + "#1",
+					iCount: 1
 				});
 			}
 		}
