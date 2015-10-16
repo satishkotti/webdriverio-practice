@@ -839,7 +839,7 @@ webmd.fundedEditorial = {
 				}
 
 				if (windowW > 675 && multiplier > 1) {
-					newHeight = ((standardTileHeight * multiplier) + (gutter * multiplier)) - gutter;
+					newHeight = ((standardTileHeight * multiplier) + (gutter * multiplier));
 
 					if (self.adIDarray.indexOf($node.attr('id')) !== -1) {
 						btmMargin = newHeight - nodeH;
@@ -911,11 +911,11 @@ webmd.fundedEditorial = {
 					if (resetLayout) {
 						contentPane.msnry.layout();
 
-						if ($(window).width() >= 980) {
+						/*if ($(window).width() >= 980) {
 							setTimeout(function() {
 								self.adjustPositions();
-							}, 500);
-						}
+							}, 2000);
+						}*/
 					} else {
 						$(masonryGrid).imagesLoaded(function() {
 							contentPane.msnry = new Masonry(masonryGrid, {
