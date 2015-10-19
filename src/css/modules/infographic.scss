@@ -35,6 +35,12 @@
     }
 }
 
+.ua_device_ipad {
+    .adobe-link {
+        display: none;
+    }
+}
+
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-width: 320px) and (max-width: 736px) {
     /* STYLES GO HERE */

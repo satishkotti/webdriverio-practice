@@ -562,10 +562,13 @@ webmd.fundedEditorial = {
 		adIDarray: ['bannerAd_fmt', 'leftAd_fmt', 'rightAd_fmt', 'rightAd_rdr', 'slideshow_ad_300x250', 'cw_btm_ad_300x250', 'rmqAd_fmt'], // list of AD id's that might be placed inside the TOC
 		contentPanes: {},
 		masonryGutter: 10,
+		numPanes_layoutComplete: 0,
 
 		init: function() {
 			var self = this;
-			this.toc_render();
+			if (window.s_business_reference === "TOC") {
+				this.toc_render();
+			}
 		},
 
 		start: function() {
@@ -836,7 +839,7 @@ webmd.fundedEditorial = {
 				}
 
 				if (windowW > 675 && multiplier > 1) {
-					newHeight = ((standardTileHeight * multiplier) + (gutter * multiplier)) - gutter;
+					newHeight = ((standardTileHeight * multiplier) + (gutter * multiplier));
 
 					if (self.adIDarray.indexOf($node.attr('id')) !== -1) {
 						btmMargin = newHeight - nodeH;
@@ -899,6 +902,8 @@ webmd.fundedEditorial = {
 			}
 
 			function createMasonryGrid(id) {
+				var numContentPanes = Object.keys(webmd.fundedEditorial.tocTiles.contentPanes).length;
+
 				require(['masonry/1/masonry'], function(Masonry) {
 					var contentPane = contentPanes[id],
 						masonryGrid = '#' + id + ' .wbmd-masonry-grid';
@@ -906,11 +911,11 @@ webmd.fundedEditorial = {
 					if (resetLayout) {
 						contentPane.msnry.layout();
 
-						if ($(window).width() >= 980) {
+						/*if ($(window).width() >= 980) {
 							setTimeout(function() {
 								self.adjustPositions();
-							}, 500);
-						}
+							}, 2000);
+						}*/
 					} else {
 						$(masonryGrid).imagesLoaded(function() {
 							contentPane.msnry = new Masonry(masonryGrid, {
@@ -925,8 +930,8 @@ webmd.fundedEditorial = {
 								// TOC Tiles load before Segment Tiles
 								// Ads will only exist in TOC Tiles, not Segments
 								// Perform the below only once, after TOC Tiles layout completes
-								if (!self.msnry_complete) {
-									self.msnry_complete = true;
+								if (!contentPane.msnry_complete) {
+									contentPane.msnry_complete = true;
 
 									$.each(contentPane.nodes, function(index) {
 										var $node = $(this.node);
@@ -935,9 +940,12 @@ webmd.fundedEditorial = {
 									});
 
 									contentPane.msnry.layout();
-								}
+									self.numPanes_layoutComplete++;
 
-								webmd.ads2.display();
+									if (self.numPanes_layoutComplete === numContentPanes) {
+										webmd.ads2.display();
+									}
+								}
 							});
 
 							contentPane.msnry.layout();
