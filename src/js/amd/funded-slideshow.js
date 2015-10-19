@@ -203,7 +203,8 @@ define(['bx_slider/1/bx_slider'], function(){
 			} else {
 				webmd.metrics.dpv({
 					pageName: window.s_pagename + "#1",
-					iCount: 1
+					iCount: 1,
+					refresh: false
 				});
 			}
 		}
