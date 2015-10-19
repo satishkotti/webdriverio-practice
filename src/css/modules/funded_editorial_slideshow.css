@@ -181,6 +181,12 @@
 .slideshow .slide-end h4 .next-art {
 	font-size: 2.4rem;
 }
+.sources {
+	margin: 20px 0;
+}
+.reviewer {
+	margin-top: 10px;
+}
 @media only screen and (min-width: 676px) and (max-width: 915px), only screen and (max-width: 530px) {
 	.slideshow .slide .caption p {
 		font-size: 1.6rem;
@@ -197,6 +203,8 @@
 		font-size: 1.5rem;
 	}
 }
-.reviewer {
-	margin-top: 10px;
+@media only screen and (max-width: 767px) {
+	.sources {
+		margin: 20px 10px;
+	}
 }

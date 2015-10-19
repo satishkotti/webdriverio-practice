@@ -1,0 +1,13 @@
+.fed-video .desc {
+	margin: 1em 0;
+}
+.fed-video .desc p {
+	font-size: 1em;
+	margin: 0 0 1.5em;
+
+}
+@media only screen and (max-width: 767px) {
+	.fed-video .desc {
+		margin: 1em 10px;
+	}
+}
