@@ -147,8 +147,9 @@ define(['bx_slider/1/bx_slider'], function(){
 				// attach error handler to swith back to original image if mobile doesn't exist
 				$sponImg.error(function() {
 					$(this).attr('src', orgImgSrc);
-				}).attr('src', imgSrc);
-
+				}).attr('src', imgSrc).load(function() {
+					setImageMaxWidths();
+				});
 			}
 		}
 
@@ -177,7 +178,7 @@ define(['bx_slider/1/bx_slider'], function(){
 		}
 
 		function setImageMaxWidths() {
-			$ss.find('.image img').each( function(index) {
+			$ss.find('.image img').each( function() {
 				$(this).css('max-width', getNaturalWidth(this));
 			});
 		}
