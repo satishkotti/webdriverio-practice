@@ -135,6 +135,9 @@
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
     /* STYLES GO HERE */
+    .article-list-container {
+        display: block !important;
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
@@ -146,8 +149,12 @@
 
 @media only screen and (min-width: 676px) {
     /* STYLES GO HERE */
-    .article-list-container {
-        display: block !important;
+    .funded-editorial {
+        &:not(.funded-editorial-video) {
+            .article-list-container {
+                display: block !important;
+            }
+        }
     }
 }
 
