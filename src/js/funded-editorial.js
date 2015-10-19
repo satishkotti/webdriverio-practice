@@ -392,9 +392,36 @@ webmd.fundedEditorial = {
 
 		$(window).load(function() {
 			self.scrollTo(true, null, 90, true, true, false); // scroll using URL hash
+
+			self.centerAds('#s4 .ad_rdr'); //pass specific ad identifier for centering
 		});
 
 		return self;
+
+	},
+
+	centerAds: function(identifier) {
+		var self = this,
+			$ads = $(identifier);
+
+		if (typeof $ads !== 'undefined' && $ads !== null) {
+			$.each($ads, function() {
+				var $ad = $(this),
+					adWidth = $ad.outerWidth();
+
+				$ad.closest('.section').addClass('center-ad');
+
+				$ad.css({
+					'position' : 'relative',
+					'width' : adWidth + 'px',
+					'left' : '50%',
+					'marginLeft' : (adWidth / -2) + 'px',
+					'marginBottom' : '10px'
+				});
+			});
+		}
+
+		return;
 	},
 
 	scrollTo: function(urlHash, domEl, extPad, desktop, tablet, mobile) {
@@ -561,8 +588,8 @@ webmd.fundedEditorial = {
 		gridItemClass: 'wbmd-grid-item', // class name on each <div> provided by the XSL
 		adIDarray: ['bannerAd_fmt', 'leftAd_fmt', 'rightAd_fmt', 'rightAd_rdr', 'slideshow_ad_300x250', 'cw_btm_ad_300x250', 'rmqAd_fmt'], // list of AD id's that might be placed inside the TOC
 		contentPanes: {},
-		masonryGutter: 10,
-		numPanes_layoutComplete: 0,
+		masonryGutter: 10, // space between tiles
+		numPanes_layoutComplete: 0, // counter
 
 		init: function() {
 			var self = this;
@@ -635,16 +662,19 @@ webmd.fundedEditorial = {
 
 				webmd.fundedEditorial.segments[index].data.listen(function(passedValue) {
 		            if (passedValue === true) {
-		                segmentModules[index] = createSegmentTiles(data, segmentModules[index]);
+		                // Store segment in array (keep layout of segments in correct order)
+		                segmentModules[index] = createSegmentTiles(data, segmentModules[index]); 
 		                complete++;
 
 		                if (complete === webmd.fundedEditorial.segments.length) {
+		                	// Add segments to DOM before updating DOM (prevents undefined)
 							$.each(segmentModules, function(index, nodes) {
 								for (var i=0; i<nodes.length; i++) {
 									$tocSegmentContentPane.append(segmentModules[index][i]);
 								}
 							});
 
+							// Update DOM (classes, layouts, sizes, margins, etc.)
 							self.start();
 						}
 		            }
@@ -811,39 +841,43 @@ webmd.fundedEditorial = {
 					}
 				}
 			} else {
-				nodeH = parseInt($node.attr('data-orig-height'));
+				if (windowW > 675) {
+					nodeH = parseInt($node.attr('data-orig-height'));
 
-				if (nodeH > standardTileHeight) {
-					if ((nodeH === (standardTileHeight * 2)) ||
-						((nodeH > standardTileHeight) && (nodeH < (standardTileHeight * 2)))) {
-						multiplier = 2;
-					} else if (
-						(nodeH === (standardTileHeight * 3)) ||
-						((nodeH > (standardTileHeight * 2)) && (nodeH < (standardTileHeight * 3)))) {
-						multiplier = 3;
-					} else if (
-						(nodeH === (standardTileHeight * 4)) ||
-						((nodeH > (standardTileHeight * 3)) && (nodeH < (standardTileHeight * 4)))) {
-						multiplier = 4;
-					} else if (
-						(nodeH === (standardTileHeight * 5)) ||
-						((nodeH > (standardTileHeight * 4)) && (nodeH < (standardTileHeight * 5)))) {
-						multiplier = 5;
-					} else if (
-						(nodeH === (standardTileHeight * 6)) ||
-						((nodeH > (standardTileHeight * 5)) && (nodeH < (standardTileHeight * 6)))) {
-						multiplier = 6;
-					} else {
-						multiplier = 7;
+					if (nodeH > standardTileHeight) {
+						if ((nodeH === (standardTileHeight * 2)) ||
+							((nodeH > standardTileHeight) && (nodeH < (standardTileHeight * 2)))) {
+							multiplier = 2;
+						} else if (
+							(nodeH === (standardTileHeight * 3)) ||
+							((nodeH > (standardTileHeight * 2)) && (nodeH < (standardTileHeight * 3)))) {
+							multiplier = 3;
+						} else if (
+							(nodeH === (standardTileHeight * 4)) ||
+							((nodeH > (standardTileHeight * 3)) && (nodeH < (standardTileHeight * 4)))) {
+							multiplier = 4;
+						} else if (
+							(nodeH === (standardTileHeight * 5)) ||
+							((nodeH > (standardTileHeight * 4)) && (nodeH < (standardTileHeight * 5)))) {
+							multiplier = 5;
+						} else if (
+							(nodeH === (standardTileHeight * 6)) ||
+							((nodeH > (standardTileHeight * 5)) && (nodeH < (standardTileHeight * 6)))) {
+							multiplier = 6;
+						} else {
+							multiplier = 7;
+						}
 					}
-				}
 
-				if (windowW > 675 && multiplier > 1) {
-					newHeight = ((standardTileHeight * multiplier) + (gutter * multiplier));
+					if (multiplier > 1) {
+						newHeight = ((standardTileHeight * multiplier) + (gutter * multiplier));
 
-					if (self.adIDarray.indexOf($node.attr('id')) !== -1) {
-						btmMargin = newHeight - nodeH;
-						$node.attr('style', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
+						if (self.adIDarray.indexOf($node.attr('id')) !== -1) {
+							btmMargin = newHeight - nodeH;
+							$node.attr('style', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
+						}
+					} else {
+						$node.css('cssText', $node.attr('data-orig-csstext'));
 					}
 				} else {
 					$node.css('cssText', $node.attr('data-orig-csstext'));
