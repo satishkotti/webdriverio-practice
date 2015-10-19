@@ -32,9 +32,9 @@
 							<li class="see-all-item spon-{{sponsored}}">
 								<a href="{{link}}" data-metrics-link="{{nonSponPos}}">
 									<div class="see-all-img {{type}}">
-										<img src="{{image_server_url}}/{{images.image110x70}}" alt="{{title}}">
+										<img src="{{image_server_url}}/{{images.image110x70}}" alt="{{{title}}}">
 									</div>
-									<p>{{title}}</p>
+									<p>{{{title}}}</p>
 								</a>
 							</li>
 							{{/each_when}}
@@ -47,10 +47,10 @@
 							<li class="see-all-item spon-{{sponsored}}">
 								<a href="{{link}}" data-metrics-link="{{sponPos}}">
 									<div class="see-all-img {{type}}">
-										<img src="{{image_server_url}}/{{images.image110x70}}" alt="{{title}}">
+										<img src="{{image_server_url}}/{{images.image110x70}}" alt="{{{title}}}">
 									</div>
 									<p class="fos">From Our Sponsor</p>
-									<p>{{title}}</p>
+									<p>{{{title}}}</p>
 								</a>
 							</li>
 							{{/each_when}}
@@ -135,9 +135,9 @@
 							<li class="see-all-seg-item">
 								<a href="{{articleData.program.tocLink}}" data-metrics-link="{{math @index "+" 1}}">
 									<div class="see-all-seg-img">
-										<img src="{{image_server_url}}{{articleData.program.tocImages.image493x335}}" alt="{{articleData.program.title}}">
+										<img src="{{image_server_url}}{{articleData.program.tocImages.image493x335}}" alt="{{{articleData.program.title}}}">
 									</div>
-									<p>{{articleData.program.title}}</p>
+									<p>{{{articleData.program.title}}}</p>
 								</a>
 							</li>
 							{{/each}}

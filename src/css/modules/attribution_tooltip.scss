@@ -1,56 +1,25 @@
-.article {
-    clear: both;
-    position: relative;
-    width: 100%;
-
-    .article-content p {
-        line-height: 182%;
-        margin-bottom: 20px;
-
-        &.dwnl {
-            margin-bottom: 10px;
-        }
-    }
-
-    .infographic-img {
-        margin-bottom: 15px;
-
-        img {
-            width: 100%;
-        }
-    }
-
-    .adobe-link {
-        a {
-            background: url(data:image/gif;base64,R0lGODlhEgASAOZzAK+vr7Gxsfr6+vv7+/X19YiIiN/f3/Pz8/j4+Pn5+WUAANwMDNsKCrCwsNMAAPzT0+7u7rsAAPmsrPb29vT09EBAQOfn5/9OTv2vr6AAAIsAAKkAAN8AAP1MTLMAAP0mJtsAAPyvr/Ly8tra2u/v7/uJiR4eHvubm7S0tNjY2Pq/v3EAAG8AAP1aWuHh4f2MjMPDw/17e2IAAPvm5uAAAP2wsPm+vrKyssfHx3IAAMMAANACAmoAALy8vMHBwYYAAPtpafDw8MgAAG0AANLS0tgAAKCgoK6urqKiovoiIu0YGGgAAObm5sTExPfOzrIAAPp4eJOTk9EDA8LCwsDAwLu7u7a2tvxqauvr65SUlKurq+QREf58fPbPz/UfH6Wlpejo6NYHB9oKCssAAP09Pfmrq/6enuPj4+Dg4MIAAOzs7PvS0vz8/MbGxiUlJf39/ff39/7+/v///////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAHMALAAAAAASABIAAAfdgHOCg4SFhnMjKA0AiwAANxaHczACBAdBakxUBgAuhEUcNCAOY2kRTxtfAwZaaIMOSR9eSlsMOzoZBQOrR1iCHmILCwxhUkIRGkYFBVlIKYI/OSssQzxLCjIKEGBnOFE+hW0IBORQXQciJBBEVeEJcPBATnATBxQUVuEC8HASEvAT4CAIEO7NgAQIrpDhJyABQUJt3rBhM6OFig42yqwR8HBQxIlcHmAIcaJEDI4FH7yoMXHigDdvOgqKeMFMnJs45ciROafJG5xA4+gEUGhKBTdIkyI1UaGHpKeCAgEAOw==) no-repeat 0 0;
-            padding-left: 20px;
-        }
-    }
-    footer {
-        background: 0;
-
-        .copyright {
-            color: #666;
-        }
-    }
+.attrib_right_fmt {
+    float: right;
+    margin: 0 auto 10px;
+}
+.attrib_content {
+   overflow: hidden;
+   padding: 4px 10px;
+}
+.attrib_right_fmt .link_fmt {
+   font-size: 90%;
+}
+.attrib_right_fmt img {
+    border: medium none;
+    margin-left:8px;
+    vertical-align:middle;
 }
 
-.ua_device_ipad {
-    .adobe-link {
-        display: none;
-    }
-}
-
+/* Media Queries */
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-width: 320px) and (max-width: 736px) {
     /* STYLES GO HERE */
-    .byline,
-    .infographic-content,
-    .article-footer {
-        padding: 0 10px;
-    }
-
-    .adobe-link {
+    .attrib_right_fmt {
         display: none;
     }
 }
