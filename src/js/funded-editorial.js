@@ -393,7 +393,8 @@ webmd.fundedEditorial = {
 		$(window).load(function() {
 			self.scrollTo(true, null, 90, true, true, false); // scroll using URL hash
 
-			self.centerAds('#s4 .ad_rdr'); //pass specific ad identifier for centering
+			self.centerAds('#s4 .ad_rdr'); //pass specific ad identifiers for centering
+			self.centerAds('#s4 #rightAd_rdr'); //pass specific ad identifier for centering
 		});
 
 		return self;
