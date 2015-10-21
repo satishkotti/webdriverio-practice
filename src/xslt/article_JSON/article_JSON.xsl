@@ -86,6 +86,13 @@
 					</xsl:with-param>
 				</xsl:call-template>
 			</xsl:variable>
+			<xsl:variable name="friendlyUrl">
+				<xsl:call-template name="GetFriendlyUrl">
+					<xsl:with-param name="href">
+						<xsl:value-of select="$href"/>
+					</xsl:with-param>
+				</xsl:call-template>
+			</xsl:variable>
 			<xsl:variable name="position">
 				<xsl:value-of select="position()"></xsl:value-of>
 			</xsl:variable>
@@ -120,15 +127,15 @@
 					<![CDATA["image50x50" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">50</xsl:with-param><xsl:with-param name="height">50</xsl:with-param></xsl:call-template><![CDATA["]]>
 				<![CDATA[},]]>
 				<![CDATA["type" : "]]><xsl:call-template name="GetLinkIconType">
+					<xsl:with-param name="link_text">
+						<xsl:value-of select="link_text"/>
+					</xsl:with-param>
 					<xsl:with-param name="link_href">
-						<xsl:value-of select="$href"/>
+						<xsl:value-of select="$friendlyUrl"/>
 					</xsl:with-param>
 				</xsl:call-template><![CDATA[",]]>
 				<![CDATA["sponsored" : ]]><xsl:choose>
-					<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
-						<xsl:text>true</xsl:text>
-					</xsl:when>
-					<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
+					<xsl:when test="contains(string(link_text),'[sp]')">
 						<xsl:text>true</xsl:text>
 					</xsl:when>
 					<xsl:otherwise>
@@ -236,26 +243,62 @@
 			</xsl:choose>
 		</xsl:if>
 	</xsl:template>
-	<xsl:template name="GetLinkIconType">
-		<xsl:param name="link_href"></xsl:param>
+	<xsl:template name="GetFriendlyUrl">
+		<xsl:param name="href" />
 		<xsl:choose>
-			<xsl:when test="contains(string($link_href),'/default.htm')">
-				<xsl:text>type_toc</xsl:text>
-			</xsl:when>
-			<xsl:when test="contains(string($link_href),'blogs.') or contains(string($link_href),'boards.')">
-				<xsl:text>type_com</xsl:text>
-			</xsl:when>
-			<xsl:when test="contains(string($link_href),'video')">
-				<xsl:text>type_vid</xsl:text>
-			</xsl:when>
-			<xsl:when test="contains(string($link_href),'slideshow')">
-				<xsl:text>type_ss</xsl:text>
-			</xsl:when>
-			<xsl:when test="contains(string($link_href),'quiz')">
-				<xsl:text>type_rmq</xsl:text>
+			<xsl:when test="not(contains($href, '/'))">
+				<xsl:value-of select="$href"/>
 			</xsl:when>
 			<xsl:otherwise>
+				<xsl:call-template name="GetFriendlyUrl">
+					<xsl:with-param name="href" select="substring-after($href, '/')"/>
+				</xsl:call-template>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	<xsl:template name="GetLinkIconType">
+		<xsl:param name="link_href" />
+		<xsl:param name="link_text" />
+		<xsl:choose>
+			<xsl:when test="contains(string($link_text),'[toc]')">
+				<xsl:text>type_toc</xsl:text>
+			</xsl:when>
+			<xsl:when test="contains(string($link_text),'[blogs]') or contains(string($link_text),'[boards]')">
+				<xsl:text>type_com</xsl:text>
+			</xsl:when>
+			<xsl:when test="contains(string($link_text),'[video]') or contains(string($link_text),'[vid]')">
+				<xsl:text>type_vid</xsl:text>
+			</xsl:when>
+			<xsl:when test="contains(string($link_text),'[slideshow]') or contains(string($link_text),'[ss]')">
+				<xsl:text>type_ss</xsl:text>
+			</xsl:when>
+			<xsl:when test="contains(string($link_text),'[quiz]') or contains(string($link_text),'[rmq]')">
+				<xsl:text>type_rmq</xsl:text>
+			</xsl:when>
+			<xsl:when test="contains(string($link_text),'[article]') or contains(string($link_text),'[art]')">
 				<xsl:text>type_art</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:choose>
+					<xsl:when test="contains(string($link_href),'/default.htm')">
+						<xsl:text>type_toc</xsl:text>
+					</xsl:when>
+					<xsl:when test="contains(string($link_href),'blogs.') or contains(string($link_href),'boards.')">
+						<xsl:text>type_com</xsl:text>
+					</xsl:when>
+					<xsl:when test="contains(string($link_href),'video')">
+						<xsl:text>type_vid</xsl:text>
+					</xsl:when>
+					<xsl:when test="contains(string($link_href),'slideshow')">
+						<xsl:text>type_ss</xsl:text>
+					</xsl:when>
+					<xsl:when test="contains(string($link_href),'quiz')">
+						<xsl:text>type_rmq</xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>type_art</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
