@@ -393,36 +393,41 @@ webmd.fundedEditorial = {
 		$(window).load(function() {
 			self.scrollTo(true, null, 90, true, true, false); // scroll using URL hash
 
-			self.centerAds('#s4 .ad_rdr'); //pass specific ad identifiers for centering
-			self.centerAds('#s4 #rightAd_rdr'); //pass specific ad identifier for centering
+			self.centerAds(['#s4 > .bottom_ad_rdr', '#rightAd_rdr']); //pass specific ad identifiers for centering as array
 		});
 
 		return self;
 
 	},
 
-	centerAds: function(identifier) {
+	centerAds: function(identifiers) {
 		var self = this,
-			$ads = $(identifier);
+			$ads;
 
-		if (typeof $ads !== 'undefined' && $ads !== null) {
-			$.each($ads, function() {
-				var $ad = $(this),
-					adWidth = $ad.outerWidth();
+		if ($('html.move-ad').length <= 0) { // do not change ads inside infinite article
+			for (var i=0; i<identifiers.length; i++) {
+				$ads = $(identifiers[i]);
+			}
 
-				$ad.closest('.section').addClass('center-ad');
+			if (typeof $ads !== 'undefined' && $ads !== null) {
+				$.each($ads, function() {
+					var $ad = $(this),
+						adWidth = $ad.outerWidth();
 
-				$ad.css({
-					'position' : 'relative',
-					'width' : adWidth + 'px',
-					'left' : '50%',
-					'marginLeft' : (adWidth / -2) + 'px',
-					'marginBottom' : '10px'
+					$ad.closest('.section').addClass('center-ad');
+
+					$ad.css({
+						'position' : 'relative',
+						'width' : adWidth + 'px',
+						'left' : '50%',
+						'marginLeft' : (adWidth / -2) + 'px',
+						'marginBottom' : '10px'
+					});
 				});
-			});
+			}
 		}
 
-		return;
+		return self;
 	},
 
 	scrollTo: function(urlHash, domEl, extPad, desktop, tablet, mobile) {
