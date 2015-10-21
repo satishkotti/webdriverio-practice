@@ -33,7 +33,6 @@ webmd.fundedEditorial.navigation = {
             .html(
                 '<div class="article-nav">' + newline +
                     '<a class="prev {{#if visited}}visited{{/if}}" href="{{prev.article.link}}" data-metrics-link="l-{{prev.articleId}}">' + newline +
-                        '<span class="arrow"></span>' + newline +
                         '<span class="text">' + newline +
                             '<span class="nav">Previous</span>' + newline +
                             '<span class="title">{{prev.article.title}}</span>' + newline +
@@ -44,7 +43,6 @@ webmd.fundedEditorial.navigation = {
                             '<span class="nav">Next</span>' + newline +
                             '<span class="title">{{next.article.title}}</span>' + newline +
                         '</span>' + newline +
-                        '<span class="arrow"></span>' + newline +
                     '</a>' + newline +
                 '</div>'
             );

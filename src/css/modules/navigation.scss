@@ -10,7 +10,6 @@
   bottom: 0;
   margin: 0 auto;
   max-width: 980px;
-  text-align: center;
   z-index: 1001;
 
   &.half-me {
@@ -32,15 +31,12 @@
 
   .article-nav {
     position: absolute;
-    display: table;
-    width: 100%;
-    max-width: 980px;
-    bottom: -200px;
+    display: flex;
+    bottom: -1000px;
     left: 0;
     right: 0;
-    margin: 0 auto;
     overflow: hidden;
-    border: 1px solid rgb(193,193,193);
+    border-top: 2px solid #000000;
     background-color: #fff;
 
     -webkit-transition: all 0.5s ease-in-out 0.5s;
@@ -50,7 +46,7 @@
     transition: all 0.5s ease-in-out 0.5s;
 
     &.show {
-      bottom: -1px; /* hides bottom border */
+      bottom: 0px;
       -webkit-transition-delay: 0s;
       -moz-transition-delay: 0s;
       -o-transition-delay: 0s;
@@ -60,76 +56,65 @@
 
     a {
       display: inline-table;
+      font-family: icons;
       width: 50%;
-      height: 100%;
+      padding: 20px 10px;
       table-layout: fixed;
-    }
 
-    .next, .prev {
-      height: 100%;
-    }
+      &.prev, &.next {
 
-    .next {
-      border-left: 1px solid rgb(182,182,182);
+        &:before, &:after {
+          font-size: 27px;
+          color: #c9c9c9;
+        }
 
-      .arrow {
-        position: relative;
-        float: right;
-        border-right: 5px solid rgb(182,182,182);
-        -ms-transform: rotate(-45deg); /* IE 9 */
-        -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
-        transform: rotate(-45deg);
+        .text {
+          position: relative;
+          display: table-cell;
+          width: 100%;
+          text-align: center;
+          vertical-align: top;
+
+          .nav {
+            display: block;
+            font-family: 'Roboto Condensed', Arial, sans-serif;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #636466;
+          }
+
+          .title {
+            display: block;
+            font-family: 'Lato';
+            font-size: 18px;
+            color: #333333;
+            line-height: 20px;
+          }
+        }
       }
 
-      .text {}
-    }
+      &.prev {
+        &:before {
+          float: left;
+          content: "\e61a";
+        }
 
-    .prev {
-      float: left;
-
-      .arrow {
-        position: relative;
-        float: left;
-        border-left: 5px solid rgb(182,182,182);
-        -ms-transform: rotate(45deg); /* IE 9 */
-        -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
-        transform: rotate(45deg);
+        .text {
+          padding-left: 20px;
+        }
       }
 
-      .text {}
-    }
+      &.next {
+        border-left: 1px solid #c9c9c9;
 
-    .arrow {
-      margin: 30px 30px 25px 30px;
-      width: 25px;
-      height: 25px;
-      opacity: 0.4;
-      border-bottom: 5px solid rgb(182,182,182);
-    }
+        &:after {
+          float: right;
+          content: "\e61b";
+        }
 
-    .text {
-      position: relative;
-      display: table-cell;
-      width: 87%;
-      font-size: 18px;
-      text-align: center;
-      vertical-align: middle;
-
-      .nav {
-        display: block;
-        color: rgb(182,182,182);
-      }
-
-      .title {
-        font-size: 24px;
-        display: block;
-        font-family: 'Lato';
-        font-weight: 400;
-        font-style: normal;
-        font-size: 18px;
-        color: #333333;
-        line-height: normal;
-        overflow: hidden;
+        .text {
+          padding-right: 20px;
+        }
       }
     }
   }
@@ -139,52 +124,31 @@
   .article-nav-container {
     .article-nav {
       a:hover {
-        background-color: rgb(239,239,239);
+        background-color: #efefef;
       }
     }
   }
 }
 
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-width: 320px) and (max-width: 736px) {
-    .prev {
-      .text span {
-        float: right !important;
-      }
-
-      .arrow {
-        left: -20px;
+@media only screen and (max-width: 767px) {
+  .article-nav-container {
+    .article-nav {
+      a {
+        &.prev, &.next {
+          .text {
+            .nav {
+              font-size: 11px;
+            }
+            .title {
+              font-size: 11px;
+              line-height: 13px;
+            }
+          }
+        }
       }
     }
-
-    .next {
-      .text span {
-        float: left !important;
-      }
-
-      .arrow {
-        right: -20px;
-      }
-    }
-
-    .text {
-        font-size: 16px !important;
-        padding: 5px 10px !important;
-        height: 100% !important;
-        vertical-align: initial;
-
-        .nav, .title {
-          font-size: 0.75em !important;
-          width: 100% !important;
-        }
-
-        .nav {
-          vertical-align: top !important;
-        }
-        .title {
-          height: 60px !important;
-        }
-    }
+  }
 }
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width: 321px) {
@@ -219,44 +183,7 @@
 }
 /* Tablets, iPads (portrait) ----------- */
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-    .prev {
-      .text span {
-        float: right !important;
-      }
 
-      .arrow {
-        left: -10px;
-      }
-    }
-
-    .next {
-      .text span {
-        float: left !important;
-      }
-
-      .arrow {
-        right: -10px;
-      }
-    }
-
-    .text {
-        width: 94% important;
-        padding: 10px 20px !important;
-        height: 100%;
-        vertical-align: initial;
-
-        .nav, .title {
-          font-size: 1em !important;
-          width: 100% !important;
-        }
-
-        .nav {
-          vertical-align: top;
-        }
-        .title {
-          height: 60px;
-        }
-    }
 }
 /* Tablets, iPads (portrait) - Retina ----------- */
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
