@@ -118,6 +118,9 @@
         .article-list-container {
             display: none;
         }
+        .wbmd-upnext-segments {
+            display: none;
+        }
     }
 }
 
@@ -141,6 +144,9 @@
     /* STYLES GO HERE */
     .funded-editorial:not(.funded-editorial-see-all) {
         .article-list-container {
+            display: block !important;
+        }
+        .wbmd-upnext-segments {
             display: block !important;
         }
     }
