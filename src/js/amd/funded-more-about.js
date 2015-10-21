@@ -77,12 +77,9 @@ webmd.fundedEditorial.moreAbout = {
 			articlePrefix = (article.sponsored) ? "From Our Sponsor" : "";
 
 			if (articleIndex === nodeArticleNum) {
-				$node.html(
-					'<a href="' + article.link + '">' + newline +
-						'<img src="' + image_server_url + article.images.image493x335 + '">' + newline +
-						'<p>' + '<span>' + articlePrefix + '</span>' + newline + article.title + '</p>' + newline +
-					'</a>' + newline
-				);
+				$node.find('a').attr('href', article.link);
+				$node.find('img').attr('src', image_server_url + article.images.image493x335);
+				$node.find('p').html('<span>' + articlePrefix + '</span>' + article.title);
 
 				if (article.visited) {
 					$node.addClass('visited');
