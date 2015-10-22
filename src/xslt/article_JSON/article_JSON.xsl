@@ -278,27 +278,23 @@
 			<xsl:when test="contains(string($link_text),'[article]') or contains(string($link_text),'[art]')">
 				<xsl:text>type_art</xsl:text>
 			</xsl:when>
+			<xsl:when test="contains(string($link_href),'/default.htm')">
+				<xsl:text>type_toc</xsl:text>
+			</xsl:when>
+			<xsl:when test="contains(string($link_href),'blogs.') or contains(string($link_href),'boards.')">
+				<xsl:text>type_com</xsl:text>
+			</xsl:when>
+			<xsl:when test="contains(string($link_href),'video')">
+				<xsl:text>type_vid</xsl:text>
+			</xsl:when>
+			<xsl:when test="contains(string($link_href),'slideshow')">
+				<xsl:text>type_ss</xsl:text>
+			</xsl:when>
+			<xsl:when test="contains(string($link_href),'quiz')">
+				<xsl:text>type_rmq</xsl:text>
+			</xsl:when>
 			<xsl:otherwise>
-				<xsl:choose>
-					<xsl:when test="contains(string($link_href),'/default.htm')">
-						<xsl:text>type_toc</xsl:text>
-					</xsl:when>
-					<xsl:when test="contains(string($link_href),'blogs.') or contains(string($link_href),'boards.')">
-						<xsl:text>type_com</xsl:text>
-					</xsl:when>
-					<xsl:when test="contains(string($link_href),'video')">
-						<xsl:text>type_vid</xsl:text>
-					</xsl:when>
-					<xsl:when test="contains(string($link_href),'slideshow')">
-						<xsl:text>type_ss</xsl:text>
-					</xsl:when>
-					<xsl:when test="contains(string($link_href),'quiz')">
-						<xsl:text>type_rmq</xsl:text>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:text>type_art</xsl:text>
-					</xsl:otherwise>
-				</xsl:choose>
+				<xsl:text>type_art</xsl:text>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
