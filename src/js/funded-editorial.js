@@ -397,7 +397,6 @@ webmd.fundedEditorial = {
 		});
 
 		return self;
-
 	},
 
 	centerAds: function(identifiers) {
@@ -1000,7 +999,7 @@ webmd.fundedEditorial = {
 
 		},
 
-		bindEvents: function() {
+		bind_tocEvents: function() {
 			var self = this,
 				origWinW = $(window).width();
 
@@ -1041,10 +1040,108 @@ webmd.fundedEditorial = {
 					self.start();
 				}
 
-				self.bindEvents();
+				self.bind_tocEvents();
 			}
 		}
-	}
+	},
+
+	createMenu: {
+		menu: 'wbmd-slidein-menu',
+
+        // Display in menu (top to bottom)
+		menuElements: ['.branded-nav-container', '.article-list-container', '.wbmd-upnext-segments'],
+
+		init: function() {
+			this.menu_render();
+        },
+
+        buildMenu: function() {
+	    	var self = this,
+					
+			$menu = $('<div></div>');
+
+			$menu.attr({
+	            id: self.menu
+	        }).addClass('no-scroll');
+
+	        $('body').append($menu);
+
+        	self.addElementsToMenu();
+	    },
+
+	    addElementsToMenu: function() {
+	        var self = this,
+	        	$menu = $('#' + self.menu),
+	        	$menuClose = $('<div></div>'),
+	            $menuContent = $('<div></div>'),
+	            $el;
+
+	        $menu.css('height', '100%');
+
+	        $menuClose.addClass('wbmd-menu-close').html('&times;');
+
+	        $menuContent.addClass('wbmd-menu-content').addClass('scroll');
+
+	        for (var i = 0; i < self.menuElements.length; i++) {
+	            $el = $(self.menuElements[i]) || $(self.menuElements[i])[0];
+
+	            if (!$el.hasClass('hide')) {
+	                $el.show();
+	                $menuContent.append($el);
+	            }
+	        }
+
+	        if (!$menuContent.is(':empty')) {
+	            $menu.append($menuClose);
+	            $menu.append($menuContent);
+	            self.addKabobToSocial();
+	        } else {
+	            $('.wbmd-kabob').hide(); // Nothing will appear in the menu tab, so hide it completely
+	        }
+
+	        return;
+	    },
+
+	    addKabobToSocial: function() {
+	    	var self = this,
+	    		$socialDiv = $('.social-share-tools'),
+	    		$kabob = $('<a></a>');
+
+	    	$kabob.attr('href', '#' + self.menu).addClass('wbmd-kabob').html('&#8942;');
+
+	    	$socialDiv.css('width', '100%');
+	    	$socialDiv.find('.plugin-socialshare').append($kabob);
+	    },
+
+	    bind_MenuEvents: function() {
+	    	var self = this,
+	    		$body = $('body');
+
+	    	$('.wbmd-kabob').click(function (evt) {
+				evt.stopPropagation();
+				evt.preventDefault();
+
+				$('#' + self.menu).addClass('show');
+				$body.addClass('no-scroll');
+			});
+
+			$('.wbmd-menu-close').click(function(evt) {
+				evt.stopPropagation();
+				evt.preventDefault();
+
+				$('#' + self.menu).removeClass('show');
+				$body.removeClass('no-scroll');
+			});
+	    },
+
+	    menu_render: function() {
+	    	var self = this;
+
+	    	self.buildMenu();
+
+	    	self.bind_MenuEvents();
+	    }
+    }
 };
 
 // Check to see if Page should be seen on Mobile
