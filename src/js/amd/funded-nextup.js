@@ -151,6 +151,48 @@ webmd.fundedEditorial.nextUp = {
 		}
 	},
 
+	bindEvents: function() {
+		var self = this;
+
+		webmd.fundedEditorial.nextUp.domEl = (function() {
+            var initVal,
+                interceptors = [];
+
+            function callInterceptors(newVal) {
+                for (var i = 0; i < interceptors.length; i += 1) {
+                    interceptors[i](newVal);
+                }
+            }
+
+            return {
+                get ready() {
+                    // user never has access to the private variable "initVal"
+                    // we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
+                    return initVal;
+                },
+
+                set ready(newVal) {
+                    callInterceptors(newVal);
+                    initVal = newVal;
+                },
+
+                listen: function(fn) {
+                    if (typeof fn === 'function') {
+                        interceptors.push(fn);
+                    }
+                }
+            };
+        }());
+
+        webmd.fundedEditorial.nextUp.domEl.listen(function(passedValue) {
+            if (passedValue === true) {
+				if (typeof webmd.fundedEditorial.createMenu !== 'undefined' && webmd.fundedEditorial.uaType === 'mobile') {
+					webmd.fundedEditorial.createMenu.init();
+				}
+            }
+        });
+	},
+
 	render: function() {
 		var self = this,
 			$container = $(".article-list-container > .wbmd-nav-links"),
@@ -165,6 +207,10 @@ webmd.fundedEditorial.nextUp = {
 		if (webmd.fundedEditorial.segments && webmd.fundedEditorial.segments.length > 0) {
 			self.addSegmentLinks();
 		}
+
+		self.bindEvents();
+
+		webmd.fundedEditorial.nextUp.domEl.ready = true;
 
 		// Do no create module if not enough articles in data object
 

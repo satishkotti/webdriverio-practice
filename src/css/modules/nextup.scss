@@ -99,6 +99,34 @@
     }
 }
 
+.wbmd-menu-content {
+    .article-list-container {
+        padding: 14px;
+        border-top: none;
+
+        .wbmd-segment {
+           padding-right: 35px;
+           font-size: 18px;
+           line-height: 22px;
+        }
+
+        .wbmd-subhead {
+          font-size: 12px;
+        }
+
+        .wbmd-nav-links {
+          div {
+            padding-top: 22px;
+
+            a {
+                font-size: 16px;
+                line-height: 21px;
+            }
+          }
+        }
+    }
+}
+
 .no-touch .article-list-container, .no-touch .wbmd-upnext-segments {
     a:hover {
         text-decoration: underline !important;
