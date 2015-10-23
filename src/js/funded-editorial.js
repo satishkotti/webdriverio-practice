@@ -1116,7 +1116,7 @@ webmd.fundedEditorial = {
 	            $menuContent = $('<div></div>'),
 	            $el;
 
-	        $menuClose.addClass('wbmd-menu-close').html('&times;');
+	        $menuClose.addClass('wbmd-menu-close');
 
 	        $menuContent.addClass('wbmd-menu-content').addClass('scroll');
 
@@ -1146,7 +1146,7 @@ webmd.fundedEditorial = {
 	    		$socialDiv = $('.social-share-tools'),
 	    		$kabob = $('<a></a>');
 
-	    	$kabob.attr('href', '#' + self.menu).addClass('wbmd-kabob').html('&#8942;');
+	    	$kabob.attr('href', '#').addClass('wbmd-kabob');
 
 	    	$socialDiv.css('width', '100%');
 	    	$socialDiv.find('.plugin-socialshare').append($kabob);
@@ -1161,8 +1161,8 @@ webmd.fundedEditorial = {
 				evt.preventDefault();
 
 				$('#' + self.menu).addClass('show');
-				setTimeout(function() {
-					$body.addClass('no-scroll'); // delay body scroll bar while menu slides out
+				setTimeout(function() {// delay body scroll bar while menu slides out
+					$body.addClass('no-scroll');
 				}, 450);
 
 				webmd.fundedEditorial.navigation.menuDisplay.value = 'show'; // menu open - fire off events
