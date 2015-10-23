@@ -69,12 +69,18 @@
     line-height: normal;
 }
 
+body.no-scroll {
+	position: fixed;
+}
+
 .no-scroll {
-	overflow-y: hidden;
+	overflow: hidden;
+	height: 100%;
 }
 
 .scroll {
-	overflow-y: scroll;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 /* Smartphones (portrait and landscape) ----------- */

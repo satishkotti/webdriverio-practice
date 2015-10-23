@@ -383,10 +383,12 @@ webmd.fundedEditorial = {
 		$(window).scroll(function() {
 			var y = $(document).scrollTop();
 
-			if (y > mastheadH) {
-				self.stickMasthead(mastheadH);
-			} else {
-				self.unstickMasthead();
+			if (webmd.fundedEditorial.navigation.menuDisplay.value !== 'show') { // disable sticky masthead while menu open
+				if (y > mastheadH) {
+					self.stickMasthead(mastheadH);
+				} else {
+					self.unstickMasthead();
+				}
 			}
 		});
 
@@ -1159,7 +1161,9 @@ webmd.fundedEditorial = {
 				evt.preventDefault();
 
 				$('#' + self.menu).addClass('show');
-				$body.addClass('no-scroll');
+				setTimeout(function() {
+					$body.addClass('no-scroll'); // delay body scroll bar while menu slides out
+				}, 450);
 
 				webmd.fundedEditorial.navigation.menuDisplay.value = 'show'; // menu open - fire off events
 			});
@@ -1169,9 +1173,18 @@ webmd.fundedEditorial = {
 				evt.preventDefault();
 
 				$('#' + self.menu).removeClass('show');
-				$body.removeClass('no-scroll');
+				setTimeout(function() {
+					$body.unbind('touchmove').removeClass('no-scroll'); // delay body scroll bar while menu slides out
+				}, 450);
 
 				webmd.fundedEditorial.navigation.menuDisplay.value = 'hide'; // menu closed - fire off events
+			});
+
+			$('.wbmd-menu-content').on('touchmove', function (e) {
+			     e.stopPropagation();
+			     $body.bind('touchmove', function(e){
+					e.preventDefault();
+				 });
 			});
 	    },
 
