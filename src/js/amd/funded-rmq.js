@@ -79,8 +79,17 @@ define(['bx_slider/1/bx_slider'], {
         $.extend(self, settings);
 
         // Show the quiz container once it is fully loaded and ready
-        self.sSettings.onSliderLoad = function() {
+        self.sSettings.onSliderLoad = function(index) {
             $('.rich_media_quiz').css('visibility', 'visible');
+
+            // Get type of first quiz slide on load
+            setTimeout(function() {
+                var curData = self.slideInfo[index];
+
+                if (typeof webmd.fundedEditorial.navigation.rmqSlide !== 'undefined') {
+                    webmd.fundedEditorial.navigation.rmqSlide.value = curData.type;
+                }
+            }, 50);
         };
 
         // Callbacks must be defined here so that internal RMQ methods are accessible to them
@@ -111,7 +120,6 @@ define(['bx_slider/1/bx_slider'], {
                 default:
 
             }
-
         };
 
         self.sSettings.onSlideAfter = function($slideElement, oldIndex, newIndex) {
@@ -119,8 +127,9 @@ define(['bx_slider/1/bx_slider'], {
             var curData = self.slideInfo[newIndex],
                 id = '';
 
-            if (typeof webmd.fundedEditorial.rmqSlide !== 'undefined') {
-            	webmd.fundedEditorial.rmqSlide.type = curData.type;
+            // set value of current quiz slide type
+            if (typeof webmd.fundedEditorial.navigation.rmqSlide !== 'undefined') {
+            	webmd.fundedEditorial.navigation.rmqSlide.value = curData.type;
             }
 
             switch (curData.type) {
@@ -325,8 +334,8 @@ define(['bx_slider/1/bx_slider'], {
 
                             e.preventDefault();
                             
-                            if (typeof webmd.fundedEditorial.rmqSlide !== 'undefined') {
-                                webmd.fundedEditorial.rmqSlide.type = 'reset';
+                            if (typeof webmd.fundedEditorial.navigation.rmqSlide !== 'undefined') {
+                                webmd.fundedEditorial.navigation.rmqSlide.value = 'reset';
                             }
 
                             self.metrics('pageClick', 'rmq-strt-ovr');

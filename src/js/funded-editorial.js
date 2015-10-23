@@ -466,6 +466,42 @@ webmd.fundedEditorial = {
 		return false;
 	},
 
+	setupListener: function(objKey, fn) {
+		objKey = (function() {
+            var initVal,
+                interceptors = [];
+
+            function callInterceptors(newVal) {
+                for (var i = 0; i < interceptors.length; i += 1) {
+                    interceptors[i](newVal);
+                }
+            }
+
+            return {
+                get value() {
+                    // user never has access to the private variable "initVal"
+                    // we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
+                    return initVal;
+                },
+
+                set value(newVal) {
+                    callInterceptors(newVal);
+                    initVal = newVal;
+                },
+
+                listen: function(fn) {
+                    if (typeof fn === 'function') {
+                        interceptors.push(fn);
+                    }
+                }
+            };
+        }());
+
+        objKey.listen(fn);
+
+	    return objKey;
+	},
+
 	stickMasthead: function(mastheadH) {
 		$('body').addClass('masthead-stuck');
 		$('body').css('padding-top', mastheadH);
@@ -1052,7 +1088,9 @@ webmd.fundedEditorial = {
 		menuElements: ['.branded-nav-container', '.article-list-container', '.wbmd-upnext-segments'],
 
 		init: function() {
-			this.menu_render();
+			if (webmd.fundedEditorial.uaType === 'mobile' || window.innerWidth < 768) {
+				this.menu_render();
+			}
         },
 
         buildMenu: function() {
@@ -1076,8 +1114,6 @@ webmd.fundedEditorial = {
 	            $menuContent = $('<div></div>'),
 	            $el;
 
-	        $menu.css('height', '100%');
-
 	        $menuClose.addClass('wbmd-menu-close').html('&times;');
 
 	        $menuContent.addClass('wbmd-menu-content').addClass('scroll');
@@ -1096,7 +1132,8 @@ webmd.fundedEditorial = {
 	            $menu.append($menuContent);
 	            self.addKabobToSocial();
 	        } else {
-	            $('.wbmd-kabob').hide(); // Nothing will appear in the menu tab, so hide it completely
+	            $('.wbmd-kabob').hide(); // Nothing will appear in the menu tab, so hide it and the kabob completely
+	            $('#' + self.menu).hide();
 	        }
 
 	        return;
@@ -1123,6 +1160,8 @@ webmd.fundedEditorial = {
 
 				$('#' + self.menu).addClass('show');
 				$body.addClass('no-scroll');
+
+				webmd.fundedEditorial.navigation.menuDisplay.value = 'show'; // menu open - fire off events
 			});
 
 			$('.wbmd-menu-close').click(function(evt) {
@@ -1131,6 +1170,8 @@ webmd.fundedEditorial = {
 
 				$('#' + self.menu).removeClass('show');
 				$body.removeClass('no-scroll');
+
+				webmd.fundedEditorial.navigation.menuDisplay.value = 'hide'; // menu closed - fire off events
 			});
 	    },
 

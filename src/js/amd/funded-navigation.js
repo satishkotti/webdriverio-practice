@@ -80,40 +80,8 @@ webmd.fundedEditorial.navigation = {
             }, 500);
         });
 
-        // this is very similar to using Object.watch()
-        // instead we attach multiple listeners
-        webmd.fundedEditorial.menuTab = (function() {
-            var initVal,
-                interceptors = [];
-
-            function callInterceptors(newVal) {
-                for (var i = 0; i < interceptors.length; i += 1) {
-                    interceptors[i](newVal);
-                }
-            }
-
-            return {
-                get display() {
-                    // user never has access to the private variable "initVal"
-                    // we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
-                    return initVal;
-                },
-
-                set display(newVal) {
-                    callInterceptors(newVal);
-                    initVal = newVal;
-                },
-
-                listen: function(fn) {
-                    if (typeof fn === 'function') {
-                        interceptors.push(fn);
-                    }
-                }
-            };
-        }());
-
-        webmd.fundedEditorial.menuTab.listen(function(passedValue) {
-            if (passedValue === true) {
+        self.menuDisplay = webmd.fundedEditorial.setupListener(self.menuDisplay, function(updateValue) {
+            if (updateValue === 'show') {
                 self.hideElement('.article-nav');
             } else {
                 self.setupNavPaddles();
@@ -148,43 +116,12 @@ webmd.fundedEditorial.navigation = {
 
                 // this is very similar to using Object.watch()
                 // instead we attach multiple listeners
-                webmd.fundedEditorial.rmqSlide = (function() {
-                    var initVal,
-                        interceptors = [];
-
-                    function callInterceptors(newVal) {
-                        for (var i = 0; i < interceptors.length; i += 1) {
-                            interceptors[i](newVal);
-                        }
-                    }
-
-                    return {
-                        get type() {
-                            // user never has access to the private variable "initVal"
-                            // we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
-                            return initVal;
-                        },
-
-                        set type(newVal) {
-                            callInterceptors(newVal);
-                            initVal = newVal;
-                        },
-
-                        listen: function(fn) {
-                            if (typeof fn === 'function') {
-                                interceptors.push(fn);
-                            }
-                        }
-                    };
-                }());
-
-                // add a listener
-                webmd.fundedEditorial.rmqSlide.listen(function(passedValue) {
+                self.rmqSlide = webmd.fundedEditorial.setupListener(self.rmqSlide, function(updateValue) {
                     var myTimeout;
 
-                    if (passedValue === 'results') {
+                    if (updateValue === 'results') {
                         $navContainer.show();
-                    } else if (passedValue === 'reset') {
+                    } else if (updateValue === 'reset') {
                         self.hideElement('.article-nav');
                         myTimeout = setTimeout(function() {
                             $navContainer.hide();
