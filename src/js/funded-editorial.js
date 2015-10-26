@@ -378,15 +378,9 @@ webmd.fundedEditorial = {
 
 	bindEvents: function() {
 		var self = this,
-			mastheadH = $('.masthead').outerHeight(true),
-			$sharebar = $('#sharebar'),
-			$clone;
+			mastheadH = $('.masthead').outerHeight(true);
 
 		$(window).load(function() {
-			$clone = $('#sharebar').clone(); // get clone of sharebar
-
-			$clone.insertBefore($sharebar).addClass('clone').hide(); // add invisible clone before real sharebar (used as a spacer when sharebar becomes sticky)
-
 			$(window).trigger('scroll'); // display missing elements (menu bar, paddles, etc) based on location in document
 
 			self.centerAds(['#s4 > .bottom_ad_rdr', '#rightAd_rdr']); //pass specific ad identifiers for centering as array
@@ -396,15 +390,16 @@ webmd.fundedEditorial = {
 
 		$(window).scroll(function() {
 			var y = $(document).scrollTop(),
-				$clone = $('#sharebar.clone');
+				$kabobContainer = $('.kabob-container:not(.clone)'), // visible kabob in document flow
+				$clone = $('.kabob-container.clone'); // invisible clone (used as a spacer for smooth scrolling)
 
-			if ($sharebar.length > 0) { // display masthead if social share bar does not exist
-				if (y > $sharebar.offset().top) {
-	        		$clone.css('visibility', 'hidden').show();
-	        		$sharebar.addClass('stick');
+			if ($kabobContainer.length > 0) { // display kabob if it exists, otherwise display masthead
+				if (y > $kabobContainer.offset().top) {
+	        		$clone.css('visibility', 'hidden').show(); // put spacer in document flow
+	        		$kabobContainer.addClass('stick'); // put visible kabob in fixed top position (no longer in flow)
 	    		} else {
-	        		$clone.hide();
-	        		$sharebar.removeClass('stick');
+	        		$clone.hide(); // remove spacer from flow
+	        		$kabobContainer.removeClass('stick'); // put visible kabob back into document flow
 	    		}
 			} else {
 				if (y > mastheadH) {
@@ -1107,7 +1102,7 @@ webmd.fundedEditorial = {
 		menuElements: ['.branded-nav-container', '.article-list-container', '.wbmd-upnext-segments'],
 
 		init: function() {
-			if (webmd.fundedEditorial.uaType === 'mobile' || window.innerWidth < 768) {
+			if (webmd.fundedEditorial.uaType === 'mobile' && window.innerWidth < 768) {
 				this.menu_render();
 			}
         },
@@ -1148,24 +1143,38 @@ webmd.fundedEditorial = {
 	        if (!$menuContent.is(':empty')) {
 	            $menu.append($menuClose);
 	            $menu.append($menuContent);
-	            self.addKabobToSocial();
-	        } else {
-	            $('.wbmd-kabob').hide(); // Nothing will appear in the menu tab, so hide it and the kabob completely
-	            $('#' + self.menu).hide();
+	            self.addKabob();
 	        }
 
 	        return self;
 	    },
 
-	    addKabobToSocial: function() {
+	    addKabob: function() {
 	    	var self = this,
-	    		$socialDiv = $('.social-share-tools'),
-	    		$kabob = $('<a></a>');
+	    		$locationDiv,
+	    		$containerDiv = $('<div></div>'),
+	    		$kabob = $('<a></a>'),
+	    		$clone;
 
 	    	$kabob.attr('href', '#').addClass('wbmd-kabob').html('<span></span>');
 
-	    	$socialDiv.css('width', '100%');
-	    	$socialDiv.find('.plugin-socialshare').append($kabob);
+	    	if ($('#sharebar').length) {
+	    		$locationDiv = $('#sharebar');
+		    	$locationDiv.addClass('kabob-container');
+		    	$locationDiv.find('div:first-child').addClass('first');
+
+		    	$clone = $locationDiv.clone(); // get clone of kabob container
+				$clone.insertBefore($locationDiv).addClass('clone').hide(); // clone is only used as a spacer
+		    } else {
+		    	$locationDiv = $('.attrib_right_fmt');
+		    	$containerDiv.addClass('kabob-container').html('<div class="first"></div>');
+		    	$containerDiv.insertBefore($locationDiv);
+
+		    	$clone = $containerDiv.clone(); // get clone of kabob container
+		    	$clone.insertBefore($containerDiv).addClass('clone').hide(); // clone is only used as a spacer
+		    }
+
+		    $('.kabob-container').find('.first').append($kabob);
 
 	    	return self;
 	    },
@@ -1179,9 +1188,7 @@ webmd.fundedEditorial = {
 				evt.preventDefault();
 
 				$('#' + self.menu).addClass('show');
-				setTimeout(function() {
-					$body.addClass('menu-open');
-				}, 400);
+				$body.addClass('menu-open');
 			});
 
 			$('.wbmd-menu-close').click(function(evt) {
@@ -1189,9 +1196,7 @@ webmd.fundedEditorial = {
 				evt.preventDefault();
 
 				$('#' + self.menu).removeClass('show');
-				setTimeout(function() {
-					$body.unbind('touchmove').removeClass('menu-open'); // delay body scroll bar while menu slides out
-				}, 400);
+				$body.unbind('touchmove').removeClass('menu-open'); // delay body scroll bar while menu slides out
 			});
 
 			$('.wbmd-menu-content').on('touchmove', function (e) {
