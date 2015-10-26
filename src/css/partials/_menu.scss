@@ -7,27 +7,57 @@
     width: 100%;
     height: 100%;
     z-index: 2000001; /* cover sticky masthead if present */
-    -webkit-transform: translateX(200%);
-    -ms-transform: translateX(200%);
-    transform: translateX(200%);
+    -webkit-transform: translateY(200%);
+    -ms-transform: translateY(200%);
+    transform: translateY(200%);
     transition: all 350ms ease-in-out;
     .wbmd-menu-close {
         position: absolute;
-        display: inline-block;
+        display: block;
         top: 0;
         right: 0;
         width: 45px;
         height: 45px;
         background-color: #009be8;
-        font-family: 'icons';
-        font-size: 45px;
-        color: #ffffff !important;
-        line-height: 45px;
-        text-align: center;
-        vertical-align: middle;
-        z-index: 1001;
-        &:after {
-            content: '\e624';
+        z-index: 1;
+        
+        span, span:before, span:after {
+            cursor: pointer;
+            border-radius: 50%;
+            height: 6px;
+            width: 6px;
+            background: #fff;
+            position: absolute;
+            display: block;
+            content: "";
+        }
+
+        span {
+            top: 55%;
+            left: 58%;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            background-color: transparent;
+
+            &:before, &:after {
+                top: 0;
+                width: 30px;
+                height: 2px;
+                border-radius: 2px;
+            }
+
+            &:before {
+                -webkit-transform: translate(-50%,-50%) rotate(45deg);
+                -ms-transform: translate(-50%,-50%) rotate(45deg);
+                transform: translate(-50%,-50%) rotate(45deg);
+            }
+
+            &:after {
+                -webkit-transform: translate(-50%,-50%) rotate(-45deg);
+                -ms-transform: translate(-50%,-50%) rotate(-45deg);
+                transform: translate(-50%,-50%) rotate(-45deg);
+            }
         }
     }
     .wbmd-menu-content {
@@ -46,9 +76,9 @@
 }
 
 .menu-open #wbmd-slidein-menu {
-    -webkit-transform: translateX(0);
-    -ms-transform: translateX(0);
-    transform: translateX(0);
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
 }
 
 .social-share-tools {
@@ -74,9 +104,7 @@
             height: 45px;
             margin-left: 20px;
             background-color: #009be8;
-            span,
-            span:before,
-            span:after {
+            span, span:before, span:after {
                 cursor: pointer;
                 border-radius: 50%;
                 height: 6px;
@@ -86,16 +114,18 @@
                 display: block;
                 content: "";
             }
+
             span {
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-            }
-            span:before {
-                top: -10px;
-            }
-            span:after {
-                bottom: -10px;
+
+                &:before {
+                    top: -10px;
+                }
+                &:after {
+                    bottom: -10px;
+                }
             }
         }
     }

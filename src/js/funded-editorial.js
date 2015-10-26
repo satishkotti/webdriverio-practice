@@ -1132,7 +1132,7 @@ webmd.fundedEditorial = {
 	            $menuContent = $('<div></div>'),
 	            $el;
 
-	        $menuClose.addClass('wbmd-menu-close');
+	        $menuClose.addClass('wbmd-menu-close').html('<span></span>');
 
 	        $menuContent.addClass('wbmd-menu-content').addClass('scroll');
 
