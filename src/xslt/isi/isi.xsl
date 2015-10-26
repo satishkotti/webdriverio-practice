@@ -99,8 +99,16 @@
 
 				// Hide when it is scrolled past ISI in the article
 				if($('.isi-art-content').length> 0){
+					var isiHideName;
+					if($('.isi-mobile-hide-isi').length > 0 && webmd.useragent.ua.type === 'mobile'){
+						isiHideName = $('.isi-mobile-hide-isi');
+					} else if ($('.isi-desktop-hide-isi').length > 0 && webmd.useragent.ua.type === 'desktop') {
+						isiHideName = $('.isi-desktop-hide-isi');
+					} else {
+						isiHideName = $('.isi-art-content');
+					}
 					var isiArtInView = new Waypoint({
-						element: $('.isi-art-content'),
+						element: isiHideName,
 						handler: function(direction) {
 							if(direction == "up"){
 								$('.isi').removeClass('hide open');

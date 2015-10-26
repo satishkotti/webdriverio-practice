@@ -380,17 +380,17 @@ webmd.fundedEditorial = {
 		var self = this,
 			mastheadH = $('.masthead').outerHeight(true);
 
-		$(window).scroll(function() {
-			var y = $(document).scrollTop();
+		// $(window).scroll(function() {
+		// 	var y = $(document).scrollTop();
 
-			if (webmd.fundedEditorial.navigation.menuDisplay.value !== 'show') { // disable sticky masthead while menu open
-				if (y > mastheadH) {
-					self.stickMasthead(mastheadH);
-				} else {
-					self.unstickMasthead();
-				}
-			}
-		});
+		// 	if (webmd.fundedEditorial.navigation.menuDisplay.value !== 'show') { // disable sticky masthead while menu open
+		// 		if (y > mastheadH) {
+		// 			self.stickMasthead(mastheadH);
+		// 		} else {
+		// 			self.unstickMasthead();
+		// 		}
+		// 	}
+		// });
 
 		$(window).load(function() {
 			self.scrollTo(true, null, 90, true, true, false); // scroll using URL hash
@@ -706,7 +706,7 @@ webmd.fundedEditorial = {
 				webmd.fundedEditorial.segments[index].data.listen(function(passedValue) {
 		            if (passedValue === true) {
 		                // Store segment in array (keep layout of segments in correct order)
-		                segmentModules[index] = createSegmentTiles(data, segmentModules[index]); 
+		                segmentModules[index] = createSegmentTiles(data, segmentModules[index]);
 		                complete++;
 
 		                if (complete === webmd.fundedEditorial.segments.length) {
@@ -1097,7 +1097,7 @@ webmd.fundedEditorial = {
 
         buildMenu: function() {
 	    	var self = this,
-					
+
 			$menu = $('<div></div>');
 
 			$menu.attr({
