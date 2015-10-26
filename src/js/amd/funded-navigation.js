@@ -79,14 +79,6 @@ webmd.fundedEditorial.navigation = {
                 $(this).trigger('resizeEnd');
             }, 500);
         });
-
-        self.menuDisplay = webmd.fundedEditorial.setupListener(self.menuDisplay, function(updateValue) {
-            if (updateValue === 'show') {
-                self.hideElement('.article-nav');
-            } else {
-                self.setupNavPaddles();
-            }
-        });
     },
 
     getIdentifier: function() {

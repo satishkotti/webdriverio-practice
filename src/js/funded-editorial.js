@@ -378,24 +378,41 @@ webmd.fundedEditorial = {
 
 	bindEvents: function() {
 		var self = this,
-			mastheadH = $('.masthead').outerHeight(true);
+			mastheadH = $('.masthead').outerHeight(true),
+			$sharebar = $('#sharebar'),
+			$clone;
+
+		$(window).load(function() {
+			$clone = $('#sharebar').clone(); // get clone of sharebar
+
+			$clone.insertBefore($sharebar).addClass('clone').hide(); // add invisible clone before real sharebar (used as a spacer when sharebar becomes sticky)
+
+			$(window).trigger('scroll'); // display missing elements (menu bar, paddles, etc) based on location in document
+
+			self.centerAds(['#s4 > .bottom_ad_rdr', '#rightAd_rdr']); //pass specific ad identifiers for centering as array
+
+			self.scrollTo(true, null, 90, true, true, false); // scroll using URL hash
+		});
 
 		$(window).scroll(function() {
-			var y = $(document).scrollTop();
+			var y = $(document).scrollTop(),
+				$clone = $('#sharebar.clone');
 
-			if (webmd.fundedEditorial.navigation.menuDisplay.value !== 'show') { // disable sticky masthead while menu open
+			if ($sharebar.length > 0) { // display masthead if social share bar does not exist
+				if (y > $sharebar.offset().top) {
+	        		$clone.css('visibility', 'hidden').show();
+	        		$sharebar.addClass('stick');
+	    		} else {
+	        		$clone.hide();
+	        		$sharebar.removeClass('stick');
+	    		}
+			} else {
 				if (y > mastheadH) {
 					self.stickMasthead(mastheadH);
 				} else {
 					self.unstickMasthead();
 				}
 			}
-		});
-
-		$(window).load(function() {
-			self.scrollTo(true, null, 90, true, true, false); // scroll using URL hash
-
-			self.centerAds(['#s4 > .bottom_ad_rdr', '#rightAd_rdr']); //pass specific ad identifiers for centering as array
 		});
 
 		return self;
@@ -1097,8 +1114,7 @@ webmd.fundedEditorial = {
 
         buildMenu: function() {
 	    	var self = this,
-					
-			$menu = $('<div></div>');
+	    		$menu = $('<div></div>');
 
 			$menu.attr({
 	            id: self.menu
@@ -1106,7 +1122,7 @@ webmd.fundedEditorial = {
 
 	        $('body').append($menu);
 
-        	self.addElementsToMenu();
+        	return self;
 	    },
 
 	    addElementsToMenu: function() {
@@ -1138,7 +1154,7 @@ webmd.fundedEditorial = {
 	            $('#' + self.menu).hide();
 	        }
 
-	        return;
+	        return self;
 	    },
 
 	    addKabobToSocial: function() {
@@ -1146,10 +1162,12 @@ webmd.fundedEditorial = {
 	    		$socialDiv = $('.social-share-tools'),
 	    		$kabob = $('<a></a>');
 
-	    	$kabob.attr('href', '#').addClass('wbmd-kabob');
+	    	$kabob.attr('href', '#').addClass('wbmd-kabob').html('<span></span>');
 
 	    	$socialDiv.css('width', '100%');
 	    	$socialDiv.find('.plugin-socialshare').append($kabob);
+
+	    	return self;
 	    },
 
 	    bind_MenuEvents: function() {
@@ -1161,11 +1179,9 @@ webmd.fundedEditorial = {
 				evt.preventDefault();
 
 				$('#' + self.menu).addClass('show');
-				setTimeout(function() {// delay body scroll bar while menu slides out
-					$body.addClass('no-scroll');
-				}, 450);
-
-				webmd.fundedEditorial.navigation.menuDisplay.value = 'show'; // menu open - fire off events
+				setTimeout(function() {
+					$body.addClass('menu-open');
+				}, 400);
 			});
 
 			$('.wbmd-menu-close').click(function(evt) {
@@ -1174,10 +1190,8 @@ webmd.fundedEditorial = {
 
 				$('#' + self.menu).removeClass('show');
 				setTimeout(function() {
-					$body.unbind('touchmove').removeClass('no-scroll'); // delay body scroll bar while menu slides out
-				}, 450);
-
-				webmd.fundedEditorial.navigation.menuDisplay.value = 'hide'; // menu closed - fire off events
+					$body.unbind('touchmove').removeClass('menu-open'); // delay body scroll bar while menu slides out
+				}, 400);
 			});
 
 			$('.wbmd-menu-content').on('touchmove', function (e) {
@@ -1193,7 +1207,11 @@ webmd.fundedEditorial = {
 
 	    	self.buildMenu();
 
+	    	self.addElementsToMenu();
+
 	    	self.bind_MenuEvents();
+
+	    	return self;
 	    }
     }
 };

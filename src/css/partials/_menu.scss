@@ -1,106 +1,120 @@
 #wbmd-slidein-menu {
-	position: fixed;
-	-webkit-backface-visibility: hidden;
-	top: -2000px;
-	left: 0;
-	right: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 2000001; /* cover sticky masthead if present */
-	-webkit-transition: all 0.5s ease-in-out 0.5s;
-    -moz-transition: all 0.5s ease-in-out 0.5s;
-    -o-transition: all 0.5s ease-in-out 0.5s;
-    -ms-transition: all 0.5s ease-in-out 0.5s;
-    transition: all 0.5s ease-in-out 0.5s;
-
-	&.show {
-      top: 0px;
-      -webkit-transition-delay: 0s;
-      -moz-transition-delay: 0s;
-      -o-transition-delay: 0s;
-      -ms-transition-delay: 0s;
-      transition-delay: 0s;
-    }
-
-    .wbmd-menu-close {
-    	position: absolute;
-		display: inline-block;
-		top: 0;
-		right: 0;
-		width: 45px;
-		height: 45px;
-		background-color: #009be8;
-		font-family: 'icons';
-		font-size: 45px;
-		color: #ffffff !important;
-		line-height: 45px;
-		text-align: center;
-		vertical-align: middle;
-		z-index: 1001;
-
-		&:after {
-			content: '\e624';
-		}
-    }
-
-    .wbmd-menu-content {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		width: 100%;
-		height: 100%;
-		background: #ffffff;
-
-		.attrib_right_fmt {
-			clear: both !important;
-		}
-	}
-}
-
-.wbmd-kabob {
-    position: absolute;
-    display: inline-block;
+    position: fixed;
+    top: 0;
+    left: 0;
     right: 0;
-    width: 45px;
-    height: 45px;
-    margin-left: 20px;
-    font-family: 'icons';
-    font-size: 45px;
-    color: #ffffff !important;
-    text-align: center;
-    background-color: #009be8;
-    vertical-align: middle;
-    line-height: 45px;
-
-    &:after {
-    	content: '\e900';
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000001; /* cover sticky masthead if present */
+    -webkit-transform: translateX(200%);
+    -ms-transform: translateX(200%);
+    transform: translateX(200%);
+    transition: all 350ms ease-in-out;
+    .wbmd-menu-close {
+        position: absolute;
+        display: inline-block;
+        top: 0;
+        right: 0;
+        width: 45px;
+        height: 45px;
+        background-color: #009be8;
+        font-family: 'icons';
+        font-size: 45px;
+        color: #ffffff !important;
+        line-height: 45px;
+        text-align: center;
+        vertical-align: middle;
+        z-index: 1001;
+        &:after {
+            content: '\e624';
+        }
+    }
+    .wbmd-menu-content {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        .attrib_right_fmt {
+            clear: both !important;
+        }
     }
 }
 
-body.no-scroll {
-	position: fixed;
+.menu-open #wbmd-slidein-menu {
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.social-share-tools {
+    position: relative;
+    &.stick {
+        position: absolute;
+        .plugin-socialshare {
+            position: fixed;
+            top: 0;
+            background-color: #ffffff;
+            z-index: 10000;
+        }
+    }
+    .plugin-socialshare {
+        width: 100%;
+        .wbmd-kabob {
+            position: relative;
+            display: block;
+            float: right;
+            top: 0;
+            right: 0;
+            width: 45px;
+            height: 45px;
+            margin-left: 20px;
+            background-color: #009be8;
+            span,
+            span:before,
+            span:after {
+                cursor: pointer;
+                border-radius: 50%;
+                height: 6px;
+                width: 6px;
+                background: #fff;
+                position: absolute;
+                display: block;
+                content: "";
+            }
+            span {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            span:before {
+                top: -10px;
+            }
+            span:after {
+                bottom: -10px;
+            }
+        }
+    }
+}
+
+body.menu-open {
+    overflow: hidden;
 }
 
 .no-scroll {
-	overflow: hidden;
-	height: 100%;
+    overflow: hidden;
+    height: 100%;
 }
 
 .scroll {
-	overflow-y: auto;
-	overflow-x: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-/* Smartphones (portrait and landscape) ----------- */
-
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-    /* STYLES GO HERE */
-    .wbmd-kabob {
-        display: inline-block !important;
-    }
-}
 
 /* Tablets, iPads (portrait and landscape) ----------- */
 
