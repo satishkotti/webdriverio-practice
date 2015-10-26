@@ -92,16 +92,6 @@ webmd.fundedEditorial.brandedNavigation = {
 		}
 	},
 
-	bindEvents: function() {
-		var self = this;
-
-		self.domEl = webmd.fundedEditorial.setupListener(self.domEl, function(updateValue) {
-            if (updateValue === 'branded-upnext-ready') {
-				webmd.fundedEditorial.createMenu.init();
-            }
-        });
-	},
-
 	render: function() {
 		var self = this,
 			$container = $(".branded-nav-container > .wbmd-nav-links"),
@@ -113,9 +103,9 @@ webmd.fundedEditorial.brandedNavigation = {
 			$container.append(this);
 		});
 
-		self.bindEvents();
-
-		self.domEl.value = 'branded-upnext-ready';
+		if (typeof webmd.fundedEditorial.createMenu !== 'undefined') {
+			webmd.fundedEditorial.createMenu.init();
+		}
 
 		// Do no create module if not enough articles in data object
 		
