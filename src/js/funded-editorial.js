@@ -1102,9 +1102,7 @@ webmd.fundedEditorial = {
 		menuElements: ['.branded-nav-container', '.article-list-container', '.wbmd-upnext-segments'],
 
 		init: function() {
-			if (webmd.fundedEditorial.uaType === 'mobile' && window.innerWidth < 768) {
-				this.menu_render();
-			}
+			this.menu_render();
         },
 
         buildMenu: function() {
@@ -1132,7 +1130,9 @@ webmd.fundedEditorial = {
 	        $menuContent.addClass('wbmd-menu-content').addClass('scroll');
 
 	        for (var i = 0; i < self.menuElements.length; i++) {
-	            $el = $(self.menuElements[i]) || $(self.menuElements[i])[0];
+	            $el = $(self.menuElements[i]).clone() || $(self.menuElements[i])[0].clone();
+
+	            $el.addClass('clone');
 
 	            if (!$el.hasClass('hide')) {
 	                $el.show();
@@ -1164,14 +1164,18 @@ webmd.fundedEditorial = {
 		    	$locationDiv.find('div:first-child').addClass('first');
 
 		    	$clone = $locationDiv.clone(); // get clone of kabob container
-				$clone.insertBefore($locationDiv).addClass('clone').hide(); // clone is only used as a spacer
+				$clone.addClass('clone');
+				$clone.hide(); // clone is only used as a spacer
+				$clone.insertBefore($locationDiv);
 		    } else {
 		    	$locationDiv = $('.attrib_right_fmt');
 		    	$containerDiv.addClass('kabob-container').html('<div class="first"></div>');
 		    	$containerDiv.insertBefore($locationDiv);
 
 		    	$clone = $containerDiv.clone(); // get clone of kabob container
-		    	$clone.insertBefore($containerDiv).addClass('clone').hide(); // clone is only used as a spacer
+		    	$clone.addClass('clone');
+		    	$clone.hide(); // clone is only used as a spacer
+		    	$clone.insertBefore($containerDiv);
 		    }
 
 		    $('.kabob-container').find('.first').append($kabob);

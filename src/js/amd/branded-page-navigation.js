@@ -92,6 +92,12 @@ webmd.fundedEditorial.brandedNavigation = {
 		}
 	},
 
+	bindEvents: function() {
+		$(window).load(function() {
+			webmd.fundedEditorial.createMenu.init();
+		});
+	},
+
 	render: function() {
 		var self = this,
 			$container = $(".branded-nav-container > .wbmd-nav-links"),
@@ -103,9 +109,7 @@ webmd.fundedEditorial.brandedNavigation = {
 			$container.append(this);
 		});
 
-		if (typeof webmd.fundedEditorial.createMenu !== 'undefined') {
-			webmd.fundedEditorial.createMenu.init();
-		}
+		self.bindEvents();
 
 		// Do no create module if not enough articles in data object
 		
