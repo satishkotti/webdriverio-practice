@@ -45,17 +45,21 @@
 			}
 		}
 		.see-all-item {
+			display: flex;
+			align-items: center;
 			float: left;
 			width: 46%;
 			margin-right: 4%;
 			margin-bottom: 40px;
+			min-height: 70px;
 
 			&:nth-child(2n+1) {
 				clear: both;
 			}
 
 			a {
-				display: block;
+				display: flex;
+				align-items: center;
 				overflow: hidden;
 				color: #0f0f0f;
 
