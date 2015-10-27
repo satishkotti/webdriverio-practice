@@ -151,6 +151,12 @@ webmd.fundedEditorial.nextUp = {
 		}
 	},
 
+	bindEvents: function() {
+		$(window).load(function() {
+			webmd.fundedEditorial.createMenu.init();
+		});
+	},
+
 	render: function() {
 		var self = this,
 			$container = $(".article-list-container > .wbmd-nav-links"),
@@ -166,10 +172,8 @@ webmd.fundedEditorial.nextUp = {
 			self.addSegmentLinks();
 		}
 
-		if (typeof webmd.fundedEditorial.createMenu !== 'undefined') {
-			webmd.fundedEditorial.createMenu.init();
-		}
-
+		self.bindEvents();
+		
 		// Do no create module if not enough articles in data object
 
 		function createArticleLinkNodes() {
