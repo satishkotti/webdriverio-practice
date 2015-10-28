@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 2000001; /* cover sticky masthead if present */
+    z-index: 6000000; /* full screen overlay */
     -webkit-transform: translateY(200%);
     -ms-transform: translateY(200%);
     transform: translateY(200%);
