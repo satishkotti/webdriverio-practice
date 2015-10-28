@@ -456,24 +456,18 @@ $lato_font: 'Lato', sans-serif;
 
 					.rmq_next_article {
 						display: inline-block;
+						visibility: hidden;
 
-						&:after {
-							font-family: 'icons';
-							font-size: 27px;
-      						color: #c9c9c9;
-							float: right;
-      						content: "\e61b";
-						}
 						.text {
 							float: left;
-    						margin-right: 15px;
+							width: 219px;
 
-    						.wbmd-subhead {
+							.wbmd-subhead {
+								display: block;
 								font-family: 'Roboto Condensed', Arial, sans-serif;
 						        font-size: 0.8em;
 						        text-transform: uppercase;
 						        color: #74b0b0;
-						        padding-top: 22px;
 						        padding-bottom: 10px;
 							}
 
@@ -483,9 +477,16 @@ $lato_font: 'Lato', sans-serif;
 				                font-size: 1em;
 				                line-height: 1.2em;
 				                color: #3b3b3c;
-				                padding: 0;
-				                margin: 0;
 							}
+						}
+
+						&:after {
+							float: right;
+							font-family: 'icons';
+							font-size: 27px;
+      						color: #c9c9c9;
+      						content: "\e61b";
+      						margin: 10px 0 0 15px;
 						}
 					}
 				}

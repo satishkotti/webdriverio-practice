@@ -224,7 +224,6 @@ define(['bx_slider/1/bx_slider'], {
                 nextArticleIndex = webmd.fundedEditorial.articleData.nextArticle,
                 nextArticle = articles[nextArticleIndex];
 
-            console.log(typeof nextArticle);
             if ($('.article-list-container > .wbmd-subhead').length) {
                 subhead = $('.article-list-container > .wbmd-subhead').html();
             } else {
@@ -235,7 +234,7 @@ define(['bx_slider/1/bx_slider'], {
                 $nextArticle.find('.wbmd-subhead').text(subhead);
                 $nextArticle.find('.wbmd-title').text(nextArticle.title);
                 $nextArticle.attr('href', nextArticle.link);
-                $nextArticle.show();
+                $nextArticle.css('visibility', 'visible');
             }
         };
 
