@@ -13,7 +13,7 @@ webmd.fundedEditorial.brandedNavigation = {
 
 	init : function() {
 		if (this.articles_to_display <= 0 || this.checkIfDisabled()) {
-			$('.branded-nav-container').css('display', 'none !important'); // hide placeholder created by XSL
+			$('.branded-nav-container').remove(); // remove placeholder created by XSL
 			webmd.fundedEditorial.createMenu.init(false); // setup toolbar (no kabob)
 			return false;
 		}
