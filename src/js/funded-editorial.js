@@ -1154,29 +1154,32 @@ webmd.fundedEditorial = {
 	    createKabobContainer: function() {
 	    	var self = this,
 	    		$locator = ($('.attrib_right_fmt').length) ? $('.attrib_right_fmt') : $('.social-share-tools'),
-	    		$contentPane = $locator.closest('div.pane');
+	    		$contentPane = $locator.closest('div.pane'),
+	    		$toolbarDiv, // original toolbar
+	    		$clone, // used as a spacer when original toolbar is set in fixed position
+	    		contentPaneId = $contentPane.attr('id');
 
 	    	$contentPane.wrapInner('<div class="tools"></div>');
 
 	    	$contentPane.wrapInner('<div class="wbmd-toolbar-menu"></div>');
 
+	    	$toolbarDiv = $('#' + contentPaneId + ' .wbmd-toolbar-menu');
+	    	$clone = $toolbarDiv.clone(); // get clone of toolbar container
+	    	$clone.addClass('clone');
+	    	$clone.hide(); // clone is only used as a spacer
+	    	$clone.insertBefore($toolbarDiv);
+
 	    	if (this.createKabob) {
-	    		self.addKabob($contentPane.attr('id'));
+	    		self.addKabob(contentPaneId);
 	    	}
 	    },
 
 	    addKabob: function(cpId) {
 	    	var self = this,
 	    		$toolbarDiv = $('#' + cpId + ' .wbmd-toolbar-menu'),
-	    		$kabob = $('<div></div>'),
-	    		$clone;
+	    		$kabob = $('<div></div>');
 
 	    	$kabob.addClass('wbmd-kabob').html('<span></span>');
-
-	    	$clone = $toolbarDiv.clone(); // get clone of kabob container
-	    	$clone.addClass('clone');
-	    	$clone.hide(); // clone is only used as a spacer
-	    	$clone.insertBefore($toolbarDiv);
 
 		    if ($('.attrib_right_fmt').length) {
 		    	$toolbarDiv.find('.attrib_right_fmt').before($kabob);
