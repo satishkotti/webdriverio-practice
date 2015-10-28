@@ -114,6 +114,12 @@
         </xsl:element>
       </xsl:element>
     </xsl:element>
+    
+    <xsl:element name="script">
+      <xsl:text><![CDATA[
+          $('html').addClass('poll-results');
+        ]]></xsl:text>
+    </xsl:element>
   </xsl:template>
   
   <xsl:template name="GetLinkType">

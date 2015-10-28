@@ -1103,7 +1103,9 @@ webmd.fundedEditorial = {
         // Display in menu (top to bottom)
 		menuElements: ['.branded-nav-container', '.article-list-container', '.wbmd-upnext-segments'],
 
-		init: function() {
+		init: function(createKabob) {
+			this.createKabob = createKabob;
+
 			this.menu_render();
         },
 
@@ -1142,11 +1144,9 @@ webmd.fundedEditorial = {
 	            }
 	        }
 
-	        if (!$menuContent.is(':empty')) {
-	            $menu.append($menuClose);
-	            $menu.append($menuContent);
-	            self.createKabobContainer();
-	        }
+	        $menu.append($menuClose);
+	        $menu.append($menuContent);
+	        self.createKabobContainer();
 
 	        return self;
 	    },
@@ -1160,7 +1160,9 @@ webmd.fundedEditorial = {
 
 	    	$contentPane.wrapInner('<div class="wbmd-toolbar-menu"></div>');
 
-	    	self.addKabob($contentPane.attr('id'));
+	    	if (this.createKabob) {
+	    		self.addKabob($contentPane.attr('id'));
+	    	}
 	    },
 
 	    addKabob: function(cpId) {

@@ -9,11 +9,12 @@ webmd.fundedEditorial.nextUp = {
 	articles_to_display: $('.article-list-container').data('linkCount'), 	// number of articles
 	article_ids_to_display: [],
 	article_data: {"articles":[]},
+	disable_on_pages: ['poll-results', 'funded-editorial-see-all'],
 
 	init : function(){
-		if (this.articles_to_display <= 0) {
-			$('.article-list-container').addClass('hide');
-			return;
+		if (this.articles_to_display <= 0 || this.checkIfDisabled()) {
+			webmd.fundedEditorial.createMenu.init(false); // setup toolbar (no kabob)
+			return false;
 		}
 
 		this.updateDOM();
@@ -21,6 +22,19 @@ webmd.fundedEditorial.nextUp = {
 		this.getArticleLinks();
 
 		this.render();
+	},
+
+	checkIfDisabled: function() {
+		var self = this,
+			classNames = self.disable_on_pages;
+
+		for (var i = 0; i < classNames.length; i++) {
+			if ($('html').hasClass(classNames[i])) {
+				return true;
+			}
+		}
+
+		return false;
 	},
 
 	updateDOM : function() {
@@ -153,7 +167,7 @@ webmd.fundedEditorial.nextUp = {
 
 	bindEvents: function() {
 		$(window).load(function() {
-			webmd.fundedEditorial.createMenu.init();
+			webmd.fundedEditorial.createMenu.init(true); // setup toolbar (with kabob)
 		});
 	},
 

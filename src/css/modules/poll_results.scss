@@ -98,33 +98,13 @@ $lato_bold_font: 'Lato Bold', Arial, sans-serif;
 
 @media only screen and (min-width: 320px) and (max-width: 675px) {
 	.harmony #chrome {
-		#s3 {
-			padding-left: 10px;
-			padding-right: 10px !important;
-			width: 100% !important;
-		}
 
-		#s4 {
-			float: none !important;
-			padding-right: 0px !important;
-    		width: 100%;
-		}
 	}
 }
 
 @media only screen and (min-width: 321px) and (max-width: 767px) {
 	.harmony #chrome {
-		#s3 {
-			float: left;
-			padding-left: 10px !important;
-			padding-right: 10px !important;
-			width: calc(100% - 320px);
-		}
 
-		#s4 {
-			float: right !important;
-			padding-right: 10px !important;
-		}
 	}
 }
 
