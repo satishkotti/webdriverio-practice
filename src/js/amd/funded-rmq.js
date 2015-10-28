@@ -82,15 +82,6 @@ define(['bx_slider/1/bx_slider'], {
         self.sSettings.onSliderLoad = function(index) {
             $('.rich_media_quiz').css('visibility', 'visible');
 
-            // Get type of first quiz slide on load
-            setTimeout(function() {
-                var curData = self.slideInfo[index];
-
-                if (typeof webmd.fundedEditorial.navigation.rmqSlide !== 'undefined') {
-                    webmd.fundedEditorial.navigation.rmqSlide.value = curData.type;
-                }
-            }, 50);
-
             self.addNextArticle_onResults();
         };
 
@@ -128,11 +119,6 @@ define(['bx_slider/1/bx_slider'], {
 
             var curData = self.slideInfo[newIndex],
                 id = '';
-
-            // set value of current quiz slide type
-            if (typeof webmd.fundedEditorial.navigation.rmqSlide !== 'undefined') {
-            	webmd.fundedEditorial.navigation.rmqSlide.value = curData.type;
-            }
 
             switch (curData.type) {
 
@@ -355,10 +341,6 @@ define(['bx_slider/1/bx_slider'], {
                         $('#results_controls').find('.rmq_retake').click(function(e) {
 
                             e.preventDefault();
-                            
-                            if (typeof webmd.fundedEditorial.navigation.rmqSlide !== 'undefined') {
-                                webmd.fundedEditorial.navigation.rmqSlide.value = 'reset';
-                            }
 
                             self.metrics('pageClick', 'rmq-strt-ovr');
                             self.resetQuiz();
