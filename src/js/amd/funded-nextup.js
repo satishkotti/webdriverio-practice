@@ -9,10 +9,11 @@ webmd.fundedEditorial.nextUp = {
 	articles_to_display: $('.article-list-container').data('linkCount'), 	// number of articles
 	article_ids_to_display: [],
 	article_data: {"articles":[]},
-	disable_on_pages: ['poll-results', 'funded-editorial-see-all'],
+	disable_on_pages: ['funded-editorial-toc', 'poll-results', 'funded-editorial-see-all'],
 
 	init : function(){
 		if (this.articles_to_display <= 0 || this.checkIfDisabled()) {
+			$('.article-list-container').css('display', 'none !important'); // hide placeholder created by XSL
 			webmd.fundedEditorial.createMenu.init(false); // setup toolbar (no kabob)
 			return false;
 		}
