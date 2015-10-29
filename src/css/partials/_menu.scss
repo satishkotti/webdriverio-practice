@@ -97,7 +97,7 @@
 
         .tools {
             position: relative;
-            width: 100%;
+            width: 98%;
             max-width: 980px;
             max-height: 45px;
             margin: 0 auto;
@@ -132,7 +132,7 @@
     }
 
     .tools {
-        width: 100%;
+        width: 98%;
 
         .wbmd-kabob {
             position: relative;
@@ -190,6 +190,14 @@ body.menu-open {
 @media only screen and (min-width: 320px) and (max-width: 736px) {
     .wbmd-kabob {
         top: 0px !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .wbmd-toolbar-menu {
+        .tools {
+            width: 100% !important;
+        }
     }
 }
 
