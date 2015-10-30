@@ -1211,14 +1211,9 @@ webmd.fundedEditorial = {
 			$('#' + self.menu).on('show', function (evt) {
 			     $('html').addClass('no-scroll');
 			     $('body').addClass('menu-open').addClass('no-scroll');
-
-			     $('body').bind('touchmove', function(e) {
-			     	e.preventDefault();
-			     });
 			}).on('hide', function (evt) {
 				 $('html').removeClass('no-scroll');
 			     $('body').removeClass('menu-open').removeClass('no-scroll');
-			     $('body').unbind('touchmove');
 			});
 	    },
 
