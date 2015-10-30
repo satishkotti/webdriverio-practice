@@ -16,7 +16,8 @@
                 <wbmd_pb_module_label1 />
             </md_pb_module_label1_group>
             <md_pb_module_label2_group>
-                <wbmd_pb_module_label2 object_type="wbmd_lookup" wbmd_lookup_type="wbmd_module_label2" i_chronicle_id="091e9c5e81122957" wbmd_disp_nm="List" wbmd_storage_val="list" />
+                <!-- <wbmd_pb_module_label2 object_type="wbmd_lookup" wbmd_lookup_type="wbmd_module_label2" i_chronicle_id="091e9c5e81122957" wbmd_disp_nm="List" wbmd_storage_val="list" /> -->
+                <wbmd_pb_module_label2 object_type="wbmd_lookup" wbmd_lookup_type="wbmd_module_label2" i_chronicle_id="091e9c5e810fb2f1" wbmd_disp_nm="Item 2 List" wbmd_storage_val="item1"/>
             </md_pb_module_label2_group>
             <wbmd_pb_module_sp_program />
             <wbmd_pb_module_tier>0</wbmd_pb_module_tier>
