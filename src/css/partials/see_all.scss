@@ -1,0 +1,21 @@
+.see-all-link {
+	width: 100%;
+	height: 1px;
+	border-top: 1px solid #ccc;
+	margin: 45px 0;
+	position: relative;
+}
+.see-all-link a {
+	background: #fff;
+	display: block;
+	height: 30px;
+	padding: 0 20px;
+	line-height: 28px;
+	text-align: center;
+	border: 1px solid #ccc;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-transform: uppercase;
+}
