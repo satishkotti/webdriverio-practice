@@ -17,732 +17,754 @@ Full file info:
 
 -->
 <xsl:stylesheet version="1.0" xmlns:xalan="http://xml.apache.org/xalan" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="xalan" xmlns:msxml="urn:schemas-microsoft-com:xslt">
-    <xsl:output encoding="utf-8" indent="yes" method="xml" version="1.0" omit-xml-declaration="yes"/>
+	<xsl:output encoding="utf-8" indent="yes" method="xml" version="1.0" omit-xml-declaration="yes"/>
 
-    <!-- PARAMETERS -->
-    <xsl:param name="class_id"/>
-    <xsl:param name="image_server_url">
-        <xsl:text>http://img.webmd.com/dtmcms/live</xsl:text>
-    </xsl:param>
-    <xsl:param name="moduletitle"/>
-    <xsl:param name="site_id">
-        <xsl:text>3</xsl:text>
-    </xsl:param>
-    <xsl:param name="domain">webmd.com</xsl:param>
-    <xsl:param name="current_page">1</xsl:param>
-    <xsl:param name="first_page">1</xsl:param>
-    <xsl:param name="last_page">1</xsl:param>
-    <xsl:param name="print"/>
-    <xsl:param name="spon"/>
-    <xsl:param name="pg_furl"/>
-    <xsl:param name="prefix"/>
-    <xsl:param name="identity">0</xsl:param>
+	<!-- PARAMETERS -->
+	<xsl:param name="class_id"/>
+	<xsl:param name="image_server_url">
+		<xsl:text>http://img.webmd.com/dtmcms/live</xsl:text>
+	</xsl:param>
+	<xsl:param name="moduletitle"/>
+	<xsl:param name="site_id">
+		<xsl:text>3</xsl:text>
+	</xsl:param>
+	<xsl:param name="domain">webmd.com</xsl:param>
+	<xsl:param name="current_page">1</xsl:param>
+	<xsl:param name="first_page">1</xsl:param>
+	<xsl:param name="last_page">1</xsl:param>
+	<xsl:param name="print"/>
+	<xsl:param name="spon"/>
+	<xsl:param name="pg_furl"/>
+	<xsl:param name="prefix"/>
+	<xsl:param name="identity">0</xsl:param>
 
-    <!-- VARIABLES -->
-    <xsl:variable name="article_type">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_feature">
-                <xsl:text>feature</xsl:text>
-            </xsl:when>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_news">
-                <xsl:text>news</xsl:text>
-            </xsl:when>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_health_ref">
-                <xsl:text>health_ref</xsl:text>
-            </xsl:when>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_bio">
-                <xsl:text>bio</xsl:text>
-            </xsl:when>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_product">
-                <xsl:text>a-z</xsl:text>
-            </xsl:when>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="channel_id">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_channel_id/@wbmd_storage_val != ''">
-                <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_channel_id/@wbmd_storage_val" disable-output-escaping="yes"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text><![CDATA[ ]]></xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="has_author">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_authr_prim_group/wbmd_authr_prim/r_object_id != ''">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="has_reviewer">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr/r_object_id != ''">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="has_review_date">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_revw_dt and /webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_revw_dt !='nulldate'">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="has_pub_display">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_display != ''">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="has_citations">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/*/citations/*">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="has_copyright">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_cpyrt/wbmd_copyright/wbmd_copyright_statement != ''">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_archived">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_archive_bool = '1'">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_third_party">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_type = '3'">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_multipage">
-        <!--This is the most reliable way to test for multiple pages. For certain healthwise articles the last_page is not reliable. Specifically its vaulue is sometimes greater than one even though the article content is unpaginated (i.e. delivered without the page/pages construct).-->
-        <xsl:choose>
-            <xsl:when test="count(/webmd_rendition/content/wbmd_asset/content_section/*/pages/page) &gt; 1">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_last_page">
-        <xsl:choose>
-            <xsl:when test="$current_page = $last_page">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_healthwise">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_import_health_ref">
-                <xsl:choose>
-                    <xsl:when test="substring-before(concat('|', /webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name), 'Healthwise -') = '|'">
-                        <xsl:text>true</xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:text>false</xsl:text>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_hw_multimedia">
-        <xsl:choose>
-            <xsl:when test="$is_healthwise = 'true' and contains(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name, 'MultiMedia')">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise><xsl:text>false</xsl:text></xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_hw_multimedia_slideshow">
-        <xsl:choose>
-            <xsl:when test="$is_hw_multimedia = 'true' and /webmd_rendition/content/wbmd_asset/content_section/*/section_groups/section_group[1]/section_text/block.slideshow/slideshow.slide">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise><xsl:text>false</xsl:text></xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_hw_special">
-        <xsl:choose>
-            <xsl:when test="$is_healthwise = 'true' and contains(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name, 'Special')">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise><xsl:text>false</xsl:text></xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_hw_actionset">
-        <xsl:choose>
-            <xsl:when test="$is_healthwise = 'true' and contains(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name, 'ActionSet')">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise><xsl:text>false</xsl:text></xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_hw_symptom">
-        <xsl:choose>
-            <xsl:when test="$is_healthwise = 'true' and contains(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name, 'Symptom') and /webmd_rendition/content/wbmd_asset/content_section/cons_import_health_ref/pages/page[1]/section_group[1]/section_type != 'CheckYourSymptoms'">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise><xsl:text>false</xsl:text></xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_hw_symptomquiz">
-        <xsl:choose>
-            <xsl:when test="$is_healthwise = 'true' and contains(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name, 'Symptom') and /webmd_rendition/content/wbmd_asset/content_section/cons_import_health_ref/pages/page[1]/section_group[1]/section_type = 'CheckYourSymptoms'">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise><xsl:text>false</xsl:text></xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="multipage_pagekeys">
-        <xsl:choose>
-            <xsl:when test="$is_hw_actionset = 'true'">
-                <xsl:call-template name="CollectPageKeysBySectionGroup"/>
-            </xsl:when>
-            <xsl:otherwise><page_keys></page_keys></xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_section_based_multipage">
-        <!-- per Heidi's conv (nov-11-2014) we need to deivide Healthwise-ActionSets into multiple pages.  but the arrangement is flexible enough to handle other types as well -->
-        <xsl:choose>
-            <xsl:when test="$is_multipage = 'false' and $is_hw_actionset = 'true' and count(msxml:node-set($multipage_pagekeys)/page_keys/key) &gt; 1">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>false</xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="has_credit_table">
-        <xsl:choose>
-            <xsl:when test="//content_section/*/section_groups/section_group[section_type = 'Credits'] != '' or //content_section/*/pages/page/section_group[section_type = 'Credits'] != ''">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise><xsl:text>false</xsl:text></xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_image_collection" >
-        <xsl:choose>
-            <xsl:when test="contains(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name, 'Image Collection')">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_standard_article">
-        <xsl:choose>
-            <xsl:when test="$is_healthwise = 'true'">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_personal_story">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_feature and /webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name = 'WebMD Personal Story'">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="has_logo">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_bus_entity/wbmd_bus_logo/@path != ''">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="has_disclaimer">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_disclmr/wbmd_disclaimer/disclaimer_statement != ''">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="has_pub_date">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_orig_pub_dt != ''">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="news_dateline">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_news/news_dateline != ''">
-                <xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/cons_news/news_dateline" disable-output-escaping="yes"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text><![CDATA[ ]]></xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="display_news_dateline">
-        <xsl:choose>
-            <xsl:when test="$news_dateline != '' and /webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name = 'Kaiser Health News'">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="title">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/*/title != ''">
-                <xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/*/title" disable-output-escaping="yes"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/title" disable-output-escaping="yes"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="thumb_path">
-        <xsl:choose>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_art_thmbnl/@path != ''">
-                <xsl:value-of select="$image_server_url"/>
-                <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_art_thmbnl/@path" disable-output-escaping="no"/>
-            </xsl:when>
-            <xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/*/thumbnail_image/@path != ''">
-                <xsl:value-of select="$image_server_url"/>
-                <xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/*/thumbnail_image/@path" disable-output-escaping="no"/>
-            </xsl:when>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="caption">
-        <xsl:call-template name="ReplaceParams">
-            <xsl:with-param name="orig_text">
-                <xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/cons_feature/subheadline" disable-output-escaping="yes"/>
-            </xsl:with-param>
-            <xsl:with-param name="param_to_replace">
-                <xsl:text>&quot;</xsl:text>
-            </xsl:with-param>
-            <xsl:with-param name="param_value">
-                <xsl:text>\&quot;</xsl:text>
-            </xsl:with-param>
-        </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="description">
-        <xsl:call-template name="ReplaceParams">
-            <xsl:with-param name="orig_text">
-                <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_desc_user"/>
-            </xsl:with-param>
-            <xsl:with-param name="param_to_replace">
-                <xsl:text>&quot;</xsl:text>
-            </xsl:with-param>
-            <xsl:with-param name="param_value">
-                <xsl:text>\&quot;</xsl:text>
-            </xsl:with-param>
-        </xsl:call-template>
-    </xsl:variable>
+	<!-- VARIABLES -->
+	<xsl:variable name="article_type">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_feature">
+				<xsl:text>feature</xsl:text>
+			</xsl:when>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_news">
+				<xsl:text>news</xsl:text>
+			</xsl:when>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_health_ref">
+				<xsl:text>health_ref</xsl:text>
+			</xsl:when>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_bio">
+				<xsl:text>bio</xsl:text>
+			</xsl:when>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_product">
+				<xsl:text>a-z</xsl:text>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="channel_id">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_channel_id/@wbmd_storage_val != ''">
+				<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_channel_id/@wbmd_storage_val" disable-output-escaping="yes"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text><![CDATA[ ]]></xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="has_author">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_authr_prim_group/wbmd_authr_prim/r_object_id != ''">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="has_reviewer">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr/r_object_id != ''">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="has_review_date">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_revw_dt and /webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_revw_dt !='nulldate'">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="has_pub_display">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_display != ''">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="has_citations">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/*/citations/*">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="has_copyright">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_cpyrt/wbmd_copyright/wbmd_copyright_statement != ''">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_archived">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_archive_bool = '1'">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_third_party">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_type = '3'">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_multipage">
+		<!--This is the most reliable way to test for multiple pages. For certain healthwise articles the last_page is not reliable. Specifically its vaulue is sometimes greater than one even though the article content is unpaginated (i.e. delivered without the page/pages construct).-->
+		<xsl:choose>
+			<xsl:when test="count(/webmd_rendition/content/wbmd_asset/content_section/*/pages/page) &gt; 1">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_last_page">
+		<xsl:choose>
+			<xsl:when test="$current_page = $last_page">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_healthwise">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_import_health_ref">
+				<xsl:choose>
+					<xsl:when test="substring-before(concat('|', /webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name), 'Healthwise -') = '|'">
+						<xsl:text>true</xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>false</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_hw_multimedia">
+		<xsl:choose>
+			<xsl:when test="$is_healthwise = 'true' and contains(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name, 'MultiMedia')">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_hw_multimedia_slideshow">
+		<xsl:choose>
+			<xsl:when test="$is_hw_multimedia = 'true' and /webmd_rendition/content/wbmd_asset/content_section/*/section_groups/section_group[1]/section_text/block.slideshow/slideshow.slide">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_hw_special">
+		<xsl:choose>
+			<xsl:when test="$is_healthwise = 'true' and contains(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name, 'Special')">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_hw_actionset">
+		<xsl:choose>
+			<xsl:when test="$is_healthwise = 'true' and contains(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name, 'ActionSet')">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_hw_symptom">
+		<xsl:choose>
+			<xsl:when test="$is_healthwise = 'true' and contains(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name, 'Symptom') and /webmd_rendition/content/wbmd_asset/content_section/cons_import_health_ref/pages/page[1]/section_group[1]/section_type != 'CheckYourSymptoms'">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_hw_symptomquiz">
+		<xsl:choose>
+			<xsl:when test="$is_healthwise = 'true' and contains(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name, 'Symptom') and /webmd_rendition/content/wbmd_asset/content_section/cons_import_health_ref/pages/page[1]/section_group[1]/section_type = 'CheckYourSymptoms'">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="multipage_pagekeys">
+		<xsl:choose>
+			<xsl:when test="$is_hw_actionset = 'true'">
+				<xsl:call-template name="CollectPageKeysBySectionGroup"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<page_keys/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_section_based_multipage">
+		<!-- per Heidi's conv (nov-11-2014) we need to deivide Healthwise-ActionSets into multiple pages.  but the arrangement is flexible enough to handle other types as well -->
+		<xsl:choose>
+			<xsl:when test="$is_multipage = 'false' and $is_hw_actionset = 'true' and count(msxml:node-set($multipage_pagekeys)/page_keys/key) &gt; 1">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>false</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="has_credit_table">
+		<xsl:choose>
+			<xsl:when test="//content_section/*/section_groups/section_group[section_type = 'Credits'] != '' or //content_section/*/pages/page/section_group[section_type = 'Credits'] != ''">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_image_collection">
+		<xsl:choose>
+			<xsl:when test="contains(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name, 'Image Collection')">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_standard_article">
+		<xsl:choose>
+			<xsl:when test="$is_healthwise = 'true'">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_personal_story">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_feature and /webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name = 'WebMD Personal Story'">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="has_logo">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_bus_entity/wbmd_bus_logo/@path != ''">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="has_disclaimer">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_disclmr/wbmd_disclaimer/disclaimer_statement != ''">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="has_pub_date">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_orig_pub_dt != ''">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="news_dateline">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/cons_news/news_dateline != ''">
+				<xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/cons_news/news_dateline" disable-output-escaping="yes"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text><![CDATA[ ]]></xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="display_news_dateline">
+		<xsl:choose>
+			<xsl:when test="$news_dateline != '' and /webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_name = 'Kaiser Health News'">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="title">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/*/title != ''">
+				<xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/*/title" disable-output-escaping="yes"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/title" disable-output-escaping="yes"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="thumb_path">
+		<xsl:choose>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_art_thmbnl/@path != ''">
+				<xsl:value-of select="$image_server_url"/>
+				<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_art_thmbnl/@path" disable-output-escaping="no"/>
+			</xsl:when>
+			<xsl:when test="/webmd_rendition/content/wbmd_asset/content_section/*/thumbnail_image/@path != ''">
+				<xsl:value-of select="$image_server_url"/>
+				<xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/*/thumbnail_image/@path" disable-output-escaping="no"/>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="caption">
+		<xsl:call-template name="ReplaceParams">
+			<xsl:with-param name="orig_text">
+				<xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/cons_feature/subheadline" disable-output-escaping="yes"/>
+			</xsl:with-param>
+			<xsl:with-param name="param_to_replace">
+				<xsl:text>&quot;</xsl:text>
+			</xsl:with-param>
+			<xsl:with-param name="param_value">
+				<xsl:text>\&quot;</xsl:text>
+			</xsl:with-param>
+		</xsl:call-template>
+	</xsl:variable>
+	<xsl:variable name="description">
+		<xsl:call-template name="ReplaceParams">
+			<xsl:with-param name="orig_text">
+				<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_desc_user"/>
+			</xsl:with-param>
+			<xsl:with-param name="param_to_replace">
+				<xsl:text>&quot;</xsl:text>
+			</xsl:with-param>
+			<xsl:with-param name="param_value">
+				<xsl:text>\&quot;</xsl:text>
+			</xsl:with-param>
+		</xsl:call-template>
+	</xsl:variable>
 
-    <!-- VARIABLES SPECIFIC TO ACA (HEALTH CARE REFORM)-->
-    <xsl:variable name="state">
-        <xsl:call-template name="GetState"/>
-    </xsl:variable>
-    <xsl:variable name="state_abbr">
-        <xsl:call-template name="GetStateAbbr"/>
-    </xsl:variable>
-    <xsl:variable name="is_state_page">
-        <xsl:choose>
-            <xsl:when test="$state != ''">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_aca_page">
-        <xsl:choose>
-            <!--Step 1-->
-            <xsl:when test="$channel_id = '1295'">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <!--Step 2-->
-            <xsl:when test="$channel_id = '1296'">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <!--Step 3-->
-            <xsl:when test="$channel_id = '1297'">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <!--Step 4-->
-            <xsl:when test="$channel_id = '1298'">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <!--OLD Channel ID-->
-            <xsl:when test="$channel_id = '1074'">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <!--other state pages-->
-            <xsl:when test="$channel_id = '1243'">
-                <xsl:text>true</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="is_aca_resources">
-        <xsl:choose>
-            <xsl:when test="$is_state_page">
-                <xsl:variable name="friendly">
-                    <xsl:value-of select="/webmd_rendition/friendlyurls/target[@siteid='3']/@friendlyurl"/>
-                </xsl:variable>
-                <xsl:choose>
-                    <xsl:when test="substring($friendly, number(string-length($friendly)-9)) = '-resources'">
-                        <xsl:text>true</xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:text>false</xsl:text>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>false</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="last_updated_aca">
-        <xsl:if test="$is_aca_page = 'true' or $is_state_page = 'true'">
-            <!-- Uses hard coded date if ed review date not set -->
-            <xsl:call-template name="Convert_Date">
-                <xsl:with-param name="date">
-                    <xsl:choose>
-                        <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_edtr_revr_dt != 'nulldate'">
-                            <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_edtr_revr_dt"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text>07/25/2013</xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:with-param>
-            </xsl:call-template>
-        </xsl:if>
-    </xsl:variable>
+	<!-- VARIABLES SPECIFIC TO ACA (HEALTH CARE REFORM)-->
+	<xsl:variable name="state">
+		<xsl:call-template name="GetState"/>
+	</xsl:variable>
+	<xsl:variable name="state_abbr">
+		<xsl:call-template name="GetStateAbbr"/>
+	</xsl:variable>
+	<xsl:variable name="is_state_page">
+		<xsl:choose>
+			<xsl:when test="$state != ''">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_aca_page">
+		<xsl:choose>
+			<!--Step 1-->
+			<xsl:when test="$channel_id = '1295'">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<!--Step 2-->
+			<xsl:when test="$channel_id = '1296'">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<!--Step 3-->
+			<xsl:when test="$channel_id = '1297'">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<!--Step 4-->
+			<xsl:when test="$channel_id = '1298'">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<!--OLD Channel ID-->
+			<xsl:when test="$channel_id = '1074'">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<!--other state pages-->
+			<xsl:when test="$channel_id = '1243'">
+				<xsl:text>true</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="is_aca_resources">
+		<xsl:choose>
+			<xsl:when test="$is_state_page">
+				<xsl:variable name="friendly">
+					<xsl:value-of select="/webmd_rendition/friendlyurls/target[@siteid='3']/@friendlyurl"/>
+				</xsl:variable>
+				<xsl:choose>
+					<xsl:when test="substring($friendly, number(string-length($friendly)-9)) = '-resources'">
+						<xsl:text>true</xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>false</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>false</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="last_updated_aca">
+		<xsl:if test="$is_aca_page = 'true' or $is_state_page = 'true'">
+			<!-- Uses hard coded date if ed review date not set -->
+			<xsl:call-template name="Convert_Date">
+				<xsl:with-param name="date">
+					<xsl:choose>
+						<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_edtr_revr_dt != 'nulldate'">
+							<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_edtr_revr_dt"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:text>07/25/2013</xsl:text>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:variable>
 
-    <!-- MATCH TEMPLATES -->
-    <xsl:template match="/">
-        <xsl:if test="$identity=1">
-            <xsl:call-template name="CreatIdentity"/>
-        </xsl:if>
-        <xsl:apply-templates select="/webmd_rendition/content/wbmd_asset/content_section/*"/>
-        <xsl:call-template name="CreateScripts"/>
-    </xsl:template>
-    <xsl:template match="cons_feature | cons_news | cons_health_ref | cons_bio | cons_product">
-        <xsl:call-template name="CreateArticle"/>
-    </xsl:template>
-    <xsl:template match="cons_import_health_ref">
-        <xsl:choose>
-            <xsl:when test="$is_standard_article = 'true'">
-                <xsl:call-template name="CreateArticle"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <!--Add handlers for other types of healthwise articles-->
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    <xsl:template match="page" mode="data">
-        <xsl:element name="div">
-            <xsl:attribute name="id">
-                <xsl:text>p</xsl:text>
-                <xsl:if test="position() &lt; 10">
-                    <xsl:text>0</xsl:text>
-                </xsl:if>
-                <xsl:value-of select="position()"/>
-            </xsl:attribute>
-            <xsl:apply-templates select="*" mode="data"/>
-        </xsl:element>
-    </xsl:template>
+	<!-- MATCH TEMPLATES -->
+	<xsl:template match="/">
+		<xsl:if test="$identity=1">
+			<xsl:call-template name="CreatIdentity"/>
+		</xsl:if>
+		<xsl:apply-templates select="/webmd_rendition/content/wbmd_asset/content_section/*"/>
+		<xsl:call-template name="CreateScripts"/>
+	</xsl:template>
+	<xsl:template match="cons_feature | cons_news | cons_health_ref | cons_bio | cons_product">
+		<xsl:call-template name="CreateArticle"/>
+	</xsl:template>
+	<xsl:template match="cons_import_health_ref">
+		<xsl:choose>
+			<xsl:when test="$is_standard_article = 'true'">
+				<xsl:call-template name="CreateArticle"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<!--Add handlers for other types of healthwise articles-->
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	<xsl:template match="page" mode="data">
+		<xsl:element name="div">
+			<xsl:attribute name="id">
+				<xsl:text>p</xsl:text>
+				<xsl:if test="position() &lt; 10">
+					<xsl:text>0</xsl:text>
+				</xsl:if>
+				<xsl:value-of select="position()"/>
+			</xsl:attribute>
+			<xsl:apply-templates select="*" mode="data"/>
+		</xsl:element>
+	</xsl:template>
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: section_group
     type: matching template
     description:
         (1) builds the 'section' element(s) from section_group nodes
         (2) it serves majority of display types, directly or indirectly.
     ============================================================================ -->
-    <xsl:template match="section_group">
-        <xsl:param name="extra-class-vals"/>
+	<xsl:template match="section_group">
+		<xsl:param name="extra-class-vals"/>
 
-        <xsl:variable name="has_embedded_img">
-            <xsl:choose>
-                <xsl:when test="section_text[1]/p[1][img and string-length(normalize-space(child::node())) = 0]">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:text>false</xsl:text>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
+		<xsl:variable name="has_embedded_img">
+			<xsl:choose>
+				<xsl:when test="section_text[1]/p[1][img and string-length(normalize-space(child::node())) = 0]">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text>false</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
 
-        <xsl:element name="section">
-            <xsl:attribute name="class">
-                <xsl:choose>
-                    <xsl:when test="string($extra-class-vals) != ''">
-                        <xsl:value-of select="concat('section ', $extra-class-vals)"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:text>section</xsl:text>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:attribute>
-            <xsl:attribute name="id">
-                <xsl:text>s</xsl:text>
-                <xsl:if test="position() &lt; 10">
-                    <xsl:text>0</xsl:text>
-                </xsl:if>
-                <xsl:value-of select="position()"/>
-            </xsl:attribute>
+		<xsl:element name="section">
+			<xsl:attribute name="class">
+				<xsl:choose>
+					<xsl:when test="string($extra-class-vals) != ''">
+						<xsl:value-of select="concat('section ', $extra-class-vals)"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>section</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
+			<xsl:attribute name="id">
+				<xsl:text>s</xsl:text>
+				<xsl:if test="position() &lt; 10">
+					<xsl:text>0</xsl:text>
+				</xsl:if>
+				<xsl:value-of select="position()"/>
+			</xsl:attribute>
 
-            <xsl:if test="$is_aca_resources = 'true'">
-                <xsl:attribute name="class">
-                    <xsl:choose>
-                        <xsl:when test="section_header = 'Call'">
-                            <xsl:text>resources-call</xsl:text>
-                        </xsl:when>
-                        <xsl:when test="section_header = 'Web'">
-                            <xsl:text>resources-web</xsl:text>
-                        </xsl:when>
-                        <xsl:when test="section_header = 'Other Resources'">
-                            <xsl:text>resources-other</xsl:text>
-                        </xsl:when>
-                    </xsl:choose>
-                </xsl:attribute>
-            </xsl:if>
+			<xsl:if test="$is_aca_resources = 'true'">
+				<xsl:attribute name="class">
+					<xsl:choose>
+						<xsl:when test="section_header = 'Call'">
+							<xsl:text>resources-call</xsl:text>
+						</xsl:when>
+						<xsl:when test="section_header = 'Web'">
+							<xsl:text>resources-web</xsl:text>
+						</xsl:when>
+						<xsl:when test="section_header = 'Other Resources'">
+							<xsl:text>resources-other</xsl:text>
+						</xsl:when>
+					</xsl:choose>
+				</xsl:attribute>
+			</xsl:if>
 
-            <xsl:variable name="is_this_one_and_only_sectiongroup">
-                <xsl:choose>
-                    <xsl:when test="count(following-sibling::*) &lt;= 0 and position() = 1">
-                        <xsl:value-of select="'true'"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="'false'"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:variable>
+			<xsl:variable name="is_this_one_and_only_sectiongroup">
+				<xsl:choose>
+					<xsl:when test="count(following-sibling::*) &lt;= 0 and position() = 1">
+						<xsl:value-of select="'true'"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="'false'"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
 
-            <xsl:if test="($current_page = 1 and $is_this_one_and_only_sectiongroup = 'true') or ($current_page = 1 and position() = 2)">
-                <xsl:call-template name="ProcessPullQuote"/>
-            </xsl:if>
+			<xsl:if test="($current_page = 1 and $is_this_one_and_only_sectiongroup = 'true') or ($current_page = 1 and position() = 2)">
+				<xsl:call-template name="ProcessPullQuote"/>
+			</xsl:if>
 
-            <xsl:if test="$is_archived = 'true' and ($article_type = 'news' or $article_type = 'feature') and $current_page = 1 and position() = 1 and $has_embedded_img = 'false' and not($is_third_party = 'true')">
-                <xsl:call-template name="createArchiveLabel"/>
-            </xsl:if>
+			<xsl:if test="$is_archived = 'true' and ($article_type = 'news' or $article_type = 'feature') and $current_page = 1 and position() = 1 and $has_embedded_img = 'false' and not($is_third_party = 'true')">
+				<xsl:call-template name="createArchiveLabel"/>
+			</xsl:if>
 
-            <xsl:if test="$current_page = 1 and position() = 1 and $is_image_collection = 'false'">
-                <xsl:if test="../../../subheadline != ''">
-                    <xsl:element name="h2">
-                        <xsl:attribute name="class">subhead</xsl:attribute>
-                        <xsl:value-of select="../../../subheadline" disable-output-escaping="yes"/>
-                    </xsl:element>
-                </xsl:if>
-            </xsl:if>
+			<xsl:if test="$current_page = 1 and position() = 1 and $is_image_collection = 'false'">
+				<xsl:if test="../../../subheadline != ''">
+					<xsl:element name="h2">
+						<xsl:attribute name="class">subhead</xsl:attribute>
+						<xsl:value-of select="../../../subheadline" disable-output-escaping="yes"/>
+					</xsl:element>
+				</xsl:if>
+			</xsl:if>
 
-            <xsl:if test="$current_page = 1 and position() = 2 and $is_image_collection = 'true'">
-                <xsl:attribute name="class">
-                    <xsl:text>section pic-title</xsl:text>
-                </xsl:attribute>
-                <xsl:if test="../../../title != ''">
-                    <xsl:element name="h2">
-                        <xsl:attribute name="class">subhead</xsl:attribute>
-                        <xsl:value-of select="../../../title" disable-output-escaping="yes"/>
-                    </xsl:element>
-                </xsl:if>
-            </xsl:if>
+			<xsl:if test="$current_page = 1 and position() = 2 and $is_image_collection = 'true'">
+				<xsl:attribute name="class">
+					<xsl:text>section pic-title</xsl:text>
+				</xsl:attribute>
+				<xsl:if test="../../../title != ''">
+					<xsl:element name="h2">
+						<xsl:attribute name="class">subhead</xsl:attribute>
+						<xsl:value-of select="../../../title" disable-output-escaping="yes"/>
+					</xsl:element>
+				</xsl:if>
+			</xsl:if>
 
-            <xsl:if test="$is_hw_actionset = 'true' and contains(string($extra-class-vals), 'navigable')">
-                <xsl:element name="h2"><xsl:text disable-output-escaping="yes">Action Set</xsl:text></xsl:element>
-            </xsl:if>
+			<xsl:if test="$is_hw_actionset = 'true' and contains(string($extra-class-vals), 'navigable')">
+				<xsl:element name="h2">
+					<xsl:text disable-output-escaping="yes">Action Set</xsl:text>
+				</xsl:element>
+			</xsl:if>
 
-            <xsl:choose>
-                <xsl:when test="$is_healthwise = 'true' and section_type = 'Credits' and section_text/table">
-                    <!-- we do not further process because we display credit-table content differently for healthwise mode -->
-                    <xsl:attribute name="class">section hidden</xsl:attribute>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:apply-templates select="*"/>
-                </xsl:otherwise>
-            </xsl:choose>
+			<xsl:choose>
+				<xsl:when test="$is_healthwise = 'true' and section_type = 'Credits' and section_text/table">
+					<!-- we do not further process because we display credit-table content differently for healthwise mode -->
+					<xsl:attribute name="class">section hidden</xsl:attribute>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:apply-templates select="*"/>
+				</xsl:otherwise>
+			</xsl:choose>
 
-            <xsl:if test="$display_news_dateline = 'true' and position() = 1">
-                <xsl:element name="p">
-                    <xsl:attribute name="class">
-                        <xsl:text>date</xsl:text>
-                    </xsl:attribute>
-                    <xsl:value-of select="$news_dateline" disable-output-escaping="yes"/>
-                </xsl:element>
-            </xsl:if>
+			<xsl:if test="$display_news_dateline = 'true' and position() = 1">
+				<xsl:element name="p">
+					<xsl:attribute name="class">
+						<xsl:text>date</xsl:text>
+					</xsl:attribute>
+					<xsl:value-of select="$news_dateline" disable-output-escaping="yes"/>
+				</xsl:element>
+			</xsl:if>
 
-            <xsl:if test="//metadata_section/wbmd_publ/wbmd_publ_display != 'WebMD Image Collection'">
-                <xsl:if test="$current_page = 1 and position() = 1 and //content_section/*/related_links_text/*/a">
-                    <xsl:element name="div">
-                        <xsl:choose>
-                            <xsl:when test="//content_section/*/related_links_type = 'Community'">
-                                <xsl:attribute name="class">contextual-link community</xsl:attribute>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:attribute name="class">contextual-link</xsl:attribute>
-                            </xsl:otherwise>
-                        </xsl:choose>
+			<xsl:if test="//metadata_section/wbmd_publ/wbmd_publ_display != 'WebMD Image Collection'">
+				<xsl:if test="$current_page = 1 and position() = 1 and //content_section/*/related_links_text/*/a">
+					<xsl:element name="div">
+						<xsl:choose>
+							<xsl:when test="//content_section/*/related_links_type = 'Community'">
+								<xsl:attribute name="class">contextual-link community</xsl:attribute>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:attribute name="class">contextual-link</xsl:attribute>
+							</xsl:otherwise>
+						</xsl:choose>
 
-                        <xsl:apply-templates select="//content_section/*/related_links_text/*/a"/>
-                    </xsl:element>
-                </xsl:if>
-            </xsl:if>
-        </xsl:element>
-    </xsl:template>
+						<xsl:apply-templates select="//content_section/*/related_links_text/*/a"/>
+					</xsl:element>
+				</xsl:if>
+			</xsl:if>
+		</xsl:element>
+	</xsl:template>
 
-    <xsl:template match="section_group" mode="data">
-        <xsl:variable name="page">
-            <xsl:value-of select="count(parent::page/preceding-sibling::page) + 1"/>
-        </xsl:variable>
-        <xsl:element name="section">
-            <xsl:attribute name="class">
-                <xsl:text>section</xsl:text>
-            </xsl:attribute>
-            <xsl:attribute name="id">
-                <xsl:text>p</xsl:text>
-                <xsl:if test="$page &lt; 10">
-                    <xsl:text>0</xsl:text>
-                </xsl:if>
-                <xsl:value-of select="$page"/>
-                <xsl:text>.s</xsl:text>
-                <xsl:if test="position() &lt; 10">
-                    <xsl:text>0</xsl:text>
-                </xsl:if>
-                <xsl:value-of select="position()"/>
-            </xsl:attribute>
-            <xsl:apply-templates select="*"/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="section_header">
-        <!--Two special cases for healthwise articles-->
-        <xsl:variable name="show_header">
-            <xsl:choose>
-                <xsl:when test=". = '' or . = 'Image Source'">
-                    <xsl:text>false</xsl:text>
-                </xsl:when>
-                <xsl:when test="following-sibling::section_type = 'Credits'">
-                    <xsl:text>false</xsl:text>
-                </xsl:when>
-                <xsl:when test="following-sibling::section_type = 'References'">
-                    <xsl:text>false</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:text>true</xsl:text>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="alternative_title">
-            <xsl:choose>
-                <xsl:when test="//content_section/cons_import_health_ref/title and //content_section/cons_import_health_ref/title != ''"><xsl:value-of select="//content_section/cons_import_health_ref/title"/></xsl:when>
-                <xsl:otherwise><xsl:value-of select="''"/></xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:if test="$show_header = 'true' and . != $alternative_title">
-            <xsl:element name="h3">
-                <xsl:value-of select="."/>
-            </xsl:element>
-        </xsl:if>
-    </xsl:template>
-    <xsl:template match="section_type">
-        <!--Do not output-->
-    </xsl:template>
-    <xsl:template match="section_text">
-        <xsl:apply-templates/>
-    </xsl:template>
-    <xsl:template match="table">
-        <xsl:variable name="is_credits_table">
-            <xsl:choose>
-                <xsl:when test="parent::section_text/preceding-sibling::section_type = 'Credits'">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:text>false</xsl:text>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:choose>
-            <xsl:when test="$is_credits_table = 'true'">
-                <xsl:element name="table">
-                    <xsl:attribute name="class">
-                        <xsl:text>credits</xsl:text>
-                    </xsl:attribute>
-                    <xsl:apply-templates/>
-                </xsl:element>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:element name="table">
-                    <xsl:for-each select="@*">
-                        <xsl:copy-of select="."/>
-                    </xsl:for-each>
-                    <xsl:apply-templates/>
-                </xsl:element>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    <xsl:template match="highlights">
-        <!-- pass through -->
-    </xsl:template>
-    <xsl:template match="pull_quotes">
-        <!-- pass through -->
-    </xsl:template>
+	<xsl:template match="section_group" mode="data">
+		<xsl:variable name="page">
+			<xsl:value-of select="count(parent::page/preceding-sibling::page) + 1"/>
+		</xsl:variable>
+		<xsl:element name="section">
+			<xsl:attribute name="class">
+				<xsl:text>section</xsl:text>
+			</xsl:attribute>
+			<xsl:attribute name="id">
+				<xsl:text>p</xsl:text>
+				<xsl:if test="$page &lt; 10">
+					<xsl:text>0</xsl:text>
+				</xsl:if>
+				<xsl:value-of select="$page"/>
+				<xsl:text>.s</xsl:text>
+				<xsl:if test="position() &lt; 10">
+					<xsl:text>0</xsl:text>
+				</xsl:if>
+				<xsl:value-of select="position()"/>
+			</xsl:attribute>
+			<xsl:apply-templates select="*"/>
+		</xsl:element>
+	</xsl:template>
+	<xsl:template match="section_header">
+		<!--Two special cases for healthwise articles-->
+		<xsl:variable name="show_header">
+			<xsl:choose>
+				<xsl:when test=". = '' or . = 'Image Source'">
+					<xsl:text>false</xsl:text>
+				</xsl:when>
+				<xsl:when test="following-sibling::section_type = 'Credits'">
+					<xsl:text>false</xsl:text>
+				</xsl:when>
+				<xsl:when test="following-sibling::section_type = 'References'">
+					<xsl:text>false</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text>true</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:variable name="alternative_title">
+			<xsl:choose>
+				<xsl:when test="//content_section/cons_import_health_ref/title and //content_section/cons_import_health_ref/title != ''">
+					<xsl:value-of select="//content_section/cons_import_health_ref/title"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="''"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:if test="$show_header = 'true' and . != $alternative_title">
+			<xsl:element name="h3">
+				<xsl:value-of select="."/>
+			</xsl:element>
+		</xsl:if>
+	</xsl:template>
+	<xsl:template match="section_type">
+		<!--Do not output-->
+	</xsl:template>
+	<xsl:template match="section_text">
+		<xsl:apply-templates/>
+	</xsl:template>
+	<xsl:template match="table">
+		<xsl:variable name="is_credits_table">
+			<xsl:choose>
+				<xsl:when test="parent::section_text/preceding-sibling::section_type = 'Credits'">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text>false</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:choose>
+			<xsl:when test="$is_credits_table = 'true'">
+				<xsl:element name="table">
+					<xsl:attribute name="class">
+						<xsl:text>credits</xsl:text>
+					</xsl:attribute>
+					<xsl:apply-templates/>
+				</xsl:element>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:element name="table">
+					<xsl:for-each select="@*">
+						<xsl:copy-of select="."/>
+					</xsl:for-each>
+					<xsl:apply-templates/>
+				</xsl:element>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	<xsl:template match="highlights">
+		<!-- pass through -->
+	</xsl:template>
+	<xsl:template match="pull_quotes">
+		<!-- pass through -->
+	</xsl:template>
 
-    <!--
+	<!--
         Special match node for images dropped into Healthy Beauty and possibly other articles.
         It strips off the paragraph wrapper when the all of the following criterial are met:
 
@@ -753,346 +775,350 @@ Full file info:
           (i.e. it has no preceding siblings,
           it's section_group container has no preceding siblings,
           and it's page container has no preceding siblings)-->
-    <xsl:template match="p[img and parent::section_text and string-length(normalize-space(child::node())) = 0 and count(preceding-sibling::*) = 0 and count(parent::section_text/parent::section_group/preceding-sibling::section_group) = 0 and count(parent::section_text/parent::section_group/parent::page/preceding-sibling::page) = 0]">
-        <xsl:apply-templates/>
-        <xsl:if test="$is_archived = 'true' and ($article_type = 'news' or $article_type = 'feature') and $current_page = 1 and not($is_third_party = 'true')">
-            <xsl:call-template name="createArchiveLabel"/>
-        </xsl:if>
-    </xsl:template>
+	<xsl:template match="p[img and parent::section_text and string-length(normalize-space(child::node())) = 0 and count(preceding-sibling::*) = 0 and count(parent::section_text/parent::section_group/preceding-sibling::section_group) = 0 and count(parent::section_text/parent::section_group/parent::page/preceding-sibling::page) = 0]">
+		<xsl:apply-templates/>
+		<xsl:if test="$is_archived = 'true' and ($article_type = 'news' or $article_type = 'feature') and $current_page = 1 and not($is_third_party = 'true')">
+			<xsl:call-template name="createArchiveLabel"/>
+		</xsl:if>
+	</xsl:template>
 
-    <!-- Addressing those awful p align="left" tags -->
-    <xsl:template match="p[@align='left' and (not(normalize-space()) or text() = '&#160;')]">
-        <xsl:element name="p">
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
+	<!-- Addressing those awful p align="left" tags -->
+	<xsl:template match="p[@align='left' and (not(normalize-space()) or text() = '&#160;')]">
+		<xsl:element name="p">
+			<xsl:apply-templates/>
+		</xsl:element>
+	</xsl:template>
 
-    <!-- Addressing blank p tags -->
-    <!--<xsl:template match="p[not(*) and (not(normalize-space()) or text() = '&#160;')]">
+	<!-- Addressing blank p tags -->
+	<!--<xsl:template match="p[not(*) and (not(normalize-space()) or text() = '&#160;')]">
         <xsl:apply-templates/>
     </xsl:template> -->
 
-    <!-- Special match node for span elements that occur in healthwise to keep span from being output on the page -->
-    <xsl:template match="span[@class = 'NoWebPrint']">
-        <!--Do Nothing-->
-    </xsl:template>
-    <xsl:template match="br">
-        <br/>
-    </xsl:template>
-    <xsl:template match="img">
+	<!-- Special match node for span elements that occur in healthwise to keep span from being output on the page -->
+	<xsl:template match="span[@class = 'NoWebPrint']">
+		<!--Do Nothing-->
+	</xsl:template>
+	<xsl:template match="br">
+		<br/>
+	</xsl:template>
+	<xsl:template match="img">
 
-        <xsl:variable name="need_navs" >
-            <xsl:choose>
-                <xsl:when test="$is_image_collection = 'true' and local-name(../../../../section_group) = 'section_group'">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:text>false</xsl:text>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
+		<xsl:variable name="need_navs">
+			<xsl:choose>
+				<xsl:when test="$is_image_collection = 'true' and local-name(../../../../section_group) = 'section_group'">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text>false</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
 
-        <xsl:variable name="link_prev">
-            <xsl:call-template name="extract-relative-url">
-                <xsl:with-param name="original-url" select="/webmd_rendition/content/wbmd_asset/content_section/cons_feature/related_links_text/p/a[1]/@href"/>
-            </xsl:call-template>
-        </xsl:variable>
+		<xsl:variable name="link_prev">
+			<xsl:call-template name="extract-relative-url">
+				<xsl:with-param name="original-url" select="/webmd_rendition/content/wbmd_asset/content_section/cons_feature/related_links_text/p/a[1]/@href"/>
+			</xsl:call-template>
+		</xsl:variable>
 
-        <xsl:variable name="link_next">
-            <xsl:call-template name="extract-relative-url">
-                <xsl:with-param name="original-url" select="/webmd_rendition/content/wbmd_asset/content_section/cons_feature/related_links_text/p/a[2]/@href"/>
-            </xsl:call-template>
-        </xsl:variable>
+		<xsl:variable name="link_next">
+			<xsl:call-template name="extract-relative-url">
+				<xsl:with-param name="original-url" select="/webmd_rendition/content/wbmd_asset/content_section/cons_feature/related_links_text/p/a[2]/@href"/>
+			</xsl:call-template>
+		</xsl:variable>
 
-        <xsl:variable name="float_val">
-            <xsl:value-of select="translate(substring-before(substring-after(@style, 'float:'), ';'), ' ', '')"/>
-        </xsl:variable>
-        <xsl:variable name="other_styles">
-            <xsl:call-template name="GetStyleNoFloat">
-                <xsl:with-param name="style_val">
-                    <xsl:value-of select="normalize-space(@style)"/>
-                </xsl:with-param>
-            </xsl:call-template>
-        </xsl:variable>
+		<xsl:variable name="float_val">
+			<xsl:value-of select="translate(substring-before(substring-after(@style, 'float:'), ';'), ' ', '')"/>
+		</xsl:variable>
+		<xsl:variable name="other_styles">
+			<xsl:call-template name="GetStyleNoFloat">
+				<xsl:with-param name="style_val">
+					<xsl:value-of select="normalize-space(@style)"/>
+				</xsl:with-param>
+			</xsl:call-template>
+		</xsl:variable>
 
-        <xsl:if test="$need_navs = 'true'"  >
-            <xsl:call-template name="create-img-nav">
-                <xsl:with-param name="is-left" select="'true'"/>
-                <xsl:with-param name="link-url" select="$link_prev"/>
-            </xsl:call-template>
-        </xsl:if>
+		<xsl:if test="$need_navs = 'true'">
+			<xsl:call-template name="create-img-nav">
+				<xsl:with-param name="is-left" select="'true'"/>
+				<xsl:with-param name="link-url" select="$link_prev"/>
+			</xsl:call-template>
+		</xsl:if>
 
-        <xsl:call-template name="GetImg">
-            <xsl:with-param name="src">
-                <xsl:value-of select="$image_server_url"/>
-                <xsl:if test="not(starts-with(@src, '/webmd'))">
-                    <xsl:text>/webmd</xsl:text>
-                </xsl:if>
-                <xsl:value-of select="@src"/>
-            </xsl:with-param>
-            <xsl:with-param name="alt">
-                <xsl:value-of select="@alt"/>
-            </xsl:with-param>
-            <xsl:with-param name="class">
-                <xsl:choose>
-                    <xsl:when test="@align">
-                        <xsl:choose>
-                            <xsl:when test="@align = 'right'">
-                                <xsl:text>img_right</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="@align = 'left'">
-                                <xsl:text>img_left</xsl:text>
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:when>
-                    <xsl:when test="$float_val = 'right'">
-                        <xsl:text>img_right</xsl:text>
-                    </xsl:when>
-                    <xsl:when test="$float_val = 'left'">
-                        <xsl:text>img_left</xsl:text>
-                    </xsl:when>
-                </xsl:choose>
-            </xsl:with-param>
-            <xsl:with-param name="style">
-                <xsl:value-of select="$other_styles"/>
-            </xsl:with-param>
-        </xsl:call-template>
+		<xsl:call-template name="GetImg">
+			<xsl:with-param name="src">
+				<xsl:value-of select="$image_server_url"/>
+				<xsl:if test="not(starts-with(@src, '/webmd'))">
+					<xsl:text>/webmd</xsl:text>
+				</xsl:if>
+				<xsl:value-of select="@src"/>
+			</xsl:with-param>
+			<xsl:with-param name="alt">
+				<xsl:value-of select="@alt"/>
+			</xsl:with-param>
+			<xsl:with-param name="class">
+				<xsl:choose>
+					<xsl:when test="@align">
+						<xsl:choose>
+							<xsl:when test="@align = 'right'">
+								<xsl:text>img_right</xsl:text>
+							</xsl:when>
+							<xsl:when test="@align = 'left'">
+								<xsl:text>img_left</xsl:text>
+							</xsl:when>
+						</xsl:choose>
+					</xsl:when>
+					<xsl:when test="$float_val = 'right'">
+						<xsl:text>img_right</xsl:text>
+					</xsl:when>
+					<xsl:when test="$float_val = 'left'">
+						<xsl:text>img_left</xsl:text>
+					</xsl:when>
+				</xsl:choose>
+			</xsl:with-param>
+			<xsl:with-param name="style">
+				<xsl:value-of select="$other_styles"/>
+			</xsl:with-param>
+		</xsl:call-template>
 
-        <xsl:if test="$need_navs = 'true'"  >
-            <xsl:call-template name="create-img-nav">
-                <xsl:with-param name="is-left" select="'false'"/>
-                <xsl:with-param name="link-url" select="$link_next"/>
-            </xsl:call-template>
-        </xsl:if>
-    </xsl:template>
+		<xsl:if test="$need_navs = 'true'">
+			<xsl:call-template name="create-img-nav">
+				<xsl:with-param name="is-left" select="'false'"/>
+				<xsl:with-param name="link-url" select="$link_next"/>
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
 
-    <xsl:template name="extract-relative-url">
-        <xsl:param name="original-url"/>
-        <xsl:choose>
-            <xsl:when test="contains($original-url, 'webmd.com/')"><xsl:value-of disable-output-escaping="yes" select="substring-after($original-url, 'webmd.com')"/></xsl:when>
-            <xsl:otherwise><xsl:value-of disable-output-escaping="yes" select="$original-url"/></xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
+	<xsl:template name="extract-relative-url">
+		<xsl:param name="original-url"/>
+		<xsl:choose>
+			<xsl:when test="contains($original-url, 'webmd.com/')">
+				<xsl:value-of disable-output-escaping="yes" select="substring-after($original-url, 'webmd.com')"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of disable-output-escaping="yes" select="$original-url"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
 
-    <xsl:template match="a[@chronic_id = '' and @href != '']">
-        <xsl:choose>
-            <xsl:when test="substring(@href,(string-length(@href)-3))!='.xml'">
-                <xsl:element name="a">
-                    <xsl:attribute name="href">
-                        <xsl:value-of select="@href"/>
-                    </xsl:attribute>
+	<xsl:template match="a[@chronic_id = '' and @href != '']">
+		<xsl:choose>
+			<xsl:when test="substring(@href,(string-length(@href)-3))!='.xml'">
+				<xsl:element name="a">
+					<xsl:attribute name="href">
+						<xsl:value-of select="@href"/>
+					</xsl:attribute>
 
-                    <xsl:if test="@crossLinkType != ''">
-                        <xsl:attribute name="class">
-                            <xsl:value-of select="@crossLinkType"/>
-                        </xsl:attribute>
-                    </xsl:if>
-                    <xsl:if test="@crosslinktype != ''">
-                        <xsl:attribute name="class">
-                            <xsl:value-of select="@crosslinktype"/>
-                        </xsl:attribute>
-                    </xsl:if>
+					<xsl:if test="@crossLinkType != ''">
+						<xsl:attribute name="class">
+							<xsl:value-of select="@crossLinkType"/>
+						</xsl:attribute>
+					</xsl:if>
+					<xsl:if test="@crosslinktype != ''">
+						<xsl:attribute name="class">
+							<xsl:value-of select="@crosslinktype"/>
+						</xsl:attribute>
+					</xsl:if>
 
-                    <xsl:attribute name="data-metrics-link">
-                        <xsl:text>embd-lnk</xsl:text>
-                    </xsl:attribute>
-                    <!--<xsl:attribute name="onclick"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:text>embd-lnk</xsl:text></xsl:with-param><xsl:with-param name="link_type"><xsl:if test="starts-with(string(@href), 'http://www.webmd.com/click?')"><xsl:text>nw</xsl:text></xsl:if></xsl:with-param></xsl:call-template></xsl:attribute>-->
-                    <xsl:apply-templates/>
-                </xsl:element>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="."/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    <xsl:template match="a[@chronic_id != '']">
-        <xsl:variable name="href">
-            <xsl:choose>
-                <xsl:when test="@type = 'eform'">
-                    <xsl:value-of select="$image_server_url"/>
-                    <xsl:value-of select="@href"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:call-template name="GetURLRef">
-                        <xsl:with-param name="ObjectID">
-                            <xsl:value-of select="@chronic_id"/>
-                        </xsl:with-param>
-                    </xsl:call-template>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:element name="a">
-            <xsl:attribute name="href">
-                <xsl:value-of select="$href"/>
-                <xsl:if test="@bookmark and @document-type != 'MultiMedia' and @document-type != 'Frame' and @document-type != 'Definition'">
-                    <xsl:text>#</xsl:text>
-                    <xsl:value-of select="@bookmark"/>
-                </xsl:if>
-            </xsl:attribute>
+					<xsl:attribute name="data-metrics-link">
+						<xsl:text>embd-lnk</xsl:text>
+					</xsl:attribute>
+					<!--<xsl:attribute name="onclick"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:text>embd-lnk</xsl:text></xsl:with-param><xsl:with-param name="link_type"><xsl:if test="starts-with(string(@href), 'http://www.webmd.com/click?')"><xsl:text>nw</xsl:text></xsl:if></xsl:with-param></xsl:call-template></xsl:attribute>-->
+					<xsl:apply-templates/>
+				</xsl:element>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="."/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	<xsl:template match="a[@chronic_id != '']">
+		<xsl:variable name="href">
+			<xsl:choose>
+				<xsl:when test="@type = 'eform'">
+					<xsl:value-of select="$image_server_url"/>
+					<xsl:value-of select="@href"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:call-template name="GetURLRef">
+						<xsl:with-param name="ObjectID">
+							<xsl:value-of select="@chronic_id"/>
+						</xsl:with-param>
+					</xsl:call-template>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:element name="a">
+			<xsl:attribute name="href">
+				<xsl:value-of select="$href"/>
+				<xsl:if test="@bookmark and @document-type != 'MultiMedia' and @document-type != 'Frame' and @document-type != 'Definition'">
+					<xsl:text>#</xsl:text>
+					<xsl:value-of select="@bookmark"/>
+				</xsl:if>
+			</xsl:attribute>
 
-            <xsl:if test="@crossLinkType != ''">
-                <xsl:attribute name="class">
-                    <xsl:value-of select="@crossLinkType"/>
-                </xsl:attribute>
-            </xsl:if>
-            <xsl:if test="@crosslinktype != ''">
-                <xsl:attribute name="class">
-                    <xsl:value-of select="@crosslinktype"/>
-                </xsl:attribute>
-            </xsl:if>
+			<xsl:if test="@crossLinkType != ''">
+				<xsl:attribute name="class">
+					<xsl:value-of select="@crossLinkType"/>
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="@crosslinktype != ''">
+				<xsl:attribute name="class">
+					<xsl:value-of select="@crosslinktype"/>
+				</xsl:attribute>
+			</xsl:if>
 
-            <xsl:attribute name="data-metrics-link">
-                <xsl:text>embd-lnk</xsl:text>
-            </xsl:attribute>
-            <!--<xsl:attribute name="onclick"><xsl:choose><!-\-Healthwise definition-\-><xsl:when test="@document-type = 'Definition'"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:text>embd-lnk</xsl:text></xsl:with-param><xsl:with-param name="link_type"><xsl:text>hw</xsl:text></xsl:with-param></xsl:call-template></xsl:when><xsl:otherwise><xsl:attribute name="data-metrics-link"><xsl:text>embd-lnk</xsl:text></xsl:attribute></xsl:otherwise></xsl:choose></xsl:attribute>-->
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="a[not(@chronic_id) and not(@href)]">
-        <xsl:apply-templates />
-    </xsl:template>
-    <xsl:template match="*">
-        <xsl:element name="{name()}">
-            <xsl:for-each select="@*">
-                <xsl:copy-of select="."/>
-            </xsl:for-each>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="text()">
-        <xsl:apply-templates/>
-        <xsl:value-of select="." disable-output-escaping="no"/>
-    </xsl:template>
+			<xsl:attribute name="data-metrics-link">
+				<xsl:text>embd-lnk</xsl:text>
+			</xsl:attribute>
+			<!--<xsl:attribute name="onclick"><xsl:choose><!-\-Healthwise definition-\-><xsl:when test="@document-type = 'Definition'"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:text>embd-lnk</xsl:text></xsl:with-param><xsl:with-param name="link_type"><xsl:text>hw</xsl:text></xsl:with-param></xsl:call-template></xsl:when><xsl:otherwise><xsl:attribute name="data-metrics-link"><xsl:text>embd-lnk</xsl:text></xsl:attribute></xsl:otherwise></xsl:choose></xsl:attribute>-->
+			<xsl:apply-templates/>
+		</xsl:element>
+	</xsl:template>
+	<xsl:template match="a[not(@chronic_id) and not(@href)]">
+		<xsl:apply-templates/>
+	</xsl:template>
+	<xsl:template match="*">
+		<xsl:element name="{name()}">
+			<xsl:for-each select="@*">
+				<xsl:copy-of select="."/>
+			</xsl:for-each>
+			<xsl:apply-templates/>
+		</xsl:element>
+	</xsl:template>
+	<xsl:template match="text()">
+		<xsl:apply-templates/>
+		<xsl:value-of select="." disable-output-escaping="no"/>
+	</xsl:template>
 
 
-    <!-- NAME TEMPLATES -->
-    <xsl:template name="CreateHeroImage">
-        <xsl:element name="aside">
-            <xsl:attribute name="class">
-                <xsl:text>hero</xsl:text>
-            </xsl:attribute>
-            <xsl:if test="/webmd_rendition/content/wbmd_asset/content_section/cons_feature/media_asset/@chronic_id">
-                <xsl:element name="img">
-                    <xsl:attribute name="src">
-                        <xsl:value-of select="$image_server_url"/>
-                        <xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/cons_feature/media_asset/@path"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="alt">
-                        <xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/cons_feature/media_asset/@wbmd_c_alt_tag"/>
-                    </xsl:attribute>
-                </xsl:element>
-            </xsl:if>
-            <xsl:text disable-output-escaping="yes"> </xsl:text>
-        </xsl:element>
-    </xsl:template>
+	<!-- NAME TEMPLATES -->
+	<xsl:template name="CreateHeroImage">
+		<xsl:element name="aside">
+			<xsl:attribute name="class">
+				<xsl:text>hero</xsl:text>
+			</xsl:attribute>
+			<xsl:if test="/webmd_rendition/content/wbmd_asset/content_section/cons_feature/media_asset/@chronic_id">
+				<xsl:element name="img">
+					<xsl:attribute name="src">
+						<xsl:value-of select="$image_server_url"/>
+						<xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/cons_feature/media_asset/@path"/>
+					</xsl:attribute>
+					<xsl:attribute name="alt">
+						<xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/cons_feature/media_asset/@wbmd_c_alt_tag"/>
+					</xsl:attribute>
+				</xsl:element>
+			</xsl:if>
+			<xsl:text disable-output-escaping="yes"> </xsl:text>
+		</xsl:element>
+	</xsl:template>
 
-    <xsl:template name="CreateArticle">
-        <!--Logo for print only pages - hidden when not printing-->
-        <xsl:call-template name="GetImg">
-            <xsl:with-param name="src">
-                <xsl:value-of select="$image_server_url"/>
-                <xsl:text>/webmd/consumer_assets/site_images/layout/shared/logo_webmd_print.gif</xsl:text>
-            </xsl:with-param>
-            <xsl:with-param name="class">
-                <xsl:text>print_only_logo</xsl:text>
-            </xsl:with-param>
-        </xsl:call-template>
-        <xsl:element name="article">
-            <xsl:attribute name="id">
-                <xsl:value-of select="$moduletitle"/>
-            </xsl:attribute>
-            <xsl:attribute name="class">
-                <xsl:text>article</xsl:text>
-            </xsl:attribute>
-            <xsl:if test="$is_state_page = 'true'">
-                <xsl:attribute name="class">
-                    <xsl:text>state_page</xsl:text>
-                </xsl:attribute>
-            </xsl:if>
-            <xsl:attribute name="data-metrics-module">
-                <xsl:text>art</xsl:text>
-            </xsl:attribute>
-            <xsl:attribute name="data-pagetotal">
-                <xsl:choose>
-                    <xsl:when test="$is_multipage = 'false'">
-                        <xsl:text>1</xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="$last_page"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:attribute>
-            <xsl:attribute name="data-currentpage">
-                <xsl:value-of select="$current_page"/>
-            </xsl:attribute>
-            <xsl:attribute name="data-lastupdated">
-                <xsl:value-of select="$last_updated_aca"/>
-            </xsl:attribute>
-            <xsl:if test="$is_healthwise = 'true'">
-                <xsl:attribute name="class">
-                    <xsl:text>article hw</xsl:text>
-                </xsl:attribute>
-            </xsl:if>
-            <xsl:if test="$is_image_collection = 'true'">
-                <xsl:attribute name="class">
-                    <xsl:text>article img-collection</xsl:text>
-                </xsl:attribute>
-            </xsl:if>
-            <xsl:if test="$is_hw_multimedia = 'true'">
-                <xsl:attribute name="class">
-                    <xsl:text>article hw multimedia</xsl:text>
-                </xsl:attribute>
-            </xsl:if>
-            <xsl:if test="$is_hw_special = 'true'">
-                <xsl:attribute name="class">
-                    <xsl:text>article hw special</xsl:text>
-                </xsl:attribute>
-            </xsl:if>
-            <xsl:if test="$is_hw_actionset = 'true'">
-                <xsl:attribute name="class">
-                    <xsl:text>article hw actionset</xsl:text>
-                </xsl:attribute>
-            </xsl:if>
-            <xsl:if test="$is_hw_symptom = 'true'">
-                <xsl:attribute name="class">
-                    <xsl:text>article hw symptom</xsl:text>
-                </xsl:attribute>
-            </xsl:if>
-            <xsl:if test="$is_hw_symptomquiz = 'true'">
-                <xsl:attribute name="class">
-                    <xsl:text>article hw symptomquiz</xsl:text>
-                </xsl:attribute>
-            </xsl:if>
-            <xsl:if test="$is_hw_multimedia_slideshow = 'true'">
-                <xsl:attribute name="class">
-                    <xsl:text>article hw multimedia-slideshow</xsl:text>
-                </xsl:attribute>
-            </xsl:if>
-            <xsl:if test="$article_type = 'bio'">
-                <xsl:attribute name="class">
-                    <xsl:text>bio-art</xsl:text>
-                </xsl:attribute>
-            </xsl:if>
-            <xsl:if test="$is_personal_story = 'true'">
-                <xsl:attribute name="class">
-                    <xsl:text>pers-story</xsl:text>
-                </xsl:attribute>
-            </xsl:if>
+	<xsl:template name="CreateArticle">
+		<!--Logo for print only pages - hidden when not printing-->
+		<xsl:call-template name="GetImg">
+			<xsl:with-param name="src">
+				<xsl:value-of select="$image_server_url"/>
+				<xsl:text>/webmd/consumer_assets/site_images/layout/shared/logo_webmd_print.gif</xsl:text>
+			</xsl:with-param>
+			<xsl:with-param name="class">
+				<xsl:text>print_only_logo</xsl:text>
+			</xsl:with-param>
+		</xsl:call-template>
+		<xsl:element name="article">
+			<xsl:attribute name="id">
+				<xsl:value-of select="$moduletitle"/>
+			</xsl:attribute>
+			<xsl:attribute name="class">
+				<xsl:text>article</xsl:text>
+			</xsl:attribute>
+			<xsl:if test="$is_state_page = 'true'">
+				<xsl:attribute name="class">
+					<xsl:text>state_page</xsl:text>
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:attribute name="data-metrics-module">
+				<xsl:text>art</xsl:text>
+			</xsl:attribute>
+			<xsl:attribute name="data-pagetotal">
+				<xsl:choose>
+					<xsl:when test="$is_multipage = 'false'">
+						<xsl:text>1</xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="$last_page"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
+			<xsl:attribute name="data-currentpage">
+				<xsl:value-of select="$current_page"/>
+			</xsl:attribute>
+			<xsl:attribute name="data-lastupdated">
+				<xsl:value-of select="$last_updated_aca"/>
+			</xsl:attribute>
+			<xsl:if test="$is_healthwise = 'true'">
+				<xsl:attribute name="class">
+					<xsl:text>article hw</xsl:text>
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="$is_image_collection = 'true'">
+				<xsl:attribute name="class">
+					<xsl:text>article img-collection</xsl:text>
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="$is_hw_multimedia = 'true'">
+				<xsl:attribute name="class">
+					<xsl:text>article hw multimedia</xsl:text>
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="$is_hw_special = 'true'">
+				<xsl:attribute name="class">
+					<xsl:text>article hw special</xsl:text>
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="$is_hw_actionset = 'true'">
+				<xsl:attribute name="class">
+					<xsl:text>article hw actionset</xsl:text>
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="$is_hw_symptom = 'true'">
+				<xsl:attribute name="class">
+					<xsl:text>article hw symptom</xsl:text>
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="$is_hw_symptomquiz = 'true'">
+				<xsl:attribute name="class">
+					<xsl:text>article hw symptomquiz</xsl:text>
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="$is_hw_multimedia_slideshow = 'true'">
+				<xsl:attribute name="class">
+					<xsl:text>article hw multimedia-slideshow</xsl:text>
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="$article_type = 'bio'">
+				<xsl:attribute name="class">
+					<xsl:text>bio-art</xsl:text>
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="$is_personal_story = 'true'">
+				<xsl:attribute name="class">
+					<xsl:text>pers-story</xsl:text>
+				</xsl:attribute>
+			</xsl:if>
 
-            <!--Create schema.org microdata (used by Google +-->
-            <!--<xsl:call-template name="CreateMicroData"/>-->
+			<!--Create schema.org microdata (used by Google +-->
+			<!--<xsl:call-template name="CreateMicroData"/>-->
 
-            <xsl:call-template name="CreateHeader"/>
+			<xsl:call-template name="CreateHeader"/>
 
-            <xsl:call-template name="CreateHeroImage"/>
+			<xsl:call-template name="CreateHeroImage"/>
 
-            <xsl:call-template name="CreateBody"/>
+			<xsl:call-template name="CreateBody"/>
 
-            <xsl:call-template name="CreateFooter"/>
+			<xsl:call-template name="CreateFooter"/>
 
-            <!--<xsl:call-template name="CreateFlyin"/>-->
+			<!--<xsl:call-template name="CreateFlyin"/>-->
 
-            <!--<xsl:element name="script">
+			<!--<xsl:element name="script">
                 <xsl:text><![CDATA[
 
                 $(function() {
@@ -1103,192 +1129,192 @@ Full file info:
                 ]]></xsl:text>
             </xsl:element>-->
 
-        </xsl:element>
+		</xsl:element>
 
-    </xsl:template>
+	</xsl:template>
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: CreateBody
     type: named template
     description: key top-level template.  different rendering paths split from here.
     ============================================================================ -->
-    <xsl:template name="CreateBody">
-        <xsl:if test="$is_hw_symptomquiz = 'true'">
-            <xsl:element name="div">
-                <xsl:attribute name="class">article-content preface</xsl:attribute>
-                <xsl:apply-templates select="pages/page[1]/section_group/section_text/p"/>
-            </xsl:element>
-        </xsl:if>
-        <xsl:element name="div">
-            <xsl:choose>
-                <xsl:when test="$article_type = 'bio'">
-                    <xsl:attribute name="class">
-                        <xsl:text>article-content bio</xsl:text>
-                    </xsl:attribute>
-                </xsl:when>
-                <xsl:when test="$is_hw_symptomquiz = 'true'">
-                    <xsl:attribute name="class">
-                        <xsl:text>article-content quiz</xsl:text>
-                    </xsl:attribute>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:attribute name="class">
-                        <xsl:text>article-content</xsl:text>
-                    </xsl:attribute>
-                </xsl:otherwise>
-            </xsl:choose>
-            <xsl:choose>
-                <xsl:when test="bio_text">
-                    <xsl:call-template name="BioHandler"/>
-                </xsl:when>
-                <xsl:when test="$is_personal_story = 'true'">
-                    <xsl:call-template name="PersStoryHandler"/>
-                </xsl:when>
-                <xsl:when test="$is_section_based_multipage = 'true'">
-                    <xsl:call-template name="SectionBasedMultipageHandler"/>
-                </xsl:when>
-                <xsl:when test="$is_hw_symptomquiz = 'true'">
-                    <xsl:apply-templates select="pages/page[1]/section_group/section_text/cys.questions"/>
-                </xsl:when>
-                <xsl:when test="$is_hw_multimedia_slideshow = 'true'">
-                    <xsl:apply-templates select="section_groups/section_group[1]/section_text/block.slideshow/slideshow.slide" />
-                    <xsl:apply-templates select="section_groups/section_group[position() &gt; 1]"/>
-                </xsl:when>
-                <xsl:when test="section_groups">
-                    <xsl:apply-templates select="section_groups"/>
-                </xsl:when>
-                <xsl:when test="$print = 'true' or $print = 'True'">
-                    <xsl:apply-templates select="pages/page/*"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:apply-templates select="pages/page[number($current_page)]/*"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:element>
-    </xsl:template>
+	<xsl:template name="CreateBody">
+		<xsl:if test="$is_hw_symptomquiz = 'true'">
+			<xsl:element name="div">
+				<xsl:attribute name="class">article-content preface</xsl:attribute>
+				<xsl:apply-templates select="pages/page[1]/section_group/section_text/p"/>
+			</xsl:element>
+		</xsl:if>
+		<xsl:element name="div">
+			<xsl:choose>
+				<xsl:when test="$article_type = 'bio'">
+					<xsl:attribute name="class">
+						<xsl:text>article-content bio</xsl:text>
+					</xsl:attribute>
+				</xsl:when>
+				<xsl:when test="$is_hw_symptomquiz = 'true'">
+					<xsl:attribute name="class">
+						<xsl:text>article-content quiz</xsl:text>
+					</xsl:attribute>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:attribute name="class">
+						<xsl:text>article-content</xsl:text>
+					</xsl:attribute>
+				</xsl:otherwise>
+			</xsl:choose>
+			<xsl:choose>
+				<xsl:when test="bio_text">
+					<xsl:call-template name="BioHandler"/>
+				</xsl:when>
+				<xsl:when test="$is_personal_story = 'true'">
+					<xsl:call-template name="PersStoryHandler"/>
+				</xsl:when>
+				<xsl:when test="$is_section_based_multipage = 'true'">
+					<xsl:call-template name="SectionBasedMultipageHandler"/>
+				</xsl:when>
+				<xsl:when test="$is_hw_symptomquiz = 'true'">
+					<xsl:apply-templates select="pages/page[1]/section_group/section_text/cys.questions"/>
+				</xsl:when>
+				<xsl:when test="$is_hw_multimedia_slideshow = 'true'">
+					<xsl:apply-templates select="section_groups/section_group[1]/section_text/block.slideshow/slideshow.slide"/>
+					<xsl:apply-templates select="section_groups/section_group[position() &gt; 1]"/>
+				</xsl:when>
+				<xsl:when test="section_groups">
+					<xsl:apply-templates select="section_groups"/>
+				</xsl:when>
+				<xsl:when test="$print = 'true' or $print = 'True'">
+					<xsl:apply-templates select="pages/page/*"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:apply-templates select="pages/page[number($current_page)]/*"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:element>
+	</xsl:template>
 
-    <xsl:template name="BioHandler">
-        <xsl:if test="/webmd_rendition/content/wbmd_asset/content_section/cons_bio/person_photo/@path != ''">
-            <xsl:call-template name="GetImg">
-                <xsl:with-param name="class">
-                    <xsl:text>img_left</xsl:text>
-                </xsl:with-param>
-                <xsl:with-param name="src">
-                    <xsl:value-of select="$image_server_url"/>
-                    <xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/cons_bio/person_photo/@path"/>
-                </xsl:with-param>
-                <xsl:with-param name="alt">
-                    <xsl:text>photo of </xsl:text>
-                    <xsl:value-of select="title"/>
-                </xsl:with-param>
-            </xsl:call-template>
-        </xsl:if>
-        <xsl:element name="h3">
-            <xsl:value-of select="title" disable-output-escaping="yes"/>
-        </xsl:element>
-        <xsl:apply-templates select="bio_text/*"/>
-    </xsl:template>
-    <!--This handler is specific to the persoal stories articles created for the health insurance (ACA) center-->
-    <xsl:template name="PersStoryHandler">
-        <xsl:element name="div">
-            <xsl:attribute name="class">
-                <xsl:text>back-to</xsl:text>
-            </xsl:attribute>
-            <xsl:element name="a">
-                <xsl:attribute name="data-metrics-link">
-                    <xsl:text>pers-story_back</xsl:text>
-                </xsl:attribute>
-                <!--<xsl:attribute name="onclick"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:text>pers-story_back</xsl:text></xsl:with-param></xsl:call-template></xsl:attribute>-->
-                <xsl:choose>
-                    <!--Jordan-->
-                    <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/i_chronicle_id = '091e9c5e80d3c284'">
-                        <xsl:attribute name="href">
-                            <xsl:text>/health-insurance/insurance-basics/default.htm</xsl:text>
-                        </xsl:attribute>
-                        <xsl:text><![CDATA[Back to Learn the Basics]]></xsl:text>
-                    </xsl:when>
-                    <!--Ines-->
-                    <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/i_chronicle_id =  '091e9c5e80d3c285'">
-                        <xsl:attribute name="href">
-                            <xsl:text>/health-insurance/insurance-costs/default.htm</xsl:text>
-                        </xsl:attribute>
-                        <xsl:text><![CDATA[Back to Understand Costs]]></xsl:text>
-                    </xsl:when>
-                    <!--Laureen-->
-                    <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/i_chronicle_id =  '091e9c5e80d3c286'">
-                        <xsl:attribute name="href">
-                            <xsl:text>/health-insurance/insurance-marketplace/default.htm</xsl:text>
-                        </xsl:attribute>
-                        <xsl:text><![CDATA[Back to Know Your State Plan]]></xsl:text>
-                    </xsl:when>
-                    <!--Colleen-->
-                    <xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/i_chronicle_id =  '091e9c5e80d3d7bc'">
-                        <xsl:attribute name="href">
-                            <xsl:text>/health-insurance/insurance-plans/default.htm</xsl:text>
-                        </xsl:attribute>
-                        <xsl:text><![CDATA[Back to Get Ready]]></xsl:text>
-                    </xsl:when>
-                </xsl:choose>
-            </xsl:element>
-        </xsl:element>
-        <xsl:element name="div">
-            <xsl:attribute name="class">
-                <xsl:text>promo-holder</xsl:text>
-            </xsl:attribute>
-            <xsl:text><![CDATA[ ]]></xsl:text>
-        </xsl:element>
-        <xsl:element name="div">
-            <xsl:attribute name="class">
-                <xsl:text>attrib</xsl:text>
-            </xsl:attribute>
-            <xsl:for-each select="/*//section_group[normalize-space(section_header) = '[AUTHOR]' or normalize-space(section_header) = '[PHOTO]']">
-                <xsl:apply-templates select="section_text"/>
-            </xsl:for-each>
-        </xsl:element>
-        <xsl:for-each select="/*//section_group">
-            <xsl:choose>
-                <xsl:when test="normalize-space(section_header) = '[AUTHOR]' or normalize-space(section_header) = '[PHOTO]'">
-                    <!--do nothing these are handled above-->
-                </xsl:when>
-                <xsl:when test="normalize-space(section_header) = '[QUOTE]'">
-                    <xsl:element name="div">
-                        <xsl:attribute name="class">
-                            <xsl:text>quote-wrap</xsl:text>
-                        </xsl:attribute>
-                        <xsl:element name="div">
-                            <xsl:attribute name="class">
-                                <xsl:text>quote top</xsl:text>
-                            </xsl:attribute>
-                            <xsl:text><![CDATA[ ]]></xsl:text>
-                        </xsl:element>
-                        <xsl:element name="blockquote">
-                            <xsl:apply-templates select="section_text"/>
-                        </xsl:element>
-                        <xsl:element name="div">
-                            <xsl:attribute name="class">
-                                <xsl:text>quote btm</xsl:text>
-                            </xsl:attribute>
-                            <xsl:text><![CDATA[ ]]></xsl:text>
-                        </xsl:element>
-                    </xsl:element>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:if test="section_header != ''">
-                        <xsl:element name="h3">
-                            <xsl:attribute name="class">
-                                <xsl:text>pers-st-sub</xsl:text>
-                            </xsl:attribute>
-                            <xsl:element name="span">
-                                <xsl:value-of select="section_header" disable-output-escaping="yes"/>
-                            </xsl:element>
-                        </xsl:element>
-                    </xsl:if>
-                    <xsl:apply-templates select="section_text"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:for-each>
-        <xsl:element name="script">
-            <xsl:text><![CDATA[$(function() {
+	<xsl:template name="BioHandler">
+		<xsl:if test="/webmd_rendition/content/wbmd_asset/content_section/cons_bio/person_photo/@path != ''">
+			<xsl:call-template name="GetImg">
+				<xsl:with-param name="class">
+					<xsl:text>img_left</xsl:text>
+				</xsl:with-param>
+				<xsl:with-param name="src">
+					<xsl:value-of select="$image_server_url"/>
+					<xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/cons_bio/person_photo/@path"/>
+				</xsl:with-param>
+				<xsl:with-param name="alt">
+					<xsl:text>photo of </xsl:text>
+					<xsl:value-of select="title"/>
+				</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:element name="h3">
+			<xsl:value-of select="title" disable-output-escaping="yes"/>
+		</xsl:element>
+		<xsl:apply-templates select="bio_text/*"/>
+	</xsl:template>
+	<!--This handler is specific to the persoal stories articles created for the health insurance (ACA) center-->
+	<xsl:template name="PersStoryHandler">
+		<xsl:element name="div">
+			<xsl:attribute name="class">
+				<xsl:text>back-to</xsl:text>
+			</xsl:attribute>
+			<xsl:element name="a">
+				<xsl:attribute name="data-metrics-link">
+					<xsl:text>pers-story_back</xsl:text>
+				</xsl:attribute>
+				<!--<xsl:attribute name="onclick"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:text>pers-story_back</xsl:text></xsl:with-param></xsl:call-template></xsl:attribute>-->
+				<xsl:choose>
+					<!--Jordan-->
+					<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/i_chronicle_id = '091e9c5e80d3c284'">
+						<xsl:attribute name="href">
+							<xsl:text>/health-insurance/insurance-basics/default.htm</xsl:text>
+						</xsl:attribute>
+						<xsl:text><![CDATA[Back to Learn the Basics]]></xsl:text>
+					</xsl:when>
+					<!--Ines-->
+					<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/i_chronicle_id =  '091e9c5e80d3c285'">
+						<xsl:attribute name="href">
+							<xsl:text>/health-insurance/insurance-costs/default.htm</xsl:text>
+						</xsl:attribute>
+						<xsl:text><![CDATA[Back to Understand Costs]]></xsl:text>
+					</xsl:when>
+					<!--Laureen-->
+					<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/i_chronicle_id =  '091e9c5e80d3c286'">
+						<xsl:attribute name="href">
+							<xsl:text>/health-insurance/insurance-marketplace/default.htm</xsl:text>
+						</xsl:attribute>
+						<xsl:text><![CDATA[Back to Know Your State Plan]]></xsl:text>
+					</xsl:when>
+					<!--Colleen-->
+					<xsl:when test="/webmd_rendition/content/wbmd_asset/metadata_section/i_chronicle_id =  '091e9c5e80d3d7bc'">
+						<xsl:attribute name="href">
+							<xsl:text>/health-insurance/insurance-plans/default.htm</xsl:text>
+						</xsl:attribute>
+						<xsl:text><![CDATA[Back to Get Ready]]></xsl:text>
+					</xsl:when>
+				</xsl:choose>
+			</xsl:element>
+		</xsl:element>
+		<xsl:element name="div">
+			<xsl:attribute name="class">
+				<xsl:text>promo-holder</xsl:text>
+			</xsl:attribute>
+			<xsl:text><![CDATA[ ]]></xsl:text>
+		</xsl:element>
+		<xsl:element name="div">
+			<xsl:attribute name="class">
+				<xsl:text>attrib</xsl:text>
+			</xsl:attribute>
+			<xsl:for-each select="/*//section_group[normalize-space(section_header) = '[AUTHOR]' or normalize-space(section_header) = '[PHOTO]']">
+				<xsl:apply-templates select="section_text"/>
+			</xsl:for-each>
+		</xsl:element>
+		<xsl:for-each select="/*//section_group">
+			<xsl:choose>
+				<xsl:when test="normalize-space(section_header) = '[AUTHOR]' or normalize-space(section_header) = '[PHOTO]'">
+					<!--do nothing these are handled above-->
+				</xsl:when>
+				<xsl:when test="normalize-space(section_header) = '[QUOTE]'">
+					<xsl:element name="div">
+						<xsl:attribute name="class">
+							<xsl:text>quote-wrap</xsl:text>
+						</xsl:attribute>
+						<xsl:element name="div">
+							<xsl:attribute name="class">
+								<xsl:text>quote top</xsl:text>
+							</xsl:attribute>
+							<xsl:text><![CDATA[ ]]></xsl:text>
+						</xsl:element>
+						<xsl:element name="blockquote">
+							<xsl:apply-templates select="section_text"/>
+						</xsl:element>
+						<xsl:element name="div">
+							<xsl:attribute name="class">
+								<xsl:text>quote btm</xsl:text>
+							</xsl:attribute>
+							<xsl:text><![CDATA[ ]]></xsl:text>
+						</xsl:element>
+					</xsl:element>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:if test="section_header != ''">
+						<xsl:element name="h3">
+							<xsl:attribute name="class">
+								<xsl:text>pers-st-sub</xsl:text>
+							</xsl:attribute>
+							<xsl:element name="span">
+								<xsl:value-of select="section_header" disable-output-escaping="yes"/>
+							</xsl:element>
+						</xsl:element>
+					</xsl:if>
+					<xsl:apply-templates select="section_text"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:for-each>
+		<xsl:element name="script">
+			<xsl:text><![CDATA[$(function() {
 
     webmd.p.personalStory = {
 
@@ -1302,401 +1328,404 @@ Full file info:
             promo.show();
         }
     };
-    webmd.p.personalStory.init('#prm-mnctrlc', '#]]></xsl:text>r
-            <xsl:value-of select="$moduletitle"/>
-            <xsl:text><![CDATA[');
+    webmd.p.personalStory.init('#prm-mnctrlc', '#]]></xsl:text>r <xsl:value-of select="$moduletitle"/>
+			<xsl:text><![CDATA[');
 
 });]]></xsl:text>
-        </xsl:element>
-    </xsl:template>
+		</xsl:element>
+	</xsl:template>
 
-    <!--This template creates schema.org microdata that is conumed by Google +-->
-    <xsl:template name="CreateMicroData">
-        <xsl:element name="div">
-            <xsl:attribute name="class">
-                <xsl:text>schema_org_data</xsl:text>
-            </xsl:attribute>
-            <xsl:attribute name="style">
-                <xsl:text>display: none;</xsl:text>
-            </xsl:attribute>
-            <xsl:element name="div">
-                <xsl:attribute name="itemscope"/>
-                <xsl:attribute name="itemtype">
-                    <xsl:text>http://schema.org/Article</xsl:text>
-                </xsl:attribute>
-                <xsl:element name="div">
-                    <xsl:attribute name="itemprop">
-                        <xsl:text>name</xsl:text>
-                    </xsl:attribute>
-                    <xsl:value-of select="$title"/>
-                </xsl:element>
-                <xsl:element name="div">
-                    <xsl:attribute name="itemprop">
-                        <xsl:text>description</xsl:text>
-                    </xsl:attribute>
-                    <xsl:value-of select="$description"/>
-                </xsl:element>
-                <xsl:element name="div">
-                    <xsl:attribute name="itemprop">
-                        <xsl:text>image</xsl:text>
-                    </xsl:attribute>
-                    <xsl:value-of select="$thumb_path"/>
-                </xsl:element>
-            </xsl:element>
-        </xsl:element>
-    </xsl:template>
+	<!--This template creates schema.org microdata that is conumed by Google +-->
+	<xsl:template name="CreateMicroData">
+		<xsl:element name="div">
+			<xsl:attribute name="class">
+				<xsl:text>schema_org_data</xsl:text>
+			</xsl:attribute>
+			<xsl:attribute name="style">
+				<xsl:text>display: none;</xsl:text>
+			</xsl:attribute>
+			<xsl:element name="div">
+				<xsl:attribute name="itemscope"/>
+				<xsl:attribute name="itemtype">
+					<xsl:text>http://schema.org/Article</xsl:text>
+				</xsl:attribute>
+				<xsl:element name="div">
+					<xsl:attribute name="itemprop">
+						<xsl:text>name</xsl:text>
+					</xsl:attribute>
+					<xsl:value-of select="$title"/>
+				</xsl:element>
+				<xsl:element name="div">
+					<xsl:attribute name="itemprop">
+						<xsl:text>description</xsl:text>
+					</xsl:attribute>
+					<xsl:value-of select="$description"/>
+				</xsl:element>
+				<xsl:element name="div">
+					<xsl:attribute name="itemprop">
+						<xsl:text>image</xsl:text>
+					</xsl:attribute>
+					<xsl:value-of select="$thumb_path"/>
+				</xsl:element>
+			</xsl:element>
+		</xsl:element>
+	</xsl:template>
 
-    <!-- add the map and information when a state article is set -->
-    <xsl:template name="CreateHeader">
-        <xsl:variable name="title">
-            <xsl:value-of select="/webmd_rendition/title" disable-output-escaping="yes"/>
-        </xsl:variable>
+	<!-- add the map and information when a state article is set -->
+	<xsl:template name="CreateHeader">
+		<xsl:variable name="title">
+			<xsl:value-of select="/webmd_rendition/title" disable-output-escaping="yes"/>
+		</xsl:variable>
 
-        <xsl:element name="header">
-            <xsl:attribute name="class">
-                <xsl:text>page-header</xsl:text>
-            </xsl:attribute>
+		<xsl:element name="header">
+			<xsl:attribute name="class">
+				<xsl:text>page-header</xsl:text>
+			</xsl:attribute>
 
-            <xsl:if test="$is_state_page = 'true' and $article_type = 'health_ref'">
-                <xsl:attribute name="class">
-                    <xsl:text>state</xsl:text>
-                </xsl:attribute>
-            </xsl:if>
+			<xsl:if test="$is_state_page = 'true' and $article_type = 'health_ref'">
+				<xsl:attribute name="class">
+					<xsl:text>state</xsl:text>
+				</xsl:attribute>
+			</xsl:if>
 
-            <!-- Article Title -->
-            <xsl:element name="h1">
-                <xsl:choose>
-                    <xsl:when test="$is_image_collection = 'true'">
-                        <xsl:text>Image Collection</xsl:text>
-                        <xsl:if test="subheadline != ''">
-                            <xsl:text disable-output-escaping="yes">: </xsl:text>
-                            <xsl:value-of disable-output-escaping="yes" select="subheadline"/>
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:when test="$is_hw_special = 'true' and /webmd_rendition/content/wbmd_asset/metadata_section/wbmd_wdw_ttl != ''">
-                        <xsl:call-template name="BuildAlternativeTitle"/>
-                    </xsl:when>
-                    <xsl:when test="$is_hw_symptom = 'true' and /webmd_rendition/content/wbmd_asset/metadata_section/wbmd_wdw_ttl != ''">
-                        <xsl:call-template name="BuildAlternativeTitle"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="$title != '' and not(contains($title, 'Mini Guide TOC'))">
-                            <xsl:value-of select="$title"/>
-                            <xsl:text><![CDATA[ - ]]></xsl:text>
-                        </xsl:if>
-                        <xsl:value-of select="title" disable-output-escaping="yes"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:element>
+			<!-- Article Title -->
+			<xsl:element name="h1">
+				<xsl:choose>
+					<xsl:when test="$is_image_collection = 'true'">
+						<xsl:text>Image Collection</xsl:text>
+						<xsl:if test="subheadline != ''">
+							<xsl:text disable-output-escaping="yes">: </xsl:text>
+							<xsl:value-of disable-output-escaping="yes" select="subheadline"/>
+						</xsl:if>
+					</xsl:when>
+					<xsl:when test="$is_hw_special = 'true' and /webmd_rendition/content/wbmd_asset/metadata_section/wbmd_wdw_ttl != ''">
+						<xsl:call-template name="BuildAlternativeTitle"/>
+					</xsl:when>
+					<xsl:when test="$is_hw_symptom = 'true' and /webmd_rendition/content/wbmd_asset/metadata_section/wbmd_wdw_ttl != ''">
+						<xsl:call-template name="BuildAlternativeTitle"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:if test="$title != '' and not(contains($title, 'Mini Guide TOC'))">
+							<xsl:value-of select="$title"/>
+							<xsl:text><![CDATA[ - ]]></xsl:text>
+						</xsl:if>
+						<xsl:value-of select="title" disable-output-escaping="yes"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:element>
 
-            <!--<xsl:when test="$article_type = 'bio'">
+			<!--<xsl:when test="$article_type = 'bio'">
                 <!-\-dont output h2 for bio - this is done later within the BioHandler template-\->
             </xsl:when>-->
 
-            <!-- Article Byline -->
-            <xsl:if test="($article_type != 'bio') and $current_page = 1 and $is_personal_story = 'false'">
-                <xsl:if test="$has_author = 'true' or $has_reviewer = 'true'  ">
-                    <xsl:element name="div">
-                        <xsl:attribute name="class">
-                            <xsl:text>byline</xsl:text>
-                        </xsl:attribute>
-                        <xsl:attribute name="data-metrics-module">
-                            <xsl:text>art</xsl:text>
-                        </xsl:attribute>
-                        <xsl:element name="p">
-                            <xsl:if test="$has_author = 'true'">
-                                <xsl:call-template name="GetAuth"/>
-                            </xsl:if>
-                            <xsl:if test="$has_reviewer = 'true'">
-                                <xsl:call-template name="GetReviewerSect">
-                                    <xsl:with-param name="format">
-                                        <xsl:text>reviewer_only</xsl:text>
-                                    </xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:if>
-                            <xsl:if test="$has_review_date = 'true'">
-                                <xsl:call-template name="GetReviewerSect">
-                                    <xsl:with-param name="format">
-                                        <xsl:text>date_only</xsl:text>
-                                    </xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:if>
-                        </xsl:element>
-                        <!-- </p> -->
-                    </xsl:element>
-                    <!-- </div class="byline"> -->
-                </xsl:if>
-            </xsl:if>
+			<!-- Article Byline -->
+			<xsl:if test="($article_type != 'bio') and $current_page = 1 and $is_personal_story = 'false'">
+				<xsl:if test="$has_author = 'true' or $has_reviewer = 'true'  ">
+					<xsl:element name="div">
+						<xsl:attribute name="class">
+							<xsl:text>byline</xsl:text>
+						</xsl:attribute>
+						<xsl:attribute name="data-metrics-module">
+							<xsl:text>art</xsl:text>
+						</xsl:attribute>
+						<xsl:element name="p">
+							<xsl:if test="$has_author = 'true'">
+								<xsl:call-template name="GetAuth"/>
+							</xsl:if>
+							<xsl:if test="$has_reviewer = 'true'">
+								<xsl:call-template name="GetReviewerSect">
+									<xsl:with-param name="format">
+										<xsl:text>reviewer_only</xsl:text>
+									</xsl:with-param>
+								</xsl:call-template>
+							</xsl:if>
+							<xsl:if test="$has_review_date = 'true'">
+								<xsl:call-template name="GetReviewerSect">
+									<xsl:with-param name="format">
+										<xsl:text>date_only</xsl:text>
+									</xsl:with-param>
+								</xsl:call-template>
+							</xsl:if>
+						</xsl:element>
+						<!-- </p> -->
+					</xsl:element>
+					<!-- </div class="byline"> -->
+				</xsl:if>
+			</xsl:if>
 
-        </xsl:element>
-    </xsl:template>
+		</xsl:element>
+	</xsl:template>
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: BuildAlternativeTitle
     type: named template
     description:  Takes page title from a different onde (only applies to 2 health-wise types).
     ============================================================================ -->
-    <xsl:template name="BuildAlternativeTitle">
-        <xsl:variable name="original_text">
-            <xsl:value-of disable-output-escaping="yes" select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_wdw_ttl"/>
-        </xsl:variable>
-        <xsl:variable name="title_text">
-            <xsl:choose>
-                <xsl:when test="contains($original_text, '-')">
-                    <xsl:value-of select="concat(substring-before($original_text, '-'), ' - ' , substring-after($original_text, '-'))"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="$original_text"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:value-of disable-output-escaping="yes" select="$title_text"/>
-    </xsl:template>
+	<xsl:template name="BuildAlternativeTitle">
+		<xsl:variable name="original_text">
+			<xsl:value-of disable-output-escaping="yes" select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_wdw_ttl"/>
+		</xsl:variable>
+		<xsl:variable name="title_text">
+			<xsl:choose>
+				<xsl:when test="contains($original_text, '-')">
+					<xsl:value-of select="concat(substring-before($original_text, '-'), ' - ' , substring-after($original_text, '-'))"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="$original_text"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:value-of disable-output-escaping="yes" select="$title_text"/>
+	</xsl:template>
 
-    <xsl:template name="CreateHeaderData">
-        <xsl:element name="header">
-            <xsl:element name="h2">
-                <xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/*/title" disable-output-escaping="yes"/>
-            </xsl:element>
-            <xsl:if test="/webmd_rendition/content/wbmd_asset/content_section/*/subheadline != ''">
-                <xsl:element name="h3">
-                    <xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/*/subheadline" disable-output-escaping="yes"/>
-                </xsl:element>
-            </xsl:if>
-            <xsl:if test="($article_type = 'feature' or $article_type = 'news')">
-                <xsl:if test="$has_author = 'true' or $has_reviewer = 'true'">
-                    <xsl:element name="div">
-                        <xsl:attribute name="class">
-                            <xsl:text>attrib</xsl:text>
-                        </xsl:attribute>
-                        <xsl:if test="$has_author = 'true'">
-                            <xsl:call-template name="GetAuth"/>
-                        </xsl:if>
-                        <xsl:if test="$has_reviewer = 'true'">
-                            <xsl:call-template name="GetReviewerSect">
-                                <xsl:with-param name="format">
-                                    <xsl:text>date_and_reviewer</xsl:text>
-                                </xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:if>
-                    </xsl:element>
-                </xsl:if>
+	<xsl:template name="CreateHeaderData">
+		<xsl:element name="header">
+			<xsl:element name="h2">
+				<xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/*/title" disable-output-escaping="yes"/>
+			</xsl:element>
+			<xsl:if test="/webmd_rendition/content/wbmd_asset/content_section/*/subheadline != ''">
+				<xsl:element name="h3">
+					<xsl:value-of select="/webmd_rendition/content/wbmd_asset/content_section/*/subheadline" disable-output-escaping="yes"/>
+				</xsl:element>
+			</xsl:if>
+			<xsl:if test="($article_type = 'feature' or $article_type = 'news')">
+				<xsl:if test="$has_author = 'true' or $has_reviewer = 'true'">
+					<xsl:element name="div">
+						<xsl:attribute name="class">
+							<xsl:text>attrib</xsl:text>
+						</xsl:attribute>
+						<xsl:if test="$has_author = 'true'">
+							<xsl:call-template name="GetAuth"/>
+						</xsl:if>
+						<xsl:if test="$has_reviewer = 'true'">
+							<xsl:call-template name="GetReviewerSect">
+								<xsl:with-param name="format">
+									<xsl:text>date_and_reviewer</xsl:text>
+								</xsl:with-param>
+							</xsl:call-template>
+						</xsl:if>
+					</xsl:element>
+				</xsl:if>
 
-                <xsl:call-template name="GetPubDisplay"/>
+				<xsl:call-template name="GetPubDisplay"/>
 
-            </xsl:if>
-        </xsl:element>
-    </xsl:template>
+			</xsl:if>
+		</xsl:element>
+	</xsl:template>
 
-    <xsl:template name="CreateFooter">
-        <xsl:variable name="display_attrib">
-            <xsl:choose>
-                <!--article is health ref and webmd publication object not empty-->
-                <xsl:when test="$article_type = 'health_ref' and $has_pub_display = 'true'">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <xsl:when test="$is_healthwise = 'true'">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <!--last page of article and the citations exist-->
-                <xsl:when test="$is_last_page = 'true' and $has_citations = 'true'">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <!--Reviewed On for last page of features that have a valid review date-->
-                <xsl:when test="$is_last_page = 'true' and $article_type = 'feature' and $has_review_date = 'true'">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <!--Reviewed By On for last page of med ref that has a valid review date or a reviewer-->
-                <xsl:when test="$is_last_page = 'true' and $article_type = 'health_ref' and ($has_review_date = 'true' or $has_reviewer = 'true')">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <xsl:when test="$is_last_page = 'true' and $has_copyright = 'true'">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <xsl:when test="$is_personal_story = 'true'">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:text>false</xsl:text>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
+	<xsl:template name="CreateFooter">
+		<xsl:variable name="display_attrib">
+			<xsl:choose>
+				<!--article is health ref and webmd publication object not empty-->
+				<xsl:when test="$article_type = 'health_ref' and $has_pub_display = 'true'">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<xsl:when test="$is_healthwise = 'true'">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<!--last page of article and the citations exist-->
+				<xsl:when test="$is_last_page = 'true' and $has_citations = 'true'">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<!--Reviewed On for last page of features that have a valid review date-->
+				<xsl:when test="$is_last_page = 'true' and $article_type = 'feature' and $has_review_date = 'true'">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<!--Reviewed By On for last page of med ref that has a valid review date or a reviewer-->
+				<xsl:when test="$is_last_page = 'true' and $article_type = 'health_ref' and ($has_review_date = 'true' or $has_reviewer = 'true')">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<xsl:when test="$is_last_page = 'true' and $has_copyright = 'true'">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<xsl:when test="$is_personal_story = 'true'">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text>false</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
 
-        <!--Do not create footer for bio and personal story-->
-        <xsl:if test="$article_type != 'bio'">
-            <xsl:element name="footer">
-                <xsl:attribute name="class">
-                    <xsl:choose>
-                        <xsl:when test="$is_hw_special = 'true' and //content_section/cons_import_health_ref/*/*/section_group/section_type = 'Credits'">
-                            <xsl:text>article-footer show-detail</xsl:text>
-                        </xsl:when>
-                        <xsl:when test="$is_healthwise = 'true' and $has_credit_table = 'false'">
-                            <xsl:text>article-footer show-detail</xsl:text>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text>article-footer</xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:attribute>
-                <xsl:if test="($article_type = 'health_ref' or $article_type = 'feature' or $article_type = 'news' or $article_type = 'a-z') and $is_last_page = 'true' and $has_pub_display = 'true'">
-                    <xsl:element name="p">
-                        <xsl:attribute name="class">
-                            <xsl:text>pub_src</xsl:text>
-                        </xsl:attribute>
-                        <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_display"/>
-                    </xsl:element>
-                </xsl:if>
-                <!--<xsl:if test="$article_type = 'health_ref' and $has_pub_display = 'true'">
+		<!--Do not create footer for bio and personal story-->
+		<xsl:if test="$article_type != 'bio'">
+			<xsl:element name="footer">
+				<xsl:attribute name="class">
+					<xsl:choose>
+						<xsl:when test="$is_hw_special = 'true' and //content_section/cons_import_health_ref/*/*/section_group/section_type = 'Credits'">
+							<xsl:text>article-footer show-detail</xsl:text>
+						</xsl:when>
+						<xsl:when test="$is_healthwise = 'true' and $has_credit_table = 'false'">
+							<xsl:text>article-footer show-detail</xsl:text>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:text>article-footer</xsl:text>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
+				<xsl:if test="($article_type = 'health_ref' or $article_type = 'feature' or $article_type = 'news' or $article_type = 'a-z') and $is_last_page = 'true' and $has_pub_display = 'true'">
+					<xsl:element name="p">
+						<xsl:attribute name="class">
+							<xsl:text>pub_src</xsl:text>
+						</xsl:attribute>
+						<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_display"/>
+					</xsl:element>
+				</xsl:if>
+				<!--<xsl:if test="$article_type = 'health_ref' and $has_pub_display = 'true'">
                     <xsl:element name="p">
                         <xsl:attribute name="class"><xsl:text>med_ref</xsl:text></xsl:attribute>
                         <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_display"/>
                     </xsl:element>
                 </xsl:if>-->
 
-                <!-- healthwise credit table content is moved to here for better show-hide-detail handling and code clarity -->
-                <xsl:variable name="init-label">
-                    <xsl:choose>
-                        <xsl:when test="$is_hw_special = 'true'">
-                            <xsl:text disable-output-escaping="yes">Hide additional information</xsl:text>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text disable-output-escaping="yes">See additional information</xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
-                <xsl:if test="$is_healthwise = 'true' and $has_credit_table = 'true'">
-                    <xsl:element name="div">
-                        <xsl:attribute name="class">page-meta</xsl:attribute>
-                        <xsl:element name="div">
-                            <xsl:element name="span">
-                                <xsl:apply-templates select="//section_group[section_type = 'Credits']/section_text/table/tr[1]/td[1]/node()"/>
-                            </xsl:element>
-                            <xsl:element name="span">
-                                <xsl:apply-templates select="//section_group[section_type = 'Credits']/section_text/table/tr[1]/td[2]/node()"/>
-                            </xsl:element>
-                            <xsl:element name="a">
-                                <xsl:attribute name="href"><xsl:text disable-output-escaping="yes">javascript:;</xsl:text></xsl:attribute>
-                                <xsl:attribute name="onclick"><xsl:text disable-output-escaping="yes">showHideCreditsDetail();</xsl:text></xsl:attribute>
-                                <xsl:value-of select="$init-label"/>
-                            </xsl:element>
-                        </xsl:element>
+				<!-- healthwise credit table content is moved to here for better show-hide-detail handling and code clarity -->
+				<xsl:variable name="init-label">
+					<xsl:choose>
+						<xsl:when test="$is_hw_special = 'true'">
+							<xsl:text disable-output-escaping="yes">Hide additional information</xsl:text>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:text disable-output-escaping="yes">See additional information</xsl:text>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+				<xsl:if test="$is_healthwise = 'true' and $has_credit_table = 'true'">
+					<xsl:element name="div">
+						<xsl:attribute name="class">page-meta</xsl:attribute>
+						<xsl:element name="div">
+							<xsl:element name="span">
+								<xsl:apply-templates select="//section_group[section_type = 'Credits']/section_text/table/tr[1]/td[1]/node()"/>
+							</xsl:element>
+							<xsl:element name="span">
+								<xsl:apply-templates select="//section_group[section_type = 'Credits']/section_text/table/tr[1]/td[2]/node()"/>
+							</xsl:element>
+							<xsl:element name="a">
+								<xsl:attribute name="href">
+									<xsl:text disable-output-escaping="yes">javascript:;</xsl:text>
+								</xsl:attribute>
+								<xsl:attribute name="onclick">
+									<xsl:text disable-output-escaping="yes">showHideCreditsDetail();</xsl:text>
+								</xsl:attribute>
+								<xsl:value-of select="$init-label"/>
+							</xsl:element>
+						</xsl:element>
 
-                        <xsl:element name="span">
-                            <xsl:attribute name="class">credits-detail</xsl:attribute>
-                            <xsl:for-each select="//section_group[section_type = 'Credits']/section_text/table/tr[position() &gt; 1]">
-                                <xsl:element name="div">
-                                    <xsl:element name="span">
-                                        <xsl:apply-templates select="td[1]/node()"/>
-                                    </xsl:element>
-                                    <xsl:element name="span">
-                                        <xsl:apply-templates select="td[2]/node()"/>
-                                    </xsl:element>
-                                </xsl:element>
-                            </xsl:for-each>
-                        </xsl:element>
-                    </xsl:element>
-                </xsl:if>
+						<xsl:element name="span">
+							<xsl:attribute name="class">credits-detail</xsl:attribute>
+							<xsl:for-each select="//section_group[section_type = 'Credits']/section_text/table/tr[position() &gt; 1]">
+								<xsl:element name="div">
+									<xsl:element name="span">
+										<xsl:apply-templates select="td[1]/node()"/>
+									</xsl:element>
+									<xsl:element name="span">
+										<xsl:apply-templates select="td[2]/node()"/>
+									</xsl:element>
+								</xsl:element>
+							</xsl:for-each>
+						</xsl:element>
+					</xsl:element>
+				</xsl:if>
 
-                <!--Healthwise Label-->
-                <xsl:if test="$is_healthwise = 'true' and $has_pub_display = 'true'">
-                    <xsl:element name="p">
-                        <xsl:attribute name="class">
-                            <xsl:text>med_ref</xsl:text>
-                        </xsl:attribute>
-                        <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_display"/>
-                    </xsl:element>
-                </xsl:if>
-                <!--Special Case for Health Inusrance (ACA) Personal Stories-->
-                <xsl:if test="$is_personal_story = 'true' and $has_pub_display = 'true'">
-                    <xsl:element name="p">
-                        <xsl:attribute name="class">
-                            <xsl:text>ps-pub</xsl:text>
-                        </xsl:attribute>
-                        <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_display"/>
-                    </xsl:element>
-                </xsl:if>
+				<!--Healthwise Label-->
+				<xsl:if test="$is_healthwise = 'true' and $has_pub_display = 'true'">
+					<xsl:element name="p">
+						<xsl:attribute name="class">
+							<xsl:text>med_ref</xsl:text>
+						</xsl:attribute>
+						<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_display"/>
+					</xsl:element>
+				</xsl:if>
+				<!--Special Case for Health Inusrance (ACA) Personal Stories-->
+				<xsl:if test="$is_personal_story = 'true' and $has_pub_display = 'true'">
+					<xsl:element name="p">
+						<xsl:attribute name="class">
+							<xsl:text>ps-pub</xsl:text>
+						</xsl:attribute>
+						<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_display"/>
+					</xsl:element>
+				</xsl:if>
 
-                <xsl:if test="$display_attrib = 'true'">
-                    <xsl:element name="div">
-                        <xsl:attribute name="class">
-                            <xsl:text>footer_attrib</xsl:text>
-                        </xsl:attribute>
-                        <!--Sources-->
-                        <xsl:if test="($is_last_page = 'true' and $has_citations = 'true') or $is_personal_story = 'true'">
-                            <xsl:element name="div">
-                                <xsl:attribute name="class">
-                                    <xsl:text>sources</xsl:text>
-                                </xsl:attribute>
-                                <xsl:element name="p">
-                                    <xsl:attribute name="class">
-                                        <xsl:text>source_intro</xsl:text>
-                                    </xsl:attribute>
-                                    <xsl:element name="a">
-                                        <xsl:attribute name="href">
-                                            <xsl:text>#</xsl:text>
-                                        </xsl:attribute>
-                                        <xsl:attribute name="onclick">
-                                            <xsl:text>$(this).toggleClass('expanded'); $('#source_container').toggleClass('hidden'); return false;</xsl:text>
-                                        </xsl:attribute>
-                                        <xsl:text>Article Sources</xsl:text>
-                                    </xsl:element>
-                                </xsl:element>
-                                <xsl:element name="div">
-                                    <xsl:attribute name="id">
-                                        <xsl:text>source_container</xsl:text>
-                                    </xsl:attribute>
-                                    <xsl:attribute name="class">
-                                        <xsl:text>hidden</xsl:text>
-                                    </xsl:attribute>
-                                    <xsl:apply-templates select="citations/*"/>
-                                </xsl:element>
-                            </xsl:element>
-                        </xsl:if>
+				<xsl:if test="$display_attrib = 'true'">
+					<xsl:element name="div">
+						<xsl:attribute name="class">
+							<xsl:text>footer_attrib</xsl:text>
+						</xsl:attribute>
+						<!--Sources-->
+						<xsl:if test="($is_last_page = 'true' and $has_citations = 'true') or $is_personal_story = 'true'">
+							<xsl:element name="div">
+								<xsl:attribute name="class">
+									<xsl:text>sources</xsl:text>
+								</xsl:attribute>
+								<xsl:element name="p">
+									<xsl:attribute name="class">
+										<xsl:text>source_intro</xsl:text>
+									</xsl:attribute>
+									<xsl:element name="a">
+										<xsl:attribute name="href">
+											<xsl:text>#</xsl:text>
+										</xsl:attribute>
+										<xsl:attribute name="onclick">
+											<xsl:text>$(this).toggleClass('expanded'); $('#source_container').toggleClass('hidden'); return false;</xsl:text>
+										</xsl:attribute>
+										<xsl:text>Article Sources</xsl:text>
+									</xsl:element>
+								</xsl:element>
+								<xsl:element name="div">
+									<xsl:attribute name="id">
+										<xsl:text>source_container</xsl:text>
+									</xsl:attribute>
+									<xsl:attribute name="class">
+										<xsl:text>hidden</xsl:text>
+									</xsl:attribute>
+									<xsl:apply-templates select="citations/*"/>
+								</xsl:element>
+							</xsl:element>
+						</xsl:if>
 
-                        <!--healthwise logo-->
-                        <xsl:if test="$is_healthwise = 'true' and $has_logo = 'true'">
-                            <xsl:call-template name="GetImg">
-                                <xsl:with-param name="class">
-                                    <xsl:text>hw_logo</xsl:text>
-                                </xsl:with-param>
-                                <xsl:with-param name="src">
-                                    <xsl:value-of select="$image_server_url"/>
-                                    <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_bus_entity/wbmd_bus_logo/@path"/>
-                                </xsl:with-param>
-                                <xsl:with-param name="alt">
-                                    <xsl:text>healthwise logo</xsl:text>
-                                </xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:if>
+						<!--healthwise logo-->
+						<xsl:if test="$is_healthwise = 'true' and $has_logo = 'true'">
+							<xsl:call-template name="GetImg">
+								<xsl:with-param name="class">
+									<xsl:text>hw_logo</xsl:text>
+								</xsl:with-param>
+								<xsl:with-param name="src">
+									<xsl:value-of select="$image_server_url"/>
+									<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_bus_entity/wbmd_bus_logo/@path"/>
+								</xsl:with-param>
+								<xsl:with-param name="alt">
+									<xsl:text>healthwise logo</xsl:text>
+								</xsl:with-param>
+							</xsl:call-template>
+						</xsl:if>
 
-                        <!--Updated On - for healthwise only-->
-                        <xsl:if test="$is_healthwise = 'true' and $has_pub_date = 'true'">
-                            <xsl:element name="p">
-                                <xsl:attribute name="class">
-                                    <xsl:text>updated</xsl:text>
-                                </xsl:attribute>
-                                <xsl:text>Last Updated: </xsl:text>
-                                <xsl:call-template name="Convert_Date">
-                                    <xsl:with-param name="date">
-                                        <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_orig_pub_dt"/>
-                                    </xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:element>
-                        </xsl:if>
+						<!--Updated On - for healthwise only-->
+						<xsl:if test="$is_healthwise = 'true' and $has_pub_date = 'true'">
+							<xsl:element name="p">
+								<xsl:attribute name="class">
+									<xsl:text>updated</xsl:text>
+								</xsl:attribute>
+								<xsl:text>Last Updated: </xsl:text>
+								<xsl:call-template name="Convert_Date">
+									<xsl:with-param name="date">
+										<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_orig_pub_dt"/>
+									</xsl:with-param>
+								</xsl:call-template>
+							</xsl:element>
+						</xsl:if>
 
-                        <!--Disclaimer-->
-                        <xsl:if test="$has_disclaimer = 'true'">
-                            <xsl:element name="p">
-                                <xsl:attribute name="class">
-                                    <xsl:text>disc</xsl:text>
-                                </xsl:attribute>
-                                <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_disclmr/wbmd_disclaimer/disclaimer_statement" disable-output-escaping="yes"/>
-                            </xsl:element>
-                        </xsl:if>
-                        <!--Reviewed On Displays for last page of feature that have a review date and the date is not null-->
+						<!--Disclaimer-->
+						<xsl:if test="$has_disclaimer = 'true'">
+							<xsl:element name="p">
+								<xsl:attribute name="class">
+									<xsl:text>disc</xsl:text>
+								</xsl:attribute>
+								<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_disclmr/wbmd_disclaimer/disclaimer_statement" disable-output-escaping="yes"/>
+							</xsl:element>
+						</xsl:if>
+						<!--Reviewed On Displays for last page of feature that have a review date and the date is not null-->
 
 
-                        <!--<xsl:if test="$is_last_page = 'true' and $article_type = 'feature' and $has_review_date = 'true' and $is_personal_story = 'false'">
+						<!--<xsl:if test="$is_last_page = 'true' and $article_type = 'feature' and $has_review_date = 'true' and $is_personal_story = 'false'">
                             <xsl:call-template name="GetReviewerSect">
                                 <xsl:with-param name="format">
                                     <xsl:text>date_only</xsl:text>
@@ -1706,14 +1735,14 @@ Full file info:
 
 
 
-                        <!--<xsl:call-template name="GetAuth"/>
+						<!--<xsl:call-template name="GetAuth"/>
                         <xsl:call-template name="GetReviewer"/>-->
 
 
 
 
-                        <!--Reviewed by Person On Month Day, Year (last page of health ref)-->
-                        <!--<xsl:if test="$is_last_page = 'true' and $article_type = 'health_ref' and ($has_review_date = 'true' or $has_reviewer = 'true')">
+						<!--Reviewed by Person On Month Day, Year (last page of health ref)-->
+						<!--<xsl:if test="$is_last_page = 'true' and $article_type = 'health_ref' and ($has_review_date = 'true' or $has_reviewer = 'true')">
                             <xsl:call-template name="GetReviewerSect">
                                 <xsl:with-param name="format">
                                     <xsl:text>date_and_reviewer</xsl:text>
@@ -1721,303 +1750,323 @@ Full file info:
                             </xsl:call-template>
                         </xsl:if>-->
 
-                        <!--Special case for personal stories-->
-                        <xsl:if test="$is_personal_story = 'true'">
-                            <xsl:call-template name="GetReviewerSect">
-                                <xsl:with-param name="format">
-                                    <xsl:text>date_and_reviewer</xsl:text>
-                                </xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:if>
+						<!--Special case for personal stories-->
+						<xsl:if test="$is_personal_story = 'true'">
+							<xsl:call-template name="GetReviewerSect">
+								<xsl:with-param name="format">
+									<xsl:text>date_and_reviewer</xsl:text>
+								</xsl:with-param>
+							</xsl:call-template>
+						</xsl:if>
 
-                        <!--Updated On - Health Insurance Center (including personal stories). Uses the -->
-                        <xsl:if test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_edtr_revr_dt != 'nulldate' and ($is_aca_page = 'true' or $is_state_page = 'true' or $is_personal_story = 'true')">
-                            <xsl:element name="p">
-                                <xsl:attribute name="class">
-                                    <xsl:text>updated</xsl:text>
-                                </xsl:attribute>
-                                <xsl:text>Last Updated: </xsl:text>
-                                <xsl:call-template name="Convert_Date">
-                                    <xsl:with-param name="date">
-                                        <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_edtr_revr_dt"/>
-                                    </xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:element>
-                        </xsl:if>
+						<!--Updated On - Health Insurance Center (including personal stories). Uses the -->
+						<xsl:if test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_edtr_revr_dt != 'nulldate' and ($is_aca_page = 'true' or $is_state_page = 'true' or $is_personal_story = 'true')">
+							<xsl:element name="p">
+								<xsl:attribute name="class">
+									<xsl:text>updated</xsl:text>
+								</xsl:attribute>
+								<xsl:text>Last Updated: </xsl:text>
+								<xsl:call-template name="Convert_Date">
+									<xsl:with-param name="date">
+										<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_edtr_revr_dt"/>
+									</xsl:with-param>
+								</xsl:call-template>
+							</xsl:element>
+						</xsl:if>
 
-                        <!--<xsl:call-template name="GetPubDisplay"/>-->
+						<!--<xsl:call-template name="GetPubDisplay"/>-->
 
-                        <!--Copyright-->
-                        <!--                        <xsl:if test="($is_last_page = 'true' or $is_healthwise = 'true' or $is_personal_story = 'true') and $has_copyright = 'true'">-->
-                        <xsl:if test="$has_copyright = 'true'">
-                            <xsl:if test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_cpyrt/wbmd_copyright/wbmd_copyright_statement != ''">
-                                <xsl:element name="p">
-                                    <xsl:attribute name="class">
-                                        <xsl:text>copyright</xsl:text>
-                                    </xsl:attribute>
-                                    <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_cpyrt/wbmd_copyright/wbmd_copyright_statement"/>
-                                </xsl:element>
-                            </xsl:if>
-                        </xsl:if>
-                    </xsl:element>
-                </xsl:if>
+						<!--Copyright-->
+						<!--                        <xsl:if test="($is_last_page = 'true' or $is_healthwise = 'true' or $is_personal_story = 'true') and $has_copyright = 'true'">-->
+						<xsl:if test="$has_copyright = 'true'">
+							<xsl:if test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_cpyrt/wbmd_copyright/wbmd_copyright_statement != ''">
+								<xsl:element name="p">
+									<xsl:attribute name="class">
+										<xsl:text>copyright</xsl:text>
+									</xsl:attribute>
+									<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_cpyrt/wbmd_copyright/wbmd_copyright_statement"/>
+								</xsl:element>
+							</xsl:if>
+						</xsl:if>
+					</xsl:element>
+				</xsl:if>
 
-                <!--Pagination-->
-                <xsl:if test="$is_multipage = 'true' and $is_hw_symptomquiz = 'false'">
-                    <xsl:call-template name="CreatePagination"/>
-                </xsl:if>
+				<!--Pagination-->
+				<xsl:if test="$is_multipage = 'true' and $is_hw_symptomquiz = 'false'">
+					<xsl:call-template name="CreatePagination"/>
+				</xsl:if>
 
-                <!-- section nav -->
-                <xsl:if test="$is_section_based_multipage = 'true'">
-                    <xsl:call-template name="CreateSectionNavigation"/>
-                </xsl:if>
+				<!-- section nav -->
+				<xsl:if test="$is_section_based_multipage = 'true'">
+					<xsl:call-template name="CreateSectionNavigation"/>
+				</xsl:if>
 
 
-                <xsl:if test="count(/webmd_rendition/cons_topic_outline/section_groups/section_group) &gt; 1">
-                    <xsl:call-template name="CreateTopicOutlineNavigation"/>
-                </xsl:if>
-            </xsl:element>
-        </xsl:if>
-    </xsl:template>
+				<xsl:if test="count(/webmd_rendition/cons_topic_outline/section_groups/section_group) &gt; 1">
+					<xsl:call-template name="CreateTopicOutlineNavigation"/>
+				</xsl:if>
+			</xsl:element>
+		</xsl:if>
+	</xsl:template>
 
-    <xsl:template name="CreateSectionNavigation">
-        <xsl:variable name="next_button_txt">
-            <xsl:choose>
-                <xsl:when test="$is_hw_symptomquiz = 'true'"><xsl:text disable-output-escaping="yes">Next</xsl:text></xsl:when>
-                <xsl:otherwise><xsl:text disable-output-escaping="yes">Next Page</xsl:text></xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
+	<xsl:template name="CreateSectionNavigation">
+		<xsl:variable name="next_button_txt">
+			<xsl:choose>
+				<xsl:when test="$is_hw_symptomquiz = 'true'">
+					<xsl:text disable-output-escaping="yes">Next</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text disable-output-escaping="yes">Next Page</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
 
-        <xsl:element name="div">
-            <xsl:attribute name="class">section-nav clearfix</xsl:attribute>
-            <xsl:call-template name="BuildSectionNavButton">
-                <xsl:with-param name="button-text" select="'Previous'"  />
-            </xsl:call-template>
+		<xsl:element name="div">
+			<xsl:attribute name="class">section-nav clearfix</xsl:attribute>
+			<xsl:call-template name="BuildSectionNavButton">
+				<xsl:with-param name="button-text" select="'Previous'"/>
+			</xsl:call-template>
 
-            <xsl:if test="$is_hw_symptomquiz = 'true'">
-                <xsl:element name="a">
-                    <xsl:attribute name="href">
-                        <xsl:text disable-output-escaping="yes">http://doctor.webmd.com/physician_finder/home.aspx?sponsor=core</xsl:text>
-                    </xsl:attribute>
-                    <xsl:attribute name="onclick">
-                        <xsl:text disable-output-escaping="yes">wmdPageLink('embd-lnk');</xsl:text>
-                    </xsl:attribute>
-                    <xsl:element name="div">
-                        <xsl:attribute name="class">middle-button</xsl:attribute>
-                        <xsl:text>Physician Directory</xsl:text>
-                    </xsl:element>
-                </xsl:element>
-            </xsl:if>
+			<xsl:if test="$is_hw_symptomquiz = 'true'">
+				<xsl:element name="a">
+					<xsl:attribute name="href">
+						<xsl:text disable-output-escaping="yes">http://doctor.webmd.com/physician_finder/home.aspx?sponsor=core</xsl:text>
+					</xsl:attribute>
+					<xsl:attribute name="onclick">
+						<xsl:text disable-output-escaping="yes">wmdPageLink('embd-lnk');</xsl:text>
+					</xsl:attribute>
+					<xsl:element name="div">
+						<xsl:attribute name="class">middle-button</xsl:attribute>
+						<xsl:text>Physician Directory</xsl:text>
+					</xsl:element>
+				</xsl:element>
+			</xsl:if>
 
-            <xsl:call-template name="BuildSectionNavButton">
-                <xsl:with-param name="button-text" select="$next_button_txt"    />
-            </xsl:call-template>
-        </xsl:element>
-    </xsl:template>
+			<xsl:call-template name="BuildSectionNavButton">
+				<xsl:with-param name="button-text" select="$next_button_txt"/>
+			</xsl:call-template>
+		</xsl:element>
+	</xsl:template>
 
-    <xsl:template name="BuildSectionNavButton">
-        <xsl:param name="button-text"/>
+	<xsl:template name="BuildSectionNavButton">
+		<xsl:param name="button-text"/>
 
-        <xsl:variable name="is_next">
-            <xsl:choose>
-                <xsl:when test="contains($button-text, 'Next')"><xsl:text>true</xsl:text></xsl:when>
-                <xsl:otherwise><xsl:text>false</xsl:text></xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
+		<xsl:variable name="is_next">
+			<xsl:choose>
+				<xsl:when test="contains($button-text, 'Next')">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text>false</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
 
-        <xsl:variable name="metrics_code">
-            <xsl:choose>
-                <xsl:when test="$is_next = 'true'"><xsl:text>art_next</xsl:text></xsl:when>
-                <xsl:otherwise><xsl:text>art_prev</xsl:text></xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
+		<xsl:variable name="metrics_code">
+			<xsl:choose>
+				<xsl:when test="$is_next = 'true'">
+					<xsl:text>art_next</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text>art_prev</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
 
-        <xsl:variable name="button_class">
-            <xsl:choose>
-                <xsl:when test="$is_next = 'true'"><xsl:text disable-output-escaping="yes">nav-next</xsl:text></xsl:when>
-                <xsl:otherwise><xsl:text disable-output-escaping="yes">nav-prev navbutton-hide</xsl:text></xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="arrow_class">
-            <xsl:choose>
-                <xsl:when test="$is_next = 'true'"><xsl:text disable-output-escaping="yes">icon-arrow-right</xsl:text></xsl:when>
-                <xsl:otherwise><xsl:text disable-output-escaping="yes">icon-arrow-left</xsl:text></xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
+		<xsl:variable name="button_class">
+			<xsl:choose>
+				<xsl:when test="$is_next = 'true'">
+					<xsl:text disable-output-escaping="yes">nav-next</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text disable-output-escaping="yes">nav-prev navbutton-hide</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:variable name="arrow_class">
+			<xsl:choose>
+				<xsl:when test="$is_next = 'true'">
+					<xsl:text disable-output-escaping="yes">icon-arrow-right</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text disable-output-escaping="yes">icon-arrow-left</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
 
-        <xsl:element name="div">
-            <xsl:attribute name="class">
-                <xsl:value-of select="$button_class"/>
-            </xsl:attribute>
-            <xsl:attribute name="onclick">
-                <xsl:text disable-output-escaping="yes">sectionNavClickHandler(event);wmdPageLink('</xsl:text>
-                <xsl:value-of select="$metrics_code"/>
-                <xsl:text disable-output-escaping="yes">');</xsl:text>
-            </xsl:attribute>
-            <xsl:if test="$is_next = 'true'">
-                <xsl:value-of disable-output-escaping="yes" select="$button-text"/>
-                <xsl:text disable-output-escaping="yes">   </xsl:text>
-            </xsl:if>
-            <xsl:element name="span">
-                <xsl:attribute name="class">
-                    <xsl:value-of select="$arrow_class"/>
-                </xsl:attribute>
-                <xsl:text disable-output-escaping="yes"></xsl:text>
-            </xsl:element>
-            <xsl:if test="$is_next = 'false'">
-                <xsl:text disable-output-escaping="yes">   </xsl:text>
-                <xsl:value-of disable-output-escaping="yes" select="$button-text"/>
-            </xsl:if>
-        </xsl:element>
-    </xsl:template>
+		<xsl:element name="div">
+			<xsl:attribute name="class">
+				<xsl:value-of select="$button_class"/>
+			</xsl:attribute>
+			<xsl:attribute name="onclick">
+				<xsl:text disable-output-escaping="yes">sectionNavClickHandler(event);wmdPageLink('</xsl:text>
+				<xsl:value-of select="$metrics_code"/>
+				<xsl:text disable-output-escaping="yes">');</xsl:text>
+			</xsl:attribute>
+			<xsl:if test="$is_next = 'true'">
+				<xsl:value-of disable-output-escaping="yes" select="$button-text"/>
+				<xsl:text disable-output-escaping="yes">   </xsl:text>
+			</xsl:if>
+			<xsl:element name="span">
+				<xsl:attribute name="class">
+					<xsl:value-of select="$arrow_class"/>
+				</xsl:attribute>
+				<xsl:text disable-output-escaping="yes"/>
+			</xsl:element>
+			<xsl:if test="$is_next = 'false'">
+				<xsl:text disable-output-escaping="yes">   </xsl:text>
+				<xsl:value-of disable-output-escaping="yes" select="$button-text"/>
+			</xsl:if>
+		</xsl:element>
+	</xsl:template>
 
-    <xsl:template name="CreateFooterData">
-        <xsl:variable name="create_footer">
-            <xsl:choose>
-                <!--article is health ref and webmd publication object not empty-->
-                <xsl:when test="$article_type = 'health_ref' and $has_pub_display = 'true'">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <xsl:when test="$is_healthwise = 'true'">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <!--last page of article and the citations exist-->
-                <xsl:when test="$has_citations = 'true'">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <!--Reviewed On for last page of features that have a valid review date-->
-                <xsl:when test="$article_type = 'feature' and $has_review_date = 'true'">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <!--Reviewed By On for last page of med ref that has a valid review date or a reviewer-->
-                <xsl:when test="$article_type = 'health_ref' and ($has_review_date = 'true' or $has_reviewer = 'true')">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <xsl:when test="$has_copyright = 'true'">
-                    <xsl:text>true</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:text>false</xsl:text>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:if test="$create_footer = 'true'">
-            <xsl:element name="footer">
+	<xsl:template name="CreateFooterData">
+		<xsl:variable name="create_footer">
+			<xsl:choose>
+				<!--article is health ref and webmd publication object not empty-->
+				<xsl:when test="$article_type = 'health_ref' and $has_pub_display = 'true'">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<xsl:when test="$is_healthwise = 'true'">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<!--last page of article and the citations exist-->
+				<xsl:when test="$has_citations = 'true'">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<!--Reviewed On for last page of features that have a valid review date-->
+				<xsl:when test="$article_type = 'feature' and $has_review_date = 'true'">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<!--Reviewed By On for last page of med ref that has a valid review date or a reviewer-->
+				<xsl:when test="$article_type = 'health_ref' and ($has_review_date = 'true' or $has_reviewer = 'true')">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<xsl:when test="$has_copyright = 'true'">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text>false</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:if test="$create_footer = 'true'">
+			<xsl:element name="footer">
 
-                <xsl:if test="$is_hw_symptomquiz = 'false'">
-                    <xsl:call-template name="CreatePagination"/>
-                </xsl:if>
+				<xsl:if test="$is_hw_symptomquiz = 'false'">
+					<xsl:call-template name="CreatePagination"/>
+				</xsl:if>
 
-                <!--Publication Source Label-->
-                <xsl:if test="($article_type = 'health_ref' or $article_type = 'feature' or $article_type = 'news' or $article_type = 'a-z') and $has_pub_display = 'true'">
-                    <xsl:element name="p">
-                        <xsl:attribute name="class">
-                            <xsl:text>pub_src</xsl:text>
-                        </xsl:attribute>
-                        <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_display"/>
-                    </xsl:element>
-                </xsl:if>
+				<!--Publication Source Label-->
+				<xsl:if test="($article_type = 'health_ref' or $article_type = 'feature' or $article_type = 'news' or $article_type = 'a-z') and $has_pub_display = 'true'">
+					<xsl:element name="p">
+						<xsl:attribute name="class">
+							<xsl:text>pub_src</xsl:text>
+						</xsl:attribute>
+						<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_display"/>
+					</xsl:element>
+				</xsl:if>
 
-                <xsl:element name="div">
-                    <xsl:attribute name="class">
-                        <xsl:text>footer_attrib</xsl:text>
-                    </xsl:attribute>
-                    <!--Sources-->
-                    <xsl:if test="$has_citations = 'true'">
-                        <xsl:element name="div">
-                            <xsl:attribute name="class">
-                                <xsl:text>sources</xsl:text>
-                            </xsl:attribute>
-                            <xsl:element name="p">
-                                <xsl:attribute name="class">
-                                    <xsl:text>source_intro</xsl:text>
-                                </xsl:attribute>
-                                <xsl:element name="a">
-                                    <xsl:attribute name="href">
-                                        <xsl:text>#</xsl:text>
-                                    </xsl:attribute>
-                                    <xsl:attribute name="onclick">
-                                        <xsl:text>$(this).toggleClass('expanded'); $('#source_container').toggleClass('hidden'); return false;</xsl:text>
-                                    </xsl:attribute>
-                                    <xsl:text>Article Sources</xsl:text>
-                                </xsl:element>
-                            </xsl:element>
-                            <xsl:element name="div">
-                                <xsl:attribute name="id">
-                                    <xsl:text>source_container</xsl:text>
-                                </xsl:attribute>
-                                <xsl:attribute name="class">
-                                    <xsl:text>hidden</xsl:text>
-                                </xsl:attribute>
-                                <xsl:apply-templates select="/webmd_rendition/content/wbmd_asset/content_section/*/citations/*"/>
-                            </xsl:element>
-                        </xsl:element>
-                    </xsl:if>
-                    <!--healthwise logo-->
-                    <xsl:if test="$is_healthwise = 'true' and $has_logo = 'true'">
-                        <xsl:call-template name="GetImg">
-                            <xsl:with-param name="class">
-                                <xsl:text>hw_logo</xsl:text>
-                            </xsl:with-param>
-                            <xsl:with-param name="src">
-                                <xsl:value-of select="$image_server_url"/>
-                                <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_bus_entity/wbmd_bus_logo/@path"/>
-                            </xsl:with-param>
-                            <xsl:with-param name="alt">
-                                <xsl:text>healthwise logo</xsl:text>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:if>
-                    <!--Updated On - for healthwise only-->
-                    <xsl:if test="$is_healthwise = 'true' and $has_pub_date = 'true'">
-                        <xsl:element name="p">
-                            <xsl:attribute name="class">
-                                <xsl:text>updated</xsl:text>
-                            </xsl:attribute>
-                            <xsl:text>Last Updated: </xsl:text>
-                            <xsl:call-template name="Convert_Date">
-                                <xsl:with-param name="date">
-                                    <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_orig_pub_dt"/>
-                                </xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:element>
-                    </xsl:if>
-                    <!--Reviewed On Displays for last page of feature that have a review date and the date is not null-->
-                    <xsl:if test="$article_type = 'feature' and $has_review_date = 'true'">
-                        <xsl:call-template name="GetReviewerSect">
-                            <xsl:with-param name="format">
-                                <xsl:text>date_only</xsl:text>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:if>
-                    <!--Reviewed by Person On Month Day, Year-->
-                    <xsl:if test="$article_type = 'health_ref' and ($has_review_date = 'true' or $has_reviewer = 'true')">
-                        <xsl:call-template name="GetReviewerSect">
-                            <xsl:with-param name="format">
-                                <xsl:text>date_and_reviewer</xsl:text>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:if>
-                    <!--Copyright-->
-                    <xsl:if test="$has_copyright = 'true'">
-                        <xsl:element name="p">
-                            <xsl:attribute name="class">
-                                <xsl:text>copyright</xsl:text>
-                            </xsl:attribute>
-                            <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_cpyrt/wbmd_copyright/wbmd_copyright_statement"/>
-                        </xsl:element>
-                    </xsl:if>
-                </xsl:element>
-            </xsl:element>
-        </xsl:if>
-    </xsl:template>
+				<xsl:element name="div">
+					<xsl:attribute name="class">
+						<xsl:text>footer_attrib</xsl:text>
+					</xsl:attribute>
+					<!--Sources-->
+					<xsl:if test="$has_citations = 'true'">
+						<xsl:element name="div">
+							<xsl:attribute name="class">
+								<xsl:text>sources</xsl:text>
+							</xsl:attribute>
+							<xsl:element name="p">
+								<xsl:attribute name="class">
+									<xsl:text>source_intro</xsl:text>
+								</xsl:attribute>
+								<xsl:element name="a">
+									<xsl:attribute name="href">
+										<xsl:text>#</xsl:text>
+									</xsl:attribute>
+									<xsl:attribute name="onclick">
+										<xsl:text>$(this).toggleClass('expanded'); $('#source_container').toggleClass('hidden'); return false;</xsl:text>
+									</xsl:attribute>
+									<xsl:text>Article Sources</xsl:text>
+								</xsl:element>
+							</xsl:element>
+							<xsl:element name="div">
+								<xsl:attribute name="id">
+									<xsl:text>source_container</xsl:text>
+								</xsl:attribute>
+								<xsl:attribute name="class">
+									<xsl:text>hidden</xsl:text>
+								</xsl:attribute>
+								<xsl:apply-templates select="/webmd_rendition/content/wbmd_asset/content_section/*/citations/*"/>
+							</xsl:element>
+						</xsl:element>
+					</xsl:if>
+					<!--healthwise logo-->
+					<xsl:if test="$is_healthwise = 'true' and $has_logo = 'true'">
+						<xsl:call-template name="GetImg">
+							<xsl:with-param name="class">
+								<xsl:text>hw_logo</xsl:text>
+							</xsl:with-param>
+							<xsl:with-param name="src">
+								<xsl:value-of select="$image_server_url"/>
+								<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_bus_entity/wbmd_bus_logo/@path"/>
+							</xsl:with-param>
+							<xsl:with-param name="alt">
+								<xsl:text>healthwise logo</xsl:text>
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:if>
+					<!--Updated On - for healthwise only-->
+					<xsl:if test="$is_healthwise = 'true' and $has_pub_date = 'true'">
+						<xsl:element name="p">
+							<xsl:attribute name="class">
+								<xsl:text>updated</xsl:text>
+							</xsl:attribute>
+							<xsl:text>Last Updated: </xsl:text>
+							<xsl:call-template name="Convert_Date">
+								<xsl:with-param name="date">
+									<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_orig_pub_dt"/>
+								</xsl:with-param>
+							</xsl:call-template>
+						</xsl:element>
+					</xsl:if>
+					<!--Reviewed On Displays for last page of feature that have a review date and the date is not null-->
+					<xsl:if test="$article_type = 'feature' and $has_review_date = 'true'">
+						<xsl:call-template name="GetReviewerSect">
+							<xsl:with-param name="format">
+								<xsl:text>date_only</xsl:text>
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:if>
+					<!--Reviewed by Person On Month Day, Year-->
+					<xsl:if test="$article_type = 'health_ref' and ($has_review_date = 'true' or $has_reviewer = 'true')">
+						<xsl:call-template name="GetReviewerSect">
+							<xsl:with-param name="format">
+								<xsl:text>date_and_reviewer</xsl:text>
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:if>
+					<!--Copyright-->
+					<xsl:if test="$has_copyright = 'true'">
+						<xsl:element name="p">
+							<xsl:attribute name="class">
+								<xsl:text>copyright</xsl:text>
+							</xsl:attribute>
+							<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_cpyrt/wbmd_copyright/wbmd_copyright_statement"/>
+						</xsl:element>
+					</xsl:if>
+				</xsl:element>
+			</xsl:element>
+		</xsl:if>
+	</xsl:template>
 
-    <xsl:template name="CreateScripts">
-        <xsl:element name="script">
-            <!--article code-->
+	<xsl:template name="CreateScripts">
+		<xsl:element name="script">
+			<!--article code-->
 
-            <xsl:if test="$is_hw_multimedia_slideshow = 'true'" >
-                <xsl:text disable-output-escaping="yes"><![CDATA[
+			<xsl:if test="$is_hw_multimedia_slideshow = 'true'">
+				<xsl:text disable-output-escaping="yes"><![CDATA[
 
         function onImageSlideShowNavClick(event) {
             var targetEle = $(event.target).closest(".nav-arrow"),
@@ -2047,10 +2096,10 @@ Full file info:
         }
 
                 ]]></xsl:text>
-            </xsl:if>
+			</xsl:if>
 
-            <xsl:if test="$is_healthwise = 'true'" >
-                <xsl:text disable-output-escaping="yes"><![CDATA[
+			<xsl:if test="$is_healthwise = 'true'">
+				<xsl:text disable-output-escaping="yes"><![CDATA[
 
         function showHideCreditsDetail() {
             var footerEle = $(".article .article-footer"),
@@ -2069,10 +2118,10 @@ Full file info:
         }
 
                 ]]></xsl:text>
-            </xsl:if>
+			</xsl:if>
 
-            <xsl:if test="$is_section_based_multipage = 'true'">
-                <xsl:text disable-output-escaping="yes"><![CDATA[
+			<xsl:if test="$is_section_based_multipage = 'true'">
+				<xsl:text disable-output-escaping="yes"><![CDATA[
                 function sectionNavClickHandler(event) {
                     var $targetEl = $(event.target).closest("div"),
                         isNext = $targetEl.hasClass("nav-next"),
@@ -2120,10 +2169,10 @@ Full file info:
 
                 ]]>
                 </xsl:text>
-            </xsl:if>
+			</xsl:if>
 
-            <xsl:if test="$is_hw_symptomquiz = 'true'">
-                <xsl:text disable-output-escaping="yes"><![CDATA[
+			<xsl:if test="$is_hw_symptomquiz = 'true'">
+				<xsl:text disable-output-escaping="yes"><![CDATA[
             function quizQuestionYesButtonClick(event) {
                 var targetEle = $(event.target),
                     parentUL = targetEle.closest("ul"),
@@ -2244,9 +2293,9 @@ Full file info:
             }
                 ]]>
                 </xsl:text>
-            </xsl:if>
+			</xsl:if>
 
-            <xsl:text disable-output-escaping="yes"><![CDATA[
+			<xsl:text disable-output-escaping="yes"><![CDATA[
 
 
 $(function() {
@@ -2267,84 +2316,84 @@ $(function() {
 // init webmdArticle plugin
 requirejs(['article/2/article'],function(){
     $('#]]></xsl:text>
-            <xsl:value-of select="$moduletitle"/>
-            <xsl:text disable-output-escaping="yes"><![CDATA[').webmdArticle({]]></xsl:text>
-            <xsl:choose>
-                <xsl:when test="$print = 'true' or $print = 'True'">
-                    <xsl:text><![CDATA[printView:true]]></xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:text><![CDATA[pageData: {title: "]]></xsl:text>
-                    <xsl:value-of select="$title"/>
-                    <xsl:text><![CDATA[", imgPath: "]]></xsl:text>
-                    <xsl:value-of select="$thumb_path"/>
-                    <xsl:text><![CDATA[", caption: "]]></xsl:text>
-                    <xsl:value-of select="$caption"/>
-                    <xsl:text><![CDATA[", description: "]]></xsl:text>
-                    <xsl:value-of select="normalize-space($description)"/>
-                    <!-- choose the toolbar based on if the article is a state page or not -->
-                    <xsl:choose>
-                        <xsl:when test="$is_state_page = 'true' or $is_aca_page = 'true'">
-                            <xsl:text disable-output-escaping="yes"><![CDATA[", type: "article"}, shareTypes:{email: {htmlTemplate: '<a class="email triggerEmailOverlay sharelink aca" data-sharetype="email" href="#" title="Email a Friend"><span class="icon"></span>Email</a>'}}, shareText: '', expandIcons: {html: {more: '<span class="icon"></span>More', less: '<span class="icon"></span>Less'}, position: 3}]]></xsl:text>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text><![CDATA[", type: "article"}]]></xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:otherwise>
-            </xsl:choose>
-            <xsl:text disable-output-escaping="yes"><![CDATA[});
+			<xsl:value-of select="$moduletitle"/>
+			<xsl:text disable-output-escaping="yes"><![CDATA[').webmdArticle({]]></xsl:text>
+			<xsl:choose>
+				<xsl:when test="$print = 'true' or $print = 'True'">
+					<xsl:text><![CDATA[printView:true]]></xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text><![CDATA[pageData: {title: "]]></xsl:text>
+					<xsl:value-of select="$title"/>
+					<xsl:text><![CDATA[", imgPath: "]]></xsl:text>
+					<xsl:value-of select="$thumb_path"/>
+					<xsl:text><![CDATA[", caption: "]]></xsl:text>
+					<xsl:value-of select="$caption"/>
+					<xsl:text><![CDATA[", description: "]]></xsl:text>
+					<xsl:value-of select="normalize-space($description)"/>
+					<!-- choose the toolbar based on if the article is a state page or not -->
+					<xsl:choose>
+						<xsl:when test="$is_state_page = 'true' or $is_aca_page = 'true'">
+							<xsl:text disable-output-escaping="yes"><![CDATA[", type: "article"}, shareTypes:{email: {htmlTemplate: '<a class="email triggerEmailOverlay sharelink aca" data-sharetype="email" href="#" title="Email a Friend"><span class="icon"></span>Email</a>'}}, shareText: '', expandIcons: {html: {more: '<span class="icon"></span>More', less: '<span class="icon"></span>Less'}, position: 3}]]></xsl:text>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:text><![CDATA[", type: "article"}]]></xsl:text>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:otherwise>
+			</xsl:choose>
+			<xsl:text disable-output-escaping="yes"><![CDATA[});
 
 });
 ]]></xsl:text>
-        </xsl:element>
-    </xsl:template>
+		</xsl:element>
+	</xsl:template>
 
-    <xsl:template name="CreatePagination">
-        <xsl:variable name="lower_page">
-            <xsl:choose>
-                <xsl:when test="$current_page &lt; 5">
-                    <xsl:text>1</xsl:text>
-                </xsl:when>
-                <xsl:when test="$current_page &gt; number($last_page - 5)">
-                    <xsl:choose>
-                        <xsl:when test="$last_page &lt; 10">
-                            <xsl:text>1</xsl:text>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:value-of select="number($last_page - 9)"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="number($current_page - 4)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="upper_page">
-            <xsl:choose>
-                <xsl:when test="$current_page &lt; 5">
-                    <xsl:choose>
-                        <xsl:when test="$last_page &lt; 10">
-                            <xsl:value-of select="$last_page"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text>10</xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:when>
-                <xsl:when test="$current_page &gt; number($last_page - 5)">
-                    <xsl:value-of select="$last_page"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="number($current_page + 5)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
+	<xsl:template name="CreatePagination">
+		<xsl:variable name="lower_page">
+			<xsl:choose>
+				<xsl:when test="$current_page &lt; 5">
+					<xsl:text>1</xsl:text>
+				</xsl:when>
+				<xsl:when test="$current_page &gt; number($last_page - 5)">
+					<xsl:choose>
+						<xsl:when test="$last_page &lt; 10">
+							<xsl:text>1</xsl:text>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="number($last_page - 9)"/>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="number($current_page - 4)"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:variable name="upper_page">
+			<xsl:choose>
+				<xsl:when test="$current_page &lt; 5">
+					<xsl:choose>
+						<xsl:when test="$last_page &lt; 10">
+							<xsl:value-of select="$last_page"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:text>10</xsl:text>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:when>
+				<xsl:when test="$current_page &gt; number($last_page - 5)">
+					<xsl:value-of select="$last_page"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="number($current_page + 5)"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
 
 
 
-        <!--<xsl:element name="ul">
+		<!--<xsl:element name="ul">
             <xsl:attribute name="class">
                 <xsl:text>pagination listHorizontal</xsl:text>
             </xsl:attribute>
@@ -2395,11 +2444,11 @@ requirejs(['article/2/article'],function(){
 
         </xsl:element>-->
 
-        <xsl:element name="div">
-            <xsl:attribute name="class">
-                <xsl:text>pagination</xsl:text>
-            </xsl:attribute>
-            <!--<xsl:element name="div">
+		<xsl:element name="div">
+			<xsl:attribute name="class">
+				<xsl:text>pagination</xsl:text>
+			</xsl:attribute>
+			<!--<xsl:element name="div">
                 <xsl:attribute name="class"><xsl:text>previous icon-arrow-left</xsl:text><xsl:if test="$current_page = 1"><xsl:text> hidden</xsl:text></xsl:if></xsl:attribute>
                 <xsl:element name="a">
                     <xsl:attribute name="href"><xsl:text>?page=</xsl:text><xsl:value-of select="$current_page - 1"/></xsl:attribute>
@@ -2411,94 +2460,94 @@ requirejs(['article/2/article'],function(){
                 </xsl:element>
             </xsl:element>-->
 
-            <xsl:element name="ul">
-                <xsl:attribute name="class">
-                    <xsl:text>pages</xsl:text>
-                </xsl:attribute>
+			<xsl:element name="ul">
+				<xsl:attribute name="class">
+					<xsl:text>pages</xsl:text>
+				</xsl:attribute>
 
-                <xsl:choose>
-                    <xsl:when test="$current_page = 1">
-                        <xsl:element name="span">
-                            <xsl:attribute name="class">
-                                <xsl:text>icon-arrow-left disabled</xsl:text>
-                            </xsl:attribute>
-                        </xsl:element>
-                    </xsl:when>
+				<xsl:choose>
+					<xsl:when test="$current_page = 1">
+						<xsl:element name="span">
+							<xsl:attribute name="class">
+								<xsl:text>icon-arrow-left disabled</xsl:text>
+							</xsl:attribute>
+						</xsl:element>
+					</xsl:when>
 
-                    <xsl:otherwise>
-                        <xsl:element name="a">
-                            <xsl:attribute name="class">
-                                <xsl:text>icon-arrow-left</xsl:text>
-                                <xsl:if test="$current_page = 1">
-                                    <xsl:text> disabled</xsl:text>
-                                </xsl:if>
-                            </xsl:attribute>
-                            <xsl:attribute name="href">
-                                <xsl:text>?page=</xsl:text>
-                                <xsl:value-of select="$current_page - 1"/>
-                            </xsl:attribute>
-                            <xsl:attribute name="data-metrics-link">
-                                <xsl:text>prev</xsl:text>
-                            </xsl:attribute>
-                            <!--<xsl:attribute name="onclick"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:value-of select="$moduletitle"/><xsl:text>_prev</xsl:text></xsl:with-param></xsl:call-template></xsl:attribute>-->
-                            <xsl:attribute name="title">
-                                <xsl:text>Previous Page</xsl:text>
-                            </xsl:attribute>
-                            <xsl:element name="span">
-                                <xsl:attribute name="jawsonly">
-                                    <xsl:text>previous page</xsl:text>
-                                </xsl:attribute>
-                            </xsl:element>
-                        </xsl:element>
-                    </xsl:otherwise>
-                </xsl:choose>
+					<xsl:otherwise>
+						<xsl:element name="a">
+							<xsl:attribute name="class">
+								<xsl:text>icon-arrow-left</xsl:text>
+								<xsl:if test="$current_page = 1">
+									<xsl:text> disabled</xsl:text>
+								</xsl:if>
+							</xsl:attribute>
+							<xsl:attribute name="href">
+								<xsl:text>?page=</xsl:text>
+								<xsl:value-of select="$current_page - 1"/>
+							</xsl:attribute>
+							<xsl:attribute name="data-metrics-link">
+								<xsl:text>prev</xsl:text>
+							</xsl:attribute>
+							<!--<xsl:attribute name="onclick"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:value-of select="$moduletitle"/><xsl:text>_prev</xsl:text></xsl:with-param></xsl:call-template></xsl:attribute>-->
+							<xsl:attribute name="title">
+								<xsl:text>Previous Page</xsl:text>
+							</xsl:attribute>
+							<xsl:element name="span">
+								<xsl:attribute name="jawsonly">
+									<xsl:text>previous page</xsl:text>
+								</xsl:attribute>
+							</xsl:element>
+						</xsl:element>
+					</xsl:otherwise>
+				</xsl:choose>
 
-                <xsl:call-template name="CreatePageLi">
-                    <xsl:with-param name="page_to_create">
-                        <xsl:value-of select="$lower_page"/>
-                    </xsl:with-param>
-                    <xsl:with-param name="current_page">
-                        <xsl:value-of select="$current_page"/>
-                    </xsl:with-param>
-                    <xsl:with-param name="upper_page">
-                        <xsl:value-of select="$upper_page"/>
-                    </xsl:with-param>
-                </xsl:call-template>
+				<xsl:call-template name="CreatePageLi">
+					<xsl:with-param name="page_to_create">
+						<xsl:value-of select="$lower_page"/>
+					</xsl:with-param>
+					<xsl:with-param name="current_page">
+						<xsl:value-of select="$current_page"/>
+					</xsl:with-param>
+					<xsl:with-param name="upper_page">
+						<xsl:value-of select="$upper_page"/>
+					</xsl:with-param>
+				</xsl:call-template>
 
-                <xsl:choose>
-                    <xsl:when test="$current_page >= $last_page">
-                        <xsl:element name="span">
-                            <xsl:attribute name="class">
-                                <xsl:text>icon-arrow-right disabled</xsl:text>
-                            </xsl:attribute>
-                        </xsl:element>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:element name="a">
-                            <!--<xsl:attribute name="class"><xsl:text>icon-arrow-right</xsl:text><xsl:if test="$current_page >= $last_page"><xsl:text> disabled</xsl:text></xsl:if></xsl:attribute>-->
-                            <xsl:attribute name="class">
-                                <xsl:text>icon-arrow-right</xsl:text>
-                            </xsl:attribute>
-                            <xsl:attribute name="href">
-                                <xsl:text>?page=</xsl:text>
-                                <xsl:value-of select="$current_page + 1"/>
-                            </xsl:attribute>
-                            <xsl:attribute name="data-metrics-link">
-                                <xsl:text>next</xsl:text>
-                            </xsl:attribute>
-                            <!--<xsl:attribute name="onclick"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:value-of select="$moduletitle"/><xsl:text>_next</xsl:text></xsl:with-param></xsl:call-template></xsl:attribute>-->
-                            <xsl:element name="span">
-                                <xsl:attribute name="jawsonly">
-                                    <xsl:text>next page</xsl:text>
-                                </xsl:attribute>
-                            </xsl:element>
-                        </xsl:element>
-                    </xsl:otherwise>
-                </xsl:choose>
+				<xsl:choose>
+					<xsl:when test="$current_page >= $last_page">
+						<xsl:element name="span">
+							<xsl:attribute name="class">
+								<xsl:text>icon-arrow-right disabled</xsl:text>
+							</xsl:attribute>
+						</xsl:element>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:element name="a">
+							<!--<xsl:attribute name="class"><xsl:text>icon-arrow-right</xsl:text><xsl:if test="$current_page >= $last_page"><xsl:text> disabled</xsl:text></xsl:if></xsl:attribute>-->
+							<xsl:attribute name="class">
+								<xsl:text>icon-arrow-right</xsl:text>
+							</xsl:attribute>
+							<xsl:attribute name="href">
+								<xsl:text>?page=</xsl:text>
+								<xsl:value-of select="$current_page + 1"/>
+							</xsl:attribute>
+							<xsl:attribute name="data-metrics-link">
+								<xsl:text>next</xsl:text>
+							</xsl:attribute>
+							<!--<xsl:attribute name="onclick"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:value-of select="$moduletitle"/><xsl:text>_next</xsl:text></xsl:with-param></xsl:call-template></xsl:attribute>-->
+							<xsl:element name="span">
+								<xsl:attribute name="jawsonly">
+									<xsl:text>next page</xsl:text>
+								</xsl:attribute>
+							</xsl:element>
+						</xsl:element>
+					</xsl:otherwise>
+				</xsl:choose>
 
-            </xsl:element>
+			</xsl:element>
 
-            <!--<xsl:element name="div">
+			<!--<xsl:element name="div">
                 <xsl:attribute name="class"><xsl:text>next icon-arrow-right</xsl:text><xsl:if test="$current_page >= $last_page"><xsl:text> hidden</xsl:text></xsl:if></xsl:attribute>
                 <xsl:element name="a">
                     <xsl:attribute name="href"><xsl:text>?page=</xsl:text><xsl:value-of select="$current_page + 1"/></xsl:attribute>
@@ -2509,538 +2558,538 @@ requirejs(['article/2/article'],function(){
                 </xsl:element>
             </xsl:element>-->
 
-        </xsl:element>
-    </xsl:template>
+		</xsl:element>
+	</xsl:template>
 
-    <xsl:template name="CreatePageLi">
-        <xsl:param name="page_to_create"/>
-        <xsl:param name="current_page"/>
-        <xsl:param name="upper_page"/>
-        <xsl:element name="li">
-            <xsl:if test="$page_to_create = $current_page">
-                <xsl:attribute name="class">
-                    <xsl:text>currpage</xsl:text>
-                </xsl:attribute>
-            </xsl:if>
-            <xsl:choose>
-                <xsl:when test="$page_to_create != $current_page">
-                    <xsl:element name="a">
-                        <xsl:attribute name="href">
-                            <xsl:text>?page=</xsl:text>
-                            <xsl:value-of select="$page_to_create"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="data-metrics-link">
-                            <xsl:value-of select="$page_to_create"/>
-                        </xsl:attribute>
-                        <xsl:value-of select="$page_to_create"/>
-                    </xsl:element>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="$page_to_create"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:element>
-        <xsl:if test="$page_to_create &lt; $upper_page">
-            <xsl:call-template name="CreatePageLi">
-                <xsl:with-param name="page_to_create">
-                    <xsl:value-of select="$page_to_create + 1"/>
-                </xsl:with-param>
-                <xsl:with-param name="current_page">
-                    <xsl:value-of select="$current_page"/>
-                </xsl:with-param>
-                <xsl:with-param name="upper_page">
-                    <xsl:value-of select="$upper_page"/>
-                </xsl:with-param>
-            </xsl:call-template>
-        </xsl:if>
-    </xsl:template>
-    <xsl:template name="GetAuth">
-        <xsl:if test="$has_author = 'true'">
-            <!--<xsl:element name="p">-->
-            <xsl:attribute name="class">
-                <xsl:text>auth</xsl:text>
-            </xsl:attribute>
-            <xsl:text><![CDATA[By ]]></xsl:text>
-            <xsl:for-each select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_authr_prim_group/wbmd_authr_prim">
-                <xsl:variable name="auth_link">
-                    <xsl:call-template name="GetURLRef">
-                        <xsl:with-param name="ObjectID">
-                            <xsl:value-of select="wbmd_bio_obj_id/@chronic_id"/>
-                        </xsl:with-param>
-                    </xsl:call-template>
-                </xsl:variable>
-                <xsl:choose>
-                    <xsl:when test="position() &gt; 1 and  position() = last() and count(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_sec_authr_group/wbmd_c_sec_authr) = 0">
-                        <xsl:text><![CDATA[ and ]]></xsl:text>
-                    </xsl:when>
-                    <xsl:when test="position() &gt; 1 and (position() &lt; last() or count(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_sec_authr_group/wbmd_c_sec_authr) &gt; 0)">
-                        <xsl:text><![CDATA[, ]]></xsl:text>
-                    </xsl:when>
-                </xsl:choose>
-                <xsl:choose>
-                    <xsl:when test="$auth_link != ''">
-                        <xsl:element name="a">
-                            <xsl:attribute name="rel">
-                                <xsl:text>author</xsl:text>
-                            </xsl:attribute>
-                            <xsl:attribute name="href">
-                                <xsl:value-of select="$auth_link"/>
-                            </xsl:attribute>
-                            <xsl:attribute name="data-metrics-link">
-                                <xsl:text>athr</xsl:text>
-                            </xsl:attribute>
-                            <!--<xsl:attribute name="onclick"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:text>prog-lnk</xsl:text></xsl:with-param></xsl:call-template></xsl:attribute>-->
-                            <xsl:call-template name="GetFullName"/>
-                            <xsl:if test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr !=''">
-                                <xsl:text><![CDATA[, ]]></xsl:text>
-                            </xsl:if>
-                        </xsl:element>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:call-template name="GetFullName"/>
-                        <xsl:text><![CDATA[, ]]></xsl:text>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:for-each>
-            <xsl:if test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_sec_authr_group/wbmd_c_sec_authr[1]/wbmd_first_nm">
-                <xsl:for-each select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_sec_authr_group/wbmd_c_sec_authr">
-                    <xsl:variable name="auth_link_2">
-                        <xsl:call-template name="GetURLRef">
-                            <xsl:with-param name="ObjectID">
-                                <xsl:value-of select="wbmd_bio_obj_id/@chronic_id"/>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:variable>
-                    <xsl:variable name="sec_auth_text">
-                        <xsl:choose>
-                            <xsl:when test="position() &lt; last()">
-                                <xsl:text>, </xsl:text>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:text> and </xsl:text>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                        <xsl:call-template name="GetFullName"/>
-                    </xsl:variable>
-                    <xsl:choose>
-                        <xsl:when test="position() = last()">
-                            <xsl:text><![CDATA[ and ]]></xsl:text>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text><![CDATA[, ]]></xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                    <xsl:choose>
-                        <xsl:when test="$auth_link_2 != ''">
-                            <xsl:element name="a">
-                                <xsl:attribute name="rel">
-                                    <xsl:text>author</xsl:text>
-                                </xsl:attribute>
-                                <xsl:attribute name="href">
-                                    <xsl:value-of select="$auth_link_2"/>
-                                </xsl:attribute>
-                                <xsl:attribute name="data-metrics-link">
-                                    <xsl:text>athr</xsl:text>
-                                </xsl:attribute>
-                                <!--<xsl:attribute name="onclick"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:text>prog-lnk</xsl:text></xsl:with-param></xsl:call-template></xsl:attribute>-->
-                                <xsl:call-template name="GetFullName"/>
-                            </xsl:element>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:call-template name="GetFullName"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:for-each>
-            </xsl:if>
-            <!--</xsl:element>-->
-        </xsl:if>
-    </xsl:template>
-    <xsl:template name="GetReviewerSect">
-        <!--Three valid format values:
+	<xsl:template name="CreatePageLi">
+		<xsl:param name="page_to_create"/>
+		<xsl:param name="current_page"/>
+		<xsl:param name="upper_page"/>
+		<xsl:element name="li">
+			<xsl:if test="$page_to_create = $current_page">
+				<xsl:attribute name="class">
+					<xsl:text>currpage</xsl:text>
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:choose>
+				<xsl:when test="$page_to_create != $current_page">
+					<xsl:element name="a">
+						<xsl:attribute name="href">
+							<xsl:text>?page=</xsl:text>
+							<xsl:value-of select="$page_to_create"/>
+						</xsl:attribute>
+						<xsl:attribute name="data-metrics-link">
+							<xsl:value-of select="$page_to_create"/>
+						</xsl:attribute>
+						<xsl:value-of select="$page_to_create"/>
+					</xsl:element>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="$page_to_create"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:element>
+		<xsl:if test="$page_to_create &lt; $upper_page">
+			<xsl:call-template name="CreatePageLi">
+				<xsl:with-param name="page_to_create">
+					<xsl:value-of select="$page_to_create + 1"/>
+				</xsl:with-param>
+				<xsl:with-param name="current_page">
+					<xsl:value-of select="$current_page"/>
+				</xsl:with-param>
+				<xsl:with-param name="upper_page">
+					<xsl:value-of select="$upper_page"/>
+				</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+	<xsl:template name="GetAuth">
+		<xsl:if test="$has_author = 'true'">
+			<!--<xsl:element name="p">-->
+			<xsl:attribute name="class">
+				<xsl:text>auth</xsl:text>
+			</xsl:attribute>
+			<xsl:text><![CDATA[By ]]></xsl:text>
+			<xsl:for-each select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_authr_prim_group/wbmd_authr_prim">
+				<xsl:variable name="auth_link">
+					<xsl:call-template name="GetURLRef">
+						<xsl:with-param name="ObjectID">
+							<xsl:value-of select="wbmd_bio_obj_id/@chronic_id"/>
+						</xsl:with-param>
+					</xsl:call-template>
+				</xsl:variable>
+				<xsl:choose>
+					<xsl:when test="position() &gt; 1 and  position() = last() and count(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_sec_authr_group/wbmd_c_sec_authr) = 0">
+						<xsl:text><![CDATA[ and ]]></xsl:text>
+					</xsl:when>
+					<xsl:when test="position() &gt; 1 and (position() &lt; last() or count(/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_sec_authr_group/wbmd_c_sec_authr) &gt; 0)">
+						<xsl:text><![CDATA[, ]]></xsl:text>
+					</xsl:when>
+				</xsl:choose>
+				<xsl:choose>
+					<xsl:when test="$auth_link != ''">
+						<xsl:element name="a">
+							<xsl:attribute name="rel">
+								<xsl:text>author</xsl:text>
+							</xsl:attribute>
+							<xsl:attribute name="href">
+								<xsl:value-of select="$auth_link"/>
+							</xsl:attribute>
+							<xsl:attribute name="data-metrics-link">
+								<xsl:text>athr</xsl:text>
+							</xsl:attribute>
+							<!--<xsl:attribute name="onclick"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:text>prog-lnk</xsl:text></xsl:with-param></xsl:call-template></xsl:attribute>-->
+							<xsl:call-template name="GetFullName"/>
+							<xsl:if test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr !=''">
+								<xsl:text><![CDATA[, ]]></xsl:text>
+							</xsl:if>
+						</xsl:element>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:call-template name="GetFullName"/>
+						<xsl:text><![CDATA[, ]]></xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:for-each>
+			<xsl:if test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_sec_authr_group/wbmd_c_sec_authr[1]/wbmd_first_nm">
+				<xsl:for-each select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_c_sec_authr_group/wbmd_c_sec_authr">
+					<xsl:variable name="auth_link_2">
+						<xsl:call-template name="GetURLRef">
+							<xsl:with-param name="ObjectID">
+								<xsl:value-of select="wbmd_bio_obj_id/@chronic_id"/>
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:variable>
+					<xsl:variable name="sec_auth_text">
+						<xsl:choose>
+							<xsl:when test="position() &lt; last()">
+								<xsl:text>, </xsl:text>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:text> and </xsl:text>
+							</xsl:otherwise>
+						</xsl:choose>
+						<xsl:call-template name="GetFullName"/>
+					</xsl:variable>
+					<xsl:choose>
+						<xsl:when test="position() = last()">
+							<xsl:text><![CDATA[ and ]]></xsl:text>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:text><![CDATA[, ]]></xsl:text>
+						</xsl:otherwise>
+					</xsl:choose>
+					<xsl:choose>
+						<xsl:when test="$auth_link_2 != ''">
+							<xsl:element name="a">
+								<xsl:attribute name="rel">
+									<xsl:text>author</xsl:text>
+								</xsl:attribute>
+								<xsl:attribute name="href">
+									<xsl:value-of select="$auth_link_2"/>
+								</xsl:attribute>
+								<xsl:attribute name="data-metrics-link">
+									<xsl:text>athr</xsl:text>
+								</xsl:attribute>
+								<!--<xsl:attribute name="onclick"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:text>prog-lnk</xsl:text></xsl:with-param></xsl:call-template></xsl:attribute>-->
+								<xsl:call-template name="GetFullName"/>
+							</xsl:element>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:call-template name="GetFullName"/>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:for-each>
+			</xsl:if>
+			<!--</xsl:element>-->
+		</xsl:if>
+	</xsl:template>
+	<xsl:template name="GetReviewerSect">
+		<!--Three valid format values:
             date_only
             reviewer_only
             date_and_reviewer-->
-        <xsl:param name="format"/>
-        <xsl:element name="span">
-            <xsl:attribute name="class">
-                <xsl:text>reviewed</xsl:text>
-            </xsl:attribute>
-            <!--<xsl:text><![CDATA[Reviewed ]]></xsl:text>-->
-            <xsl:if test="$format = 'reviewer_only' or $format = 'date_and_reviewer'">
-                <xsl:text><![CDATA[ Reviewed by ]]></xsl:text>
-                <xsl:call-template name="GetReviewer"/>
-            </xsl:if>
-            <xsl:if test="$format = 'date_only' or $format = 'date_and_reviewer'">
-                <xsl:if test="$format = 'date_and_reviewer'">
-                    <xsl:text><![CDATA[ ]]></xsl:text>
-                </xsl:if>
-                <xsl:text><![CDATA[ on]]></xsl:text>
-                <xsl:call-template name="Convert_Date">
-                    <xsl:with-param name="date">
-                        <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_revw_dt"/>
-                    </xsl:with-param>
-                </xsl:call-template>
-            </xsl:if>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template name="GetReviewer">
-        <xsl:for-each select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr">
-            <xsl:variable name="rev_link">
-                <xsl:call-template name="GetURLRef">
-                    <xsl:with-param name="ObjectID">
-                        <xsl:value-of select="wbmd_bio_obj_id/@chronic_id"/>
-                    </xsl:with-param>
-                </xsl:call-template>
-            </xsl:variable>
-            <xsl:choose>
-                <xsl:when test="$rev_link != ''">
-                    <xsl:element name="a">
-                        <xsl:attribute name="data-metrics-link">
-                            <xsl:text>medrev</xsl:text>
-                        </xsl:attribute>
-                        <xsl:attribute name="href">
-                            <xsl:value-of select="$rev_link"/>
-                        </xsl:attribute>
-                        <!--                        <xsl:attribute name="onclick"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:text>prog-lnk</xsl:text></xsl:with-param></xsl:call-template></xsl:attribute>-->
-                        <xsl:call-template name="GetFullName"/>
-                    </xsl:element>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:call-template name="GetFullName"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:for-each>
-    </xsl:template>
-    <xsl:template name="GetFullName">
-        <xsl:value-of select="wbmd_first_nm" disable-output-escaping="yes"/>
-        <xsl:text><![CDATA[ ]]></xsl:text>
-        <xsl:value-of select="wbmd_middle_name"/>
-        <xsl:if test="wbmd_middle_name != ''">
-            <xsl:text><![CDATA[ ]]></xsl:text>
-        </xsl:if>
-        <xsl:value-of select="wbmd_lst_nm"/>
-        <xsl:for-each select="wbmd_person_suffix_group/wbmd_person_suffix">
-            <xsl:value-of select="concat(', ', @wbmd_disp_nm)"/>
-        </xsl:for-each>
-    </xsl:template>
-    <xsl:template name="GetPubDisplay">
-        <xsl:if test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_display != ''">
-            <xsl:element name="p">
-                <xsl:attribute name="class">
-                    <xsl:text>pub_src</xsl:text>
-                </xsl:attribute>
-                <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_display" disable-output-escaping="yes"/>
-            </xsl:element>
-        </xsl:if>
-    </xsl:template>
+		<xsl:param name="format"/>
+		<xsl:element name="span">
+			<xsl:attribute name="class">
+				<xsl:text>reviewed</xsl:text>
+			</xsl:attribute>
+			<!--<xsl:text><![CDATA[Reviewed ]]></xsl:text>-->
+			<xsl:if test="$format = 'reviewer_only' or $format = 'date_and_reviewer'">
+				<xsl:text><![CDATA[ Reviewed by ]]></xsl:text>
+				<xsl:call-template name="GetReviewer"/>
+			</xsl:if>
+			<xsl:if test="$format = 'date_only' or $format = 'date_and_reviewer'">
+				<xsl:if test="$format = 'date_and_reviewer'">
+					<xsl:text><![CDATA[ ]]></xsl:text>
+				</xsl:if>
+				<xsl:text><![CDATA[ on]]></xsl:text>
+				<xsl:call-template name="Convert_Date">
+					<xsl:with-param name="date">
+						<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_revw_dt"/>
+					</xsl:with-param>
+				</xsl:call-template>
+			</xsl:if>
+		</xsl:element>
+	</xsl:template>
+	<xsl:template name="GetReviewer">
+		<xsl:for-each select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr">
+			<xsl:variable name="rev_link">
+				<xsl:call-template name="GetURLRef">
+					<xsl:with-param name="ObjectID">
+						<xsl:value-of select="wbmd_bio_obj_id/@chronic_id"/>
+					</xsl:with-param>
+				</xsl:call-template>
+			</xsl:variable>
+			<xsl:choose>
+				<xsl:when test="$rev_link != ''">
+					<xsl:element name="a">
+						<xsl:attribute name="data-metrics-link">
+							<xsl:text>medrev</xsl:text>
+						</xsl:attribute>
+						<xsl:attribute name="href">
+							<xsl:value-of select="$rev_link"/>
+						</xsl:attribute>
+						<!--                        <xsl:attribute name="onclick"><xsl:call-template name="GetOnclickVal"><xsl:with-param name="tracking_val"><xsl:text>prog-lnk</xsl:text></xsl:with-param></xsl:call-template></xsl:attribute>-->
+						<xsl:call-template name="GetFullName"/>
+					</xsl:element>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:call-template name="GetFullName"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:for-each>
+	</xsl:template>
+	<xsl:template name="GetFullName">
+		<xsl:value-of select="wbmd_first_nm" disable-output-escaping="yes"/>
+		<xsl:text><![CDATA[ ]]></xsl:text>
+		<xsl:value-of select="wbmd_middle_name"/>
+		<xsl:if test="wbmd_middle_name != ''">
+			<xsl:text><![CDATA[ ]]></xsl:text>
+		</xsl:if>
+		<xsl:value-of select="wbmd_lst_nm"/>
+		<xsl:for-each select="wbmd_person_suffix_group/wbmd_person_suffix">
+			<xsl:value-of select="concat(', ', @wbmd_disp_nm)"/>
+		</xsl:for-each>
+	</xsl:template>
+	<xsl:template name="GetPubDisplay">
+		<xsl:if test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_display != ''">
+			<xsl:element name="p">
+				<xsl:attribute name="class">
+					<xsl:text>pub_src</xsl:text>
+				</xsl:attribute>
+				<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_publ/wbmd_publ_display" disable-output-escaping="yes"/>
+			</xsl:element>
+		</xsl:if>
+	</xsl:template>
 
-    <xsl:template name="ProcessPullQuote">
-        <!-- Business logic: we ONLY take the very first non-empty pull-quotes  -->
-        <xsl:variable name="sectiongroup_list_has_pullquotes" select="/webmd_rendition/content/wbmd_asset/content_section/cons_feature/pages/page/section_group[pull_quotes/* != '']"/>
-        <xsl:if test="$sectiongroup_list_has_pullquotes">
-            <xsl:element name="aside">
-                <xsl:attribute name="class">
-                    <xsl:text>pullquote</xsl:text>
-                </xsl:attribute>
-                <xsl:apply-templates select="$sectiongroup_list_has_pullquotes[1]/pull_quotes/*"/>
-            </xsl:element>
-        </xsl:if>
-    </xsl:template>
+	<xsl:template name="ProcessPullQuote">
+		<!-- Business logic: we ONLY take the very first non-empty pull-quotes  -->
+		<xsl:variable name="sectiongroup_list_has_pullquotes" select="/webmd_rendition/content/wbmd_asset/content_section/cons_feature/pages/page/section_group[pull_quotes/* != '']"/>
+		<xsl:if test="$sectiongroup_list_has_pullquotes">
+			<xsl:element name="aside">
+				<xsl:attribute name="class">
+					<xsl:text>pullquote</xsl:text>
+				</xsl:attribute>
+				<xsl:apply-templates select="$sectiongroup_list_has_pullquotes[1]/pull_quotes/*"/>
+			</xsl:element>
+		</xsl:if>
+	</xsl:template>
 
-    <xsl:template name="createArchiveLabel">
-        <xsl:element name="aside">
-            <xsl:attribute name="class">
-                <xsl:text>archive-wrapper</xsl:text>
-            </xsl:attribute>
-            <xsl:element name="span">
-                <xsl:attribute name="class">
-                    <xsl:text>archive-tag</xsl:text>
-                </xsl:attribute>
-                <xsl:text>WebMD </xsl:text>
+	<xsl:template name="createArchiveLabel">
+		<xsl:element name="aside">
+			<xsl:attribute name="class">
+				<xsl:text>archive-wrapper</xsl:text>
+			</xsl:attribute>
+			<xsl:element name="span">
+				<xsl:attribute name="class">
+					<xsl:text>archive-tag</xsl:text>
+				</xsl:attribute>
+				<xsl:text>WebMD </xsl:text>
 
-                <xsl:if test="$article_type = 'news'">
-                    <xsl:text>News </xsl:text>
-                </xsl:if>
-                <xsl:if test="$article_type = 'feature'">
-                    <xsl:text>Feature </xsl:text>
-                </xsl:if>
+				<xsl:if test="$article_type = 'news'">
+					<xsl:text>News </xsl:text>
+				</xsl:if>
+				<xsl:if test="$article_type = 'feature'">
+					<xsl:text>Feature </xsl:text>
+				</xsl:if>
 
-                <xsl:text>Archive</xsl:text>
-            </xsl:element>
-        </xsl:element>
-    </xsl:template>
+				<xsl:text>Archive</xsl:text>
+			</xsl:element>
+		</xsl:element>
+	</xsl:template>
 
-    <xsl:template name="Convert_Date">
-        <xsl:param name="date"/>
-        <xsl:if test="$date != 'nulldate'">
-            <xsl:choose>
-                <xsl:when test="string-length($date) &lt; 19">
-                    <xsl:variable name="monthpart">
-                        <xsl:variable name="buffmonth">
-                            <xsl:value-of select="substring-before($date,'/')"/>
-                        </xsl:variable>
-                        <xsl:choose>
-                            <xsl:when test="string-length($buffmonth) = 1">
-                                <xsl:value-of select="concat('0',$buffmonth)"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="$buffmonth"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:variable>
-                    <xsl:variable name="daypart">
-                        <xsl:variable name="buffday">
-                            <xsl:value-of select="substring-before(substring-after($date,'/'),'/')"/>
-                        </xsl:variable>
-                        <xsl:choose>
-                            <xsl:when test="string-length($buffday) = 1">
-                                <xsl:value-of select="concat('0',$buffday)"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="$buffday"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:variable>
-                    <xsl:variable name="yearpart">
-                        <xsl:value-of select="substring(substring-after(substring-after($date,'/'),'/'),1,4)"/>
-                    </xsl:variable>
-                    <xsl:variable name="month">
-                        <xsl:call-template name="GetMonthString">
-                            <xsl:with-param name="monthno">
-                                <xsl:value-of select="$monthpart"/>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:variable>
-                    <xsl:value-of select="concat($month,concat($daypart, concat(', ',$yearpart)))"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:variable name="monthpart">
-                        <xsl:value-of select="substring($date,1,2)"/>
-                    </xsl:variable>
-                    <xsl:variable name="daypart">
-                        <xsl:value-of select="substring($date,4,2)"/>
-                    </xsl:variable>
-                    <xsl:variable name="yearpart">
-                        <xsl:value-of select="substring($date,7,4)"/>
-                    </xsl:variable>
-                    <xsl:variable name="month">
-                        <xsl:call-template name="GetMonthString">
-                            <xsl:with-param name="monthno">
-                                <xsl:value-of select="$monthpart"/>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:variable>
-                    <xsl:value-of select="concat($month,concat($daypart, concat(', ',$yearpart)))"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:if>
-    </xsl:template>
-    <xsl:template name="GetStyleNoFloat">
-        <xsl:param name="style_val"/>
-        <xsl:value-of select="translate(substring-before($style_val, 'float:'), ' ', '')"/>
-        <xsl:value-of select="translate(substring-after(substring-after($style_val, 'float:'), ';'), ' ', '')"/>
-    </xsl:template>
-    <xsl:template name="GetMonthString">
-        <xsl:param name="monthno"/>
-        <xsl:choose>
-            <xsl:when test="$monthno = '01'">
-                <xsl:value-of select="' January '"/>
-            </xsl:when>
-            <xsl:when test="$monthno = '02'">
-                <xsl:value-of select="' February '"/>
-            </xsl:when>
-            <xsl:when test="$monthno = '03'">
-                <xsl:value-of select="' March '"/>
-            </xsl:when>
-            <xsl:when test="$monthno = '04'">
-                <xsl:value-of select="' April '"/>
-            </xsl:when>
-            <xsl:when test="$monthno = '05'">
-                <xsl:value-of select="' May '"/>
-            </xsl:when>
-            <xsl:when test="$monthno = '06'">
-                <xsl:value-of select="' June '"/>
-            </xsl:when>
-            <xsl:when test="$monthno = '07'">
-                <xsl:value-of select="' July '"/>
-            </xsl:when>
-            <xsl:when test="$monthno = '08'">
-                <xsl:value-of select="' August '"/>
-            </xsl:when>
-            <xsl:when test="$monthno = '09'">
-                <xsl:value-of select="' September '"/>
-            </xsl:when>
-            <xsl:when test="$monthno = '10'">
-                <xsl:value-of select="' October '"/>
-            </xsl:when>
-            <xsl:when test="$monthno = '11'">
-                <xsl:value-of select="' November '"/>
-            </xsl:when>
-            <xsl:when test="$monthno = '12'">
-                <xsl:value-of select="' December '"/>
-            </xsl:when>
-        </xsl:choose>
-    </xsl:template>
-    <!-- sets the state based on the channel id -->
-    <xsl:template name="GetState">
-        <xsl:choose>
-            <xsl:when test="$channel_id = '1244'">
-                <xsl:text><![CDATA[Alabama]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1245'">
-                <xsl:text><![CDATA[Alaska]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1246'">
-                <xsl:text><![CDATA[Arizona]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1247'">
-                <xsl:text><![CDATA[Arkansas]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1248'">
-                <xsl:text><![CDATA[California]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1249'">
-                <xsl:text><![CDATA[Colorado]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1250'">
-                <xsl:text><![CDATA[Connecticut]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1251'">
-                <xsl:text><![CDATA[Washington, D.C.]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1252'">
-                <xsl:text><![CDATA[Delaware]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1253'">
-                <xsl:text><![CDATA[Florida]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1254'">
-                <xsl:text><![CDATA[Georgia]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1255'">
-                <xsl:text><![CDATA[Hawaii]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1256'">
-                <xsl:text><![CDATA[Idaho]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1257'">
-                <xsl:text><![CDATA[Illinois]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1258'">
-                <xsl:text><![CDATA[Indiana]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1259'">
-                <xsl:text><![CDATA[Iowa]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1260'">
-                <xsl:text><![CDATA[Kansas]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1261'">
-                <xsl:text><![CDATA[Kentucky]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1262'">
-                <xsl:text><![CDATA[Louisiana]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1263'">
-                <xsl:text><![CDATA[Maine]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1264'">
-                <xsl:text><![CDATA[Maryland]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1265'">
-                <xsl:text><![CDATA[Massachusetts]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1266'">
-                <xsl:text><![CDATA[Michigan]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1267'">
-                <xsl:text><![CDATA[Minnesota]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1268'">
-                <xsl:text><![CDATA[Mississippi]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1269'">
-                <xsl:text><![CDATA[Missouri]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1270'">
-                <xsl:text><![CDATA[Montana]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1271'">
-                <xsl:text><![CDATA[Nebraska]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1272'">
-                <xsl:text><![CDATA[Nevada]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1273'">
-                <xsl:text><![CDATA[New Hampshire]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1274'">
-                <xsl:text><![CDATA[New Jersey]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1275'">
-                <xsl:text><![CDATA[New Mexico]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1276'">
-                <xsl:text><![CDATA[New York]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1277'">
-                <xsl:text><![CDATA[North Carolina]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1278'">
-                <xsl:text><![CDATA[North Dakota]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1279'">
-                <xsl:text><![CDATA[Ohio]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1280'">
-                <xsl:text><![CDATA[Oklahoma]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1281'">
-                <xsl:text><![CDATA[Oregon]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1282'">
-                <xsl:text><![CDATA[Pennsylvania]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1283'">
-                <xsl:text><![CDATA[Rhode Island]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1284'">
-                <xsl:text><![CDATA[South Carolina]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1285'">
-                <xsl:text><![CDATA[South Dakota]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1286'">
-                <xsl:text><![CDATA[Tennessee]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1287'">
-                <xsl:text><![CDATA[Texas]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1288'">
-                <xsl:text><![CDATA[Utah]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1289'">
-                <xsl:text><![CDATA[Vermont]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1290'">
-                <xsl:text><![CDATA[Virginia]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1291'">
-                <xsl:text><![CDATA[Washington]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1292'">
-                <xsl:text><![CDATA[West Virginia]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1293'">
-                <xsl:text><![CDATA[Wisconsin]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1294'">
-                <xsl:text><![CDATA[Wyoming]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1299'">
-                <xsl:text><![CDATA[US Territories]]></xsl:text>
-            </xsl:when>
-            <!-- channel ids not set up yet
+	<xsl:template name="Convert_Date">
+		<xsl:param name="date"/>
+		<xsl:if test="$date != 'nulldate'">
+			<xsl:choose>
+				<xsl:when test="string-length($date) &lt; 19">
+					<xsl:variable name="monthpart">
+						<xsl:variable name="buffmonth">
+							<xsl:value-of select="substring-before($date,'/')"/>
+						</xsl:variable>
+						<xsl:choose>
+							<xsl:when test="string-length($buffmonth) = 1">
+								<xsl:value-of select="concat('0',$buffmonth)"/>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="$buffmonth"/>
+							</xsl:otherwise>
+						</xsl:choose>
+					</xsl:variable>
+					<xsl:variable name="daypart">
+						<xsl:variable name="buffday">
+							<xsl:value-of select="substring-before(substring-after($date,'/'),'/')"/>
+						</xsl:variable>
+						<xsl:choose>
+							<xsl:when test="string-length($buffday) = 1">
+								<xsl:value-of select="concat('0',$buffday)"/>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="$buffday"/>
+							</xsl:otherwise>
+						</xsl:choose>
+					</xsl:variable>
+					<xsl:variable name="yearpart">
+						<xsl:value-of select="substring(substring-after(substring-after($date,'/'),'/'),1,4)"/>
+					</xsl:variable>
+					<xsl:variable name="month">
+						<xsl:call-template name="GetMonthString">
+							<xsl:with-param name="monthno">
+								<xsl:value-of select="$monthpart"/>
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:variable>
+					<xsl:value-of select="concat($month,concat($daypart, concat(', ',$yearpart)))"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:variable name="monthpart">
+						<xsl:value-of select="substring($date,1,2)"/>
+					</xsl:variable>
+					<xsl:variable name="daypart">
+						<xsl:value-of select="substring($date,4,2)"/>
+					</xsl:variable>
+					<xsl:variable name="yearpart">
+						<xsl:value-of select="substring($date,7,4)"/>
+					</xsl:variable>
+					<xsl:variable name="month">
+						<xsl:call-template name="GetMonthString">
+							<xsl:with-param name="monthno">
+								<xsl:value-of select="$monthpart"/>
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:variable>
+					<xsl:value-of select="concat($month,concat($daypart, concat(', ',$yearpart)))"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:if>
+	</xsl:template>
+	<xsl:template name="GetStyleNoFloat">
+		<xsl:param name="style_val"/>
+		<xsl:value-of select="translate(substring-before($style_val, 'float:'), ' ', '')"/>
+		<xsl:value-of select="translate(substring-after(substring-after($style_val, 'float:'), ';'), ' ', '')"/>
+	</xsl:template>
+	<xsl:template name="GetMonthString">
+		<xsl:param name="monthno"/>
+		<xsl:choose>
+			<xsl:when test="$monthno = '01'">
+				<xsl:value-of select="' January '"/>
+			</xsl:when>
+			<xsl:when test="$monthno = '02'">
+				<xsl:value-of select="' February '"/>
+			</xsl:when>
+			<xsl:when test="$monthno = '03'">
+				<xsl:value-of select="' March '"/>
+			</xsl:when>
+			<xsl:when test="$monthno = '04'">
+				<xsl:value-of select="' April '"/>
+			</xsl:when>
+			<xsl:when test="$monthno = '05'">
+				<xsl:value-of select="' May '"/>
+			</xsl:when>
+			<xsl:when test="$monthno = '06'">
+				<xsl:value-of select="' June '"/>
+			</xsl:when>
+			<xsl:when test="$monthno = '07'">
+				<xsl:value-of select="' July '"/>
+			</xsl:when>
+			<xsl:when test="$monthno = '08'">
+				<xsl:value-of select="' August '"/>
+			</xsl:when>
+			<xsl:when test="$monthno = '09'">
+				<xsl:value-of select="' September '"/>
+			</xsl:when>
+			<xsl:when test="$monthno = '10'">
+				<xsl:value-of select="' October '"/>
+			</xsl:when>
+			<xsl:when test="$monthno = '11'">
+				<xsl:value-of select="' November '"/>
+			</xsl:when>
+			<xsl:when test="$monthno = '12'">
+				<xsl:value-of select="' December '"/>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+	<!-- sets the state based on the channel id -->
+	<xsl:template name="GetState">
+		<xsl:choose>
+			<xsl:when test="$channel_id = '1244'">
+				<xsl:text><![CDATA[Alabama]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1245'">
+				<xsl:text><![CDATA[Alaska]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1246'">
+				<xsl:text><![CDATA[Arizona]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1247'">
+				<xsl:text><![CDATA[Arkansas]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1248'">
+				<xsl:text><![CDATA[California]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1249'">
+				<xsl:text><![CDATA[Colorado]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1250'">
+				<xsl:text><![CDATA[Connecticut]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1251'">
+				<xsl:text><![CDATA[Washington, D.C.]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1252'">
+				<xsl:text><![CDATA[Delaware]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1253'">
+				<xsl:text><![CDATA[Florida]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1254'">
+				<xsl:text><![CDATA[Georgia]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1255'">
+				<xsl:text><![CDATA[Hawaii]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1256'">
+				<xsl:text><![CDATA[Idaho]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1257'">
+				<xsl:text><![CDATA[Illinois]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1258'">
+				<xsl:text><![CDATA[Indiana]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1259'">
+				<xsl:text><![CDATA[Iowa]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1260'">
+				<xsl:text><![CDATA[Kansas]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1261'">
+				<xsl:text><![CDATA[Kentucky]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1262'">
+				<xsl:text><![CDATA[Louisiana]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1263'">
+				<xsl:text><![CDATA[Maine]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1264'">
+				<xsl:text><![CDATA[Maryland]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1265'">
+				<xsl:text><![CDATA[Massachusetts]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1266'">
+				<xsl:text><![CDATA[Michigan]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1267'">
+				<xsl:text><![CDATA[Minnesota]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1268'">
+				<xsl:text><![CDATA[Mississippi]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1269'">
+				<xsl:text><![CDATA[Missouri]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1270'">
+				<xsl:text><![CDATA[Montana]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1271'">
+				<xsl:text><![CDATA[Nebraska]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1272'">
+				<xsl:text><![CDATA[Nevada]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1273'">
+				<xsl:text><![CDATA[New Hampshire]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1274'">
+				<xsl:text><![CDATA[New Jersey]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1275'">
+				<xsl:text><![CDATA[New Mexico]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1276'">
+				<xsl:text><![CDATA[New York]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1277'">
+				<xsl:text><![CDATA[North Carolina]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1278'">
+				<xsl:text><![CDATA[North Dakota]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1279'">
+				<xsl:text><![CDATA[Ohio]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1280'">
+				<xsl:text><![CDATA[Oklahoma]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1281'">
+				<xsl:text><![CDATA[Oregon]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1282'">
+				<xsl:text><![CDATA[Pennsylvania]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1283'">
+				<xsl:text><![CDATA[Rhode Island]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1284'">
+				<xsl:text><![CDATA[South Carolina]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1285'">
+				<xsl:text><![CDATA[South Dakota]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1286'">
+				<xsl:text><![CDATA[Tennessee]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1287'">
+				<xsl:text><![CDATA[Texas]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1288'">
+				<xsl:text><![CDATA[Utah]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1289'">
+				<xsl:text><![CDATA[Vermont]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1290'">
+				<xsl:text><![CDATA[Virginia]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1291'">
+				<xsl:text><![CDATA[Washington]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1292'">
+				<xsl:text><![CDATA[West Virginia]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1293'">
+				<xsl:text><![CDATA[Wisconsin]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1294'">
+				<xsl:text><![CDATA[Wyoming]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1299'">
+				<xsl:text><![CDATA[US Territories]]></xsl:text>
+			</xsl:when>
+			<!-- channel ids not set up yet
             <xsl:when test="$channel_id = ''"><xsl:text><![CDATA[American Samoa]]></xsl:text></xsl:when>
             <xsl:when test="$channel_id = ''"><xsl:text><![CDATA[Federated States of Micronesia]]></xsl:text></xsl:when>
             <xsl:when test="$channel_id = ''"><xsl:text><![CDATA[Guam]]></xsl:text></xsl:when>
@@ -3050,168 +3099,168 @@ requirejs(['article/2/article'],function(){
             <xsl:when test="$channel_id = ''"><xsl:text><![CDATA[Palau]]></xsl:text></xsl:when>
             <xsl:when test="$channel_id = ''"><xsl:text><![CDATA[Virgin Islands]]></xsl:text></xsl:when>
             -->
-        </xsl:choose>
-    </xsl:template>
-    <!-- sets the state abbreviations based on the channel id -->
-    <xsl:template name="GetStateAbbr">
-        <xsl:choose>
-            <xsl:when test="$channel_id = '1244'">
-                <xsl:text>AL</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1245'">
-                <xsl:text>AK</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1246'">
-                <xsl:text>AZ</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1247'">
-                <xsl:text>AR</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1248'">
-                <xsl:text>CA</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1249'">
-                <xsl:text>CO</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1250'">
-                <xsl:text>CT</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1251'">
-                <xsl:text>DC</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1252'">
-                <xsl:text>DE</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1253'">
-                <xsl:text>FL</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1254'">
-                <xsl:text>GA</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1255'">
-                <xsl:text>HI</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1256'">
-                <xsl:text>ID</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1257'">
-                <xsl:text>IL</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1258'">
-                <xsl:text>IN</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1259'">
-                <xsl:text>IA</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1260'">
-                <xsl:text>KS</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1261'">
-                <xsl:text>KY</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1262'">
-                <xsl:text>LA</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1263'">
-                <xsl:text>ME</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1264'">
-                <xsl:text>MD</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1265'">
-                <xsl:text>MA</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1266'">
-                <xsl:text>MI</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1267'">
-                <xsl:text>MN</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1268'">
-                <xsl:text>MS</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1269'">
-                <xsl:text>MO</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1270'">
-                <xsl:text>MT</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1271'">
-                <xsl:text>NE</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1272'">
-                <xsl:text>NV</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1273'">
-                <xsl:text>NH</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1274'">
-                <xsl:text>NJ</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1275'">
-                <xsl:text>NM</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1276'">
-                <xsl:text>NY</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1277'">
-                <xsl:text>NC</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1278'">
-                <xsl:text>ND</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1279'">
-                <xsl:text>OH</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1280'">
-                <xsl:text>OK</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1281'">
-                <xsl:text>OR</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1282'">
-                <xsl:text>PA</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1283'">
-                <xsl:text>RI</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1284'">
-                <xsl:text>SC</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1285'">
-                <xsl:text>SD</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1286'">
-                <xsl:text>TN</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1287'">
-                <xsl:text>TX</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1288'">
-                <xsl:text>UT</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1289'">
-                <xsl:text>VT</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1290'">
-                <xsl:text>VA</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1291'">
-                <xsl:text>WA</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1292'">
-                <xsl:text>WV</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1293'">
-                <xsl:text>WI</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1294'">
-                <xsl:text>WY</xsl:text>
-            </xsl:when>
-            <xsl:when test="$channel_id = '1299'">
-                <xsl:text/>
-            </xsl:when>
-            <!-- channel ids not set up yet
+		</xsl:choose>
+	</xsl:template>
+	<!-- sets the state abbreviations based on the channel id -->
+	<xsl:template name="GetStateAbbr">
+		<xsl:choose>
+			<xsl:when test="$channel_id = '1244'">
+				<xsl:text>AL</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1245'">
+				<xsl:text>AK</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1246'">
+				<xsl:text>AZ</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1247'">
+				<xsl:text>AR</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1248'">
+				<xsl:text>CA</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1249'">
+				<xsl:text>CO</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1250'">
+				<xsl:text>CT</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1251'">
+				<xsl:text>DC</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1252'">
+				<xsl:text>DE</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1253'">
+				<xsl:text>FL</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1254'">
+				<xsl:text>GA</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1255'">
+				<xsl:text>HI</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1256'">
+				<xsl:text>ID</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1257'">
+				<xsl:text>IL</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1258'">
+				<xsl:text>IN</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1259'">
+				<xsl:text>IA</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1260'">
+				<xsl:text>KS</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1261'">
+				<xsl:text>KY</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1262'">
+				<xsl:text>LA</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1263'">
+				<xsl:text>ME</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1264'">
+				<xsl:text>MD</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1265'">
+				<xsl:text>MA</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1266'">
+				<xsl:text>MI</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1267'">
+				<xsl:text>MN</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1268'">
+				<xsl:text>MS</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1269'">
+				<xsl:text>MO</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1270'">
+				<xsl:text>MT</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1271'">
+				<xsl:text>NE</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1272'">
+				<xsl:text>NV</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1273'">
+				<xsl:text>NH</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1274'">
+				<xsl:text>NJ</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1275'">
+				<xsl:text>NM</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1276'">
+				<xsl:text>NY</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1277'">
+				<xsl:text>NC</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1278'">
+				<xsl:text>ND</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1279'">
+				<xsl:text>OH</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1280'">
+				<xsl:text>OK</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1281'">
+				<xsl:text>OR</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1282'">
+				<xsl:text>PA</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1283'">
+				<xsl:text>RI</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1284'">
+				<xsl:text>SC</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1285'">
+				<xsl:text>SD</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1286'">
+				<xsl:text>TN</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1287'">
+				<xsl:text>TX</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1288'">
+				<xsl:text>UT</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1289'">
+				<xsl:text>VT</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1290'">
+				<xsl:text>VA</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1291'">
+				<xsl:text>WA</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1292'">
+				<xsl:text>WV</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1293'">
+				<xsl:text>WI</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1294'">
+				<xsl:text>WY</xsl:text>
+			</xsl:when>
+			<xsl:when test="$channel_id = '1299'">
+				<xsl:text/>
+			</xsl:when>
+			<!-- channel ids not set up yet
             <xsl:when test="$channel_id = ''"><xsl:text>AS</xsl:text></xsl:when>
             <xsl:when test="$channel_id = ''"><xsl:text>FM</xsl:text></xsl:when>
             <xsl:when test="$channel_id = ''"><xsl:text>GU</xsl:text></xsl:when>
@@ -3221,110 +3270,110 @@ requirejs(['article/2/article'],function(){
             <xsl:when test="$channel_id = ''"><xsl:text>PW</xsl:text></xsl:when>
             <xsl:when test="$channel_id = ''"><xsl:text>VI</xsl:text></xsl:when>
             -->
-        </xsl:choose>
-    </xsl:template>
-    <xsl:template name="GetEncodedURI">
-        <xsl:param name="uri"/>
-        <xsl:variable name="first_char">
-            <xsl:value-of select="substring($uri, 1, 1)"/>
-        </xsl:variable>
-        <xsl:call-template name="EncodeChar">
-            <xsl:with-param name="char">
-                <xsl:value-of select="$first_char"/>
-            </xsl:with-param>
-        </xsl:call-template>
-        <xsl:if test="string-length($uri) &gt; 1">
-            <xsl:call-template name="GetEncodedURI">
-                <xsl:with-param name="uri">
-                    <xsl:value-of select="substring($uri, 2)"/>
-                </xsl:with-param>
-            </xsl:call-template>
-        </xsl:if>
-    </xsl:template>
-    <xsl:template name="EncodeChar">
-        <xsl:param name="char"/>
-        <xsl:choose>
-            <xsl:when test="$char = ' '">
-                <xsl:text><![CDATA[%20]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = '!'">
-                <xsl:text><![CDATA[%21]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = '#'">
-                <xsl:text><![CDATA[%23]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = '$'">
-                <xsl:text><![CDATA[%24]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = '&amp;'">
-                <xsl:text><![CDATA[%26]]></xsl:text>
-            </xsl:when>
-            <xsl:when test='$char = "&apos;"'>
-                <xsl:text><![CDATA[%27]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = '('">
-                <xsl:text><![CDATA[%28]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = ')'">
-                <xsl:text><![CDATA[%29]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = '*'">
-                <xsl:text><![CDATA[%2A]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = '+'">
-                <xsl:text><![CDATA[%2B]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = ','">
-                <xsl:text><![CDATA[%2C]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = '/'">
-                <xsl:text><![CDATA[%2F]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = ':'">
-                <xsl:text><![CDATA[%3A]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = ';'">
-                <xsl:text><![CDATA[%3B]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = '='">
-                <xsl:text><![CDATA[%3D]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = '?'">
-                <xsl:text><![CDATA[%3F]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = '@'">
-                <xsl:text><![CDATA[%40]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = '['">
-                <xsl:text><![CDATA[%5B]]></xsl:text>
-            </xsl:when>
-            <xsl:when test="$char = ']'">
-                <xsl:text><![CDATA[%5D]]></xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$char"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    <xsl:template name="CreateFlyin">
-        <xsl:if test="/webmd_rendition/content/wbmd_asset/content_section/cons_feature or /webmd_rendition/content/wbmd_asset/content_section/cons_news or /webmd_rendition/content/wbmd_asset/content_section/cons_health_ref">
-            <xsl:element name="div">
-                <xsl:attribute name="id">
-                    <xsl:text>triggerFlyin</xsl:text>
-                </xsl:attribute>
-                <xsl:text><![CDATA[ ]]></xsl:text>
-            </xsl:element>
-            <xsl:element name="script">
-                <xsl:text disable-output-escaping="yes"><![CDATA[
+		</xsl:choose>
+	</xsl:template>
+	<xsl:template name="GetEncodedURI">
+		<xsl:param name="uri"/>
+		<xsl:variable name="first_char">
+			<xsl:value-of select="substring($uri, 1, 1)"/>
+		</xsl:variable>
+		<xsl:call-template name="EncodeChar">
+			<xsl:with-param name="char">
+				<xsl:value-of select="$first_char"/>
+			</xsl:with-param>
+		</xsl:call-template>
+		<xsl:if test="string-length($uri) &gt; 1">
+			<xsl:call-template name="GetEncodedURI">
+				<xsl:with-param name="uri">
+					<xsl:value-of select="substring($uri, 2)"/>
+				</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+	<xsl:template name="EncodeChar">
+		<xsl:param name="char"/>
+		<xsl:choose>
+			<xsl:when test="$char = ' '">
+				<xsl:text><![CDATA[%20]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = '!'">
+				<xsl:text><![CDATA[%21]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = '#'">
+				<xsl:text><![CDATA[%23]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = '$'">
+				<xsl:text><![CDATA[%24]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = '&amp;'">
+				<xsl:text><![CDATA[%26]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = &quot;&apos;&quot;">
+				<xsl:text><![CDATA[%27]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = '('">
+				<xsl:text><![CDATA[%28]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = ')'">
+				<xsl:text><![CDATA[%29]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = '*'">
+				<xsl:text><![CDATA[%2A]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = '+'">
+				<xsl:text><![CDATA[%2B]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = ','">
+				<xsl:text><![CDATA[%2C]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = '/'">
+				<xsl:text><![CDATA[%2F]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = ':'">
+				<xsl:text><![CDATA[%3A]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = ';'">
+				<xsl:text><![CDATA[%3B]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = '='">
+				<xsl:text><![CDATA[%3D]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = '?'">
+				<xsl:text><![CDATA[%3F]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = '@'">
+				<xsl:text><![CDATA[%40]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = '['">
+				<xsl:text><![CDATA[%5B]]></xsl:text>
+			</xsl:when>
+			<xsl:when test="$char = ']'">
+				<xsl:text><![CDATA[%5D]]></xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$char"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	<xsl:template name="CreateFlyin">
+		<xsl:if test="/webmd_rendition/content/wbmd_asset/content_section/cons_feature or /webmd_rendition/content/wbmd_asset/content_section/cons_news or /webmd_rendition/content/wbmd_asset/content_section/cons_health_ref">
+			<xsl:element name="div">
+				<xsl:attribute name="id">
+					<xsl:text>triggerFlyin</xsl:text>
+				</xsl:attribute>
+				<xsl:text><![CDATA[ ]]></xsl:text>
+			</xsl:element>
+			<xsl:element name="script">
+				<xsl:text disable-output-escaping="yes"><![CDATA[
     require(['fly_in/1/fly_in'], function(flyIn){
         flyIn.init('#triggerFlyin');
     });
     ]]></xsl:text>
-            </xsl:element>
-        </xsl:if>
-    </xsl:template>
+			</xsl:element>
+		</xsl:if>
+	</xsl:template>
 
-    <!--<xsl:template name="CreateToolBar">
+	<!--<xsl:template name="CreateToolBar">
         <!-\-  -\->
         <xsl:element name="div">
             <xsl:attribute name="class"><xsl:text>font_sizer</xsl:text></xsl:attribute>
@@ -3341,108 +3390,108 @@ requirejs(['article/2/article'],function(){
     </xsl:template>-->
 
 
-    <!-- ################### [TEMPLATE GROUP DIVIDER] feature: Healthwise-Symptom-Quiz.  Trigger-var: $is_hw_symptomquiz ################### -->
+	<!-- ################### [TEMPLATE GROUP DIVIDER] feature: Healthwise-Symptom-Quiz.  Trigger-var: $is_hw_symptomquiz ################### -->
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: cys.questions
     type: matching template
     description:  it is triggered by CreateBody template specifically for rendering Healthwise-Symptom-Quiz content
     ============================================================================ -->
-    <xsl:template match="cys.questions" >
-        <xsl:call-template name="BuildQuizTabHeader"/>
-        <xsl:call-template name="BuildQuizContentStep1"/>
-        <xsl:call-template name="BuildQuizContentStep2"/>
-        <xsl:call-template name="BuildQuizContentStep3"/>
-        <xsl:call-template name="CreateSectionNavigation"/>
-    </xsl:template>
+	<xsl:template match="cys.questions">
+		<xsl:call-template name="BuildQuizTabHeader"/>
+		<xsl:call-template name="BuildQuizContentStep1"/>
+		<xsl:call-template name="BuildQuizContentStep2"/>
+		<xsl:call-template name="BuildQuizContentStep3"/>
+		<xsl:call-template name="CreateSectionNavigation"/>
+	</xsl:template>
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: BuildQuizTabHeader
     type: named template
     description:
         (1) part of rendering logic specifically for rendering Healthwise-Symptom-Quiz content
         (2) it renders the tab-header portion of the quiz UI
     ============================================================================ -->
-    <xsl:template name="BuildQuizTabHeader" >
-        <!-- context== 'cys_questions' -->
-        <xsl:variable name="quiz_cnt" select="count(cys.question)"/>
-        <xsl:element name="div">
-            <xsl:attribute name="class">
-                <xsl:value-of select="concat('quiz-tabs ', 'cnt_', string($quiz_cnt))"/>
-            </xsl:attribute>
+	<xsl:template name="BuildQuizTabHeader">
+		<!-- context== 'cys_questions' -->
+		<xsl:variable name="quiz_cnt" select="count(cys.question)"/>
+		<xsl:element name="div">
+			<xsl:attribute name="class">
+				<xsl:value-of select="concat('quiz-tabs ', 'cnt_', string($quiz_cnt))"/>
+			</xsl:attribute>
 
-            <xsl:for-each select="cys.question">
-                <xsl:element name="div">
-                    <xsl:attribute name="class">
-                        <xsl:text disable-output-escaping="yes">quiz-tab</xsl:text>
-                        <xsl:if test="position() = 1">
-                            <xsl:text disable-output-escaping="yes"> tab-selected</xsl:text>
-                        </xsl:if>
-                    </xsl:attribute>
-                    <xsl:attribute name="onclick">
-                        <xsl:text disable-output-escaping="yes">quizTabNavigateTo(</xsl:text>
-                        <xsl:value-of disable-output-escaping="yes" select="position() - 1"/>
-                        <xsl:text disable-output-escaping="yes">);</xsl:text>
-                    </xsl:attribute>
-                    <xsl:text disable-output-escaping="yes">Step </xsl:text>
-                    <xsl:value-of disable-output-escaping="yes" select="string(position())"/>
-                </xsl:element>
-            </xsl:for-each>
+			<xsl:for-each select="cys.question">
+				<xsl:element name="div">
+					<xsl:attribute name="class">
+						<xsl:text disable-output-escaping="yes">quiz-tab</xsl:text>
+						<xsl:if test="position() = 1">
+							<xsl:text disable-output-escaping="yes"> tab-selected</xsl:text>
+						</xsl:if>
+					</xsl:attribute>
+					<xsl:attribute name="onclick">
+						<xsl:text disable-output-escaping="yes">quizTabNavigateTo(</xsl:text>
+						<xsl:value-of disable-output-escaping="yes" select="position() - 1"/>
+						<xsl:text disable-output-escaping="yes">);</xsl:text>
+					</xsl:attribute>
+					<xsl:text disable-output-escaping="yes">Step </xsl:text>
+					<xsl:value-of disable-output-escaping="yes" select="string(position())"/>
+				</xsl:element>
+			</xsl:for-each>
 
-            <!-- we need to build a space at the end of the tab heading area -->
-            <xsl:element name="div">
-                <xsl:text disable-output-escaping="yes"> </xsl:text>
-            </xsl:element>
-        </xsl:element>
-    </xsl:template>
+			<!-- we need to build a space at the end of the tab heading area -->
+			<xsl:element name="div">
+				<xsl:text disable-output-escaping="yes"> </xsl:text>
+			</xsl:element>
+		</xsl:element>
+	</xsl:template>
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: BuildQuizContentStep1
     type: named template
     description:
         (1) part of rendering logic specifically for rendering Healthwise-Symptom-Quiz content
         (2) it renders the content for the Step-1 on the quiz UI
     ============================================================================ -->
-    <xsl:template name="BuildQuizContentStep1">
-        <xsl:element name="section">
-            <xsl:attribute name="class">section level-1 tab-visible</xsl:attribute>
-            <xsl:element name="ul">
-                <xsl:apply-templates select="cys.question/question.text">
-                    <xsl:with-param name="step-name" select="'step-1'"/>
-                </xsl:apply-templates>
-            </xsl:element>
-        </xsl:element>
-    </xsl:template>
+	<xsl:template name="BuildQuizContentStep1">
+		<xsl:element name="section">
+			<xsl:attribute name="class">section level-1 tab-visible</xsl:attribute>
+			<xsl:element name="ul">
+				<xsl:apply-templates select="cys.question/question.text">
+					<xsl:with-param name="step-name" select="'step-1'"/>
+				</xsl:apply-templates>
+			</xsl:element>
+		</xsl:element>
+	</xsl:template>
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: BuildQuizContentStep2
     type: named template
     description:
         (1) part of rendering logic specifically for rendering Healthwise-Symptom-Quiz content
         (2) it triggers the rendering logic for the Step-2 on the quiz UI
     ============================================================================ -->
-    <xsl:template name="BuildQuizContentStep2">
-        <xsl:element name="section">
-            <xsl:attribute name="class">section level-1</xsl:attribute>
-            <xsl:apply-templates select="cys.question/cys.when-to-see" mode="step-2"/>
-        </xsl:element>
-    </xsl:template>
+	<xsl:template name="BuildQuizContentStep2">
+		<xsl:element name="section">
+			<xsl:attribute name="class">section level-1</xsl:attribute>
+			<xsl:apply-templates select="cys.question/cys.when-to-see" mode="step-2"/>
+		</xsl:element>
+	</xsl:template>
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: BuildQuizContentStep3
     type: named template
     description:
         (1) part of rendering logic specifically for rendering Healthwise-Symptom-Quiz content
         (2) it triggers the rendering logic for the Step-3 on the quiz UI
     ============================================================================ -->
-    <xsl:template name="BuildQuizContentStep3">
-        <xsl:element name="section">
-            <xsl:attribute name="class">section level-1</xsl:attribute>
-            <xsl:apply-templates select="cys.question/cys.when-to-see" mode="step-3"/>
-        </xsl:element>
-    </xsl:template>
+	<xsl:template name="BuildQuizContentStep3">
+		<xsl:element name="section">
+			<xsl:attribute name="class">section level-1</xsl:attribute>
+			<xsl:apply-templates select="cys.question/cys.when-to-see" mode="step-3"/>
+		</xsl:element>
+	</xsl:template>
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: cys.when-to-see
     mode: step-2
     type: matching template
@@ -3450,26 +3499,26 @@ requirejs(['article/2/article'],function(){
         (1) part of rendering logic specifically for rendering Healthwise-Symptom-Quiz content
         (2) it triggers the shared rendering logic for the Step-2 on the quiz UI. It also renders comment as needed
     ============================================================================ -->
-    <xsl:template match="cys.when-to-see" mode="step-2">
-        <xsl:element name="section">
-            <xsl:attribute name="class">section level-2</xsl:attribute>
-            <xsl:element name="ul">
-                <xsl:apply-templates select="cys.severity-groups/cys.severity-group/severity.questions/severity.question/question.text">
-                    <xsl:with-param name="step-name" select="'step-2'"/>
-                </xsl:apply-templates>
-            </xsl:element>
+	<xsl:template match="cys.when-to-see" mode="step-2">
+		<xsl:element name="section">
+			<xsl:attribute name="class">section level-2</xsl:attribute>
+			<xsl:element name="ul">
+				<xsl:apply-templates select="cys.severity-groups/cys.severity-group/severity.questions/severity.question/question.text">
+					<xsl:with-param name="step-name" select="'step-2'"/>
+				</xsl:apply-templates>
+			</xsl:element>
 
-            <xsl:if test="p[last()]">
-                <xsl:element name="div">
-                    <xsl:attribute name="class">clearfix comment</xsl:attribute>
-                    <xsl:apply-templates select="p[last()]"/>
-                    <xsl:text disable-output-escaping="yes"> </xsl:text>
-                </xsl:element>
-            </xsl:if>
-        </xsl:element>
-    </xsl:template>
+			<xsl:if test="p[last()]">
+				<xsl:element name="div">
+					<xsl:attribute name="class">clearfix comment</xsl:attribute>
+					<xsl:apply-templates select="p[last()]"/>
+					<xsl:text disable-output-escaping="yes"> </xsl:text>
+				</xsl:element>
+			</xsl:if>
+		</xsl:element>
+	</xsl:template>
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: cys.when-to-see
     mode: step-3
     type: matching template
@@ -3477,108 +3526,108 @@ requirejs(['article/2/article'],function(){
         (1) part of rendering logic specifically for rendering Healthwise-Symptom-Quiz content
         (2) it triggers the shared rendering logic for the Step-3 on the quiz UI.
     ============================================================================ -->
-    <xsl:template match="cys.when-to-see" mode="step-3">
-        <xsl:variable name="step2-quiz-group-index">
-            <xsl:value-of select="position()"/>
-        </xsl:variable>
-        <xsl:for-each select="cys.severity-groups/cys.severity-group">
-            <xsl:element name="section">
-                <xsl:attribute name="class">
-                    <xsl:text>section level-2 step2-group-</xsl:text>
-                    <xsl:value-of disable-output-escaping="yes" select="string($step2-quiz-group-index)"/>
-                </xsl:attribute>
-                <xsl:element name="div">
-                    <xsl:attribute name="class">clearfix</xsl:attribute>
-                    <xsl:element name="div">
-                        <xsl:element name="img">
-                            <xsl:attribute name="src">
-                                <xsl:choose>
-                                    <xsl:when test="@document-href = 'st-red-a'">
-                                        <xsl:text disable-output-escaping="yes">http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/media/interface/red.gif</xsl:text>
-                                    </xsl:when>
-                                    <xsl:when test="@document-href = 'st-yellow-a'">
-                                        <xsl:text disable-output-escaping="yes">http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/media/interface/yellow.gif</xsl:text>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:text disable-output-escaping="yes">http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/media/interface/green.gif</xsl:text>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:attribute>
-                        </xsl:element>
-                    </xsl:element>
-                    <xsl:choose>
-                        <xsl:when test="contains(severity-group.header/p, ' if you answer ')" >
-                            <xsl:element name="p">
-                                <xsl:value-of select="substring-before(severity-group.header/p, ' if you answer ')"/>
-                            </xsl:element>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:apply-templates select="severity-group.header/p"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:element>
+	<xsl:template match="cys.when-to-see" mode="step-3">
+		<xsl:variable name="step2-quiz-group-index">
+			<xsl:value-of select="position()"/>
+		</xsl:variable>
+		<xsl:for-each select="cys.severity-groups/cys.severity-group">
+			<xsl:element name="section">
+				<xsl:attribute name="class">
+					<xsl:text>section level-2 step2-group-</xsl:text>
+					<xsl:value-of disable-output-escaping="yes" select="string($step2-quiz-group-index)"/>
+				</xsl:attribute>
+				<xsl:element name="div">
+					<xsl:attribute name="class">clearfix</xsl:attribute>
+					<xsl:element name="div">
+						<xsl:element name="img">
+							<xsl:attribute name="src">
+								<xsl:choose>
+									<xsl:when test="@document-href = 'st-red-a'">
+										<xsl:text disable-output-escaping="yes">http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/media/interface/red.gif</xsl:text>
+									</xsl:when>
+									<xsl:when test="@document-href = 'st-yellow-a'">
+										<xsl:text disable-output-escaping="yes">http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/media/interface/yellow.gif</xsl:text>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:text disable-output-escaping="yes">http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/media/interface/green.gif</xsl:text>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:attribute>
+						</xsl:element>
+					</xsl:element>
+					<xsl:choose>
+						<xsl:when test="contains(severity-group.header/p, ' if you answer ')">
+							<xsl:element name="p">
+								<xsl:value-of select="substring-before(severity-group.header/p, ' if you answer ')"/>
+							</xsl:element>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:apply-templates select="severity-group.header/p"/>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:element>
 
-                <xsl:element name="div">
-                    <xsl:attribute name="class">clearfix comment</xsl:attribute>
-                    <xsl:if test="@document-href = 'st-red-a' or @document-href = 'st-yellow-a'">
-                        <xsl:element name="p">You have answered "Yes" to a question that indicates you need to call your health professional to discuss your symptoms and arrange for care.</xsl:element>
-                        <xsl:element name="p">And appointment today is usually needed.</xsl:element>
-                        <xsl:element name="p">Symptoms are unlikely to improve without medical care.</xsl:element>
-                    </xsl:if>
-                    <xsl:element name="p">Return to the Check Your Symptoms section and answer the questions.  You may need to see a health professional sooner if you have other more serious symptoms.</xsl:element>
-                </xsl:element>
-            </xsl:element>
-        </xsl:for-each>
-    </xsl:template>
+				<xsl:element name="div">
+					<xsl:attribute name="class">clearfix comment</xsl:attribute>
+					<xsl:if test="@document-href = 'st-red-a' or @document-href = 'st-yellow-a'">
+						<xsl:element name="p">You have answered "Yes" to a question that indicates you need to call your health professional to discuss your symptoms and arrange for care.</xsl:element>
+						<xsl:element name="p">And appointment today is usually needed.</xsl:element>
+						<xsl:element name="p">Symptoms are unlikely to improve without medical care.</xsl:element>
+					</xsl:if>
+					<xsl:element name="p">Return to the Check Your Symptoms section and answer the questions. You may need to see a health professional sooner if you have other more serious symptoms.</xsl:element>
+				</xsl:element>
+			</xsl:element>
+		</xsl:for-each>
+	</xsl:template>
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: question.text
     type: matching template
     description:  shared rendering logic specifically for rendering Healthwise-Symptom-Quiz content
     ============================================================================ -->
-    <xsl:template match="question.text">
-        <xsl:param name="step-name"/>
-        <xsl:element name="li">
-            <xsl:element name="div">
-                <xsl:element name="span">
-                    <xsl:apply-templates select="p"/>
-                </xsl:element>
-                <xsl:element name="span">
-                    <xsl:attribute name="class">
-                        <xsl:text>quiz-yes</xsl:text>
-                        <xsl:if test="position() = 1">
-                            <xsl:text disable-output-escaping="yes"> checked</xsl:text>
-                        </xsl:if>
-                    </xsl:attribute>
-                    <xsl:attribute name="data-step-name">
-                        <xsl:value-of select="$step-name"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="data-item-index">
-                        <xsl:value-of select="string(position())"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="onclick">
-                        <xsl:text disable-output-escaping="yes">quizQuestionYesButtonClick(event)</xsl:text>
-                    </xsl:attribute>
-                    <xsl:text disable-output-escaping="yes"> </xsl:text>
-                </xsl:element>
-                <xsl:text disable-output-escaping="yes"> </xsl:text>
-            </xsl:element>
+	<xsl:template match="question.text">
+		<xsl:param name="step-name"/>
+		<xsl:element name="li">
+			<xsl:element name="div">
+				<xsl:element name="span">
+					<xsl:apply-templates select="p"/>
+				</xsl:element>
+				<xsl:element name="span">
+					<xsl:attribute name="class">
+						<xsl:text>quiz-yes</xsl:text>
+						<xsl:if test="position() = 1">
+							<xsl:text disable-output-escaping="yes"> checked</xsl:text>
+						</xsl:if>
+					</xsl:attribute>
+					<xsl:attribute name="data-step-name">
+						<xsl:value-of select="$step-name"/>
+					</xsl:attribute>
+					<xsl:attribute name="data-item-index">
+						<xsl:value-of select="string(position())"/>
+					</xsl:attribute>
+					<xsl:attribute name="onclick">
+						<xsl:text disable-output-escaping="yes">quizQuestionYesButtonClick(event)</xsl:text>
+					</xsl:attribute>
+					<xsl:text disable-output-escaping="yes"> </xsl:text>
+				</xsl:element>
+				<xsl:text disable-output-escaping="yes"> </xsl:text>
+			</xsl:element>
 
-            <xsl:if test="table and table/*/*/ul/li">
-                <xsl:element name="div">
-                    <xsl:attribute name="class">quiz-note</xsl:attribute>
-                    <xsl:text disable-output-escaping="yes">Note: </xsl:text>
-                    <xsl:for-each select="table/*/*/ul/li">
-                        <xsl:value-of disable-output-escaping="yes" select="."/>
-                    </xsl:for-each>
-                </xsl:element>
-            </xsl:if>
-        </xsl:element>
-    </xsl:template>
+			<xsl:if test="table and table/*/*/ul/li">
+				<xsl:element name="div">
+					<xsl:attribute name="class">quiz-note</xsl:attribute>
+					<xsl:text disable-output-escaping="yes">Note: </xsl:text>
+					<xsl:for-each select="table/*/*/ul/li">
+						<xsl:value-of disable-output-escaping="yes" select="."/>
+					</xsl:for-each>
+				</xsl:element>
+			</xsl:if>
+		</xsl:element>
+	</xsl:template>
 
-    <!-- ################### [TEMPLATE GROUP DIVIDER] feature: Section-Based-Multipage. Trigger-var: $is_section_based_multipage ################### -->
+	<!-- ################### [TEMPLATE GROUP DIVIDER] feature: Section-Based-Multipage. Trigger-var: $is_section_based_multipage ################### -->
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: SectionBasedMultipageHandler
     type: named template
     general purpose:  it builds section-based multi-page display so that large contents can be viewed one section at a time.
@@ -3587,537 +3636,549 @@ requirejs(['article/2/article'],function(){
         (2) apply hiding logic for all the pages except the first visible one
         (3) render the 'Credit' section separately
     ============================================================================ -->
-    <xsl:template name="SectionBasedMultipageHandler">
-        <xsl:variable name="visible_page_key">
-            <xsl:value-of select="msxml:node-set($multipage_pagekeys)/page_keys/key[number($current_page)]"/>
-        </xsl:variable>
-        <xsl:variable name="all_sections" select="//content_section/*/section_groups/section_group"></xsl:variable>
-        <xsl:for-each select="msxml:node-set($multipage_pagekeys)/page_keys/key" >
-            <xsl:variable name="current_key" select="normalize-space(.)"/>
-            <xsl:choose>
-                <xsl:when test="$current_key = $visible_page_key">
-                    <xsl:apply-templates select="$all_sections[section_type = $current_key]">
-                        <xsl:with-param name="extra-class-vals" select="'navigable'"/>
-                    </xsl:apply-templates>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:apply-templates select="$all_sections[section_type = $current_key]">
-                        <xsl:with-param name="extra-class-vals" select="'navigable section-hide'"/>
-                    </xsl:apply-templates>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:for-each>
+	<xsl:template name="SectionBasedMultipageHandler">
+		<xsl:variable name="visible_page_key">
+			<xsl:value-of select="msxml:node-set($multipage_pagekeys)/page_keys/key[number($current_page)]"/>
+		</xsl:variable>
+		<xsl:variable name="all_sections" select="//content_section/*/section_groups/section_group"/>
+		<xsl:for-each select="msxml:node-set($multipage_pagekeys)/page_keys/key">
+			<xsl:variable name="current_key" select="normalize-space(.)"/>
+			<xsl:choose>
+				<xsl:when test="$current_key = $visible_page_key">
+					<xsl:apply-templates select="$all_sections[section_type = $current_key]">
+						<xsl:with-param name="extra-class-vals" select="'navigable'"/>
+					</xsl:apply-templates>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:apply-templates select="$all_sections[section_type = $current_key]">
+						<xsl:with-param name="extra-class-vals" select="'navigable section-hide'"/>
+					</xsl:apply-templates>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:for-each>
 
-        <xsl:apply-templates select="$all_sections[section_type = 'Credits']"/>
-    </xsl:template>
+		<xsl:apply-templates select="$all_sections[section_type = 'Credits']"/>
+	</xsl:template>
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: CollectPageKeysBySectionGroup
     type: named template
     description:  it collects page-keys (section_type) for section-based multi-page rendering.
     ============================================================================ -->
-    <xsl:template name="CollectPageKeysBySectionGroup">
-        <page_keys>
-            <xsl:for-each select="//content_section/*/section_groups/section_group">
-                <xsl:if test="section_type != 'Credits'">
-                    <key>
-                        <xsl:value-of disable-output-escaping="yes" select="section_type"/>
-                    </key>
-                </xsl:if>
-            </xsl:for-each>
-        </page_keys>
-    </xsl:template>
+	<xsl:template name="CollectPageKeysBySectionGroup">
+		<page_keys>
+			<xsl:for-each select="//content_section/*/section_groups/section_group">
+				<xsl:if test="section_type != 'Credits'">
+					<key>
+						<xsl:value-of disable-output-escaping="yes" select="section_type"/>
+					</key>
+				</xsl:if>
+			</xsl:for-each>
+		</page_keys>
+	</xsl:template>
 
-    <!-- ################### [TEMPLATE GROUP DIVIDER] feature: Healthwise-Multimedia-Slideshow.  Trigger-var: $is_hw_multimedia_slideshow  ################### -->
+	<!-- ################### [TEMPLATE GROUP DIVIDER] feature: Healthwise-Multimedia-Slideshow.  Trigger-var: $is_hw_multimedia_slideshow  ################### -->
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: slideshow.slide
     type: matching template
     description:  renders Healthwise-Multimedia-Slideshow pages.
     ============================================================================ -->
-    <xsl:template match="slideshow.slide">
-        <xsl:variable name="curr-index" select="position()"/>
-        <xsl:variable name="total-cnt" select="count(//cons_import_health_ref/section_groups/section_group[1]/section_text/block.slideshow/slideshow.slide)"/>
-        <xsl:variable name="left-nav-handler">
-            <xsl:choose>
-                <xsl:when test="$curr-index &gt; 1"><xsl:text disable-output-escaping="yes">onImageSlideShowNavClick(event);</xsl:text></xsl:when>
-                <xsl:otherwise><xsl:value-of select="''"/></xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="right-nav-handler">
-            <xsl:choose>
-                <xsl:when test="$curr-index &lt; $total-cnt"><xsl:text disable-output-escaping="yes">onImageSlideShowNavClick(event);</xsl:text></xsl:when>
-                <xsl:otherwise><xsl:value-of select="''"/></xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:element name="section">
-            <xsl:attribute name="class">
-                <xsl:choose>
-                    <xsl:when test="$curr-index = 1">
-                        <xsl:text>section navigable</xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:text>section navigable section-hide</xsl:text>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:attribute>
-            <xsl:call-template name="create-img-nav">
-                <xsl:with-param name="is-left" select="'true'"></xsl:with-param>
-                <xsl:with-param name="click-handler" ><xsl:value-of select="$left-nav-handler"/></xsl:with-param>
-            </xsl:call-template>
-            <xsl:element name="div">
-                <xsl:attribute name="class">img-frame</xsl:attribute>
-                <xsl:element name="img">
-                    <xsl:attribute name="src">
-                        <xsl:value-of disable-output-escaping="yes" select="$image_server_url"/>
-                        <xsl:text disable-output-escaping="yes">/webmd/consumer_assets/site_images/media/</xsl:text>
-                        <xsl:value-of disable-output-escaping="yes" select="slide.image/@type"/>
-                        <xsl:text disable-output-escaping="yes">/hw/</xsl:text>
-                        <xsl:value-of disable-output-escaping="yes" select="slide.image/@src"/>
-                    </xsl:attribute>
-                </xsl:element>
-                <xsl:element name="div">
-                    <xsl:attribute name="class">nav-cnt</xsl:attribute>
-                    <xsl:value-of select="concat($curr-index, ' OF ', $total-cnt)"/>
-                </xsl:element>
-            </xsl:element>
-            <xsl:call-template name="create-img-nav">
-                <xsl:with-param name="is-left" select="'false'"></xsl:with-param>
-                <xsl:with-param name="click-handler" ><xsl:value-of select="$right-nav-handler"/></xsl:with-param>
-            </xsl:call-template>
-            <xsl:if test="slide.title">
-                <xsl:element name="h3">
-                    <xsl:value-of disable-output-escaping="yes" select="slide.title"/>
-                </xsl:element>
-            </xsl:if>
-            <xsl:copy-of select="slide.description/*"/>
-        </xsl:element>
-    </xsl:template>
+	<xsl:template match="slideshow.slide">
+		<xsl:variable name="curr-index" select="position()"/>
+		<xsl:variable name="total-cnt" select="count(//cons_import_health_ref/section_groups/section_group[1]/section_text/block.slideshow/slideshow.slide)"/>
+		<xsl:variable name="left-nav-handler">
+			<xsl:choose>
+				<xsl:when test="$curr-index &gt; 1">
+					<xsl:text disable-output-escaping="yes">onImageSlideShowNavClick(event);</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="''"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:variable name="right-nav-handler">
+			<xsl:choose>
+				<xsl:when test="$curr-index &lt; $total-cnt">
+					<xsl:text disable-output-escaping="yes">onImageSlideShowNavClick(event);</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="''"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:element name="section">
+			<xsl:attribute name="class">
+				<xsl:choose>
+					<xsl:when test="$curr-index = 1">
+						<xsl:text>section navigable</xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>section navigable section-hide</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
+			<xsl:call-template name="create-img-nav">
+				<xsl:with-param name="is-left" select="'true'"/>
+				<xsl:with-param name="click-handler">
+					<xsl:value-of select="$left-nav-handler"/>
+				</xsl:with-param>
+			</xsl:call-template>
+			<xsl:element name="div">
+				<xsl:attribute name="class">img-frame</xsl:attribute>
+				<xsl:element name="img">
+					<xsl:attribute name="src">
+						<xsl:value-of disable-output-escaping="yes" select="$image_server_url"/>
+						<xsl:text disable-output-escaping="yes">/webmd/consumer_assets/site_images/media/</xsl:text>
+						<xsl:value-of disable-output-escaping="yes" select="slide.image/@type"/>
+						<xsl:text disable-output-escaping="yes">/hw/</xsl:text>
+						<xsl:value-of disable-output-escaping="yes" select="slide.image/@src"/>
+					</xsl:attribute>
+				</xsl:element>
+				<xsl:element name="div">
+					<xsl:attribute name="class">nav-cnt</xsl:attribute>
+					<xsl:value-of select="concat($curr-index, ' OF ', $total-cnt)"/>
+				</xsl:element>
+			</xsl:element>
+			<xsl:call-template name="create-img-nav">
+				<xsl:with-param name="is-left" select="'false'"/>
+				<xsl:with-param name="click-handler">
+					<xsl:value-of select="$right-nav-handler"/>
+				</xsl:with-param>
+			</xsl:call-template>
+			<xsl:if test="slide.title">
+				<xsl:element name="h3">
+					<xsl:value-of disable-output-escaping="yes" select="slide.title"/>
+				</xsl:element>
+			</xsl:if>
+			<xsl:copy-of select="slide.description/*"/>
+		</xsl:element>
+	</xsl:template>
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: create-img-nav
     type: named template
     description: builds the left or right arrow on either side of an image
     ============================================================================ -->
-    <xsl:template name="create-img-nav">
-        <xsl:param name="is-left"></xsl:param>
-        <xsl:param name="link-url"></xsl:param>
-        <xsl:param name="click-handler"></xsl:param>
-        <xsl:variable name="metrics_func">
-            <xsl:choose>
-                <xsl:when test="$is-left = 'true'"><xsl:text disable-output-escaping="yes">wmdPageLink('img_view_prev');</xsl:text></xsl:when>
-                <xsl:otherwise><xsl:text disable-output-escaping="yes">wmdPageLink('img_view_next');</xsl:text></xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:element name="a">
-            <xsl:choose>
-                <xsl:when test="$link-url != ''">
-                    <xsl:attribute name="href">
-                        <xsl:value-of select="$link-url"/>
-                    </xsl:attribute>
-                    <!-- why use onclick instead of data-metrics-link?  per conv with Heidi, we need to use 'img_' for webMD.image.collection to match with production site.  using data-metrics-value attr will force the 'art_' prefix to be included from the parent element. -->
-                    <xsl:attribute name="onclick">
-                        <xsl:value-of select="$metrics_func"/>
-                    </xsl:attribute>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:attribute name="href">
-                        <xsl:value-of select="'#'"/>
-                    </xsl:attribute>
-                    <xsl:if test="$click-handler != ''">
-                        <xsl:attribute name="onclick">
-                            <xsl:value-of select="$click-handler"/>
-                        </xsl:attribute>
-                    </xsl:if>
-                </xsl:otherwise>
-            </xsl:choose>
-            <xsl:if test="$click-handler = '' and $link-url = ''">
-                <xsl:attribute name="class">no-nav</xsl:attribute>
-            </xsl:if>
-            <xsl:element name="div">
-                <xsl:attribute name="class">
-                    <xsl:text disable-output-escaping="yes">nav-arrow</xsl:text>
-                    <xsl:choose>
-                        <xsl:when test="$is-left = 'true'">
-                            <xsl:text disable-output-escaping="yes"> icon-arrow-left</xsl:text>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text disable-output-escaping="yes"> icon-arrow-right</xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:attribute>
-                <xsl:text disable-output-escaping="yes"> </xsl:text>
-            </xsl:element>
-        </xsl:element>
-    </xsl:template>
+	<xsl:template name="create-img-nav">
+		<xsl:param name="is-left"/>
+		<xsl:param name="link-url"/>
+		<xsl:param name="click-handler"/>
+		<xsl:variable name="metrics_func">
+			<xsl:choose>
+				<xsl:when test="$is-left = 'true'">
+					<xsl:text disable-output-escaping="yes">wmdPageLink('img_view_prev');</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text disable-output-escaping="yes">wmdPageLink('img_view_next');</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:element name="a">
+			<xsl:choose>
+				<xsl:when test="$link-url != ''">
+					<xsl:attribute name="href">
+						<xsl:value-of select="$link-url"/>
+					</xsl:attribute>
+					<!-- why use onclick instead of data-metrics-link?  per conv with Heidi, we need to use 'img_' for webMD.image.collection to match with production site.  using data-metrics-value attr will force the 'art_' prefix to be included from the parent element. -->
+					<xsl:attribute name="onclick">
+						<xsl:value-of select="$metrics_func"/>
+					</xsl:attribute>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:attribute name="href">
+						<xsl:value-of select="'#'"/>
+					</xsl:attribute>
+					<xsl:if test="$click-handler != ''">
+						<xsl:attribute name="onclick">
+							<xsl:value-of select="$click-handler"/>
+						</xsl:attribute>
+					</xsl:if>
+				</xsl:otherwise>
+			</xsl:choose>
+			<xsl:if test="$click-handler = '' and $link-url = ''">
+				<xsl:attribute name="class">no-nav</xsl:attribute>
+			</xsl:if>
+			<xsl:element name="div">
+				<xsl:attribute name="class">
+					<xsl:text disable-output-escaping="yes">nav-arrow</xsl:text>
+					<xsl:choose>
+						<xsl:when test="$is-left = 'true'">
+							<xsl:text disable-output-escaping="yes"> icon-arrow-left</xsl:text>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:text disable-output-escaping="yes"> icon-arrow-right</xsl:text>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
+				<xsl:text disable-output-escaping="yes"> </xsl:text>
+			</xsl:element>
+		</xsl:element>
+	</xsl:template>
 
-    <!-- ################### [TEMPLATE GROUP DIVIDER] feature: Topic Outline Navigation.  ################### -->
+	<!-- ################### [TEMPLATE GROUP DIVIDER] feature: Topic Outline Navigation.  ################### -->
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: CreateTopicOutlineNavigation
     type: named template
     description: Build the inter-page navigation UI (left and right arrows) for 'Topic Outline Navigation' feature.
     ============================================================================ -->
-    <xsl:template name="CreateTopicOutlineNavigation">
-        <xsl:variable name="left_url">
-            <xsl:call-template name="GetNavUrlForTopicOutlineNav">
-                <xsl:with-param name="is-left" select="'true'"/>
-            </xsl:call-template>
-        </xsl:variable>
-        <xsl:variable name="right_url">
-            <xsl:call-template name="GetNavUrlForTopicOutlineNav">
-                <xsl:with-param name="is-left" select="'false'"/>
-            </xsl:call-template>
-        </xsl:variable>
-        <xsl:element name="div">
-            <xsl:attribute name="class">
-                <xsl:choose>
-                    <xsl:when test="$is_multipage = 'true'">
-                        <!-- this is the case that there is a pagination section being created, we need to align this one to it -->
-                        <xsl:text disable-output-escaping="yes">section-nav align-to-pagination clearfix</xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:text disable-output-escaping="yes">section-nav clearfix</xsl:text>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:attribute>
-            <xsl:element name="a">
-                <xsl:attribute name="class">
-                    <xsl:choose>
-                        <xsl:when test="$left_url = '#' or $left_url = ''">
-                            <xsl:text disable-output-escaping="yes">nav-prev navbutton-hide</xsl:text>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text disable-output-escaping="yes">nav-prev</xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:attribute>
-                <xsl:attribute name="href">
-                    <xsl:value-of select="$left_url"/>
-                </xsl:attribute>
-                <xsl:attribute name="data-metrics-module">
-                    <xsl:text disable-output-escaping="yes">art-prevart</xsl:text>
-                </xsl:attribute>
-                <xsl:attribute name="data-metrics-link">
-                    <xsl:text disable-output-escaping="yes">0</xsl:text>
-                </xsl:attribute>
-                <xsl:element name="div">
-                    <xsl:element name="span">
-                        <xsl:attribute name="class">icon-arrow-left</xsl:attribute>
-                        <xsl:text disable-output-escaping="yes"> </xsl:text>
-                    </xsl:element>
-                    <xsl:text disable-output-escaping="yes"> Previous</xsl:text>
-                </xsl:element>
-            </xsl:element>
-            <xsl:element name="a">
-                <xsl:attribute name="class">
-                    <xsl:choose>
-                        <xsl:when test="$right_url = '#' or $right_url = ''">
-                            <xsl:text disable-output-escaping="yes">nav-next navbutton-hide</xsl:text>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text disable-output-escaping="yes">nav-next</xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:attribute>
-                <xsl:attribute name="href">
-                    <xsl:value-of select="$right_url"/>
-                </xsl:attribute>
-                <xsl:attribute name="data-metrics-module">
-                    <xsl:text disable-output-escaping="yes">art-nextart</xsl:text>
-                </xsl:attribute>
-                <xsl:attribute name="data-metrics-link">
-                    <xsl:text disable-output-escaping="yes">0</xsl:text>
-                </xsl:attribute>
-                <xsl:element name="div">
-                    <xsl:text disable-output-escaping="yes">Next Page </xsl:text>
-                    <xsl:element name="span">
-                        <xsl:attribute name="class">icon-arrow-right</xsl:attribute>
-                        <xsl:text disable-output-escaping="yes"> </xsl:text>
-                    </xsl:element>
-                </xsl:element>
-            </xsl:element>
-        </xsl:element>
-    </xsl:template>
+	<xsl:template name="CreateTopicOutlineNavigation">
+		<xsl:variable name="left_url">
+			<xsl:call-template name="GetNavUrlForTopicOutlineNav">
+				<xsl:with-param name="is-left" select="'true'"/>
+			</xsl:call-template>
+		</xsl:variable>
+		<xsl:variable name="right_url">
+			<xsl:call-template name="GetNavUrlForTopicOutlineNav">
+				<xsl:with-param name="is-left" select="'false'"/>
+			</xsl:call-template>
+		</xsl:variable>
+		<xsl:element name="div">
+			<xsl:attribute name="class">
+				<xsl:choose>
+					<xsl:when test="$is_multipage = 'true'">
+						<!-- this is the case that there is a pagination section being created, we need to align this one to it -->
+						<xsl:text disable-output-escaping="yes">section-nav align-to-pagination clearfix</xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text disable-output-escaping="yes">section-nav clearfix</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
+			<xsl:element name="a">
+				<xsl:attribute name="class">
+					<xsl:choose>
+						<xsl:when test="$left_url = '#' or $left_url = ''">
+							<xsl:text disable-output-escaping="yes">nav-prev navbutton-hide</xsl:text>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:text disable-output-escaping="yes">nav-prev</xsl:text>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
+				<xsl:attribute name="href">
+					<xsl:value-of select="$left_url"/>
+				</xsl:attribute>
+				<xsl:attribute name="data-metrics-module">
+					<xsl:text disable-output-escaping="yes">art-prevart</xsl:text>
+				</xsl:attribute>
+				<xsl:attribute name="data-metrics-link">
+					<xsl:text disable-output-escaping="yes">0</xsl:text>
+				</xsl:attribute>
+				<xsl:element name="div">
+					<xsl:element name="span">
+						<xsl:attribute name="class">icon-arrow-left</xsl:attribute>
+						<xsl:text disable-output-escaping="yes"> </xsl:text>
+					</xsl:element>
+					<xsl:text disable-output-escaping="yes"> Previous</xsl:text>
+				</xsl:element>
+			</xsl:element>
+			<xsl:element name="a">
+				<xsl:attribute name="class">
+					<xsl:choose>
+						<xsl:when test="$right_url = '#' or $right_url = ''">
+							<xsl:text disable-output-escaping="yes">nav-next navbutton-hide</xsl:text>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:text disable-output-escaping="yes">nav-next</xsl:text>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
+				<xsl:attribute name="href">
+					<xsl:value-of select="$right_url"/>
+				</xsl:attribute>
+				<xsl:attribute name="data-metrics-module">
+					<xsl:text disable-output-escaping="yes">art-nextart</xsl:text>
+				</xsl:attribute>
+				<xsl:attribute name="data-metrics-link">
+					<xsl:text disable-output-escaping="yes">0</xsl:text>
+				</xsl:attribute>
+				<xsl:element name="div">
+					<xsl:text disable-output-escaping="yes">Next Page </xsl:text>
+					<xsl:element name="span">
+						<xsl:attribute name="class">icon-arrow-right</xsl:attribute>
+						<xsl:text disable-output-escaping="yes"> </xsl:text>
+					</xsl:element>
+				</xsl:element>
+			</xsl:element>
+		</xsl:element>
+	</xsl:template>
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: GetNavUrlForTopicOutlineNav
     type: named template
     description: dynamically calculates and returns the URL for Topic Outline Navigation for either left-side or right-side based.
     ============================================================================ -->
-    <xsl:template name="GetNavUrlForTopicOutlineNav">
-        <xsl:param name="is-left"/>
+	<xsl:template name="GetNavUrlForTopicOutlineNav">
+		<xsl:param name="is-left"/>
 
-        <xsl:variable name="page_key">
-            <xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/i_chronicle_id"/>
-        </xsl:variable>
-        <xsl:variable name="last_index">
-            <xsl:value-of select="count(/webmd_rendition/cons_topic_outline/section_groups/section_group)"/>
-        </xsl:variable>
-        <xsl:variable name="curr_index">
-            <xsl:apply-templates select="/webmd_rendition/cons_topic_outline/section_groups/section_group[section_link/@chronic_id=$page_key]" mode="get-topic-index"/>
-        </xsl:variable>
-        <xsl:choose>
-            <xsl:when test="$is-left = 'true'">
-                <xsl:choose>
-                    <xsl:when test="$curr_index &gt; 1">
-                        <xsl:call-template name="extract-relative-url">
-                            <xsl:with-param name="original-url">
-                                <xsl:call-template name="GetURLRef">
-                                    <xsl:with-param name="ObjectID">
-                                        <xsl:value-of select="/webmd_rendition/cons_topic_outline/section_groups/section_group[$curr_index - 1]/section_link/@chronic_id"></xsl:value-of>
-                                    </xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of disable-output-escaping="yes" select="'#'"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:choose>
-                    <xsl:when test="$curr_index &lt; $last_index">
-                        <xsl:call-template name="extract-relative-url">
-                            <xsl:with-param name="original-url">
-                                <xsl:call-template name="GetURLRef">
-                                    <xsl:with-param name="ObjectID">
-                                        <xsl:value-of select="/webmd_rendition/cons_topic_outline/section_groups/section_group[$curr_index + 1]/section_link/@chronic_id"></xsl:value-of>
-                                    </xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of disable-output-escaping="yes" select="'#'"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
+		<xsl:variable name="page_key">
+			<xsl:value-of select="/webmd_rendition/content/wbmd_asset/metadata_section/i_chronicle_id"/>
+		</xsl:variable>
+		<xsl:variable name="last_index">
+			<xsl:value-of select="count(/webmd_rendition/cons_topic_outline/section_groups/section_group)"/>
+		</xsl:variable>
+		<xsl:variable name="curr_index">
+			<xsl:apply-templates select="/webmd_rendition/cons_topic_outline/section_groups/section_group[section_link/@chronic_id=$page_key]" mode="get-topic-index"/>
+		</xsl:variable>
+		<xsl:choose>
+			<xsl:when test="$is-left = 'true'">
+				<xsl:choose>
+					<xsl:when test="$curr_index &gt; 1">
+						<xsl:call-template name="extract-relative-url">
+							<xsl:with-param name="original-url">
+								<xsl:call-template name="GetURLRef">
+									<xsl:with-param name="ObjectID">
+										<xsl:value-of select="/webmd_rendition/cons_topic_outline/section_groups/section_group[$curr_index - 1]/section_link/@chronic_id"/>
+									</xsl:with-param>
+								</xsl:call-template>
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of disable-output-escaping="yes" select="'#'"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:choose>
+					<xsl:when test="$curr_index &lt; $last_index">
+						<xsl:call-template name="extract-relative-url">
+							<xsl:with-param name="original-url">
+								<xsl:call-template name="GetURLRef">
+									<xsl:with-param name="ObjectID">
+										<xsl:value-of select="/webmd_rendition/cons_topic_outline/section_groups/section_group[$curr_index + 1]/section_link/@chronic_id"/>
+									</xsl:with-param>
+								</xsl:call-template>
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of disable-output-escaping="yes" select="'#'"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
 
-    <!--  ============================================================================
+	<!--  ============================================================================
     name: get-topic-index
     type: matching template
     mode: get-topic-index
     description:  get index of the current section-group under cons_topic_outline.
     ============================================================================ -->
-    <xsl:template match="//cons_topic_outline/section_groups/section_group" mode="get-topic-index" >
-        <xsl:param name="count" select="count(preceding-sibling::section_group)+1"/>
-        <xsl:value-of select="$count"/>
-    </xsl:template>
+	<xsl:template match="//cons_topic_outline/section_groups/section_group" mode="get-topic-index">
+		<xsl:param name="count" select="count(preceding-sibling::section_group)+1"/>
+		<xsl:value-of select="$count"/>
+	</xsl:template>
 
 
-    <!-- ################### [TEMPLATE GROUP DIVIDER] ends ################### -->
+	<!-- ################### [TEMPLATE GROUP DIVIDER] ends ################### -->
 
-    <!-- XSL INCLUDES -->
+	<!-- XSL INCLUDES -->
 
 
-    <!--
+	<!--
         GetOnclickVal
         - accepts link type and tracking value
         - returns onclick value
     -->
-    <xsl:template name="GetOnclickVal">
-        <xsl:param name="link_type"></xsl:param>
-        <xsl:param name="tracking_val"></xsl:param>
-        <xsl:text>return sl(this,'</xsl:text>
-        <xsl:value-of select="$link_type"></xsl:value-of>
-        <xsl:text>','</xsl:text>
-        <xsl:value-of select="$tracking_val"></xsl:value-of>
-        <xsl:text>');</xsl:text>
-    </xsl:template>
-    <!--
+	<xsl:template name="GetOnclickVal">
+		<xsl:param name="link_type"/>
+		<xsl:param name="tracking_val"/>
+		<xsl:text>return sl(this,'</xsl:text>
+		<xsl:value-of select="$link_type"/>
+		<xsl:text>','</xsl:text>
+		<xsl:value-of select="$tracking_val"/>
+		<xsl:text>');</xsl:text>
+	</xsl:template>
+	<!--
         GetLinkType
         - accepts a link view from module data
         - returns link type
     -->
-    <xsl:template name="GetLinkType">
-        <xsl:param name="Value"></xsl:param>
-        <xsl:variable name="NewValue" select="translate($Value,'–','-')" />
-        <xsl:choose>
-            <xsl:when test="$NewValue = 'Window' or $NewValue = 'New Window - 1000x600'">nw</xsl:when>
-            <xsl:when test="$NewValue = 'Pop Up' or $NewValue = 'Small Pop Up - 380x210'">sp</xsl:when>
-            <xsl:when test="$NewValue = 'SDC Pop Up - 600x700'">sdp</xsl:when>
-            <xsl:when test="$NewValue = 'Scrollable Pop Up - 530x490'">scp</xsl:when>
-            <xsl:otherwise></xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    <!--
+	<xsl:template name="GetLinkType">
+		<xsl:param name="Value"/>
+		<xsl:variable name="NewValue" select="translate($Value,'–','-')"/>
+		<xsl:choose>
+			<xsl:when test="$NewValue = 'Window' or $NewValue = 'New Window - 1000x600'">nw</xsl:when>
+			<xsl:when test="$NewValue = 'Pop Up' or $NewValue = 'Small Pop Up - 380x210'">sp</xsl:when>
+			<xsl:when test="$NewValue = 'SDC Pop Up - 600x700'">sdp</xsl:when>
+			<xsl:when test="$NewValue = 'Scrollable Pop Up - 530x490'">scp</xsl:when>
+			<xsl:otherwise/>
+		</xsl:choose>
+	</xsl:template>
+	<!--
         GetURLRef
         - accepts chronic_id
         - returns url
     -->
-    <xsl:template name="GetURLRef">
-        <xsl:param name="ObjectID"></xsl:param>
-        <xsl:if test="(//referenced_objects/object[@chronic_id=$ObjectID and @pointer='0']/target[@siteid=$site_id]/@friendlyurl) or (//referenced_objects/object[@chronic_id=$ObjectID and @pointer='1']/target/@friendlyurl)">
-            <xsl:choose>
-                <xsl:when test="//referenced_objects/object[@chronic_id=$ObjectID]//@pointer = '1'">
-                    <xsl:value-of select="//referenced_objects/object[@chronic_id=$ObjectID][1]/target/@friendlyurl"></xsl:value-of>
-                </xsl:when>
-                <xsl:otherwise>http://<xsl:value-of select="//referenced_objects/object[@chronic_id=$ObjectID][1]/target[@siteid=$site_id]/@prefix[1]"></xsl:value-of>.<xsl:value-of select="$domain"></xsl:value-of>
-                    <xsl:value-of select="//referenced_objects/object[@chronic_id=$ObjectID][1]/target[@siteid=$site_id]/@friendlyurl[1]"></xsl:value-of>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:if>
-    </xsl:template>
+	<xsl:template name="GetURLRef">
+		<xsl:param name="ObjectID"/>
+		<xsl:if test="(//referenced_objects/object[@chronic_id=$ObjectID and @pointer='0']/target[@siteid=$site_id]/@friendlyurl) or (//referenced_objects/object[@chronic_id=$ObjectID and @pointer='1']/target/@friendlyurl)">
+			<xsl:choose>
+				<xsl:when test="//referenced_objects/object[@chronic_id=$ObjectID]//@pointer = '1'">
+					<xsl:value-of select="//referenced_objects/object[@chronic_id=$ObjectID][1]/target/@friendlyurl"/>
+				</xsl:when>
+				<xsl:otherwise>http://<xsl:value-of select="//referenced_objects/object[@chronic_id=$ObjectID][1]/target[@siteid=$site_id]/@prefix[1]"/>.<xsl:value-of select="$domain"/>
+					<xsl:value-of select="//referenced_objects/object[@chronic_id=$ObjectID][1]/target[@siteid=$site_id]/@friendlyurl[1]"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:if>
+	</xsl:template>
 
 
 
 
-    <xsl:template name="CreatIdentity">
-        <xsl:text disable-output-escaping="yes"><![CDATA[<!--
+	<xsl:template name="CreatIdentity">
+		<xsl:text disable-output-escaping="yes"><![CDATA[<!--
 
 current_page = ]]></xsl:text>
-        <xsl:value-of select="$current_page"/>
-        <xsl:text disable-output-escaping="yes"><![CDATA[
+		<xsl:value-of select="$current_page"/>
+		<xsl:text disable-output-escaping="yes"><![CDATA[
 last_page = ]]></xsl:text>
-        <xsl:value-of select="$last_page"/>
-        <xsl:text disable-output-escaping="yes"><![CDATA[
+		<xsl:value-of select="$last_page"/>
+		<xsl:text disable-output-escaping="yes"><![CDATA[
 image_server_url = ]]></xsl:text>
-        <xsl:value-of select="$image_server_url"/>
-        <xsl:text disable-output-escaping="yes"><![CDATA[
+		<xsl:value-of select="$image_server_url"/>
+		<xsl:text disable-output-escaping="yes"><![CDATA[
 moduletitle = ]]></xsl:text>
-        <xsl:value-of select="$moduletitle"/>
-        <xsl:text disable-output-escaping="yes"><![CDATA[
+		<xsl:value-of select="$moduletitle"/>
+		<xsl:text disable-output-escaping="yes"><![CDATA[
 site_id = ]]></xsl:text>
-        <xsl:value-of select="$site_id"/>
-        <xsl:text disable-output-escaping="yes"><![CDATA[
+		<xsl:value-of select="$site_id"/>
+		<xsl:text disable-output-escaping="yes"><![CDATA[
 domain = ]]></xsl:text>
-        <xsl:value-of select="$domain"/>
-        <xsl:text disable-output-escaping="yes"><![CDATA[
+		<xsl:value-of select="$domain"/>
+		<xsl:text disable-output-escaping="yes"><![CDATA[
 print = ]]></xsl:text>
-        <xsl:value-of select="$print"/>
-        <xsl:text disable-output-escaping="yes"><![CDATA[
+		<xsl:value-of select="$print"/>
+		<xsl:text disable-output-escaping="yes"><![CDATA[
 spon = ]]></xsl:text>
-        <xsl:value-of select="$spon"/>
-        <xsl:text disable-output-escaping="yes"><![CDATA[
+		<xsl:value-of select="$spon"/>
+		<xsl:text disable-output-escaping="yes"><![CDATA[
 pg_furl = ]]></xsl:text>
-        <xsl:value-of select="$pg_furl"/>
-        <xsl:text disable-output-escaping="yes"><![CDATA[
+		<xsl:value-of select="$pg_furl"/>
+		<xsl:text disable-output-escaping="yes"><![CDATA[
 prefix = ]]></xsl:text>
-        <xsl:value-of select="$prefix"/>
-        <xsl:text disable-output-escaping="yes"><![CDATA[
+		<xsl:value-of select="$prefix"/>
+		<xsl:text disable-output-escaping="yes"><![CDATA[
 
 ]]></xsl:text>
-        <xsl:for-each select="/*">
-            <xsl:apply-templates mode="identity" select="."/>
-        </xsl:for-each>
-        <xsl:text disable-output-escaping="yes"><![CDATA[
+		<xsl:for-each select="/*">
+			<xsl:apply-templates mode="identity" select="."/>
+		</xsl:for-each>
+		<xsl:text disable-output-escaping="yes"><![CDATA[
 -->
 ]]></xsl:text>
-    </xsl:template>
-    <xsl:template match="@*|*|processing-instruction()|comment()" mode="identity">
-        <xsl:copy>
-            <xsl:apply-templates select="*|@*|text()|processing-instruction()|comment()" mode="identity"/>
-        </xsl:copy>
-    </xsl:template>
-    <xsl:template match="text()" mode="identity">
-        <xsl:choose>
-            <!--replaces any double dash in the content with the html code, -->
-            <xsl:when test="contains(., '--' )">
-                <xsl:variable name="out1">
-                    <xsl:call-template name="ReplaceParams">
-                        <xsl:with-param name="orig_text">
-                            <xsl:value-of select="." disable-output-escaping="yes"/>
-                        </xsl:with-param>
-                        <xsl:with-param name="param_to_replace">
-                            <xsl:text disable-output-escaping="yes">--</xsl:text>
-                        </xsl:with-param>
-                        <xsl:with-param name="param_value">
-                            <xsl:text disable-output-escaping="yes"><![CDATA[&#45;&#45;]]></xsl:text>
-                        </xsl:with-param>
-                    </xsl:call-template>
-                </xsl:variable>
-                <xsl:value-of select="$out1" disable-output-escaping="yes"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="."/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    <xsl:template name="ReplaceParams">
-        <xsl:param name="orig_text"/>
-        <xsl:param name="parsed_text"/>
-        <xsl:param name="param_to_replace"/>
-        <xsl:param name="param_value"/>
-        <xsl:choose>
-            <xsl:when test="$orig_text != ''">
-                <xsl:choose>
-                    <xsl:when test="contains($orig_text, $param_to_replace)">
-                        <xsl:call-template name="ReplaceParams">
-                            <xsl:with-param name="orig_text">
-                                <xsl:value-of select="substring-after($orig_text, $param_to_replace)" disable-output-escaping="yes"/>
-                            </xsl:with-param>
-                            <xsl:with-param name="parsed_text">
-                                <xsl:value-of select="$parsed_text" disable-output-escaping="yes"/>
-                                <xsl:value-of select="substring-before($orig_text, $param_to_replace)" disable-output-escaping="yes"/>
-                                <xsl:value-of select="$param_value" disable-output-escaping="yes"/>
-                            </xsl:with-param>
-                            <xsl:with-param name="param_to_replace">
-                                <xsl:value-of select="$param_to_replace"/>
-                            </xsl:with-param>
-                            <xsl:with-param name="param_value">
-                                <xsl:value-of select="$param_value"/>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:call-template name="ReplaceParams">
-                            <xsl:with-param name="orig_text"/>
-                            <xsl:with-param name="parsed_text">
-                                <xsl:value-of select="concat($parsed_text, $orig_text)" disable-output-escaping="yes"/>
-                            </xsl:with-param>
-                            <xsl:with-param name="param_to_replace">
-                                <xsl:value-of select="$param_to_replace"/>
-                            </xsl:with-param>
-                            <xsl:with-param name="param_value">
-                                <xsl:value-of select="$param_value"/>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:when>
-            <xsl:when test="$orig_text = ''">
-                <xsl:value-of select="$parsed_text" disable-output-escaping="yes"/>
-            </xsl:when>
-        </xsl:choose>
-    </xsl:template>
+	</xsl:template>
+	<xsl:template match="@*|*|processing-instruction()|comment()" mode="identity">
+		<xsl:copy>
+			<xsl:apply-templates select="*|@*|text()|processing-instruction()|comment()" mode="identity"/>
+		</xsl:copy>
+	</xsl:template>
+	<xsl:template match="text()" mode="identity">
+		<xsl:choose>
+			<!--replaces any double dash in the content with the html code, -->
+			<xsl:when test="contains(., '--' )">
+				<xsl:variable name="out1">
+					<xsl:call-template name="ReplaceParams">
+						<xsl:with-param name="orig_text">
+							<xsl:value-of select="." disable-output-escaping="yes"/>
+						</xsl:with-param>
+						<xsl:with-param name="param_to_replace">
+							<xsl:text disable-output-escaping="yes">--</xsl:text>
+						</xsl:with-param>
+						<xsl:with-param name="param_value">
+							<xsl:text disable-output-escaping="yes"><![CDATA[&#45;&#45;]]></xsl:text>
+						</xsl:with-param>
+					</xsl:call-template>
+				</xsl:variable>
+				<xsl:value-of select="$out1" disable-output-escaping="yes"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="."/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	<xsl:template name="ReplaceParams">
+		<xsl:param name="orig_text"/>
+		<xsl:param name="parsed_text"/>
+		<xsl:param name="param_to_replace"/>
+		<xsl:param name="param_value"/>
+		<xsl:choose>
+			<xsl:when test="$orig_text != ''">
+				<xsl:choose>
+					<xsl:when test="contains($orig_text, $param_to_replace)">
+						<xsl:call-template name="ReplaceParams">
+							<xsl:with-param name="orig_text">
+								<xsl:value-of select="substring-after($orig_text, $param_to_replace)" disable-output-escaping="yes"/>
+							</xsl:with-param>
+							<xsl:with-param name="parsed_text">
+								<xsl:value-of select="$parsed_text" disable-output-escaping="yes"/>
+								<xsl:value-of select="substring-before($orig_text, $param_to_replace)" disable-output-escaping="yes"/>
+								<xsl:value-of select="$param_value" disable-output-escaping="yes"/>
+							</xsl:with-param>
+							<xsl:with-param name="param_to_replace">
+								<xsl:value-of select="$param_to_replace"/>
+							</xsl:with-param>
+							<xsl:with-param name="param_value">
+								<xsl:value-of select="$param_value"/>
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:call-template name="ReplaceParams">
+							<xsl:with-param name="orig_text"/>
+							<xsl:with-param name="parsed_text">
+								<xsl:value-of select="concat($parsed_text, $orig_text)" disable-output-escaping="yes"/>
+							</xsl:with-param>
+							<xsl:with-param name="param_to_replace">
+								<xsl:value-of select="$param_to_replace"/>
+							</xsl:with-param>
+							<xsl:with-param name="param_value">
+								<xsl:value-of select="$param_value"/>
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:when test="$orig_text = ''">
+				<xsl:value-of select="$parsed_text" disable-output-escaping="yes"/>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:template>
 
 
 
 
-    <!--
+	<!--
         GetImg
         - accepts img tag attributes
         - returns closed image tag
     -->
-    <xsl:template name="GetImg">
-        <xsl:param name="class"></xsl:param>
-        <xsl:param name="src"></xsl:param>
-        <xsl:param name="alt"></xsl:param>
-        <xsl:param name="style"></xsl:param>
-        <xsl:choose>
-            <xsl:when test="string-length($class) = 0 and string-length($alt) = 0 and string-length($style) = 0">
-                <img src="{$src}"/>
-            </xsl:when>
-            <xsl:when test="string-length($class) = 0 and string-length($alt) != 0 and string-length($style) = 0">
-                <img src="{$src}" alt="{$alt}"/>
-            </xsl:when>
-            <xsl:when test="string-length($class) != 0 and string-length($alt) != 0 and string-length($style) = 0">
-                <img src="{$src}" alt="{$alt}" class="{$class}"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <img src="{$src}" alt="{$alt}" class="{$class}" style="{$style}"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
+	<xsl:template name="GetImg">
+		<xsl:param name="class"/>
+		<xsl:param name="src"/>
+		<xsl:param name="alt"/>
+		<xsl:param name="style"/>
+		<xsl:choose>
+			<xsl:when test="string-length($class) = 0 and string-length($alt) = 0 and string-length($style) = 0">
+				<img src="{$src}"/>
+			</xsl:when>
+			<xsl:when test="string-length($class) = 0 and string-length($alt) != 0 and string-length($style) = 0">
+				<img src="{$src}" alt="{$alt}"/>
+			</xsl:when>
+			<xsl:when test="string-length($class) != 0 and string-length($alt) != 0 and string-length($style) = 0">
+				<img src="{$src}" alt="{$alt}" class="{$class}"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<img src="{$src}" alt="{$alt}" class="{$class}" style="{$style}"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
 
 
 
 </xsl:stylesheet>
-
-
-
-

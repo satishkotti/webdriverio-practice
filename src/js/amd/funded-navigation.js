@@ -104,32 +104,7 @@ webmd.fundedEditorial.navigation = {
             case 'type_vid':
                 break;
             case 'type_rmq':
-                $navContainer.hide(); // hide nav
-
-                // this is very similar to using Object.watch()
-                // instead we attach multiple listeners
-                self.rmqSlide = webmd.fundedEditorial.setupListener(self.rmqSlide, function(updateValue) {
-                    var myTimeout;
-
-                    if (updateValue === 'results') {
-                        $navContainer.show();
-                    } else if (updateValue === 'reset') {
-                        self.hideElement('.article-nav');
-                        myTimeout = setTimeout(function() {
-                            $navContainer.hide();
-                            clearTimeout(myTimeout);
-                        }, 1000);
-                    } else {
-                        if (typeof myTimeout === 'undefined') {
-                            $navContainer.hide();
-                        }
-                    }
-                });
-
-                self.show_on_element = '.rmq_footer';
-                self.identifier = '.rich_media_quiz';
-                self.hide_paddles = false; // do not hide paddles on certain conditions (see setupNavPaddles below)
-                self.mobile_only = true;
+                self.identifier = null;
                 break;
             default:
                 break;

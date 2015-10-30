@@ -902,6 +902,29 @@
 							</xsl:attribute>
 							<xsl:text>Retake Quiz</xsl:text>
 						</xsl:element>
+						<xsl:element name="a">
+							<xsl:attribute name="href">
+								<xsl:text>#</xsl:text>
+							</xsl:attribute>
+							<xsl:attribute name="class">
+								<xsl:text>rmq_next_article</xsl:text>
+							</xsl:attribute>
+							<xsl:element name="span">
+								<xsl:attribute name="class">
+									<xsl:text>text</xsl:text>
+								</xsl:attribute>
+								<xsl:element name="span">
+									<xsl:attribute name="class">
+										<xsl:text>wbmd-subhead</xsl:text>
+									</xsl:attribute>
+								</xsl:element>
+								<xsl:element name="span">
+									<xsl:attribute name="class">
+										<xsl:text>wbmd-title</xsl:text>
+									</xsl:attribute>
+								</xsl:element>
+							</xsl:element>
+						</xsl:element>
 
 						<!--disable social sharing icons temporarily-->
 						<!--<xsl:if test="scoretype != 'None'">

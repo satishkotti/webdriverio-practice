@@ -430,7 +430,7 @@ $lato_font: 'Lato', sans-serif;
 					    float: left;
 					    line-height: 44px;
 					    overflow: hidden;
-					    margin: 0 40px 0 0;
+					    margin: 0 40px 20px 0;
 					    padding: 0 20px;
 					    font-family: $lato_font;
 					    font-size: 14px;
@@ -452,6 +452,42 @@ $lato_font: 'Lato', sans-serif;
 
 					.rmq_results_tw {
 					    background-image: url('../img/rmq-twitter.png');
+					}
+
+					.rmq_next_article {
+						display: inline-block;
+						visibility: hidden;
+
+						.text {
+							float: left;
+							width: 219px;
+
+							.wbmd-subhead {
+								display: block;
+								font-family: 'Roboto Condensed', Arial, sans-serif;
+						        font-size: 0.8em;
+						        text-transform: uppercase;
+						        color: #74b0b0;
+						        padding-bottom: 10px;
+							}
+
+							.wbmd-title {
+								display: block;
+				                font-family: 'Chivo', Arial, sans-serif;
+				                font-size: 1em;
+				                line-height: 1.2em;
+				                color: #3b3b3c;
+							}
+						}
+
+						&:after {
+							float: right;
+							font-family: 'icons';
+							font-size: 27px;
+      						color: #c9c9c9;
+      						content: "\e61b";
+      						margin: 10px 0 0 15px;
+						}
 					}
 				}
 			}

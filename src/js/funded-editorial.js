@@ -335,7 +335,7 @@ webmd.fundedEditorial = {
 
         		//Perform an AJAX 'get' on segment documentum ID
 				$.ajax({
-					url: 'http://www' + webmd.url.getLifecycle() + '.webmd.com/modules/sponsor-box',
+					url: 'http://www' + webmd.url.getLifecycle() + '.webmd.com/modules/ajax',
 					type: 'GET',
 					data: 'id=' + data.artDataId,
 					dataType: 'html',
@@ -381,25 +381,26 @@ webmd.fundedEditorial = {
 			mastheadH = $('.masthead').outerHeight(true);
 
 		$(window).load(function() {
-			$(window).trigger('scroll'); // display missing elements (menu bar, paddles, etc) based on location in document
-
-			self.centerAds(['#s4 > .bottom_ad_rdr', '#rightAd_rdr']); //pass specific ad identifiers for centering as array
+			self.centerAds(['.bottom_ad_rdr', '#rightAd_rdr']); //pass specific ad identifiers for centering as array
 
 			self.scrollTo(true, null, 90, true, true, false); // scroll using URL hash
 		});
 
-		$(window).scroll(function() {
+		$(window).on('scroll touchstart touchmove touchend', function() {
 			var y = $(document).scrollTop(),
-				$kabobContainer = $('.kabob-container:not(.clone)'), // visible kabob in document flow
-				$clone = $('.kabob-container.clone'); // invisible clone (used as a spacer for smooth scrolling)
+				$toolBarContentPane = $('.wbmd-toolbar-menu').closest('div.pane'),
+				$toolbarContainer = $('.wbmd-toolbar-menu:not(.clone)'), // toolbar visible in document flow
+				$toolbarClone = $('.wbmd-toolbar-menu.clone'); // invisible toolbar clone (used as a spacer for smooth scrolling)
 
-			if ($kabobContainer.length > 0) { // display kabob if it exists, otherwise display masthead
-				if (y > $kabobContainer.offset().top) {
-	        		$clone.css('visibility', 'hidden').show(); // put spacer in document flow
-	        		$kabobContainer.addClass('stick'); // put visible kabob in fixed top position (no longer in flow)
+			console.log(y + ' > ' + $toolbarContainer.offset().top);
+
+			if ($toolbarContainer.length) { // display toolbar if it exists, otherwise display masthead
+				if (y > $toolBarContentPane.offset().top) {
+	        		$toolbarClone.show(); // put spacer in document flow (avoids content jumping after setting toolbar to fixed)
+	        		$toolbarContainer.addClass('stick'); // put toolbar in fixed top position (no longer in flow)
 	    		} else {
-	        		$clone.hide(); // remove spacer from flow
-	        		$kabobContainer.removeClass('stick'); // put visible kabob back into document flow
+	        		$toolbarClone.hide(); // remove toolbar spacer from flow
+	        		$toolbarContainer.removeClass('stick'); // put visible toolbar back into document flow
 	    		}
 			} else {
 				if (y > mastheadH) {
@@ -417,30 +418,31 @@ webmd.fundedEditorial = {
 		var self = this,
 			$ads;
 
-		if ($('html.move-ad').length <= 0) { // do not change ads inside infinite article
+		if (!$('html.move-ad').length) { // do not change ads inside infinite article
 			for (var i=0; i<identifiers.length; i++) {
 				$ads = $(identifiers[i]);
-			}
-
-			if (typeof $ads !== 'undefined' && $ads !== null) {
-				$.each($ads, function() {
-					var $ad = $(this),
-						adWidth = $ad.outerWidth();
-
-					$ad.closest('.section').addClass('center-ad');
-
-					$ad.css({
-						'position' : 'relative',
-						'width' : adWidth + 'px',
-						'left' : '50%',
-						'marginLeft' : (adWidth / -2) + 'px',
-						'marginBottom' : '10px'
-					});
-				});
+				centerMe($ads);
 			}
 		}
 
-		return self;
+		function centerMe(adArr) {
+			$.each(adArr, function() {
+				var $ad = $(this),
+					adWidth = $ad.outerWidth();
+
+				$ad.closest('.section').addClass('center-ad');
+
+				$ad.css({
+					'position' : 'relative',
+					'width' : adWidth + 'px',
+					'left' : '50%',
+					'marginLeft' : (adWidth / -2) + 'px',
+					'marginBottom' : '10px'
+				});
+			});
+		}
+
+		return;
 	},
 
 	scrollTo: function(urlHash, domEl, extPad, desktop, tablet, mobile) {
@@ -1101,7 +1103,9 @@ webmd.fundedEditorial = {
         // Display in menu (top to bottom)
 		menuElements: ['.branded-nav-container', '.article-list-container', '.wbmd-upnext-segments'],
 
-		init: function() {
+		init: function(createKabob) {
+			this.createKabob = createKabob;
+
 			this.menu_render();
         },
 
@@ -1140,45 +1144,48 @@ webmd.fundedEditorial = {
 	            }
 	        }
 
-	        if (!$menuContent.is(':empty')) {
-	            $menu.append($menuClose);
-	            $menu.append($menuContent);
-	            self.addKabob();
-	        }
+	        $menu.append($menuClose);
+	        $menu.append($menuContent);
+	        self.createKabobContainer();
 
 	        return self;
 	    },
 
-	    addKabob: function() {
+	    createKabobContainer: function() {
 	    	var self = this,
-	    		$locationDiv,
-	    		$containerDiv = $('<div></div>'),
-	    		$kabob = $('<a></a>'),
-	    		$clone;
+	    		$locator = ($('.attrib_right_fmt').length) ? $('.attrib_right_fmt') : $('.social-share-tools'),
+	    		$contentPane = $locator.closest('div.pane'),
+	    		$toolbarDiv, // original toolbar
+	    		$clone, // used as a spacer when original toolbar is set in fixed position
+	    		contentPaneId = $contentPane.attr('id');
 
-	    	$kabob.attr('href', '#').addClass('wbmd-kabob').html('<span></span>');
+	    	$contentPane.wrapInner('<div class="tools"></div>');
 
-	    	if ($('#sharebar').length) {
-	    		$locationDiv = $('#sharebar');
-		    	$locationDiv.addClass('kabob-container');
-		    	$locationDiv.find('div:first-child').addClass('first');
+	    	$contentPane.wrapInner('<div class="wbmd-toolbar-menu"></div>');
 
-		    	$clone = $locationDiv.clone(); // get clone of kabob container
-				$clone.addClass('clone');
-				$clone.hide(); // clone is only used as a spacer
-				$clone.insertBefore($locationDiv);
+	    	$toolbarDiv = $('#' + contentPaneId + ' .wbmd-toolbar-menu');
+	    	$clone = $toolbarDiv.clone(); // get clone of toolbar container
+	    	$clone.addClass('clone');
+	    	$clone.hide(); // clone is only used as a spacer
+	    	$clone.insertBefore($toolbarDiv);
+
+	    	if (this.createKabob) {
+	    		self.addKabob(contentPaneId);
+	    	}
+	    },
+
+	    addKabob: function(cpId) {
+	    	var self = this,
+	    		$toolbarDiv = $('#' + cpId + ' .wbmd-toolbar-menu'),
+	    		$kabob = $('<div></div>');
+
+	    	$kabob.addClass('wbmd-kabob').html('<span></span>');
+
+		    if ($('.attrib_right_fmt').length) {
+		    	$toolbarDiv.find('.attrib_right_fmt').before($kabob);
 		    } else {
-		    	$locationDiv = $('.attrib_right_fmt');
-		    	$containerDiv.addClass('kabob-container').html('<div class="first"></div>');
-		    	$containerDiv.insertBefore($locationDiv);
-
-		    	$clone = $containerDiv.clone(); // get clone of kabob container
-		    	$clone.addClass('clone');
-		    	$clone.hide(); // clone is only used as a spacer
-		    	$clone.insertBefore($containerDiv);
+		    	$toolbarDiv.find('.tools').append($kabob);
 		    }
-
-		    $('.kabob-container').find('.first').append($kabob);
 
 	    	return self;
 	    },
@@ -1191,23 +1198,27 @@ webmd.fundedEditorial = {
 				evt.stopPropagation();
 				evt.preventDefault();
 
-				$('#' + self.menu).addClass('show');
-				$body.addClass('menu-open');
+				$('#' + self.menu).trigger('show').addClass('show').addClass('no-scroll');
 			});
 
 			$('.wbmd-menu-close').click(function(evt) {
 				evt.stopPropagation();
 				evt.preventDefault();
 
-				$('#' + self.menu).removeClass('show');
-				$body.unbind('touchmove').removeClass('menu-open'); // delay body scroll bar while menu slides out
+				$('#' + self.menu).trigger('hide').removeClass('show');
 			});
 
-			$('.wbmd-menu-content').on('touchmove', function (e) {
-			     e.stopPropagation();
-			     $body.bind('touchmove', function(e){
-					e.preventDefault();
-				 });
+			$('#' + self.menu).on('show', function (evt) {
+			     $('html').addClass('no-scroll');
+			     $('body').addClass('menu-open').addClass('no-scroll');
+
+			     $('body').bind('touchmove', function(e) {
+			     	e.preventDefault();
+			     });
+			}).on('hide', function (evt) {
+				 $('html').removeClass('no-scroll');
+			     $('body').removeClass('menu-open').removeClass('no-scroll');
+			     $('body').unbind('touchmove');
 			});
 	    },
 

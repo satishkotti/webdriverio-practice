@@ -1,12 +1,11 @@
 #wbmd-slidein-menu {
     position: fixed;
+    -webkit-backface-visibility: hidden;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2000001; /* cover sticky masthead if present */
+    z-index: 6000000; /* full screen overlay */
     -webkit-transform: translateY(200%);
     -ms-transform: translateY(200%);
     transform: translateY(200%);
@@ -20,6 +19,7 @@
         height: 45px;
         background-color: #009be8;
         z-index: 1;
+        cursor: pointer;
         
         span, span:before, span:after {
             cursor: pointer;
@@ -61,7 +61,7 @@
         }
     }
     .wbmd-menu-content {
-        position: absolute;
+        position: relative;
         top: 0;
         bottom: 0;
         left: 0;
@@ -81,77 +81,125 @@
     transform: translateY(0);
 }
 
-.kabob-container {
-    position: relative;
+.wbmd-toolbar-menu {
     width: 100%;
 
     &.stick {
-        position: absolute;
-
-        .first {
-            position: fixed;
-            top: 0;
-            background-color: #ffffff;
-            z-index: 10000;
-        }
-    }
-
-    .first {
-        width: 100%;
-    }
-
-    .wbmd-kabob {
-        position: relative;
-        display: block;
-        float: right;
+        position: fixed;
+        -webkit-backface-visibility: hidden;
         top: 0;
+        left: 0;
         right: 0;
-        width: 45px;
-        height: 45px;
-        margin-left: 20px;
-        background-color: #009be8;
-        span, span:before, span:after {
-            cursor: pointer;
-            border-radius: 50%;
-            height: 6px;
-            width: 6px;
-            background: #fff;
-            position: absolute;
-            display: block;
-            content: "";
-        }
+        min-width: 100%;
+        background-color: #ffffff;
+        z-index: 10000;
+        box-shadow: 0 4px 2px -2px #e2e3e4;
 
-        span {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .tools {
+            position: relative;
+            width: 98%;
+            max-width: 980px;
+            max-height: 45px;
+            margin: 0 auto;
+            overflow: hidden;
 
-            &:before {
-                top: -10px;
+            .social-share-tools {
+                margin: 0;
             }
-            &:after {
-                bottom: -10px;
+
+            .wbmd-kabob {
+                top: 0;
+                margin-left: 20px;
+            }
+
+            .attrib_right_fmt {
+                margin: 0;
+
+                .attrib_content {
+                    padding: 0;
+                }
+
+                img {
+                    max-height: 45px;
+                }
+            }
+        }
+    }
+
+    &.clone {
+        visibility: hidden;
+        display: none;
+    }
+
+    .tools {
+        width: 98%;
+
+        .wbmd-kabob {
+            position: relative;
+            display: block;
+            float: right;
+            top: 8px;
+            right: 0;
+            width: 45px;
+            height: 45px;
+            background-color: #009be8;
+            cursor: pointer;
+
+            span, span:before, span:after {
+                cursor: pointer;
+                border-radius: 50%;
+                height: 6px;
+                width: 6px;
+                background: #fff;
+                position: absolute;
+                display: block;
+                content: "";
+            }
+
+            span {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                &:before {
+                    top: -10px;
+                }
+                &:after {
+                    bottom: -10px;
+                }
             }
         }
     }
 }
 
 body.menu-open {
-    overflow: hidden;
+    position: static;
 }
 
 .no-scroll {
-    overflow: hidden;
-    height: 100%;
+    overflow: hidden !important;
 }
 
 .scroll {
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: auto !important;
 }
 
 
 /* Tablets, iPads (portrait and landscape) ----------- */
+
+@media only screen and (min-width: 320px) and (max-width: 736px) {
+    .wbmd-kabob {
+        top: 0px !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .wbmd-toolbar-menu {
+        .tools {
+            width: 100% !important;
+        }
+    }
+}
 
 @media only screen and (min-width: 768px) {
     /* STYLES GO HERE */

@@ -82,14 +82,7 @@ define(['bx_slider/1/bx_slider'], {
         self.sSettings.onSliderLoad = function(index) {
             $('.rich_media_quiz').css('visibility', 'visible');
 
-            // Get type of first quiz slide on load
-            setTimeout(function() {
-                var curData = self.slideInfo[index];
-
-                if (typeof webmd.fundedEditorial.navigation.rmqSlide !== 'undefined') {
-                    webmd.fundedEditorial.navigation.rmqSlide.value = curData.type;
-                }
-            }, 50);
+            self.addNextArticle_onResults();
         };
 
         // Callbacks must be defined here so that internal RMQ methods are accessible to them
@@ -126,11 +119,6 @@ define(['bx_slider/1/bx_slider'], {
 
             var curData = self.slideInfo[newIndex],
                 id = '';
-
-            // set value of current quiz slide type
-            if (typeof webmd.fundedEditorial.navigation.rmqSlide !== 'undefined') {
-            	webmd.fundedEditorial.navigation.rmqSlide.value = curData.type;
-            }
 
             switch (curData.type) {
 
@@ -214,6 +202,26 @@ define(['bx_slider/1/bx_slider'], {
             self.metrics('pageView', id);
             //$(self.container).trigger('fAfter', [curData, $(self.slides.eq(self.slider.getCurrentSlide()))]);
 
+        };
+
+        self.addNextArticle_onResults = function() {
+            var $nextArticle = $('.rmq_next_article'),
+                articles = webmd.fundedEditorial.articleData.articles,
+                nextArticleIndex = webmd.fundedEditorial.articleData.nextArticle,
+                nextArticle = articles[nextArticleIndex];
+
+            if ($('.article-list-container > .wbmd-subhead').length) {
+                subhead = $('.article-list-container > .wbmd-subhead').html();
+            } else {
+                subhead = 'Next In The Series';
+            }
+
+            if (typeof nextArticle !== 'undefined') {
+                $nextArticle.find('.wbmd-subhead').text(subhead);
+                $nextArticle.find('.wbmd-title').text(nextArticle.title);
+                $nextArticle.attr('href', nextArticle.link);
+                $nextArticle.css('visibility', 'visible');
+            }
         };
 
         // Create a bxSlider instance from the RMQ slide container
@@ -333,10 +341,6 @@ define(['bx_slider/1/bx_slider'], {
                         $('#results_controls').find('.rmq_retake').click(function(e) {
 
                             e.preventDefault();
-                            
-                            if (typeof webmd.fundedEditorial.navigation.rmqSlide !== 'undefined') {
-                                webmd.fundedEditorial.navigation.rmqSlide.value = 'reset';
-                            }
 
                             self.metrics('pageClick', 'rmq-strt-ovr');
                             self.resetQuiz();
