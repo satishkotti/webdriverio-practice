@@ -720,7 +720,7 @@ webmd.fundedEditorial = {
 				webmd.fundedEditorial.segments[index].data.listen(function(passedValue) {
 		            if (passedValue === true) {
 		                // Store segment in array (keep layout of segments in correct order)
-		                segmentModules[index] = createSegmentTiles(data, segmentModules[index]); 
+		                segmentModules[index] = createSegmentTiles(data, segmentModules[index]);
 		                complete++;
 
 		                if (complete === webmd.fundedEditorial.segments.length) {
