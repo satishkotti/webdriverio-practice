@@ -10,6 +10,13 @@
     -ms-transform: translateY(200%);
     transform: translateY(200%);
     transition: all 350ms ease-in-out;
+
+    &.show {
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+
     .wbmd-menu-close {
         position: absolute;
         display: block;
@@ -68,12 +75,6 @@
             clear: both !important;
         }
     }
-}
-
-.menu-open #wbmd-slidein-menu {
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
 }
 
 .wbmd-toolbar-menu {
@@ -168,7 +169,7 @@
 }
 
 body.menu-open {
-    
+    position: fixed;
 }
 
 .no-scroll {
