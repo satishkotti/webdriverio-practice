@@ -1192,33 +1192,41 @@ webmd.fundedEditorial = {
 
 	    bind_MenuEvents: function() {
 	    	var self = this,
-	    		$body = $('body');
+	    		$body = $('body'),
+	    		lastScrollPos;
 
 	    	$('.wbmd-kabob').click(function (evt) {
 				evt.stopPropagation();
 				evt.preventDefault();
 
-				$('#' + self.menu).trigger('show').addClass('show').addClass('no-scroll');
+				$('#' + self.menu).addClass('show');
+
+				$body.addClass('no-scroll');
+
+				// iOS does not work well with overflow hidden on body
+				// track last scroll position before setting body to fixed position
+				lastScrollPos = $('body').scrollTop();
+
+				// set timeout to allow menu to display before setting body to fixed position
+				// this avoid seeing a jump in the body prior to the menu appearing
+			    setTimeout(function() {
+			    	$body.addClass('menu-open');
+			    }, 500);
 			});
 
 			$('.wbmd-menu-close').click(function(evt) {
 				evt.stopPropagation();
 				evt.preventDefault();
 
-				$('#' + self.menu).trigger('hide').removeClass('show');
-			});
+				$('#' + self.menu).removeClass('show');
 
-			$('#' + self.menu).on('show', function (evt) {
-			     $('html').addClass('no-scroll');
-			     $('body').addClass('menu-open').addClass('no-scroll');
+				$body.removeClass('menu-open');
 
-			     $('body').bind('touchmove', function(e) {
-			     	e.preventDefault();
-			     });
-			}).on('hide', function (evt) {
-				 $('html').removeClass('no-scroll');
-			     $('body').removeClass('menu-open').removeClass('no-scroll');
-			     $('body').unbind('touchmove');
+			    $body.removeClass('no-scroll');
+
+			    // removing the fixed position on body allows scrolling
+			    // return to the last position of the page prior to the menu being opened
+			    window.scrollTo(0, lastScrollPos);
 			});
 	    },
 

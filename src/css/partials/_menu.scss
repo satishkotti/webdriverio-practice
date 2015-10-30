@@ -10,6 +10,13 @@
     -ms-transform: translateY(200%);
     transform: translateY(200%);
     transition: all 350ms ease-in-out;
+
+    &.show {
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+
     .wbmd-menu-close {
         position: absolute;
         display: block;
@@ -61,11 +68,6 @@
         }
     }
     .wbmd-menu-content {
-        position: relative;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
         width: 100%;
         height: 100%;
         background: #ffffff;
@@ -73,12 +75,6 @@
             clear: both !important;
         }
     }
-}
-
-.menu-open #wbmd-slidein-menu {
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
 }
 
 .wbmd-toolbar-menu {
@@ -173,15 +169,17 @@
 }
 
 body.menu-open {
-    position: static;
+    position: fixed;
 }
 
 .no-scroll {
-    overflow: hidden !important;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .scroll {
-    overflow: auto !important;
+    overflow-x: hidden;
+    overflow-y: scroll !important;
 }
 
 
