@@ -5,18 +5,20 @@
     display: none;
     width: 100%;
     padding: 14px 5px;
-    margin-bottom: 1em;
+    margin-bottom: 25px;
     background-color: #ffffff;
     border-top: 7px solid #f0f0f0;
     border-bottom: 1px solid #e2e3e4;
+    font-size: 1rem;
+
     &.plus-segments {
         margin-bottom: 0 !important;
     }
     .wbmd-segment {
         font-family: 'Lato', Arial, sans-serif;
         font-weight: bold;
-        font-size: 1.2em;
-        line-height: 1.2em;
+        font-size: 1.8em;
+        line-height: 22px;
         color: #333132;
         a {
             color: #333132;
@@ -24,7 +26,7 @@
     }
     .wbmd-subhead {
         font-family: 'Roboto Condensed', Arial, sans-serif;
-        font-size: 0.8em;
+        font-size: 1.2em;
         text-transform: uppercase;
         color: #74b0b0;
         padding-top: 22px;
@@ -36,8 +38,8 @@
             a {
                 display: block;
                 font-family: 'Chivo', Arial, sans-serif;
-                font-size: 1em;
-                line-height: 1.2em;
+                font-size: 1.6em;
+                line-height: 21px;
                 color: #3b3b3c;
                 padding: 0;
                 margin: 0;
@@ -52,7 +54,8 @@
         padding-top: 22px;
         a {
             font-family: 'Chivo', Arial, sans-serif;
-            font-size: 0.9em;
+            font-size: 1.4em;
+            line-height: 22px;
             color: #1b88bf;
         }
     }
@@ -76,8 +79,8 @@
             a.wbmd-segment-title {
                 font-family: 'Lato', Arial, sans-serif;
                 font-weight: bold;
-                font-size: 1.2em;
-                line-height: 1.2em;
+                font-size: 1.8em;
+                line-height: 22px;
                 color: #333132;
             }
         }
@@ -90,17 +93,17 @@
         padding: 0px 35px 14px 0px;
         border-top: none;
         .wbmd-segment {
-            font-size: 18px;
+            font-size: 1.8em;
             line-height: 22px;
         }
         .wbmd-subhead {
-            font-size: 12px;
+            font-size: 1.2em;
         }
         .wbmd-nav-links {
             div {
                 padding-top: 22px;
                 a {
-                    font-size: 16px;
+                    font-size: 1.6em;
                     line-height: 21px;
                 }
             }
@@ -116,7 +119,7 @@
                 padding: 0;
                 a.wbmd-segment-title {
                     font-family: 'Lato', Arial, sans-serif;
-                    font-size: 18px;
+                    font-size: 1.8em;
                     line-height: 22px;
                 }
             }

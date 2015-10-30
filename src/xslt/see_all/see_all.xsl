@@ -51,7 +51,6 @@
 									<div class="see-all-img {{type}}">
 										<img src="{{image_server_url}}/{{images.image110x70}}" alt="{{{title}}}">
 									</div>
-									<p class="fos">From Our Sponsor</p>
 									<p>{{{title}}}</p>
 								</a>
 							</li>
