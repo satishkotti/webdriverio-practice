@@ -649,7 +649,7 @@ webmd.fundedEditorial = {
 		var self = this,
 			link = (self.articleData && self.articleData.program && self.articleData.program.seeAllLink) ? self.articleData.program.seeAllLink : 'see-all',
 			text = (self.articleData && self.articleData.program && self.articleData.program.seeAllText) ? self.articleData.program.seeAllText : "See All",
-			html = '<div class="see-all-link"><a href="' + link + '">' + text + '</a></div>';
+			html = '<div class="see-all-link" data-metrics-module="ed-rspsvseeall"><a href="' + link + '">' + text + '</a></div>';
 
 		$(selector).append(html);
 
