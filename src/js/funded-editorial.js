@@ -416,7 +416,7 @@ webmd.fundedEditorial = {
 		var self = this,
 			$ads;
 
-		if ($('html.move-ad').length !== 0) { // do not change ads inside infinite article
+		if (window.s_business_reference !== "TOC" && !$('html.move-ad').length) { // do not center ads on TOC or Infinite Article
 			for (var i=0; i<identifiers.length; i++) {
 				$ads = $(identifiers[i]);
 				centerMe($ads);
