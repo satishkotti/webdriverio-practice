@@ -6,14 +6,14 @@ if(!webmd){
 
 webmd.fundedEditorial.nextUp = {
 
-	articles_to_display: $('.article-list-container').data('linkCount'), 	// number of articles
+	articles_to_display: $('.up-next-container').data('linkCount'), 	// number of articles
 	article_ids_to_display: [],
 	article_data: {"articles":[]},
 	disable_on_pages: ['funded-editorial-toc', 'poll-results', 'funded-editorial-see-all'],
 
 	init : function(){
 		if (this.articles_to_display <= 0 || this.checkIfDisabled()) {
-			$('.article-list-container').remove(); // remove placeholder created by XSL
+			$('.up-next-container').remove(); // remove placeholder created by XSL
 			webmd.fundedEditorial.createMenu.init(false); // setup toolbar (no kabob)
 			return false;
 		}
@@ -39,13 +39,13 @@ webmd.fundedEditorial.nextUp = {
 	},
 
 	updateDOM : function() {
-		var $segment = $('.article-list-container > .wbmd-segment'),
+		var $segment = $('.up-next-container > .wbmd-segment'),
 			segmentTitle = webmd.fundedEditorial.articleData.program.title,
-			$subhead = $('.article-list-container > .wbmd-subhead'),
+			$subhead = $('.up-next-container > .wbmd-subhead'),
 			subheadText = ($subhead.text().length > 0) ? $subhead.text() : "Next In The Series",
 			articles = webmd.fundedEditorial.articleData.articles,
-			$seeAllContainer = $('.article-list-container > .wbmd-see-all'),
-			seeAllOverrideText = /*webmd.fundedEditorial.articleData.program.seeAllText*/'',
+			$seeAllContainer = $('.up-next-container > .wbmd-see-all'),
+			seeAllOverrideText = webmd.fundedEditorial.articleData.program.seeAllText,
 			linkText = (seeAllOverrideText.length > 0) ? seeAllOverrideText : "See All",
 			linkUrl = webmd.fundedEditorial.articleData.program.seeAllLink + '#see-all-non-spon',
 			count = 0,
@@ -125,22 +125,22 @@ webmd.fundedEditorial.nextUp = {
 			segmentBlocks[index] = [];
 
 			webmd.fundedEditorial.segments[index].data.listen(function(passedValue) {
-	            if (passedValue === true) {
-	                createUpNextSegment(data, index);
-	                complete++;
+				if (passedValue === true) {
+					createUpNextSegment(data, index);
+					complete++;
 
-	                if (complete === webmd.fundedEditorial.segments.length) {
+					if (complete === webmd.fundedEditorial.segments.length) {
 						$.each(segmentBlocks, function(index, nodes) {
 							for (var i=0; i<nodes.length; i++) {
 								$segments.append(nodes[i]);
 							}
 						});
 					}
-	            }
-	        });
+				}
+			});
 		});
 
-		$(".article-list-container").after($segments);
+		$(".up-next-container").after($segments);
 
 		function createUpNextSegment(segmentData, pos) {
 			var $segmentContainer = $('<div></div>'),
@@ -162,7 +162,7 @@ webmd.fundedEditorial.nextUp = {
 
 			segmentBlocks[pos].push($segmentContainer);
 
-			$(".article-list-container").addClass('plus-segments');
+			$(".up-next-container").addClass('plus-segments');
 		}
 	},
 
@@ -174,7 +174,7 @@ webmd.fundedEditorial.nextUp = {
 
 	render: function() {
 		var self = this,
-			$container = $(".article-list-container > .wbmd-nav-links"),
+			$container = $(".up-next-container > .wbmd-nav-links"),
 			links;
 
 		links = createArticleLinkNodes();
