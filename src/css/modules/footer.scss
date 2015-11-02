@@ -3,6 +3,7 @@
 	margin-top: 20px;
 	margin-bottom: -20px;
 	background-color: #f9f9f9;
+	font-size: 1rem;
 }
 .footer-container {
 	width: 98%;
@@ -13,7 +14,7 @@
 	text-align: center;
 
 	div {
-		margin-bottom: 30px;
+		margin-bottom: 20px;
 
 		&:last-child {
 			margin-bottom: 0;
@@ -26,12 +27,15 @@
 	}
 	a {
 		font-size: 1.4rem;
+		line-height: 16px;
 	}
 
-	.footer-social {
+	.footer-social,
+	.footer-acc {
 
 		p {
 			font-size: 1.6rem;
+			color: #666;
 		}
 		ul {
 			display: inline-block;
@@ -39,7 +43,7 @@
 
 			li {
 				float: left;
-				margin-right: 30px;
+				margin-right: 20px;
 
 				&:last-child {
 					margin-right: 0;
@@ -59,6 +63,24 @@
 			}
 			&.pt {
 				background-position: 0 -67px;
+			}
+		}
+		.footer-acc-icon {
+			display: inline-block;
+
+			&.urac {
+				width: 71px;
+				height: 68px;
+				display: block;
+				background: url(http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/layout/shared/URAC_trans.gif) 0 0 no-repeat;
+				margin-right: 1px;
+			}
+			&.truste {
+				margin-top: 15px;
+				margin-right: 14px;
+			}
+			&.hon {
+				margin-top: 6px;
 			}
 		}
 	}
@@ -86,7 +108,7 @@
 				&:after {
 					content: '|';
 					margin: 0 8px;
-					color: #ccc;
+					color: #222;
 				}
 				&:last-child {
 					&:after {
@@ -100,6 +122,12 @@
 	.copyright {
 		br {
 			display: none;
+		}
+		p {
+			margin-bottom: 5px;
+			color: #333;
+			font-size: 1.4em;
+			line-height: 16px;
 		}
 	}
 }
@@ -115,18 +143,22 @@
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-width: 320px) and (max-width: 736px) {
 	.footer-container {
-		padding: 20px 20px;
+		padding: 20px 10px;
 
 		div {
 			margin-bottom: 20px;
 		}
-		p,a {
+		p,a,.copyright p {
 			font-size: 1.2rem;
+			line-height: 16px;
 		}
 		.footer-social {
 			p {
-				font-size: 1.4rem;
+				font-size: 1.4em;
 			}
+		}
+		.footer-acc ul li {
+			margin-right: 10px;
 		}
 		.copyright {
 			br {
