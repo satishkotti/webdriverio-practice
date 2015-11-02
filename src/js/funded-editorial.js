@@ -1060,7 +1060,7 @@ webmd.fundedEditorial = {
 		menu: 'wbmd-slidein-menu',
 
         // Display in menu (top to bottom)
-		menuElements: ['.branded-nav-container', '.article-list-container', '.wbmd-upnext-segments'],
+		menuElements: ['.branded-up-next-container', '.up-next-container', '.wbmd-upnext-segments'],
 
 		init: function(createKabob) {
 			var self = this;
