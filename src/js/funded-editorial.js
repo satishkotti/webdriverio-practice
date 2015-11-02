@@ -397,8 +397,6 @@ webmd.fundedEditorial = {
 				$toolbarContainer = $('.wbmd-toolbar-menu:not(.clone)'), // toolbar visible in document flow
 				$toolbarClone = $('.wbmd-toolbar-menu.clone'); // invisible toolbar clone (used as a spacer for smooth scrolling)
 
-			console.log(y + ' > ' + $toolbarContainer.offset().top);
-
 			if ($toolbarContainer.length) { // display toolbar if it exists, otherwise display masthead
 				if (y > $toolBarContentPane.offset().top) {
 	        		$toolbarClone.show(); // put spacer in document flow (avoids content jumping after setting toolbar to fixed)
@@ -423,7 +421,7 @@ webmd.fundedEditorial = {
 		var self = this,
 			$ads;
 
-		if (!$('html.move-ad').length) { // do not change ads inside infinite article
+		if (window.s_business_reference !== "TOC" && !$('html.move-ad').length) { // do not center ads on TOC or Infinite Article
 			for (var i=0; i<identifiers.length; i++) {
 				$ads = $(identifiers[i]);
 				centerMe($ads);
@@ -658,7 +656,6 @@ webmd.fundedEditorial = {
 	tocTiles: {
 
 		gridItemClass: 'wbmd-grid-item', // class name on each <div> provided by the XSL
-		adIDarray: ['bannerAd_fmt', 'leftAd_fmt', 'rightAd_fmt', 'rightAd_rdr', 'slideshow_ad_300x250', 'cw_btm_ad_300x250', 'rmqAd_fmt'], // list of AD id's that might be placed inside the TOC
 		contentPanes: {},
 		masonryGutter: 10, // space between tiles
 		numPanes_layoutComplete: 0, // counter
@@ -666,18 +663,21 @@ webmd.fundedEditorial = {
 		init: function() {
 			var self = this;
 
-			if (typeof webmd.fundedEditorial.articleData !== 'undefined') {
+				if (typeof webmd.fundedEditorial.articleData !== 'undefined') {
 
-				self.article_data = webmd.fundedEditorial.articleData;
+					self.article_data = webmd.fundedEditorial.articleData;
 
-				if (webmd.fundedEditorial.segments && webmd.fundedEditorial.segments.length > 0) {
-					self.createTocSegment();
-				} else {
-					self.start();
+					if (webmd.fundedEditorial.segments && webmd.fundedEditorial.segments.length > 0) {
+						self.createTocSegment();
+					} else {
+						self.start();
+					}
+
+					self.bind_tocEvents();
 				}
-
-				self.bind_tocEvents();
 			}
+
+			return self;
 		},
 
 		start: function() {
@@ -829,7 +829,7 @@ webmd.fundedEditorial = {
 			if (!$node.hasClass('icm_wrap') && !$node.hasClass('dbm_wrap')) {
 				$node.addClass('tile-width'); // default size for all editorial tiles in TOC that are not ICM or DBM
 			} else {
-				if (nodeId !== 'undefined' && typeof nodeId !== null) {
+				if (typeof nodeId !== 'undefined' && nodeId !== null) {
 					if (regEx_3col.test(nodeId)) {
 						$node.addClass('tile-width-x3');
 					} else if (regEx_2col.test(nodeId)) {
@@ -876,24 +876,23 @@ webmd.fundedEditorial = {
 
 			self.createMasonry(false);
 		},
-		fixSingleTile: function($node) {
+		fixSingleTile: function(node) {
 			var self = this,
+				$node = $(node),
 				nodeH = $node.outerHeight(),
 				nodeW = $node.outerWidth(),
 				multiplier = 1,
-				adArray = self.adIDarray,
 				gutter = self.masonryGutter,
 				windowW = $(window).outerWidth(),
-				standardTileHeight,
 				btmMargin,
 				newHeight;
 
-			if ($node === 'undefined' || typeof $node === null) {
-				return;
+			if (typeof $node === 'undefined' || $node === null) {
+				return true;
 			}
 
-			if (!standardTileHeight) {
-				standardTileHeight = $('.' + self.gridItemClass + ':not(.icm_wrap):not(.dbm_wrap)').outerHeight();
+			if (!self.standardTileHeight) {
+				self.standardTileHeight = $('.' + self.gridItemClass + '.msnry-article').outerHeight();
 			}
 
 			/* Need to use cssText in this section - $.css() does not work correctly with adding margin-bottom */
@@ -901,68 +900,51 @@ webmd.fundedEditorial = {
 				$node.attr('data-orig-csstext', $node.attr('style'));
 			}
 
-			if (!$node.attr('data-orig-left')) {
-				$node.attr('data-orig-left', $node.position().left + 'px');
-			}
-
 			if (!$node.attr('data-orig-height')) {
 				$node.attr('data-orig-height', nodeH);
 			}
 
-			if ($node.is('.icm_wrap,.dbm_wrap') || $node.children().is('.icm_wrap,.dbm_wrap')) {
-				multiplier = Math.round((nodeH / standardTileHeight * 100) / 100);
-				btmMargin = Math.ceil((standardTileHeight * multiplier) + (gutter * multiplier) - nodeH);
-
-				if (windowW < 1000 && nodeW >= 650) {
-					$node.attr('style', $node.attr('data-orig-csstext'));
-				} else {
-					if (windowW >= 650) {
-						$node.attr('style', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
-					} else {
-						$node.attr('style', $node.attr('data-orig-csstext'));
-					}
-				}
+			if (windowW < 675) {
+				$node.css('cssText', $node.attr('data-orig-csstext'));
 			} else {
-				if (windowW > 675) {
+				if (windowW < 1000 && nodeW >= 650) {
+					$node.css('cssText', $node.attr('data-orig-csstext'));
+				} else {
 					nodeH = parseInt($node.attr('data-orig-height'));
 
-					if (nodeH > standardTileHeight) {
-						if ((nodeH === (standardTileHeight * 2)) ||
-							((nodeH > standardTileHeight) && (nodeH < (standardTileHeight * 2)))) {
+					if (nodeH > self.standardTileHeight) {
+						if ((nodeH === (self.standardTileHeight * 2)) ||
+							((nodeH > self.standardTileHeight) && (nodeH < (self.standardTileHeight * 2)))) {
 							multiplier = 2;
 						} else if (
-							(nodeH === (standardTileHeight * 3)) ||
-							((nodeH > (standardTileHeight * 2)) && (nodeH < (standardTileHeight * 3)))) {
+							(nodeH === (self.standardTileHeight * 3)) ||
+							((nodeH > (self.standardTileHeight * 2)) && (nodeH < (self.standardTileHeight * 3)))) {
 							multiplier = 3;
 						} else if (
-							(nodeH === (standardTileHeight * 4)) ||
-							((nodeH > (standardTileHeight * 3)) && (nodeH < (standardTileHeight * 4)))) {
+							(nodeH === (self.standardTileHeight * 4)) ||
+							((nodeH > (self.standardTileHeight * 3)) && (nodeH < (self.standardTileHeight * 4)))) {
 							multiplier = 4;
 						} else if (
-							(nodeH === (standardTileHeight * 5)) ||
-							((nodeH > (standardTileHeight * 4)) && (nodeH < (standardTileHeight * 5)))) {
+							(nodeH === (self.standardTileHeight * 5)) ||
+							((nodeH > (self.standardTileHeight * 4)) && (nodeH < (self.standardTileHeight * 5)))) {
 							multiplier = 5;
 						} else if (
-							(nodeH === (standardTileHeight * 6)) ||
-							((nodeH > (standardTileHeight * 5)) && (nodeH < (standardTileHeight * 6)))) {
+							(nodeH === (self.standardTileHeight * 6)) ||
+							((nodeH > (self.standardTileHeight * 5)) && (nodeH < (self.standardTileHeight * 6)))) {
 							multiplier = 6;
 						} else {
 							multiplier = 7;
 						}
 					}
 
-					if (multiplier > 1) {
-						newHeight = ((standardTileHeight * multiplier) + (gutter * multiplier));
-
-						if (self.adIDarray.indexOf($node.attr('id')) !== -1) {
-							btmMargin = newHeight - nodeH;
-							$node.attr('style', $node.attr('style') + ' margin-bottom: ' + btmMargin + 'px !important');
-						}
-					} else {
+					if (multiplier === 1) {
 						$node.css('cssText', $node.attr('data-orig-csstext'));
+					} else {
+						newHeight = ((self.standardTileHeight * multiplier) + (gutter * multiplier));
+						btmMargin = newHeight - nodeH;
+
+						$node.attr('style', $node.attr('data-orig-csstext') + ' margin-bottom: ' + btmMargin + 'px !important');
 					}
-				} else {
-					$node.css('cssText', $node.attr('data-orig-csstext'));
 				}
 			}
 		},
@@ -978,31 +960,7 @@ webmd.fundedEditorial = {
 
 			function updateContentPane(id) {
 				$('div#' + id + '.pane.wbmd-masonry-container').find('.' + self.gridItemClass).each(function() {
-					var $node = $(this);
-
-					self.fixSingleTile($node);
-				});
-			}
-		},
-
-		adjustPositions: function() {
-			var self = this;
-
-			for (var id in self.contentPanes) {
-				fixNodesInPane(id);
-			}
-
-			function fixNodesInPane(id) {
-				$('div#' + id + '.pane.wbmd-masonry-container').find('.' + self.gridItemClass).each(function() {
-					var $node = $(this),
-						leftPos = $node.position().left + 'px';
-
-					if ($node.attr('data-updated-csstext')) {
-						$node.attr('style', $node.attr('data-updated-csstext'));
-					} else if (leftPos !== $node.attr('data-orig-left')) {
-						$node.css({ left : $node.attr('data-orig-left') });
-						$node.attr('data-updated-csstext', $node.attr('style'));
-					}
+					self.fixSingleTile(this);
 				});
 			}
 		},
@@ -1026,12 +984,6 @@ webmd.fundedEditorial = {
 
 					if (resetLayout) {
 						contentPane.msnry.layout();
-
-						/*if ($(window).width() >= 980) {
-							setTimeout(function() {
-								self.adjustPositions();
-							}, 2000);
-						}*/
 					} else {
 						$(masonryGrid).imagesLoaded(function() {
 							contentPane.msnry = new Masonry(masonryGrid, {
@@ -1078,10 +1030,10 @@ webmd.fundedEditorial = {
 
 		bind_tocEvents: function() {
 			var self = this,
-				origWinW = $(window).width();
+				origWinW = $(window).outerWidth();
 
 			$(window).bind('resizeEnd', function() {
-				origWinW = $(window).width();
+				origWinW = $(window).outerWidth();
 				self.fixLayout();
 			});
 
@@ -1091,7 +1043,7 @@ webmd.fundedEditorial = {
 				}
 
 				this.resizeTO = setTimeout(function() {
-					var newWinW = $(window).width();
+					var newWinW = $(window).outerWidth();
 
 					if ((origWinW < 980 && newWinW >= 980) || newWinW < 980) {
 						$(this).trigger('resizeEnd');
@@ -1103,7 +1055,6 @@ webmd.fundedEditorial = {
 				self.fixLayout();
 			});
 		}
-
 	},
 
 	createMenu: {
@@ -1113,9 +1064,17 @@ webmd.fundedEditorial = {
 		menuElements: ['.branded-nav-container', '.article-list-container', '.wbmd-upnext-segments'],
 
 		init: function(createKabob) {
-			this.createKabob = createKabob;
+			var self = this;
 
-			this.menu_render();
+			self.createKabob = createKabob;
+
+			self.buildMenu();
+
+	    	self.addElementsToMenu();
+
+	    	self.bind_menuEvents();
+
+	    	return self;
         },
 
         buildMenu: function() {
@@ -1199,7 +1158,7 @@ webmd.fundedEditorial = {
 	    	return self;
 	    },
 
-	    bind_MenuEvents: function() {
+	    bind_menuEvents: function() {
 	    	var self = this,
 	    		$body = $('body'),
 	    		lastScrollPos;
@@ -1237,18 +1196,6 @@ webmd.fundedEditorial = {
 			    // return to the last position of the page prior to the menu being opened
 			    window.scrollTo(0, lastScrollPos);
 			});
-	    },
-
-	    menu_render: function() {
-	    	var self = this;
-
-	    	self.buildMenu();
-
-	    	self.addElementsToMenu();
-
-	    	self.bind_MenuEvents();
-
-	    	return self;
 	    }
     }
 };

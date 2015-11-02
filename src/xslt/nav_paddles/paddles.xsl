@@ -13,14 +13,14 @@
     <xsl:template match="/">
         <xsl:element name="div">
             <xsl:attribute name="class">
-                <xsl:text>article-nav-container</xsl:text>
+                <xsl:text>wbmd-paddles</xsl:text>
             </xsl:attribute>
             <xsl:attribute name="data-metrics-module">
                 <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_settings/title"></xsl:value-of>
             </xsl:attribute>
         </xsl:element>
         <xsl:element name="script">
-        <![CDATA[require(["funded-editorial/1/funded-navigation"]);]]>
+        <![CDATA[require(["funded-editorial/1/funded-paddles"]);]]>
         </xsl:element>
     </xsl:template>
 

@@ -1,0 +1,233 @@
+// Variables
+@import '../partials/variables';
+.wbmd-paddles {
+    position: fixed;
+    -webkit-backface-visibility: hidden;
+    width: 98%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    max-width: 980px;
+    z-index: 1001;
+    &.half-me {
+        width: 50%;
+        max-width: 490px;
+        .article-nav {
+            max-width: 490px !important;
+            a {
+                width: 100% !important;
+                &.next {
+                    border: 0 !important;
+                }
+            }
+        }
+    }
+    .article-nav {
+        position: absolute;
+        display: flex;
+        height: 70px;
+        bottom: -80px;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        border-top: 2px solid #000000;
+        background-color: #fff;
+        -webkit-transition: all 0.25s ease-in-out 0.25s;
+        -moz-transition: all 0.25s ease-in-out 0.25s;
+        -o-transition: all 0.25s ease-in-out 0.25s;
+        -ms-transition: all 0.25s ease-in-out 0.25s;
+        transition: all 0.25s ease-in-out 0.25s;
+        &.show {
+            bottom: 0px;
+            -webkit-transition-delay: 0s;
+            -moz-transition-delay: 0s;
+            -o-transition-delay: 0s;
+            -ms-transition-delay: 0s;
+            transition-delay: 0s;
+        }
+        a {
+            display: inline-table;
+            font-family: icons;
+            width: 50%;
+            padding: 15px 10px;
+            table-layout: fixed;
+            &.prev,
+            &.next {
+                &:before,
+                &:after {
+                    font-size: 27px;
+                    color: #c9c9c9;
+                }
+                .text {
+                    position: relative;
+                    display: table-cell;
+                    width: 100%;
+                    text-align: center;
+                    vertical-align: top;
+                    .nav {
+                        display: block;
+                        font-family: 'Roboto Condensed', Arial, sans-serif;
+                        font-size: 14px;
+                        text-transform: uppercase;
+                        color: #636466;
+                    }
+                    .title {
+                        display: block;
+                        font-family: 'Lato';
+                        font-size: 18px;
+                        color: #333132;
+                        line-height: 20px;
+                    }
+                }
+            }
+            &.prev {
+                &:before {
+                    float: left;
+                    content: "\e61a";
+                }
+                .text {
+                    padding-left: 20px;
+                }
+            }
+            &.next {
+                border-left: 1px solid #c9c9c9;
+                &:after {
+                    float: right;
+                    content: "\e61b";
+                }
+                .text {
+                    padding-right: 20px;
+                }
+            }
+        }
+    }
+}
+
+.no-touch {
+    .wbmd-paddles {
+        .article-nav {
+            a:hover {
+                background-color: #efefef;
+            }
+        }
+    }
+}
+
+
+/* Smartphones (portrait and landscape) ----------- */
+
+@media only screen and (max-width: 767px) {
+    .wbmd-paddles {
+        width: 100%;
+        .article-nav {
+            a {
+                &.prev,
+                &.next {
+                    .text {
+                        .nav {
+                            font-size: 11px;
+                        }
+                        .title {
+                            font-size: 11px;
+                            line-height: 13px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* Smartphones (landscape) ----------- */
+
+@media only screen and (min-width: 321px) {
+    /* STYLES GO HERE */
+}
+
+
+/* Smartphones (portrait) ----------- */
+
+@media only screen and (max-width: 320px) {
+    /* STYLES GO HERE */
+}
+
+
+/* Tablets, iPads (portrait and landscape) ----------- */
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    /* STYLES GO HERE */
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+
+
+/* Small screens ----------- */
+
+@media only screen and (min-width: 676px) {
+    /* STYLES GO HERE */
+}
+
+
+/* Small screens : Retina ----------- */
+
+@media only screen and (min-width: 676px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+
+
+/* Tablets, iPads (landscape) ----------- */
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    /* STYLES GO HERE */
+}
+
+
+/* Tablets, iPads (landscape) - Retina ----------- */
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+
+
+/* Tablets, iPads (portrait) ----------- */
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {}
+
+
+/* Tablets, iPads (portrait) - Retina ----------- */
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+
+
+/* Desktops and laptops ----------- */
+
+@media only screen and (min-width: 1025px) {
+    /* STYLES GO HERE */
+}
+
+
+/* Desktops and laptops - Retina ----------- */
+
+@media only screen and (min-width: 1025px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}
+
+
+/* Large screens : Non-Retina ----------- */
+
+@media only screen and (min-width: 1824px) {
+    /* STYLES GO HERE */
+}
+
+
+/* Large screens : Retina ----------- */
+
+@media only screen and (min-width: 1824px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    /* STYLES GO HERE */
+}

@@ -128,13 +128,10 @@
     }
 
     .tools {
-        width: 98%;
-
         .wbmd-kabob {
             position: relative;
             display: block;
             float: right;
-            top: 8px;
             right: 0;
             width: 45px;
             height: 45px;
@@ -179,17 +176,9 @@ body.menu-open {
 
 .scroll {
     overflow-x: hidden;
-    overflow-y: scroll !important;
+    overflow-y: auto !important;
 }
 
-
-/* Tablets, iPads (portrait and landscape) ----------- */
-
-@media only screen and (min-width: 320px) and (max-width: 736px) {
-    .wbmd-kabob {
-        top: 0px !important;
-    }
-}
 
 @media only screen and (max-width: 767px) {
     .wbmd-toolbar-menu {
