@@ -83,7 +83,7 @@ webmd.fundedEditorial.paddles = {
 
     getIdentifier: function() {
         var self = this,
-            $navContainer = $('.article-nav-container'),
+            $navContainer = $('.wbmd-paddles'),
             caIndex = webmd.fundedEditorial.articleData.currentArticle,
             ca, caType;
 
@@ -187,7 +187,7 @@ webmd.fundedEditorial.paddles = {
 
             require(['handlebars/1/handlebars'], function(Handlebars) {
                 var $template = $('#navigation_template'),
-                    $container = $('.article-nav-container'),
+                    $container = $('.wbmd-paddles'),
                     $article_nav = $('.article-nav'),
                     source = $template.html(),
                     template = Handlebars.compile(source),
