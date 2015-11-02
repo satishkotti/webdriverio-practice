@@ -4,7 +4,7 @@ if (!webmd) {
     webmd = {};
 }
 
-webmd.fundedEditorial.navigation = {
+webmd.fundedEditorial.paddles = {
 
     mobile_only: false,                         // flag used if navigation paddles should be displayed on mobile only
     hide_paddles: true,                         // default setting to hide paddles at speicific points on the page (very top, very bottom, specified pixels after the article)
@@ -202,5 +202,5 @@ webmd.fundedEditorial.navigation = {
 };
 
 $(function() {
-    webmd.fundedEditorial.navigation.init();
+    webmd.fundedEditorial.paddles.init();
 });
