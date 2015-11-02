@@ -95,6 +95,11 @@ webmd.fundedEditorial = {
 		if (self.segments && self.segments.length > 0) {
 			self.getSegmentArticleData();
 		}
+
+		if (window.s_business_reference === "TOC") {
+			self.tocTiles.init();
+			self.createSeeAllLink('.wbmd-masonry-container');
+		}
 	},
 
 	hasStorage: function() {
@@ -416,7 +421,7 @@ webmd.fundedEditorial = {
 		var self = this,
 			$ads;
 
-		if ($('html.move-ad').length !== 0) { // do not change ads inside infinite article
+		if (window.s_business_reference !== "TOC" && !$('html.move-ad').length) { // do not center ads on TOC or Infinite Article
 			for (var i=0; i<identifiers.length; i++) {
 				$ads = $(identifiers[i]);
 				centerMe($ads);
@@ -638,6 +643,16 @@ webmd.fundedEditorial = {
 
 	},
 
+	createSeeAllLink: function(selector) {
+		var self = this,
+			link = (self.articleData && self.articleData.program && self.articleData.program.seeAllLink) ? self.articleData.program.seeAllLink : 'see-all',
+			text = (self.articleData && self.articleData.program && self.articleData.program.seeAllText) ? self.articleData.program.seeAllText : "See All",
+			html = '<div class="see-all-link" data-metrics-module="ed-rspsvseeall"><a href="' + link + '">' + text + '</a></div>';
+
+		$(selector).append(html);
+
+	},
+
 	tocTiles: {
 
 		gridItemClass: 'wbmd-grid-item', // class name on each <div> provided by the XSL
@@ -647,19 +662,18 @@ webmd.fundedEditorial = {
 
 		init: function() {
 			var self = this;
-			if (window.s_business_reference === "TOC") {
-				if (typeof webmd.fundedEditorial.articleData !== 'undefined') {
 
-					self.article_data = webmd.fundedEditorial.articleData;
+			if (typeof webmd.fundedEditorial.articleData !== 'undefined') {
 
-					if (webmd.fundedEditorial.segments && webmd.fundedEditorial.segments.length > 0) {
-						self.createTocSegment();
-					} else {
-						self.start();
-					}
+				self.article_data = webmd.fundedEditorial.articleData;
 
-					self.bind_tocEvents();
+				if (webmd.fundedEditorial.segments && webmd.fundedEditorial.segments.length > 0) {
+					self.createTocSegment();
+				} else {
+					self.start();
 				}
+
+				self.bind_tocEvents();
 			}
 
 			return self;
@@ -1046,7 +1060,7 @@ webmd.fundedEditorial = {
 		menu: 'wbmd-slidein-menu',
 
         // Display in menu (top to bottom)
-		menuElements: ['.branded-nav-container', '.article-list-container', '.wbmd-upnext-segments'],
+		menuElements: ['.branded-up-next-container', '.up-next-container', '.wbmd-upnext-segments'],
 
 		init: function(createKabob) {
 			var self = this;
@@ -1196,5 +1210,4 @@ if(typeof s_sponsor_program !== 'undefined' && s_sponsor_program.indexOf('Mobile
 
 $(function() {
 	webmd.fundedEditorial.init();
-	webmd.fundedEditorial.tocTiles.init();
 });

@@ -1,11 +1,11 @@
 var webmd;
 
 if (!webmd) {
-    webmd = {};
+	webmd = {};
 }
 
 webmd.fundedEditorial.brandedNavigation = {
-	articles_to_display: $('.branded-nav-container').data('linkCount'), 	// number of articles 
+	articles_to_display: $('.branded-up-next-container').data('linkCount'), 	// number of articles 
 	display_see_all: true,
 	article_ids_to_display: [],
 	article_data: {"articles":[]},
@@ -13,7 +13,7 @@ webmd.fundedEditorial.brandedNavigation = {
 
 	init : function() {
 		if (this.articles_to_display <= 0 || this.checkIfDisabled()) {
-			$('.branded-nav-container').remove(); // remove placeholder created by XSL
+			$('.branded-up-next-container').remove(); // remove placeholder created by XSL
 			webmd.fundedEditorial.createMenu.init(false); // setup toolbar (no kabob)
 			return false;
 		}
@@ -40,10 +40,10 @@ webmd.fundedEditorial.brandedNavigation = {
 
 	setSeeAllLink : function() {
 		var articles = webmd.fundedEditorial.articleData.articles,
-			$seeAllContainer = $('.branded-nav-container > .wbmd-see-all'),
+			$seeAllContainer = $('.branded-up-next-container > .wbmd-see-all'),
 			$a = $('<a></a>'),
-			overrideText = /*webmd.fundedEditorial.articleData.program.seeAllText*/'',
-			linkText = (overrideText.length > 0) ? overrideText : "SEE ALL",
+			overrideText = webmd.fundedEditorial.articleData.program.seeAllText,
+			linkText = (overrideText.length > 0) ? overrideText : "See All",
 			linkUrl = webmd.fundedEditorial.articleData.program.seeAllLink + '#see-all-spon',
 			count = 0;
 
@@ -115,7 +115,7 @@ webmd.fundedEditorial.brandedNavigation = {
 
 	render: function() {
 		var self = this,
-			$container = $(".branded-nav-container > .wbmd-nav-links"),
+			$container = $(".branded-up-next-container > .wbmd-nav-links"),
 			links;
 
 		links = createArticleLinkNodes();
@@ -147,5 +147,5 @@ webmd.fundedEditorial.brandedNavigation = {
 };
 
 $(function() {
-    webmd.fundedEditorial.brandedNavigation.init();
+	webmd.fundedEditorial.brandedNavigation.init();
 });

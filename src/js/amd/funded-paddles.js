@@ -4,7 +4,7 @@ if (!webmd) {
     webmd = {};
 }
 
-webmd.fundedEditorial.navigation = {
+webmd.fundedEditorial.paddles = {
 
     mobile_only: false,                         // flag used if navigation paddles should be displayed on mobile only
     hide_paddles: true,                         // default setting to hide paddles at speicific points on the page (very top, very bottom, specified pixels after the article)
@@ -83,7 +83,7 @@ webmd.fundedEditorial.navigation = {
 
     getIdentifier: function() {
         var self = this,
-            $navContainer = $('.article-nav-container'),
+            $navContainer = $('.wbmd-paddles'),
             caIndex = webmd.fundedEditorial.articleData.currentArticle,
             ca, caType;
 
@@ -187,7 +187,7 @@ webmd.fundedEditorial.navigation = {
 
             require(['handlebars/1/handlebars'], function(Handlebars) {
                 var $template = $('#navigation_template'),
-                    $container = $('.article-nav-container'),
+                    $container = $('.wbmd-paddles'),
                     $article_nav = $('.article-nav'),
                     source = $template.html(),
                     template = Handlebars.compile(source),
@@ -202,5 +202,5 @@ webmd.fundedEditorial.navigation = {
 };
 
 $(function() {
-    webmd.fundedEditorial.navigation.init();
+    webmd.fundedEditorial.paddles.init();
 });

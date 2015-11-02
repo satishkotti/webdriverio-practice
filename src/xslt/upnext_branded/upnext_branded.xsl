@@ -17,7 +17,7 @@
     <xsl:template match="module_data">
         <xsl:element name="div">
             <xsl:attribute name="class">
-                <xsl:text><![CDATA[branded-nav-container]]></xsl:text>
+                <xsl:text><![CDATA[branded-up-next-container]]></xsl:text>
             </xsl:attribute>
             <!-- Use branded background color for module - currently disabled
             <xsl:attribute name="class">
@@ -52,7 +52,7 @@
         </xsl:element>
         
         <xsl:element name="script">
-        <![CDATA[require(["funded-editorial/1/branded-page-navigation"]);]]>
+        <![CDATA[require(["funded-editorial/1/funded-upnext-branded"]);]]>
         </xsl:element>
     </xsl:template>
 
