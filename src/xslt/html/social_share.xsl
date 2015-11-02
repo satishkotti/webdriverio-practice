@@ -51,20 +51,24 @@
 			<xsl:attribute name="type">text/javascript</xsl:attribute>
 			<xsl:text>
 (function() {
-	var config = { 
-		</xsl:text>
-			<xsl:apply-templates select="//contentText"></xsl:apply-templates>
+	if (!webmd.m.socialshareconfig) {
+		webmd.m.socialshareconfig = {
+			</xsl:text>
+				<xsl:apply-templates select="//contentText"></xsl:apply-templates>
 			<xsl:text>
-	};
+		}
+	}
 
-	require.config({
+require.config({
 		paths: {
 			"webmd.m.socialshareplugin": "socialshareplugin/1/webmd.m.socialshareplugin.min"
 		}
 	});
 
     require(["webmd.m.socialshareplugin", "css!socialshareplugin/1/socialshareplugin.min.css"], function() {
-		$("#</xsl:text><xsl:value-of select="$moduletitle"/><xsl:text>").socialshareplugin(config);
+    	$(function() {
+			$("#</xsl:text><xsl:value-of select="$moduletitle"/><xsl:text>").socialshareplugin(webmd.m.socialshareconfig);
+		});
 	});
 	
 }());
