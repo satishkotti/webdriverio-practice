@@ -13,7 +13,7 @@
     <xsl:template match="/">
         <xsl:element name="div">
             <xsl:attribute name="class">
-                <xsl:text>article-list-container</xsl:text>
+                <xsl:text>up-next-container</xsl:text>
             </xsl:attribute>
             <xsl:attribute name="data-link-count">
                 <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_data/descriptions/description/description_text"></xsl:value-of>
@@ -49,7 +49,7 @@
         </xsl:element>
         
         <xsl:element name="script">
-        <![CDATA[require(["funded-editorial/1/funded-nextup"]);]]>
+        <![CDATA[require(["funded-editorial/1/funded-upnext"]);]]>
         </xsl:element>
     </xsl:template>
 
