@@ -27,7 +27,7 @@
         background-color: #009be8;
         z-index: 1;
         cursor: pointer;
-        
+
         span, span:before, span:after {
             cursor: pointer;
             border-radius: 50%;
@@ -89,7 +89,9 @@
         min-width: 100%;
         background-color: #ffffff;
         z-index: 10000;
-        box-shadow: 0 4px 2px -2px #e2e3e4;
+        //box-shadow: 0 4px 2px -2px #e2e3e4;
+        border-bottom: 3px #e0e0e0 solid;
+        padding: 3px 0;
 
         .tools {
             position: relative;
@@ -100,7 +102,7 @@
             overflow: hidden;
 
             .social-share-tools {
-                margin: 0;
+                margin: 3px 0 0 -3px;
             }
 
             .wbmd-kabob {
