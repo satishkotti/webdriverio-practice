@@ -827,6 +827,10 @@ webmd.fundedEditorial = {
 
 			if (!$node.hasClass('icm_wrap') && !$node.hasClass('dbm_wrap')) {
 				$node.addClass('tile-width'); // default size for all editorial tiles in TOC that are not ICM or DBM
+
+				if ($node.find('.poll').length) {
+					$node.addClass('msnry-poll');
+				}
 			} else {
 				if (typeof nodeId !== 'undefined' && nodeId !== null) {
 					if (regEx_3col.test(nodeId)) {
@@ -903,7 +907,7 @@ webmd.fundedEditorial = {
 				$node.attr('data-orig-height', nodeH);
 			}
 
-			if (windowW < 675) {
+			if (windowW < 675 || $node.hasClass('wbmd-promo-seg-title')) {
 				$node.css('cssText', $node.attr('data-orig-csstext'));
 			} else {
 				if (windowW < 1000 && nodeW >= 650) {
@@ -936,14 +940,10 @@ webmd.fundedEditorial = {
 						}
 					}
 
-					if (multiplier === 1) {
-						$node.css('cssText', $node.attr('data-orig-csstext'));
-					} else {
-						newHeight = ((self.standardTileHeight * multiplier) + (gutter * multiplier));
-						btmMargin = newHeight - nodeH;
+					newHeight = ((self.standardTileHeight * multiplier) + (gutter * multiplier));
+					btmMargin = newHeight - nodeH;
 
-						$node.attr('style', $node.attr('data-orig-csstext') + ' margin-bottom: ' + btmMargin + 'px !important');
-					}
+					$node.attr('style', $node.attr('data-orig-csstext') + ' margin-bottom: ' + btmMargin + 'px !important');
 				}
 			}
 		},
