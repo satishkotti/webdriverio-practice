@@ -383,7 +383,7 @@ webmd.fundedEditorial = {
 
 	bindEvents: function() {
 		var self = this,
-			mastheadH = $('.masthead').outerHeight(true);
+			mastheadH = $('.masthead.wmd-sticky').outerHeight(true);
 
 		$(window).load(function() {
 			self.centerAds(['.bottom_ad_rdr', '#rightAd_rdr']); //pass specific ad identifiers for centering as array
@@ -406,7 +406,7 @@ webmd.fundedEditorial = {
 	        		$toolbarContainer.removeClass('stick'); // put visible toolbar back into document flow
 	    		}
 			} else {
-				if (y > mastheadH) {
+				if (y > mastheadH && mastheadH !== null) {
 					self.stickMasthead(mastheadH);
 				} else {
 					self.unstickMasthead();

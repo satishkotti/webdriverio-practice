@@ -158,7 +158,7 @@
 
 						if($('.isi-main-content .isi-min-show-mobile').length > 0 && webmd.useragent.ua.type === 'mobile'){
 							isiHideName = $('.isi-main-content .isi-min-show-mobile');
-						} else if ($('.isi-main-content .isi-min-show-desktop').length > 0 && webmd.useragent.ua.type === 'desktop') {
+						} else if ($('.isi-main-content .isi-min-show-desktop').length > 0 && webmd.useragent.ua.type !== 'mobile') {
 							isiHideName = $('.isi-main-content .isi-min-show-desktop');
 						} else {
 							isiHideName = $('.isi-main-content');
