@@ -916,35 +916,27 @@ webmd.fundedEditorial = {
 					nodeH = parseInt($node.attr('data-orig-height'));
 
 					if (nodeH > self.standardTileHeight) {
-						if ((nodeH === (self.standardTileHeight * 2)) ||
-							((nodeH > self.standardTileHeight) && (nodeH < (self.standardTileHeight * 2)))) {
-							multiplier = 2;
-						} else if (
-							(nodeH === (self.standardTileHeight * 3)) ||
-							((nodeH > (self.standardTileHeight * 2)) && (nodeH < (self.standardTileHeight * 3)))) {
-							multiplier = 3;
-						} else if (
-							(nodeH === (self.standardTileHeight * 4)) ||
-							((nodeH > (self.standardTileHeight * 3)) && (nodeH < (self.standardTileHeight * 4)))) {
-							multiplier = 4;
-						} else if (
-							(nodeH === (self.standardTileHeight * 5)) ||
-							((nodeH > (self.standardTileHeight * 4)) && (nodeH < (self.standardTileHeight * 5)))) {
-							multiplier = 5;
-						} else if (
-							(nodeH === (self.standardTileHeight * 6)) ||
-							((nodeH > (self.standardTileHeight * 5)) && (nodeH < (self.standardTileHeight * 6)))) {
-							multiplier = 6;
-						} else {
-							multiplier = 7;
-						}
-					}
+						multiplier = getMultiplier(nodeH, self.standardTileHeight, gutter);
+					}					
 
 					newHeight = ((self.standardTileHeight * multiplier) + (gutter * multiplier));
 					btmMargin = newHeight - nodeH;
 
 					$node.attr('style', $node.attr('data-orig-csstext') + ' margin-bottom: ' + btmMargin + 'px !important');
 				}
+			}
+
+			function getMultiplier(nodeHeight, standardTileHeight, gutter) {
+				var sTileH_plus_gutter = standardTileHeight + gutter;
+
+				for (var i = 1; i < 10; i++) {
+					if ((nodeHeight === (sTileH_plus_gutter * i)) ||
+						((nodeHeight > sTileH_plus_gutter) && (nodeHeight < (sTileH_plus_gutter * i)))) {
+						return i; // multiplier found
+					}
+				}
+
+				return 1; // no multiplier found, return 1 for standard height
 			}
 		},
 
