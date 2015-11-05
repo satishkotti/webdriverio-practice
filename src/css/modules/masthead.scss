@@ -15,10 +15,10 @@
 	.masthead-left {
 		float: left;
 	}
-	.masthead-right {
-		float: right;
-		overflow: hidden;
-	}
+	// .masthead-right {
+	// 	float: right;
+	// 	overflow: hidden;
+	// }
 
 	#logo {
 		float: left;
@@ -150,12 +150,12 @@
 			}
 		}
 
-		.masthead-right {
-			margin-top: 10px;
-			clear: both;
-			width: 100%;
-			text-align: center;
-		}
+		// .masthead-right {
+		// 	margin-top: 10px;
+		// 	clear: both;
+		// 	width: 100%;
+		// 	text-align: center;
+		// }
 	}
 	.masthead-stuck {
 
@@ -172,12 +172,12 @@
 				}
 			}
 
-			.masthead-right {
-				margin-top: 0px;
-				clear: none;
-				width: auto;
-				text-align: center;
-			}
+			// .masthead-right {
+			// 	margin-top: 0px;
+			// 	clear: none;
+			// 	width: auto;
+			// 	text-align: center;
+			// }
 		}
 	}
 

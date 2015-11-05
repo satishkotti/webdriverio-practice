@@ -155,7 +155,7 @@
 			<![CDATA[
 			$(function(){
 				require(["handlebars/1/handlebars"], function(Handlebars) {
-					var segLength = webmd.fundedEditorial.segments.length,
+					var segLength = webmd.fundedEditorial.segments ? webmd.fundedEditorial.segments.length : 0,
 						segCount = 0;
 
 					if (typeof webmd.fundedEditorial.segments !== "undefined") {
