@@ -17,7 +17,8 @@
 div.wbmd-grid-item {
     min-height: 313px;
     margin: 0 0 10px 0 !important;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.125);
+    border: 0px;
+    border-bottom: 3px solid #e8e8ea;
     &.tile-width {
         width: 320px;
     }
@@ -34,7 +35,7 @@ div.wbmd-grid-item {
             font-size: 2em;
             line-height: 24px;
             color: #333132;
-            height: 95px;
+            height: 92px;
             padding: 10px 15px;
         }
     }
@@ -63,6 +64,11 @@ div.wbmd-grid-item:not(.dbm_wrap):not(.icm_wrap) {
 
 .msnry-article {
     background-color: #f7f7f7 !important;
+}
+
+.msnry-poll {
+    border: 1px solid #e8e8ea !important;
+    border-bottom: 3px solid #e8e8ea !important;
 }
 
 div.icm_wrap,
@@ -101,6 +107,7 @@ div.dbm_wrap {
     min-height: 0px !important;
     background-color: transparent !important;
     box-shadow: none !important;
+    border-bottom: 0px !important;
     font-family: 'Lato', Arial, sans-serif;
     font-size: 1.75em;
     font-weight: bold;

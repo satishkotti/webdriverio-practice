@@ -827,6 +827,10 @@ webmd.fundedEditorial = {
 
 			if (!$node.hasClass('icm_wrap') && !$node.hasClass('dbm_wrap')) {
 				$node.addClass('tile-width'); // default size for all editorial tiles in TOC that are not ICM or DBM
+
+				if ($node.find('.poll').length) {
+					$node.addClass('msnry-poll');
+				}
 			} else {
 				if (typeof nodeId !== 'undefined' && nodeId !== null) {
 					if (regEx_3col.test(nodeId)) {
@@ -903,7 +907,7 @@ webmd.fundedEditorial = {
 				$node.attr('data-orig-height', nodeH);
 			}
 
-			if (windowW < 675) {
+			if (windowW < 675 || $node.hasClass('wbmd-promo-seg-title')) {
 				$node.css('cssText', $node.attr('data-orig-csstext'));
 			} else {
 				if (windowW < 1000 && nodeW >= 650) {
@@ -912,39 +916,27 @@ webmd.fundedEditorial = {
 					nodeH = parseInt($node.attr('data-orig-height'));
 
 					if (nodeH > self.standardTileHeight) {
-						if ((nodeH === (self.standardTileHeight * 2)) ||
-							((nodeH > self.standardTileHeight) && (nodeH < (self.standardTileHeight * 2)))) {
-							multiplier = 2;
-						} else if (
-							(nodeH === (self.standardTileHeight * 3)) ||
-							((nodeH > (self.standardTileHeight * 2)) && (nodeH < (self.standardTileHeight * 3)))) {
-							multiplier = 3;
-						} else if (
-							(nodeH === (self.standardTileHeight * 4)) ||
-							((nodeH > (self.standardTileHeight * 3)) && (nodeH < (self.standardTileHeight * 4)))) {
-							multiplier = 4;
-						} else if (
-							(nodeH === (self.standardTileHeight * 5)) ||
-							((nodeH > (self.standardTileHeight * 4)) && (nodeH < (self.standardTileHeight * 5)))) {
-							multiplier = 5;
-						} else if (
-							(nodeH === (self.standardTileHeight * 6)) ||
-							((nodeH > (self.standardTileHeight * 5)) && (nodeH < (self.standardTileHeight * 6)))) {
-							multiplier = 6;
-						} else {
-							multiplier = 7;
-						}
-					}
+						multiplier = getMultiplier(nodeH, self.standardTileHeight, gutter);
+					}					
 
-					if (multiplier === 1) {
-						$node.css('cssText', $node.attr('data-orig-csstext'));
-					} else {
-						newHeight = ((self.standardTileHeight * multiplier) + (gutter * multiplier));
-						btmMargin = newHeight - nodeH;
+					newHeight = ((self.standardTileHeight * multiplier) + (gutter * multiplier));
+					btmMargin = newHeight - nodeH;
 
-						$node.attr('style', $node.attr('data-orig-csstext') + ' margin-bottom: ' + btmMargin + 'px !important');
+					$node.attr('style', $node.attr('data-orig-csstext') + ' margin-bottom: ' + btmMargin + 'px !important');
+				}
+			}
+
+			function getMultiplier(nodeHeight, standardTileHeight, gutter) {
+				var sTileH_plus_gutter = standardTileHeight + gutter;
+
+				for (var i = 1; i < 10; i++) {
+					if ((nodeHeight === (sTileH_plus_gutter * i)) ||
+						((nodeHeight > sTileH_plus_gutter) && (nodeHeight < (sTileH_plus_gutter * i)))) {
+						return i; // multiplier found
 					}
 				}
+
+				return 1; // no multiplier found, return 1 for standard height
 			}
 		},
 

@@ -62,16 +62,6 @@ define(['bx_slider/1/bx_slider'], {
             $nextBtn,
             inputVal;
 
-        // Remove quiz image on mobile devices, display on tablet/desktop
-        if (webmd.fundedEditorial.uaType === 'mobile') {
-            $('.rich_media_quiz .slide_media img.rsImg').remove();
-        } else {
-            $('.rich_media_quiz .slide_media img.rsImg').css({
-                'display': 'block',
-                'visibility': 'visible'
-            });
-        }
-
         self.slideInfo = [];
 
         // Add slide data and additional parameters to the RMQ object
