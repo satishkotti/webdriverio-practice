@@ -201,13 +201,19 @@
 .reviewer {
 	margin-top: 10px;
 }
-.sLink {
+p.sLink {
 	margin-bottom: 20px;
 }
-.disclaimer,
-.copyright {
+p.disclaimer,
+p.copyright {
 	font-size: 1.5em;
 	line-height: 22px;
+	margin-bottom: 5px;
+}
+.source.sContent p {
+	color: #666;
+	font-size: 1.2em;
+	line-height: 24px;
 	margin-bottom: 5px;
 }
 @media only screen and (min-width: 676px) and (max-width: 915px), only screen and (max-width: 530px) {
