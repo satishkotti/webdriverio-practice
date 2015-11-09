@@ -268,7 +268,7 @@
 								<xsl:when test="$rev_link != ''">
 									<xsl:element name="a">
 										<xsl:attribute name="data-metrics-link">
-											<xsl:text>review-lnk</xsl:text>
+											<xsl:text>art_medrev</xsl:text>
 										</xsl:attribute>
 										<xsl:attribute name="href">
 											<xsl:value-of select="$rev_link"/>
