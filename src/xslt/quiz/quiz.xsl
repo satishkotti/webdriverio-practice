@@ -1313,7 +1313,7 @@ webmd.m.checkVideoType("rmqvideo]]></xsl:text>
 									<xsl:text>nw</xsl:text>
 								</xsl:with-param>
 								<xsl:with-param name="tracking_val">
-									<xsl:text>review-lnk</xsl:text>
+									<xsl:text>art_medrev</xsl:text>
 								</xsl:with-param>
 							</xsl:call-template>
 						</xsl:attribute>
