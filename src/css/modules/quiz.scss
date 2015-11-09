@@ -5,17 +5,18 @@ $green_color: #6b9c2e;
 $orange_color: #f67f00;
 $red_color: #ff0000;
 $grey_color: #dddddd;
-$lato_font: 'Lato', sans-serif;
+$lato_font: Lato,Arial,sans-serif;
 
 #rmq_header {
     position: relative;
     padding: 20px 0 10px 0;
 
     h2 {
-	    color: #222;
+    	color: #333132;
 	    font-family: $lato_font;
-	    font-size: 34px;
-	    font-weight: 400;
+	    font-size: 5.8rem;
+		line-height: 56px;
+		font-weight: 900;
 	}
 }
 
@@ -40,8 +41,13 @@ $lato_font: 'Lato', sans-serif;
     }
 
     h2 {
-	    font-size: 24px;
+	    font-size: 3em;
+	    font-weight: 900;
 	    font-weight: normal;
+    }
+
+    h3 {
+    	font-size: 2.4em;
     }
 
     #rmq_scorebox {
@@ -97,8 +103,7 @@ $lato_font: 'Lato', sans-serif;
 	    			position: relative;
 
 					img {
-					    display: none;
-					    visibility: hidden;
+					    display: block;
 					    width: 100%;
 					    height: auto;
 					    max-height: 346px;
@@ -187,15 +192,9 @@ $lato_font: 'Lato', sans-serif;
 						.rmq_progress {
 						    color: #666;
 						    font-family: $lato_font;
-						    font-size: 12px;
+						    font-size: 1.6em;
 						    text-transform: uppercase;
 						    margin-bottom: 0.5em;
-						}
-
-						h3 {
-						    font-size: 22px;
-						    /* font-size: 2.2rem; */
-						    line-height: 1.5em;
 						}
 
 						h3:nth-child(n) {
@@ -245,6 +244,10 @@ $lato_font: 'Lato', sans-serif;
 						    display: block;
 						    overflow: hidden;
 
+						    &:hover, &:active, &:visited {
+						    	text-decoration: none !important;
+						    }
+
 							.input {
 							    color: #797979;
 							    font-family: $lato_font;
@@ -259,7 +262,7 @@ $lato_font: 'Lato', sans-serif;
 							    border-bottom-right-radius: 50%;
 							    text-align: center;
 							    line-height: 64px;
-							    font-size: 28px;
+							    font-size: 2.8em;
 							    font-weight: lighter;
 							}
 						}
@@ -273,7 +276,7 @@ $lato_font: 'Lato', sans-serif;
 						    padding: 0 0 0 15px;
 						    width: auto;
 						    height: 64px;
-						    font-size: 22px;
+						    font-size: 2.2em;
 						    line-height: 1.4em;
 						    display: table-cell;
 							vertical-align: middle;
@@ -296,7 +299,7 @@ $lato_font: 'Lato', sans-serif;
 
 						    .expl_content {
 								p {
-								    font-size: 15px;
+								    font-size: 1.5em;
 								    margin: 1em 0;
 								}
 							}
@@ -304,7 +307,7 @@ $lato_font: 'Lato', sans-serif;
 
 						.user_answer {
 						    font-family: $lato_font;
-						    font-size: 20px;
+						    font-size: 2.0em;
 						}
 
 						.incorrect, .correct {
@@ -312,12 +315,12 @@ $lato_font: 'Lato', sans-serif;
 							width: auto;
 						    height: auto;
 						    min-height:64px;
-						    margin: 20px 0 3em 0;
+						    margin: 20px 0 2em 0;
 
 							&:before {
 							    float: left;
 							    font-family: 'icons';
-							    font-size: 64px;
+							    font-size: 3em;
 							    color: #fff;
 							    border-top-left-radius: 50%;
 							    border-top-right-radius: 50%;
@@ -346,7 +349,7 @@ $lato_font: 'Lato', sans-serif;
 
 						.correct_answer {
 							display: none;
-						    font-size: 19px;
+						    font-size: 1.9em;
 						}
 					}
 				}
@@ -362,8 +365,7 @@ $lato_font: 'Lato', sans-serif;
 				    margin: 0 auto;
 				    text-align: center;
 				    text-transform: uppercase;
-				    font-size: 10px;
-				    /* font-size: 1rem; */
+				    font-size: 1em;
 				    color: #808184;
 				}
 
@@ -373,31 +375,36 @@ $lato_font: 'Lato', sans-serif;
 
 				h3 {
 				    color: #322e32;
-				    font-size: 18px;
-				    /* font-size: 1.8rem; */
+				    font-size: 1.8em;
 				    padding: 0 45px 3em 45px;
 				}
 			}
 
 			&.results {
-				#rmq_total_pct, #rmq_total_rank {
-				    color: #252525;
-				    display: none;
-				    font-family: $lato_font;
-				    font-size: 24px;
+				.slide_text {
+					padding: 20px !important;
+				}
+				
+				#rmq_total_rank {
+					display: none;
 				}
 
 				#rmq_total_pct {
-					.score_pct {
+					color: #252525;
+				    display: none;
+				    font-family: $lato_font;
+				    font-size: 2em;
+
+				    .score_pct {
 					    font-weight: bold;
-					    font-size: 24px;
+					    font-size: 2.4em;
 					}
 
 					.score_text {
 					    color: #222;
 					    font-family: $lato_font;
-					    font-size: 20px;
-					    margin-top: 2em;
+					    font-size: 1em;
+					    margin-top: 22px;
 					}
 				}
 
@@ -408,15 +415,15 @@ $lato_font: 'Lato', sans-serif;
 				}
 
 				.rmq_results {
-				    padding: 10px 0;
+				    padding: 30px 0;
 
 					p {
-					    font-size: 15px;
+					    font-size: 1.9em;
 					}
 				}
 
 				#results_controls {
-				    padding-top: 10px;
+				    padding-top: 20px;
 				    overflow: auto;
 
 					.rmq_retake {
@@ -433,7 +440,7 @@ $lato_font: 'Lato', sans-serif;
 					    margin: 0 40px 20px 0;
 					    padding: 0 20px;
 					    font-family: $lato_font;
-					    font-size: 14px;
+					    font-size: 1.4em;
 					}
 
 					.rmq_social_ico {
@@ -455,6 +462,7 @@ $lato_font: 'Lato', sans-serif;
 					}
 
 					.rmq_next_article {
+						float: right;
 						display: inline-block;
 						visibility: hidden;
 
@@ -465,28 +473,30 @@ $lato_font: 'Lato', sans-serif;
 							.wbmd-subhead {
 								display: block;
 								font-family: 'Roboto Condensed', Arial, sans-serif;
-						        font-size: 0.8em;
-						        text-transform: uppercase;
-						        color: #74b0b0;
-						        padding-bottom: 10px;
+							    font-size: 1.2em;
+							    text-transform: uppercase;
+							    color: #74b0b0;
+							    padding-bottom: 2px;
 							}
 
 							.wbmd-title {
 								display: block;
-				                font-family: 'Chivo', Arial, sans-serif;
-				                font-size: 1em;
-				                line-height: 1.2em;
-				                color: #3b3b3c;
+							    font-family: 'Chivo', Arial, sans-serif;
+							    font-size: 1.6em;
+							    line-height: 21px;
+							    color: #3b3b3c;
+							    padding: 0;
+							    margin: 0;
 							}
 						}
 
 						&:after {
 							float: right;
 							font-family: 'icons';
-							font-size: 27px;
+							font-size: 2.7em;
       						color: #c9c9c9;
       						content: "\e61b";
-      						margin: 10px 0 0 15px;
+      						margin: 5% 0 0 5px;
 						}
 					}
 				}
@@ -496,7 +506,7 @@ $lato_font: 'Lato', sans-serif;
 
 	.rmq_footer {
 	    color: #666;
-	    font-size: 14px;
+	    font-size: 1em;
 	    padding: 1em 0 1.5em;
 	    border-top: 1px solid #eee;
 
@@ -506,7 +516,7 @@ $lato_font: 'Lato', sans-serif;
 		}
 
 		p {
-		    font-size: 14px;
+		    font-size: 1.4em;
 		    margin: 0.2em 0;
 		    padding: 0 20px;
 		}
@@ -555,11 +565,18 @@ $lato_font: 'Lato', sans-serif;
 
 
 /* Media Queries */
-/* Smartphones (portrait and landscape) ----------- */
+/* Smartphones ----------- */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    /* STYLES GO HERE */
+    .rmq_next_article {
+    	float: none !important;
+    }
+}
+
 @media only screen and (min-width: 320px) and (max-width: 675px) {
 	#rmq_header {
 		h2 {
-			font-size: 20px;
+			font-size: 2em;
 		}
 	}
 
@@ -570,17 +587,13 @@ $lato_font: 'Lato', sans-serif;
 			    	.slide_media {
 			    		.slide_question {
 			    			position: relative !important;
-			    			padding: 20px 35px;
+			    			padding: 20px;
 			    			background-color: #eee;
-
-			    			h3 {
-			    				font-size: 1em;
-			    			}
 			    		}
 			    	}
 
 			    	.slide_text {
-			    		padding: 1.6em 35px;
+			    		padding: 20px;
 
 					    .radio_inputs {
 						    margin: 10px 0 1.25em 0;
@@ -590,27 +603,27 @@ $lato_font: 'Lato', sans-serif;
 								    width: 40px;
 								    height: 40px;
 								    line-height: 40px;
-								    font-size: 20px;
+								    font-size: 2em;
 								}
 							}
 
 							p {
 							    padding: 0 0 0 15px;
-							    font-size: 16px;
+							    font-size: 1.6em;
 							    height: 40px;
 							}
 						}
 
 						.rmq_answers {
 							.user_answer {
-							    font-size: 16px;
+							    font-size: 1.6em;
 							}
 							.incorrect, .correct {
 								margin: 10px 0 1.25em 0;
 								min-height:40px;
 
 						    	&:before {
-								    font-size: 40px;
+								    font-size: 3em;
 								}
 							}
 						}
@@ -637,10 +650,11 @@ $lato_font: 'Lato', sans-serif;
 	}
 }
 
-@media only screen and (min-width: 321px) and (max-width: 767px) {
+@media only screen and (min-width: 320px) and (max-width: 767px) {
 	#rmq_header {
 		h2 {
-			font-size: 1.75em;
+			font-size: 2.8rem;
+    		line-height: 30px;
 		}
 	}
 
@@ -651,17 +665,13 @@ $lato_font: 'Lato', sans-serif;
 			    	.slide_media {
 			    		.slide_question {
 			    			position: relative !important;
-			    			padding: 20px 35px;
+			    			padding: 20px;
 			    			background-color: #eee;
-
-			    			h3 {
-			    				font-size: 1em;
-			    			}
 			    		}
 			    	}
 
 			    	.slide_text {
-			    		padding: 1.6em 35px;
+			    		padding: 20px 40px 20px 40px;
 
 					    .radio_inputs {
 						    margin: 10px 0 1.25em 0;
@@ -671,20 +681,20 @@ $lato_font: 'Lato', sans-serif;
 								    width: 40px;
 								    height: 40px;
 								    line-height: 40px;
-								    font-size: 20px;
+								    font-size: 2em;
 								}
 							}
 
 							p {
 							    padding: 0 0 0 15px;
-							    font-size: 16px;
+							    font-size: 1.6em;
 							    height: 40px;
 							}
 						}
 
 						.rmq_answers {
 							.user_answer {
-							    font-size: 16px;
+							    font-size: 1.6em;
 							}
 
 							.incorrect, .correct {
@@ -692,7 +702,7 @@ $lato_font: 'Lato', sans-serif;
 								min-height:40px;
 
 						    	&:before {
-								    font-size: 40px;
+								    font-size: 3em;
 								}
 							}
 						}
@@ -703,10 +713,13 @@ $lato_font: 'Lato', sans-serif;
 	}
 }
 
-/* Smartphones (landscape) ----------- */
-@media only screen and (min-width: 321px) {
+@media only screen and (min-width: 768px) and (max-width: 848px) { /* Special media query for next article link */
     /* STYLES GO HERE */
+    .rmq_next_article {
+    	float: none !important;
+    }
 }
+
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: 320px) {
     /* STYLES GO HERE */
@@ -747,10 +760,6 @@ $lato_font: 'Lato', sans-serif;
 			    			position: relative !important;
 			    			padding: 20px 45px;
 			    			background-color: #eee;
-
-			    			h3 {
-			    				font-size: 1em;
-			    			}
 			    		}
 			    	}
 
@@ -763,13 +772,13 @@ $lato_font: 'Lato', sans-serif;
 								    width: 50px;
 								    height: 50px;
 								    line-height: 50px;
-								    font-size: 24px;
+								    font-size: 2.4em;
 								}
 							}
 
 							p {
 							    padding: 0 0 0 15px;
-							    font-size: 22px;
+							    font-size: 2.2em;
 							    height: 50px;
 							}
 						}
@@ -780,7 +789,7 @@ $lato_font: 'Lato', sans-serif;
 								min-height:50px;
 
 								&:before {
-								    font-size: 50px;
+								    font-size: 3em;
 								}
 							}
 						}

@@ -77,6 +77,7 @@
 					position: relative;
 					float: left;
 					margin-right: 10px;
+					min-width: 120px;
 
 					img {
 						max-width: 120px;
@@ -118,7 +119,7 @@
 		overflow: hidden;
 
 		.see-all-seg-item {
-			width: 48%;
+			width: 49%;
 			margin-right: 2%;
 			margin-bottom: 20px;
 			min-height: 313px;
@@ -128,6 +129,9 @@
 
 			&:nth-child(2n+1) {
 				clear: both;
+			}
+			&:nth-child(2n) {
+				margin-right: 0;
 			}
 
 			p {
