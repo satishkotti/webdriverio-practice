@@ -84,6 +84,7 @@
 	height: 60px;
 	padding: 0 10px;
 	display: block;
+	text-decoration: none !important;
 }
 .slideshow .bx-controls .bx-prev:before,
 .slideshow .bx-controls .bx-next:before  {
@@ -188,7 +189,7 @@
 	margin: 35px 0 0;
 }
 .slideshow .slide-end h4 .next-art {
-	font-size: 2.4em;
+	font-size: 1.33em;
 }
 .sources {
 	margin: 20px 0;
