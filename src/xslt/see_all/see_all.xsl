@@ -26,6 +26,7 @@
 
 			<article id="art" class="article see-all">
 				<div class="article-content">
+					<h3>From WebMD</h3>
 					<div class="see-all-items non-spon" data-metrics-module="ed-rspsvalledcon">
 						<ul>
 							{{#each_when articles "sponsored" false}}

@@ -7,6 +7,10 @@
     .toc-desc-link {
         display: block;
         position: relative;
+
+        &:hover {
+            text-decoration: none;
+        }
     }
     .type_vid::after {
         content: '';
