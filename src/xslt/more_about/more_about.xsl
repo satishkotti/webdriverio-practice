@@ -11,11 +11,11 @@
     <xsl:param name="domain">webmd.com</xsl:param>
     
     <xsl:param name="data_metrics_module">
-        <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_settings/title"/>
+        <xsl:value-of select="/webmd_rendition/content/wbmd_asset/webmd_module/module_settings/title"/>
     </xsl:param>
     
     <xsl:param name="full_length">
-        <xsl:value-of select="count(webmd_rendition/content/wbmd_asset/webmd_module/module_data/links/link)"/>
+        <xsl:value-of select="count(/webmd_rendition/content/wbmd_asset/webmd_module/module_data/links/link)"/>
     </xsl:param>
     
     <xsl:param name="show_output_length">
@@ -36,10 +36,28 @@
     </xsl:param>
     
     <xsl:template match="/">
-        <xsl:apply-templates select="webmd_rendition/content/wbmd_asset/webmd_module/module_data"></xsl:apply-templates>
+        <xsl:apply-templates select="/webmd_rendition/content/wbmd_asset/webmd_module/module_data"/>
     </xsl:template>
     <xsl:template match="module_data">
+        <xsl:variable name="label">
+            <xsl:value-of select="descriptions/description/description_text"/>
+        </xsl:variable>
+        
         <xsl:if test="$show_output_length > 0">
+            <xsl:element name="h4">
+                <xsl:attribute name="class">
+                    <xsl:text>wbmd-moreabout-label</xsl:text>
+                </xsl:attribute>
+                <xsl:choose>
+                    <xsl:when test="$label != ''">
+                        <xsl:value-of select="$label"></xsl:value-of>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:text><![CDATA[From WebMD]]></xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:element>
+            
             <xsl:element name="h3">
                 <xsl:attribute name="class">
                     <xsl:text>wbmd-moreabout-title</xsl:text>

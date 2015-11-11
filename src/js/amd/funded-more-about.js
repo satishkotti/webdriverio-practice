@@ -53,7 +53,9 @@ webmd.fundedEditorial.moreAbout = {
 		});
 
 		self.createGridWrapper();
-		self.moveTitleToTop();
+		
+		self.moveToTop('.wbmd-moreabout-label');
+		self.moveToTop('.wbmd-moreabout-title');
 	},
 
 	setupChild: function($node) {
@@ -113,23 +115,18 @@ webmd.fundedEditorial.moreAbout = {
 		return true;
 	},
 
-	moveTitleToTop: function() {
+	moveToTop: function(identifier) {
 		var self = this,
 			contentPanes = self.contentPanes,
-			$h3;
+			$el;
 
 		for (var id in contentPanes) {
-			$h3 = $('#' + id + ' h3.wbmd-moreabout-title') || $('<h3></h3>');
+			$el = $('#' + id + ' ' + identifier);
 
-			if (!$h3.text()) {
-				$h3.text('More About');
-			}
-
-			if (!$h3.hasClass('wbmd-moreabout-title')) {
-				$h3.addClass('wbmd-moreabout-title');
-				$('div#' + id + '.pane.wbmd-moreabout-masonry-container').prepend($h3);
+			if ($el.is(':empty')) {
+				$el.hide();
 			} else {
-				$h3.parent().before($h3);
+				$el.parent().before($el);
 			}
 		}
 	},
