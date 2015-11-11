@@ -22,10 +22,6 @@
             <xsl:attribute name="data-metrics-module">
                 <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_settings/title"></xsl:value-of>
             </xsl:attribute>
-            <!-- Use branded background color for module - currently disabled
-            <xsl:attribute name="class">
-                <xsl:text><![CDATA[branded-bg-color]]></xsl:text>
-            </xsl:attribute>-->
             <xsl:attribute name="data-link-count">
                 <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_data/descriptions/description/description_text"></xsl:value-of>
             </xsl:attribute>
@@ -33,13 +29,7 @@
                 <xsl:attribute name="class">
                     <xsl:text><![CDATA[wbmd-brand branded-color]]></xsl:text>
                 </xsl:attribute>
-                <xsl:text><![CDATA[FROM ]]></xsl:text>
-                <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_data/links/link/link_text"></xsl:value-of>
-            </xsl:element>
-            <xsl:element name="div">
-                <xsl:attribute name="class">
-                    <xsl:text><![CDATA[wbmd-title branded-color]]></xsl:text>
-                </xsl:attribute>
+                <xsl:text><![CDATA[MORE FROM ]]></xsl:text>
                 <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_data/module_title"></xsl:value-of>
             </xsl:element>
             <xsl:element name="div">

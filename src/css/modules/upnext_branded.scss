@@ -4,21 +4,17 @@
     position: relative;
     display: none;
     width: 100%;
-    padding: 20px;
-    margin-bottom: 1em;
-    background-color: #f5f5f5;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.125);
+    padding: 14px 5px;
+    margin-bottom: 25px;
+    background-color: #ffffff;
+    border-top: 7px solid #f0f0f0;
+    border-bottom: 1px solid #e2e3e4;
+    font-size: 1rem;
     .wbmd-brand {
         font-family: 'Lato', Arial, sans-serif;
         font-weight: bold;
-        font-size: 1.3em;
-        color: #333132;
-    }
-    .wbmd-title {
-        font-family: 'Lato', Arial, sans-serif;
-        font-weight: bold;
-        font-size: 3.0em;
-        line-height: 30px;
+        font-size: 1.8em;
+        line-height: 22px;
         color: #333132;
     }
     .wbmd-nav-links {
@@ -29,7 +25,6 @@
             line-height: 22px;
             color: #3b3b3c;
             margin-top: 20px;
-            padding-left: 20px;
         }
         a:hover {
             text-decoration: underline !important;
@@ -37,17 +32,12 @@
     }
     .wbmd-see-all {
         display: none;
-        padding-top: 20px;
-        padding-left: 20px;
+        padding-top: 22px;
         a {
-            font-family: 'Lato', Arial, sans-serif;
-            font-weight: bold;
+            font-family: 'Chivo', Arial, sans-serif;
             font-size: 1.4em;
             line-height: 22px;
-            color: #333132;
-        }
-        a:hover {
-            text-decoration: underline !important;
+            color: #1b88bf;
         }
     }
     &.hide {
