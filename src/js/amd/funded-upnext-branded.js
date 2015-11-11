@@ -43,7 +43,7 @@ webmd.fundedEditorial.brandedNavigation = {
 			$seeAllContainer = $('.branded-up-next-container > .wbmd-see-all'),
 			$a = $('<a></a>'),
 			overrideText = webmd.fundedEditorial.articleData.program.seeAllText,
-			linkText = (overrideText.length > 0) ? overrideText : "See All",
+			linkText = (overrideText.length > 0) ? overrideText : "See More",
 			linkUrl = webmd.fundedEditorial.articleData.program.seeAllLink + '#see-all-spon',
 			count = 0;
 
@@ -54,7 +54,7 @@ webmd.fundedEditorial.brandedNavigation = {
 		}
 
 		if (count > this.articles_to_display) {
-			$a.attr({ href : linkUrl }).html(linkText);
+			$a.attr({ href : linkUrl, 'data-metrics-link' : 'all' }).html(linkText);
 			$seeAllContainer.append($a).show();
 		}
 

@@ -46,7 +46,7 @@ webmd.fundedEditorial.nextUp = {
 			articles = webmd.fundedEditorial.articleData.articles,
 			$seeAllContainer = $('.up-next-container > .wbmd-see-all'),
 			seeAllOverrideText = webmd.fundedEditorial.articleData.program.seeAllText,
-			linkText = (seeAllOverrideText.length > 0) ? seeAllOverrideText : "See All",
+			linkText = (seeAllOverrideText.length > 0) ? seeAllOverrideText : "See More",
 			linkUrl = webmd.fundedEditorial.articleData.program.seeAllLink + '#see-all-non-spon',
 			count = 0,
 			$a;
