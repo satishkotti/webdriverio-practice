@@ -648,7 +648,7 @@ webmd.fundedEditorial = {
 			text = (self.articleData && self.articleData.program && self.articleData.program.seeAllText) ? self.articleData.program.seeAllText : "See All",
 			html = '<div class="see-all-link" data-metrics-module="ed-rspsvseeall"><a href="' + link + '">' + text + '</a></div>';
 
-		$(selector).eq(0).append(html);
+		$(selector).last().append(html);
 	},
 
 	tocTiles: {
@@ -720,7 +720,6 @@ webmd.fundedEditorial = {
 			});
 
 			self.createGridWrapper();
-			webmd.fundedEditorial.createSeeAllLink('.wbmd-masonry-container');
 		},
 
 		createTocSegment: function() {
@@ -867,7 +866,8 @@ webmd.fundedEditorial = {
 
 		createGridWrapper: function() {
 			var self = this,
-				contentPanes = self.contentPanes;
+				contentPanes = self.contentPanes,
+				wrapperClass = 'wbmd-masonry-container';
 
 			for (var id in contentPanes) {
 				var $gridDiv = $('<div></div>'),
@@ -875,8 +875,10 @@ webmd.fundedEditorial = {
 
 				$gridDiv.addClass('wbmd-masonry-grid').html(contentPane_html);
 
-				$('#' + id).html('').addClass('wbmd-masonry-container').append($gridDiv);
+				$('#' + id).html('').addClass(wrapperClass).append($gridDiv);
 			}
+
+			webmd.fundedEditorial.createSeeAllLink('.' + wrapperClass);
 
 			self.createMasonry(false);
 		},
