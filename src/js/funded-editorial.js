@@ -98,7 +98,6 @@ webmd.fundedEditorial = {
 
 		if (window.s_business_reference === "TOC") {
 			self.tocTiles.init();
-			self.createSeeAllLink('.wbmd-masonry-container');
 		}
 	},
 
@@ -649,8 +648,7 @@ webmd.fundedEditorial = {
 			text = (self.articleData && self.articleData.program && self.articleData.program.seeAllText) ? self.articleData.program.seeAllText : "See All",
 			html = '<div class="see-all-link" data-metrics-module="ed-rspsvseeall"><a href="' + link + '">' + text + '</a></div>';
 
-		$(selector).append(html);
-
+		$(selector).eq(0).append(html);
 	},
 
 	tocTiles: {
@@ -722,6 +720,7 @@ webmd.fundedEditorial = {
 			});
 
 			self.createGridWrapper();
+			webmd.fundedEditorial.createSeeAllLink('.wbmd-masonry-container');
 		},
 
 		createTocSegment: function() {
@@ -743,7 +742,7 @@ webmd.fundedEditorial = {
 
 				segmentModules[index] = [];
 
-				webmd.fundedEditorial.segments[index].data.listen(function(passedValue) {
+				this.data.listen(function(passedValue) {
 		            if (passedValue === true) {
 		                // Store segment in array (keep layout of segments in correct order)
 		                segmentModules[index] = createSegmentTiles(data, segmentModules[index], segmentNumber);
