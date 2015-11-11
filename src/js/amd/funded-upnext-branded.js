@@ -136,7 +136,10 @@ webmd.fundedEditorial.brandedNavigation = {
 			for (var i=0; i<articles_len; i++) {
 				article = self.article_data.articles[i].article;
 				link = $('<a></a>');
-				link.attr({ href : article.link });
+				link.attr({ 
+					href : article.link,
+					'data-metrics-link' : i+1
+				});
 				link.html(article.title);
 				nodes.push(link);
 			}

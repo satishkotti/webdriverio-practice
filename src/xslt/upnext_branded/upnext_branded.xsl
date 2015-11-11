@@ -14,30 +14,33 @@
         <xsl:apply-templates select="webmd_rendition/content/wbmd_asset/webmd_module/module_data"></xsl:apply-templates>
     </xsl:template>
 
-    <xsl:template match="module_data">
+    <xsl:template match="/">
         <xsl:element name="div">
             <xsl:attribute name="class">
                 <xsl:text><![CDATA[branded-up-next-container]]></xsl:text>
+            </xsl:attribute>
+            <xsl:attribute name="data-metrics-module">
+                <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_settings/title"></xsl:value-of>
             </xsl:attribute>
             <!-- Use branded background color for module - currently disabled
             <xsl:attribute name="class">
                 <xsl:text><![CDATA[branded-bg-color]]></xsl:text>
             </xsl:attribute>-->
             <xsl:attribute name="data-link-count">
-                <xsl:value-of select="descriptions/description/description_text"></xsl:value-of>
+                <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_data/descriptions/description/description_text"></xsl:value-of>
             </xsl:attribute>
             <xsl:element name="div">
                 <xsl:attribute name="class">
                     <xsl:text><![CDATA[wbmd-brand branded-color]]></xsl:text>
                 </xsl:attribute>
                 <xsl:text><![CDATA[FROM ]]></xsl:text>
-                <xsl:value-of select="links/link/link_text"></xsl:value-of>
+                <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_data/links/link/link_text"></xsl:value-of>
             </xsl:element>
             <xsl:element name="div">
                 <xsl:attribute name="class">
                     <xsl:text><![CDATA[wbmd-title branded-color]]></xsl:text>
                 </xsl:attribute>
-                <xsl:value-of select="module_title"></xsl:value-of>
+                <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_data/module_title"></xsl:value-of>
             </xsl:element>
             <xsl:element name="div">
                 <xsl:attribute name="class">
