@@ -119,7 +119,7 @@ webmd.fundedEditorial.nextUp = {
 			segmentBlocks = new Array(webmd.fundedEditorial.segments.length),
 			complete = 0;
 
-		$segments.addClass('wbmd-upnext-segments');
+		$segments.addClass('wbmd-upnext-segments').attr('data-metrics-module', 'lln-rspsvupnext-s');
 
 		$.each(webmd.fundedEditorial.segments, function(index, data) {
 			segmentBlocks[index] = [];
@@ -150,7 +150,10 @@ webmd.fundedEditorial.nextUp = {
 			$segmentTitle
 				.addClass('wbmd-segment-title')
 				.html(segmentData.articleData.program.title)
-				.attr('href', segmentData.articleData.program.tocLink);
+				.attr({
+					'href' : segmentData.articleData.program.tocLink,
+					'data-metrics-link' : pos+1
+				});
 
 			$segmentDiv
 				.addClass('wbmd-segment')

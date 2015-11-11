@@ -739,12 +739,14 @@ webmd.fundedEditorial = {
 			$tocSegmentContentPane.html(''); // remove everything from content pane to avoid masonry bugs
 
 			$.each(webmd.fundedEditorial.segments, function(index, data) {
+				var segmentNumber = index + 1;
+
 				segmentModules[index] = [];
 
 				webmd.fundedEditorial.segments[index].data.listen(function(passedValue) {
 		            if (passedValue === true) {
 		                // Store segment in array (keep layout of segments in correct order)
-		                segmentModules[index] = createSegmentTiles(data, segmentModules[index]);
+		                segmentModules[index] = createSegmentTiles(data, segmentModules[index], segmentNumber);
 		                complete++;
 
 		                if (complete === webmd.fundedEditorial.segments.length) {
@@ -762,7 +764,7 @@ webmd.fundedEditorial = {
 		        });
 			});
 
-			function createSegmentTiles(segmentData, moduleArray) {
+			function createSegmentTiles(segmentData, moduleArray, segmentNumber) {
 				var $segmentTitle = $('<div></div>'),
 					articles = segmentData.articleData.articles,
 					promotedArticles = segmentData.promotedArticles;
@@ -783,14 +785,14 @@ webmd.fundedEditorial = {
 						articleIndex = articles.indexOf(article) + 1;
 
 						if (articleIndex === articleNum) {
-							$a.attr('href', article.link);
+							$a.attr('href', article.link).attr('data-metrics-link', position);
 							$img.attr('src', image_server_url + article.images.image493x335);
 							$p.html(article.title);
 
 							$segmentTile
 								.addClass(self.gridItemClass)
 								.addClass('wbmd-promo-seg-tile')
-								.attr({ 'data-metrics-module' : metricsModuleName });
+								.attr({ 'data-metrics-module' : metricsModuleName + segmentNumber });
 
 							if (article.visited) {
 								$segmentTile.addClass('visited');
