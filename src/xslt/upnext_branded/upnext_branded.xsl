@@ -29,7 +29,6 @@
                 <xsl:attribute name="class">
                     <xsl:text><![CDATA[wbmd-brand branded-color]]></xsl:text>
                 </xsl:attribute>
-                <xsl:text><![CDATA[MORE FROM ]]></xsl:text>
                 <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_data/module_title"></xsl:value-of>
             </xsl:element>
             <xsl:element name="div">
