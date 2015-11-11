@@ -818,6 +818,7 @@ webmd.fundedEditorial = {
 				newline = '\n',
 				articleId,
 				article,
+				articlePrefix,
 				$a = $('<a></a>'),
 				$img = $('<img/>'),
 				$p = $('<p></p>');
@@ -846,11 +847,12 @@ webmd.fundedEditorial = {
 			for (var key in articles) {
 				article = articles[key];
 				articleIndex = articles.indexOf(article) + 1;
+				articlePrefix = (article.sponsored) ? "From Our Sponsor" : "";
 
 				if (articleIndex === nodeArticleNum) {
 					$a.attr({ 'href' : article.link, 'data-metrics-link' : position });
 					$img.attr({ 'src' : image_server_url + article.images.image493x335 });
-					$p.text(article.title);
+					$p.html('<span>' + articlePrefix + '</span>' + article.title);
 
 					$node.html('');
 					$node.append($a.append($img).append($p));
