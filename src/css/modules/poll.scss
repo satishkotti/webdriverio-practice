@@ -57,27 +57,12 @@ div.poll {
     }
 }
 
-@media only screen and (max-width: 320px) {
-  /* Styles */
-}
+@media only screen and (max-width: 767px) and (min-width: 320px) {
+  #s4 {
+    width: auto !important;
+  }
 
-@media only screen and (max-width: 675px) and (min-width: 320px) {
-    /* Styles */
-    div.poll {
-        margin: 0 15px !important;
-    }
-}
-
-@media only screen and (max-width: 675px) and (min-width: 320px) and (orientation: portrait) {
-    /* Styles */
-    div.poll {
-        margin: 0 15px !important;
-    }
-}
-
-@media only screen and (max-width: 675px) and (min-width: 320px) and (orientation: landscape) {
-    /* Styles */
-    div.poll {
-        margin: 0 15px !important;
-    }
+  div:not(.wbmd-grid-item) > .poll {
+    margin: 54px 10px 0px !important;
+  }
 }
