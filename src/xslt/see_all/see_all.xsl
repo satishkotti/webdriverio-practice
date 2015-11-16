@@ -34,7 +34,7 @@
 								<a href="{{link}}" data-metrics-link="{{nonSponPos}}">
 									{{#if images.image110x70}}
 									<div class="see-all-img {{type}}">
-										<img src="{{image_server_url}}{{images.image210x130}}?resize=120:83" alt="{{{title}}}">
+										<img src="{{image_server_url}}{{images.image110x70}}" alt="{{{title}}}">
 									</div>
 									{{/if}}
 									<p>{{{title}}}</p>
@@ -50,7 +50,7 @@
 							<li class="see-all-item spon-{{sponsored}}">
 								<a href="{{link}}" data-metrics-link="{{sponPos}}">
 									<div class="see-all-img {{type}}">
-										<img src="{{image_server_url}}{{images.image210x130}}?resize=120:83" alt="{{{title}}}">
+										<img src="{{image_server_url}}{{images.image110x70}}" alt="{{{title}}}">
 									</div>
 									<p>{{{title}}}</p>
 								</a>
