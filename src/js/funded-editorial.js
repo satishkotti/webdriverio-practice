@@ -922,7 +922,7 @@ webmd.fundedEditorial = {
 
 					if (nodeH > self.standardTileHeight) {
 						multiplier = getMultiplier(nodeH, self.standardTileHeight, gutter);
-					}					
+					}
 
 					newHeight = ((self.standardTileHeight * multiplier) + (gutter * multiplier));
 					btmMargin = newHeight - nodeH;
