@@ -124,12 +124,18 @@
 	.isi .isi-content h3 {
 		font-size: 1.5em;
 		line-height: 18px;
-		margin-bottom: 10px;
+		margin-bottom: 15px;
 	}
 	.isi .isi-content p {
 		font-size: 1.2em;
-		line-height: 18px;
+		line-height: 16px;
 		margin-bottom: 15px;
+	}
+	.isi-main-content {
+		padding: 0 10px;
+	}
+	.isi-rr {
+		display: none;
 	}
 }
 /* Smartphones (landscape) ----------- */

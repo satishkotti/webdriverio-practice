@@ -41,7 +41,7 @@
 
 		<!-- ISI Main Position - Start -->
 		<xsl:if test="$isi_type = 'main'">
-			<div class="isi-main-content">
+			<div id="isi-cw" class="isi-main-content">
 				<xsl:value-of select="." disable-output-escaping="yes"/>
 			</div>
 		</xsl:if>
