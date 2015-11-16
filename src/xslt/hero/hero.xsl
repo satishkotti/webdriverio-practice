@@ -65,7 +65,7 @@
 		</xsl:variable>
 		<xsl:comment><xsl:text>Hero Single Unit</xsl:text></xsl:comment>
 		<xsl:element name="div">
-			<xsl:attribute name="class"><xsl:text>toc-hero-single-unit-shell</xsl:text></xsl:attribute>
+			<xsl:attribute name="class"><xsl:text>toc-hero-single-unit-shell toc-hero-shell</xsl:text></xsl:attribute>
 			<xsl:attribute name="id"><xsl:value-of select="$moduletitle"/></xsl:attribute>
 			<xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/><xsl:text>-</xsl:text><xsl:value-of select="$hero_number"/></xsl:attribute>
 		</xsl:element>
@@ -136,7 +136,7 @@
 			<xsl:value-of select="links/link[1]/action_text"/>
 		</xsl:variable>
 		<xsl:element name="div">
-			<xsl:attribute name="class"><xsl:text>toc-hero-double-unit-shell</xsl:text></xsl:attribute>
+			<xsl:attribute name="class"><xsl:text>toc-hero-double-unit-shell toc-hero-shell</xsl:text></xsl:attribute>
 			<xsl:attribute name="id"><xsl:value-of select="$moduletitle"/></xsl:attribute>
 			<xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/><xsl:text>-</xsl:text><xsl:value-of select="$hero_number"/></xsl:attribute>
 		</xsl:element>
@@ -237,7 +237,7 @@
 			<xsl:value-of select="links/link[1]/action_text"/>
 		</xsl:variable>
 		<xsl:element name="div">
-			<xsl:attribute name="class"><xsl:text>toc-hero-triple-unit-shell</xsl:text></xsl:attribute>
+			<xsl:attribute name="class"><xsl:text>toc-hero-triple-unit-shell toc-hero-shell</xsl:text></xsl:attribute>
 			<xsl:attribute name="id"><xsl:value-of select="$moduletitle"/></xsl:attribute>
 			<xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/><xsl:text>-</xsl:text><xsl:value-of select="$hero_number"/></xsl:attribute>
 		</xsl:element>

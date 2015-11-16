@@ -130,7 +130,7 @@
 			<xsl:text disable-output-escaping="yes">
 			<![CDATA[<article id="art" class="article seg-all">
 				<div class="article-content">
-					<div id="see-all-seg" class="see-all-seg-items" data-metrics-module="ed-rspsvallsegcon">
+					<div id="see-all-seg" class="see-all-seg-items" data-metrics-module="ed-rspsvallseg">
 						<h2>More On This Topic</h2>
 						<ul>
 							{{#each segments}}
