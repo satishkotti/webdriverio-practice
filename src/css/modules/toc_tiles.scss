@@ -30,6 +30,9 @@ div.wbmd-grid-item {
     }
     a {
         color: #333132 !important;
+        &:hover {
+            text-decoration: none;
+        }
         p {
             font-family: Lato, Arial, sans-serif;
             font-size: 2em;

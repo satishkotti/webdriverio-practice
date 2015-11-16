@@ -2,7 +2,9 @@
 <xsl:stylesheet exclude-result-prefixes="fo xs fn xdt" version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xdt="http://www.w3.org/2005/xpath-datatypes">
 	<xsl:output method="html"/>
 	<xsl:param name="module_label_2">
-		<xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_settings/md_pb_module_label2_group/wbmd_pb_module_label2/@wbmd_disp_nm" />
+		<xsl:for-each select="webmd_rendition/content/wbmd_asset/webmd_module/module_settings/md_pb_module_label2_group/wbmd_pb_module_label2">
+			<xsl:value-of select="@wbmd_disp_nm"/><xsl:text> </xsl:text>
+		</xsl:for-each>
 	</xsl:param>
 
 	<!-- ISI Type Param -->
@@ -14,6 +16,9 @@
 				</xsl:when>
 				<xsl:when test="contains($module_label_2, 'Item 2')">
 					<xsl:text>fixed</xsl:text>
+				</xsl:when>
+				<xsl:when test="contains($module_label_2, 'Item 3')">
+					<xsl:text>right</xsl:text>
 				</xsl:when>
 			</xsl:choose>
 		</xsl:if>
@@ -41,6 +46,61 @@
 			</div>
 		</xsl:if>
 		<!-- ISI Main Position - End -->
+
+
+		<!-- ISI Right Rail Position - Start -->
+		<xsl:if test="$isi_type = 'right'">
+			<div class="isi-rr">
+				<xsl:element name="div">
+					<xsl:if test="$isi_as = 'true'">
+						<xsl:attribute name="id"><xsl:text>isi-rr-as</xsl:text></xsl:attribute>
+					</xsl:if>
+					<xsl:attribute name="class"><xsl:text>isi-rr-content</xsl:text></xsl:attribute>
+					<!-- Content -->
+					<xsl:value-of select="." disable-output-escaping="yes"/>
+				</xsl:element>
+			</div>
+			<xsl:if test="$isi_as = 'true'">
+				<xsl:element name="script">
+					<xsl:attribute name="type"><xsl:text>text/javascript</xsl:text></xsl:attribute>
+					<xsl:attribute name="src"><xsl:text>http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/modules/icm/autoscroll.js</xsl:text></xsl:attribute>
+				</xsl:element>
+				<xsl:element name="script">
+					<![CDATA[
+					webmd.object.set('webmd.fundedEditorial.isiRR');
+					webmd.fundedEditorial.isiRR = {
+						init : function(){
+							if($('#isi-rr-as').length > 0){
+								this.setUpAs();
+							}
+						},
+						setUpAs : function(){
+							var as,
+								asSettings = {
+									delay : 1500,
+									id : 'isi-rr-as', /* isi_content class also gets this id */
+									interval : 40,
+									reset_position_on_load : true,
+									reset_position_on_end : true,
+									scroll_on_load : true
+								};
+
+							if(window.asOverrides){
+								asSettings = $.extend({}, asSettings, window.asOverrides);
+							}
+
+							as = new Autoscroller(asSettings);
+						}
+					}
+					$(function () {
+						webmd.fundedEditorial.isiRR.init();
+					});
+					]]>
+				</xsl:element>
+			</xsl:if>
+		</xsl:if>
+		<!-- ISI Right Rail Position - End -->
+
 
 		<!-- ISI Fixed Position - Start -->
 		<xsl:if test="$isi_type = 'fixed'">
@@ -189,8 +249,6 @@
 								reset_position_on_end : true,
 								scroll_on_load : true
 							};
-
-						console.log(window.asOverrides);
 
 						if(window.asOverrides){
 							asSettings = $.extend({}, asSettings, window.asOverrides);
