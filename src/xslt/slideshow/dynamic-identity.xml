@@ -1,0 +1,496 @@
+<webmd_rendition>
+	<content>
+		<wbmd_asset object_type="wbmd_cons_article" id="091e9c5e812d713c" xmlns:xalan="http://xml.apache.org/xalan">
+			<metadata_section>
+				<i_chronicle_id>091e9c5e812123e9</i_chronicle_id>
+				<r_object_id>091e9c5e812d713c</r_object_id>
+				<title>Slideshow: Assistive Devices for Osteoarthritis</title>
+				<object_name>mgm_assistive_devices_oa_slideshow.xml</object_name>
+				<content_template>consumer_article_Slideshow.xml</content_template>
+				<r_object_id>091e9c5e812d713c</r_object_id>
+				<wbmd_archive_bool>0</wbmd_archive_bool>
+				<wbmd_bus_ref object_type="wbmd_lookup" wbmd_lookup_type="business_reference" wbmd_storage_val="56" wbmd_disp_nm="Tool - Slide Show"/>
+				<wbmd_cpyrt>
+					<r_object_type>wbmd_copyright</r_object_type>
+					<r_object_id>091e9c5e81065328</r_object_id>
+					<wbmd_legal_revw_dt>nulldate</wbmd_legal_revw_dt>
+					<wbmd_copyright_strt_dt>01/01/2015 00:00:00</wbmd_copyright_strt_dt>
+					<wbmd_copyright_end_dt>01/01/2016 00:00:00</wbmd_copyright_end_dt>
+					<wbmd_copyright_holder>
+						<r_object_type>wbmd_company</r_object_type>
+						<r_object_id>091e9c5e80019138</r_object_id>
+						<wbmd_bus_comp_nm>WebMD</wbmd_bus_comp_nm>
+						<wbmd_comp_type object_type="wbmd_lookup" wbmd_lookup_type="company_type" wbmd_storage_val="6" wbmd_disp_nm="Internal"/>
+						<wbmd_bus_logo chronic_id="091e9c5e802a487f" directive="imageurl" object_type="wbmd_cons_img" path="/webmd/consumer_assets/site_images/logos/webmd/web/webmd_logo_53x12.gif"/>
+					</wbmd_copyright_holder>
+					<wbmd_legal_revr/>
+					<wbmd_copyright>
+						<wbmd_copyright_statement>© 2015 WebMD, LLC. All rights reserved.</wbmd_copyright_statement>
+					</wbmd_copyright>
+				</wbmd_cpyrt>
+				<wbmd_ext_id/>
+				<wbmd_med_ref_type/>
+				<wbmd_wdw_ttl>MGM Slideshow: Assistive Devices for Osteoarthritis</wbmd_wdw_ttl>
+				<wbmd_site_archv_ovrd_dt>nulldate</wbmd_site_archv_ovrd_dt>
+				<wbmd_prim_revw_dt>05/01/2012 00:00:00</wbmd_prim_revw_dt>
+				<wbmd_publ>
+					<r_object_type>wbmd_publication</r_object_type>
+					<r_object_id>091e9c5e80325938</r_object_id>
+					<wbmd_publ_name>WebMD Health Tools</wbmd_publ_name>
+					<wbmd_publ_type>1</wbmd_publ_type>
+					<wbmd_publ_display>WebMD Health Tools</wbmd_publ_display>
+					<wbmd_publ_bus_entity/>
+				</wbmd_publ>
+				<wbmd_prim_subj_cd/>
+				<wbmd_desc_meta>If arthritis limits your activities, you may get some use from assistive devices. This WebMD slideshow illustrates some tools that can make you day easier.</wbmd_desc_meta>
+				<wbmd_orig_pub_dt>07/09/2015 00:00:00</wbmd_orig_pub_dt>
+				<wbmd_desc_user>If arthritis limits your activities, you may get some use from assistive devices. This slideshow illustrates some tools that can make you day easier.</wbmd_desc_user>
+				<wbmd_lk_ttl>MGM Slideshow: Assistive Devices for Osteoarthritis</wbmd_lk_ttl>
+				<wbmd_disclmr>
+					<r_object_type>wbmd_disclaimer</r_object_type>
+					<r_object_id>091e9c5e80becb76</r_object_id>
+					<wbmd_lgl_revw_dt>nulldate</wbmd_lgl_revw_dt>
+					<wbmd_lgl_revr/>
+					<wbmd_disclaimer>
+						<disclaimer_statement>
+							<p>THIS TOOL DOES NOT PROVIDE MEDICAL ADVICE. It is intended for general informational purposes only and does not address individual circumstances. It is not a substitute for professional medical advice, diagnosis or treatment and should not be relied on to make decisions about your health. Never ignore professional medical advice in seeking treatment because of something you have read on the WebMD Site. If you think you may have a medical emergency, immediately call your doctor or dial 911.</p>
+						</disclaimer_statement>
+					</wbmd_disclaimer>
+				</wbmd_disclmr>
+				<wbmd_prim_med_revr>
+					<r_object_id>091e9c5e805f83bf</r_object_id>
+					<wbmd_first_nm>Laura</wbmd_first_nm>
+					<wbmd_middle_name>J.</wbmd_middle_name>
+					<wbmd_lst_nm>Martin</wbmd_lst_nm>
+					<wbmd_person_prof_ttl/>
+					<wbmd_bio_obj_id chronic_id="091e9c5e800c0101" directive="friendlyurl" path="/webmd/consumer_assets/editorial/articles/biographies/m/Martin_Laura_J.xml" object_type="wbmd_cons_article"/>
+					<wbmd_person_suffix_group>
+						<wbmd_person_suffix object_type="wbmd_lookup" wbmd_lookup_type="person_suffix" wbmd_storage_val="48" wbmd_disp_nm="MD"/>
+					</wbmd_person_suffix_group>
+				</wbmd_prim_med_revr>
+				<wbmd_keywords>slideshow, slide show, slideshows, slide shows, pictures of arthritis, osteoarthritis, assistive devices, joint pain, joint stiffness, Osteoarthritis aids, Arthritis aids, Devices for arthritis, Arthritis help</wbmd_keywords>
+				<wbmd_relv1_subj_cd_group>
+					<wbmd_relv1_subj_cd/>
+				</wbmd_relv1_subj_cd_group>
+				<wbmd_authr_prim_group/>
+				<wbmd_relv2_subj_cd_group>
+					<wbmd_relv2_subj_cd/>
+				</wbmd_relv2_subj_cd_group>
+				<wbmd_relv3_subj_cd_group>
+					<wbmd_relv3_subj_cd>B24</wbmd_relv3_subj_cd>
+					<wbmd_relv3_subj_cd>M15.0</wbmd_relv3_subj_cd>
+					<wbmd_relv3_subj_cd>R52</wbmd_relv3_subj_cd>
+				</wbmd_relv3_subj_cd_group>
+				<r_object_id>091e9c5e812d713c</r_object_id>
+				<wbmd_c_cons_edtr/>
+				<wbmd_c_cons_cpy_edtr/>
+				<wbmd_c_cons_revw_dt>nulldate</wbmd_c_cons_revw_dt>
+				<wbmd_c_sec_med_revw_dt>nulldate</wbmd_c_sec_med_revw_dt>
+				<wbmd_c_sec_med_revr/>
+				<wbmd_c_prim_top_id object_type="wbmd_lookup" wbmd_lookup_type="consumer_topic_id" wbmd_storage_val="1681" wbmd_disp_nm="Osteoarthritis"/>
+				<wbmd_c_edtr_revr_dt>nulldate</wbmd_c_edtr_revr_dt>
+				<wbmd_c_stg_of_cond object_type="wbmd_lookup" wbmd_lookup_type="consumer_stage_of_condition" wbmd_storage_val="4" wbmd_disp_nm="Living With and Coping"/>
+				<wbmd_c_sec_authr_group/>
+				<wbmd_c_audnc_age_group>
+					<wbmd_c_audnc_age object_type="wbmd_lookup" wbmd_lookup_type="consumer_audience_age" wbmd_storage_val="8" wbmd_disp_nm="&gt; 70"/>
+					<wbmd_c_audnc_age object_type="wbmd_lookup" wbmd_lookup_type="consumer_audience_age" wbmd_storage_val="18" wbmd_disp_nm="Elder adult (61-70)"/>
+					<wbmd_c_audnc_age object_type="wbmd_lookup" wbmd_lookup_type="consumer_audience_age" wbmd_storage_val="17" wbmd_disp_nm="Older adult (51-60)"/>
+					<wbmd_c_audnc_age object_type="wbmd_lookup" wbmd_lookup_type="consumer_audience_age" wbmd_storage_val="16" wbmd_disp_nm="Mid-adult (41-50)"/>
+					<wbmd_c_audnc_age object_type="wbmd_lookup" wbmd_lookup_type="consumer_audience_age" wbmd_storage_val="15" wbmd_disp_nm="Adult (31-40)"/>
+				</wbmd_c_audnc_age_group>
+				<wbmd_c_audnc_geo_group>
+					<wbmd_c_audnc_geo/>
+				</wbmd_c_audnc_geo_group>
+				<wbmd_c_sec_top_id_group>
+					<wbmd_c_sec_top_id/>
+				</wbmd_c_sec_top_id_group>
+				<wbmd_c_audnc_gndr_group>
+					<wbmd_c_audnc_gndr object_type="wbmd_lookup" wbmd_lookup_type="consumer_audience_gender" wbmd_storage_val="3" wbmd_disp_nm="Female"/>
+				</wbmd_c_audnc_gndr_group>
+				<wbmd_c_audnc_lfstyl_group>
+					<wbmd_c_audnc_lfstyl object_type="wbmd_lookup" wbmd_lookup_type="consumer_audience_lifestyle" wbmd_storage_val="6" wbmd_disp_nm="Any"/>
+				</wbmd_c_audnc_lfstyl_group>
+				<wbmd_c_audnc_read_lvl_group>
+					<wbmd_c_audnc_read_lvl/>
+				</wbmd_c_audnc_read_lvl_group>
+				<wbmd_c_audnc_ethn_group>
+					<wbmd_c_audnc_ethn/>
+				</wbmd_c_audnc_ethn_group>
+				<wbmd_c_tm_of_yr_group>
+					<wbmd_c_tm_of_yr object_type="wbmd_lookup" wbmd_lookup_type="consumer_time_of_year" wbmd_storage_val="5" wbmd_disp_nm="Any"/>
+				</wbmd_c_tm_of_yr_group>
+				<wbmd_c_clncl_tgt_pop_group/>
+				<wbmd_c_art_thmbnl/>
+				<wbmd_c_channel_id/>
+				<wbmd_c_frnd_nm>mgm-slideshow-oa-devices</wbmd_c_frnd_nm>
+				<wbmd_c_asset_name>mgm-slideshow-oa-devices</wbmd_c_asset_name>
+				<wbmd_c_teaser/>
+				<wbmd_c_mini_article object_type="wbmd_cons_shrt_txt" directive="expand" chronic_id="0000000000000000"/>
+				<wbmd_prog_col/>
+			</metadata_section>
+			<content_section>
+				<cons_slideshow>
+					<title>Slideshow: Assistive Devices for Osteoarthritis</title>
+					<thumbnail_image/>
+					<slide_group>
+						<slide_title>Walking</slide_title>
+						<slide_img directive="imageurl" chronic_id="091e9c5e812117a4" path="/webmd/consumer_assets/site_images/sponsored_programs/zzpractice/mmoczarski/hls1/getty_rf_photo_of_person_using_walker.jpg" object_type="wbmd_cons_img">
+							<i_chronicle_id>091e9c5e812117a4</i_chronicle_id>
+							<r_object_id>091e9c5e812117a4</r_object_id>
+							<r_object_type>wbmd_cons_img</r_object_type>
+							<title>mgm_assistive_devices_oa_slideshow.xml</title>
+							<wbmd_wdw_ttl/>
+							<wbmd_lk_ttl/>
+							<wbmd_publ>0000000000000000</wbmd_publ>
+							<wbmd_desc_meta/>
+							<wbmd_desc_user/>
+							<wbmd_keywords/>
+							<wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+							<wbmd_disclmr>0000000000000000</wbmd_disclmr>
+							<wbmd_c_prim_top_id/>
+							<wbmd_c_sec_top_id/>
+							<wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+							<wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+							<wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+							<wbmd_c_alt_tag>person_using_walker</wbmd_c_alt_tag>
+							<wbmd_c_width>493</wbmd_c_width>
+							<wbmd_c_ht>335</wbmd_c_ht>
+						</slide_img>
+						<slide_caption_title/>
+						<slide_caption_text>
+							<p>If arthritis is making it harder for you to keep up with daily activities, there are many simple tools that can make your life easier. For walking, options range from specially designed shoe inserts called orthotics to braces, canes, crutches, and even walkers. Be sure to get these fitted by a health care professional. Even a simple cane that isn't the right height may do more harm than good.</p>
+						</slide_caption_text>
+					</slide_group>
+					<slide_group>
+						<slide_title>Moving Room to Room</slide_title>
+						<slide_img directive="imageurl" chronic_id="091e9c5e812117a6" path="/webmd/consumer_assets/site_images/sponsored_programs/zzpractice/mmoczarski/hls1/webmd_photo_of_door_knob_to_lever_converter.jpg" object_type="wbmd_cons_img">
+							<i_chronicle_id>091e9c5e812117a6</i_chronicle_id>
+							<r_object_id>091e9c5e812117a6</r_object_id>
+							<r_object_type>wbmd_cons_img</r_object_type>
+							<title>mgm_assistive_devices_oa_slideshow.xml</title>
+							<wbmd_wdw_ttl/>
+							<wbmd_lk_ttl/>
+							<wbmd_publ>0000000000000000</wbmd_publ>
+							<wbmd_desc_meta/>
+							<wbmd_desc_user/>
+							<wbmd_keywords/>
+							<wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+							<wbmd_disclmr>0000000000000000</wbmd_disclmr>
+							<wbmd_c_prim_top_id/>
+							<wbmd_c_sec_top_id/>
+							<wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+							<wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+							<wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+							<wbmd_c_alt_tag>door_knob_to_lever_converter</wbmd_c_alt_tag>
+							<wbmd_c_width>493</wbmd_c_width>
+							<wbmd_c_ht>335</wbmd_c_ht>
+						</slide_img>
+						<slide_caption_title/>
+						<slide_caption_text>
+							<p>Make it easy to get around your home. Keep pathways clear and remove scatter rugs. Add extenders that convert doorknobs to levers, so you can open doors simply by pushing a handle up or down without twisting a knob. Use lamps that turn on and off with a tap to the base or sound-sensitive lamps that work with a clap of your hands. Switch adapters can make it easier to flip on regular lamps and lights.</p>
+						</slide_caption_text>
+					</slide_group>
+					<slide_group>
+						<slide_title>In the Living Room</slide_title>
+						<slide_img directive="imageurl" chronic_id="091e9c5e812117a8" path="/webmd/consumer_assets/site_images/sponsored_programs/zzpractice/mmoczarski/hls1/webmd_photo_of_man_using_oversized_remote.jpg" object_type="wbmd_cons_img">
+							<i_chronicle_id>091e9c5e812117a8</i_chronicle_id>
+							<r_object_id>091e9c5e812117a8</r_object_id>
+							<r_object_type>wbmd_cons_img</r_object_type>
+							<title>mgm_assistive_devices_oa_slideshow.xml</title>
+							<wbmd_wdw_ttl/>
+							<wbmd_lk_ttl/>
+							<wbmd_publ>0000000000000000</wbmd_publ>
+							<wbmd_desc_meta/>
+							<wbmd_desc_user/>
+							<wbmd_keywords/>
+							<wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+							<wbmd_disclmr>0000000000000000</wbmd_disclmr>
+							<wbmd_c_prim_top_id/>
+							<wbmd_c_sec_top_id/>
+							<wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+							<wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+							<wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+							<wbmd_c_alt_tag>man_using_oversized_remote</wbmd_c_alt_tag>
+							<wbmd_c_width>493</wbmd_c_width>
+							<wbmd_c_ht>335</wbmd_c_ht>
+						</slide_img>
+						<slide_caption_title/>
+						<slide_caption_text>
+							<p>Sit in chairs that are easy to get in and out of. If your favorite chair is too low, consider adding risers that adjust its height. Get a remote control with large, easy-to-push buttons. And make sure there are plenty of light sources. Hunching over a book in dim light can strain your joints.</p>
+						</slide_caption_text>
+					</slide_group>
+					<slide_group>
+						<slide_title>In the Kitchen</slide_title>
+						<slide_img directive="imageurl" chronic_id="091e9c5e812117a3" path="/webmd/consumer_assets/site_images/sponsored_programs/zzpractice/mmoczarski/hls1/getty_rf_photo_of_older_couple_in_kitchen.jpg" object_type="wbmd_cons_img">
+							<i_chronicle_id>091e9c5e812117a3</i_chronicle_id>
+							<r_object_id>091e9c5e812117a3</r_object_id>
+							<r_object_type>wbmd_cons_img</r_object_type>
+							<title>mgm_assistive_devices_oa_slideshow.xml</title>
+							<wbmd_wdw_ttl/>
+							<wbmd_lk_ttl/>
+							<wbmd_publ>0000000000000000</wbmd_publ>
+							<wbmd_desc_meta/>
+							<wbmd_desc_user/>
+							<wbmd_keywords/>
+							<wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+							<wbmd_disclmr>0000000000000000</wbmd_disclmr>
+							<wbmd_c_prim_top_id/>
+							<wbmd_c_sec_top_id/>
+							<wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+							<wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+							<wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+							<wbmd_c_alt_tag>older_couple_in_kitchen</wbmd_c_alt_tag>
+							<wbmd_c_width>493</wbmd_c_width>
+							<wbmd_c_ht>335</wbmd_c_ht>
+						</slide_img>
+						<slide_caption_title/>
+						<slide_caption_text>
+							<p>Kitchen utensils with padded or molded handles are much easier to pick up and hold. An electric can opener and fixed jar opener can reduce strain. Using a wheeled cart or even two-handled pots and pans can make it safer to carry items across the room. Reachers -- rods with grasping devices on the end -- work well for grabbing lightweight items. But remember that the long pole makes heavy cans even heavier to lift.</p>
+						</slide_caption_text>
+					</slide_group>
+					<slide_group>
+						<slide_title>Getting Dressed</slide_title>
+						<slide_img directive="imageurl" chronic_id="091e9c5e8121172a" path="/webmd/consumer_assets/site_images/sponsored_programs/zzpractice/mmoczarski/hls1/age_rf_photo_of_man_putting_on_shoe.jpg" object_type="wbmd_cons_img">
+							<i_chronicle_id>091e9c5e8121172a</i_chronicle_id>
+							<r_object_id>091e9c5e8121172a</r_object_id>
+							<r_object_type>wbmd_cons_img</r_object_type>
+							<title>mgm_assistive_devices_oa_slideshow.xml</title>
+							<wbmd_wdw_ttl/>
+							<wbmd_lk_ttl/>
+							<wbmd_publ>0000000000000000</wbmd_publ>
+							<wbmd_desc_meta/>
+							<wbmd_desc_user/>
+							<wbmd_keywords/>
+							<wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+							<wbmd_disclmr>0000000000000000</wbmd_disclmr>
+							<wbmd_c_prim_top_id/>
+							<wbmd_c_sec_top_id/>
+							<wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+							<wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+							<wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+							<wbmd_c_alt_tag>man_putting_on_shoe</wbmd_c_alt_tag>
+							<wbmd_c_width>493</wbmd_c_width>
+							<wbmd_c_ht>335</wbmd_c_ht>
+						</slide_img>
+						<slide_caption_title/>
+						<slide_caption_text>
+							<p>Buy slip-on shoes and clothes that close in the front with large buttons, hooks, or Velcro. Button hooks and zipper pulls can help you get dressed. Better yet, buy loose clothes that slip over your head. Shoehorns and sock aids can make it easier to slip on socks and shoes and mean you won't have to bend over to reach your feet.</p>
+						</slide_caption_text>
+					</slide_group>
+					<slide_group>
+						<slide_title>Using the Shower and Toilet</slide_title>
+						<slide_img directive="imageurl" chronic_id="091e9c5e812117a5" path="/webmd/consumer_assets/site_images/sponsored_programs/zzpractice/mmoczarski/hls1/istock_rf_photo_of_assistive_bars_in_bathroom.jpg" object_type="wbmd_cons_img">
+							<i_chronicle_id>091e9c5e812117a5</i_chronicle_id>
+							<r_object_id>091e9c5e812117a5</r_object_id>
+							<r_object_type>wbmd_cons_img</r_object_type>
+							<title>mgm_assistive_devices_oa_slideshow.xml</title>
+							<wbmd_wdw_ttl/>
+							<wbmd_lk_ttl/>
+							<wbmd_publ>0000000000000000</wbmd_publ>
+							<wbmd_desc_meta/>
+							<wbmd_desc_user/>
+							<wbmd_keywords/>
+							<wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+							<wbmd_disclmr>0000000000000000</wbmd_disclmr>
+							<wbmd_c_prim_top_id/>
+							<wbmd_c_sec_top_id/>
+							<wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+							<wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+							<wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+							<wbmd_c_alt_tag>assistive_bars_in_bathroom</wbmd_c_alt_tag>
+							<wbmd_c_width>493</wbmd_c_width>
+							<wbmd_c_ht>335</wbmd_c_ht>
+						</slide_img>
+						<slide_caption_title/>
+						<slide_caption_text>
+							<p>Installing grab bars in the bathroom is especially important if you have problems with balance. A waterproof tub seat can keep you steady in the shower. Consider a raised toilet seat as well. This will make it easier to get up and down.</p>
+						</slide_caption_text>
+					</slide_group>
+					<slide_group>
+						<slide_title>At the Sink</slide_title>
+						<slide_img directive="imageurl" chronic_id="091e9c5e812117a9" path="/webmd/consumer_assets/site_images/sponsored_programs/zzpractice/mmoczarski/hls1/webmd_photo_of_rubber_faucet_handle_converters.jpg" object_type="wbmd_cons_img">
+							<i_chronicle_id>091e9c5e812117a9</i_chronicle_id>
+							<r_object_id>091e9c5e812117a9</r_object_id>
+							<r_object_type>wbmd_cons_img</r_object_type>
+							<title>mgm_assistive_devices_oa_slideshow.xml</title>
+							<wbmd_wdw_ttl/>
+							<wbmd_lk_ttl/>
+							<wbmd_publ>0000000000000000</wbmd_publ>
+							<wbmd_desc_meta/>
+							<wbmd_desc_user/>
+							<wbmd_keywords/>
+							<wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+							<wbmd_disclmr>0000000000000000</wbmd_disclmr>
+							<wbmd_c_prim_top_id/>
+							<wbmd_c_sec_top_id/>
+							<wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+							<wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+							<wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+							<wbmd_c_alt_tag>rubber_faucet_handle_converters</wbmd_c_alt_tag>
+							<wbmd_c_width>493</wbmd_c_width>
+							<wbmd_c_ht>335</wbmd_c_ht>
+						</slide_img>
+						<slide_caption_title/>
+						<slide_caption_text>
+							<p>You can find many gadgets to help turn water on and off if your faucet is hard to use. Rubber grips can make handles easier to turn and adapters can turn traditional knobs into easy-to-use levers. You can find tools for opening medicine bottles, working tweezers, spraying aerosol cans, and squeezing eye drops. To making brushing easier, make sure your toothbrush has a padded or easy-to-grasp handle.</p>
+						</slide_caption_text>
+					</slide_group>
+					<slide_group>
+						<slide_title>At Work on in a Home Office</slide_title>
+						<slide_img directive="imageurl" chronic_id="091e9c5e812117aa" path="/webmd/consumer_assets/site_images/sponsored_programs/zzpractice/mmoczarski/hls1/webmd_photo_of_woman_using_ergonomic_keyboard.jpg" object_type="wbmd_cons_img">
+							<i_chronicle_id>091e9c5e812117aa</i_chronicle_id>
+							<r_object_id>091e9c5e812117aa</r_object_id>
+							<r_object_type>wbmd_cons_img</r_object_type>
+							<title>mgm_assistive_devices_oa_slideshow.xml</title>
+							<wbmd_wdw_ttl/>
+							<wbmd_lk_ttl/>
+							<wbmd_publ>0000000000000000</wbmd_publ>
+							<wbmd_desc_meta/>
+							<wbmd_desc_user/>
+							<wbmd_keywords/>
+							<wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+							<wbmd_disclmr>0000000000000000</wbmd_disclmr>
+							<wbmd_c_prim_top_id/>
+							<wbmd_c_sec_top_id/>
+							<wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+							<wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+							<wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+							<wbmd_c_alt_tag>woman_using_ergonomic_keyboard</wbmd_c_alt_tag>
+							<wbmd_c_width>493</wbmd_c_width>
+							<wbmd_c_ht>335</wbmd_c_ht>
+						</slide_img>
+						<slide_caption_title/>
+						<slide_caption_text>
+							<p>Set up your computer desk so that you're looking straight at your screen, your wrists aren't bent, and there's no strain on your back or legs. You may want a keyboard with extra-large keys if you have arthritis in your hands or fingers. Consider using a headset or earpiece so you don’t have to strain your muscles and joints by holding a phone to your ear. Use a stand to prop up materials when you read or type.</p>
+						</slide_caption_text>
+					</slide_group>
+					<slide_group>
+						<slide_title>In the Car</slide_title>
+						<slide_img directive="imageurl" chronic_id="091e9c5e812117a7" path="/webmd/consumer_assets/site_images/sponsored_programs/zzpractice/mmoczarski/hls1/webmd_photo_of_gascap_wrench_in_use.jpg" object_type="wbmd_cons_img">
+							<i_chronicle_id>091e9c5e812117a7</i_chronicle_id>
+							<r_object_id>091e9c5e812117a7</r_object_id>
+							<r_object_type>wbmd_cons_img</r_object_type>
+							<title>mgm_assistive_devices_oa_slideshow.xml</title>
+							<wbmd_wdw_ttl/>
+							<wbmd_lk_ttl/>
+							<wbmd_publ>0000000000000000</wbmd_publ>
+							<wbmd_desc_meta/>
+							<wbmd_desc_user/>
+							<wbmd_keywords/>
+							<wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+							<wbmd_disclmr>0000000000000000</wbmd_disclmr>
+							<wbmd_c_prim_top_id/>
+							<wbmd_c_sec_top_id/>
+							<wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+							<wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+							<wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+							<wbmd_c_alt_tag>gascap_wrench_in_use</wbmd_c_alt_tag>
+							<wbmd_c_width>493</wbmd_c_width>
+							<wbmd_c_ht>335</wbmd_c_ht>
+						</slide_img>
+						<slide_caption_title/>
+						<slide_caption_text>
+							<p>Key turners, car door openers, and gas cap wrenches make it easier to use a car when you have arthritis. There are also more permanent fixes, like devices for holding on to the steering wheel. However, talk to an auto expert who specializes in disability adaptations before making changes that could affect the safety of your car.</p>
+						</slide_caption_text>
+					</slide_group>
+					<slide_group>
+						<slide_title>In the Yard</slide_title>
+						<slide_img directive="imageurl" chronic_id="091e9c5e812117ab" path="/webmd/consumer_assets/site_images/sponsored_programs/zzpractice/mmoczarski/hls1/webmd_photo_of_woman_using_garden_kneeler.jpg" object_type="wbmd_cons_img">
+							<i_chronicle_id>091e9c5e812117ab</i_chronicle_id>
+							<r_object_id>091e9c5e812117ab</r_object_id>
+							<r_object_type>wbmd_cons_img</r_object_type>
+							<title>mgm_assistive_devices_oa_slideshow.xml</title>
+							<wbmd_wdw_ttl/>
+							<wbmd_lk_ttl/>
+							<wbmd_publ>0000000000000000</wbmd_publ>
+							<wbmd_desc_meta/>
+							<wbmd_desc_user/>
+							<wbmd_keywords/>
+							<wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+							<wbmd_disclmr>0000000000000000</wbmd_disclmr>
+							<wbmd_c_prim_top_id/>
+							<wbmd_c_sec_top_id/>
+							<wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+							<wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+							<wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+							<wbmd_c_alt_tag>woman_using_garden_kneeler</wbmd_c_alt_tag>
+							<wbmd_c_width>493</wbmd_c_width>
+							<wbmd_c_ht>335</wbmd_c_ht>
+						</slide_img>
+						<slide_caption_title/>
+						<slide_caption_text>
+							<p>When you're heading to the garden or working in the yard, look for tools with comfortable grips and handles. Replace old hoses with newer, lightweight ones, and consider a motorized hose reel. Use a gardening kneeler or seat that lets you work on the ground without stooping, or plant your flowers in a raised bed.</p>
+						</slide_caption_text>
+					</slide_group>
+					<slide_group>
+						<slide_title>Get Advice</slide_title>
+						<slide_img directive="imageurl" chronic_id="091e9c5e812117a2" path="/webmd/consumer_assets/site_images/sponsored_programs/zzpractice/mmoczarski/hls1/age_rm_photo_of_man_at_physical_therapist_exam.jpg" object_type="wbmd_cons_img">
+							<i_chronicle_id>091e9c5e812117a2</i_chronicle_id>
+							<r_object_id>091e9c5e812117a2</r_object_id>
+							<r_object_type>wbmd_cons_img</r_object_type>
+							<title>mgm_assistive_devices_oa_slideshow.xml</title>
+							<wbmd_wdw_ttl/>
+							<wbmd_lk_ttl/>
+							<wbmd_publ>0000000000000000</wbmd_publ>
+							<wbmd_desc_meta/>
+							<wbmd_desc_user/>
+							<wbmd_keywords/>
+							<wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+							<wbmd_disclmr>0000000000000000</wbmd_disclmr>
+							<wbmd_c_prim_top_id/>
+							<wbmd_c_sec_top_id/>
+							<wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+							<wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+							<wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+							<wbmd_c_alt_tag>man_at_physical_therapist_exam</wbmd_c_alt_tag>
+							<wbmd_c_width>493</wbmd_c_width>
+							<wbmd_c_ht>335</wbmd_c_ht>
+						</slide_img>
+						<slide_caption_title/>
+						<slide_caption_text>
+							<p>Sometimes a simple assistive device or a change in the way you do things can make daily tasks much easier when you have arthritis. Occupational therapists are trained to help you function at your best. Consulting an OT before purchasing new devices -- especially if they are expensive -- may help you sort the gimmicks from the lifesavers.</p>
+						</slide_caption_text>
+					</slide_group>
+					<citations>
+						<p>IMAGES PROVIDED BY:</p>
+						<p>1) Rolf Bruderer/Blend Images<br/> 2) Steve Pomberg/WebMD<br/> 3) Steve Pomberg/WebMD<br/> 4) Hill Street Studios/Blend Images<br/> 5) I Love Images<br/> 6) iStock<br/> 7) Steve Pomberg/WebMD<br/> 8) Steve Pomberg/WebMD<br/> 9) Steve Pomberg/WebMD<br/> 10) John Todd/WebMD<br/> 11) Denis Meyer/Imagebroker</p>
+						<p>SOURCES:</p>
+						<p>Arthritis Today.<br/> Johns Hopkins Health Alert.<br/> Nancy Baker, ScD, MPH, OTR/L, Associate Professor, Department of Occupational Therapy, University of Pittsburgh; member, American Occupational Therapy Association.</p>
+					</citations>
+					<related_links_type/>
+					<related_links_header/>
+					<related_links_text/>
+				</cons_slideshow>
+			</content_section>
+		</wbmd_asset>
+	</content>
+	<friendlyurls>
+		<target siteid="3" name="WebMD" issearchable="false" prefix="www" friendlyurl="/zztest/fed2/standard/mgm-slideshow-oa-devices" owner="false">
+			<breadcrumb>
+				<bread piece="zzTest" prefix="www" friendlyurl="/zztest/default.htm" isdynamicnavmapnode="False" overridechronicleid=""/>
+				<bread piece="Funded Editorial v2" prefix="www" friendlyurl="/zztest/fed2/default.htm" isdynamicnavmapnode="False" overridechronicleid=""/>
+				<bread piece="Standard" prefix="www" friendlyurl="/zztest/fed2/standard/default.htm" isdynamicnavmapnode="False" overridechronicleid=""/>
+			</breadcrumb>
+			<centers>
+				<Package id="15878" name="editorial destination" chronicid="" prefix="www" friendlyurl="/zztest/fed2/default.htm" isdynamicnavmapnode="False" type="">Funded Editorial v2</Package>
+			</centers>
+		</target>
+		<target siteid="8" name="WebMD_Mobile" issearchable="true" prefix="www" friendlyurl="/a-to-z-guides/ss/mgm-slideshow-oa-devices" owner="false">
+			<breadcrumb>
+				<bread piece="A to Z Guides" prefix="www" friendlyurl="/a-to-z-guides/default.htm" isdynamicnavmapnode="False" overridechronicleid=""/>
+				<bread piece="Slideshows A-Z" prefix="www" friendlyurl="/a-to-z-guides/ss/default.htm" isdynamicnavmapnode="False" overridechronicleid=""/>
+			</breadcrumb>
+			<centers>
+				<Package id="12469" name="slide show" chronicid="" prefix="www" friendlyurl="/a-to-z-guides/ss/default.htm" isdynamicnavmapnode="False" type="">Health Slideshows</Package>
+			</centers>
+		</target>
+	</friendlyurls>
+	<referenced_objects>
+		<object chronic_id="091e9c5e800c0101" thmbnl="" pointer="0" path="/webmd/consumer_assets/editorial/articles/biographies/m/Martin_Laura_J.wxml">
+			<target siteid="3" name="" prefix="www" friendlyurl="/martin-laura-j"/>
+			<target siteid="8" name="" prefix="www" friendlyurl="/martin-laura-j"/>
+		</object>
+	</referenced_objects>
+	<container_hierarchy/>
+	<expanded_objects/>
+</webmd_rendition>
