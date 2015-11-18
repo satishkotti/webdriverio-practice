@@ -113,6 +113,12 @@
 		margin-bottom: 26px;
 		color: #3a3b3c;
 	}
+	.faux-top {
+		display: block;
+		position: relative;
+		top: -100px;
+		visibility: hidden;
+	}
 }
 
 /* Smartphones (portrait and landscape) ----------- */

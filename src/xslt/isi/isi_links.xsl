@@ -31,6 +31,7 @@
 			<xsl:choose>
 				<xsl:when test="$furl !=''">
 					<a href="{$furl}">
+						<xsl:attribute name="onclick">return sl(this,'<xsl:call-template name="GetLinkType"><xsl:with-param name="Value"><xsl:value-of select="link_link_view"/></xsl:with-param></xsl:call-template>','');</xsl:attribute>
 						<xsl:value-of select="link_text" disable-output-escaping="yes"/>
 					</a>
 				</xsl:when>
@@ -53,6 +54,17 @@
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:if>
+	</xsl:template>
+
+	<xsl:template name="GetLinkType">
+		<xsl:param name="Value"></xsl:param>
+			<xsl:choose>
+				<xsl:when test="$Value = 'Window' or $Value = 'New Window – 1000x600'">nw</xsl:when>
+				<xsl:when test="$Value = 'Pop Up' or $Value = 'Small Pop Up - 380x210'">sp</xsl:when>
+				<xsl:when test="$Value = 'SDC Pop Up – 600x700'">sdp</xsl:when>
+				<xsl:when test="$Value = 'Scrollable Pop Up – 530x490'">scp</xsl:when>
+				<xsl:otherwise></xsl:otherwise>
+			</xsl:choose>
 	</xsl:template>
 </xsl:stylesheet>
 
