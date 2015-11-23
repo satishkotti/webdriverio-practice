@@ -190,6 +190,16 @@ webmd.fundedEditorial.moreAbout = {
 		}
 	},
 
+	checkLabel: function() {
+		var self = this,
+			currentArticleIndex = webmd.fundedEditorial.articleData.currentArticle,
+			currentArticle = webmd.fundedEditorial.articleData.articles[currentArticleIndex];
+
+		if (currentArticle.sponsored) {
+			$('.wbmd-moreabout-label').show();
+		}
+	},
+
 	render: function() { // uses handlebars template above
 		var self = this;
 
@@ -198,6 +208,8 @@ webmd.fundedEditorial.moreAbout = {
 		self.start();
 
 		self.createMasonry(false);
+
+		self.checkLabel();
 
 		self.bindEvents();
 	}
