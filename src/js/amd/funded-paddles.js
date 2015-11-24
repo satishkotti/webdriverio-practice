@@ -6,18 +6,28 @@ if (!webmd) {
 
 webmd.fundedEditorial.paddles = {
 
-    mobile_only: false,                         // flag used if navigation paddles should be displayed on mobile only
-    hide_paddles: true,                         // default setting to hide paddles at speicific points on the page (very top, very bottom, specified pixels after the article)
-    identifier: "#s3",                           // article type used to determine identifier on the page for calulation show/hide points
-    is_current_sponsored: false,                // flag for determinging if current page is sponsored
-    hide_sponsor_pages: false,                  // disable sponsor pages within the navigation (this will be configured globally within webmd.fundedEditorial and can be removed)
-    hide_on_sponsored: false,                   // do not display paddles on sponsored pages
-    show_on_element: null,                      // Shows Next|Prev nav when top of element specified reaches bottom of window (Example: top of RMQ footer - '.rmq_footer')
-    percent_to_show: 60,                        // Shows Next|Prev nav at set percentage of article
-    pixels_after_to_hide: 200,                  // Hides Next|Prev nav at set number of pixels after article end
+    mobile_only: false,                 // flag used if navigation paddles should be displayed on mobile only
+    hide_paddles: true,                 // default setting to hide paddles at speicific points on the page (very top, very bottom, specified pixels after the article)
+    identifier: "#s3",                  // article type used to determine identifier on the page for calulation show/hide points
+    is_current_sponsored: false,        // flag for determinging if current page is sponsored
+    hide_sponsor_pages: true,           // disable sponsor pages within the navigation (this will be configured globally within webmd.fundedEditorial and can be removed)
+    hide_on_sponsored: true,            // do not display paddles on sponsored pages
+    show_on_element: null,              // Shows Next|Prev nav when top of element specified reaches bottom of window (Example: top of RMQ footer - '.rmq_footer')
+    percent_to_show: 60,                // Shows Next|Prev nav at set percentage of article
+    pixels_after_to_hide: 200,          // Hides Next|Prev nav at set number of pixels after article end
 
     init: function() {
-        this.getIdentifier();
+        var self = this;
+
+        self.articleData = webmd.fundedEditorial.articleData;
+
+        if (self.hide_sponsor_pages) { // remove sponsored articles from data object
+            self.articleData.articles = self.articleData.articles.filter(function (el) {
+                return el.sponsored !== true;
+            });
+        }
+
+        self.getIdentifier();
     },
 
     injectHBtemplateJS: function() { // inject embedded script to reduce http calls
@@ -84,14 +94,14 @@ webmd.fundedEditorial.paddles = {
     getIdentifier: function() {
         var self = this,
             $navContainer = $('.wbmd-paddles'),
-            caIndex = webmd.fundedEditorial.articleData.currentArticle,
+            caIndex = self.articleData.currentArticle,
             ca, caType;
 
         if (typeof caIndex === 'undefined' || caIndex === null) {
             return;
         }
 
-        ca = webmd.fundedEditorial.articleData.articles[caIndex];
+        ca = self.articleData.articles[caIndex];
         caType = ca.type;
         self.is_current_sponsored = ca.sponsored;
 
@@ -169,16 +179,17 @@ webmd.fundedEditorial.paddles = {
             return true;
         } else {
             // Get previous and next articles by looking at class set in article data object
-            $.each(webmd.fundedEditorial.articleData.articles, function() {
-                var articleIndex = webmd.fundedEditorial.articleData.articles.indexOf(this);
+            $.each(self.articleData.articles, function() {
+                var article = this,
+                    articleIndex = self.articleData.articles.indexOf(article);
 
-                if (articleIndex === webmd.fundedEditorial.articleData.prevArticle) {
-                    context.prev.article = this;
+                if (articleIndex === self.articleData.prevArticle) {
+                    context.prev.article = article;
                     context.prev.articleId = articleIndex + 1;
                 }
 
-                if (articleIndex === webmd.fundedEditorial.articleData.nextArticle) {
-                    context.next.article = this;
+                if (articleIndex === self.articleData.nextArticle) {
+                    context.next.article = article;
                     context.next.articleId = articleIndex + 1;
                 }
             });

@@ -6,23 +6,34 @@ if(!webmd){
 
 webmd.fundedEditorial.nextUp = {
 
-	articles_to_display: $('.up-next-container').data('linkCount'), 	// number of articles
+	articles_to_display: $('.up-next-container').data('linkCount') || 3, 	// number of articles
 	article_ids_to_display: [],
 	article_data: {"articles":[]},
+	hide_sponsor_pages: true,
 	disable_on_pages: ['funded-editorial-toc', 'poll-results', 'funded-editorial-see-all'],
 
 	init : function(){
-		if (this.articles_to_display <= 0 || this.checkIfDisabled()) {
+		var self = this;
+
+        self.articleData = webmd.fundedEditorial.articleData;
+
+        if (self.hide_sponsor_pages) {
+            self.articleData.articles = self.articleData.articles.filter(function (el) {
+                return el.sponsored !== true;
+            });
+        }
+
+        if (self.articles_to_display <= 0 || self.checkIfDisabled()) {
 			$('.up-next-container').remove(); // remove placeholder created by XSL
 			webmd.fundedEditorial.createMenu.init(false); // setup toolbar (no kabob)
 			return false;
 		}
 
-		this.updateDOM();
+		self.updateDOM();
 
-		this.getArticleLinks();
+		self.getArticleLinks();
 
-		this.render();
+		self.render();
 	},
 
 	checkIfDisabled: function() {
@@ -39,15 +50,16 @@ webmd.fundedEditorial.nextUp = {
 	},
 
 	updateDOM : function() {
-		var $segment = $('.up-next-container > .wbmd-segment'),
-			segmentTitle = webmd.fundedEditorial.articleData.program.title,
+		var self = this,
+			$segment = $('.up-next-container > .wbmd-segment'),
+			segmentTitle = self.articleData.program.title,
 			$subhead = $('.up-next-container > .wbmd-subhead'),
 			subheadText = ($subhead.text().length > 0) ? $subhead.text() : "Next In The Series",
-			articles = webmd.fundedEditorial.articleData.articles,
+			articles = self.articleData.articles,
 			$seeAllContainer = $('.up-next-container > .wbmd-see-all'),
-			seeAllOverrideText = webmd.fundedEditorial.articleData.program.seeAllText,
+			seeAllOverrideText = self.articleData.program.seeAllText,
 			linkText = (seeAllOverrideText.length > 0) ? seeAllOverrideText : "See More",
-			linkUrl = webmd.fundedEditorial.articleData.program.seeAllLink + '#see-all-non-spon',
+			linkUrl = self.articleData.program.seeAllLink + '#see-all-non-spon',
 			count = 0,
 			$a;
 
@@ -69,9 +81,8 @@ webmd.fundedEditorial.nextUp = {
 
 	getArticleLinks : function() {
 		var self = this,
-			article_data = webmd.fundedEditorial.articleData,
-			articles = article_data.articles,
-			caIndex = webmd.fundedEditorial.articleData.currentArticle,
+			articles = self.articleData.articles,
+			caIndex = self.articleData.currentArticle,
 			article, articleIndex, articleIdArrLen;
 
 		for(var key in articles) {
@@ -79,11 +90,9 @@ webmd.fundedEditorial.nextUp = {
 			articleIndex = articles.indexOf(article);
 			articleIdArrLen = self.article_ids_to_display.length;
 
-			if (!article.sponsored) {
-				if ((articleIndex > caIndex) && (articleIdArrLen < self.articles_to_display)) {
-					self.article_data.articles.push({"article" : article});
-					self.article_ids_to_display.push(articleIndex);
-				}
+			if ((articleIndex > caIndex) && (articleIdArrLen < self.articles_to_display)) {
+				self.article_data.articles.push({"article" : article});
+				self.article_ids_to_display.push(articleIndex);
 			}
 		}
 
@@ -101,7 +110,7 @@ webmd.fundedEditorial.nextUp = {
 				articleIndex = articles.indexOf(article);
 				articleExists = (self.article_ids_to_display.indexOf(articleIndex) != -1);
 
-				if (!article.sponsored && !articleExists && (self.article_ids_to_display.length < self.articles_to_display)) {
+				if (!articleExists && (self.article_ids_to_display.length < self.articles_to_display)) {
 					if (!article.isCurrent) {
 						self.article_data.articles.push({article : article});
 						self.article_ids_to_display.push(articleIndex);

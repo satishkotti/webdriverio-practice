@@ -5,7 +5,7 @@ if (!webmd) {
 }
 
 webmd.fundedEditorial.brandedNavigation = {
-	articles_to_display: $('.branded-up-next-container').data('linkCount'), 	// number of articles 
+	articles_to_display: $('.branded-up-next-container').data('linkCount') || 3, 	// number of articles 
 	display_see_all: true,
 	article_ids_to_display: [],
 	article_data: {"articles":[]},
