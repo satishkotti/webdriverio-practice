@@ -394,26 +394,29 @@ webmd.fundedEditorial = {
 			var y = $(document).scrollTop(),
 				$toolBarContentPane = $('.wbmd-toolbar-menu').closest('div.pane'),
 				$toolbarContainer = $('.wbmd-toolbar-menu:not(.clone)'), // toolbar visible in document flow
-				$toolbarClone = $('.wbmd-toolbar-menu.clone'); // invisible toolbar clone (used as a spacer for smooth scrolling)
+				$toolbarClone = $('.wbmd-toolbar-menu.clone'), // invisible toolbar clone (used as a spacer for smooth scrolling)
+				$marquee = $('.marquee').length < 1;
 
-			if ($toolbarContainer.length) { // display toolbar if it exists, otherwise display masthead
+			if($marquee){
 				if (y > $toolBarContentPane.offset().top) {
-	        		$toolbarClone.show(); // put spacer in document flow (avoids content jumping after setting toolbar to fixed)
-	        		$toolbarContainer.addClass('stick'); // put toolbar in fixed top position (no longer in flow)
-	    		} else {
-	        		$toolbarClone.hide(); // remove toolbar spacer from flow
-	        		$toolbarContainer.removeClass('stick'); // put visible toolbar back into document flow
-	    		}
-			} else {
-				if (y > mastheadH && mastheadH !== null) {
-					self.stickMasthead(mastheadH);
+					self.stickToolbar($toolbarContainer, $toolbarClone);
 				} else {
-					self.unstickMasthead();
+					self.unstickToolbar($toolbarContainer, $toolbarClone);
 				}
 			}
 		});
 
 		return self;
+	},
+
+	stickToolbar: function($toolbarContainer, $toolbarClone) {
+		$toolbarClone.show(); // put spacer in document flow (avoids content jumping after setting toolbar to fixed)
+		$toolbarContainer.addClass('stick'); // put toolbar in fixed top position (no longer in flow)
+	},
+
+	unstickToolbar: function($toolbarContainer, $toolbarClone) {
+		$toolbarClone.hide(); // remove toolbar spacer from flow
+		$toolbarContainer.removeClass('stick'); // put visible toolbar back into document flow
 	},
 
 	centerAds: function(identifiers) {
@@ -535,10 +538,20 @@ webmd.fundedEditorial = {
 	},
 
 	fundedPages: function() {
+		var social = $('#sharebar');
+
 		this.setClass();
+
+		if(social.length < 1){
+			this.noSocial();
+		}
 
 		// Hide Elements
 		$('.healthSolutions').hide();
+	},
+
+	noSocial: function(){
+		$('html').addClass('funded-no-social');
 	},
 
 	setClass: function(){
