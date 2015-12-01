@@ -2,8 +2,11 @@ $blue_color: #1b88bf;
 $url_blue_color: #009be8;
 $dark_grey_color: #333132;
 $grey_color: #3b3b3c;
-$lato_font: 'Lato', Arial, sans-serif;;
+$lato_font: 'Lato', Arial, sans-serif;
 
+#s2 {
+    margin-bottom: 0 !important;
+}
 #s3 {
     display: block;
 }
@@ -14,7 +17,7 @@ $lato_font: 'Lato', Arial, sans-serif;;
     position: relative;
     width: 100%;
     border-bottom: 0;
-    padding: 25px 15px;
+    padding: 0 10px 15px;
     font-family: $lato_font;
     box-sizing: border-box;
     margin-bottom: 20px;
