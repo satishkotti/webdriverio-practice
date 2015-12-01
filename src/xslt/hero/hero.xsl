@@ -67,7 +67,8 @@
 		<xsl:element name="div">
 			<xsl:attribute name="class"><xsl:text>toc-hero-single-unit-shell toc-hero-shell</xsl:text></xsl:attribute>
 			<xsl:attribute name="id"><xsl:value-of select="$moduletitle"/></xsl:attribute>
-			<xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/><xsl:text>-</xsl:text><xsl:value-of select="$hero_number"/></xsl:attribute>
+			<xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/></xsl:attribute>
+			<xsl:attribute name="data-bg-color"><xsl:value-of select="$bgc"/></xsl:attribute>
 		</xsl:element>
 		<xsl:element name="script">
 			<xsl:attribute name="id"><xsl:text>toc-hero-single-unit-template</xsl:text></xsl:attribute>
@@ -89,7 +90,6 @@
 					</xsl:element>
 					<xsl:element name="div">
 						<xsl:attribute name="class"><xsl:text>toc-hero-desc</xsl:text></xsl:attribute>
-						<xsl:attribute name="style"><xsl:text>background-color:</xsl:text><xsl:value-of select="$bgc"/></xsl:attribute>
 						<xsl:element name="a">
 							<xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
 							<xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
@@ -104,7 +104,6 @@
 		</xsl:element>
 		<xsl:element name="script">
 		<![CDATA[
-		//$(function(){
 			require(["handlebars/1/handlebars"], function(Handlebars) {
 				if (typeof webmd.fundedEditorial.articleData !== "undefined") {
 					var template = $("#toc-hero-single-unit-template"),
@@ -115,9 +114,15 @@
 						html = template(context);
 
 					container.prepend(html);
+					$(function(){
+						var shell = $('.toc-hero-shell').first(),
+							desc = shell.find('.toc-hero').first().find('.toc-hero-item').first().find('.toc-hero-desc'),
+							bgColor = shell.data('bgColor');
+
+						desc.css('background-color', bgColor);
+					});
 				}
 			});
-		//});
 		]]>
 		</xsl:element>
 	</xsl:template>
@@ -138,7 +143,8 @@
 		<xsl:element name="div">
 			<xsl:attribute name="class"><xsl:text>toc-hero-double-unit-shell toc-hero-shell</xsl:text></xsl:attribute>
 			<xsl:attribute name="id"><xsl:value-of select="$moduletitle"/></xsl:attribute>
-			<xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/><xsl:text>-</xsl:text><xsl:value-of select="$hero_number"/></xsl:attribute>
+			<xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/></xsl:attribute>
+			<xsl:attribute name="data-bg-color"><xsl:value-of select="$bgc"/></xsl:attribute>
 		</xsl:element>
 		<xsl:element name="script">
 			<xsl:attribute name="id"><xsl:text>toc-hero-double-unit-template</xsl:text></xsl:attribute>
@@ -161,7 +167,6 @@
 					</xsl:element>
 					<xsl:element name="div">
 						<xsl:attribute name="class"><xsl:text>toc-hero-desc</xsl:text></xsl:attribute>
-						<xsl:attribute name="style"><xsl:text>background-color:</xsl:text><xsl:value-of select="$bgc"/></xsl:attribute>
 						<xsl:element name="a">
 							<xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
 							<xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
@@ -202,7 +207,6 @@
 		</xsl:element>
 		<xsl:element name="script">
 		<![CDATA[
-		//$(function(){
 			require(["handlebars/1/handlebars"], function(Handlebars) {
 				if (typeof webmd.fundedEditorial.articleData !== "undefined") {
 					var template = $("#toc-hero-double-unit-template"),
@@ -213,9 +217,15 @@
 						html = template(context);
 
 					container.prepend(html);
+					$(function(){
+						var shell = $('.toc-hero-shell').first(),
+							desc = shell.find('.toc-hero').first().find('.toc-hero-item').first().find('.toc-hero-desc'),
+							bgColor = shell.data('bgColor');
+
+						desc.css('background-color', bgColor);
+					});
 				}
 			});
-		//});
 		]]>
 		</xsl:element>
 	</xsl:template>
@@ -239,7 +249,8 @@
 		<xsl:element name="div">
 			<xsl:attribute name="class"><xsl:text>toc-hero-triple-unit-shell toc-hero-shell</xsl:text></xsl:attribute>
 			<xsl:attribute name="id"><xsl:value-of select="$moduletitle"/></xsl:attribute>
-			<xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/><xsl:text>-</xsl:text><xsl:value-of select="$hero_number"/></xsl:attribute>
+			<xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/></xsl:attribute>
+			<xsl:attribute name="data-bg-color"><xsl:value-of select="$bgc"/></xsl:attribute>
 		</xsl:element>
 		<xsl:element name="script">
 			<xsl:attribute name="id"><xsl:text>toc-hero-triple-unit-template</xsl:text></xsl:attribute>
@@ -264,7 +275,6 @@
 						</xsl:element>
 						<xsl:element name="div">
 							<xsl:attribute name="class"><xsl:text>toc-hero-desc</xsl:text></xsl:attribute>
-							<xsl:attribute name="style"><xsl:text>background-color:</xsl:text><xsl:value-of select="$bgc"/></xsl:attribute>
 							<xsl:element name="a">
 								<xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
 								<xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
@@ -334,7 +344,6 @@
 		</xsl:element>
 		<xsl:element name="script">
 		<![CDATA[
-		//$(function(){
 			require(["handlebars/1/handlebars"], function(Handlebars) {
 				if (typeof webmd.fundedEditorial.articleData !== "undefined") {
 					var template = $("#toc-hero-triple-unit-template"),
@@ -345,9 +354,15 @@
 						html = template(context);
 
 					container.prepend(html);
+					$(function(){
+						var shell = $('.toc-hero-shell').first(),
+							desc = shell.find('.toc-hero').first().find('.toc-hero-item').first().find('.toc-hero-desc'),
+							bgColor = shell.data('bgColor');
+
+						desc.css('background-color', bgColor);
+					});
 				}
 			});
-		//});
 		]]>
 		</xsl:element>
 	</xsl:template>
