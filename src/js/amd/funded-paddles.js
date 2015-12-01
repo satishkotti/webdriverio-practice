@@ -17,13 +17,40 @@ webmd.fundedEditorial.paddles = {
     pixels_after_to_hide: 200,          // Hides Next|Prev nav at set number of pixels after article end
 
     init: function() {
-        var self = this;
+        var self = this,
+            current_url = window.location.href.split("?")[0].split("#")[0],
+            articles;
 
         self.articleData = webmd.fundedEditorial.articleData;
 
         if (self.hide_sponsor_pages) { // remove sponsored articles from data object
             self.articleData.articles = self.articleData.articles.filter(function (el) {
                 return el.sponsored !== true;
+            });
+
+            articles = self.articleData.articles;
+
+            // sponsored content removed, re-determine previous, current and next articles
+            $.each(articles, function(index) {
+                this.isCurrent = false;
+
+                if (this.link === current_url || this.id === window.s_unique_id) {
+                    self.articleData.currentArticle = index;
+                    this.isCurrent = true;
+                    this.visited = true;
+
+                    if (index === 0) {
+                        self.articleData.prevArticle = articles.length - 1;
+                    } else {
+                        self.articleData.prevArticle = index - 1;
+                    }
+
+                    if (index === articles.length - 1) {
+                        self.articleData.nextArticle = 0;
+                    } else {
+                        self.articleData.nextArticle = index + 1;
+                    }
+                }
             });
         }
 
@@ -184,13 +211,15 @@ webmd.fundedEditorial.paddles = {
                     articleIndex = self.articleData.articles.indexOf(article);
 
                 if (articleIndex === self.articleData.prevArticle) {
+                    console.log('prev', article);
                     context.prev.article = article;
-                    context.prev.articleId = articleIndex + 1;
+                    context.prev.articleId = articleIndex;
                 }
 
                 if (articleIndex === self.articleData.nextArticle) {
+                    console.log('next', article);
                     context.next.article = article;
-                    context.next.articleId = articleIndex + 1;
+                    context.next.articleId = articleIndex;
                 }
             });
 
