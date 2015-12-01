@@ -163,6 +163,7 @@ webmd.fundedEditorial.paddles = {
             articleHeight = $(self.identifier).innerHeight(),
             scrollTop = $(window).scrollTop(),
             scrollBottom = scrollTop + $(window).height(),
+            footerTop = $('.footer').position().top,
             elementTop,
             elementBottom,
             elementHeight,
@@ -178,7 +179,8 @@ webmd.fundedEditorial.paddles = {
         }
 
         hideNavLocation = (
-            (self.hide_paddles && (scrollBottom >= articleBottom + self.pixels_after_to_hide)) || // hide at specified pixels after the article
+            //(self.hide_paddles && (scrollBottom >= articleBottom + self.pixels_after_to_hide)) || // hide at specified pixels after the article
+            (scrollBottom > footerTop) ||
             (bodyHeight <= scrollBottom) || // hide when scroll bottom reaches the bottom of the page
             (scrollTop === 0) // hide when scroll top is above the article top
         );
