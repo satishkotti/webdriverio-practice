@@ -6,6 +6,7 @@ if (!webmd) {
 
 webmd.fundedEditorial.moreAbout = {
 
+	articleData: $.extend(false, {}, webmd.fundedEditorial.articleData),
 	gridItemClass: 'wbmd-moreabout-grid-item', // class name on each <div> provided by the XSL
 	contentPanes: {},
 	masonryGutter: 10,
@@ -61,7 +62,7 @@ webmd.fundedEditorial.moreAbout = {
 	setupChild: function($node) {
 		var self = this,
 			nodeArticleNum = $node.data('articleNum'),
-			articles = self.article_data.articles,
+			articles = self.articleData.articles,
 			newline = '\n',
 			articleIndex,
 			article,
@@ -193,17 +194,21 @@ webmd.fundedEditorial.moreAbout = {
 	checkLabel: function() {
 		var self = this,
 			currentArticleIndex = webmd.fundedEditorial.articleData.currentArticle,
+			currentArticle;
+
+		if (typeof currentArticleIndex !== 'undefined' && currentArticleIndex !== null) {
 			currentArticle = webmd.fundedEditorial.articleData.articles[currentArticleIndex];
 
-		if (currentArticle.sponsored) {
-			$('.wbmd-moreabout-label').show();
+			if ('sponsored' in currentArticle) {
+				if (currentArticle.sponsored) {
+					$('.wbmd-moreabout-label').show();
+				}
+			}
 		}
 	},
 
 	render: function() { // uses handlebars template above
 		var self = this;
-
-		self.article_data = webmd.fundedEditorial.articleData;
 
 		self.start();
 

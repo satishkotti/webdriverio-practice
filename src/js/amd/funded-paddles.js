@@ -5,7 +5,7 @@ if (!webmd) {
 }
 
 webmd.fundedEditorial.paddles = {
-
+    articleData: $.extend(false, {}, webmd.fundedEditorial.articleData),
     mobile_only: false,                 // flag used if navigation paddles should be displayed on mobile only
     hide_paddles: true,                 // default setting to hide paddles at speicific points on the page (very top, very bottom, specified pixels after the article)
     identifier: "#s3",                  // article type used to determine identifier on the page for calulation show/hide points
@@ -15,15 +15,19 @@ webmd.fundedEditorial.paddles = {
     show_on_element: null,              // Shows Next|Prev nav when top of element specified reaches bottom of window (Example: top of RMQ footer - '.rmq_footer')
     percent_to_show: 60,                // Shows Next|Prev nav at set percentage of article
     pixels_after_to_hide: 200,          // Hides Next|Prev nav at set number of pixels after article end
+    disable_on_pages: ['funded-editorial-toc', 'poll-results', 'funded-editorial-see-all'],
 
     init: function() {
         var self = this,
             current_url = window.location.href.split("?")[0].split("#")[0],
             articles;
 
-        self.articleData = webmd.fundedEditorial.articleData;
+        if (self.checkIfDisabled()) {
+            return false;
+        }
 
         if (self.hide_sponsor_pages) { // remove sponsored articles from data object
+
             self.articleData.articles = self.articleData.articles.filter(function (el) {
                 return el.sponsored !== true;
             });
@@ -55,6 +59,19 @@ webmd.fundedEditorial.paddles = {
         }
 
         self.getIdentifier();
+    },
+
+    checkIfDisabled: function() {
+        var self = this,
+            classNames = self.disable_on_pages;
+
+        for (var i = 0; i < classNames.length; i++) {
+            if ($('html').hasClass(classNames[i])) {
+                return true;
+            }
+        }
+
+        return false;
     },
 
     injectHBtemplateJS: function() { // inject embedded script to reduce http calls
@@ -213,13 +230,11 @@ webmd.fundedEditorial.paddles = {
                     articleIndex = self.articleData.articles.indexOf(article);
 
                 if (articleIndex === self.articleData.prevArticle) {
-                    console.log('prev', article);
                     context.prev.article = article;
                     context.prev.articleId = articleIndex;
                 }
 
                 if (articleIndex === self.articleData.nextArticle) {
-                    console.log('next', article);
                     context.next.article = article;
                     context.next.articleId = articleIndex;
                 }

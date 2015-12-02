@@ -676,7 +676,7 @@ webmd.fundedEditorial = {
 
 			if (typeof webmd.fundedEditorial.articleData !== 'undefined') {
 
-				self.article_data = webmd.fundedEditorial.articleData;
+				self.article_data = $.extend(false, {}, webmd.fundedEditorial.articleData);
 
 				if (webmd.fundedEditorial.segments && webmd.fundedEditorial.segments.length > 0) {
 					self.createTocSegment();
