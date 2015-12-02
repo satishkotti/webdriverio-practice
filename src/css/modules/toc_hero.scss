@@ -54,6 +54,9 @@
 	&.toc-hero-1-col{
 		width: 100%;
 
+		.toc-hero-item {
+			border-right: 3px solid #e8e8ea;
+		}
 		.toc-hero-img,
 		.toc-hero-desc {
 			display: table-cell;
@@ -65,17 +68,17 @@
 			}
 		}
 		.toc-hero-desc {
-			width: 330px;
+			width: 327px;
 			padding: 30px;
-			background-color: #ccc;
+			background-color: #f7f7f7;
 			vertical-align: middle;
 
 			h3 {
 				font-family: Lato, Arial, sans-serif;
-				color: #fff;
-				font-size: 3em;
-				/*font-weight: 100;*/
-				text-shadow: 0 0 3px rgba(0,0,0,.8);
+                color: #fff;
+                font-size: 3em;
+                /*font-weight: 100;*/
+                text-shadow: 0 0 3px rgba(0,0,0,.8);
 			}
 		}
 	}
@@ -130,18 +133,18 @@
 			vertical-align: top;
 		}
 		.toc-hero-left-col {
-			padding-right: 8px;
+			padding-right: 10px;
 		}
 		.toc-hero-right-col {
-			width: 320px;
+			width: 32.6%;
 			height: 100%;
 
 			.toc-hero-item:first-child {
-				margin-bottom: 9px;
+				margin-bottom: 12px;
 			}
 			.toc-hero-item {
-				height: 100%;
-				width: 100%;
+				//height: 100%;
+				width: 99%;
 			}
 			.toc-hero-desc {
 				h3 {
@@ -183,9 +186,20 @@
 @media only screen and (min-width: 320px) and (max-width: 736px) {
 	/* STYLES GO HERE */
 	.toc-hero {
+		margin-top: 0;
 
 		&.toc-hero-1-col{
-			margin-bottom: 20px;
+			//margin-bottom: 20px;
+
+			.toc-hero-item {
+				width: auto;
+				position: relative;
+				float: none;
+				margin: 0 10px 20px;
+				//box-shadow: 0 1px 2px 0 rgba(0,0,0,.125);
+				border-bottom: 3px solid #e8e8ea;
+				border-right: 0;
+			}
 
 			.toc-hero-img,
 			.toc-hero-desc {
@@ -197,14 +211,13 @@
 				}
 			}
 			.toc-hero-desc {
-				width: 100%;
-				padding: 0px;
+				position: static;
+				width: auto;
+				background-color: #f7f7f7;
+				border-top: 0;
+				padding: 10px 20px;
+				margin: 0;
 
-				h3 {
-					font-size: 2em;
-					text-shadow: none;
-					padding: 10px 15px;
-				}
 			}
 		}
 		&.toc-hero-2-col{
@@ -214,24 +227,12 @@
 				width: auto;
 				position: relative;
 				float: none;
-				margin: 0 15px 20px;
-				box-shadow: 0 1px 2px 0 rgba(0,0,0,.125);
+				margin: 0 10px 20px;
+				//box-shadow: 0 1px 2px 0 rgba(0,0,0,.125);
+				border-bottom: 3px solid #e8e8ea;
 
 				&:first-child {
-					margin: 0;
-					margin-bottom: 20px;
-					border: 0;
-					box-shadow: none;
-					width: 100%;
-
-					.toc-hero-desc {
-						border: 0;
-
-						h3 {
-							color: #fff;
-							font-size: 2em;
-						}
-					}
+					margin-right: 10px;
 				}
 			}
 			.toc-hero-img {
@@ -260,16 +261,22 @@
 				display: block;
 			}
 			.toc-hero-left-col {
-				padding-right: 0;
+				width: auto;
+				height: 100%;
+				padding: 0;
 
-				.toc-hero-item {
+				.toc-hero-item:first-child {
 					margin-bottom: 20px;
 				}
+				.toc-hero-item {
+					width: auto;
+					margin: 0 10px;
+					//box-shadow: 0 1px 2px 0 rgba(0,0,0,.125);
+					border-bottom: 3px solid #e8e8ea;
+				}
 				.toc-hero-desc {
-					border: 0;
-
 					h3 {
-						color: #fff;
+						font-size: 2em;
 						text-shadow: none;
 					}
 				}
@@ -283,8 +290,9 @@
 				}
 				.toc-hero-item {
 					width: auto;
-					margin: 0 15px;
-					box-shadow: 0 1px 2px 0 rgba(0,0,0,.125);
+					margin: 0 10px 20px;
+					//box-shadow: 0 1px 2px 0 rgba(0,0,0,.125);
+					border-bottom: 3px solid #e8e8ea;
 				}
 				.toc-hero-desc {
 					h3 {
@@ -310,6 +318,78 @@
 				h3 {
 					color: #333;
 					font-size: 2em;
+				}
+			}
+		}
+	}
+	.pane .toc-hero-shell:first-of-type {
+		padding-top: 0;
+
+		.toc-hero {
+			margin-top: 15px;
+		}
+
+		.toc-hero.toc-hero-1-col{
+			.toc-hero-item {
+				margin: 0;
+				border-bottom: 0;
+
+				.toc-hero-desc {
+					padding-bottom: 65px;
+					margin-bottom: -60px;
+					border: 0;
+
+					h3 {
+						color: #fff;
+						font-size: 2em;
+						padding-bottom: 10px;
+					}
+				}
+			}
+		}
+
+		.toc-hero.toc-hero-2-col{
+
+			.toc-hero-item {
+
+				&:first-child {
+					margin: 0;
+					margin-bottom: 20px;
+					border: 0;
+					box-shadow: none;
+					width: 100%;
+
+					.toc-hero-desc {
+						padding-bottom: 65px;
+						margin-bottom: -60px;
+						border: 0;
+
+						h3 {
+							color: #fff;
+							font-size: 2em;
+						}
+					}
+				}
+			}
+
+		}
+
+		.toc-hero.toc-hero-2-col-3-item {
+			.toc-hero-left-col {
+				padding-right: 0;
+
+				.toc-hero-item {
+					margin:0;
+				}
+				.toc-hero-desc {
+					padding-bottom: 65px;
+					margin-bottom: -60px;
+					border: 0;
+
+					h3 {
+						color: #fff;
+						text-shadow: none;
+					}
 				}
 			}
 		}

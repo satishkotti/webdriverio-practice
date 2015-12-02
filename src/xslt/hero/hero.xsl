@@ -9,14 +9,14 @@
 	<xsl:param name="moduletitle">prm-rspsvhero</xsl:param>
 	<xsl:param name="site_id">3</xsl:param>
 	<xsl:param name="domain">webmd.com</xsl:param>
-	<xsl:param name="module_label_1">
+	<!-- <xsl:param name="module_label_1">
 		<xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_settings/md_pb_module_label1_group/wbmd_pb_module_label1/@wbmd_disp_nm" />
-	</xsl:param>
+	</xsl:param> -->
 	<xsl:param name="module_label_2">
 		<xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_settings/md_pb_module_label2_group/wbmd_pb_module_label2/@wbmd_disp_nm" />
 	</xsl:param>
 	<xsl:param name="hero_number">
-		<xsl:if test="$module_label_1 = 'TOC'">
+		<!-- <xsl:if test="$module_label_1 = 'TOC'"> -->
 			<xsl:choose>
 				<xsl:when test="$module_label_2 = 'Hero Single Unit'">
 					<xsl:text>1</xsl:text>
@@ -28,7 +28,7 @@
 					<xsl:text>3</xsl:text>
 				</xsl:when>
 			</xsl:choose>
-		</xsl:if>
+		<!-- </xsl:if> -->
 	</xsl:param>
 
 	<xsl:template match="/">
@@ -40,7 +40,7 @@
 
 	<!-- Get Hero Template -->
 	<xsl:template name="getHeroTemplate">
-		<xsl:if test="$module_label_1 = 'TOC'">
+		<!-- <xsl:if test="$module_label_1 = 'TOC'"> -->
 			<xsl:choose>
 				<xsl:when test="$module_label_2 = 'Hero Single Unit'">
 					<xsl:call-template name="heroSingleUnitTemp"></xsl:call-template>
@@ -52,7 +52,7 @@
 					<xsl:call-template name="heroTripleUnitTemp"></xsl:call-template>
 				</xsl:when>
 			</xsl:choose>
-		</xsl:if>
+		<!-- </xsl:if> -->
 	</xsl:template>
 
 	<!-- Hero Single Unit Template - Start -->
@@ -67,7 +67,8 @@
 		<xsl:element name="div">
 			<xsl:attribute name="class"><xsl:text>toc-hero-single-unit-shell toc-hero-shell</xsl:text></xsl:attribute>
 			<xsl:attribute name="id"><xsl:value-of select="$moduletitle"/></xsl:attribute>
-			<xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/><xsl:text>-</xsl:text><xsl:value-of select="$hero_number"/></xsl:attribute>
+			<xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/></xsl:attribute>
+			<!-- <xsl:attribute name="data-bg-color"><xsl:value-of select="$bgc"/></xsl:attribute> -->
 		</xsl:element>
 		<xsl:element name="script">
 			<xsl:attribute name="id"><xsl:text>toc-hero-single-unit-template</xsl:text></xsl:attribute>
@@ -104,7 +105,6 @@
 		</xsl:element>
 		<xsl:element name="script">
 		<![CDATA[
-		//$(function(){
 			require(["handlebars/1/handlebars"], function(Handlebars) {
 				if (typeof webmd.fundedEditorial.articleData !== "undefined") {
 					var template = $("#toc-hero-single-unit-template"),
@@ -115,9 +115,15 @@
 						html = template(context);
 
 					container.prepend(html);
+					$(function(){
+						var shell = $('.toc-hero-shell').first(),
+							desc = shell.find('.toc-hero').first().find('.toc-hero-item').first().find('.toc-hero-desc'),
+							bgColor = shell.data('bgColor');
+
+						desc.css('background-color', bgColor);
+					});
 				}
 			});
-		//});
 		]]>
 		</xsl:element>
 	</xsl:template>
@@ -138,7 +144,8 @@
 		<xsl:element name="div">
 			<xsl:attribute name="class"><xsl:text>toc-hero-double-unit-shell toc-hero-shell</xsl:text></xsl:attribute>
 			<xsl:attribute name="id"><xsl:value-of select="$moduletitle"/></xsl:attribute>
-			<xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/><xsl:text>-</xsl:text><xsl:value-of select="$hero_number"/></xsl:attribute>
+			<xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/></xsl:attribute>
+			<xsl:attribute name="data-bg-color"><xsl:value-of select="$bgc"/></xsl:attribute>
 		</xsl:element>
 		<xsl:element name="script">
 			<xsl:attribute name="id"><xsl:text>toc-hero-double-unit-template</xsl:text></xsl:attribute>
@@ -161,7 +168,6 @@
 					</xsl:element>
 					<xsl:element name="div">
 						<xsl:attribute name="class"><xsl:text>toc-hero-desc</xsl:text></xsl:attribute>
-						<xsl:attribute name="style"><xsl:text>background-color:</xsl:text><xsl:value-of select="$bgc"/></xsl:attribute>
 						<xsl:element name="a">
 							<xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
 							<xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
@@ -202,7 +208,6 @@
 		</xsl:element>
 		<xsl:element name="script">
 		<![CDATA[
-		//$(function(){
 			require(["handlebars/1/handlebars"], function(Handlebars) {
 				if (typeof webmd.fundedEditorial.articleData !== "undefined") {
 					var template = $("#toc-hero-double-unit-template"),
@@ -213,9 +218,15 @@
 						html = template(context);
 
 					container.prepend(html);
+					$(function(){
+						var shell = $('.toc-hero-shell').first(),
+							desc = shell.find('.toc-hero').first().find('.toc-hero-item').first().find('.toc-hero-desc'),
+							bgColor = shell.data('bgColor');
+
+						desc.css('background-color', bgColor);
+					});
 				}
 			});
-		//});
 		]]>
 		</xsl:element>
 	</xsl:template>
@@ -239,7 +250,8 @@
 		<xsl:element name="div">
 			<xsl:attribute name="class"><xsl:text>toc-hero-triple-unit-shell toc-hero-shell</xsl:text></xsl:attribute>
 			<xsl:attribute name="id"><xsl:value-of select="$moduletitle"/></xsl:attribute>
-			<xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/><xsl:text>-</xsl:text><xsl:value-of select="$hero_number"/></xsl:attribute>
+			<xsl:attribute name="data-metrics-module"><xsl:value-of select="$moduletitle"/></xsl:attribute>
+			<xsl:attribute name="data-bg-color"><xsl:value-of select="$bgc"/></xsl:attribute>
 		</xsl:element>
 		<xsl:element name="script">
 			<xsl:attribute name="id"><xsl:text>toc-hero-triple-unit-template</xsl:text></xsl:attribute>
@@ -264,7 +276,6 @@
 						</xsl:element>
 						<xsl:element name="div">
 							<xsl:attribute name="class"><xsl:text>toc-hero-desc</xsl:text></xsl:attribute>
-							<xsl:attribute name="style"><xsl:text>background-color:</xsl:text><xsl:value-of select="$bgc"/></xsl:attribute>
 							<xsl:element name="a">
 								<xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
 								<xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
@@ -334,7 +345,6 @@
 		</xsl:element>
 		<xsl:element name="script">
 		<![CDATA[
-		//$(function(){
 			require(["handlebars/1/handlebars"], function(Handlebars) {
 				if (typeof webmd.fundedEditorial.articleData !== "undefined") {
 					var template = $("#toc-hero-triple-unit-template"),
@@ -345,9 +355,15 @@
 						html = template(context);
 
 					container.prepend(html);
+					$(function(){
+						var shell = $('.toc-hero-shell').first(),
+							desc = shell.find('.toc-hero').first().find('.toc-hero-item').first().find('.toc-hero-desc'),
+							bgColor = shell.data('bgColor');
+
+						desc.css('background-color', bgColor);
+					});
 				}
 			});
-		//});
 		]]>
 		</xsl:element>
 	</xsl:template>

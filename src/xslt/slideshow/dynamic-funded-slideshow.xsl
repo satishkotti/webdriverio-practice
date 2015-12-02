@@ -95,9 +95,9 @@
 			<xsl:attribute name="class">slideshow</xsl:attribute>
 			<xsl:call-template name="CreateSSTitle"/>
 			<xsl:call-template name="CreateSlides"/>
-			
+
 			<div class="touch-instructions">Swipe the photo for the next slide</div>
-			
+
 			<!-- Slide Count -->
 			<xsl:element name="div">
 				<xsl:attribute name="class">slide-count</xsl:attribute>
@@ -106,9 +106,9 @@
 					<xsl:text>1</xsl:text>
 				</xsl:element><xsl:text>/</xsl:text><xsl:element name="span">
 					<xsl:attribute name="class">total</xsl:attribute>
-				</xsl:element>				
+				</xsl:element>
 			</xsl:element>
-			
+
 			<!-- Last Slide -->
 			<xsl:element name="div">
 				<xsl:attribute name="class">slide-end</xsl:attribute>
@@ -124,7 +124,7 @@
 					</xsl:element>
 				</xsl:element>
 			</xsl:element>
-			
+
 		</xsl:element>
 		<xsl:call-template name="CreateAttrib"/>
 		<xsl:call-template name="CreateRequireScript"/>
@@ -234,7 +234,7 @@
 			<div class="caption">
 				<p class="touch-slide-count">Slide <xsl:value-of select="$index"/>/<xsl:value-of select="$total"/></p>
 				<h3>
-					<xsl:value-of select="slide_caption_title" disable-output-escaping="yes"/>
+					<xsl:value-of select="slide_title" disable-output-escaping="yes"/>
 				</h3>
 				<xsl:copy-of select="slide_caption_text/*"/>
 			</div>
@@ -324,7 +324,7 @@
 					</p>
 				</xsl:for-each>
 			</div>
-			
+
 			<p class="copyright">
 				<xsl:value-of
 					select="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_cpyrt/wbmd_copyright/wbmd_copyright_statement"
