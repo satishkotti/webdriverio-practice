@@ -197,7 +197,8 @@ screen and (min-width: 375px) and (max-width: 667px) and (orientation: portrait)
         .wbmd-masonry-grid {
             width: auto;
             position: relative;
-            margin: 0 15px !important;
+            margin: 0 10px !important;
+
             #rightAd_rdr {
                 &.wbmd-grid-item {
                     width: 100% !important;
@@ -210,7 +211,7 @@ screen and (min-width: 375px) and (max-width: 667px) and (orientation: portrait)
                 height: auto;
                 float: none;
                 margin: 0 0 20px 0 !important;
-                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .125);
+                // box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .125);
                 div.poll {
                     margin: 0 !important;
                 }
@@ -219,6 +220,9 @@ screen and (min-width: 375px) and (max-width: 667px) and (orientation: portrait)
                         height: auto !important;
                     }
                 }
+            }
+            .bottom_ad_rdr {
+                border-bottom: 0;
             }
         }
     }
