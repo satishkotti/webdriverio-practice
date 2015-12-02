@@ -100,14 +100,11 @@
 						container.prepend(html);
 
 						var paneForTitle = $('#ContentPane12'),
-							pageTitle = $('header.page-header'),
-							cleanUp = $('.see-all-items.non-spon .spon-true, .see-all-items.spon .spon-false');
+							pageTitle = $('header.page-header');
 
 						if (pageTitle) {
 							$(paneForTitle).append(pageTitle);
 						}
-
-						cleanUp.remove();
 
 						if($('.see-all-items.spon ul li').length == 0){
 							$('.see-all-items.spon').remove();
