@@ -109,6 +109,7 @@
 
 			<xsl:element name="div">
 				<xsl:attribute name="class">about-video</xsl:attribute>
+				<xsl:attribute name="style">display:none;</xsl:attribute>
 
 				<!-- per Art Nikaj, we need the reviewed-by block inside 'about' section so to unify the content for all the video modules -->
 				<xsl:call-template name="build-reviewedby-output">
@@ -140,7 +141,7 @@
 				</xsl:element>
 			</xsl:element>
 
-			<xsl:element name="div">
+			<!--xsl:element name="div">
 				<xsl:attribute name="class">playlists expanded</xsl:attribute>
 
 				<xsl:element name="div">
@@ -175,6 +176,16 @@
 					<xsl:text>Show Less Videos</xsl:text>
 				</xsl:element>
 
+			</xsl:element-->
+
+			<xsl:element name="div">
+				<xsl:attribute name="class">video-end</xsl:attribute>
+				<h4>Next Up</h4>
+				<img src="" /> <p class="next-art"></p>
+				<xsl:element name="div">
+					<xsl:attribute name="class">loading_medium_png</xsl:attribute>
+					<span>Loading...</span>
+				</xsl:element>
 			</xsl:element>
 
 		</xsl:element>
@@ -188,9 +199,6 @@
 			//webmd.ads2.disableInitialLoad();
 
 			s_not_pageview='y';
-
-			// why do we change the style here? (a) timing it is needed (b) we cannot leave it as 'optional' by attaching module css
-			$(".module .about-video").hide();
 
 			window.getDynamicVideoComponents = function() {
 				return [
@@ -206,20 +214,35 @@
 				//we removed the custom module loading list as soon as we loaded our stuffs...
 				window.getDynamicVideoComponents = undefined;
 
-				var idPack = {};
-
+				var idPack = {},
+					player = new Player(),
+					timer = 100,
+					totalTime = 0,
+					cutOff = 2000,
+					nextArt = webmd.fundedEditorial.articleData.articles[webmd.fundedEditorial.articleData.nextArticle],
+					url = nextArt.link,
+					title = nextArt.title,
+					img = nextArt.images.image110x70,
+					$wrap = $('.fed-video .video-end');
+				
 				idPack.vidSelector = '#]]><xsl:value-of select="$container_id"/><![CDATA[';
 				idPack.chronicId = ']]><xsl:value-of select="$chronic_id"/><![CDATA[';
 				idPack.videoSourceId = ']]><xsl:value-of select="$video_src"/><![CDATA[';
 
-				var player = new Player();
-
 				webmd.m.premiumVideo2 = webmd.object(player);
 
-				var timer = 100,
-					totalTime = 0,
-					cutOff = 2000;
+				$wrap.find('.next-art').html(title);
+				$wrap.find('img').attr('src',image_server_url + img);
 
+				webmd.m.premiumVideo2.addEventListener('ready', function(e) {
+					webmd.m.premiumVideo2.playerObj.addEventListener('ended', function(event) {
+						$wrap.show();
+						setTimeout(function(){
+							window.location = url; 
+						}, 1000);
+					});
+				});
+				
 				function beginDailyPlayer() {
 					if(typeof googletag === "undefined" || typeof googletag.pubads === "undefined") {
 						if( totalTime !== cutOff) {
