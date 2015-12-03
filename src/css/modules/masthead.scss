@@ -13,7 +13,7 @@
 	position: relative;
 
 	.masthead-left {
-		float: left;
+		//float: left;
 	}
 	// .masthead-right {
 	// 	float: right;
@@ -39,9 +39,9 @@
 
 	#search_container {
 		position:relative;
-		float:left;
+		float:right;
 		//width: 35%;
-		width: 300px;
+		width: 350px;
 		margin-top:3px;
 
 		#searchQuery_fmt {
