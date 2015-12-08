@@ -144,6 +144,7 @@
 	color: #666;
 	text-transform: uppercase;
 	margin: 0 0 0.2em;
+	font-family: "Roboto Condensed",Arial,sans-serif;
 }
 .touch .slideshow .touch-instructions,
 .touch .slideshow .slide .caption .touch-slide-count {
