@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en" class="no-js">
     <head>
@@ -629,6 +627,7 @@ var s_rspd = "true";
             "type" : "type_art",
             "sponsored" : false
         }
+
         ]
     };
     </script>
@@ -819,7 +818,7 @@ require.config({
             <section id="s3" class="section">
                 <div id="ContentPane19" class="pane"><div class="see-all-shell">
 </div>
-<script id="see-all-template" type="text/x-handlebars-template">
+            <script id="see-all-template" type="text/x-handlebars-template">
             <header class="page-header">
                 <h1>All {{program.title}}</h1>
             </header>
@@ -829,7 +828,7 @@ require.config({
                     <h3>From WebMD</h3>
                     <div class="see-all-items non-spon" data-metrics-module="ed-rspsvalledcon">
                         <ul>
-                            {{#each_when articles "sponsored" false}}
+                            {{#each articles}}
                             <li class="see-all-item spon-{{sponsored}}">
                                 <a href="{{link}}" data-metrics-link="{{nonSponPos}}">
                                     {{#if images.image110x70}}
@@ -840,13 +839,13 @@ require.config({
                                     <p>{{{title}}}</p>
                                 </a>
                             </li>
-                            {{/each_when}}
+                            {{/each}}
                         </ul>
                     </div>
                     <div id="see-all-spon" class="see-all-items spon" data-metrics-module="ed-rspsvallspcon">
-                        <h3>From Our Sponsor</h3>
+                        <h3>From Our Sponsors</h3>
                         <ul>
-                            {{#each_when articles "sponsored" true}}
+                            {{#each articles}}
                             <li class="see-all-item spon-{{sponsored}}">
                                 <a href="{{link}}" data-metrics-link="{{sponPos}}">
                                     <div class="see-all-img {{type}}">
@@ -855,13 +854,13 @@ require.config({
                                     <p>{{{title}}}</p>
                                 </a>
                             </li>
-                            {{/each_when}}
+                            {{/each}}
                         </ul>
                     </div>
                 </div>
             </article>
             </script>
-<script>
+            <script>
 
             $('html').addClass('funded-editorial-see-all');
             $(function(){
@@ -875,6 +874,7 @@ require.config({
                                 if(list[i][k] == v)
                                     result = result + opts.fn(list[i]);
                             return result;
+                            console.log(result);
 
                         });
                         Handlebars.registerHelper('image_server_url', function() {
@@ -893,21 +893,22 @@ require.config({
                             context = webmd.fundedEditorial.articleData || {},
                             html = template(context);
 
+                        console.log(context);
+
                         container.prepend(html);
 
                         var paneForTitle = $('#ContentPane12'),
-                            pageTitle = $('header.page-header'),
-                            cleanUp = $('.see-all-items.non-spon .spon-true, .see-all-items.spon .spon-false');
+                            pageTitle = $('header.page-header');
 
                         if (pageTitle) {
                             $(paneForTitle).append(pageTitle);
                         }
 
-                        //cleanUp.remove();
-
-                        if($('.see-all-items.spon ul li').length == 0){
-                            $('.see-all-items.spon').remove();
-                        }
+                        //setTimeout(function(){
+                            if($('.see-all-items.spon ul li').length == 0){
+                                //$('.see-all-items.spon').remove();
+                            }
+                        //}, 1000);
                     }
                 });
             });

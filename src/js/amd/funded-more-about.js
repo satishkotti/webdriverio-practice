@@ -54,7 +54,7 @@ webmd.fundedEditorial.moreAbout = {
 		});
 
 		self.createGridWrapper();
-		
+
 		self.moveToTop('.wbmd-moreabout-label');
 		self.moveToTop('.wbmd-moreabout-title');
 	},

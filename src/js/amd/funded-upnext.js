@@ -225,7 +225,7 @@ webmd.fundedEditorial.nextUp = {
 		}
 
 		self.bindEvents();
-		
+
 		// Do no create module if not enough articles in data object
 
 		function createArticleLinkNodes() {

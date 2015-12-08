@@ -9,7 +9,7 @@ $lato_font: Lato,Arial,sans-serif;
 
 #rmq_header {
     position: relative;
-    padding: 20px 0 10px 0;
+    padding: 0 0 15px 0;
 
     h2 {
     	color: #333132;
@@ -384,7 +384,7 @@ $lato_font: Lato,Arial,sans-serif;
 				.slide_text {
 					padding: 20px !important;
 				}
-				
+
 				#rmq_total_rank {
 					display: none;
 				}
@@ -652,6 +652,8 @@ $lato_font: Lato,Arial,sans-serif;
 
 @media only screen and (min-width: 320px) and (max-width: 767px) {
 	#rmq_header {
+		padding: 0 10px 15px;
+
 		h2 {
 			font-size: 2.8rem;
     		line-height: 30px;
