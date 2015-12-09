@@ -84,22 +84,10 @@
 			</xsl:element>
 		</xsl:element>
 
-
-		<xsl:if test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr/wbmd_lst_nm">
-			<xsl:element name="div">
-				<xsl:attribute name="class">byline page-meta</xsl:attribute>
-
-				<xsl:call-template name="build-reviewedby-output">
-					<xsl:with-param name="site_id" select="$site_id"></xsl:with-param>
-					<xsl:with-param name="domain" select="$domain"></xsl:with-param>
-				</xsl:call-template>
-			</xsl:element>
-		</xsl:if>
-
 		<xsl:element name="div">
 			<xsl:attribute name="class">premium-video-container fed-video</xsl:attribute>
 			<xsl:attribute name="data-metrics-module">video</xsl:attribute>
-			
+
 			<xsl:element name="div">
 				<xsl:attribute name="id">
 					<xsl:value-of select="$container_id"/>
@@ -140,6 +128,17 @@
 					</xsl:call-template>
 				</xsl:element>
 			</xsl:element>
+
+			<xsl:if test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr/wbmd_lst_nm">
+				<xsl:element name="div">
+					<xsl:attribute name="class">vid-byline page-meta</xsl:attribute>
+
+					<xsl:call-template name="build-reviewedby-output">
+						<xsl:with-param name="site_id" select="$site_id"></xsl:with-param>
+						<xsl:with-param name="domain" select="$domain"></xsl:with-param>
+					</xsl:call-template>
+				</xsl:element>
+			</xsl:if>
 
 			<!--xsl:element name="div">
 				<xsl:attribute name="class">playlists expanded</xsl:attribute>
@@ -224,7 +223,7 @@
 					title = nextArt.title,
 					img = nextArt.images.image110x70,
 					$wrap = $('.fed-video .video-end');
-				
+
 				idPack.vidSelector = '#]]><xsl:value-of select="$container_id"/><![CDATA[';
 				idPack.chronicId = ']]><xsl:value-of select="$chronic_id"/><![CDATA[';
 				idPack.videoSourceId = ']]><xsl:value-of select="$video_src"/><![CDATA[';
@@ -238,11 +237,11 @@
 					webmd.m.premiumVideo2.playerObj.addEventListener('ended', function(event) {
 						$wrap.show();
 						setTimeout(function(){
-							window.location = url; 
+							window.location = url;
 						}, 1000);
 					});
 				});
-				
+
 				function beginDailyPlayer() {
 					if(typeof googletag === "undefined" || typeof googletag.pubads === "undefined") {
 						if( totalTime !== cutOff) {
@@ -268,7 +267,7 @@
 		<xsl:param name="nl">
 			<xsl:text>
 </xsl:text>
-		</xsl:param>	
+		</xsl:param>
 		<xsl:choose>
 			<xsl:when test="not(contains($pText, $nl))">
 				<xsl:copy-of select="$pText"/>

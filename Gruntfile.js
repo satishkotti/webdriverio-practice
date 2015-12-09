@@ -230,6 +230,7 @@ module.exports = function (grunt) {
 			dist: {
 				files: [
 					'<%= dirSrc %>/css/**/*.scss',
+					'<%= dirSrc %>/css/**/*.css',
 					'<%= dirSrc %>/js/**/*.js'
 				],
 				tasks: ['build'],
