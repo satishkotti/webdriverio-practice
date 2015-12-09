@@ -104,8 +104,32 @@ webmd.fundedEditorial.paddles = {
         $('head').append($script);
     },
 
+    debounce: function(func, wait, immediate) {
+        // Returns a function, that, as long as it continues to be invoked, will not
+        // be triggered. The function will be called after it stops being called for
+        // N milliseconds. If `immediate` is passed, trigger the function on the
+        // leading edge, instead of the trailing.
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    },
+
     bindEvents: function() {
         var self = this;
+
+        var efficientNavPaddles = self.debounce(function() {
+            // All the taxing stuff you do
+            self.setupNavPaddles();
+        }, 250);
 
         $(window).bind('resizeEnd', function() {
             // do something, window hasn't changed size in 500ms
@@ -116,12 +140,8 @@ webmd.fundedEditorial.paddles = {
             return true;
         });
 
-        $(window).load(function() {
-            self.setupNavPaddles();
-        });
-
-        $(window).scroll(function() {
-            self.setupNavPaddles();
+        $(document).on('load scroll', function() {
+            efficientNavPaddles();
         });
 
         $(window).resize(function() {
