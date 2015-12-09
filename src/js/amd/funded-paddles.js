@@ -140,7 +140,11 @@ webmd.fundedEditorial.paddles = {
             return true;
         });
 
-        $(document).on('load scroll', function() {
+        $(document).load(function() {
+            self.setupNavPaddles();
+        });
+
+        $(document).scroll(function() {
             efficientNavPaddles();
         });
 
