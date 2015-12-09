@@ -140,7 +140,7 @@ webmd.fundedEditorial.paddles = {
             return true;
         });
 
-        $(document).load(function() {
+        $(window).load(function() {
             self.setupNavPaddles();
         });
 
