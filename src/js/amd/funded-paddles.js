@@ -255,12 +255,12 @@ webmd.fundedEditorial.paddles = {
 
                 if (articleIndex === self.articleData.prevArticle) {
                     context.prev.article = article;
-                    context.prev.articleId = articleIndex;
+                    context.prev.articleId = articleIndex + 1;
                 }
 
                 if (articleIndex === self.articleData.nextArticle) {
                     context.next.article = article;
-                    context.next.articleId = articleIndex;
+                    context.next.articleId = articleIndex + 1;
                 }
             });
 
