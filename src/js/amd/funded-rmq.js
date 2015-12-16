@@ -130,6 +130,13 @@ define(['bx_slider/1/bx_slider'], {
 
                     id = 'transition';
 
+                    $slideElement.find('a.goto_results').bind('click tap', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        self.slider.goToNextSlide();
+                    });
+
                     $slideElement.find('slide_controls').hide();
 
                     if (curData.delay) {

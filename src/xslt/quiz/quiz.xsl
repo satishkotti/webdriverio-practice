@@ -781,6 +781,15 @@
 								</xsl:attribute>
 								<xsl:text> </xsl:text>
 							</xsl:element>
+							<xsl:element name="a">
+								<xsl:attribute name="href">
+									<xsl:text>#</xsl:text>
+								</xsl:attribute>
+								<xsl:attribute name="class">
+									<xsl:text>goto_results</xsl:text>
+								</xsl:attribute>
+								<xsl:text>Continue to Results &gt;</xsl:text>
+							</xsl:element>
 						</xsl:element>
 					</xsl:element>
 				</xsl:element>

@@ -378,6 +378,14 @@ $lato_font: Lato,Arial,sans-serif;
 				    font-size: 1.8em;
 				    padding: 0 45px 3em 45px;
 				}
+
+				.goto_results {
+					position: relative;
+					display: block;
+					font-size: 1.3em;
+					text-align: center;
+					padding-top: 5px;
+				}
 			}
 
 			&.results {
