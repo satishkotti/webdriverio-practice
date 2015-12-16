@@ -515,12 +515,11 @@ $lato_font: Lato,Arial,sans-serif;
 	.rmq_footer {
 	    color: #666;
 	    font-size: 1em;
-	    padding: 1em 0 1.5em;
+	    padding: 1em 0 1em;
 	    border-top: 1px solid #eee;
 
 	    &:last-child {
 		    margin-bottom: 0;
-		    padding-bottom: 0;
 		}
 
 		p {
