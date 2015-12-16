@@ -11,6 +11,10 @@ $lato_font: 'Lato', Arial, sans-serif;
     display: block;
 }
 
+.breadcrumb {
+    display: none !important;
+}
+
 .wbmd-restricted-email {
 	clear: both;
     background-color: #fff;
