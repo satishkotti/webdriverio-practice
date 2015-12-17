@@ -57,6 +57,7 @@
 }
 .slideshow .slide a.nextslide {
 	position: relative;
+	display: block;
     font-size: 1.3em;
     line-height: 2em;
 }
