@@ -65,9 +65,18 @@ require.config({
 		}
 	});
 
-    require(["webmd.m.socialshareplugin", "css!socialshareplugin/1/socialshareplugin.min.css"], function() {
-    	$(function() {
+	require(["webmd.m.socialshareplugin", "css!socialshareplugin/1/socialshareplugin.min.css"], function() {
+		$(function() {
+			var $videoShare = $('.fed-video .info-container .cmd-section');
+
 			$("#</xsl:text><xsl:value-of select="$moduletitle"/><xsl:text>").socialshareplugin(webmd.m.socialshareconfig);
+				
+			if (webmd.m.socialshareconfig.shareOrder.indexOf('twitter') === -1) {
+				$videoShare.find('.cmd-twitr').hide();
+			}
+			if (webmd.m.socialshareconfig.shareOrder.indexOf('facebook') === -1) {
+				$videoShare.find('.cmd-fb').hide();
+			}
 		});
 	});
 	

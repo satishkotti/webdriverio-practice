@@ -53,10 +53,6 @@
 	color: #fff;
 
 }
-.fed-video .info-container .cmd-section .cmd-twitr,
-.fed-video .info-container .cmd-section .cmd-fb {
-	display: none;
-}
 .fed-video .video-end .loading_medium_png {
 	margin: 15px auto 0;
 }
