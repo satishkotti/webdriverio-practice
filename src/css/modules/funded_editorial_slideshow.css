@@ -57,7 +57,7 @@
 }
 .slideshow .slide .caption {
 	background: #fff;
-	padding: 20px 10px;
+	padding: 20px 10px 0px;
 	text-align: left;
 }
 .slideshow .slide .caption h3 {
@@ -70,7 +70,7 @@
 	color: #222;
 	font-size: 1.6em;
 	line-height: 24px;
-	margin: 0 0 26px;
+	margin: 0;
 	font-family: Chivo,Arial,sans-serif;
 }
 .slideshow .bx-controls .bx-prev,
@@ -193,7 +193,7 @@
 	font-size: 1.33em;
 }
 .sources {
-	margin: 20px 0;
+	margin: 57px 0 20px;
 	padding: 0 10px;
 }
 .sources p {
