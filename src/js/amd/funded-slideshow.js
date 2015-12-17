@@ -14,6 +14,7 @@ define(['bx_slider/1/bx_slider'], function(){
 			totalSlides,
 			currentWidth,
 			timeOut,
+			interstitialNextSlideLink,
 			settings = {
 				slideSelector: '.slide',
 				slidesSelector: '.slides',
@@ -50,6 +51,19 @@ define(['bx_slider/1/bx_slider'], function(){
 			currentWidth = $(window).width();
 			$ss.find('.slide-count .total').html(totalSlides);
 
+			interstitialNextSlideLink = once(function() {
+				var $nextSlideLink = $('<a href="#" class="nextslide">Continue to next slide</a>');
+
+				$nextSlideLink.bind('click tap', function(e) {
+					e.preventDefault();
+                    e.stopPropagation();
+
+					slider.goToNextSlide();
+				});
+
+				$ss.find('.slide.sponsored .image').after($nextSlideLink);
+			});
+
 		}
 
 		function attachEventHandlers() {
@@ -65,6 +79,7 @@ define(['bx_slider/1/bx_slider'], function(){
 
 				// check for interstitial slide
 				if ($ss.find('.slide').eq(event.newIndex).hasClass('sponsored')) {
+					interstitialNextSlideLink();
 					doInterstitial(true);
 				} else {
 					doInterstitial(false);
@@ -208,6 +223,18 @@ define(['bx_slider/1/bx_slider'], function(){
 					refresh: false
 				});
 			}
+		}
+
+		function once(fn, context) {
+			var result;
+
+			return function() {
+				if (fn) {
+					result = fn.apply(context || this, arguments);
+					fn = null;
+				}
+				return result;
+			};
 		}
 
 		// only expose init

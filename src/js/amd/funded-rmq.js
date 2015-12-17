@@ -84,6 +84,7 @@ define(['bx_slider/1/bx_slider'], {
 
                 case 'interstitial':
 
+                    $('.attrib_right_fmt').hide();
                     $(".ed_disclaimer").hide();
                     $('.rmq_footer').hide();
                     $("#rmq_scorebox").find(".score_text").children().hide();
@@ -92,6 +93,7 @@ define(['bx_slider/1/bx_slider'], {
 
                 case 'results':
 
+                    $('.attrib_right_fmt').show();
                     $(".ed_disclaimer").show();
                     $('.rmq_footer').show();
                     $('#rmq_scorebox').find('.score_text').children().hide();
@@ -127,6 +129,13 @@ define(['bx_slider/1/bx_slider'], {
                 case 'interstitial':
 
                     id = 'transition';
+
+                    $slideElement.find('a.goto_results').bind('click tap', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        self.slider.goToNextSlide();
+                    });
 
                     $slideElement.find('slide_controls').hide();
 

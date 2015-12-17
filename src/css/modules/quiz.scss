@@ -378,6 +378,14 @@ $lato_font: Lato,Arial,sans-serif;
 				    font-size: 1.8em;
 				    padding: 0 45px 3em 45px;
 				}
+
+				.goto_results {
+					position: relative;
+					display: block;
+					font-size: 1.3em;
+					text-align: center;
+					padding-top: 5px;
+				}
 			}
 
 			&.results {
@@ -507,12 +515,11 @@ $lato_font: Lato,Arial,sans-serif;
 	.rmq_footer {
 	    color: #666;
 	    font-size: 1em;
-	    padding: 1em 0 1.5em;
+	    padding: 1em 0 1em;
 	    border-top: 1px solid #eee;
 
 	    &:last-child {
 		    margin-bottom: 0;
-		    padding-bottom: 0;
 		}
 
 		p {

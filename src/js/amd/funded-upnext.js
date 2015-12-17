@@ -245,7 +245,7 @@ webmd.fundedEditorial.nextUp = {
 				$link = $('<a></a>');
 				$link.attr({ href : article.link });
 				$link.html(article.title);
-				$link.attr('data-metrics-link', position + '-' + articleId);
+				$link.attr('data-metrics-link', position);
 				$div.append($link);
 				nodes.push($div);
 			}
