@@ -11,14 +11,14 @@
 	<xsl:param name="isi_type">
 		<xsl:if test="$module_label_2 != ''">
 			<xsl:choose>
-				<xsl:when test="contains($module_label_2, 'Item 1')">
+				<xsl:when test="contains($module_label_2, 'Middle')">
 					<xsl:text>main</xsl:text>
 				</xsl:when>
-				<xsl:when test="contains($module_label_2, 'Item 2')">
-					<xsl:text>fixed</xsl:text>
-				</xsl:when>
-				<xsl:when test="contains($module_label_2, 'Item 3')">
+				<xsl:when test="contains($module_label_2, 'Right')">
 					<xsl:text>right</xsl:text>
+				</xsl:when>
+				<xsl:when test="contains($module_label_2, 'Bottom')">
+					<xsl:text>fixed</xsl:text>
 				</xsl:when>
 			</xsl:choose>
 		</xsl:if>

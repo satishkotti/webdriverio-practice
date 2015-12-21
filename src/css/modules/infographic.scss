@@ -34,9 +34,28 @@
 	}
 	footer {
 		background: 0;
+		margin-top: 50px;
 
+		p {
+			font-family: "Roboto Condensed",Arial,sans-serif;
+			font-size: 1.6em;
+			line-height: 24px;
+			color: #333132;
+			margin-bottom: 10px;
+		}
+		.sources {
+			margin-bottom: 20px;
+
+			#source_container p {
+				font-size: 1.4em;
+				color: #666;
+				margin-bottom: 5px;
+			}
+		}
 		.copyright {
-			color: #666;
+			margin-bottom: 5px;
+			font-size: 1.5em;
+			line-height: 22px;
 		}
 	}
 }
