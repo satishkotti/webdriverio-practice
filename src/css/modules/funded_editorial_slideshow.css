@@ -189,11 +189,20 @@
 .slideshow .slide-end .loading_medium_png {
 	margin: 0 auto;
 }
+.slideshow .slide-end .next-art-container {
+	float: right;
+    right: 50%;
+    position: relative;
+}
 .slideshow .slide-end h4 {
 	color: #fff;
 	font-family: Lato, Arial, sans-serif;
 	font-size: 1.8em;
 	margin: 35px 0 0;
+	float: right;
+    right: -50%;
+    position: relative;
+    max-width: 400px;
 }
 .slideshow .slide-end h4 .next-art {
 	font-size: 1.33em;
@@ -224,6 +233,12 @@ p.copyright {
 	line-height: 24px;
 	margin-bottom: 5px;
 }
+@media only screen and (max-width: 320px), only screen and (min-width: 321px) and (max-width: 480px) {
+	.slideshow .slide-end h4 {
+    	max-width: 300px !important;
+	}
+}
+
 @media only screen and (min-width: 676px) and (max-width: 915px), only screen and (max-width: 530px) {
 	.slideshow .slide .caption p {
 		font-size: 1.6em;
@@ -241,7 +256,10 @@ p.copyright {
 	}
 }
 @media only screen and (max-width: 767px) {
+	.slideshow .slide-end h4 {
+    	max-width: 500px;
+	}
 	.sources {
-		margin: 20px 10px;
+		margin: 57px 0px 20px;
 	}
 }
