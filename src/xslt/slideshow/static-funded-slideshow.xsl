@@ -118,9 +118,12 @@
 						<xsl:text>Loading...</xsl:text>
 					</xsl:element>
 				</xsl:element>
-				<xsl:element name="h4">Next <br />
-					<xsl:element name="span">
-						<xsl:attribute name="class">next-art</xsl:attribute>
+				<xsl:element name="div">
+					<xsl:attribute name="class">next-art-container</xsl:attribute>
+					<xsl:element name="h4">Next <br />
+						<xsl:element name="span">
+							<xsl:attribute name="class">next-art</xsl:attribute>
+						</xsl:element>
 					</xsl:element>
 				</xsl:element>
 			</xsl:element>
