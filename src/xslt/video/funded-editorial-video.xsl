@@ -129,7 +129,7 @@
 				</xsl:element>
 			</xsl:element>
 
-			<xsl:if test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr/wbmd_lst_nm">
+			<!-- <xsl:if test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr/wbmd_lst_nm">
 				<xsl:element name="div">
 					<xsl:attribute name="class">vid-byline page-meta</xsl:attribute>
 
@@ -138,7 +138,7 @@
 						<xsl:with-param name="domain" select="$domain"></xsl:with-param>
 					</xsl:call-template>
 				</xsl:element>
-			</xsl:if>
+			</xsl:if> -->
 
 			<!--xsl:element name="div">
 				<xsl:attribute name="class">playlists expanded</xsl:attribute>
