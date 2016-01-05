@@ -1187,7 +1187,7 @@ webmd.fundedEditorial = {
 				// set timeout to allow menu to display before setting body to fixed position
 				// this avoid seeing a jump in the body prior to the menu appearing
 			    setTimeout(function() {
-			    	$body.addClass('menu-open');
+			    	$body.addClass('menu-open').trigger('kabobClick');
 			    }, 500);
 			});
 
@@ -1199,7 +1199,7 @@ webmd.fundedEditorial = {
 
 				$body.removeClass('menu-open');
 
-			    $body.removeClass('no-scroll');
+			    $body.removeClass('no-scroll').trigger('kabobClick');
 
 			    // removing the fixed position on body allows scrolling
 			    // return to the last position of the page prior to the menu being opened
