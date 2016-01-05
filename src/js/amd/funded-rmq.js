@@ -273,12 +273,24 @@ define(['bx_slider/1/bx_slider'], {
 
                                         // Set up the ad and configure it as 300x250 with a pos value of 121 (new value for DFP changed from 207) then fetch and display it
                                         // Refer to scripts.js ads2 branch for detailed documentation on the methods used
-                                        $('#rmq_ad_placeholder').html('<div id="rmqAd_fmt"><div class="ad_placeholder" id ="ads2-pos-121" style="height:250px;"></div></div>');
-                                        webmd.ads2.defineAd({
-                                            id: 'ads2-pos-121',
-                                            pos: '121',
-                                            sizes: [300, 250]
-                                        });
+                                        if (webmd.useragent.ua.type === "mobile") {
+                                            $('#rmq_ad_placeholder').html('<div id="rmqAd_fmt"><div class="ad_placeholder" id ="ads2-pos-2026-ad_rmq" style="height:50px;margin: 0 auto;"></div></div>');
+
+                                            webmd.ads2.defineAd({
+                                                id: 'ads2-pos-2026-ad_rmq',
+                                                pos: 2026,
+                                                sizes: [320, 50]
+                                            }).refresh({id:'ads2-pos-2026-ad_rmq'});
+                                        } else {
+                                            $('#rmq_ad_placeholder').html('<div id="rmqAd_fmt"><div class="ad_placeholder" id ="ads2-pos-121-ad_rmq" style="height:250px;margin: 0 auto;"></div></div>');
+
+                                            webmd.ads2.defineAd({
+                                                id: 'ads2-pos-121-ad_rmq',
+                                                pos: 121,
+                                                sizes: [300, 250]
+                                            }).refresh({id:'ads2-pos-121-ad_rmq'});
+                                        }
+
                                         webmd.ads2.display();
 
                                     } else {
