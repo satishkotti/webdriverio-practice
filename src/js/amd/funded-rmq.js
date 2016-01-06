@@ -93,7 +93,10 @@ define(['bx_slider/1/bx_slider'], {
 
                 case 'results':
 
-                    $('.attrib_right_fmt').show();
+                    if (webmd.useragent.ua.type !== "mobile") {
+                        $('.attrib_right_fmt').show();
+                    }
+                    
                     $(".ed_disclaimer").show();
                     $('.rmq_footer').show();
                     $('#rmq_scorebox').find('.score_text').children().hide();
