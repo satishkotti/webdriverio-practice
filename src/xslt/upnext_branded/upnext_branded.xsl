@@ -29,7 +29,7 @@
                 <xsl:attribute name="class">
                     <xsl:text><![CDATA[wbmd-brand branded-color]]></xsl:text>
                 </xsl:attribute>
-                <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_data/module_title"></xsl:value-of>
+                <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_data/module_title" disable-output-escaping="yes"></xsl:value-of>
             </xsl:element>
             <xsl:element name="div">
                 <xsl:attribute name="class">

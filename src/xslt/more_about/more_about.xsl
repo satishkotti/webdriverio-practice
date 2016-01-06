@@ -50,7 +50,7 @@
                 </xsl:attribute>
                 <xsl:choose>
                     <xsl:when test="$label != ''">
-                        <xsl:value-of select="$label"></xsl:value-of>
+                        <xsl:value-of select="$label" disable-output-escaping="yes"></xsl:value-of>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:text><![CDATA[From WebMD]]></xsl:text>
@@ -62,7 +62,7 @@
                 <xsl:attribute name="class">
                     <xsl:text>wbmd-moreabout-title</xsl:text>
                 </xsl:attribute>
-                <xsl:apply-templates select="module_title" />
+                <xsl:value-of select="module_title" disable-output-escaping="yes" />
             </xsl:element>
             
             <xsl:for-each select="links/link">
@@ -76,7 +76,7 @@
                             <xsl:value-of select="$data_metrics_module"></xsl:value-of>
                         </xsl:attribute>
                         <xsl:attribute name="data-article-num">
-                            <xsl:apply-templates select="link_text" />
+                            <xsl:value-of select="link_text" />
                         </xsl:attribute>
                         <xsl:element name="a">
                             <xsl:attribute name="data-metrics-link">

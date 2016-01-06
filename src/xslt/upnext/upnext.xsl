@@ -10,16 +10,24 @@
         <xsl:text>http://img.preview.webmd.com/dtmcms/preview</xsl:text>
     </xsl:param>
     
+    <xsl:param name="data_metrics_module">
+        <xsl:value-of select="/webmd_rendition/content/wbmd_asset/webmd_module/module_settings/title"/>
+    </xsl:param>
+    
     <xsl:template match="/">
+        <xsl:apply-templates select="/webmd_rendition/content/wbmd_asset/webmd_module/module_data"/>
+    </xsl:template>
+    
+    <xsl:template match="module_data">
         <xsl:element name="div">
             <xsl:attribute name="class">
                 <xsl:text>up-next-container</xsl:text>
             </xsl:attribute>
-            <xsl:attribute name="data-link-count">
-                <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_data/descriptions/description/description_text"></xsl:value-of>
-            </xsl:attribute>
             <xsl:attribute name="data-metrics-module">
-                <xsl:value-of select="webmd_rendition/content/wbmd_asset/webmd_module/module_settings/title"></xsl:value-of>
+                <xsl:value-of select="$data_metrics_module"></xsl:value-of>
+            </xsl:attribute>
+            <xsl:attribute name="data-link-count">
+                <xsl:value-of select="descriptions/description/description_text"></xsl:value-of>
             </xsl:attribute>
         
             <xsl:element name="div">
@@ -32,7 +40,7 @@
                 <xsl:attribute name="class">
                     <xsl:text>wbmd-subhead</xsl:text>
                 </xsl:attribute>
-                <xsl:value-of select="links/link/link_text"></xsl:value-of>
+                <xsl:value-of select="links/link/link_text" disable-output-escaping="yes"></xsl:value-of>
             </xsl:element>
             
             <xsl:element name="div">
@@ -49,7 +57,7 @@
         </xsl:element>
         
         <xsl:element name="script">
-        <![CDATA[require(["funded-editorial/1/funded-upnext"]);]]>
+            <![CDATA[require(["funded-editorial/1/funded-upnext"]);]]>
         </xsl:element>
     </xsl:template>
 
