@@ -293,10 +293,18 @@ webmd.fundedEditorial = {
 		var self = this,
 			segments = webmd.fundedEditorial.segments;
 
+		
+		function validSegments(segment, index, segments) {
+			if ('currentSeg' in segment) {
+				return segment.currentSeg !== true;
+			} else {
+				console.log('SEGMENT MODULE NOT DRAWN: fix data for entry ' + (index+1) + ' in segment data module');
+				return false;
+			}
+		}
+
 		// remove current segment from array
-		webmd.fundedEditorial.segments = segments.filter(function (segment) {
-			return segment.currentSeg !== true;
-		});
+		webmd.fundedEditorial.segments = segments.filter(validSegments);
 
 		getSegmentsByAjax();
 

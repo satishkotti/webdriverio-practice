@@ -13,76 +13,79 @@
 		<xsl:apply-templates select="webmd_rendition/content/wbmd_asset/webmd_module/module_data"></xsl:apply-templates>
 	</xsl:template>
 	<xsl:template match="module_data">
-
-	<xsl:element name="script"><xsl:attribute name="id"><xsl:text>segments</xsl:text></xsl:attribute><![CDATA[
-	webmd.fundedEditorial.segments = []]><xsl:for-each select="links/link">
-			<xsl:variable name="href">
-				<xsl:call-template name="GetURLRef">
-					<xsl:with-param name="ObjectID">
-						<xsl:value-of select="link_url/@chronic_id"></xsl:value-of>
-					</xsl:with-param>
-				</xsl:call-template>
-			</xsl:variable>
-			<xsl:variable name="position">
-				<xsl:value-of select="position()"></xsl:value-of>
-			</xsl:variable>
-			<![CDATA[{]]>
-				<![CDATA["artDataId" : "]]><xsl:choose>
-					<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
-						<xsl:value-of select="normalize-space(substring-before(link_text,' ['))"/>
-					</xsl:when>
-					<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
-						<xsl:value-of select="normalize-space(substring-before(link_text,'['))"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="normalize-space(link_text)"/>
-					</xsl:otherwise>
-				</xsl:choose><![CDATA[",]]>
-				<![CDATA["currentSeg" : ]]><xsl:choose>
-					<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
-						<xsl:text>true</xsl:text>
-					</xsl:when>
-					<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
-						<xsl:text>true</xsl:text>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:text>false</xsl:text>
-					</xsl:otherwise>
-				</xsl:choose><![CDATA[,]]>
-				<![CDATA["promotedArticles" : []]><xsl:call-template name="tokenize">
-					<xsl:with-param name="text">
-						<xsl:value-of select="action_text"/>
-					</xsl:with-param>
-				</xsl:call-template><![CDATA[],]]>
-			<![CDATA[}]]><xsl:if test="position()!=last()"><xsl:text>,</xsl:text></xsl:if>
-		</xsl:for-each>
-	<![CDATA[];]]>
-	</xsl:element>
-	</xsl:template>
-
+		<xsl:if test="count(links/link) >= 1">
+			<xsl:element name="script"><xsl:attribute name="id"><xsl:text>segments</xsl:text></xsl:attribute><![CDATA[
+		webmd.fundedEditorial.segments = []]>
+				<xsl:for-each select="links/link">
+					<xsl:variable name="href">
+						<xsl:call-template name="GetURLRef">
+							<xsl:with-param name="ObjectID">
+								<xsl:value-of select="link_url/@chronic_id"></xsl:value-of>
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:variable>
+					<xsl:variable name="position">
+						<xsl:value-of select="position()"></xsl:value-of>
+					</xsl:variable>
+					<xsl:choose>
+					<xsl:when test="link_text != ''"><![CDATA[{]]>
+					<![CDATA["artDataId" : "]]><xsl:choose>
+							<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
+								<xsl:value-of select="normalize-space(substring-before(link_text,' ['))"/>
+							</xsl:when>
+							<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
+								<xsl:value-of select="normalize-space(substring-before(link_text,'['))"/>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="normalize-space(link_text)"/>
+							</xsl:otherwise>
+					</xsl:choose><![CDATA[",]]>
+					<![CDATA["currentSeg" : ]]><xsl:choose>
+							<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
+								<xsl:text>true</xsl:text>
+							</xsl:when>
+							<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
+								<xsl:text>true</xsl:text>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:text>false</xsl:text>
+							</xsl:otherwise>
+						</xsl:choose><![CDATA[,]]>
+					<![CDATA["promotedArticles" : []]><xsl:call-template name="tokenize">
+							<xsl:with-param name="text">
+								<xsl:value-of select="action_text"/>
+							</xsl:with-param>
+						</xsl:call-template><![CDATA[],]]>
+				<![CDATA[}]]></xsl:when><xsl:otherwise><![CDATA[{}]]></xsl:otherwise></xsl:choose><xsl:if test="position()!=last()"><xsl:text>,</xsl:text></xsl:if>
+				</xsl:for-each>
+		<![CDATA[];]]>
+</xsl:element>
+</xsl:if>
+</xsl:template>
+	
 	<xsl:template name="tokenize">
-        <xsl:param name="text" select="."/>
-        <xsl:param name="separator" select="','"/>
-        <xsl:choose>
-            <xsl:when test="not(contains($text, $separator))">
-            	<!-- Last Item -->
-                <xsl:value-of select="normalize-space($text - 1)"/>
-            </xsl:when>
-            <xsl:otherwise>
-            	<!-- Items in List -->
-            	<xsl:variable name="num">
-	                <xsl:value-of select="normalize-space(substring-before($text, $separator))"/>
+		<xsl:param name="text" select="."/>
+		<xsl:param name="separator" select="','"/>
+		<xsl:choose>
+			<xsl:when test="not(contains($text, $separator))">
+				<!-- Last Item -->
+				<xsl:value-of select="normalize-space($text - 1)"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<!-- Items in List -->
+				<xsl:variable name="num">
+					<xsl:value-of select="normalize-space(substring-before($text, $separator))"/>
 				</xsl:variable>
-
+				
 				<xsl:value-of select="normalize-space($num - 1)"/><xsl:value-of select="normalize-space($separator)"/>
-
-                <xsl:call-template name="tokenize">
-                    <xsl:with-param name="text" select="substring-after($text, $separator)"/>
-                </xsl:call-template>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
+				
+				<xsl:call-template name="tokenize">
+					<xsl:with-param name="text" select="substring-after($text, $separator)"/>
+				</xsl:call-template>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
 	<xsl:template name="getImgPath">
 		<xsl:param name="width"/>
 		<xsl:param name="height"/>
@@ -103,7 +106,7 @@
 			<xsl:value-of select="$image_server_url"/><xsl:value-of select="$path"/>
 		</xsl:if>
 	</xsl:template>
-
+	
 	<xsl:template name="getImgPathNew">
 		<xsl:param name="width"/>
 		<xsl:param name="height"/>
@@ -119,7 +122,7 @@
 			</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
-
+	
 	<xsl:template name="string-replace-all">
 		<xsl:param name="text" />
 		<xsl:param name="replace" />
