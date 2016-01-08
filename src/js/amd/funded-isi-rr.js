@@ -23,7 +23,8 @@ webmd.fundedEditorial.isiRR = {
 
 		as = new Autoscroller(asSettings);
 	}
-}
+};
+
 $(function () {
 	webmd.fundedEditorial.isiRR.init();
 });
