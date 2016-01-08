@@ -19,6 +19,7 @@ webmd.fundedEditorial.isi = {
 		if($('.isi-main-content').length > 0){
 			this.scrollCloseIsi();
 		}
+
 	},
 
 	bindEvents : function() {
