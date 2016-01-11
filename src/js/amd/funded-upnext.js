@@ -15,7 +15,7 @@ webmd.fundedEditorial.nextUp = {
 	init : function(){
 		var self = this,
 			current_url = window.location.href.split("?")[0].split("#")[0],
-            articles;
+			articles;
 
 		if (self.articles_to_display <= 0 || self.checkIfDisabled()) {
 			$('.up-next-container').remove(); // remove placeholder created by XSL
@@ -23,36 +23,36 @@ webmd.fundedEditorial.nextUp = {
 			return false;
 		}
 
-        if (self.hide_sponsor_pages) {
-            self.articleData.articles = self.articleData.articles.filter(function (el) {
-                return el.sponsored !== true;
-            });
+		if (self.hide_sponsor_pages) {
+			self.articleData.articles = self.articleData.articles.filter(function (el) {
+				return el.sponsored !== true;
+			});
 
-            articles = self.articleData.articles;
+			articles = self.articleData.articles;
 
-            // sponsored content removed, re-determine previous, current and next articles
-            $.each(articles, function(index) {
-                this.isCurrent = false;
+			// sponsored content removed, re-determine previous, current and next articles
+			$.each(articles, function(index) {
+				this.isCurrent = false;
 
-                if (this.link === current_url || this.id === window.s_unique_id) {
-                    self.articleData.currentArticle = index;
-                    this.isCurrent = true;
-                    this.visited = true;
+				if (this.link === current_url || this.id === window.s_unique_id) {
+					self.articleData.currentArticle = index;
+					this.isCurrent = true;
+					this.visited = true;
 
-                    if (index === 0) {
-                        self.articleData.prevArticle = articles.length - 1;
-                    } else {
-                        self.articleData.prevArticle = index - 1;
-                    }
+					if (index === 0) {
+						self.articleData.prevArticle = articles.length - 1;
+					} else {
+						self.articleData.prevArticle = index - 1;
+					}
 
-                    if (index === articles.length - 1) {
-                        self.articleData.nextArticle = 0;
-                    } else {
-                        self.articleData.nextArticle = index + 1;
-                    }
-                }
-            });
-        }
+					if (index === articles.length - 1) {
+						self.articleData.nextArticle = 0;
+					} else {
+						self.articleData.nextArticle = index + 1;
+					}
+				}
+			});
+		}
 
 		self.updateDOM();
 
