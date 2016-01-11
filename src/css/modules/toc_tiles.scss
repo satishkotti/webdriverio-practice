@@ -33,7 +33,7 @@
     }
     &.wrapping { /* used on standard toc (non-segment modules) */
         .wbmd-masonry-grid {
-            margin: 0 auto !important;
+            margin: 0 auto;
         }
         #rightAd_rdr {
             &.wbmd-grid-item {
@@ -58,10 +58,6 @@
             }
         }
     }
-}
-
-.wbmd-masonry-grid {
-    margin: 0 auto !important;
 }
 
 #rightAd_rdr {
