@@ -403,10 +403,12 @@ webmd.fundedEditorial = {
 				$toolBarContentPane = $('.wbmd-toolbar-menu').closest('div.pane'),
 				$toolbarContainer = $('.wbmd-toolbar-menu:not(.clone)'), // toolbar visible in document flow
 				$toolbarClone = $('.wbmd-toolbar-menu.clone'), // invisible toolbar clone (used as a spacer for smooth scrolling)
-				$marquee = $('.marquee').length < 1;
+				marquee = $('.marquee').length > 0,
+				paddles = $('.wbmd-paddles .show').length > 0,
+				isi = $('.isi').not('.isi.hide').length > 0;
 
-			if($marquee){
-				if (y > $toolBarContentPane.offset().top) {
+			if(!marquee){
+				if (y > $toolBarContentPane.offset().top && !paddles && !isi) {
 					self.stickToolbar($toolbarContainer, $toolbarClone);
 				} else {
 					self.unstickToolbar($toolbarContainer, $toolbarClone);
