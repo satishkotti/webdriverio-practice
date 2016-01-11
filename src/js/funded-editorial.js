@@ -755,7 +755,7 @@ webmd.fundedEditorial = {
 				return;
 			}
 
-			$tocSegmentContentPane.html(''); // remove everything from content pane to avoid masonry bugs
+			$tocSegmentContentPane.html('').addClass('scaling'); // remove everything from content pane to avoid masonry bugs
 
 			$.each(webmd.fundedEditorial.segments, function(index, data) {
 				var segmentNumber = index + 1;
@@ -1003,13 +1003,25 @@ webmd.fundedEditorial = {
 						contentPane.msnry.layout();
 					} else {
 						$(masonryGrid).imagesLoaded(function() {
-							contentPane.msnry = new Masonry(masonryGrid, {
-								itemSelector: gridItemClass,
-								columnWidth: '.tile-width',
-								gutter: self.masonryGutter,
-								isFitWidth: true,
-								isResizable: true
-							});
+							if ($('#' + id).hasClass('scaling')) {
+								// segment module (scale tiles)
+								contentPane.msnry = new Masonry(masonryGrid, {
+									itemSelector: gridItemClass,
+									columnWidth: '.tile-width',
+									gutter: self.masonryGutter,
+									percentPosition: true
+								});
+							} else {
+								// standard TOC tiles (wrap tiles)
+								$('#' + id).addClass('wrapping');
+								contentPane.msnry = new Masonry(masonryGrid, {
+									itemSelector: gridItemClass,
+									columnWidth: '.tile-width',
+									gutter: self.masonryGutter,
+									isFitWidth: true,
+									isResizable: true
+								});
+							}
 
 							contentPane.msnry.on('layoutComplete', function(items) {
 								// TOC Tiles load before Segment Tiles
