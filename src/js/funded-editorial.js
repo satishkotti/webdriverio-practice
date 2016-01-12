@@ -390,7 +390,7 @@ webmd.fundedEditorial = {
 
 	bindEvents: function() {
 		var self = this,
-			mastheadH = $('.masthead.wmd-sticky').outerHeight(true);
+			marquee = $('.marquee').length > 0;
 
 		$(window).load(function() {
 			self.centerAds(['.bottom_ad_rdr', '#rightAd_rdr']); //pass specific ad identifiers for centering as array
@@ -399,34 +399,30 @@ webmd.fundedEditorial = {
 		});
 
 		$(window).on('scroll touchstart touchmove touchend', function() {
-			var y = $(document).scrollTop(),
-				$toolBarContentPane = $('.wbmd-toolbar-menu').closest('div.pane'),
-				$toolbarContainer = $('.wbmd-toolbar-menu:not(.clone)'), // toolbar visible in document flow
-				$toolbarClone = $('.wbmd-toolbar-menu.clone'), // invisible toolbar clone (used as a spacer for smooth scrolling)
-				marquee = $('.marquee').length > 0,
-				paddles = $('.wbmd-paddles .show').length > 0,
-				isi = $('.isi').not('.isi.hide').length > 0;
-
-			if(!marquee){
-				if (y > $toolBarContentPane.offset().top && !paddles && !isi) {
-					self.stickToolbar($toolbarContainer, $toolbarClone);
-				} else {
-					self.unstickToolbar($toolbarContainer, $toolbarClone);
-				}
+			if (!marquee) {
+				self.doStickyToolbar();
 			}
 		});
 
 		return self;
 	},
 
-	stickToolbar: function($toolbarContainer, $toolbarClone) {
-		$toolbarClone.show(); // put spacer in document flow (avoids content jumping after setting toolbar to fixed)
-		$toolbarContainer.addClass('stick'); // put toolbar in fixed top position (no longer in flow)
-	},
+	doStickyToolbar: function() {
+		var self = this,
+			y = $(document).scrollTop(),
+			$toolBarContentPane = $('.wbmd-toolbar-menu').closest('div.pane'),
+			$toolbarContainer = $('.wbmd-toolbar-menu:not(.clone)'), // toolbar visible in document flow
+			$toolbarClone = $('.wbmd-toolbar-menu.clone'), // invisible toolbar clone (used as a spacer for smooth scrolling)
+			paddles = $('.wbmd-paddles .show').length > 0,
+			isi = $('.isi').not('.isi.hide').length > 0;
 
-	unstickToolbar: function($toolbarContainer, $toolbarClone) {
-		$toolbarClone.hide(); // remove toolbar spacer from flow
-		$toolbarContainer.removeClass('stick'); // put visible toolbar back into document flow
+		if (y > $toolBarContentPane.offset().top && !paddles && !isi) {
+			$toolbarClone.css('top',0);
+		} else {
+			$toolbarClone.css('top',-54);
+		}
+
+		return self;
 	},
 
 	centerAds: function(identifiers) {
@@ -1165,7 +1161,6 @@ webmd.fundedEditorial = {
 			$toolbarDiv = $('#' + contentPaneId + ' .wbmd-toolbar-menu');
 			$clone = $toolbarDiv.clone(); // get clone of toolbar container
 			$clone.addClass('clone');
-			$clone.hide(); // clone is only used as a spacer
 			$clone.insertBefore($toolbarDiv);
 
 			if (this.createKabob) {
