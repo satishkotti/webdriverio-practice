@@ -33,7 +33,7 @@
     }
     &.wrapping { /* used on standard toc (non-segment modules) */
         .wbmd-masonry-grid {
-            margin: 0 auto !important;
+            margin: 0 auto;
         }
         #rightAd_rdr {
             &.wbmd-grid-item {
@@ -42,7 +42,6 @@
         }
         .wbmd-grid-item {
             min-height: 308px;
-            max-height: 313px;
             float: left;
             background-color: #fff;
             margin: 0 0 10px 0 !important;
@@ -58,10 +57,6 @@
             }
         }
     }
-}
-
-.wbmd-masonry-grid {
-    margin: 0 auto !important;
 }
 
 #rightAd_rdr {
