@@ -2,9 +2,9 @@ $blue_color: #1b88bf;
 
 .wbmd-tips {
 	position: relative;
-    margin-bottom: 1em;
-    width: 100%;
-    max-height: 313px; /* tile height for TOC */
+	margin-bottom: 1em;
+	width: 100%;
+	max-height: 313px; /* tile height for TOC */
 	font-family: 'Lato-Regular', Arial, sans-serif;
 	font-size: 1rem;
 	color: #000;
@@ -14,15 +14,15 @@ $blue_color: #1b88bf;
 		display: none;
 		height: auto;
 		margin: 0;
-	    padding: 0;
-	    list-style: none;
+		padding: 0;
+		list-style: none;
 
 		.slide {
 			position: relative;
-		    z-index: 1;
-		    width: 100%;
-		    margin: 0;
-		    padding: 0;
+			z-index: 1;
+			width: 100%;
+			margin: 0;
+			padding: 0;
 
 			.slide_content {
 				.slide_text {
@@ -111,53 +111,53 @@ $blue_color: #1b88bf;
 
 	.slide_controls {
 		position: absolute;
-	    bottom: 0;
-	    left: 0;
-	    width: 100%;
-	    height: 50px;
-	    top: 40%;
-	    z-index: 1000;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 50px;
+		top: 40%;
+		z-index: 1000;
 
-	    ul {
-		    list-style: none;
-		    width: auto;
+		ul {
+			list-style: none;
+			width: auto;
 
-		    li {
-			    width: auto;
-			    height: 50px;
-			    margin: 0;
+			li {
+				width: auto;
+				height: 50px;
+				margin: 0;
 			}
 
 			li:first-child {
-		    	float: left;
-		    }
+				float: left;
+			}
 
-		    li:last-child {
-		    	float: right;
-		    }
+			li:last-child {
+				float: right;
+			}
 		}
 
 		.tips_prev, .tips_next {
-		    background-color: $blue_color;
-		    color: #fff;
-		    display: block;
-		    width: 30px;
-		    height: 100%;
-		    font-size: 20px;
-		    text-align: center;
+			background-color: $blue_color;
+			color: #fff;
+			display: block;
+			width: 30px;
+			height: 100%;
+			font-size: 20px;
+			text-align: center;
 
-		    span:before {
-			    color: #ffffff !important;
-			    line-height: 48px;
+			span:before {
+				color: #ffffff !important;
+				line-height: 48px;
 			}
 		}
 
 		.tips_prev {
-		    float: left;
+			float: left;
 		}
 
 		.tips_next {
-		    float: right;
+			float: right;
 		}
 	}
 
