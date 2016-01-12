@@ -298,7 +298,7 @@ webmd.fundedEditorial = {
 			if ('currentSeg' in segment) {
 				return segment.currentSeg !== true;
 			} else {
-				console.log('SEGMENT MODULE NOT DRAWN: fix data for entry ' + (index+1) + ' in segment data module');
+				webmd.debug('SEGMENT MODULE NOT DRAWN: fix data for entry ' + (index+1) + ' in segment data module');
 				return false;
 			}
 		}
