@@ -314,38 +314,38 @@ webmd.fundedEditorial = {
 			//Loop through each segment
 			$.each(webmd.fundedEditorial.segments, function(index, data) {
 				// this is very similar to using Object.watch()
-		        // instead we attach multiple listeners
-		        webmd.fundedEditorial.segments[index].data = (function() {
-		            var initVal,
-		                interceptors = [];
+				// instead we attach multiple listeners
+				webmd.fundedEditorial.segments[index].data = (function() {
+					var initVal,
+						interceptors = [];
 
-		            function callInterceptors(newVal) {
-		                for (var i = 0; i < interceptors.length; i += 1) {
-		                    interceptors[i](newVal);
-		                }
-		            }
+					function callInterceptors(newVal) {
+						for (var i = 0; i < interceptors.length; i += 1) {
+							interceptors[i](newVal);
+						}
+					}
 
-		            return {
-		                get ready() {
-		                    // user never has access to the private variable "initVal"
-		                    // we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
-		                    return initVal;
-		                },
+					return {
+						get ready() {
+							// user never has access to the private variable "initVal"
+							// we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
+							return initVal;
+						},
 
-		                set ready(newVal) {
-		                    callInterceptors(newVal);
-		                    initVal = newVal;
-		                },
+						set ready(newVal) {
+							callInterceptors(newVal);
+							initVal = newVal;
+						},
 
-		                listen: function(fn) {
-		                    if (typeof fn === 'function') {
-		                        interceptors.push(fn);
-		                    }
-		                }
-		            };
-		        }());
+						listen: function(fn) {
+							if (typeof fn === 'function') {
+								interceptors.push(fn);
+							}
+						}
+					};
+				}());
 
-        		//Perform an AJAX 'get' on segment documentum ID
+				//Perform an AJAX 'get' on segment documentum ID
 				$.ajax({
 					url: 'http://www' + webmd.url.getLifecycle() + '.webmd.com/modules/ajax',
 					type: 'GET',
@@ -499,38 +499,38 @@ webmd.fundedEditorial = {
 
 	setupListener: function(objKey, fn) {
 		objKey = (function() {
-            var initVal,
-                interceptors = [];
+			var initVal,
+				interceptors = [];
 
-            function callInterceptors(newVal) {
-                for (var i = 0; i < interceptors.length; i += 1) {
-                    interceptors[i](newVal);
-                }
-            }
+			function callInterceptors(newVal) {
+				for (var i = 0; i < interceptors.length; i += 1) {
+					interceptors[i](newVal);
+				}
+			}
 
-            return {
-                get value() {
-                    // user never has access to the private variable "initVal"
-                    // we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
-                    return initVal;
-                },
+			return {
+				get value() {
+					// user never has access to the private variable "initVal"
+					// we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
+					return initVal;
+				},
 
-                set value(newVal) {
-                    callInterceptors(newVal);
-                    initVal = newVal;
-                },
+				set value(newVal) {
+					callInterceptors(newVal);
+					initVal = newVal;
+				},
 
-                listen: function(fn) {
-                    if (typeof fn === 'function') {
-                        interceptors.push(fn);
-                    }
-                }
-            };
-        }());
+				listen: function(fn) {
+					if (typeof fn === 'function') {
+						interceptors.push(fn);
+					}
+				}
+			};
+		}());
 
-        objKey.listen(fn);
+		objKey.listen(fn);
 
-	    return objKey;
+		return objKey;
 	},
 
 	stickMasthead: function(mastheadH) {
@@ -765,13 +765,13 @@ webmd.fundedEditorial = {
 				segmentModules[index] = [];
 
 				this.data.listen(function(passedValue) {
-		            if (passedValue === true) {
-		                // Store segment in array (keep layout of segments in correct order)
-		                segmentModules[index] = createSegmentTiles(data, segmentModules[index], segmentNumber);
-		                complete++;
+					if (passedValue === true) {
+						// Store segment in array (keep layout of segments in correct order)
+						segmentModules[index] = createSegmentTiles(data, segmentModules[index], segmentNumber);
+						complete++;
 
-		                if (complete === webmd.fundedEditorial.segments.length) {
-		                	// Add segments to DOM before updating DOM (prevents undefined)
+						if (complete === webmd.fundedEditorial.segments.length) {
+							// Add segments to DOM before updating DOM (prevents undefined)
 							$.each(segmentModules, function(index, nodes) {
 								for (var i=0; i<nodes.length; i++) {
 									$tocSegmentContentPane.append(segmentModules[index][i]);
@@ -781,8 +781,8 @@ webmd.fundedEditorial = {
 							// Update DOM (classes, layouts, sizes, margins, etc.)
 							self.start();
 						}
-		            }
-		        });
+					}
+				});
 			});
 
 			function createSegmentTiles(segmentData, moduleArray, segmentNumber) {
@@ -1079,7 +1079,7 @@ webmd.fundedEditorial = {
 	createMenu: {
 		menu: 'wbmd-slidein-menu',
 
-        // Display in menu (top to bottom)
+		// Display in menu (top to bottom)
 		menuElements: ['.branded-up-next-container', '.up-next-container', '.wbmd-upnext-segments'],
 
 		init: function(createKabob) {
@@ -1089,100 +1089,100 @@ webmd.fundedEditorial = {
 
 			self.buildMenu();
 
-	    	self.addElementsToMenu();
+			self.addElementsToMenu();
 
-	    	self.bind_menuEvents();
+			self.bind_menuEvents();
 
-	    	return self;
-        },
+			return self;
+		},
 
-        buildMenu: function() {
-	    	var self = this,
-	    		$menu = $('<div></div>');
+		buildMenu: function() {
+			var self = this,
+				$menu = $('<div></div>');
 
 			$menu.attr({
-	            id: self.menu
-	        }).addClass('no-scroll');
+				id: self.menu
+			}).addClass('no-scroll');
 
-	        $('body').append($menu);
+			$('body').append($menu);
 
-        	return self;
-	    },
+			return self;
+		},
 
-	    addElementsToMenu: function() {
-	        var self = this,
-	        	$menu = $('#' + self.menu),
-	        	$menuClose = $('<div></div>'),
-	            $menuContent = $('<div></div>'),
-	            $el;
+		addElementsToMenu: function() {
+			var self = this,
+				$menu = $('#' + self.menu),
+				$menuClose = $('<div></div>'),
+				$menuContent = $('<div></div>'),
+				$el;
 
-	        $menuClose.addClass('wbmd-menu-close').html('<span></span>');
+			$menuClose.addClass('wbmd-menu-close').html('<span></span>');
 
-	        $menuContent.addClass('wbmd-menu-content').addClass('scroll');
+			$menuContent.addClass('wbmd-menu-content').addClass('scroll');
 
-	        for (var i = 0; i < self.menuElements.length; i++) {
-	            $el = $(self.menuElements[i]).clone() || $(self.menuElements[i])[0].clone();
+			for (var i = 0; i < self.menuElements.length; i++) {
+				$el = $(self.menuElements[i]).clone() || $(self.menuElements[i])[0].clone();
 
-	            $el.addClass('clone');
+				$el.addClass('clone');
 
-	            if (!$el.hasClass('hide')) {
-	                $el.show();
-	                $menuContent.append($el);
-	            }
-	        }
+				if (!$el.hasClass('hide')) {
+					$el.show();
+					$menuContent.append($el);
+				}
+			}
 
-	        $menu.append($menuClose);
-	        $menu.append($menuContent);
-	        self.createKabobContainer();
+			$menu.append($menuClose);
+			$menu.append($menuContent);
+			self.createKabobContainer();
 
-	        return self;
-	    },
+			return self;
+		},
 
-	    createKabobContainer: function() {
-	    	var self = this,
-	    		$locator = ($('.attrib_right_fmt').length) ? $('.attrib_right_fmt') : $('.social-share-tools'),
-	    		$contentPane = $locator.closest('div.pane'),
-	    		$toolbarDiv, // original toolbar
-	    		$clone, // used as a spacer when original toolbar is set in fixed position
-	    		contentPaneId = $contentPane.attr('id');
+		createKabobContainer: function() {
+			var self = this,
+				$locator = ($('.attrib_right_fmt').length) ? $('.attrib_right_fmt') : $('.social-share-tools'),
+				$contentPane = $locator.closest('div.pane'),
+				$toolbarDiv, // original toolbar
+				$clone, // used as a spacer when original toolbar is set in fixed position
+				contentPaneId = $contentPane.attr('id');
 
-	    	$contentPane.wrapInner('<div class="tools"></div>');
+			$contentPane.wrapInner('<div class="tools"></div>');
 
-	    	$contentPane.wrapInner('<div class="wbmd-toolbar-menu"></div>');
+			$contentPane.wrapInner('<div class="wbmd-toolbar-menu"></div>');
 
-	    	$toolbarDiv = $('#' + contentPaneId + ' .wbmd-toolbar-menu');
-	    	$clone = $toolbarDiv.clone(); // get clone of toolbar container
-	    	$clone.addClass('clone');
-	    	$clone.hide(); // clone is only used as a spacer
-	    	$clone.insertBefore($toolbarDiv);
+			$toolbarDiv = $('#' + contentPaneId + ' .wbmd-toolbar-menu');
+			$clone = $toolbarDiv.clone(); // get clone of toolbar container
+			$clone.addClass('clone');
+			$clone.hide(); // clone is only used as a spacer
+			$clone.insertBefore($toolbarDiv);
 
-	    	if (this.createKabob) {
-	    		self.addKabob(contentPaneId);
-	    	}
-	    },
+			if (this.createKabob) {
+				self.addKabob(contentPaneId);
+			}
+		},
 
-	    addKabob: function(cpId) {
-	    	var self = this,
-	    		$toolbarDiv = $('#' + cpId + ' .wbmd-toolbar-menu'),
-	    		$kabob = $('<div></div>');
+		addKabob: function(cpId) {
+			var self = this,
+				$toolbarDiv = $('#' + cpId + ' .wbmd-toolbar-menu'),
+				$kabob = $('<div></div>');
 
-	    	$kabob.addClass('wbmd-kabob').html('<span></span>');
+			$kabob.addClass('wbmd-kabob').html('<span></span>');
 
-		    if ($('.attrib_right_fmt').length) {
-		    	$toolbarDiv.find('.attrib_right_fmt').before($kabob);
-		    } else {
-		    	$toolbarDiv.find('.tools').append($kabob);
-		    }
+			if ($('.attrib_right_fmt').length) {
+				$toolbarDiv.find('.attrib_right_fmt').before($kabob);
+			} else {
+				$toolbarDiv.find('.tools').append($kabob);
+			}
 
-	    	return self;
-	    },
+			return self;
+		},
 
-	    bind_menuEvents: function() {
-	    	var self = this,
-	    		$body = $('body'),
-	    		lastScrollPos;
+		bind_menuEvents: function() {
+			var self = this,
+				$body = $('body'),
+				lastScrollPos;
 
-	    	$('.wbmd-kabob').click(function (evt) {
+			$('.wbmd-kabob').click(function (evt) {
 				evt.stopPropagation();
 				evt.preventDefault();
 
@@ -1196,9 +1196,9 @@ webmd.fundedEditorial = {
 
 				// set timeout to allow menu to display before setting body to fixed position
 				// this avoid seeing a jump in the body prior to the menu appearing
-			    setTimeout(function() {
-			    	$body.addClass('menu-open').trigger('kabobClick');
-			    }, 500);
+				setTimeout(function() {
+					$body.addClass('menu-open').trigger('kabobClick');
+				}, 500);
 			});
 
 			$('.wbmd-menu-close').click(function(evt) {
@@ -1209,14 +1209,14 @@ webmd.fundedEditorial = {
 
 				$body.removeClass('menu-open');
 
-			    $body.removeClass('no-scroll').trigger('kabobClick');
+				$body.removeClass('no-scroll').trigger('kabobClick');
 
-			    // removing the fixed position on body allows scrolling
-			    // return to the last position of the page prior to the menu being opened
-			    window.scrollTo(0, lastScrollPos);
+				// removing the fixed position on body allows scrolling
+				// return to the last position of the page prior to the menu being opened
+				window.scrollTo(0, lastScrollPos);
 			});
-	    }
-    }
+		}
+	}
 };
 
 // Check to see if Page should be seen on Mobile
