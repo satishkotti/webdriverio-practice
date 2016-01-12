@@ -74,12 +74,14 @@ $blue_color: #1b88bf;
 						top: 100%;
 						overflow: hidden;
 						margin: 0;
-						transition: top 500ms;
-						padding-top: 50px;
+						transition: top 500ms, opacity 300ms;
+						opacity: 0;
 
 						&.show {
 							top: 20%;
+							padding-top: 50px;
 							overflow: auto;
+							opacity: 1;
 						}
 
 						i.slide_src_close {
