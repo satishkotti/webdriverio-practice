@@ -63,6 +63,11 @@ define(['bx_slider/1/bx_slider'], {
 
 		self.bindSlideElem();
 
+		window.setTimeout(function() {
+			// update all dynamic elements
+			self.slider.redrawSlider();
+		}, 500);
+
 		$.each(self.slides, function(i) {
 			$nextBtn = self._selectNextBtn(i);
 		});
@@ -85,6 +90,7 @@ define(['bx_slider/1/bx_slider'], {
 			e.preventDefault();
 			self._goNext();
 		});
+
 
 		$(window).on('resize', function() {
 			window.setTimeout(function() {
