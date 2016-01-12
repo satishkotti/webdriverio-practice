@@ -104,6 +104,20 @@ define(['bx_slider/1/bx_slider'], {
 			}, 500);
 		});
 
+		$('.source_toggle').click(function(e){
+			e.preventDefault();
+
+			$(this).parents('.slide_text').find('.slide_src').addClass('show');
+
+			self.slider.stopAuto();
+		});
+
+		$('.slide_src_close').click(function(e){
+			e.preventDefault();
+
+			$('.slide_src').removeClass('show');
+		});
+
 		return self;
 	},
 
@@ -145,6 +159,8 @@ define(['bx_slider/1/bx_slider'], {
 		self.metrics('next');
 		self.slider.goToNextSlide();
 		self.slider.stopAuto();
+
+		$('.slide_src').removeClass('show');
 	},
 
 	/**
