@@ -210,10 +210,12 @@
 .sources {
 	margin: 57px 0 20px;
 	padding: 0 10px;
+	font-size: 1rem;
 }
 .sources p {
 	font-family: "Roboto Condensed",Arial,sans-serif;
 	margin-bottom: 10px;
+	font-size: 1.6em;
 }
 .reviewer {
 	margin-top: 10px;

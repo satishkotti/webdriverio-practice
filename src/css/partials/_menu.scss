@@ -80,18 +80,23 @@
 .wbmd-toolbar-menu {
 	width: 100%;
 
-	&.stick {
+	&.clone {
 		position: fixed;
 		-webkit-backface-visibility: hidden;
-		top: 0;
+		top: -54px;
 		left: 0;
 		right: 0;
+		height: 54px;
 		min-width: 100%;
 		background-color: #ffffff;
 		z-index: 6000000;
-		//box-shadow: 0 4px 2px -2px #e2e3e4;
 		border-bottom: 3px #e0e0e0 solid;
 		padding: 3px 0;
+		-webkit-transition: all 0.25s ease-in-out 0.25s;
+		-moz-transition: all 0.25s ease-in-out 0.25s;
+		-o-transition: all 0.25s ease-in-out 0.25s;
+		-ms-transition: all 0.25s ease-in-out 0.25s;
+		transition: all 0.25s ease-in-out 0.25s;
 
 		.tools {
 			position: relative;
@@ -122,11 +127,6 @@
 				}
 			}
 		}
-	}
-
-	&.clone {
-		visibility: hidden;
-		display: none;
 	}
 
 	.tools {
