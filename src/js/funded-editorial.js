@@ -400,7 +400,9 @@ webmd.fundedEditorial = {
 
 		$(window).on('scroll touchstart touchmove touchend', function() {
 			if (!marquee) {
-				self.doStickyToolbar();
+				setTimeout(function() {
+					self.doStickyToolbar();
+				}, 10);
 			}
 		});
 
