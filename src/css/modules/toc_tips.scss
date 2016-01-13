@@ -76,6 +76,7 @@ $blue_color: #1b88bf;
 						margin: 0;
 						transition: top 500ms, opacity 300ms;
 						opacity: 0;
+						border-top: 1px rgba(232, 232, 234, 0.48) solid;
 
 						&.show {
 							top: 20%;
@@ -112,54 +113,29 @@ $blue_color: #1b88bf;
 	}
 
 	.slide_controls {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 50px;
-		top: 40%;
-		z-index: 1000;
-
-		ul {
-			list-style: none;
-			width: auto;
-
-			li {
-				width: auto;
-				height: 50px;
-				margin: 0;
-			}
-
-			li:first-child {
-				float: left;
-			}
-
-			li:last-child {
-				float: right;
-			}
-		}
-
 		.tips_prev, .tips_next {
 			background-color: $blue_color;
 			color: #fff;
 			display: block;
 			width: 30px;
-			height: 100%;
+			height: 50px;
 			font-size: 20px;
+			top: 50%;
 			text-align: center;
+			position: absolute;
 
 			span:before {
 				color: #ffffff !important;
 				line-height: 48px;
 			}
 		}
-
 		.tips_prev {
-			float: left;
+			left: 0;
+			transform: translateY(-50%);
 		}
-
 		.tips_next {
-			float: right;
+			right: 0;
+			transform: translateY(-50%);
 		}
 	}
 
@@ -173,6 +149,8 @@ $blue_color: #1b88bf;
 		line-height: 22px;
 		text-align: center;
 		bottom: 0;
+		background-color: #f9f9f9;
+		padding: 10px 0;
 	}
 }
 

@@ -65,44 +65,23 @@
 					var $attribLink = $(".attrib_right_fmt a");
 					if ($attribLink.length) {
 						$attribLink.attr("href", $attribLink.attr("href").replace(/\s/g, ''));
-						if (platform == "mobile") {
-							$attribLink.webmdTooltip({
-								ajax:true,
-								content:{
-									button:true
-								},
-								trigger:"click",
-								position:{
-									corner:{
-										target:"bottom",
-										tooltip:"right"
-									},
-								adjust:{
-									x:-20
-								},
-								api: {
-									onShow: function(){
-										wmdPageLink('attribution');
-									}
+						$attribLink.webmdTooltip({
+							ajax:true,
+							content:{
+								button:true
+							},
+							trigger:"click",
+							position:{
+								corner:{
+									target:"bottom"
+								}
+							},
+							api: {
+								onShow: function(){
+									wmdPageLink('attribution');
 								}
 							}
 						});
-						} else {
-							$attribLink.webmdTooltip({
-								ajax:true,
-								trigger:"click",
-								position:{
-									corner:{
-										target:"bottom"
-									}
-								},
-								api: {
-									onShow: function(){
-										wmdPageLink('attribution');
-									}
-								}
-							});
-						}
 					}
 				});]]>
 			</xsl:text>

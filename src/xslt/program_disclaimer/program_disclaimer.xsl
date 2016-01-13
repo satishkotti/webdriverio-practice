@@ -16,42 +16,24 @@
 				<![CDATA[try{addTitleBarCSS();}catch(e){}
 					require(['tooltips/1/tooltips'],function(tooltip){
 						$(function(){
-							var platform = (webmd.useragent.ua.type === 'mobile') ? "mobile" : "core";
-							if(platform == "mobile"){
-								$(".ed_disclaimer a").webmdTooltip({
-									ajax:true,
-									content:{
-										button:true
-									},
-									trigger:"click",
-									position:{
-										corner:{
-											target:"bottom"
-										}
-									},
-									api: {
-										onShow: function(){
-											wmdPageLink('disclaimer');
-										}
+							$(".ed_disclaimer a").webmdTooltip({
+								ajax:true,
+								content:{
+									button:true
+								},
+								trigger:"click",
+								position:{
+									corner:{
+										target:"bottom",
+										tooltip:"left"
 									}
-								});
-							}else{
-								$(".ed_disclaimer a").webmdTooltip({
-									ajax:true,
-									trigger:"click",
-									position:{
-										corner:{
-											target:"bottom",
-											tooltip:"left"
-										}
-									},
-									api: {
-										onShow: function(){
-											wmdPageLink('disclaimer');
-										}
+								},
+								api: {
+									onShow: function(){
+										wmdPageLink('disclaimer');
 									}
-								});
-							}
+								}
+							});
 						});
 					});]]>
 			</xsl:text>
