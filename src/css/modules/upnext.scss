@@ -158,7 +158,7 @@
 
 @media only screen and (min-width: 768px) {
     /* STYLES GO HERE */
-    .funded-editorial:not(.funded-editorial-see-all) {
+    html:not(.funded-editorial-see-all) {
         .up-next-container {
             display: block !important;
         }
