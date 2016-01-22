@@ -37,7 +37,7 @@ $blue_color: #1b88bf;
 						margin-bottom: 10px;
 					}
 
-					div {
+					.slide_content_text {
 						font-family: 'Lato-Regular', Arial, sans-serif;
 						font-size: 1.6em;
 						color: #3b3b3c;
@@ -47,7 +47,7 @@ $blue_color: #1b88bf;
 
 					a {
 						font-family: 'Lato-Regular', Arial, sans-serif;
-						font-size: 16px;
+						font-size: 1.6em;
 						color: $blue-color;
 						line-height: 22px;
 					}
@@ -61,7 +61,7 @@ $blue_color: #1b88bf;
 						}
 						.source_toggle {
 							float: right;
-							font-size: 0.75em;
+							font-size: 1.2em;
 						}
 					}
 
@@ -79,7 +79,7 @@ $blue_color: #1b88bf;
 						border-top: 1px rgba(232, 232, 234, 0.48) solid;
 
 						&.show {
-							top: 20%;
+							top: 75px;
 							padding-top: 50px;
 							overflow: auto;
 							opacity: 1;
@@ -87,9 +87,9 @@ $blue_color: #1b88bf;
 
 						i.slide_src_close {
 							position: absolute;
-							top: 5px;
-							right: 5px;
-							font-size: 3em;
+							top: -3px;
+							right: 0px;
+							font-size: 4.5em;
 							cursor: pointer;
 						}
 
@@ -97,13 +97,13 @@ $blue_color: #1b88bf;
 							position: absolute;
 							top: 17px;
 							left: 10px;
-							font-size: 0.7em;
+							font-size: 1.2em;
 							font-weight: bold;
 						}
 
 						.slide_src_text {
 							padding: 0 10px;
-							font-size: 0.75em;
+							font-size: 1.4em;
 							line-height: 1.3
 						}
 					}
@@ -157,5 +157,6 @@ $blue_color: #1b88bf;
 @media only screen and (min-width: 320px) and (max-width: 675px) {
 	.wbmd-tips {
 		max-height: 100% !important;
+		padding-bottom: 20px;
 	}
 }

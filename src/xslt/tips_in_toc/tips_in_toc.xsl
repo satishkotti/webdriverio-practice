@@ -102,6 +102,9 @@
 							</xsl:element>
 
 							<xsl:element name="div">
+								<xsl:attribute name="class">
+									<xsl:text>slide_content_text</xsl:text>
+								</xsl:attribute>
 								<xsl:choose>
 									<xsl:when test="string-length($text) &gt; $max-text-length">
 										<xsl:value-of select="substring($text, 1, ($max-text-length - 3))" disable-output-escaping="yes"/>
