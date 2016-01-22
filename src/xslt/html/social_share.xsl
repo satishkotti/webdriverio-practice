@@ -59,7 +59,7 @@
 		}
 	}
 
-require.config({
+	require.config({
 		paths: {
 			"webmd.m.socialshareplugin": "socialshareplugin/1/webmd.m.socialshareplugin.min"
 		}
@@ -67,21 +67,27 @@ require.config({
 
 	require(["webmd.m.socialshareplugin", "css!socialshareplugin/1/socialshareplugin.min.css"], function() {
 		$(function() {
-			var $videoShare = $('.fed-video .info-container .cmd-section');
+			var $videoShare = $('.fed-video .info-container .cmd-section'),
+				btmShare = '</xsl:text><xsl:element name="div"><xsl:attribute name="class">social-share-tools</xsl:attribute><xsl:attribute name="id"><xsl:text>btm-</xsl:text><xsl:value-of select="$moduletitle"/></xsl:attribute></xsl:element><xsl:text>';
 
-			$("#</xsl:text><xsl:value-of select="$moduletitle"/><xsl:text>").socialshareplugin(webmd.m.socialshareconfig);
-				
 			if (webmd.m.socialshareconfig.shareOrder.indexOf('twitter') === -1) {
 				$videoShare.find('.cmd-twitr').hide();
 			}
 			if (webmd.m.socialshareconfig.shareOrder.indexOf('facebook') === -1) {
 				$videoShare.find('.cmd-fb').hide();
 			}
+			
+			$("#</xsl:text><xsl:value-of select="$moduletitle"/><xsl:text>").socialshareplugin(webmd.m.socialshareconfig);
+				
+			/* Social buttons at bottom of article */
+			webmd.m.socialshareconfig.baseHtmlTmpl = '</xsl:text><div class="plugin plugin-socialshare" data-metrics-module="rspsv-sharesubcntnt"></div><xsl:text>';
+			
+			$('article.article').append(btmShare).find('#btm-</xsl:text><xsl:value-of select="$moduletitle"/><xsl:text>').socialshareplugin(webmd.m.socialshareconfig);
 		});
 	});
 	
 }());
-			</xsl:text>
+</xsl:text>
 
 		</xsl:element>
 	</xsl:template>
