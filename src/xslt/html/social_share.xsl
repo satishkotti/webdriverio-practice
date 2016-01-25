@@ -79,10 +79,11 @@
 			
 			$("#</xsl:text><xsl:value-of select="$moduletitle"/><xsl:text>").socialshareplugin(webmd.m.socialshareconfig);
 				
-			/* Social buttons at bottom of article */
-			webmd.m.socialshareconfig.baseHtmlTmpl = '</xsl:text><div class="plugin plugin-socialshare" data-metrics-module="rspsv-sharesubcntnt"></div><xsl:text>';
-			
-			$('article.article').append(btmShare).find('#btm-</xsl:text><xsl:value-of select="$moduletitle"/><xsl:text>').socialshareplugin(webmd.m.socialshareconfig);
+			/* Social buttons at bottom of non-spon article */
+			if (window.s_topic !== "4121") {
+				webmd.m.socialshareconfig.baseHtmlTmpl = '</xsl:text><xsl:element name="div"><xsl:attribute name="class">plugin plugin-socialshare</xsl:attribute><xsl:attribute name="data-metrics-module">rspsv-sharesubcntnt</xsl:attribute></xsl:element><xsl:text>';
+				$('article.article').append(btmShare).find('#btm-</xsl:text><xsl:value-of select="$moduletitle"/><xsl:text>').socialshareplugin(webmd.m.socialshareconfig);
+			}
 		});
 	});
 	
