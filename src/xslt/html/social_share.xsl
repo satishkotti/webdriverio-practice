@@ -45,7 +45,7 @@
 	<xsl:template match="/">
 		<xsl:element name="div">
 			<xsl:attribute name="class">social-share-tools</xsl:attribute>
-			<xsl:attribute name="id"><xsl:value-of select="$moduletitle"/></xsl:attribute>
+			<xsl:attribute name="id">fed-sharebar</xsl:attribute>
 		</xsl:element>
 		<xsl:element name="script">
 			<xsl:attribute name="type">text/javascript</xsl:attribute>
@@ -68,7 +68,7 @@
 	require(["webmd.m.socialshareplugin", "css!socialshareplugin/1/socialshareplugin.min.css"], function() {
 		$(function() {
 			var $videoShare = $('.fed-video .info-container .cmd-section'),
-				btmShare = '</xsl:text><xsl:element name="div"><xsl:attribute name="class">social-share-tools</xsl:attribute><xsl:attribute name="id"><xsl:text>btm-</xsl:text><xsl:value-of select="$moduletitle"/></xsl:attribute></xsl:element><xsl:text>';
+				btmShare = '</xsl:text><xsl:element name="div"><xsl:attribute name="class">social-share-tools</xsl:attribute><xsl:attribute name="id">fed-sharebar-btm</xsl:attribute></xsl:element><xsl:text>';
 
 			if (webmd.m.socialshareconfig.shareOrder.indexOf('twitter') === -1) {
 				$videoShare.find('.cmd-twitr').hide();
@@ -77,12 +77,12 @@
 				$videoShare.find('.cmd-fb').hide();
 			}
 			
-			$("#</xsl:text><xsl:value-of select="$moduletitle"/><xsl:text>").socialshareplugin(webmd.m.socialshareconfig);
+			$("#fed-sharebar").socialshareplugin(webmd.m.socialshareconfig);
 				
 			/* Social buttons at bottom of non-spon article */
 			if (window.s_topic !== "4121") {
 				webmd.m.socialshareconfig.baseHtmlTmpl = '</xsl:text><xsl:element name="div"><xsl:attribute name="class">plugin plugin-socialshare</xsl:attribute><xsl:attribute name="data-metrics-module">rspsv-sharesubcntnt</xsl:attribute></xsl:element><xsl:text>';
-				$('article.article').append(btmShare).find('#btm-</xsl:text><xsl:value-of select="$moduletitle"/><xsl:text>').socialshareplugin(webmd.m.socialshareconfig);
+				$('article.article').append(btmShare).find('#fed-sharebar-btm').socialshareplugin(webmd.m.socialshareconfig);
 			}
 		});
 	});

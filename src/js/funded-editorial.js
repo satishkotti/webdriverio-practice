@@ -1150,20 +1150,16 @@ webmd.fundedEditorial = {
 
 		createKabobContainer: function() {
 			var self = this,
-				$locator = ($('.attrib_right_fmt').length) ? $('.attrib_right_fmt') : $('.social-share-tools'),
+				$locator = ($('.attrib_right_fmt').length) ? $('.attrib_right_fmt') : $('#fed-sharebar'),
 				$contentPane = $locator.closest('div.pane'),
-				$toolbarDiv, // original toolbar
-				$clone, // used as a spacer when original toolbar is set in fixed position
 				contentPaneId = $contentPane.attr('id');
 
-			$contentPane.wrapInner('<div class="tools"></div>');
+			$contentPane.prepend('<div class="wbmd-toolbar-menu clone"><div class="tools"></div></div>');
 
-			$contentPane.wrapInner('<div class="wbmd-toolbar-menu"></div>');
-
-			$toolbarDiv = $('#' + contentPaneId + ' .wbmd-toolbar-menu');
-			$clone = $toolbarDiv.clone(); // get clone of toolbar container
-			$clone.addClass('clone');
-			$clone.insertBefore($toolbarDiv);
+			$('#' + contentPaneId + ' .wbmd-toolbar-menu.clone .tools').append(
+				$('.attrib_right_fmt').clone(true),
+				$('#fed-sharebar').clone(true)
+			);
 
 			if (this.createKabob) {
 				self.addKabob(contentPaneId);
