@@ -413,15 +413,14 @@ webmd.fundedEditorial = {
 		var self = this,
 			y = $(document).scrollTop(),
 			$toolBarContentPane = $('.wbmd-toolbar-menu').closest('div.pane'),
-			$toolbarContainer = $('.wbmd-toolbar-menu:not(.clone)'), // toolbar visible in document flow
-			$toolbarClone = $('.wbmd-toolbar-menu.clone'), // invisible toolbar clone (used as a spacer for smooth scrolling)
+			$toolbar = $('.wbmd-toolbar-menu'),
 			paddles = $('.wbmd-paddles .show').length > 0,
 			isi = $('.isi').not('.isi.hide').length > 0;
 
 		if (y > $toolBarContentPane.offset().top && !paddles && !isi) {
-			$toolbarClone.css('top',0);
+			$toolbar.css('top',0);
 		} else {
-			$toolbarClone.css('top',-54);
+			$toolbar.css('top',-54);
 		}
 
 		return self;
@@ -1143,43 +1142,39 @@ webmd.fundedEditorial = {
 
 			$menu.append($menuClose);
 			$menu.append($menuContent);
-			self.createKabobContainer();
+			self.createStickyContainer();
 
 			return self;
 		},
 
-		createKabobContainer: function() {
+		createStickyContainer: function() {
 			var self = this,
 				$locator = ($('.attrib_right_fmt').length) ? $('.attrib_right_fmt') : $('#fed-sharebar'),
 				$contentPane = $locator.closest('div.pane'),
-				contentPaneId = $contentPane.attr('id');
+				menu = '<div class="wbmd-toolbar-menu"><div class="tools">' +
+						'	<div class="webmd-logo" data-metrics-module=""><a href="http://www.webmd.com" data-metrics-link="logo"><img src="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/masthead2015/logo-webmd-site.png"  alt="WebMD: Better information. Better health." title="WebMD: Better information. Better health." /></a></div>' +
+						'	<div class="title"></div>' +
+						'	<div class="share"></div>' +
+						'	<div class="attribution"></div>' +
+						'	<div class="client-logo"></div>' +
+						'</div></div>';
 
-			$contentPane.prepend('<div class="wbmd-toolbar-menu clone"><div class="tools"></div></div>');
+			$contentPane.prepend(menu);
 
-			$('#' + contentPaneId + ' .wbmd-toolbar-menu.clone .tools').append(
-				$('.attrib_right_fmt').clone(true),
-				$('#fed-sharebar').clone(true)
-			);
+			$contentPane.find('.title').append($('.page-header h1').clone());
+			$contentPane.find('.share').append($('#fed-sharebar').clone(true));
+			$contentPane.find('.attribution').append($('.attrib_right_fmt a').clone(true));
+			$contentPane.find('.client-logo').append($('.attrib_right_fmt img').clone());
 
 			if (this.createKabob) {
-				self.addKabob(contentPaneId);
+				self.addKabob($contentPane.attr('id'));
 			}
 		},
 
-		addKabob: function(cpId) {
-			var self = this,
-				$toolbarDiv = $('#' + cpId + ' .wbmd-toolbar-menu'),
-				$kabob = $('<div></div>');
+		addKabob: function(id) {
+			$('.wbmd-toolbar-menu .tools').add('#' + id).append('<div class="wbmd-kabob"><span></span></div>');
 
-			$kabob.addClass('wbmd-kabob').html('<span></span>');
-
-			if ($('.attrib_right_fmt').length) {
-				$toolbarDiv.find('.attrib_right_fmt').before($kabob);
-			} else {
-				$toolbarDiv.find('.tools').append($kabob);
-			}
-
-			return self;
+			return this;
 		},
 
 		bind_menuEvents: function() {
