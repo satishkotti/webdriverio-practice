@@ -293,7 +293,7 @@ webmd.fundedEditorial = {
 		var self = this,
 			segments = webmd.fundedEditorial.segments;
 
-		
+
 		function validSegments(segment, index, segments) {
 			if ('currentSeg' in segment) {
 				return segment.currentSeg !== true;
@@ -701,6 +701,11 @@ webmd.fundedEditorial = {
 				if (webmd.fundedEditorial.segments && webmd.fundedEditorial.segments.length > 0) {
 					self.createTocSegment();
 				} else {
+					if(webmd.useragent.getType() == 'mobile'){
+						$('.no-mobile').remove();
+					} else {
+						$('.no-desktop').remove();
+					}
 					self.start();
 				}
 
