@@ -167,7 +167,7 @@
 
 		.wbmd-kabob {
 			top: 0;
-			margin-left: 20px;
+			margin-left: 10px;
 		}
 	}
 }
@@ -224,22 +224,49 @@ body.menu-open {
 
 
 @media only screen and (max-width: 767px) {
-	.wbmd-toolbar-menu {
-		.tools {
-			width: 100% !important;
-			.webmd-logo {
-				margin-left: 10px !important;
-			}
-			.social-share-tools {
-				margin: 3px 0 0 7px;
-			}
-		}
-	}
 	.social-share-tools {
 		margin-left: 7px;
 
-		.plugin-socialshare-email {
-			display: none !important;
+		.plugin-socialshare a.plugin-socialshare-email {
+			display: none;
+		}
+	}
+	.wbmd-toolbar-menu {
+		.tools {
+			width: 100%;
+
+			.webmd-logo {
+				margin-left: 10px;
+			}
+
+			.share {
+				width: 135px;
+				margin: 0;
+			}
+
+			.title {
+				width: calc(100% - 172px);
+				margin: 0 10px;
+
+/*				h1 {
+					font-size: 1.3em;
+					line-height: 15px;
+				}*/
+			}
+		}
+	}
+	.scrollDown {
+		.wbmd-toolbar-menu {
+			.title, .attribution, .client-logo {
+				display: none;
+			}
+		}
+	}
+	.scrollUp {
+		.wbmd-toolbar-menu {
+			.webmd-logo, .share, .wbmd-kabob {
+				display: none;
+			}
 		}
 	}
 }
