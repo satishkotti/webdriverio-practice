@@ -425,12 +425,12 @@ webmd.fundedEditorial = {
 	doStickyToolbar: function() {
 		var self = this,
 			y = $(document).scrollTop(),
-			$toolBarContentPane = $('.wbmd-toolbar-menu').closest('div.pane'),
+			$toolBarContentPane = $('.attrib_right_fmt').length ? $('.attrib_right_fmt') : $('#fed-sharebar'),
 			$toolbar = $('.wbmd-toolbar-menu'),
 			paddles = $('.wbmd-paddles .show').length > 0,
 			isi = $('.isi').not('.isi.hide').length > 0;
 
-		if (y > $toolBarContentPane.offset().top && !paddles && !isi) {
+		if (y > $toolBarContentPane.closest('div.pane').offset().top && !paddles && !isi) {
 			$toolbar.css('top',0);
 		} else {
 			$toolbar.css('top',-54);
@@ -1174,7 +1174,7 @@ webmd.fundedEditorial = {
 						'	<div class="title"></div>' +
 						'	<div class="share"></div>' +
 						'	<div class="attribution"></div>' +
-						'	<div class="client-logo"></div>' +
+						'	<div class="client-logo"><div></div></div>' +
 						'</div></div>';
 
 			$contentPane.prepend(menu);
@@ -1182,7 +1182,7 @@ webmd.fundedEditorial = {
 			$contentPane.find('.title').append($('.page-header h1').clone());
 			$contentPane.find('.share').append($('#fed-sharebar').clone(true));
 			$contentPane.find('.attribution').append($('.attrib_right_fmt a').clone(true));
-			$contentPane.find('.client-logo').append($('.attrib_right_fmt img').clone());
+			$contentPane.find('.client-logo div').append($('.attrib_right_fmt img').clone());
 
 			if (this.createKabob) {
 				self.addKabob($contentPane.attr('id'));

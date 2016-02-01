@@ -85,7 +85,6 @@
 	left: 0;
 	right: 0;
 	height: 54px;
-	min-width: 100%;
 	background-color: #ffffff;
 	z-index: 6000000;
 	border-bottom: 3px #e0e0e0 solid;
@@ -103,6 +102,7 @@
 		height: 45px;
 		margin: 0 auto;
 		overflow: hidden;
+		vertical-align: middle;
 
 		> div {
 			display: inline-block;
@@ -159,6 +159,12 @@
 		.client-logo {
 			width: 88px;
 
+			div {
+				display: table-cell;
+				vertical-align: middle;
+				height: 45px;
+			}
+
 			img {
 				max-height: 36px;
 				max-width: 88px;
@@ -168,6 +174,7 @@
 		.wbmd-kabob {
 			top: 0;
 			margin-left: 10px;
+			float: none;
 		}
 	}
 }
@@ -235,41 +242,73 @@ body.menu-open {
 		.tools {
 			width: 100%;
 
+			> div {
+				display: none;
+			}
+
 			.webmd-logo {
 				margin-left: 10px;
+				width: calc(100% - 204px);
+				min-width: 115px;
 			}
 
 			.share {
 				width: 135px;
 				margin: 0;
+
+				.plugin-socialshare {
+					text-align: center;
+				}
 			}
 
 			.title {
 				width: calc(100% - 172px);
 				margin: 0 10px;
-
-/*				h1 {
-					font-size: 1.3em;
-					line-height: 15px;
-				}*/
 			}
+
 		}
 	}
 	.scrollDown {
 		.wbmd-toolbar-menu {
-			.title, .attribution, .client-logo {
-				display: none;
+			.webmd-logo, .share, .wbmd-kabob {
+				display: inline-block;
 			}
 		}
 	}
 	.scrollUp {
 		.wbmd-toolbar-menu {
-			.webmd-logo, .share, .wbmd-kabob {
-				display: none;
+			.title, .attribution, .client-logo {
+				display: inline-block;
 			}
 		}
 	}
 }
+
+@media only screen and (max-width: 499px) {
+	.wbmd-toolbar-menu .tools {
+		.title h1 {
+			font-size: 1.3em;
+			line-height: 17px;
+		}
+		.wbmd-kabob {
+			margin-left: 5px;
+		}
+		.webmd-logo {
+			width: calc(100% - 199px);
+		}
+	}
+}
+@media only screen and (max-width: 315px) {
+	.wbmd-toolbar-menu .tools {
+		.share {
+			display: none;
+		}
+		.webmd-logo {
+			width: calc(100% - 62px);
+		}
+	}
+}
+
 
 @media only screen and (min-width: 768px) {
 	/* STYLES GO HERE */
