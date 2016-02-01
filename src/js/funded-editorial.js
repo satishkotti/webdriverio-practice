@@ -390,7 +390,9 @@ webmd.fundedEditorial = {
 
 	bindEvents: function() {
 		var self = this,
-			marquee = $('.marquee').length > 0;
+			marquee = $('.marquee').length > 0,
+			$htmlTag = $('html'),
+			oldY = 0;
 
 		$(window).load(function() {
 			self.centerAds(['.bottom_ad_rdr', '#rightAd_rdr']); //pass specific ad identifiers for centering as array
@@ -399,6 +401,17 @@ webmd.fundedEditorial = {
 		});
 
 		$(window).on('scroll touchstart touchmove touchend', function() {
+			var y = $(this).scrollTop();
+
+			if (y > oldY){
+				// downscroll
+				$htmlTag.removeClass('scrollUp').addClass('scrollDown');
+			} else {	
+				// upscroll code
+				$htmlTag.removeClass('scrollDown').addClass('scrollUp');
+			}
+			oldY = y;
+
 			if (!marquee) {
 				setTimeout(function() {
 					self.doStickyToolbar();
