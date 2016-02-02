@@ -1179,7 +1179,7 @@ webmd.fundedEditorial = {
 
 			$contentPane.prepend(menu);
 
-			$contentPane.find('.title').append($('.page-header h1').clone());
+			$contentPane.find('.title').append($('.page-header h1').clone(), $('#rmq_header h2').clone());
 			$contentPane.find('.share').append($('#fed-sharebar').clone(true));
 			$contentPane.find('.attribution').append($('.attrib_right_fmt a').clone(true));
 			$contentPane.find('.client-logo div').append($('.attrib_right_fmt img').clone());
