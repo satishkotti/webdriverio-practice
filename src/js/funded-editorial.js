@@ -406,7 +406,7 @@ webmd.fundedEditorial = {
 			if (y > oldY){
 				// downscroll
 				$htmlTag.removeClass('scrollUp').addClass('scrollDown');
-			} else {	
+			} else if (y < oldY) {	
 				// upscroll code
 				$htmlTag.removeClass('scrollDown').addClass('scrollUp');
 			}
