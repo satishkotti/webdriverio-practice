@@ -405,10 +405,10 @@ webmd.fundedEditorial = {
 
 			if (y > oldY){
 				// downscroll
-				$htmlTag.removeClass('scrollUp').addClass('scrollDown');
+				$htmlTag.removeClass('scroll-up').addClass('scroll-down');
 			} else if (y < oldY) {	
 				// upscroll code
-				$htmlTag.removeClass('scrollDown').addClass('scrollUp');
+				$htmlTag.removeClass('scroll-down').addClass('scroll-up');
 			}
 			oldY = y;
 
