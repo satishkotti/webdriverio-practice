@@ -82,9 +82,7 @@ webmd.fundedEditorial.moreAbout = {
 			if (articleIndex === nodeArticleNum) {
 				$node.find('a').attr('href', article.link);
 				$node.find('img').attr('src', image_server_url + article.images.image493x335);
-				if (articlePrefix) {
-					$node.find('p').html('<span class="sponsored">' + articlePrefix + '</span>' + article.title);
-				}
+				$node.find('p').html('<span class="sponsored">' + articlePrefix + '</span>' + article.title);
 
 				if (article.visited) {
 					$node.addClass('visited');
