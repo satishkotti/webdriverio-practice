@@ -890,7 +890,7 @@ webmd.fundedEditorial = {
 				if (articleIndex === nodeArticleNum) {
 					$a.attr({ 'href' : article.link, 'data-metrics-link' : position });
 					$img.attr({ 'src' : image_server_url + article.images.image493x335 });
-					$p.html('<span>' + articlePrefix + '</span>' + article.title);
+					$p.html('<span class="sponsored">' + articlePrefix + '</span>' + article.title);
 
 					$node.html('');
 					$node.append($a.append($img).append($p));

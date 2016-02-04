@@ -84,7 +84,9 @@
                             </xsl:attribute>
                             <xsl:element name="img"></xsl:element>
                             <xsl:element name="p">
-                                <xsl:element name="span"></xsl:element>
+                                <xsl:element name="span">
+                                	<xsl:attribute name="class">sponsored</xsl:attribute>
+                                </xsl:element>
                             </xsl:element>
                         </xsl:element>
                     </xsl:element>

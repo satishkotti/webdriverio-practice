@@ -16,8 +16,7 @@
 			margin-bottom: 10px;
 		}
 	}
-	&.see-all,
-	&.seg-all {
+	&.see-all {
 
 		h3 {
 			color: #333132;
@@ -54,6 +53,10 @@
 
 			.spon-false {
 				display: none;
+			}
+
+			h3 {
+				color: #E96700;
 			}
 		}
 		.see-all-item {
