@@ -15,7 +15,7 @@ define(['bx_slider/1/bx_slider'], {
 		preloadImages: 'all', // preload every image before initializing the slider
 
 		// TOUCH
-		touchEnabled: false,
+		touchEnabled: true,
 
 		// PAGER
 		pager: true,
