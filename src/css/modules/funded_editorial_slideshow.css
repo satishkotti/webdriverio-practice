@@ -72,12 +72,26 @@
 	margin: 0 0 10px;
 	font-size: 2.2em;
 }
-.slideshow .slide .caption p {
+.slideshow .slide .caption p,
+.slideshow .slide .caption li {
 	color: #222;
 	font-size: 1.6em;
 	line-height: 24px;
-	margin: 0;
+	margin: 0 0 26px;
 	font-family: Chivo,Arial,sans-serif;
+}
+.slideshow .slide .caption ol {
+	list-style: decimal;
+	padding: 0 0 0 30px;
+	margin: 0 0 26px;
+}
+.slideshow .slide .caption ul {
+	list-style: disc;
+	padding: 0 0 0 30px;
+	margin: 0 0 26px;
+}
+.slideshow .slide .caption li {
+	margin-bottom: 10px;
 }
 .slideshow .bx-controls .bx-prev,
 .slideshow .bx-controls .bx-next  {
