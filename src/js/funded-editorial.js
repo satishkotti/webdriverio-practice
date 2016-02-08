@@ -25,6 +25,7 @@ $.fn.imagesLoaded = function(callback) {
 		len = elems.length;
 
 	if (!elems.length) {
+
 		callback.call(this);
 		return this;
 	}
@@ -406,7 +407,7 @@ webmd.fundedEditorial = {
 			if (y > oldY){
 				// downscroll
 				$htmlTag.removeClass('scroll-up').addClass('scroll-down');
-			} else if (y < oldY) {	
+			} else if (y < oldY) {
 				// upscroll code
 				$htmlTag.removeClass('scroll-down').addClass('scroll-up');
 			}
@@ -822,7 +823,10 @@ webmd.fundedEditorial = {
 
 						if (articleIndex === articleNum) {
 							$a.attr('href', article.link).attr('data-metrics-link', position);
-							$img.attr('src', image_server_url + article.images.image493x335);
+							$img.attr({
+								'src' : image_server_url + article.images.image493x335,
+								'alt' : article.imageAlt
+							});
 							$p.html(article.title);
 
 							$segmentTile
@@ -889,7 +893,10 @@ webmd.fundedEditorial = {
 
 				if (articleIndex === nodeArticleNum) {
 					$a.attr({ 'href' : article.link, 'data-metrics-link' : position });
-					$img.attr({ 'src' : image_server_url + article.images.image493x335 });
+					$img.attr({
+						'src' : image_server_url + article.images.image493x335,
+						'alt' : article.imageAlt
+					});
 					$p.html('<span class="sponsored">' + articlePrefix + '</span>' + article.title);
 
 					$node.html('');

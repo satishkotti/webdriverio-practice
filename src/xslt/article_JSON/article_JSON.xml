@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <webmd_rendition>
   <content>
-<wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e812f83c7">
+<wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e81315e07">
     <webmd_module>
         <module_settings>
             <chronic_id>091e9c5e811f0312</chronic_id>
-            <r_object_id>091e9c5e812f83c7</r_object_id>
+            <r_object_id>091e9c5e81315e07</r_object_id>
             <title>article-data</title>
             <object_name>module_article-data_091e9c5e811f0312.xml</object_name>
             <object_type>wbmd_pb_templatemodule</object_type>
@@ -15,12 +15,12 @@
                 <wbmd_pb_module_label1 />
             </md_pb_module_label1_group>
             <md_pb_module_label2_group>
-                <wbmd_pb_module_label2 object_type="wbmd_lookup" wbmd_lookup_type="wbmd_module_label2" i_chronicle_id="091e9c5e812f291e" wbmd_disp_nm="No Sponsor" wbmd_storage_val="no_sponsor" />
+                <wbmd_pb_module_label2 />
             </md_pb_module_label2_group>
             <wbmd_pb_module_sp_program />
             <wbmd_pb_module_tier>0</wbmd_pb_module_tier>
             <wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
-            <r_modify_date>11/16/2015 15:28:08</r_modify_date>
+            <r_modify_date>12/10/2015 10:44:47</r_modify_date>
             <wbmd_c_channel_ids_group />
             <wbmd_program_group />
             <wbmd_pb_asset_css path="/webmd/PageBuilder_Assets/CSS/EditorialModule/Article Data/Standard_091e9c5e811f0311.css" object_type="wbmd_pb_css" chronic_id="091e9c5e811f0311" />
@@ -89,11 +89,11 @@
                     <link_source_icon chronic_id="091e9c5e811916a0" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/slideshows/concentration_killers/650x350_concentration_killers.jpg" alt="woman staring at social media" />
                 </link>
                 <link>
-                    <link_text>Slideshow: Bad Heart Habits</link_text>
+                    <link_text>Slideshow: Assistive Devices for Osteoarthritis</link_text>
                     <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
                     <link_link_view>Page Refresh(Default)</link_link_view>
-                    <link_url chronic_id="091e9c5e8124a8a5" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
-                    <link_source_icon chronic_id="091e9c5e81183303" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/slideshows/bad_heart_habits_slideshow/493x335_bad_heart_habits_slideshow.jpg" alt="women toasting with wine" />
+                    <link_url chronic_id="091e9c5e812123e9" directive="friendlyurl" object_type="wbmd_cons_article" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="091e9c5e812117a4" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/sponsored_programs/zzpractice/mmoczarski/hls1/getty_rf_photo_of_person_using_walker.jpg" alt="person_using_walker" />
                 </link>
                 <link>
                     <link_text>How to Treat the Flu</link_text>
@@ -188,6 +188,13 @@
                     <link_url chronic_id="091e9c5e812a4639" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
                     <link_source_icon chronic_id="091e9c5e810c2022" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/reference_guide/heart_disease_and_angina_ref_guide/650x350_heart_disease_and_angina_ref_guide.jpg" alt="ekg stress test" />
                 </link>
+                <link>
+                    <link_text>RMQ CAP</link_text>
+                    <action_text>Curabitur sit amet nisi nec quam eleifend eleifend non ac est. Phasellus interdum justo quis bibendum tempus</action_text>
+                    <link_link_view>Page Refresh(Default)</link_link_view>
+                    <link_url chronic_id="091e9c5e812f0f0d" directive="friendlyurl" object_type="wbmd_cons_article" wbmd_lookup_type="" wbmd_storage_value="" />
+                    <link_source_icon chronic_id="" directive="imageurl" object_type="" wbmd_lookup_type="" wbmd_storage_value="" path="" alt="" />
+                </link>
             </links>
             <descriptions>
                 <description />
@@ -231,8 +238,9 @@
     <object chronic_id="091e9c5e811f2482" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 07_091e9c5e811f2482/page_Article Title 07_091e9c5e811f2482.wxml">
       <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/fed2/standard/article-title-07" />
     </object>
-    <object chronic_id="091e9c5e8124a8a5" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Slideshow Better Butt_091e9c5e8124a8a5/page_Slideshow Better Butt_091e9c5e8124a8a5.wxml">
-      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/fed2/standard/slideshow-bad-habits-heart" />
+    <object chronic_id="091e9c5e812123e9" thmbnl="" pointer="0" path="/webmd/consumer_assets/site_images/sponsored_programs/zzpractice/mmoczarski/hls1/mgm_assistive_devices_oa_slideshow.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/fed2/standard/mgm-slideshow-oa-devices" />
+      <target siteid="8" name="" prefix="www" friendlyurl="/a-to-z-guides/ss/mgm-slideshow-oa-devices" status="deleted" />
     </object>
     <object chronic_id="091e9c5e811f2484" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Article Title 08_091e9c5e811f2484/page_Article Title 08_091e9c5e811f2484.wxml">
       <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/fed2/standard/article-title-08" />
@@ -274,6 +282,10 @@
     </object>
     <object chronic_id="091e9c5e812a4639" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/Sponsored Title 04_091e9c5e812a4639/page_Sponsored Title 04_091e9c5e812a4639.wxml">
       <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/fed2/standard/spon/sponsored-title-04" />
+    </object>
+    <object chronic_id="091e9c5e812f0f0d" thmbnl="" pointer="0" path="/webmd/consumer_assets/editorial/articles/TestFolder1/test_rmq_cap.wxml">
+      <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/fed2/standard/test-rmq-cap" />
+      <target siteid="8" name="" prefix="www" friendlyurl="/a-to-z-guides/test-rmq-cap" status="deleted" />
     </object>
     <object chronic_id="091e9c5e81242beb" thmbnl="" pointer="0" path="/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/See All Page_091e9c5e81242beb/page_See All Page_091e9c5e81242beb.wxml">
       <target siteid="3" name="WebMD" prefix="www" friendlyurl="/zztest/fed2/standard/see-all-page" />

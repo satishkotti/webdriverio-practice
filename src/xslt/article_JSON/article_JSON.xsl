@@ -80,7 +80,8 @@
 					<![CDATA["image56x40" : "]]><xsl:call-template name="getTOCImgPathNew"><xsl:with-param name="path"><xsl:value-of select="body_images/body_image/source/@path"/></xsl:with-param><xsl:with-param name="width">56</xsl:with-param><xsl:with-param name="height">40</xsl:with-param></xsl:call-template><![CDATA[",]]>
 					<![CDATA["image50x50" : "]]><xsl:call-template name="getTOCImgPathNew"><xsl:with-param name="path"><xsl:value-of select="body_images/body_image/source/@path"/></xsl:with-param><xsl:with-param name="width">50</xsl:with-param><xsl:with-param name="height">50</xsl:with-param></xsl:call-template><![CDATA["]]>
 				<![CDATA[},]]>
-			<![CDATA["seeAllLink" : "]]><xsl:call-template name="GetURLRef"><xsl:with-param name="ObjectID"><xsl:value-of select="body_images/body_image/image_link/@chronic_id" /></xsl:with-param></xsl:call-template><![CDATA[",]]>
+			<![CDATA["tocImageAlt" : "]]><xsl:value-of select="body_images/body_image/source/@alt"/><![CDATA[",]]>
+			<![CDATA["seeAllLink" : "]]><xsl:call-template name="GetURLRef"><xsl:with-param name="ObjectID"><xsl:value-of select="body_images/body_image/source/@chronic_id" /></xsl:with-param></xsl:call-template><![CDATA[",]]>
 			<![CDATA["seeAllText" : "]]><xsl:value-of select="body_images/body_image/override_text" /><![CDATA[",]]>
 			<![CDATA["brandedColor" : ]]><xsl:choose>
 				<xsl:when test="substring-before(substring-after(module_title, ' ['), ']')">
@@ -162,6 +163,7 @@
 				<![CDATA["image56x40" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">56</xsl:with-param><xsl:with-param name="height">40</xsl:with-param></xsl:call-template><![CDATA[",]]>
 				<![CDATA["image50x50" : "]]><xsl:call-template name="getImgPathNew"><xsl:with-param name="path"><xsl:value-of select="link_source_icon/@path"/></xsl:with-param><xsl:with-param name="width">50</xsl:with-param><xsl:with-param name="height">50</xsl:with-param></xsl:call-template><![CDATA["]]>
 			<![CDATA[},]]>
+			<![CDATA["imageAlt" : "]]><xsl:value-of select="link_source_icon/@alt"/><![CDATA[",]]>
 			<![CDATA["type" : "]]><xsl:call-template name="GetLinkIconType">
 				<xsl:with-param name="link_text">
 					<xsl:value-of select="link_text"/>
