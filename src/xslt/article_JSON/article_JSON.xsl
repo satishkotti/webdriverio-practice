@@ -81,7 +81,7 @@
 					<![CDATA["image50x50" : "]]><xsl:call-template name="getTOCImgPathNew"><xsl:with-param name="path"><xsl:value-of select="body_images/body_image/source/@path"/></xsl:with-param><xsl:with-param name="width">50</xsl:with-param><xsl:with-param name="height">50</xsl:with-param></xsl:call-template><![CDATA["]]>
 				<![CDATA[},]]>
 			<![CDATA["tocImageAlt" : "]]><xsl:value-of select="body_images/body_image/source/@alt"/><![CDATA[",]]>
-			<![CDATA["seeAllLink" : "]]><xsl:call-template name="GetURLRef"><xsl:with-param name="ObjectID"><xsl:value-of select="body_images/body_image/source/@chronic_id" /></xsl:with-param></xsl:call-template><![CDATA[",]]>
+			<![CDATA["seeAllLink" : "]]><xsl:call-template name="GetURLRef"><xsl:with-param name="ObjectID"><xsl:value-of select="body_images/body_image/image_link/@chronic_id" /></xsl:with-param></xsl:call-template><![CDATA[",]]>
 			<![CDATA["seeAllText" : "]]><xsl:value-of select="body_images/body_image/override_text" /><![CDATA[",]]>
 			<![CDATA["brandedColor" : ]]><xsl:choose>
 				<xsl:when test="substring-before(substring-after(module_title, ' ['), ']')">
