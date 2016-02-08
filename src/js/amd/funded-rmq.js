@@ -281,8 +281,8 @@ define(['bx_slider/1/bx_slider'], {
 
 											webmd.ads2.defineAd({
 												id: 'ads2-pos-2026-ad_rmq',
-												pos: 2026,
-												sizes: [300,250],
+												pos: 2027,
+												sizes: [[300,254],[300,250]],
 												refresh: false,
 												immediate: true
 											});
@@ -291,8 +291,8 @@ define(['bx_slider/1/bx_slider'], {
 
 											webmd.ads2.defineAd({
 												id: 'ads2-pos-121-ad_rmq',
-												pos: 121,
-												sizes: [300,250],
+												pos: 207,
+												sizes: [[300,252],[300,250]],
 												refresh: false,
 												immediate: true
 											});
