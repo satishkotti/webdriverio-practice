@@ -1181,12 +1181,43 @@ webmd.fundedEditorial = {
 
 			$contentPane.find('.title').append($('.page-header h1').clone(), $('#rmq_header h2').clone());
 			$contentPane.find('.share').append($('#fed-sharebar').clone(true));
-			$contentPane.find('.attribution').append($('.attrib_right_fmt a').clone(true));
-			$contentPane.find('.client-logo div').append($('.attrib_right_fmt img').clone());
+
+			if ($contentPane.find('.attribution').length) {
+				self.attachAttribution($contentPane);
+			}
 
 			if (this.createKabob) {
 				self.addKabob($contentPane.attr('id'));
 			}
+		},
+
+		attachAttribution: function($cp) {
+			require(['tooltips/1/tooltips'], function(tooltip) {
+				var $attribLink;
+
+				$cp.find('.attribution').append($('.attrib_right_fmt a').clone());
+				$cp.find('.client-logo div').append($('.attrib_right_fmt img').clone());
+
+				$attribLink = $cp.find(".attribution a");
+				$attribLink.attr("href", $attribLink.attr("href").replace(/\s/g, ''));
+				$attribLink.webmdTooltip({
+					ajax:true,
+					content:{
+						button:true
+					},
+					trigger:"click",
+					position:{
+						corner:{
+							target:"bottom"
+						}
+					},
+					api: {
+						onShow: function(){
+							wmdPageLink('attribution');
+						}
+					}
+				});
+			});
 		},
 
 		addKabob: function(id) {
