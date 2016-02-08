@@ -277,20 +277,20 @@ define(['bx_slider/1/bx_slider'], {
 										// Set up the ad and configure it as 300x250 with a pos value of 121 (new value for DFP changed from 207) then fetch and display it
 										// Refer to scripts.js ads2 branch for detailed documentation on the methods used
 										if (webmd.useragent.ua.type === "mobile") {
-											$('#rmq_ad_placeholder').html('<div id="rmqAd_fmt"><div class="ad_placeholder" id ="ads2-pos-2026-ad_rmq" style="height:auto;margin: 0 auto;"></div></div>');
+											$('#rmq_ad_placeholder').html('<div id="rmqAd_fmt"><div class="ad_placeholder" id ="ads2-pos-2027-ad_rmq" style="height:auto;margin: 0 auto;"></div></div>');
 
 											webmd.ads2.defineAd({
-												id: 'ads2-pos-2026-ad_rmq',
+												id: 'ads2-pos-2027-ad_rmq',
 												pos: 2027,
 												sizes: [[300,254],[300,250]],
 												refresh: false,
 												immediate: true
 											});
 										} else {
-											$('#rmq_ad_placeholder').html('<div id="rmqAd_fmt"><div class="ad_placeholder" id ="ads2-pos-121-ad_rmq" style="height:250px;margin: 0 auto;"></div></div>');
+											$('#rmq_ad_placeholder').html('<div id="rmqAd_fmt"><div class="ad_placeholder" id ="ads2-pos-207-ad_rmq" style="height:250px;margin: 0 auto;"></div></div>');
 
 											webmd.ads2.defineAd({
-												id: 'ads2-pos-121-ad_rmq',
+												id: 'ads2-pos-207-ad_rmq',
 												pos: 207,
 												sizes: [[300,252],[300,250]],
 												refresh: false,
