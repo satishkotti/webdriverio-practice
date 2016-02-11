@@ -179,6 +179,10 @@
 	}
 }
 
+.no-attribution .wbmd-toolbar-menu .title {
+	width: calc(100% - 380px);
+}
+
 .wbmd-kabob {
 	position: relative;
 	display: block;
@@ -281,11 +285,22 @@ body.menu-open {
 				display: inline-block;
 			}
 		}
+		&.no-attribution .wbmd-toolbar-menu {
+			.wbmd-kabob {
+				display: inline-block;
+			}
+			.client-logo {
+				display: none;
+			}
+			.title {
+				width: calc(100% - 124px);
+			}
+		}
 	}
 }
 
 @media only screen and (max-width: 499px) {
-	.wbmd-toolbar-menu .tools {
+	.wbmd-toolbar-menu .tools { 
 		.title h1, .title h2 {
 			font-size: 1.3em;
 			line-height: 17px;

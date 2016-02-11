@@ -1117,6 +1117,7 @@ webmd.fundedEditorial = {
 		menuElements: ['.branded-up-next-container', '.up-next-container', '.wbmd-upnext-segments'],
 
 		init: function(createKabob) {
+
 			var self = this;
 
 			self.createKabob = createKabob;
@@ -1189,8 +1190,10 @@ webmd.fundedEditorial = {
 			$contentPane.find('.title').append($('.page-header h1').clone(), $('#rmq_header h2').clone());
 			$contentPane.find('.share').append($('#fed-sharebar').clone(true));
 
-			if ($contentPane.find('.attribution').length) {
+			if ( $contentPane.find('.attrib_right_fmt').length ) {
 				self.attachAttribution($contentPane);
+			} else {
+				$('html').addClass('no-attribution');
 			}
 
 			if (this.createKabob) {
