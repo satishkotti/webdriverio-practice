@@ -23,20 +23,25 @@
 
 	.isi-btn,
 	.isi-container {
+		background-color: #fff;
 		width: 98%;
 		max-width: 980px;
 		margin: 0 auto;
 		overflow: auto;
+		border: 1px #B7B4AE solid;
 	}
 	.isi-btn {
 		overflow: hidden;
+		border-bottom: 0;
+		.isi-rr-links ul {
+			margin:  10px 10px 0;
+		}
 	}
 	.isi-container {
 		height: calc(100% - 38px);
 		position: relative;
-		background-color: #fff;
 		padding: 15px 10px 50px;
-		border: 1px #B7B4AE solid;
+		border-top: 0;
 		border-bottom: 0;
 	}
 

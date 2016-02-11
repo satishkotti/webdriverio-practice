@@ -136,9 +136,15 @@
 				webmd.object.set('webmd.fundedEditorial.isi');
 				webmd.fundedEditorial.isi = {
 					init : function() {
+						var $isiLinks = $('.isi-rr-links');
+						
 						this.bindEvents();
 
 						this.setIsiH();
+						
+						if ($isiLinks.length) {
+							$('.isi .isi-btn').append($isiLinks.clone());
+						}
 
 						if($('#isi-as').length > 0){
 							this.setUpAs();
@@ -210,10 +216,6 @@
 						$('.isi').css('margin-top', -isiMinH);
 					},
 
-					closeIsi : function() {
-						$('.isi').css('margin-top', -isiIntH);
-					},
-
 					scrollCloseIsi : function(){
 						var isiHideName;
 
@@ -239,7 +241,7 @@
 							offset: '98%'
 						});
 					},
-
+					
 					setUpAs : function(){
 						var as,
 							asSettings = {
