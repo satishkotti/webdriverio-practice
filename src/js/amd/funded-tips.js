@@ -56,6 +56,10 @@ define(['bx_slider/1/bx_slider'], {
 			webmd.fundedEditorial.tocTiles.tocTips = "loaded";
 		};
 
+		self.sSettings.onSlideAfter = function(){
+			$('.slide_src').removeClass('show');
+		};
+
 		// Create a bxSlider instance from the Tips slide container
 		self.slider = $(self.container).css('display', 'block').bxSlider(self.sSettings);
 
@@ -165,8 +169,6 @@ define(['bx_slider/1/bx_slider'], {
 		self.metrics('next');
 		self.slider.goToNextSlide();
 		self.slider.stopAuto();
-
-		$('.slide_src').removeClass('show');
 	},
 
 	/**

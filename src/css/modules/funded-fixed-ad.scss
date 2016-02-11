@@ -1,0 +1,19 @@
+#s5 {
+	width: 160px;
+	float: none;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-660px);
+	display: none;
+}
+#s5.stuck {
+	position: fixed;
+	top: 0;
+}
+
+.left-rail-ad {
+	width: 160px;
+	height: 600px;
+	background-color: pink;
+}
