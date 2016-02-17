@@ -143,7 +143,7 @@
 						this.setIsiH();
 						
 						if ($isiLinks.length) {
-							$('.isi .isi-btn').append($isiLinks.clone());
+							$('.isi .isi-btn').append($isiLinks.clone(true));
 						}
 
 						if($('#isi-as').length > 0){
