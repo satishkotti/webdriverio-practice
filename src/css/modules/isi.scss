@@ -33,8 +33,13 @@
 	.isi-btn {
 		overflow: hidden;
 		border-bottom: 0;
+
 		.isi-rr-links ul {
-			margin:  8px 10px 0;
+			margin:  6px 10px 0;
+
+			li {
+				margin-bottom: 0;
+			}
 		}
 	}
 	.isi-container {
