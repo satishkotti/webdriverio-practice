@@ -1,31 +1,75 @@
-webmd.object.set('webmd.fixedAd');
+/*
+Sample Code
+require(["funded-editorial/1/funded-fixed-ad", "css!funded-editorial/1/funded-fixed-ad.min"], function() {
+	$(function() {
+		$('#s5').webmdFixedAd({
+			start: '#art',
+			end: '#art',
+			offset: 60
+		});
+	});
+	// Make users start at the top of the page on page load
+	$(window).on('beforeunload', function(){
+		$(window).scrollTop(0);
+	});
+});
+*/
+webmd.object.set('webmd.webmdFixedAd');
 
-webmd.fixedAd = {
-	options: {
-		elm: null,
-		start: null,
-		end: null,
-		offset: 0
-	},
-	elmH: 0,
+webmd.webmdFixedAd = {
+	elH: 0,
 	start: 0,
 	end: 0,
 	lastScrollTop : 0,
-	init: function(opts){
+	lastWindowW : 0,
+
+	init: function(options, el){
 		var _this = this;
 
-		$.extend(this.options, opts);
+		this.el = $(el);
 
-		this.bindEvents();
-		this.getElmHeight();
-		setTimeout(function(){
-			_this.getStartPos();
-			_this.getEndPos();
-		}, 500);
+		this.options = {
+			start: '#art',
+			end: '#art',
+			offset: 0
+		};
+
+		$.extend(this.options, options);
+
+		var checkMovedEl = setInterval(function() {
+			var titleMoved = $( "#ContentPane12 .page-header" ).length,
+				bylineMoved = $( "#ContentPane13 .byline" ).length;
+
+			if (titleMoved > 0 && bylineMoved > 0) {
+				clearInterval(checkMovedEl);
+				clearTimeout(killInterval);
+				_this.bindEvents();
+				_this.getElHeight();
+				_this.getStartPos();
+				_this.getEndPos();
+				_this.setWindowW();
+			}
+		}, 100);
+
+		var killInterval = setTimeout(function(){
+			clearInterval(checkMovedEl);
+		}, 1000);
 	},
 
 	bindEvents: function(){
 		var _this = this;
+
+		$(window).resize(function() {
+			if(_this.checkWindowWidth()){
+				_this.getElHeight();
+				_this.getStartPos();
+				_this.getEndPos();
+			}
+
+			if(!_this.checkWindowHeight()){
+				_this.unStickEl();
+			}
+		});
 
 		$(window).scroll(function(event){
 			var st = $(this).scrollTop(),
@@ -33,82 +77,97 @@ webmd.fixedAd = {
 				offset = _this.options.offset,
 				end = _this.end - offset;
 
-			console.log(_this.lastScrollTop, end);
-
-			if (st > _this.lastScrollTop){
-				// downscroll code
-				console.log('scrolling down');
-				if(_this.lastScrollTop > start - _this.options.offset && _this.lastScrollTop < end){
-					console.log('stick element');
-					_this.stickElm();
-				} else if(_this.lastScrollTop > end){
-					console.log('stick to bottom');
-					_this.stickElmToBottom();
+			if(_this.checkWindowHeight()){
+				if (st > _this.lastScrollTop){
+					// downscroll code
+					if(_this.lastScrollTop > start - _this.options.offset && _this.lastScrollTop < end){
+						_this.stickEl();
+					} else if(_this.lastScrollTop > end){
+						_this.stickElToBottom();
+					}
+				} else {
+					// upscroll code
+					if(_this.lastScrollTop < start){
+						_this.unStickEl();
+					} else if(_this.lastScrollTop < end) {
+						_this.stickEl();
+					}
 				}
+				_this.lastScrollTop = st;
 			} else {
-				// upscroll code
-				console.log('scrolling up');
-				if(_this.lastScrollTop < start){
-					console.log('unstick element');
-					_this.unStickElm();
-				} else if(_this.lastScrollTop < end) {
-					_this.stickElm();
-				}
+				_this.unStickEl();
 			}
-			_this.lastScrollTop = st;
 		});
 	},
 
-	getElmHeight: function(){
-		this.elmH = $(this.options.elm).outerHeight();
-		console.log('element height: ' + this.elmH);
+	checkWindowHeight: function(){
+		var elH = this.elH,
+			offset = this.options.offset,
+			winH = $(window).height();
+
+		if(winH > elH + offset){
+			return true;
+		} else {
+			return false;
+		}
+	},
+
+	setWindowW: function(){
+		var winW = $(window).width();
+
+		this.lastWindowW = winW;
+	},
+
+	checkWindowWidth: function(){
+		var winW = $(window).width();
+
+		if(this.lastWindowW > winW || this.lastWindowW < winW){
+			this.setWindowW();
+
+			return true;
+		} else {
+			this.setWindowW();
+
+			return false;
+		}
+	},
+
+	getElHeight: function(){
+		this.elH = $(this.el).outerHeight();
 	},
 
 	getStartPos: function(){
 		this.start = $(this.options.start).offset().top;
-		console.log('element start position: ' + this.start);
-
 		this.moveToStartPos();
 	},
 
 	getEndPos: function(){
-		var elmH = $(this.options.end).outerHeight(),
-			elmOffset = $(this.options.end).offset().top;
+		var elH = $(this.options.end).outerHeight(),
+			elOffset = $(this.options.end).offset().top;
 
-		this.end = elmH + elmOffset - this.elmH;
-
-		console.log('element end position: ' + this.end);
+		this.end = elH + elOffset - this.elH;
 	},
 
 	moveToStartPos: function(){
-		$(this.options.elm).css('top', this.start);
-		$(this.options.elm).show();
+		$(this.el).css('top', this.start);
+		$(this.el).show();
 	},
 
-	stickElm: function(){
-		$(this.options.elm).addClass('stuck').css('top', this.options.offset);
+	stickEl: function(){
+		$(this.el).addClass('stuck').css('top', this.options.offset);
+		$('html').addClass('fixed-ad-stuck');
 	},
 
-	unStickElm:function(){
-		$(this.options.elm).removeClass('stuck');
+	unStickEl:function(){
+		$(this.el).removeClass('stuck');
+		$('html').addClass('fixed-ad-unstuck');
 		this.moveToStartPos();
 	},
 
-	stickElmToBottom: function(){
-		$(this.options.elm).removeClass('stuck').css('top', this.end);
-	},
-
-	enablePlugin: function () {
-		$.fn.inView = function() {
-			var win = $(window), // window
-				obj = $(this), // object to check
-				scrollPosition = win.scrollTop(), // the top scroll position in the page
-				visibleArea = win.scrollTop() + win.height(), // the end of the visible area in the page, starting from the scroll position
-				objEndPos = (obj.offset().top + obj.outerHeight(false)); // the end of the object to check
-
-			// if object is visible return true, else false
-			return (visibleArea >= objEndPos && scrollPosition <= objEndPos ? true : false);
-		};
-	},
-
+	stickElToBottom: function(){
+		$(this.el).removeClass('stuck').css('top', this.end);
+	}
 };
+
+// Make Fixed Ad into a JQuery Plugin
+webmd.plugin('webmdFixedAd', webmd.webmdFixedAd);
