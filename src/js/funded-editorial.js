@@ -348,7 +348,7 @@ webmd.fundedEditorial = {
 
 				//Perform an AJAX 'get' on segment documentum ID
 				$.ajax({
-					url: 'http://www' + webmd.url.getLifecycle() + '.webmd.com/modules/ajax',
+					url: 'http://www' + webmd.url.getLifecycle() + webmd.url.getEnv() + '.webmd.com/modules/ajax',
 					type: 'GET',
 					data: 'id=' + data.artDataId,
 					dataType: 'html',
