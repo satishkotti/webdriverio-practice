@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exslt="http://exslt.org/common">
 	<!-- Force the output to be strict XHTML -->
 	<xsl:output method="xml" omit-xml-declaration="yes" indent="yes"></xsl:output>
 	<xsl:param name="class_id"></xsl:param>
@@ -28,34 +28,56 @@
 						<xsl:value-of select="position()"></xsl:value-of>
 					</xsl:variable>
 					<xsl:choose>
-					<xsl:when test="link_text != ''"><![CDATA[{]]>
+						<xsl:when test="link_text != ''">
+							<xsl:variable name="ids">
+								<xsl:call-template name="SimpleStringLoop">
+									<xsl:with-param name="text" select="link_text"/>
+								</xsl:call-template>
+							</xsl:variable>
+							<xsl:variable name="id1">
+								<xsl:value-of select="exslt:node-set($ids)/id[1]"/>
+							</xsl:variable>
+							<xsl:variable name="id2">
+								<xsl:value-of select="exslt:node-set($ids)/id[2]"/>
+							</xsl:variable><![CDATA[{]]>
 					<![CDATA["artDataId" : "]]><xsl:choose>
-							<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
-								<xsl:value-of select="normalize-space(substring-before(link_text,' ['))"/>
+						<xsl:when test="substring-before(substring-after($id1, ' ['), ']')">
+							<xsl:value-of select="normalize-space(substring-before($id1,' ['))"/>
 							</xsl:when>
-							<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
-								<xsl:value-of select="normalize-space(substring-before(link_text,'['))"/>
+						<xsl:when test="substring-before(substring-after($id1, '['), ']')">
+							<xsl:value-of select="normalize-space(substring-before($id1,'['))"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="normalize-space($id1)"/>
+						</xsl:otherwise>
+					</xsl:choose><![CDATA[",]]>
+					<![CDATA["playlistDataId" : "]]><xsl:choose>
+						<xsl:when test="substring-before(substring-after($id2, ' ['), ']')">
+							<xsl:value-of select="normalize-space(substring-before($id2,' ['))"/>
 							</xsl:when>
-							<xsl:otherwise>
-								<xsl:value-of select="normalize-space(link_text)"/>
-							</xsl:otherwise>
+						<xsl:when test="substring-before(substring-after($id2, '['), ']')">
+							<xsl:value-of select="normalize-space(substring-before($id2,'['))"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="normalize-space($id2)"/>
+						</xsl:otherwise>
 					</xsl:choose><![CDATA[",]]>
 					<![CDATA["currentSeg" : ]]><xsl:choose>
-							<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
-								<xsl:text>true</xsl:text>
-							</xsl:when>
-							<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
-								<xsl:text>true</xsl:text>
-							</xsl:when>
-							<xsl:otherwise>
-								<xsl:text>false</xsl:text>
-							</xsl:otherwise>
-						</xsl:choose><![CDATA[,]]>
+						<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
+							<xsl:text>true</xsl:text>
+						</xsl:when>
+						<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
+							<xsl:text>true</xsl:text>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:text>false</xsl:text>
+						</xsl:otherwise>
+					</xsl:choose><![CDATA[,]]>
 					<![CDATA["promotedArticles" : []]><xsl:call-template name="tokenize">
-							<xsl:with-param name="text">
-								<xsl:value-of select="action_text"/>
-							</xsl:with-param>
-						</xsl:call-template><![CDATA[],]]>
+						<xsl:with-param name="text">
+							<xsl:value-of select="action_text"/>
+						</xsl:with-param>
+					</xsl:call-template><![CDATA[],]]>
 				<![CDATA[}]]></xsl:when><xsl:otherwise><![CDATA[{}]]></xsl:otherwise></xsl:choose><xsl:if test="position()!=last()"><xsl:text>,</xsl:text></xsl:if>
 				</xsl:for-each>
 		<![CDATA[];]]>
@@ -84,6 +106,31 @@
 				</xsl:call-template>
 			</xsl:otherwise>
 		</xsl:choose>
+	</xsl:template>
+	
+	<xsl:template name="SimpleStringLoop">
+		<xsl:param name="text"/>
+		<xsl:param name="separator" select="','"/>
+		<xsl:if test="string-length($text) &gt; 0">
+			<xsl:choose>
+				<xsl:when test="not(contains($text, $separator))">
+					<!-- Last Item -->
+					<id>
+						<xsl:value-of select="normalize-space($text)"/>
+					</id>
+				</xsl:when>
+				<xsl:otherwise>
+					<!-- Items in List -->
+					<xsl:variable name="id" select="substring-before($text, $separator)"/>
+					<id>
+						<xsl:value-of select="$id"/>
+					</id>
+					<xsl:call-template name="SimpleStringLoop">
+						<xsl:with-param name="text" select="substring-after($text, $separator)"/>
+					</xsl:call-template>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:if>
 	</xsl:template>
 	
 	<xsl:template name="getImgPath">
