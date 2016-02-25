@@ -1231,7 +1231,7 @@ webmd.fundedEditorial = {
 		},
 
 		addKabob: function(id) {
-			$('.wbmd-toolbar-menu .tools').add('#' + id).append('<div class="wbmd-kabob"><span></span></div>');
+			$('.wbmd-toolbar-menu .tools').add('#' + id).prepend('<div class="wbmd-kabob"><span></span></div>');
 
 			return this;
 		},
