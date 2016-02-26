@@ -46,33 +46,34 @@
 		
 		<xsl:element name="div">
 			<xsl:attribute name="id">readspeaker_area</xsl:attribute>
-		</xsl:element>
 
-		<xsl:element name="div">
-			<xsl:attribute name="class">readspeaker_button1</xsl:attribute>
-			
-			<xsl:element name="a">
-				<xsl:attribute name="accesskey">L</xsl:attribute>
-				<xsl:attribute name="href">http://app.readspeaker.com/cgi-bin/rsent?customerid=5841&amp;lang=en_us&amp;readid=textArea</xsl:attribute>
-				<xsl:attribute name="target">_blank</xsl:attribute>
-				<xsl:attribute name="onclick">readpage(this.href, 'readspeaker_controls'); return false;</xsl:attribute>
-				<xsl:attribute name="title">Listen to article content</xsl:attribute>
+			<xsl:element name="div">
+				<xsl:attribute name="class">readspeaker_button1</xsl:attribute>
+				
+				<xsl:element name="a">
+					<xsl:attribute name="accesskey">L</xsl:attribute>
+					<xsl:attribute name="href">http://app.readspeaker.com/cgi-bin/rsent?customerid=5841&amp;lang=en_us&amp;readid=textArea</xsl:attribute>
+					<xsl:attribute name="target">_blank</xsl:attribute>
+					<xsl:attribute name="onclick">readpage(this.href, 'readspeaker_controls'); return false;</xsl:attribute>
+					<xsl:attribute name="title">Listen to article content</xsl:attribute>
+				</xsl:element>
 			</xsl:element>
-		</xsl:element>
-
-		<xsl:element name="script">
-			<xsl:attribute name="type">text/javascript</xsl:attribute>
-			<xsl:text>
-				require(['http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/javascript/readspeaker/en.js'], function(){
-					$(function(){
-						webmd.readspeakerPrep.init({
-						</xsl:text>
-							<xsl:apply-templates select="//contentText"></xsl:apply-templates>
-						<xsl:text>
+	
+			<xsl:element name="script">
+				<xsl:attribute name="type">text/javascript</xsl:attribute>
+				<xsl:text>
+					require(['http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/javascript/readspeaker/en.js'], function(){
+						$(function(){
+							webmd.readspeakerPrep.init({
+							</xsl:text>
+								<xsl:apply-templates select="//contentText"></xsl:apply-templates>
+							<xsl:text>
+							});
 						});
 					});
-				});
-			</xsl:text>
+				</xsl:text>
+			</xsl:element>
+
 		</xsl:element>
 		
 		<xsl:element name="div">
