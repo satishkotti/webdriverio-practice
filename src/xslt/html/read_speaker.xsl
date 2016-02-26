@@ -74,12 +74,12 @@
 				</xsl:text>
 			</xsl:element>
 
+			<xsl:element name="div">
+				<xsl:attribute name="id">readspeaker_controls</xsl:attribute>
+			</xsl:element>
+
 		</xsl:element>
-		
-		<xsl:element name="div">
-			<xsl:attribute name="id">readspeaker_controls</xsl:attribute>
-		</xsl:element>
-		
+			
 	</xsl:template>
 	
 	<xsl:template match="contentText">
