@@ -297,7 +297,17 @@ webmd.fundedEditorial = {
 
 		function validSegments(segment, index, segments) {
 			if ('currentSeg' in segment) {
-				return segment.currentSeg !== true;
+				if (segment.currentSeg === true) {
+					// segment index needed for pre-roll ad call in premium video
+					webmd.fundedEditorial.articleData.program.segIndex = index;
+
+					return false;
+				} else {
+					// segment index needed for pre-roll ad call in premium video
+					segment.segIndex = index;
+
+					return segment.currentSeg !== true;
+				}
 			} else {
 				webmd.debug('SEGMENT MODULE NOT DRAWN: fix data for entry ' + (index+1) + ' in segment data module');
 				return false;
@@ -346,32 +356,76 @@ webmd.fundedEditorial = {
 					};
 				}());
 
-				//Perform an AJAX 'get' on segment documentum ID
-				$.ajax({
-					url: 'http://www' + webmd.url.getLifecycle() + webmd.url.getEnv() + '.webmd.com/modules/ajax',
-					type: 'GET',
-					data: 'id=' + data.artDataId,
-					dataType: 'html',
-					cache: false,
-					success: function(data) {
-						var html = $.parseHTML(data, document, true), //Parse HTML (returns array of nodes, including <script> nodes)
-							domEl = findInParsed(html, 'script#articleData'), //Find 'script#articleData' within Parsed HTML using function findInParsed
-							segmentedData = domEl['0'].innerHTML;
+				if ('dctmIds' in data && typeof data.dctmIds !== 'undefined') {
+					var dctmIdArr = data.dctmIds.replace(/\s/g,'').split(',');
 
-						self.domEL = domEl;
-						//Cleanup string found in segmentedData (need to parse as JSON)
-						segmentedData = segmentedData.replace('webmd.fundedEditorial.articleData', '');
-						segmentedData = segmentedData.replace(/=/g, '');
-						segmentedData = segmentedData.replace(/;/g, '');
-						segmentedData = $.trim(segmentedData);
-						segmentedData = $.parseJSON(segmentedData);
+					for (var i=0; i<dctmIdArr.length; i++) {
+						ajaxMe(dctmIdArr[i], index);
+					}
+				}
+			});
+		}
+
+		function ajaxMe(dctmId, segIndex) {
+			//Perform an AJAX 'get' on documentum ID
+			$.ajax({
+				url: 'http://www' + webmd.url.getLifecycle() + webmd.url.getEnv() + '.webmd.com/modules/ajax',
+				type: 'GET',
+				data: 'id=' + dctmId,
+				dataType: 'html',
+				cache: false,
+				success: function(data) {
+					var cx = {},
+						html = $.parseHTML(data, document, true), //Parse HTML (returns array of nodes, including <script> nodes)
+						articleData = findInParsed(html, 'script#articleData'),
+						playlistData = findInParsed(html, 'script#videoPlaylistData'),
+								el;
+
+					if (articleData) {
+						webmd.fundedEditorial.segments[segIndex].artDataId = dctmId;
+
+						cx.el = articleData['0'].innerHTML;
+						cx.data = cleanData(cx.el, 'webmd.fundedEditorial.articleData');
 
 						//Store parsed JSON articleData in segment as new key/value
-						webmd.fundedEditorial.segments[index].articleData = segmentedData;
-						webmd.fundedEditorial.segments[index].data.ready = true;
+						webmd.fundedEditorial.segments[segIndex].articleData = $.extend(false, {}, cx.data);
+
+						webmd.fundedEditorial.segments[segIndex].data.ready = true;
 					}
-				});
+
+					if (playlistData) {
+						webmd.fundedEditorial.segments[segIndex].playlistDataId = dctmId;
+
+						cx.el = playlistData['0'].innerHTML;
+						cx.data = cleanData(cx.el, 'webmd.fundedEditorial.articleData.program.videoPlaylistData');
+
+						if ('articleData' in webmd.fundedEditorial.segments[segIndex]) {
+							// article data exists, it is safe to append without risk of data loss
+							webmd.fundedEditorial.segments[segIndex].articleData.program.videoPlaylistData = $.extend(true, {}, cx.data);
+						} else {
+							// wait for article data before appending, otherwise there is risk of video data being overwritten
+							webmd.fundedEditorial.segments[segIndex].data.listen(function(passedValue) {
+								if (passedValue === 'true') {
+									webmd.fundedEditorial.segments[segIndex].articleData.program.videoPlaylistData = $.extend(true, {}, cx.data);
+								}
+							});
+						}
+					}
+				}
 			});
+		}
+
+		function cleanData(el, objStr) {
+			var data;
+			
+			//Cleanup string found in segmentedData (need to parse as JSON)
+			data = el.replace(objStr, '');
+			data = data.replace(/=/g, '');
+			data = data.replace(/;/g, '');
+			data = $.trim(data);
+			data = $.parseJSON(data);
+
+			return data;
 		}
 
 		function findInParsed(html, selector) {
