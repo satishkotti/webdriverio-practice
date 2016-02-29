@@ -61,16 +61,19 @@
 	
 			<xsl:element name="script">
 				<xsl:attribute name="type">text/javascript</xsl:attribute>
-				<xsl:text>
-					require(['http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/javascript/readspeaker/en.js'], function(){
-						$(function(){
+				<xsl:text disable-output-escaping="yes">
+				$(function(){
+					if ($('#textArea').length > 0) {
+						require(['http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/javascript/readspeaker/en.js'], function(){
+							$('#readspeaker_area').show();
 							webmd.readspeakerPrep.init({
 							</xsl:text>
 								<xsl:apply-templates select="//contentText"></xsl:apply-templates>
 							<xsl:text>
 							});
 						});
-					});
+					}
+				});
 				</xsl:text>
 			</xsl:element>
 
