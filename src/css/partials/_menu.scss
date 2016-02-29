@@ -237,6 +237,10 @@ body.menu-open {
 
 
 @media only screen and (max-width: 767px) {
+	article .social-share-tools {
+        float: none;
+        margin: 10px 0 20px 5px;
+    }
 	.social-share-tools {
 		margin-left: 7px;
 
