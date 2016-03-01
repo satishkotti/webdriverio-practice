@@ -904,7 +904,7 @@ webmd.fundedEditorial = {
 					$p.html('<span class="sponsored">' + articlePrefix + '</span>' + article.title);
 
 					$node.html('');
-					
+
 					if (!article.images.image493x335) {
 						$node.append($a.append($p));
 					} else {
