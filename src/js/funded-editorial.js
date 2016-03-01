@@ -95,6 +95,8 @@ webmd.fundedEditorial = {
 
 		if (self.segments && self.segments.length > 0) {
 			self.getSegmentArticleData();
+		} else {
+			webmd.fundedEditorial.articleData.program.segIndex = "-1";
 		}
 
 		if (window.s_business_reference === "TOC") {
@@ -881,6 +883,7 @@ webmd.fundedEditorial = {
 								'src' : image_server_url + article.images.image493x335,
 								'alt' : article.imageAlt
 							});
+
 							$p.html(article.title);
 
 							$segmentTile
