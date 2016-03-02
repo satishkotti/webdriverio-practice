@@ -58,24 +58,27 @@
 					<xsl:attribute name="title">Listen to article content</xsl:attribute>
 				</xsl:element>
 			</xsl:element>
-	
-			<xsl:element name="script">
-				<xsl:attribute name="type">text/javascript</xsl:attribute>
-				<xsl:text>
-					require(['http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/javascript/readspeaker/en.js'], function(){
-						$(function(){
-							webmd.readspeakerPrep.init({
-							</xsl:text>
-								<xsl:apply-templates select="//contentText"></xsl:apply-templates>
-							<xsl:text>
-							});
-						});
-					});
-				</xsl:text>
-			</xsl:element>
 
 			<xsl:element name="div">
 				<xsl:attribute name="id">readspeaker_controls</xsl:attribute>
+			</xsl:element>
+
+			<xsl:element name="script">
+				<xsl:attribute name="type">text/javascript</xsl:attribute>
+				<xsl:text disable-output-escaping="yes"><![CDATA[
+				$(function(){
+					if (($('#textArea').length > 0) && (webmd.useragent.ua.type !== "mobile")) {
+						require(['http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/javascript/readspeaker/en.js'], function(){
+							$('#readspeaker_area').show();
+							webmd.readspeakerPrep.init({
+							]]></xsl:text>
+				<xsl:apply-templates select="//contentText"></xsl:apply-templates>
+				<xsl:text><![CDATA[
+							});
+						});
+					}
+				});
+				]]></xsl:text>
 			</xsl:element>
 
 		</xsl:element>
@@ -200,7 +203,6 @@
 		</xsl:choose>
 	</xsl:template>
 </xsl:stylesheet>
-
 
 
 

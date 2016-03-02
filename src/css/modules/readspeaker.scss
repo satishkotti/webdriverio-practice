@@ -1,50 +1,29 @@
 // Variables
 @import '../partials/variables';
 
-.social-share-tools {
+#readspeaker_area {
 	float: left;
-	margin-left: -3px;
-}
-.social-share-tools .plugin-socialshare a.plugin-socialshare-link {
-	margin: 0 10px 0 0;
-	width: 40px;
-	height: 40px;
-}
-.social-share-tools .plugin-socialshare a.plugin-socialshare-link:before {
-	font-size: 40px;
-}
-.social-share-tools .plugin-socialshare a.plugin-socialshare-email {
-	margin-left: 20px;
-}
-.ua_type_mobile .social-share-tools .plugin-socialshare-email {
 	display: none;
 }
-
-.readspeaker {
-	float: left;
-	padding-top: 2px;
-	display: none;
-
-	a.readspeaker-button {
-		color: #222222 !important;
-		text-decoration:none;
-		font-size: 2.6rem;
-	}
-	a.readspeaker-button:hover{
-		text-decoration:none;
-	}
-/*	.readspeaker_button1 a:after {
-		content: "\e609";
-		font-family: "icons";
-		padding-left: 5px;
-		position: relative;
-		top: 2px;
-		font-size: 2.6rem;
-	}*/
-	.readspeaker-controls {
-		margin: 5px;
-	}
+.readspeaker_button1 a {
+	color: #222222 !important;
+	text-decoration:none;
 }
+.readspeaker_button1 a:hover{
+	text-decoration:none;
+}
+.readspeaker_button1 a:after {
+	content: "\e609";
+	font-family: "icons";
+	padding-left: 5px;
+	position: relative;
+	top: 2px;
+	font-size: 2.6rem;
+}
+#readspeaker_controls {
+	margin: 5px;
+}
+
 
 // Media Queries
 /* Smartphones (portrait and landscape) ----------- */

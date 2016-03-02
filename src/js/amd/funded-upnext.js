@@ -204,9 +204,7 @@ webmd.fundedEditorial.nextUp = {
 	},
 
 	bindEvents: function() {
-		$(window).load(function() {
-			webmd.fundedEditorial.createMenu.init(true); // setup toolbar (with kabob)
-		});
+		webmd.fundedEditorial.createMenu.init(true); // setup toolbar (with kabob)
 	},
 
 	render: function() {

@@ -909,7 +909,11 @@ webmd.fundedEditorial = {
 								$segmentTile.addClass('visited');
 							}
 
-							$segmentTile.append($a.append($img).append($p));
+							if (!article.images.image493x335) {
+								$segmentTile.append($a.append($p));
+							} else {
+								$segmentTile.append($a.append($img).append($p));
+							}
 
 							moduleArray.push($segmentTile);
 						}
@@ -971,7 +975,12 @@ webmd.fundedEditorial = {
 					$p.html('<span class="sponsored">' + articlePrefix + '</span>' + article.title);
 
 					$node.html('');
-					$node.append($a.append($img).append($p));
+
+					if (!article.images.image493x335) {
+						$node.append($a.append($p));
+					} else {
+						$node.append($a.append($img).append($p));
+					}
 
 					if (article.visited) {
 						$node.addClass('visited');
@@ -1251,7 +1260,7 @@ webmd.fundedEditorial = {
 				menu = '<div class="wbmd-toolbar-menu"><div class="tools">' +
 						'	<div class="webmd-logo" data-metrics-module=""><a href="http://www.webmd.com" data-metrics-link="logo"><img src="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/masthead2015/logo-webmd-site.png"  alt="WebMD: Better information. Better health." title="WebMD: Better information. Better health." /></a></div>' +
 						'	<div class="title"></div>' +
-						'	<div class="share"></div>' +
+						'	<div class="share"><div class="social-share-tools"></div></div>' +
 						'	<div class="attribution"></div>' +
 						'	<div class="client-logo"><div></div></div>' +
 						'</div></div>';
@@ -1259,7 +1268,11 @@ webmd.fundedEditorial = {
 			$contentPane.prepend(menu);
 
 			$contentPane.find('.title').append($('.page-header h1').clone(), $('#rmq_header h2').clone());
-			$contentPane.find('.share').append($('#fed-sharebar').clone(true));
+
+			// If socialshare already ran
+			if ($().socialshareplugin) {
+				$contentPane.find('.share .social-share-tools').socialshareplugin(webmd.m.socialshareconfig);
+			}
 
 			if ( $contentPane.find('.attrib_right_fmt').length ) {
 				self.attachAttribution($contentPane);

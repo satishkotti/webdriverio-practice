@@ -52,7 +52,8 @@
 
 	.isi-toggle {
 		float: right;
-		padding: 10px 43px 10px 20px;
+		padding: 8px 10px 8px 20px;
+		height: 45px;
 		background-color: #3092d1;
 		color: #fff;
 		position: relative;
@@ -65,9 +66,7 @@
 
 		.isi-toggle-arw {
 			font-size: 1.4em;
-			position: absolute;
-			top: 50%;
-			right: 16px;
+			vertical-align: middle;
 			transform: translateY(-45%);
 		}
 	}
@@ -141,16 +140,12 @@
 	.isi .isi-btn, .isi .isi-container {
 		width: 100%;
 	}
-	// .isi .isi-content h3 {
-	// 	font-size: 1.5em;
-	// 	line-height: 18px;
-	// 	margin-bottom: 15px;
-	// }
-	// .isi .isi-content p {
-	// 	font-size: 1.2em;
-	// 	line-height: 16px;
-	// 	margin-bottom: 15px;
-	// }
+	.isi-btn .isi-toggle {
+		padding: 8px 10px 8px 12px; 
+	}
+	.isi .isi-btn .isi-toggle-txt {
+		display: none;
+	}
 	.isi-main-content {
 		padding: 0 10px;
 	}
