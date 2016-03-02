@@ -49,18 +49,18 @@
 		</xsl:element>
 		<xsl:element name="div">
 			<xsl:attribute name="class">readspeaker</xsl:attribute>
+			<xsl:attribute name="id">readspeaker_area</xsl:attribute>
 			<xsl:element name="a">
 				<xsl:attribute name="class">readspeaker-button icon-listen</xsl:attribute>
 				<xsl:attribute name="accesskey">L</xsl:attribute>
 				<xsl:attribute name="title">Listen to article content</xsl:attribute>
 				<xsl:attribute name="href"><![CDATA[http://app.readspeaker.com/cgi-bin/rsent?customerid=5841&lang=en_us&readid=textArea]]></xsl:attribute>
 				<xsl:attribute name="target">_blank</xsl:attribute>
-				<xsl:attribute name="onclick">readpage(this.href, 'readspeaker-controls-top'); return false;</xsl:attribute>
+				<xsl:attribute name="onclick">readpage(this.href, 'readspeaker-controls'); return false;</xsl:attribute>
 			</xsl:element>
 			
 			<xsl:element name="div">
-				<xsl:attribute name="id">readspeaker-controls-top</xsl:attribute>
-				<xsl:attribute name="class">readspeaker-controls</xsl:attribute>
+				<xsl:attribute name="id">readspeaker-controls</xsl:attribute>
 			</xsl:element>
 		</xsl:element>
 		<xsl:element name="script">
@@ -91,9 +91,9 @@
 			
 				require(requiredItems, function() {
 					var $videoShare = $('.fed-video .info-container .cmd-section'),
-						$article = $('article.article'),
+						$articleCP = $('article.article').parent(),
 						btmShare = '<div class="social-share-tools" id="fed-sharebar-btm"></div>',
-						btmRS = '<div class="readspeaker"> <a class="readspeaker-button icon-listen" href="http://app.readspeaker.com/cgi-bin/rsent?customerid=5841&lang=en_us&readid=textArea" target="_blank" onclick="readpage(this.href, \'readspeaker-controls-btm\'); return false;" title="Listen to article content"></a> <div id="readspeaker-controls-btm" class="readspeaker-controls"></div></div>';
+						btmRS = '<div class="readspeaker"> <a class="readspeaker-button icon-listen" href="http://app.readspeaker.com/cgi-bin/rsent?customerid=5841&lang=en_us&readid=textArea" target="_blank" onclick="readpage(this.href, \'readspeaker-controls\'); return false;" title="Listen to article content"></a> </div>';
 			
 					if (webmd.m.socialshareconfig.shareOrder.indexOf('twitter') === -1) {
 						$videoShare.find('.cmd-twitr').hide();
@@ -107,13 +107,13 @@
 					/* Social buttons at bottom of non-spon article */
 					if (window.s_topic !== "4121") {
 						webmd.m.socialshareconfig.baseHtmlTmpl = '<div class="plugin plugin-socialshare" data-metrics-module="rspsv-sharesubcntnt"></div>';
-						$article.append(btmShare).find('#fed-sharebar-btm').socialshareplugin(webmd.m.socialshareconfig);
+						$articleCP.append(btmShare).find('#fed-sharebar-btm').socialshareplugin(webmd.m.socialshareconfig);
 					}
 			
 					/* Readspeaker */
 					if (useRS) {
 						if (window.s_topic !== "4121") {
-							$article.append(btmRS);
+							$articleCP.append(btmRS);
 						}
 						$('.readspeaker').show();
 						webmd.readspeakerPrep.init();
