@@ -47,49 +47,80 @@
 			<xsl:attribute name="class">social-share-tools</xsl:attribute>
 			<xsl:attribute name="id">fed-sharebar</xsl:attribute>
 		</xsl:element>
+		<xsl:element name="div">
+			<xsl:attribute name="class">readspeaker</xsl:attribute>
+			<xsl:attribute name="id">readspeaker_area</xsl:attribute>
+			<xsl:element name="a">
+				<xsl:attribute name="class">readspeaker-button icon-listen</xsl:attribute>
+				<xsl:attribute name="accesskey">L</xsl:attribute>
+				<xsl:attribute name="title">Listen to article content</xsl:attribute>
+				<xsl:attribute name="href"><![CDATA[http://app.readspeaker.com/cgi-bin/rsent?customerid=5841&lang=en_us&readid=textArea]]></xsl:attribute>
+				<xsl:attribute name="target">_blank</xsl:attribute>
+				<xsl:attribute name="onclick">readpage(this.href, 'readspeaker-controls'); return false;</xsl:attribute>
+			</xsl:element>
+			
+			<xsl:element name="div">
+				<xsl:attribute name="id">readspeaker-controls</xsl:attribute>
+			</xsl:element>
+		</xsl:element>
 		<xsl:element name="script">
 			<xsl:attribute name="type">text/javascript</xsl:attribute>
-			<xsl:text>
-(function() {
-	if (!webmd.m.socialshareconfig) {
-		webmd.m.socialshareconfig = {
-			</xsl:text>
-				<xsl:apply-templates select="//contentText"></xsl:apply-templates>
-			<xsl:text>
-		}
-	}
-
-	require.config({
-		paths: {
-			"webmd.m.socialshareplugin": "socialshareplugin/1/webmd.m.socialshareplugin.min"
-		}
-	});
-
-	require(["webmd.m.socialshareplugin", "css!socialshareplugin/1/socialshareplugin.min.css"], function() {
-		$(function() {
-			var $videoShare = $('.fed-video .info-container .cmd-section'),
-				btmShare = '</xsl:text><xsl:element name="div"><xsl:attribute name="class">social-share-tools</xsl:attribute><xsl:attribute name="id">fed-sharebar-btm</xsl:attribute></xsl:element><xsl:text>';
-
-			if (webmd.m.socialshareconfig.shareOrder.indexOf('twitter') === -1) {
-				$videoShare.find('.cmd-twitr').hide();
-			}
-			if (webmd.m.socialshareconfig.shareOrder.indexOf('facebook') === -1) {
-				$videoShare.find('.cmd-fb').hide();
-			}
-			
-			$("#fed-sharebar").socialshareplugin(webmd.m.socialshareconfig);
+			<xsl:text disable-output-escaping="yes"><![CDATA[
+			$(function() {
+				var requiredItems = ["webmd.m.socialshareplugin", "css!socialshareplugin/1/socialshareplugin.min.css"],
+					useRS = false;
 				
-			/* Social buttons at bottom of non-spon article */
-			if (window.s_topic !== "4121") {
-				webmd.m.socialshareconfig.baseHtmlTmpl = '</xsl:text><xsl:element name="div"><xsl:attribute name="class">plugin plugin-socialshare</xsl:attribute><xsl:attribute name="data-metrics-module">rspsv-sharesubcntnt</xsl:attribute></xsl:element><xsl:text>';
-				$('article.article').append(btmShare).find('#fed-sharebar-btm').socialshareplugin(webmd.m.socialshareconfig);
-			}
-		});
-	});
-	
-}());
-</xsl:text>
-
+				if (!webmd.m.socialshareconfig) {
+					webmd.m.socialshareconfig = {
+						]]></xsl:text>
+							<xsl:apply-templates select="//contentText"></xsl:apply-templates>
+						<xsl:text disable-output-escaping="yes"><![CDATA[
+					};
+				}
+				
+				if (($('#textArea').length > 0) && (webmd.useragent.ua.type !== "mobile") && (webmd.m.socialshareconfig.readspeaker)) {
+					requiredItems.push('http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/javascript/readspeaker/en.js');
+					useRS = true;
+				}
+			
+				require.config({
+					paths: {
+						"webmd.m.socialshareplugin": "socialshareplugin/1/webmd.m.socialshareplugin.min"
+					}
+				});
+			
+				require(requiredItems, function() {
+					var $videoShare = $('.fed-video .info-container .cmd-section'),
+						$articleCP = $('article.article').parent(),
+						btmShare = '<div class="social-share-tools" id="fed-sharebar-btm"></div>',
+						btmRS = '<div class="readspeaker"> <a class="readspeaker-button icon-listen" href="#readspeaker_area" onclick="readpage(\'http://app.readspeaker.com/cgi-bin/rsent?customerid=5841&lang=en_us&readid=textArea\', \'readspeaker-controls\');" title="Listen to article content"></a> </div>';
+			
+					if (webmd.m.socialshareconfig.shareOrder.indexOf('twitter') === -1) {
+						$videoShare.find('.cmd-twitr').hide();
+					}
+					if (webmd.m.socialshareconfig.shareOrder.indexOf('facebook') === -1) {
+						$videoShare.find('.cmd-fb').hide();
+					}
+			
+					$(".social-share-tools").socialshareplugin(webmd.m.socialshareconfig);
+			
+					/* Social buttons at bottom of non-spon article */
+					if (window.s_topic !== "4121") {
+						webmd.m.socialshareconfig.baseHtmlTmpl = '<div class="plugin plugin-socialshare" data-metrics-module="rspsv-sharesubcntnt"></div>';
+						$articleCP.append(btmShare).find('#fed-sharebar-btm').socialshareplugin(webmd.m.socialshareconfig);
+					}
+			
+					/* Readspeaker */
+					if (useRS) {
+						if (window.s_topic !== "4121") {
+							$articleCP.append(btmRS);
+						}
+						$('.readspeaker').show();
+						webmd.readspeakerPrep.init();
+					}
+				});
+			});
+			]]></xsl:text>
 		</xsl:element>
 	</xsl:template>
 	
@@ -211,7 +242,6 @@
 		</xsl:choose>
 	</xsl:template>
 </xsl:stylesheet>
-
 
 
 
