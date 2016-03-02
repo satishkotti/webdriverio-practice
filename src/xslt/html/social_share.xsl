@@ -93,7 +93,7 @@
 					var $videoShare = $('.fed-video .info-container .cmd-section'),
 						$articleCP = $('article.article').parent(),
 						btmShare = '<div class="social-share-tools" id="fed-sharebar-btm"></div>',
-						btmRS = '<div class="readspeaker"> <a class="readspeaker-button icon-listen" href="http://app.readspeaker.com/cgi-bin/rsent?customerid=5841&lang=en_us&readid=textArea" target="_blank" onclick="readpage(this.href, \'readspeaker-controls\'); return false;" title="Listen to article content"></a> </div>';
+						btmRS = '<div class="readspeaker"> <a class="readspeaker-button icon-listen" href="#readspeaker_area" onclick="readpage(\'http://app.readspeaker.com/cgi-bin/rsent?customerid=5841&lang=en_us&readid=textArea\', \'readspeaker-controls\');" title="Listen to article content"></a> </div>';
 			
 					if (webmd.m.socialshareconfig.shareOrder.indexOf('twitter') === -1) {
 						$videoShare.find('.cmd-twitr').hide();
