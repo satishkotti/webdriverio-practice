@@ -915,11 +915,12 @@ webmd.fundedEditorial = {
 								$segmentTile.addClass('visited');
 							}
 
-							if (!article.images.image493x335) {
-								$segmentTile.append($a.append($p));
-							} else {
-								$segmentTile.append($a.append($img).append($p));
-							}
+							$segmentTile.append($a.append($img).append($p));
+							// if (!article.images.image493x335) {
+							// 	$segmentTile.append($a.append($p));
+							// } else {
+							// 	$segmentTile.append($a.append($img).append($p));
+							// }
 
 							moduleArray.push($segmentTile);
 						}
@@ -981,12 +982,12 @@ webmd.fundedEditorial = {
 					$p.html('<span class="sponsored">' + articlePrefix + '</span>' + article.title);
 
 					$node.html('');
-
-					if (!article.images.image493x335) {
-						$node.append($a.append($p));
-					} else {
-						$node.append($a.append($img).append($p));
-					}
+					$node.append($a.append($img).append($p));
+					// if (!article.images.image493x335) {
+					// 	$node.append($a.append($p));
+					// } else {
+					// 	$node.append($a.append($img).append($p));
+					// }
 
 					if (article.visited) {
 						$node.addClass('visited');
