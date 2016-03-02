@@ -1,3 +1,6 @@
+// Variables
+@import '../partials/variables';
+
 .social-share-tools {
 	float: left;
 	margin-left: -3px;
@@ -17,63 +20,112 @@
 	display: none;
 }
 
-/* Media Queries */
+.readspeaker {
+	float: left;
+	padding-top: 2px;
+	display: none;
+
+	a.readspeaker-button {
+		color: #222222 !important;
+		text-decoration:none;
+		font-size: 2.6rem;
+	}
+	a.readspeaker-button:hover{
+		text-decoration:none;
+	}
+/*	.readspeaker_button1 a:after {
+		content: "\e609";
+		font-family: "icons";
+		padding-left: 5px;
+		position: relative;
+		top: 2px;
+		font-size: 2.6rem;
+	}*/
+	.readspeaker-controls {
+		margin: 5px;
+	}
+}
+
+// Media Queries
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-width: 320px) and (max-width: 767px) {
+@media only screen and #{$smartphone} {
 	/* STYLES GO HERE */
 }
+
 /* Smartphones (landscape) ----------- */
-@media only screen and (min-width: 321px) and (max-width : 767px) {
+@media only screen and #{$smartphone_landscape} {
 	/* STYLES GO HERE */
 }
+
 /* Smartphones (portrait) ----------- */
-@media only screen and (max-width: 320px) {
+@media only screen and #{$smartphone_portrait} {
 	/* STYLES GO HERE */
 }
+
 /* Tablets, iPads (portrait and landscape) ----------- */
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+@media only screen and #{$ipad} {
 	/* STYLES GO HERE */
 }
-@media only screen and (min-width: 768px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+
+@media only screen and #{$ipad} and #{$retina} {
 	/* STYLES GO HERE */
 }
+
 /* Small screens ----------- */
-@media only screen and (min-width: 676px) {
+@media only screen and #{$small_screen} {
 	/* STYLES GO HERE */
 }
+
 /* Small screens : Retina ----------- */
-@media only screen and (min-width: 676px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+@media only screen and #{$small_screen} and #{$retina} {
 	/* STYLES GO HERE */
 }
+
+/* Tablets, iPads (portrait and landscape) ----------- */
+@media only screen and #{$ipad} {
+	/* STYLES GO HERE */
+}
+
+@media only screen and #{$ipad} and #{$retina} {
+	/* STYLES GO HERE */
+}
+
 /* Tablets, iPads (landscape) ----------- */
-@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+@media only screen and #{$ipad} and (orientation : landscape) {
 	/* STYLES GO HERE */
 }
+
 /* Tablets, iPads (landscape) - Retina ----------- */
-@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+@media only screen and #{$ipad} and (orientation : landscape) and #{$retina} {
 	/* STYLES GO HERE */
 }
+
 /* Tablets, iPads (portrait) ----------- */
-@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+@media only screen and #{$ipad} and (orientation : portrait) {
 	/* STYLES GO HERE */
 }
+
 /* Tablets, iPads (portrait) - Retina ----------- */
-@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+@media only screen and #{$ipad} and (orientation : portrait) and #{$retina} {
 	/* STYLES GO HERE */
 }
+
 /* Desktops and laptops ----------- */
-@media only screen and (min-width: 1025px) {
+@media only screen and #{$desktop_laptop} {
 	/* STYLES GO HERE */
 }
+
 /* Desktops and laptops - Retina ----------- */
-@media only screen and (min-width: 1025px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+@media only screen and #{$desktop_laptop} and #{$retina} {
 	/* STYLES GO HERE */
 }
+
 /* Large screens : Non-Retina ----------- */
-@media only screen and (min-width: 1824px) {
+@media only screen and #{$large_screen} {
 	/* STYLES GO HERE */
 }
+
 /* Large screens : Retina ----------- */
-@media only screen and (min-width: 1824px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+@media only screen and #{$large_screen} and #{$retina} {
 	/* STYLES GO HERE */
 }
