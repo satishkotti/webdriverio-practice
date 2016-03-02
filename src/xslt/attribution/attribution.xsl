@@ -7,6 +7,14 @@
 	<xsl:param name="moduletitle"></xsl:param>
 	<xsl:param name="site_id">1</xsl:param>
 	<xsl:param name="domain"></xsl:param>
+	<xsl:variable name="is_large">
+		<xsl:for-each select="webmd_rendition/content/wbmd_asset/webmd_module/module_settings/md_pb_module_label2_group/wbmd_pb_module_label2">
+			<xsl:if test="@wbmd_storage_val = 'large' ">
+				<xsl:text>true</xsl:text>
+			</xsl:if>
+		</xsl:for-each>
+	</xsl:variable>
+	
 	<xsl:template match="/">
 		<xsl:apply-templates select="webmd_rendition/content/wbmd_asset/webmd_module/module_data"></xsl:apply-templates>
 	</xsl:template>
@@ -18,7 +26,13 @@
 				</xsl:with-param>
 			</xsl:call-template>
 		</xsl:variable>
-		<div class="attrib_right_fmt">
+		<xsl:element name="div">
+			<xsl:attribute name="class">
+				<xsl:text>attrib_right_fmt</xsl:text>
+				<xsl:if test="$is_large = 'true'">
+					<xsl:text> large</xsl:text>
+				</xsl:if>
+			</xsl:attribute>
 			<div class="attrib_content">
 				<div class="link_fmt">
 					<xsl:value-of select="description" disable-output-escaping="yes"></xsl:value-of>
@@ -53,7 +67,8 @@
 					</xsl:call-template>
 				</div>
 			</div>
-		</div>
+			
+		</xsl:element>
 		<!-- end small editorial-->
 		<xsl:element name="script">
 			<xsl:attribute name="type">

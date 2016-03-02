@@ -181,7 +181,7 @@
 	}
 }
 
-.no-attribution .wbmd-toolbar-menu .title {
+.no-sticky-attribution .wbmd-toolbar-menu .title {
 	width: calc(100% - 380px);
 }
 
@@ -291,7 +291,7 @@ body.menu-open {
 				display: inline-block;
 			}
 		}
-		&.no-attribution .wbmd-toolbar-menu {
+		&.no-sticky-attribution .wbmd-toolbar-menu {
 			.wbmd-kabob {
 				display: inline-block;
 			}
