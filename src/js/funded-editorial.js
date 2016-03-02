@@ -1198,7 +1198,7 @@ webmd.fundedEditorial = {
 
 			$contentPane.find('.title').append($('.page-header h1').clone(), $('#rmq_header h2').clone());
 			//$contentPane.find('.share').append($('#fed-sharebar').clone(true));
-			$contentPane.find('.share .social-share-tools').socialshareplugin(webmd.m.socialshareconfig);
+			//$contentPane.find('.share .social-share-tools').socialshareplugin(webmd.m.socialshareconfig);
 
 			if ( $contentPane.find('.attrib_right_fmt').length ) {
 				self.attachAttribution($contentPane);
