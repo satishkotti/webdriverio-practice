@@ -326,6 +326,8 @@ webmd.fundedEditorial = {
 
 			//Loop through each segment
 			$.each(webmd.fundedEditorial.segments, function(index, data) {
+				var dctmIdArr;
+
 				// this is very similar to using Object.watch()
 				// instead we attach multiple listeners
 				webmd.fundedEditorial.segments[index].data = (function() {
@@ -358,17 +360,29 @@ webmd.fundedEditorial = {
 					};
 				}());
 
-				if ('dctmIds' in data && typeof data.dctmIds !== 'undefined') {
-					var dctmIdArr = data.dctmIds.replace(/\s/g,'').split(',');
+				
+				if ('dctmIds' in data) {
+					dctmIdArr = data.dctmIds.replace(/\s/g,'').split(',');
 
-					for (var i=0; i<dctmIdArr.length; i++) {
-						ajaxMe(dctmIdArr[i], index);
+					if (dctmIdArr.length > 0) {
+						if (dctmIdArr.length > 1) {
+							// Create listener for article data if more than one DCTM ID exists in array. Need article data appended to segments object before retrieving and appending playlist data to prevent data loss.
+							webmd.fundedEditorial.segments[index].data.listen(function(passedValue) {
+								if (passedValue === true) {
+									ajaxMe(dctmIdArr[1], 1, index); // get segment playlist data (position 1)
+								}
+							});
+						}
+
+						ajaxMe(dctmIdArr[0], 0, index); // get segment article data (position 0)
+					} else {
+						webmd.debug('Please enter a DCTM for segment ' + index + 1 + '. First DCTM ID should always be for article data. If working with premium video or marquee video, second DCTM ID should always be for playlist data.');
 					}
 				}
 			});
 		}
 
-		function ajaxMe(dctmId, segIndex) {
+		function ajaxMe(dctmId, dctmIdArrIndex, segIndex) {
 			//Perform an AJAX 'get' on documentum ID
 			$.ajax({
 				url: 'http://www' + webmd.url.getLifecycle() + webmd.url.getEnv() + '.webmd.com/modules/ajax',
@@ -377,16 +391,25 @@ webmd.fundedEditorial = {
 				dataType: 'html',
 				cache: false,
 				success: function(data) {
-					var cx = {},
-						html = $.parseHTML(data, document, true), //Parse HTML (returns array of nodes, including <script> nodes)
-						articleData = findInParsed(html, 'script#articleData'),
-						playlistData = findInParsed(html, 'script#videoPlaylistData'),
-								el;
+					var html = $.parseHTML(data, document, true), //Parse HTML (returns array of nodes, including <script> nodes)
+						articleData,
+						playlistData,
+						cx = {},
+						el;
+
+					if (dctmIdArrIndex == 0) { // article data
+						articleData = findInParsed(html, 'script#articleData');
+						webmd.fundedEditorial.segments[segIndex].artDataId = dctmId;
+					}
+
+					if (dctmIdArrIndex == 1) { // playlist data
+						playlistData = findInParsed(html, 'script#videoPlaylistData');
+						webmd.fundedEditorial.segments[segIndex].playlistDataId = dctmId;
+					}
 
 					if (articleData) {
-						webmd.fundedEditorial.segments[segIndex].artDataId = dctmId;
-
 						cx.el = articleData['0'].innerHTML;
+						cx.string = 'webmd.fundedEditorial.articleData';
 						cx.data = cleanData(cx.el, 'webmd.fundedEditorial.articleData');
 
 						//Store parsed JSON articleData in segment as new key/value
@@ -396,23 +419,14 @@ webmd.fundedEditorial = {
 					}
 
 					if (playlistData) {
-						webmd.fundedEditorial.segments[segIndex].playlistDataId = dctmId;
-
 						cx.el = playlistData['0'].innerHTML;
-						cx.data = cleanData(cx.el, 'webmd.fundedEditorial.articleData.program.videoPlaylistData');
+						cx.string = 'webmd.fundedEditorial.articleData.program.videoPlaylistData';
+						cx.data = cleanData(cx.el, cx.string);
 
-						if ('articleData' in webmd.fundedEditorial.segments[segIndex]) {
-							// article data exists, it is safe to append without risk of data loss
-							webmd.fundedEditorial.segments[segIndex].articleData.program.videoPlaylistData = $.extend(true, {}, cx.data);
-						} else {
-							// wait for article data before appending, otherwise there is risk of video data being overwritten
-							webmd.fundedEditorial.segments[segIndex].data.listen(function(passedValue) {
-								if (passedValue === 'true') {
-									webmd.fundedEditorial.segments[segIndex].articleData.program.videoPlaylistData = $.extend(true, {}, cx.data);
-								}
-							});
-						}
+						webmd.fundedEditorial.segments[segIndex].articleData.program.videoPlaylistData = $.extend(false, {}, cx.data);
 					}
+
+					return true;
 				}
 			});
 		}
