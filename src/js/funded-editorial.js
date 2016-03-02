@@ -410,7 +410,7 @@ webmd.fundedEditorial = {
 					if (articleData) {
 						cx.el = articleData['0'].innerHTML;
 						cx.string = 'webmd.fundedEditorial.articleData';
-						cx.data = cleanData(cx.el, 'webmd.fundedEditorial.articleData');
+						cx.data = cleanData(cx.el, cx.string);
 
 						//Store parsed JSON articleData in segment as new key/value
 						webmd.fundedEditorial.segments[segIndex].articleData = $.extend(false, {}, cx.data);
