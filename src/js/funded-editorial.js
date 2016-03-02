@@ -63,7 +63,9 @@ webmd.fundedEditorial = {
 	init: function() {
 
 		var self = this,
-			artObjParam = webmd.url.getParam('artObj');
+			artObjParam = webmd.url.getParam('artObj'),
+			mlrObjParam = webmd.url.getParam('view'),
+			lifeCycle = webmd.url.getLifecycle();
 
 		if (self.hasStorage()) {
 			self.visitedPages = JSON.parse(sessionStorage.getItem('visited')) || {};
@@ -85,9 +87,9 @@ webmd.fundedEditorial = {
 			self.fundedPages();
 		}
 
-		/*if(this.uaType !== 'mobile'){
-			this.stickIt();
-		}*/
+		if (mlrObjParam == 'mlr' && lifeCycle == '.preview' || lifeCycle == '.staging') {
+			this.hideMlrEl();
+		}
 
 		if (artObjParam == 1) {
 			self.showArticleObj();
@@ -165,6 +167,10 @@ webmd.fundedEditorial = {
 		});
 
 		return self;
+	},
+
+	hideMlrEl: function(){
+		$('head').append('<style type="text/css">.mlr {display:none;}</style>');
 	},
 
 	showArticleObj: function() {
@@ -1146,7 +1152,7 @@ webmd.fundedEditorial = {
 
 			$menu.attr({
 				id: self.menu
-			}).addClass('no-scroll');
+			}).addClass('mlr').addClass('no-scroll');
 
 			$('body').append($menu);
 
@@ -1186,7 +1192,7 @@ webmd.fundedEditorial = {
 			var self = this,
 				$locator = ($('.attrib_right_fmt').length) ? $('.attrib_right_fmt') : $('#fed-sharebar'),
 				$contentPane = $locator.closest('div.pane'),
-				menu = '<div class="wbmd-toolbar-menu"><div class="tools">' +
+				menu = '<div class="wbmd-toolbar-menu mlr"><div class="tools">' +
 						'	<div class="webmd-logo" data-metrics-module=""><a href="http://www.webmd.com" data-metrics-link="logo"><img src="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/masthead2015/logo-webmd-site.png"  alt="WebMD: Better information. Better health." title="WebMD: Better information. Better health." /></a></div>' +
 						'	<div class="title"></div>' +
 						'	<div class="share"><div class="social-share-tools"></div></div>' +
