@@ -397,12 +397,12 @@ webmd.fundedEditorial = {
 						cx = {},
 						el;
 
-					if (dctmIdArrIndex == 0) { // article data
+					if (dctmIdArrIndex === 0) { // article data
 						articleData = findInParsed(html, 'script#articleData');
 						webmd.fundedEditorial.segments[segIndex].artDataId = dctmId;
 					}
 
-					if (dctmIdArrIndex == 1) { // playlist data
+					if (dctmIdArrIndex === 1) { // playlist data
 						playlistData = findInParsed(html, 'script#videoPlaylistData');
 						webmd.fundedEditorial.segments[segIndex].playlistDataId = dctmId;
 					}
