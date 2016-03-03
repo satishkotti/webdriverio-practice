@@ -306,10 +306,10 @@ body.menu-open {
 }
 
 @media only screen and (max-width: 499px) {
+	.scroll-up.no-sticky-attribution .wbmd-toolbar-menu .title {
+		width: calc(100% - 72px);
+	}
 	.wbmd-toolbar-menu .tools {
-		.title {
-			width: calc(100% - 72px) !important;
-		}
 		.title h1, .title h2 {
 			font-size: 1.3em;
 			line-height: 17px;
