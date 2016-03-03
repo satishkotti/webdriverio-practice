@@ -28,34 +28,36 @@
 						<xsl:value-of select="position()"></xsl:value-of>
 					</xsl:variable>
 					<xsl:choose>
-					<xsl:when test="link_text != ''"><![CDATA[{]]>
-					<![CDATA["artDataId" : "]]><xsl:choose>
-							<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
-								<xsl:value-of select="normalize-space(substring-before(link_text,' ['))"/>
+						<xsl:when test="link_text != ''"><![CDATA[{]]>
+					<![CDATA["dctmIds" : "]]><xsl:choose>
+						<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
+							<xsl:value-of select="normalize-space(substring-before(link_text,' ['))"/>
 							</xsl:when>
-							<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
-								<xsl:value-of select="normalize-space(substring-before(link_text,'['))"/>
-							</xsl:when>
-							<xsl:otherwise>
-								<xsl:value-of select="normalize-space(link_text)"/>
-							</xsl:otherwise>
+						<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
+							<xsl:value-of select="normalize-space(substring-before(link_text,'['))"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="normalize-space(link_text)"/>
+						</xsl:otherwise>
 					</xsl:choose><![CDATA[",]]>
+					<![CDATA["artDataId" : "",]]>
+					<![CDATA["playlistDataId" : "",]]>
 					<![CDATA["currentSeg" : ]]><xsl:choose>
-							<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
-								<xsl:text>true</xsl:text>
-							</xsl:when>
-							<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
-								<xsl:text>true</xsl:text>
-							</xsl:when>
-							<xsl:otherwise>
-								<xsl:text>false</xsl:text>
-							</xsl:otherwise>
-						</xsl:choose><![CDATA[,]]>
+						<xsl:when test="substring-before(substring-after(link_text, ' ['), ']')">
+							<xsl:text>true</xsl:text>
+						</xsl:when>
+						<xsl:when test="substring-before(substring-after(link_text, '['), ']')">
+							<xsl:text>true</xsl:text>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:text>false</xsl:text>
+						</xsl:otherwise>
+					</xsl:choose><![CDATA[,]]>
 					<![CDATA["promotedArticles" : []]><xsl:call-template name="tokenize">
-							<xsl:with-param name="text">
-								<xsl:value-of select="action_text"/>
-							</xsl:with-param>
-						</xsl:call-template><![CDATA[],]]>
+						<xsl:with-param name="text">
+							<xsl:value-of select="action_text"/>
+						</xsl:with-param>
+					</xsl:call-template><![CDATA[],]]>
 				<![CDATA[}]]></xsl:when><xsl:otherwise><![CDATA[{}]]></xsl:otherwise></xsl:choose><xsl:if test="position()!=last()"><xsl:text>,</xsl:text></xsl:if>
 				</xsl:for-each>
 		<![CDATA[];]]>

@@ -63,7 +63,9 @@ webmd.fundedEditorial = {
 	init: function() {
 
 		var self = this,
-			artObjParam = webmd.url.getParam('artObj');
+			artObjParam = webmd.url.getParam('artObj'),
+			mlrObjParam = webmd.url.getParam('view'),
+			lifeCycle = webmd.url.getLifecycle();
 
 		if (self.hasStorage()) {
 			self.visitedPages = JSON.parse(sessionStorage.getItem('visited')) || {};
@@ -85,9 +87,9 @@ webmd.fundedEditorial = {
 			self.fundedPages();
 		}
 
-		/*if(this.uaType !== 'mobile'){
-			this.stickIt();
-		}*/
+		if (mlrObjParam == 'mlr' && lifeCycle == '.preview' || lifeCycle == '.staging') {
+			this.hideMlrEl();
+		}
 
 		if (artObjParam == 1) {
 			self.showArticleObj();
@@ -95,6 +97,8 @@ webmd.fundedEditorial = {
 
 		if (self.segments && self.segments.length > 0) {
 			self.getSegmentArticleData();
+		} else {
+			webmd.fundedEditorial.articleData.program.segIndex = "-1";
 		}
 
 		if (window.s_business_reference === "TOC") {
@@ -165,6 +169,10 @@ webmd.fundedEditorial = {
 		});
 
 		return self;
+	},
+
+	hideMlrEl: function(){
+		$('head').append('<style type="text/css">.mlr {display:none;}</style>');
 	},
 
 	showArticleObj: function() {
@@ -297,7 +305,17 @@ webmd.fundedEditorial = {
 
 		function validSegments(segment, index, segments) {
 			if ('currentSeg' in segment) {
-				return segment.currentSeg !== true;
+				if (segment.currentSeg === true) {
+					// segment index needed for pre-roll ad call in premium video
+					webmd.fundedEditorial.articleData.program.segIndex = index;
+
+					return false;
+				} else {
+					// segment index needed for pre-roll ad call in premium video
+					segment.segIndex = index;
+
+					return segment.currentSeg !== true;
+				}
 			} else {
 				webmd.debug('SEGMENT MODULE NOT DRAWN: fix data for entry ' + (index+1) + ' in segment data module');
 				return false;
@@ -314,6 +332,8 @@ webmd.fundedEditorial = {
 
 			//Loop through each segment
 			$.each(webmd.fundedEditorial.segments, function(index, data) {
+				var dctmIdArr;
+
 				// this is very similar to using Object.watch()
 				// instead we attach multiple listeners
 				webmd.fundedEditorial.segments[index].data = (function() {
@@ -346,32 +366,88 @@ webmd.fundedEditorial = {
 					};
 				}());
 
-				//Perform an AJAX 'get' on segment documentum ID
-				$.ajax({
-					url: 'http://www' + webmd.url.getLifecycle() + webmd.url.getEnv() + '.webmd.com/modules/ajax',
-					type: 'GET',
-					data: 'id=' + data.artDataId,
-					dataType: 'html',
-					cache: false,
-					success: function(data) {
-						var html = $.parseHTML(data, document, true), //Parse HTML (returns array of nodes, including <script> nodes)
-							domEl = findInParsed(html, 'script#articleData'), //Find 'script#articleData' within Parsed HTML using function findInParsed
-							segmentedData = domEl['0'].innerHTML;
+				
+				if ('dctmIds' in data) {
+					dctmIdArr = data.dctmIds.replace(/\s/g,'').split(',');
 
-						self.domEL = domEl;
-						//Cleanup string found in segmentedData (need to parse as JSON)
-						segmentedData = segmentedData.replace('webmd.fundedEditorial.articleData', '');
-						segmentedData = segmentedData.replace(/=/g, '');
-						segmentedData = segmentedData.replace(/;/g, '');
-						segmentedData = $.trim(segmentedData);
-						segmentedData = $.parseJSON(segmentedData);
+					if (dctmIdArr.length > 0) {
+						if (dctmIdArr.length > 1) {
+							// Create listener for article data if more than one DCTM ID exists in array. Need article data appended to segments object before retrieving and appending playlist data to prevent data loss.
+							webmd.fundedEditorial.segments[index].data.listen(function(passedValue) {
+								if (passedValue === true) {
+									ajaxMe(dctmIdArr[1], 1, index); // get segment playlist data (position 1)
+								}
+							});
+						}
+
+						ajaxMe(dctmIdArr[0], 0, index); // get segment article data (position 0)
+					} else {
+						webmd.debug('Please enter a DCTM for segment ' + index + 1 + '. First DCTM ID should always be for article data. If working with premium video or marquee video, second DCTM ID should always be for playlist data.');
+					}
+				}
+			});
+		}
+
+		function ajaxMe(dctmId, dctmIdArrIndex, segIndex) {
+			//Perform an AJAX 'get' on documentum ID
+			$.ajax({
+				url: 'http://www' + webmd.url.getLifecycle() + webmd.url.getEnv() + '.webmd.com/modules/ajax',
+				type: 'GET',
+				data: 'id=' + dctmId,
+				dataType: 'html',
+				cache: false,
+				success: function(data) {
+					var html = $.parseHTML(data, document, true), //Parse HTML (returns array of nodes, including <script> nodes)
+						articleData,
+						playlistData,
+						cx = {},
+						el;
+
+					if (dctmIdArrIndex === 0) { // article data
+						articleData = findInParsed(html, 'script#articleData');
+						webmd.fundedEditorial.segments[segIndex].artDataId = dctmId;
+					}
+
+					if (dctmIdArrIndex === 1) { // playlist data
+						playlistData = findInParsed(html, 'script#videoPlaylistData');
+						webmd.fundedEditorial.segments[segIndex].playlistDataId = dctmId;
+					}
+
+					if (articleData) {
+						cx.el = articleData['0'].innerHTML;
+						cx.string = 'webmd.fundedEditorial.articleData';
+						cx.data = cleanData(cx.el, cx.string);
 
 						//Store parsed JSON articleData in segment as new key/value
-						webmd.fundedEditorial.segments[index].articleData = segmentedData;
-						webmd.fundedEditorial.segments[index].data.ready = true;
+						webmd.fundedEditorial.segments[segIndex].articleData = $.extend(false, {}, cx.data);
+
+						webmd.fundedEditorial.segments[segIndex].data.ready = true;
 					}
-				});
+
+					if (playlistData) {
+						cx.el = playlistData['0'].innerHTML;
+						cx.string = 'webmd.fundedEditorial.articleData.program.videoPlaylistData';
+						cx.data = cleanData(cx.el, cx.string);
+
+						webmd.fundedEditorial.segments[segIndex].articleData.program.videoPlaylistData = $.extend(false, {}, cx.data);
+					}
+
+					return true;
+				}
 			});
+		}
+
+		function cleanData(el, objStr) {
+			var data;
+			
+			//Cleanup string found in segmentedData (need to parse as JSON)
+			data = el.replace(objStr, '');
+			data = data.replace(/=/g, '');
+			data = data.replace(/;/g, '');
+			data = $.trim(data);
+			data = $.parseJSON(data);
+
+			return data;
 		}
 
 		function findInParsed(html, selector) {
@@ -827,6 +903,7 @@ webmd.fundedEditorial = {
 								'src' : image_server_url + article.images.image493x335,
 								'alt' : article.imageAlt
 							});
+
 							$p.html(article.title);
 
 							$segmentTile
@@ -1115,7 +1192,8 @@ webmd.fundedEditorial = {
 			});
 
 			$(window).load(function() {
-				self.fixLayout();
+				setTimeout(function(){self.fixLayout();}, 250);
+				//self.fixLayout();
 			});
 		}
 	},
@@ -1147,7 +1225,7 @@ webmd.fundedEditorial = {
 
 			$menu.attr({
 				id: self.menu
-			}).addClass('no-scroll');
+			}).addClass('mlr').addClass('no-scroll');
 
 			$('body').append($menu);
 
@@ -1187,7 +1265,7 @@ webmd.fundedEditorial = {
 			var self = this,
 				$locator = ($('.attrib_right_fmt').length) ? $('.attrib_right_fmt') : $('#fed-sharebar'),
 				$contentPane = $locator.closest('div.pane'),
-				menu = '<div class="wbmd-toolbar-menu"><div class="tools">' +
+				menu = '<div class="wbmd-toolbar-menu mlr"><div class="tools">' +
 						'	<div class="webmd-logo" data-metrics-module=""><a href="http://www.webmd.com" data-metrics-link="logo"><img src="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/masthead2015/logo-webmd-site.png"  alt="WebMD: Better information. Better health." title="WebMD: Better information. Better health." /></a></div>' +
 						'	<div class="title"></div>' +
 						'	<div class="share"><div class="social-share-tools"></div></div>' +
