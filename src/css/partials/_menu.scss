@@ -181,7 +181,7 @@
 	}
 }
 
-.no-attribution .wbmd-toolbar-menu .title {
+.no-sticky-attribution .wbmd-toolbar-menu .title {
 	width: calc(100% - 380px);
 }
 
@@ -291,21 +291,24 @@ body.menu-open {
 				display: inline-block;
 			}
 		}
-		&.no-attribution .wbmd-toolbar-menu {
+		&.no-sticky-attribution .wbmd-toolbar-menu {
 			.wbmd-kabob {
 				display: inline-block;
 			}
-			.client-logo {
+			.client-logo, .attribution {
 				display: none;
 			}
 			.title {
-				width: calc(100% - 124px);
+				width: calc(100% - 77px);
 			}
 		}
 	}
 }
 
 @media only screen and (max-width: 499px) {
+	.scroll-up.no-sticky-attribution .wbmd-toolbar-menu .title {
+		width: calc(100% - 72px);
+	}
 	.wbmd-toolbar-menu .tools {
 		.title h1, .title h2 {
 			font-size: 1.3em;

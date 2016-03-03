@@ -1282,10 +1282,10 @@ webmd.fundedEditorial = {
 				$contentPane.find('.share .social-share-tools').socialshareplugin(webmd.m.socialshareconfig);
 			}
 
-			if ( $contentPane.find('.attrib_right_fmt').length ) {
+			if ( $contentPane.find('.attrib_right_fmt:not(.large)').length ) {
 				self.attachAttribution($contentPane);
 			} else {
-				$('html').addClass('no-attribution');
+				$('html').addClass('no-sticky-attribution');
 			}
 
 			if (this.createKabob) {
