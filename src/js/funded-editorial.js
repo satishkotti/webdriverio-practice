@@ -935,7 +935,7 @@ webmd.fundedEditorial = {
 				$('#' + id).html('').addClass(wrapperClass).append($gridDiv);
 			}
 
-			webmd.fundedEditorial.createSeeAllLink('.' + wrapperClass);
+			webmd.fundedEditorial.createSeeAllLink('#ContentPane18');
 
 			self.createMasonry(false);
 		},
