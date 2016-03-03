@@ -24,7 +24,7 @@
 				<h1>All {{program.title}}</h1>
 			</header>
 
-			<article id="art" class="article see-all">
+			<div id="art" class="article see-all">
 				<div class="article-content">
 					<h3>From WebMD</h3>
 					<div class="see-all-items non-spon" data-metrics-module="ed-rspsvalledcon">
@@ -59,7 +59,7 @@
 						</ul>
 					</div>
 				</div>
-			</article>]]>
+			</div>]]>
 			</xsl:text>
 
 		</xsl:element>
@@ -125,7 +125,7 @@
 			<xsl:attribute name="type"><xsl:text>text/x-handlebars-template</xsl:text></xsl:attribute>
 
 			<xsl:text disable-output-escaping="yes">
-			<![CDATA[<article id="art" class="article seg-all">
+			<![CDATA[<div id="art" class="article seg-all">
 				<div class="article-content">
 					<div id="see-all-seg" class="see-all-seg-items" data-metrics-module="ed-rspsvallseg">
 						<h2>More On This Topic</h2>
@@ -143,7 +143,7 @@
 						</ul>
 					</div>
 				</div>
-			</article>]]>
+			</div>]]>
 			</xsl:text>
 
 		</xsl:element>
