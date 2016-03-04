@@ -395,8 +395,8 @@ webmd.fundedEditorial = {
 					articleDataXHR = setupXHR(dctmIds[0]);
 
 					// neex ajax rquest to be successful before continuing with success function
-					$.when(articleDataXHR).done(function() {
-						successFn(articleDataXHR);
+					$.when(articleDataXHR).done(function(data) {
+						successFn(data);
 					}).fail(function(data) {
 						errorFn(data, dctmIds);
 					});
@@ -411,8 +411,8 @@ webmd.fundedEditorial = {
 					playlistDataXHR = setupXHR(dctmIds[1]);
 
 					// combine promises - neex both ajax requests to be successful before continuing with success function
-					$.when(articleDataXHR, playlistDataXHR).done(function() {
-						successFn(articleDataXHR, playlistDataXHR);
+					$.when(articleDataXHR, playlistDataXHR).done(function(data1, data2) {
+						successFn(data1, data2);
 					}).fail(function(data) {
 						errorFn(data, dctmIds);
 					});
@@ -442,7 +442,12 @@ webmd.fundedEditorial = {
 					cx = {};
 
 				if (articleData) {
-					articleDataHTML = $.parseHTML(articleData, document, true);
+					if (typeof articleData === "string") {
+						articleDataHTML = $.parseHTML(articleData, document, true);
+					} else {
+						articleDataHTML = $.parseHTML(articleData['0'], document, true);
+					}
+					
 					articleDataNode = findInParsed(articleDataHTML, 'script#articleData');
 
 					cx.el = articleDataNode['0'].innerHTML;
@@ -456,7 +461,12 @@ webmd.fundedEditorial = {
 				}
 
 				if (playlistData) {
-					playlistDataHTML = $.parseHTML(playlistData, document, true);
+					if (typeof articleData === "string") {
+						playlistDataHTML = $.parseHTML(playlistData, document, true);
+					} else {
+						playlistDataHTML = $.parseHTML(playlistData['0'], document, true);
+					}
+
 					playlistDataNode = findInParsed(playlistDataHTML, 'script#videoPlaylistData');
 
 					cx.el = playlistDataNode['0'].innerHTML;
