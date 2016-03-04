@@ -105,7 +105,7 @@
 
 		<!-- ISI Fixed Position - Start -->
 		<xsl:if test="$isi_type = 'fixed'">
-			<div class="isi">
+			<div class="isi mlr">
 				<div class="isi-btn">
 					<a href="#" class="isi-toggle">
 						<span class="isi-toggle-txt">Show <span>More</span></span>
@@ -137,11 +137,11 @@
 				webmd.fundedEditorial.isi = {
 					init : function() {
 						var $isiLinks = $('.isi-rr-links');
-						
+
 						this.bindEvents();
 
 						this.setIsiH();
-						
+
 						if ($isiLinks.length) {
 							$('.isi .isi-btn').append($isiLinks.clone(true));
 						}
@@ -241,7 +241,7 @@
 							offset: '98%'
 						});
 					},
-					
+
 					setUpAs : function(){
 						var as,
 							asSettings = {

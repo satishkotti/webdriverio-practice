@@ -71,7 +71,7 @@
 			<!-- <xsl:attribute name="data-bg-color"><xsl:value-of select="$bgc"/></xsl:attribute> -->
 		</xsl:element>
 		<xsl:element name="script">
-			<xsl:attribute name="id"><xsl:text>toc-hero-single-unit-template</xsl:text></xsl:attribute>
+			<xsl:attribute name="id"><xsl:value-of select="$moduletitle"/><xsl:text>-template</xsl:text></xsl:attribute>
 			<xsl:attribute name="type"><xsl:text>text/x-handlebars-template</xsl:text></xsl:attribute>
 			<xsl:element name="div">
 				<xsl:attribute name="class"><xsl:text>toc-hero toc-hero-1-col</xsl:text></xsl:attribute>
@@ -108,8 +108,8 @@
 		<![CDATA[
 			require(["handlebars/1/handlebars"], function(Handlebars) {
 				if (typeof webmd.fundedEditorial.articleData !== "undefined") {
-					var template = $("#toc-hero-single-unit-template"),
-						container = $(".toc-hero-single-unit-shell"),
+					var template = $("#]]><xsl:value-of select="$moduletitle"/><xsl:text>-template</xsl:text><![CDATA["),
+						container = $("#]]><xsl:value-of select="$moduletitle"/><![CDATA["),
 						source = template.html(),
 						template = Handlebars.compile(source),
 						context = webmd.fundedEditorial.articleData || {},
@@ -149,7 +149,7 @@
 			<xsl:attribute name="data-bg-color"><xsl:value-of select="$bgc"/></xsl:attribute>
 		</xsl:element>
 		<xsl:element name="script">
-			<xsl:attribute name="id"><xsl:text>toc-hero-double-unit-template</xsl:text></xsl:attribute>
+			<xsl:attribute name="id"><xsl:value-of select="$moduletitle"/><xsl:text>-template</xsl:text></xsl:attribute>
 			<xsl:attribute name="type"><xsl:text>text/x-handlebars-template</xsl:text></xsl:attribute>
 
 			<xsl:element name="div">
@@ -213,8 +213,8 @@
 		<![CDATA[
 			require(["handlebars/1/handlebars"], function(Handlebars) {
 				if (typeof webmd.fundedEditorial.articleData !== "undefined") {
-					var template = $("#toc-hero-double-unit-template"),
-						container = $(".toc-hero-double-unit-shell"),
+					var template = $("#]]><xsl:value-of select="$moduletitle"/><xsl:text>-template</xsl:text><![CDATA["),
+						container = $("#]]><xsl:value-of select="$moduletitle"/><![CDATA["),
 						source = template.html(),
 						template = Handlebars.compile(source),
 						context = webmd.fundedEditorial.articleData || {},
@@ -257,7 +257,7 @@
 			<xsl:attribute name="data-bg-color"><xsl:value-of select="$bgc"/></xsl:attribute>
 		</xsl:element>
 		<xsl:element name="script">
-			<xsl:attribute name="id"><xsl:text>toc-hero-triple-unit-template</xsl:text></xsl:attribute>
+			<xsl:attribute name="id"><xsl:value-of select="$moduletitle"/><xsl:text>-template</xsl:text></xsl:attribute>
 			<xsl:attribute name="type"><xsl:text>text/x-handlebars-template</xsl:text></xsl:attribute>
 
 			<xsl:element name="div">
@@ -353,8 +353,8 @@
 		<![CDATA[
 			require(["handlebars/1/handlebars"], function(Handlebars) {
 				if (typeof webmd.fundedEditorial.articleData !== "undefined") {
-					var template = $("#toc-hero-triple-unit-template"),
-						container = $(".toc-hero-triple-unit-shell"),
+					var template = $("#]]><xsl:value-of select="$moduletitle"/><xsl:text>-template</xsl:text><![CDATA["),
+						container = $("#]]><xsl:value-of select="$moduletitle"/><![CDATA["),
 						source = template.html(),
 						template = Handlebars.compile(source),
 						context = webmd.fundedEditorial.articleData || {},
