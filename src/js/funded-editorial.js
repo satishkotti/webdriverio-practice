@@ -381,9 +381,7 @@ webmd.fundedEditorial = {
 			//Perform an AJAX 'get' on documentum ID
 			var dctmIdsLen = dctmIds.length,
 				articleDataXHR,
-				playlistDataXHR,
-				successFn,
-				errorFn;
+				playlistDataXHR;
 
 			switch (dctmIdsLen) {
 				case 0:
@@ -473,12 +471,12 @@ webmd.fundedEditorial = {
 				$(window).trigger(segmentDone);
 
 				return true;
-			};
+			}
 
 			function errorFn(data, ids) {
 				console.log('error: ', data);
 				console.log('ajax error on ', ids);
-			};
+			}
 		}
 
 		function cleanData(el, objStr) {
