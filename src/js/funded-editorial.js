@@ -442,7 +442,12 @@ webmd.fundedEditorial = {
 					cx = {};
 
 				if (articleData) {
-					articleDataHTML = $.parseHTML(articleData['0'], document, true);
+					if (typeof articleData === "string") {
+						articleDataHTML = $.parseHTML(articleData, document, true);
+					} else {
+						articleDataHTML = $.parseHTML(articleData['0'], document, true);
+					}
+					
 					articleDataNode = findInParsed(articleDataHTML, 'script#articleData');
 
 					cx.el = articleDataNode['0'].innerHTML;
@@ -456,7 +461,12 @@ webmd.fundedEditorial = {
 				}
 
 				if (playlistData) {
-					playlistDataHTML = $.parseHTML(playlistData['0'], document, true);
+					if (typeof articleData === "string") {
+						playlistDataHTML = $.parseHTML(playlistData, document, true);
+					} else {
+						playlistDataHTML = $.parseHTML(playlistData['0'], document, true);
+					}
+
 					playlistDataNode = findInParsed(playlistDataHTML, 'script#videoPlaylistData');
 
 					cx.el = playlistDataNode['0'].innerHTML;
