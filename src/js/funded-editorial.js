@@ -437,13 +437,14 @@ webmd.fundedEditorial = {
 			}
 
 			function successFn(articleData, playlistData) {
-				var articleDataHTML = (articleData) ? $.parseHTML(articleData, document, true) : false,
-					playlistDataHTML = (playlistData) ? $.parseHTML(playlistData, document, true) : false,
+				var articleDataHTML,
+					playlistDataHTML,
 					articleDataNode,
 					playlistDataNode,
 					cx = {};
 
 				if (articleData) {
+					articleDataHTML = $.parseHTML(articleData, document, true);
 					articleDataNode = findInParsed(articleDataHTML, 'script#articleData');
 
 					cx.el = articleDataNode['0'].innerHTML;
@@ -457,6 +458,7 @@ webmd.fundedEditorial = {
 				}
 
 				if (playlistData) {
+					playlistDataHTML = $.parseHTML(playlistData, document, true);
 					playlistDataNode = findInParsed(playlistDataHTML, 'script#videoPlaylistData');
 
 					cx.el = playlistDataNode['0'].innerHTML;
