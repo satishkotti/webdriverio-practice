@@ -97,8 +97,6 @@ webmd.fundedEditorial = {
 
 		if (self.segments && self.segments.length > 0) {
 			self.getSegmentArticleData();
-		} else {
-			webmd.fundedEditorial.articleData.program.segIndex = "-1";
 		}
 
 		if (window.s_business_reference === "TOC") {
@@ -300,24 +298,12 @@ webmd.fundedEditorial = {
 
 	getSegmentArticleData: function() {
 		var self = this,
-			segments = webmd.fundedEditorial.segments,
-			segmentDone = $.Event('segmentDone');
+			segments = webmd.fundedEditorial.segments;
 
-		segmentDone.num = 0; // set counter to 0
 
 		function validSegments(segment, index, segments) {
 			if ('currentSeg' in segment) {
-				if (segment.currentSeg === true) {
-					// segment index needed for pre-roll ad call in premium video
-					webmd.fundedEditorial.articleData.program.segIndex = index;
-
-					return false;
-				} else {
-					// segment index needed for pre-roll ad call in premium video
-					segment.segIndex = index;
-
-					return segment.currentSeg !== true;
-				}
+				return segment.currentSeg !== true;
 			} else {
 				webmd.debug('SEGMENT MODULE NOT DRAWN: fix data for entry ' + (index+1) + ' in segment data module');
 				return false;
@@ -330,13 +316,10 @@ webmd.fundedEditorial = {
 		getSegmentsByAjax();
 
 		function getSegmentsByAjax() {
-			var totalSegments = webmd.fundedEditorial.segments.length;
+			var total = webmd.fundedEditorial.segments.length;
 
 			//Loop through each segment
 			$.each(webmd.fundedEditorial.segments, function(index, data) {
-				var segIndex = index,
-					dctmIdArr;
-
 				// this is very similar to using Object.watch()
 				// instead we attach multiple listeners
 				webmd.fundedEditorial.segments[index].data = (function() {
@@ -367,146 +350,34 @@ webmd.fundedEditorial = {
 							}
 						}
 					};
-				})();
+				}());
 
-				if (data.hasOwnProperty('dctmIds')) {
-					dctmIdArr = data.dctmIds.replace(/\s/g,'').split(',');
-
-					ajaxMe(dctmIdArr, segIndex);
-				}
-			});
-		}
-
-		function ajaxMe(dctmIds, segIndex) {
-			//Perform an AJAX 'get' on documentum ID
-			var dctmIdsLen = dctmIds.length,
-				articleDataXHR,
-				playlistDataXHR;
-
-			switch (dctmIdsLen) {
-				case 0:
-					webmd.debug('No DCTM Ids entered. Please add an article data DCTM ID. If on Premium Video, enter both article data DCTM ID and playlist data DCTM ID');
-					break;
-				case 1: // only retrieve article data
-					// store article data dctm id in segments object
-					webmd.fundedEditorial.segments[segIndex].artDataId = dctmIds[0];
-
-					// setup ajax get request (article data only)
-					articleDataXHR = setupXHR(dctmIds[0]);
-
-					// neex ajax rquest to be successful before continuing with success function
-					$.when(articleDataXHR).done(function(data) {
-						successFn(data);
-					}).fail(function(data) {
-						errorFn(data, dctmIds);
-					});
-					break;
-				case 2: // retrieve article data and playlist data for premium video
-					// store article data and playlist data dctm ids in segments object
-					webmd.fundedEditorial.segments[segIndex].artDataId = dctmIds[0];
-					webmd.fundedEditorial.segments[segIndex].playlistDataId = dctmIds[1];
-
-					// setup ajax get requests (article data and playlist data)
-					articleDataXHR = setupXHR(dctmIds[0]);
-					playlistDataXHR = setupXHR(dctmIds[1]);
-
-					// combine promises - neex both ajax requests to be successful before continuing with success function
-					$.when(articleDataXHR, playlistDataXHR).done(function(data1, data2) {
-						successFn(data1, data2);
-					}).fail(function(data) {
-						errorFn(data, dctmIds);
-					});
-					break;
-				default:
-					break;
-			}
-
-			
-			function setupXHR(dctmId) {
-				var jqXHR = $.ajax({
+				//Perform an AJAX 'get' on segment documentum ID
+				$.ajax({
 					url: 'http://www' + webmd.url.getLifecycle() + webmd.url.getEnv() + '.webmd.com/modules/ajax',
 					type: 'GET',
-					data: 'id=' + dctmId,
+					data: 'id=' + data.artDataId,
 					dataType: 'html',
-					cache: false
+					cache: false,
+					success: function(data) {
+						var html = $.parseHTML(data, document, true), //Parse HTML (returns array of nodes, including <script> nodes)
+							domEl = findInParsed(html, 'script#articleData'), //Find 'script#articleData' within Parsed HTML using function findInParsed
+							segmentedData = domEl['0'].innerHTML;
+
+						self.domEL = domEl;
+						//Cleanup string found in segmentedData (need to parse as JSON)
+						segmentedData = segmentedData.replace('webmd.fundedEditorial.articleData', '');
+						segmentedData = segmentedData.replace(/=/g, '');
+						segmentedData = segmentedData.replace(/;/g, '');
+						segmentedData = $.trim(segmentedData);
+						segmentedData = $.parseJSON(segmentedData);
+
+						//Store parsed JSON articleData in segment as new key/value
+						webmd.fundedEditorial.segments[index].articleData = segmentedData;
+						webmd.fundedEditorial.segments[index].data.ready = true;
+					}
 				});
-
-				return jqXHR;
-			}
-
-			function successFn(articleData, playlistData) {
-				var articleDataHTML,
-					playlistDataHTML,
-					articleDataNode,
-					playlistDataNode,
-					cx = {};
-
-				if (articleData) {
-					if (typeof articleData === "string") {
-						articleDataHTML = $.parseHTML(articleData, document, true);
-					} else {
-						articleDataHTML = $.parseHTML(articleData['0'], document, true);
-					}
-					
-					articleDataNode = findInParsed(articleDataHTML, 'script#articleData');
-
-					cx.el = articleDataNode['0'].innerHTML;
-					cx.string = 'webmd.fundedEditorial.articleData';
-					cx.data = cleanData(cx.el, cx.string);
-
-					//Store parsed JSON articleData in segment as new key/value
-					webmd.fundedEditorial.segments[segIndex].articleData = $.extend(false, {}, cx.data);
-
-					webmd.fundedEditorial.segments[segIndex].data.ready = true;
-				}
-
-				if (playlistData) {
-					if (typeof articleData === "string") {
-						playlistDataHTML = $.parseHTML(playlistData, document, true);
-					} else {
-						playlistDataHTML = $.parseHTML(playlistData['0'], document, true);
-					}
-
-					playlistDataNode = findInParsed(playlistDataHTML, 'script#videoPlaylistData');
-
-					cx.el = playlistDataNode['0'].innerHTML;
-					cx.string = 'webmd.fundedEditorial.articleData.program.videoPlaylistData';
-					cx.data = cleanData(cx.el, cx.string);
-
-					webmd.fundedEditorial.segments[segIndex].articleData.program.videoPlaylistData = $.extend(false, {}, cx.data);
-
-					// Add segment playlist to "segmented playlist array" - displays multiple segments within filmstrip
-					if (!webmd.m.hasOwnProperty('videoPlaylistData')) {
-						webmd.m.videoPlaylistData = [];
-					}
-
-					webmd.m.videoPlaylistData.push(cx.data);
-				}
-
-				segmentDone.num++;
-
-				$(window).trigger(segmentDone);
-
-				return true;
-			}
-
-			function errorFn(data, ids) {
-				console.log('error: ', data);
-				console.log('ajax error on ', ids);
-			}
-		}
-
-		function cleanData(el, objStr) {
-			var data;
-			
-			//Cleanup string found in segmentedData (need to parse as JSON)
-			data = el.replace(objStr, '');
-			data = data.replace(/=/g, '');
-			data = data.replace(/;/g, '');
-			data = $.trim(data);
-			data = $.parseJSON(data);
-
-			return data;
+			});
 		}
 
 		function findInParsed(html, selector) {
@@ -552,17 +423,6 @@ webmd.fundedEditorial = {
 				setTimeout(function() {
 					self.doStickyToolbar();
 				}, 10);
-			}
-		});
-
-		// bind segment done event (now check if all segments are done after each segment completes)
-		$(window).on('segmentDone', function(data) {
-			var completed_segments = data.num,
-				segmentsLen = webmd.fundedEditorial.segments.length,
-				segmentsDataComplete = $.Event('segmentsDataComplete');
-
-			if (completed_segments === segmentsLen) {
-				$(window).trigger(segmentsDataComplete);
 			}
 		});
 
@@ -973,7 +833,6 @@ webmd.fundedEditorial = {
 								'src' : image_server_url + article.images.image493x335,
 								'alt' : article.imageAlt
 							});
-
 							$p.html(article.title);
 
 							$segmentTile
