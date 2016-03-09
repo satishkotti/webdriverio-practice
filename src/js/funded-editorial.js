@@ -474,13 +474,6 @@ webmd.fundedEditorial = {
 					cx.data = cleanData(cx.el, cx.string);
 
 					webmd.fundedEditorial.segments[segIndex].articleData.program.videoPlaylistData = $.extend(false, {}, cx.data);
-
-					// Add segment playlist to "segmented playlist array" - displays multiple segments within filmstrip
-					if (!webmd.m.hasOwnProperty('videoPlaylistData')) {
-						webmd.m.videoPlaylistData = [];
-					}
-
-					webmd.m.videoPlaylistData.push(cx.data);
 				}
 
 				segmentDone.num++;
