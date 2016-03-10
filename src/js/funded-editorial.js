@@ -87,7 +87,7 @@ webmd.fundedEditorial = {
 			self.fundedPages();
 		}
 
-		if (mlrObjParam == 'mlr' && lifeCycle == '.preview' || lifeCycle == '.staging') {
+		if (mlrObjParam === 'mlr' && (lifeCycle === '.preview' || lifeCycle === '.staging')) {
 			this.hideMlrEl();
 		}
 
