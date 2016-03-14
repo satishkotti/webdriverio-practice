@@ -91,7 +91,6 @@
 					</xsl:element>
 					<xsl:element name="div">
 						<xsl:attribute name="class"><xsl:text>toc-hero-desc</xsl:text></xsl:attribute>
-						<xsl:attribute name="style"><xsl:text>background-color:</xsl:text><xsl:value-of select="$bgc"/></xsl:attribute>
 						<xsl:element name="a">
 							<xsl:attribute name="class"><xsl:text>toc-desc-link</xsl:text></xsl:attribute>
 							<xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.link}}</xsl:text></xsl:attribute>
@@ -121,6 +120,7 @@
 							desc = shell.find('.toc-hero').first().find('.toc-hero-item').first().find('.toc-hero-desc'),
 							bgColor = shell.data('bgColor');
 
+						shell.addClass('toc-hero-first');
 						desc.css('background-color', bgColor);
 					});
 				}
@@ -226,6 +226,7 @@
 							desc = shell.find('.toc-hero').first().find('.toc-hero-item').first().find('.toc-hero-desc'),
 							bgColor = shell.data('bgColor');
 
+						shell.addClass('toc-hero-first');
 						desc.css('background-color', bgColor);
 					});
 				}
@@ -366,6 +367,7 @@
 							desc = shell.find('.toc-hero').first().find('.toc-hero-item').first().find('.toc-hero-desc'),
 							bgColor = shell.data('bgColor');
 
+						shell.addClass('toc-hero-first');
 						desc.css('background-color', bgColor);
 					});
 				}
