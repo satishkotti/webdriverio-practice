@@ -29,8 +29,8 @@ webmd.webmdFixedAd = {
 		this.el = $(el);
 
 		this.options = {
-			start: '#art',
-			end: '#art',
+			start: '#s3',
+			end: '#s3',
 			offset: 0
 		};
 
@@ -54,6 +54,11 @@ webmd.webmdFixedAd = {
 		var killInterval = setTimeout(function(){
 			clearInterval(checkMovedEl);
 		}, 1000);
+
+		// Find end POS
+		setTimeout(function(){
+			_this.getEndPos();
+		}, 3000);
 	},
 
 	bindEvents: function(){
@@ -80,7 +85,7 @@ webmd.webmdFixedAd = {
 			if(_this.checkWindowHeight()){
 				if (st > _this.lastScrollTop){
 					// downscroll code
-					if(_this.lastScrollTop > start - _this.options.offset && _this.lastScrollTop < end){
+					if(_this.lastScrollTop > start && _this.lastScrollTop < end){
 						_this.stickEl();
 					} else if(_this.lastScrollTop > end){
 						_this.stickElToBottom();
