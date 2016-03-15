@@ -1,17 +1,9 @@
 /*
-Sample Code
-require(["funded-editorial/1/funded-fixed-ad", "css!funded-editorial/1/funded-fixed-ad.min"], function() {
-	$(function() {
-		$('#s5').webmdFixedAd({
-			start: '#art',
-			end: '#art',
-			offset: 60
-		});
-	});
-	// Make users start at the top of the page on page load
-	$(window).on('beforeunload', function(){
-		$(window).scrollTop(0);
-	});
+Sample Code:
+$('#s5').webmdFixedAd({
+	start: '#s3',
+	end: '#s3',
+	offset: 60
 });
 */
 webmd.object.set('webmd.webmdFixedAd');
