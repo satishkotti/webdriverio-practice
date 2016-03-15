@@ -95,7 +95,9 @@ webmd.webmdFixedAd = {
 			} else {
 				_this.unStickEl();
 			}
-		}).scroll();
+		});
+
+		$(window).scroll();
 	},
 
 	checkWindowHeight: function(){
