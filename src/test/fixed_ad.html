@@ -1030,25 +1030,19 @@ requirejs(['article/3/article'],function(){
 						webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e81354bea',cc:'17',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'4286',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fnews%2f20160202%2fmosquitoes-speading-zika-virus'},blockCodes:'_food_',id:'ads2-pos-113-ad',pos:'113',sizes:[160,600]});
 					}
 					</script>
+
 					<script>
-						require(["funded-editorial/1/funded-fixed-ad", "css!funded-editorial/1/funded-fixed-ad.min"], function() {
-							$(function() {
-								// webmd.fixedAd.init({
-								// 	elm: '#s5',
-								// 	start: '#art',
-								// 	end: '#art',
-								// 	offset: 60
-								// });
+						$(function() {
+							require(["funded-editorial/1/funded-fixed-ad", "css!funded-editorial/1/funded-fixed-ad.min"], function() {
 								$('#s6').webmdFixedAd({
 									start: '.page-header h1',
-									//end: '#s8',
 									end: '#chrome',
 									offset: 65
 								});
-							});
-							// Make users start at the top of the page on page load
-							$(window).on('beforeunload', function(){
-								$(window).scrollTop(0);
+								// Make users start at the top of the page on page load
+								$(window).on('beforeunload', function(){
+									$(window).scrollTop(0);
+								});
 							});
 						});
 					</script>

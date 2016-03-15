@@ -40,14 +40,15 @@ webmd.webmdFixedAd = {
 			var titleMoved = $( "#ContentPane12 .page-header" ).length,
 				bylineMoved = $( "#ContentPane13 .byline" ).length;
 
-			if (titleMoved > 0 && bylineMoved > 0) {
+			if (titleMoved > 0) {
 				clearInterval(checkMovedEl);
 				clearTimeout(killInterval);
-				_this.bindEvents();
 				_this.getElHeight();
 				_this.getStartPos();
 				_this.getEndPos();
+				_this.setInitScrollPos();
 				_this.setWindowW();
+				_this.bindEvents();
 			}
 		}, 100);
 
@@ -64,19 +65,19 @@ webmd.webmdFixedAd = {
 	bindEvents: function(){
 		var _this = this;
 
-		$(window).resize(function() {
-			if(_this.checkWindowWidth()){
-				_this.getElHeight();
-				_this.getStartPos();
-				_this.getEndPos();
-			}
+		$(window).on('resize', function() {
+			// if(_this.checkWindowWidth()){
+			// 	_this.getElHeight();
+			// 	_this.getStartPos();
+			// 	_this.getEndPos();
+			// }
 
 			if(!_this.checkWindowHeight()){
 				_this.unStickEl();
 			}
 		});
 
-		$(window).scroll(function(event){
+		$(window).on('scroll', function(){
 			var st = $(this).scrollTop(),
 				start = _this.start,
 				offset = _this.options.offset,
@@ -85,7 +86,7 @@ webmd.webmdFixedAd = {
 			if(_this.checkWindowHeight()){
 				if (st > _this.lastScrollTop){
 					// downscroll code
-					if(_this.lastScrollTop > start && _this.lastScrollTop < end){
+					if(_this.lastScrollTop > start - offset && _this.lastScrollTop < end){
 						_this.stickEl();
 					} else if(_this.lastScrollTop > end){
 						_this.stickElToBottom();
@@ -102,7 +103,7 @@ webmd.webmdFixedAd = {
 			} else {
 				_this.unStickEl();
 			}
-		});
+		}).scroll();
 	},
 
 	checkWindowHeight: function(){
@@ -115,6 +116,12 @@ webmd.webmdFixedAd = {
 		} else {
 			return false;
 		}
+	},
+
+	setInitScrollPos: function(){
+		var scrollTop = $(window).scrollTop();
+
+		this.lastScrollTop = scrollTop;
 	},
 
 	setWindowW: function(){
