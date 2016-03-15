@@ -87,7 +87,7 @@ webmd.fundedEditorial = {
 			self.fundedPages();
 		}
 
-		if (mlrObjParam == 'mlr' && lifeCycle == '.preview' || lifeCycle == '.staging') {
+		if (mlrObjParam === 'mlr' && (lifeCycle === '.preview' || lifeCycle === '.staging')) {
 			this.hideMlrEl();
 		}
 
@@ -941,7 +941,7 @@ webmd.fundedEditorial = {
 				$('#' + id).html('').addClass(wrapperClass).append($gridDiv);
 			}
 
-			webmd.fundedEditorial.createSeeAllLink('#ContentPane18');
+			webmd.fundedEditorial.createSeeAllLink('#ContentPane54');
 
 			self.createMasonry(false);
 		},
