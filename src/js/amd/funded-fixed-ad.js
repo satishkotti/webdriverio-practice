@@ -16,7 +16,15 @@ webmd.webmdFixedAd = {
 	lastWindowW : 0,
 
 	init: function(options, el){
-		var _this = this;
+		var _this = this,
+			minWinW = $(window).width() > 1310,
+			leftAd = $('#leftAd_rdr');
+
+		// If Window is smaller then 1310px we dont continue with the JS and removed the Ad container
+		if(!minWinW){
+			return false;
+			leftAd.remove();
+		}
 
 		this.el = $(el);
 
@@ -49,9 +57,9 @@ webmd.webmdFixedAd = {
 		}, 1000);
 
 		// Find end POS
-		setTimeout(function(){
-			_this.getEndPos();
-		}, 3000);
+		// setTimeout(function(){
+		// 	_this.getEndPos();
+		// }, 2000);
 	},
 
 	bindEvents: function(){
@@ -97,7 +105,13 @@ webmd.webmdFixedAd = {
 			}
 		});
 
+		// Trigger Scroll
 		$(window).scroll();
+
+		// Check if height has changed if so find new end position
+		this.onElementHeightChange(document.body, function(){
+			_this.getEndPos();
+		});
 	},
 
 	checkWindowHeight: function(){
@@ -110,18 +124,6 @@ webmd.webmdFixedAd = {
 		} else {
 			return false;
 		}
-	},
-
-	setInitScrollPos: function(){
-		var scrollTop = $(window).scrollTop();
-
-		this.lastScrollTop = scrollTop;
-	},
-
-	setWindowW: function(){
-		var winW = $(window).width();
-
-		this.lastWindowW = winW;
 	},
 
 	checkWindowWidth: function(){
@@ -142,11 +144,6 @@ webmd.webmdFixedAd = {
 		this.elH = $(this.el).outerHeight();
 	},
 
-	getStartPos: function(){
-		this.start = $(this.options.start).offset().top;
-		this.moveToStartPos();
-	},
-
 	getEndPos: function(){
 		var elH = $(this.options.end).outerHeight(),
 			elOffset = $(this.options.end).offset().top;
@@ -154,24 +151,63 @@ webmd.webmdFixedAd = {
 		this.end = elH + elOffset - this.elH;
 	},
 
+	getStartPos: function(){
+		this.start = $(this.options.start).offset().top;
+		this.moveToStartPos();
+	},
+
 	moveToStartPos: function(){
 		$(this.el).css('top', this.start);
 		$(this.el).show();
 	},
 
-	stickEl: function(){
-		$(this.el).addClass('stuck').css('top', this.options.offset);
-		$('html').addClass('fixed-ad-stuck');
+	onElementHeightChange: function(elm, callback){
+		var lastHeight = elm.clientHeight, newHeight;
+
+		(function run(){
+			newHeight = elm.clientHeight;
+
+			if(lastHeight != newHeight){
+				callback();
+			}
+
+			lastHeight = newHeight;
+
+			if(elm.onElementHeightChangeTimer){
+				clearTimeout(elm.onElementHeightChangeTimer);
+			}
+
+			elm.onElementHeightChangeTimer = setTimeout(run, 200);
+		})();
 	},
 
-	unStickEl:function(){
-		$(this.el).removeClass('stuck');
-		$('html').addClass('fixed-ad-unstuck');
-		this.moveToStartPos();
+	stickEl: function(){
+		$(this.el).addClass('stuck').css('top', this.options.offset);
+		$('html').removeClass('fixed-ad-unstuck');
+		$('html').addClass('fixed-ad-stuck');
 	},
 
 	stickElToBottom: function(){
 		$(this.el).removeClass('stuck').css('top', this.end);
+	},
+
+	setInitScrollPos: function(){
+		var scrollTop = $(window).scrollTop();
+
+		this.lastScrollTop = scrollTop;
+	},
+
+	setWindowW: function(){
+		var winW = $(window).width();
+
+		this.lastWindowW = winW;
+	},
+
+	unStickEl:function(){
+		$(this.el).removeClass('stuck');
+		$('html').removeClass('fixed-ad-stuck');
+		$('html').addClass('fixed-ad-unstuck');
+		this.moveToStartPos();
 	}
 };
 
