@@ -22,8 +22,8 @@ webmd.webmdFixedAd = {
 
 		// If Window is smaller then 1310px we dont continue with the JS and removed the Ad container
 		if(!minWinW){
-			return false;
 			leftAd.remove();
+			return false;
 		}
 
 		this.el = $(el);
@@ -55,15 +55,15 @@ webmd.webmdFixedAd = {
 		var killInterval = setTimeout(function(){
 			clearInterval(checkMovedEl);
 		}, 1000);
-
-		// Find end POS
-		// setTimeout(function(){
-		// 	_this.getEndPos();
-		// }, 2000);
 	},
 
 	bindEvents: function(){
 		var _this = this;
+
+		// Find new end position once everything has loaded
+		$(window).on('load', function(){
+			_this.update();
+		});
 
 		$(window).on('resize', function() {
 			// if(_this.checkWindowWidth()){
@@ -73,7 +73,7 @@ webmd.webmdFixedAd = {
 			// }
 
 			if(!_this.checkWindowHeight()){
-				_this.unStickEl();
+				_this.unStickIt();
 			}
 		});
 
@@ -87,31 +87,26 @@ webmd.webmdFixedAd = {
 				if (st > _this.lastScrollTop){
 					// downscroll code
 					if(_this.lastScrollTop > start - offset && _this.lastScrollTop < end){
-						_this.stickEl();
+						_this.stickIt();
 					} else if(_this.lastScrollTop > end){
-						_this.stickElToBottom();
+						_this.stickItToBottom();
 					}
 				} else {
 					// upscroll code
 					if(_this.lastScrollTop < start){
-						_this.unStickEl();
+						_this.unStickIt();
 					} else if(_this.lastScrollTop < end) {
-						_this.stickEl();
+						_this.stickIt();
 					}
 				}
 				_this.lastScrollTop = st;
 			} else {
-				_this.unStickEl();
+				_this.unStickIt();
 			}
 		});
 
 		// Trigger Scroll
 		$(window).scroll();
-
-		// Check if height has changed if so find new end position
-		this.onElementHeightChange(document.body, function(){
-			_this.getEndPos();
-		});
 	},
 
 	checkWindowHeight: function(){
@@ -161,33 +156,13 @@ webmd.webmdFixedAd = {
 		$(this.el).show();
 	},
 
-	onElementHeightChange: function(elm, callback){
-		var lastHeight = elm.clientHeight, newHeight;
-
-		(function run(){
-			newHeight = elm.clientHeight;
-
-			if(lastHeight != newHeight){
-				callback();
-			}
-
-			lastHeight = newHeight;
-
-			if(elm.onElementHeightChangeTimer){
-				clearTimeout(elm.onElementHeightChangeTimer);
-			}
-
-			elm.onElementHeightChangeTimer = setTimeout(run, 200);
-		})();
-	},
-
-	stickEl: function(){
+	stickIt: function(){
 		$(this.el).addClass('stuck').css('top', this.options.offset);
 		$('html').removeClass('fixed-ad-unstuck');
 		$('html').addClass('fixed-ad-stuck');
 	},
 
-	stickElToBottom: function(){
+	stickItToBottom: function(){
 		$(this.el).removeClass('stuck').css('top', this.end);
 	},
 
@@ -203,11 +178,17 @@ webmd.webmdFixedAd = {
 		this.lastWindowW = winW;
 	},
 
-	unStickEl:function(){
+	unStickIt:function(){
 		$(this.el).removeClass('stuck');
 		$('html').removeClass('fixed-ad-stuck');
 		$('html').addClass('fixed-ad-unstuck');
 		this.moveToStartPos();
+	},
+
+	update: function(){
+		this.getElHeight();
+		this.getStartPos();
+		this.getEndPos();
 	}
 };
 
