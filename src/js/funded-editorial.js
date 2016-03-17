@@ -844,12 +844,13 @@ webmd.fundedEditorial = {
 								$segmentTile.addClass('visited');
 							}
 
-							$segmentTile.append($a.append($img).append($p));
-							// if (!article.images.image493x335) {
-							// 	$segmentTile.append($a.append($p));
-							// } else {
-							// 	$segmentTile.append($a.append($img).append($p));
-							// }
+							// $segmentTile.append($a.append($img).append($p));
+							if (!article.images.image493x335) {
+								$segmentTile.append($a.append($p));
+							} else {
+								$segmentTile.append($a.append($img).append($p));
+								$img.wrap('<div class="tile-img '+article.type+'"></div>');
+							}
 
 							moduleArray.push($segmentTile);
 						}
@@ -911,12 +912,13 @@ webmd.fundedEditorial = {
 					$p.html('<span class="sponsored">' + articlePrefix + '</span>' + article.title);
 
 					$node.html('');
-					$node.append($a.append($img).append($p));
-					// if (!article.images.image493x335) {
-					// 	$node.append($a.append($p));
-					// } else {
-					// 	$node.append($a.append($img).append($p));
-					// }
+					// $node.append($a.append($img).append($p));
+					if (!article.images.image493x335) {
+						$node.append($a.append($p));
+					} else {
+						$node.append($a.append($img).append($p));
+						$img.wrap('<div class="tile-img '+article.type+'"></div>');
+					}
 
 					if (article.visited) {
 						$node.addClass('visited');
