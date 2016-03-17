@@ -1121,8 +1121,7 @@ webmd.fundedEditorial = {
 			});
 
 			$(window).load(function() {
-				setTimeout(function(){self.fixLayout();}, 250);
-				//self.fixLayout();
+				self.fixLayout();
 			});
 		}
 	},
