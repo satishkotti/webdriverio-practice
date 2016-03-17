@@ -78,7 +78,7 @@ define(['bx_slider/1/bx_slider'], {
 		return self;
 	},
 
-	bindSlideElem: function() {console.log('this');
+	bindSlideElem: function() {
 
 		var self = this,
 			windowWidth = $(window).width(),
