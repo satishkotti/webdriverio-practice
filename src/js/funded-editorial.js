@@ -990,7 +990,7 @@ webmd.fundedEditorial = {
 					newHeight = ((self.standardTileHeight * multiplier) + (gutter * multiplier));
 					btmMargin = newHeight - nodeH;
 
-					if(btmMargin < 15 ){
+					if(btmMargin < 50 ){
 						$node.attr('style', $node.attr('data-orig-csstext') + ' margin-bottom: ' + btmMargin + 'px !important');
 					}
 				}
@@ -1125,7 +1125,9 @@ webmd.fundedEditorial = {
 			});
 
 			$(window).load(function() {
-				self.fixLayout();
+				setTimeout(function() {
+					self.fixLayout();
+				}, 500);
 			});
 		}
 	},
