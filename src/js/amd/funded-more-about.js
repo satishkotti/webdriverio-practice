@@ -81,12 +81,12 @@ webmd.fundedEditorial.moreAbout = {
 
 			if (articleIndex === nodeArticleNum) {
 				$node.find('a').attr('href', article.link);
-				$node.find('img').attr('src', image_server_url + article.images.image493x335);
-				// if (article.images.image493x335) {
-				// 	$node.find('img').attr('src', image_server_url + article.images.image493x335);
-				// } else {
-				// 	$node.find('img').remove();
-				// }
+				//$node.find('img').attr('src', image_server_url + article.images.image493x335);
+				if (article.images.image493x335) {
+					$node.find('img').attr('src', image_server_url + article.images.image493x335).wrap('<div class="tile-img '+article.type+'"></div>');
+				} else {
+					$node.find('img').remove();
+				}
 				$node.find('p').html('<span class="sponsored">' + articlePrefix + '</span>' + article.title);
 
 				if (article.visited) {
