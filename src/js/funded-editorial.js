@@ -844,12 +844,13 @@ webmd.fundedEditorial = {
 								$segmentTile.addClass('visited');
 							}
 
-							$segmentTile.append($a.append($img).append($p));
-							// if (!article.images.image493x335) {
-							// 	$segmentTile.append($a.append($p));
-							// } else {
-							// 	$segmentTile.append($a.append($img).append($p));
-							// }
+							// $segmentTile.append($a.append($img).append($p));
+							if (!article.images.image493x335) {
+								$segmentTile.append($a.append($p));
+							} else {
+								$segmentTile.append($a.append($img).append($p));
+								$img.wrap('<div class="tile-img '+article.type+'"></div>');
+							}
 
 							moduleArray.push($segmentTile);
 						}
@@ -911,12 +912,13 @@ webmd.fundedEditorial = {
 					$p.html('<span class="sponsored">' + articlePrefix + '</span>' + article.title);
 
 					$node.html('');
-					$node.append($a.append($img).append($p));
-					// if (!article.images.image493x335) {
-					// 	$node.append($a.append($p));
-					// } else {
-					// 	$node.append($a.append($img).append($p));
-					// }
+					// $node.append($a.append($img).append($p));
+					if (!article.images.image493x335) {
+						$node.append($a.append($p));
+					} else {
+						$node.append($a.append($img).append($p));
+						$img.wrap('<div class="tile-img '+article.type+'"></div>');
+					}
 
 					if (article.visited) {
 						$node.addClass('visited');
@@ -988,7 +990,9 @@ webmd.fundedEditorial = {
 					newHeight = ((self.standardTileHeight * multiplier) + (gutter * multiplier));
 					btmMargin = newHeight - nodeH;
 
-					$node.attr('style', $node.attr('data-orig-csstext') + ' margin-bottom: ' + btmMargin + 'px !important');
+					if(btmMargin < 50 ){
+						$node.attr('style', $node.attr('data-orig-csstext') + ' margin-bottom: ' + btmMargin + 'px !important');
+					}
 				}
 			}
 
@@ -1121,8 +1125,9 @@ webmd.fundedEditorial = {
 			});
 
 			$(window).load(function() {
-				setTimeout(function(){self.fixLayout();}, 250);
-				//self.fixLayout();
+				setTimeout(function() {
+					self.fixLayout();
+				}, 500);
 			});
 		}
 	},

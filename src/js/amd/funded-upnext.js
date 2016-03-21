@@ -169,6 +169,7 @@ webmd.fundedEditorial.nextUp = {
 								$segments.append(nodes[i]);
 							}
 						});
+						webmd.fundedEditorial.createMenu.init(true); // setup toolbar (with kabob)
 					}
 				}
 			});
@@ -204,7 +205,9 @@ webmd.fundedEditorial.nextUp = {
 	},
 
 	bindEvents: function() {
-		webmd.fundedEditorial.createMenu.init(true); // setup toolbar (with kabob)
+		if (!webmd.fundedEditorial.segments) {
+			webmd.fundedEditorial.createMenu.init(true); // setup toolbar (with kabob)
+		}
 	},
 
 	render: function() {
