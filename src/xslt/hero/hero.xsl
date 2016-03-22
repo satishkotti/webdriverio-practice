@@ -85,7 +85,7 @@
 							<xsl:attribute name="data-metrics-link"><xsl:text>1</xsl:text></xsl:attribute>
 							<xsl:element name="img">
 								<xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.images.image650x350}}</xsl:text></xsl:attribute>
-								<xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.imageAlt}}</xsl:text></xsl:attribute>
+								<xsl:attribute name="alt"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.imageAlt}}</xsl:text></xsl:attribute>
 							</xsl:element>
 						</xsl:element>
 					</xsl:element>
@@ -165,7 +165,7 @@
 							<xsl:attribute name="data-metrics-link"><xsl:text>1</xsl:text></xsl:attribute>
 							<xsl:element name="img">
 								<xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.images.image493x335}}</xsl:text></xsl:attribute>
-								<xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.imageAlt}}</xsl:text></xsl:attribute>
+								<xsl:attribute name="alt"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.imageAlt}}</xsl:text></xsl:attribute>
 							</xsl:element>
 						</xsl:element>
 					</xsl:element>
@@ -191,7 +191,7 @@
 							<xsl:attribute name="data-metrics-link"><xsl:text>2</xsl:text></xsl:attribute>
 							<xsl:element name="img">
 								<xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.images.image493x335}}</xsl:text></xsl:attribute>
-								<xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.imageAlt}}</xsl:text></xsl:attribute>
+								<xsl:attribute name="alt"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.imageAlt}}</xsl:text></xsl:attribute>
 							</xsl:element>
 						</xsl:element>
 					</xsl:element>
@@ -276,7 +276,7 @@
 								<xsl:attribute name="data-metrics-link"><xsl:text>1</xsl:text></xsl:attribute>
 								<xsl:element name="img">
 									<xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.images.image650x350}}</xsl:text></xsl:attribute>
-									<xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.imageAlt}}</xsl:text></xsl:attribute>
+									<xsl:attribute name="alt"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.imageAlt}}</xsl:text></xsl:attribute>
 								</xsl:element>
 							</xsl:element>
 						</xsl:element>
@@ -305,7 +305,7 @@
 								<xsl:attribute name="data-metrics-link"><xsl:text>2</xsl:text></xsl:attribute>
 								<xsl:element name="img">
 									<xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-2"/><xsl:text>.images.image650x350}}</xsl:text></xsl:attribute>
-									<xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.imageAlt}}</xsl:text></xsl:attribute>
+									<xsl:attribute name="alt"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.imageAlt}}</xsl:text></xsl:attribute>
 								</xsl:element>
 							</xsl:element>
 						</xsl:element>
@@ -331,7 +331,7 @@
 								<xsl:attribute name="data-metrics-link"><xsl:text>3</xsl:text></xsl:attribute>
 								<xsl:element name="img">
 									<xsl:attribute name="src"><xsl:value-of select="$image_server_url"/><xsl:text>/{{articles.</xsl:text><xsl:value-of select="$itm-3"/><xsl:text>.images.image650x350}}</xsl:text></xsl:attribute>
-									<xsl:attribute name="href"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.imageAlt}}</xsl:text></xsl:attribute>
+									<xsl:attribute name="alt"><xsl:text>{{articles.</xsl:text><xsl:value-of select="$itm-1"/><xsl:text>.imageAlt}}</xsl:text></xsl:attribute>
 								</xsl:element>
 							</xsl:element>
 						</xsl:element>
