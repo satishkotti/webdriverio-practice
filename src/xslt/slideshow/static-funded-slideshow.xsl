@@ -565,11 +565,13 @@
 			<xsl:text disable-output-escaping="yes">
 	s_not_pageview = "y";
 	requirejs(['funded-editorial/1/funded-slideshow'], function(ss){
-		ss.init('#</xsl:text>
+		$(function() {
+			ss.init('#</xsl:text>
 		<xsl:value-of select="$moduletitle"/>
 		<xsl:text>', </xsl:text>
 			<xsl:value-of select="$options"/>
 		<xsl:text>);
+		});
 	});</xsl:text>
 		</xsl:element>
 	</xsl:template>
