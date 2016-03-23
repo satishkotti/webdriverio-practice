@@ -940,7 +940,7 @@ webmd.fundedEditorial = {
 
 				//$segmentTitle.html(segmentData.articleData.program.title).addClass('wbmd-promo-seg-title');
 				$segmentTitleLink.attr('href', segmentData.articleData.program.tocLink).html(segmentData.articleData.program.title);
-				$segmentTitle.append($segmentTitleLink).addClass('wbmd-promo-seg-title');;
+				$segmentTitle.append($segmentTitleLink).addClass('wbmd-promo-seg-title');
 				moduleArray.push($segmentTitle);
 
 				$.each(promotedArticles, function(index, value) {
