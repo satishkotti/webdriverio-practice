@@ -423,8 +423,7 @@ webmd.fundedEditorial = {
 
 	getSegmentArticleData: function() {
 		var self = this,
-			segments = webmd.fundedEditorial.segments;
-
+			segments = self.segments;
 
 		function validSegments(segment, index, segments) {
 			if ('currentSeg' in segment) {
@@ -433,6 +432,10 @@ webmd.fundedEditorial = {
 				webmd.debug('SEGMENT MODULE NOT DRAWN: fix data for entry ' + (index+1) + ' in segment data module');
 				return false;
 			}
+		}
+
+		for (var i = 1; i < segments.length; i ++) {
+			self.segments[i]["deferredSegment"+i] = $.Deferred();
 		}
 
 		// remove current segment from array
@@ -445,9 +448,12 @@ webmd.fundedEditorial = {
 
 			//Loop through each segment
 			$.each(webmd.fundedEditorial.segments, function(index, data) {
-				// this is very similar to using Object.watch()
+
+				this.deferred = $.Deferred();
+
+/*				// this is very similar to using Object.watch()
 				// instead we attach multiple listeners
-				webmd.fundedEditorial.segments[index].data = (function() {
+				this.data = (function() {
 					var initVal,
 						interceptors = [];
 
@@ -475,7 +481,7 @@ webmd.fundedEditorial = {
 							}
 						}
 					};
-				}());
+				}());*/
 
 				//Perform an AJAX 'get' on segment documentum ID
 				$.ajax({
@@ -499,7 +505,7 @@ webmd.fundedEditorial = {
 
 						//Store parsed JSON articleData in segment as new key/value
 						webmd.fundedEditorial.segments[index].articleData = segmentedData;
-						webmd.fundedEditorial.segments[index].data.ready = true;
+						webmd.fundedEditorial.segments[index].deferred.resolve();
 					}
 				});
 			});
