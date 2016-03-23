@@ -158,27 +158,7 @@ webmd.fundedEditorial.nextUp = {
 		$.each(webmd.fundedEditorial.segments, function(index, data) {
 			segmentBlocks[index] = [];
 
-/*			webmd.fundedEditorial.segments[index].data.listen(function(passedValue) {
-				console.log('-------------segment' + index + '---------', passedValue);
-
-				if (passedValue === true) {
-					createUpNextSegment(data, index);
-					complete++;
-					if (complete === webmd.fundedEditorial.segments.length) {
-						console.log('-----------segments complete-------------');
-
-						$.each(segmentBlocks, function(index, nodes) {
-							for (var i=0; i<nodes.length; i++) {
-								$segments.append(nodes[i]);
-							}
-						});
-						webmd.fundedEditorial.createMenu.init(true); // setup toolbar (with kabob)
-					}
-				}
-			});*/
-
-
-			webmd.fundedEditorial.segments[index].deferred.done(function(passedValue) {
+			webmd.fundedEditorial.segments[index].deferred.done(function() {
 					createUpNextSegment(data, index);
 					complete++;
 					if (complete === webmd.fundedEditorial.segments.length) {

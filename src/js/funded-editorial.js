@@ -451,38 +451,6 @@ webmd.fundedEditorial = {
 
 				this.deferred = $.Deferred();
 
-/*				// this is very similar to using Object.watch()
-				// instead we attach multiple listeners
-				this.data = (function() {
-					var initVal,
-						interceptors = [];
-
-					function callInterceptors(newVal) {
-						for (var i = 0; i < interceptors.length; i += 1) {
-							interceptors[i](newVal);
-						}
-					}
-
-					return {
-						get ready() {
-							// user never has access to the private variable "initVal"
-							// we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
-							return initVal;
-						},
-
-						set ready(newVal) {
-							callInterceptors(newVal);
-							initVal = newVal;
-						},
-
-						listen: function(fn) {
-							if (typeof fn === 'function') {
-								interceptors.push(fn);
-							}
-						}
-					};
-				}());*/
-
 				//Perform an AJAX 'get' on segment documentum ID
 				$.ajax({
 					url: 'http://www' + webmd.url.getLifecycle() + webmd.url.getEnv() + '.webmd.com/modules/ajax',
@@ -917,23 +885,21 @@ webmd.fundedEditorial = {
 
 				segmentModules[index] = [];
 
-				this.data.listen(function(passedValue) {
-					if (passedValue === true) {
-						// Store segment in array (keep layout of segments in correct order)
-						segmentModules[index] = createSegmentTiles(data, segmentModules[index], segmentNumber);
-						complete++;
+				webmd.fundedEditorial.segments[index].deferred.done(function() {
+					// Store segment in array (keep layout of segments in correct order)
+					segmentModules[index] = createSegmentTiles(data, segmentModules[index], segmentNumber);
+					complete++;
 
-						if (complete === webmd.fundedEditorial.segments.length) {
-							// Add segments to DOM before updating DOM (prevents undefined)
-							$.each(segmentModules, function(index, nodes) {
-								for (var i=0; i<nodes.length; i++) {
-									$tocSegmentContentPane.append(segmentModules[index][i]);
-								}
-							});
+					if (complete === webmd.fundedEditorial.segments.length) {
+						// Add segments to DOM before updating DOM (prevents undefined)
+						$.each(segmentModules, function(index, nodes) {
+							for (var i=0; i<nodes.length; i++) {
+								$tocSegmentContentPane.append(segmentModules[index][i]);
+							}
+						});
 
-							// Update DOM (classes, layouts, sizes, margins, etc.)
-							self.start();
-						}
+						// Update DOM (classes, layouts, sizes, margins, etc.)
+						self.start();
 					}
 				});
 			});
