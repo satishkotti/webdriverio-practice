@@ -423,8 +423,7 @@ webmd.fundedEditorial = {
 
 	getSegmentArticleData: function() {
 		var self = this,
-			segments = webmd.fundedEditorial.segments;
-
+			segments = self.segments;
 
 		function validSegments(segment, index, segments) {
 			if ('currentSeg' in segment) {
@@ -433,6 +432,10 @@ webmd.fundedEditorial = {
 				webmd.debug('SEGMENT MODULE NOT DRAWN: fix data for entry ' + (index+1) + ' in segment data module');
 				return false;
 			}
+		}
+
+		for (var i = 1; i < segments.length; i ++) {
+			self.segments[i]["deferredSegment"+i] = $.Deferred();
 		}
 
 		// remove current segment from array
@@ -445,37 +448,8 @@ webmd.fundedEditorial = {
 
 			//Loop through each segment
 			$.each(webmd.fundedEditorial.segments, function(index, data) {
-				// this is very similar to using Object.watch()
-				// instead we attach multiple listeners
-				webmd.fundedEditorial.segments[index].data = (function() {
-					var initVal,
-						interceptors = [];
 
-					function callInterceptors(newVal) {
-						for (var i = 0; i < interceptors.length; i += 1) {
-							interceptors[i](newVal);
-						}
-					}
-
-					return {
-						get ready() {
-							// user never has access to the private variable "initVal"
-							// we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
-							return initVal;
-						},
-
-						set ready(newVal) {
-							callInterceptors(newVal);
-							initVal = newVal;
-						},
-
-						listen: function(fn) {
-							if (typeof fn === 'function') {
-								interceptors.push(fn);
-							}
-						}
-					};
-				}());
+				this.deferred = $.Deferred();
 
 				//Perform an AJAX 'get' on segment documentum ID
 				$.ajax({
@@ -499,7 +473,7 @@ webmd.fundedEditorial = {
 
 						//Store parsed JSON articleData in segment as new key/value
 						webmd.fundedEditorial.segments[index].articleData = segmentedData;
-						webmd.fundedEditorial.segments[index].data.ready = true;
+						webmd.fundedEditorial.segments[index].deferred.resolve();
 					}
 				});
 			});
@@ -911,23 +885,21 @@ webmd.fundedEditorial = {
 
 				segmentModules[index] = [];
 
-				this.data.listen(function(passedValue) {
-					if (passedValue === true) {
-						// Store segment in array (keep layout of segments in correct order)
-						segmentModules[index] = createSegmentTiles(data, segmentModules[index], segmentNumber);
-						complete++;
+				webmd.fundedEditorial.segments[index].deferred.done(function() {
+					// Store segment in array (keep layout of segments in correct order)
+					segmentModules[index] = createSegmentTiles(data, segmentModules[index], segmentNumber);
+					complete++;
 
-						if (complete === webmd.fundedEditorial.segments.length) {
-							// Add segments to DOM before updating DOM (prevents undefined)
-							$.each(segmentModules, function(index, nodes) {
-								for (var i=0; i<nodes.length; i++) {
-									$tocSegmentContentPane.append(segmentModules[index][i]);
-								}
-							});
+					if (complete === webmd.fundedEditorial.segments.length) {
+						// Add segments to DOM before updating DOM (prevents undefined)
+						$.each(segmentModules, function(index, nodes) {
+							for (var i=0; i<nodes.length; i++) {
+								$tocSegmentContentPane.append(segmentModules[index][i]);
+							}
+						});
 
-							// Update DOM (classes, layouts, sizes, margins, etc.)
-							self.start();
-						}
+						// Update DOM (classes, layouts, sizes, margins, etc.)
+						self.start();
 					}
 				});
 			});
