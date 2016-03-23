@@ -1257,7 +1257,9 @@ webmd.fundedEditorial = {
 
 			googletag.cmd.push(function () {
 				googletag.on('gpt-page_load_complete', function(){
-					self.fixLayout();
+					setTimeout(function() {
+						self.fixLayout();
+					}, 500);
 				});
 			});
 
