@@ -182,7 +182,7 @@ div.dbm_wrap {
 	color: #333132;
 }
 .wbmd-promo-seg-title a {
-	display: inline-block;
+	display: inline-block !important;
 }
 .wbmd-promo-seg-title a:hover {
 	text-decoration: underline;
@@ -311,5 +311,9 @@ div.dbm_wrap {
 				}
 			}
 		}
+	}
+	.wbmd-promo-seg-title {
+		font-size: 1.75rem;
+		line-height: 2em;
 	}
 }
