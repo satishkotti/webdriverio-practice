@@ -218,7 +218,7 @@
 		<xsl:param name="total"/>
 		<xsl:element name="div">
 			<xsl:choose>
-				<xsl:when test="slide_caption_title='interstitial'">
+				<xsl:when test="slide_title='interstitial'">
 					<xsl:attribute name="class">slide sponsored</xsl:attribute>
 				</xsl:when>
 				<xsl:otherwise>
@@ -237,7 +237,14 @@
 			<div class="caption">
 				<p class="touch-slide-count">Slide <xsl:value-of select="$index"/>/<xsl:value-of select="$total"/></p>
 				<h3>
-					<xsl:value-of select="slide_caption_title" disable-output-escaping="yes"/>
+					<xsl:choose>
+						<xsl:when test="slide_caption_title != ''">
+							<xsl:value-of select="slide_caption_title" disable-output-escaping="yes"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="slide_title" disable-output-escaping="yes"/>
+						</xsl:otherwise>
+					</xsl:choose>
 				</h3>
 				<xsl:copy-of select="slide_caption_text/*"/>
 			</div>
