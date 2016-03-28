@@ -158,20 +158,20 @@ webmd.fundedEditorial.nextUp = {
 		$.each(webmd.fundedEditorial.segments, function(index, data) {
 			segmentBlocks[index] = [];
 
-			webmd.fundedEditorial.segments[index].data.listen(function(passedValue) {
-				if (passedValue === true) {
+			webmd.fundedEditorial.segments[index].deferred.done(function() {
 					createUpNextSegment(data, index);
 					complete++;
-
 					if (complete === webmd.fundedEditorial.segments.length) {
 						$.each(segmentBlocks, function(index, nodes) {
 							for (var i=0; i<nodes.length; i++) {
 								$segments.append(nodes[i]);
 							}
 						});
+						webmd.fundedEditorial.createMenu.init(true); // setup toolbar (with kabob)
 					}
-				}
+
 			});
+
 		});
 
 		$(".up-next-container").after($segments);
@@ -204,7 +204,9 @@ webmd.fundedEditorial.nextUp = {
 	},
 
 	bindEvents: function() {
-		webmd.fundedEditorial.createMenu.init(true); // setup toolbar (with kabob)
+		if (!webmd.fundedEditorial.segments) {
+			webmd.fundedEditorial.createMenu.init(true); // setup toolbar (with kabob)
+		}
 	},
 
 	render: function() {
