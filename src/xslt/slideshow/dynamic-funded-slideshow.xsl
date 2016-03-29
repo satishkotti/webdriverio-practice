@@ -237,7 +237,14 @@
 			<div class="caption">
 				<p class="touch-slide-count">Slide <xsl:value-of select="$index"/>/<xsl:value-of select="$total"/></p>
 				<h3>
-					<xsl:value-of select="slide_title" disable-output-escaping="yes"/>
+					<xsl:choose>
+						<xsl:when test="slide_caption_title != ''">
+							<xsl:value-of select="slide_caption_title" disable-output-escaping="yes"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="slide_title" disable-output-escaping="yes"/>
+						</xsl:otherwise>
+					</xsl:choose>
 				</h3>
 				<xsl:copy-of select="slide_caption_text/*"/>
 			</div>
@@ -565,12 +572,16 @@
 			<xsl:text disable-output-escaping="yes">
 	s_not_pageview = "y";
 	requirejs(['funded-editorial/1/funded-slideshow'], function(ss){
-		ss.init('#</xsl:text>
+		$(function() {
+			ss.init('#</xsl:text>
 		<xsl:value-of select="$moduletitle"/>
 		<xsl:text>', </xsl:text>
 			<xsl:value-of select="$options"/>
 		<xsl:text>);
+		});
 	});</xsl:text>
 		</xsl:element>
 	</xsl:template>
 </xsl:stylesheet>
+
+
