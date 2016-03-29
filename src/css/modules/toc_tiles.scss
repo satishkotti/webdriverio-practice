@@ -43,9 +43,14 @@
 		.wbmd-grid-item {
 			min-height: 308px;
 			float: left;
-			background-color: #fff;
+			//background-color: #fff;
 			margin: 0 0 10px 0 !important;
 			border-bottom: 3px solid #e8e8ea;
+
+			&.icm_wrap {
+				border: 1px solid #ccc;
+				background-color: #f7f7f7;
+			}
 			&.tile-width {
 				width: 320px;
 			}
