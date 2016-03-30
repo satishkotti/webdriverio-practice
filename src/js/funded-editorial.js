@@ -1,3 +1,128 @@
+/*
+Copyright 2013 Michael Countis
+GitHub: https://github.com/mcountis/dfp-events
+MIT License: http://opensource.org/licenses/MIT
+*/
+(function(){
+	"use strict";
+
+	window.googletag = window.googletag || {};
+	window.googletag.cmd = window.googletag.cmd || [];
+
+	googletag.cmd.push(function(){
+
+		if(googletag.hasOwnProperty("on") || googletag.hasOwnProperty("off") || googletag.hasOwnProperty("trigger") || googletag.hasOwnProperty("events"))
+			return;
+
+		var	old_log = googletag.debug_log.log,
+			events = [],
+			addEvent = function(name,id,match){
+				events.push({
+					"name":name,
+					"id":id,
+					"match":match
+				});
+			};
+
+		addEvent("gpt-google_js_loaded",                    8, /Google service JS loaded/ig);
+		addEvent("gpt-gpt_fetch",                           46, /Fetching GPT implementation/ig);
+		addEvent("gpt-gpt_fetched",                         48, /GPT implementation fetched\./ig);
+		addEvent("gpt-page_load_complete",                  1, /Page load complete/ig);
+		addEvent("gpt-queue_start",                         31, /^Invoked queued function/ig);
+
+		addEvent("gpt-service_add_slot",                    40, /Associated ([\w]*) service with slot ([\/\w]*)/ig);
+		addEvent("gpt-service_add_targeting",               88, /Setting targeting attribute ([\w]*) with value ([\w\W]*) for service ([\w]*)/ig);
+		addEvent("gpt-service_collapse_containers_enable",  78, /Enabling collapsing of containers when there is no ad content/ig);
+		addEvent("gpt-service_create",                      35, /Created service: ([\w]*)/ig);
+		addEvent("gpt-service_single_request_mode_enable",  63, /Using single request mode to fetch ads/ig);
+
+		addEvent("gpt-slot_create",                         2, /Created slot: ([\/\w]*)/ig);
+		addEvent("gpt-slot_add_targeting",                  17, /Setting targeting attribute ([\w]*) with value ([\w\W]*) for slot ([\/\w]*)/ig);
+		addEvent("gpt-slot_fill",                           50, /Calling fillslot/ig);
+		addEvent("gpt-slot_fetch",                          3, /Fetching ad for slot ([\/\w]*)/ig);
+		addEvent("gpt-slot_receiving",                      4, /Receiving ad for slot ([\/\w]*)/ig);
+		addEvent("gpt-slot_render_delay",                   53, /Delaying rendering of ad slot ([\/\w]*) pending loading of the GPT implementation/ig);
+		addEvent("gpt-slot_rendering",                      5, /^Rendering ad for slot ([\/\w]*)/ig);
+		addEvent("gpt-slot_rendered",                       6, /Completed rendering ad for slot ([\/\w]*)/ig);
+
+		googletag.events = googletag.events || {};
+
+		googletag.on = function(events,op_arg0/*data*/,op_arg1/*callback*/){
+			if(!op_arg0)
+				return this;
+
+			events = events.split(" ");
+
+			var	data = op_arg1 ? op_arg0 : undefined,
+				callback = op_arg1 || op_arg0,
+				ei = 0,e = '';
+
+			callback.data = data;
+
+			for(e = events[ei = 0]; ei < events.length; e = events[++ei])
+				(this.events[e] = this.events[e] || []).push(callback);
+
+			return this;
+		};
+
+
+		googletag.off = function(events,handler){
+			events = events.split(" ");
+			var	ei = 0,e = "",
+				fi = 0,f = function(){};
+
+			for(e = events[ei]; ei < events.length; e = events[++ei]){
+				if(!this.events.hasOwnProperty(e))
+					continue;
+
+				if(!handler){
+					delete this.events[e];
+					continue;
+				}
+
+				fi = this.events[e].length - 1;
+				for(f = this.events[e][fi]; fi >= 0; f = this.events[e][--fi])
+					if(f == handler)
+						this.events[e].splice(fi,1);
+				if(this.events[e].length === 0)
+					delete this.events[e];
+			}
+
+			return this;
+		};
+
+
+		googletag.trigger = function(event,parameters){
+
+			if(!this.events[event] || this.events[event].length === 0)
+				return this;
+
+			var parameters = parameters || [], // jshint ignore:line
+				fi = 0,f = this.events[event][fi];
+
+			for(fi,f;fi < this.events[event].length;f = this.events[event][++fi])
+				if(f.apply(this,[{data:f.data}].concat(parameters)) === false)
+					break;
+
+			return this;
+		};
+
+
+		googletag.debug_log.log = function(level,message,service,slot,reference){
+			if (message && message.getMessageId && typeof (message.getMessageId()) == 'number') {
+				var	args = Array.prototype.slice.call(arguments),
+					e = 0;
+				for(e; e < events.length; e++)
+					if(events[e].id === message.getMessageId())
+						googletag.trigger(events[e].name,args);
+			}
+			return old_log.apply(this,arguments);
+		};
+
+
+	});
+})();
+
 // $.fn.imagesLoaded - THIS IS USED WITH MASONRY PLUGIN
 // $('img.photo',this).imagesLoaded(myFunction)
 // execute a callback when all images have loaded.
@@ -87,7 +212,7 @@ webmd.fundedEditorial = {
 			self.fundedPages();
 		}
 
-		if (mlrObjParam == 'mlr' && lifeCycle == '.preview' || lifeCycle == '.staging') {
+		if (mlrObjParam === 'mlr' && (lifeCycle === '.preview' || lifeCycle === '.staging')) {
 			this.hideMlrEl();
 		}
 
@@ -298,8 +423,7 @@ webmd.fundedEditorial = {
 
 	getSegmentArticleData: function() {
 		var self = this,
-			segments = webmd.fundedEditorial.segments;
-
+			segments = self.segments;
 
 		function validSegments(segment, index, segments) {
 			if ('currentSeg' in segment) {
@@ -308,6 +432,10 @@ webmd.fundedEditorial = {
 				webmd.debug('SEGMENT MODULE NOT DRAWN: fix data for entry ' + (index+1) + ' in segment data module');
 				return false;
 			}
+		}
+
+		for (var i = 1; i < segments.length; i ++) {
+			self.segments[i]["deferredSegment"+i] = $.Deferred();
 		}
 
 		// remove current segment from array
@@ -320,37 +448,8 @@ webmd.fundedEditorial = {
 
 			//Loop through each segment
 			$.each(webmd.fundedEditorial.segments, function(index, data) {
-				// this is very similar to using Object.watch()
-				// instead we attach multiple listeners
-				webmd.fundedEditorial.segments[index].data = (function() {
-					var initVal,
-						interceptors = [];
 
-					function callInterceptors(newVal) {
-						for (var i = 0; i < interceptors.length; i += 1) {
-							interceptors[i](newVal);
-						}
-					}
-
-					return {
-						get ready() {
-							// user never has access to the private variable "initVal"
-							// we can control what they get back from saying "webmd.fundedEditorial.rmqSlide.type"
-							return initVal;
-						},
-
-						set ready(newVal) {
-							callInterceptors(newVal);
-							initVal = newVal;
-						},
-
-						listen: function(fn) {
-							if (typeof fn === 'function') {
-								interceptors.push(fn);
-							}
-						}
-					};
-				}());
+				this.deferred = $.Deferred();
 
 				//Perform an AJAX 'get' on segment documentum ID
 				$.ajax({
@@ -374,7 +473,7 @@ webmd.fundedEditorial = {
 
 						//Store parsed JSON articleData in segment as new key/value
 						webmd.fundedEditorial.segments[index].articleData = segmentedData;
-						webmd.fundedEditorial.segments[index].data.ready = true;
+						webmd.fundedEditorial.segments[index].deferred.resolve();
 					}
 				});
 			});
@@ -786,33 +885,34 @@ webmd.fundedEditorial = {
 
 				segmentModules[index] = [];
 
-				this.data.listen(function(passedValue) {
-					if (passedValue === true) {
-						// Store segment in array (keep layout of segments in correct order)
-						segmentModules[index] = createSegmentTiles(data, segmentModules[index], segmentNumber);
-						complete++;
+				webmd.fundedEditorial.segments[index].deferred.done(function() {
+					// Store segment in array (keep layout of segments in correct order)
+					segmentModules[index] = createSegmentTiles(data, segmentModules[index], segmentNumber);
+					complete++;
 
-						if (complete === webmd.fundedEditorial.segments.length) {
-							// Add segments to DOM before updating DOM (prevents undefined)
-							$.each(segmentModules, function(index, nodes) {
-								for (var i=0; i<nodes.length; i++) {
-									$tocSegmentContentPane.append(segmentModules[index][i]);
-								}
-							});
+					if (complete === webmd.fundedEditorial.segments.length) {
+						// Add segments to DOM before updating DOM (prevents undefined)
+						$.each(segmentModules, function(index, nodes) {
+							for (var i=0; i<nodes.length; i++) {
+								$tocSegmentContentPane.append(segmentModules[index][i]);
+							}
+						});
 
-							// Update DOM (classes, layouts, sizes, margins, etc.)
-							self.start();
-						}
+						// Update DOM (classes, layouts, sizes, margins, etc.)
+						self.start();
 					}
 				});
 			});
 
 			function createSegmentTiles(segmentData, moduleArray, segmentNumber) {
 				var $segmentTitle = $('<div></div>'),
+					$segmentTitleLink = $('<a></a>'),
 					articles = segmentData.articleData.articles,
 					promotedArticles = segmentData.promotedArticles;
 
-				$segmentTitle.html(segmentData.articleData.program.title).addClass('wbmd-promo-seg-title');
+				//$segmentTitle.html(segmentData.articleData.program.title).addClass('wbmd-promo-seg-title');
+				$segmentTitleLink.attr('href', segmentData.articleData.program.tocLink).html(segmentData.articleData.program.title);
+				$segmentTitle.append($segmentTitleLink).addClass('wbmd-promo-seg-title');
 				moduleArray.push($segmentTitle);
 
 				$.each(promotedArticles, function(index, value) {
@@ -844,12 +944,13 @@ webmd.fundedEditorial = {
 								$segmentTile.addClass('visited');
 							}
 
-							$segmentTile.append($a.append($img).append($p));
-							// if (!article.images.image493x335) {
-							// 	$segmentTile.append($a.append($p));
-							// } else {
-							// 	$segmentTile.append($a.append($img).append($p));
-							// }
+							// $segmentTile.append($a.append($img).append($p));
+							if (!article.images.image493x335) {
+								$segmentTile.append($a.append($p));
+							} else {
+								$segmentTile.append($a.append($img).append($p));
+								$img.wrap('<div class="tile-img '+article.type+'"></div>');
+							}
 
 							moduleArray.push($segmentTile);
 						}
@@ -911,12 +1012,13 @@ webmd.fundedEditorial = {
 					$p.html('<span class="sponsored">' + articlePrefix + '</span>' + article.title);
 
 					$node.html('');
-					$node.append($a.append($img).append($p));
-					// if (!article.images.image493x335) {
-					// 	$node.append($a.append($p));
-					// } else {
-					// 	$node.append($a.append($img).append($p));
-					// }
+					// $node.append($a.append($img).append($p));
+					if (!article.images.image493x335) {
+						$node.append($a.append($p));
+					} else {
+						$node.append($a.append($img).append($p));
+						$img.wrap('<div class="tile-img '+article.type+'"></div>');
+					}
 
 					if (article.visited) {
 						$node.addClass('visited');
@@ -941,7 +1043,7 @@ webmd.fundedEditorial = {
 				$('#' + id).html('').addClass(wrapperClass).append($gridDiv);
 			}
 
-			webmd.fundedEditorial.createSeeAllLink('#ContentPane18');
+			webmd.fundedEditorial.createSeeAllLink('#ContentPane54');
 
 			self.createMasonry(false);
 		},
@@ -988,7 +1090,9 @@ webmd.fundedEditorial = {
 					newHeight = ((self.standardTileHeight * multiplier) + (gutter * multiplier));
 					btmMargin = newHeight - nodeH;
 
-					$node.attr('style', $node.attr('data-orig-csstext') + ' margin-bottom: ' + btmMargin + 'px !important');
+					if(btmMargin < 50 ){
+						$node.attr('style', $node.attr('data-orig-csstext') + ' margin-bottom: ' + btmMargin + 'px !important');
+					}
 				}
 			}
 
@@ -1120,10 +1224,19 @@ webmd.fundedEditorial = {
 				}, 500);
 			});
 
-			$(window).load(function() {
-				setTimeout(function(){self.fixLayout();}, 250);
-				//self.fixLayout();
+			googletag.cmd.push(function () {
+				googletag.on('gpt-page_load_complete', function(){
+					setTimeout(function() {
+						self.fixLayout();
+					}, 500);
+				});
 			});
+
+			/*$(window).load(function() {
+				setTimeout(function() {
+					self.fixLayout();
+				}, 500);
+			});*/
 		}
 	},
 
