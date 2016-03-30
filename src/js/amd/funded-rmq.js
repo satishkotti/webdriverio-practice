@@ -151,7 +151,7 @@ define(['bx_slider/1/bx_slider'], {
 					}
 
 					if (curData.adType && (curData.adType === 'static')) {
-						self.setAdSegment();
+						self.setAdSegment().defineAd();
 					}
 
 					if (curData.adType && (curData.adType === 'preroll')) {
@@ -277,69 +277,14 @@ define(['bx_slider/1/bx_slider'], {
 										// Set up the ad and configure it as 300x250 with a pos value of 121 (new value for DFP changed from 207) then fetch and display it
 										// Refer to scripts.js ads2 branch for detailed documentation on the methods used
 										if (webmd.useragent.ua.type === "mobile") {
+
 											$('#rmq_ad_placeholder').html('<div id="rmqAd_fmt"><div class="ad_placeholder" id ="ads2-pos-2027-ad_rmq" style="height:auto;margin: 0 auto;"></div></div>');
 
-											webmd.ads2.defineAd({
-												id: 'ads2-pos-2027-ad_rmq',
-												pos: 2027,
-												sizes: [[300,254],[300,250]],
-												refresh: false,
-												immediate: true
-											});
 										} else {
+
 											$('#rmq_ad_placeholder').html('<div id="rmqAd_fmt"><div class="ad_placeholder" id ="ads2-pos-207-ad_rmq" style="height:250px;margin: 0 auto;"></div></div>');
 
-											webmd.ads2.defineAd({
-												id: 'ads2-pos-207-ad_rmq',
-												pos: 207,
-												sizes: [[300,252],[300,250]],
-												refresh: false,
-												immediate: true
-											});
 										}
-
-										webmd.ads2.display();
-
-									} else {
-
-										if (webmd.ads.params) {
-
-											if ($.isEmptyObject(webmd.ads.params)) {
-												webmd.ads.init();
-											}
-
-											paramsObj = $.extend({}, webmd.ads.params);
-											paramsObj.pos = '207';
-											adParams = '';
-
-											$.each(paramsObj, function(k1, v1) {
-
-												if (adParams) {
-													adParams += '&';
-												}
-
-												adParams += k1 + '=' + v1.replace(/\//g, '%2f');
-
-											});
-
-											$('#rmq_ad_placeholder').html('<div class="ad_label">Advertisement</div><div id="rmqAd_fmt"><div class="ad_placeholder" style="height:250px;"></div></div><div class="ad_label">Advertisement</div>');
-											webmd.ads.refresh.defaults.src.rmqAd_fmt = document.createElement('iframe');
-
-											$(webmd.ads.refresh.defaults.src.rmqAd_fmt).attr({
-												src: location.protocol + '//as.webmd.com/html.ng/' + adParams,
-												width: '300',
-												height: '250',
-												id: 'rmqAd_Iframe',
-												title: 'RMQ Advertisement Frame',
-												marginwidth: 0,
-												marginheight: 0,
-												style: 'margin:0;',
-												frameborder: 0,
-												scrolling: 'no'
-											});
-
-										}
-
 									}
 
 									break;
@@ -670,6 +615,36 @@ define(['bx_slider/1/bx_slider'], {
 
 		return self;
 
+	},
+
+	defineAd: function() {
+		var self = this;
+
+		if (webmd.useragent.ua.type === "mobile") {
+			$('#rmq_ad_placeholder').html('<div id="rmqAd_fmt"><div class="ad_placeholder" id ="ads2-pos-2027-ad_rmq" style="height:auto;margin: 0 auto;"></div></div>');
+
+			webmd.ads2.defineAd({
+				id: 'ads2-pos-2027-ad_rmq',
+				pos: 2027,
+				sizes: [[300,254],[300,250]],
+				immediate: false,
+				refresh: false
+			});
+
+		} else {
+			$('#rmq_ad_placeholder').html('<div id="rmqAd_fmt"><div class="ad_placeholder" id ="ads2-pos-207-ad_rmq" style="height:250px;margin: 0 auto;"></div></div>');
+
+			webmd.ads2.defineAd({
+				id: 'ads2-pos-207-ad_rmq',
+				pos: 207,
+				sizes: [[300,252],[300,250]],
+				immediate: false,
+				refresh: false
+			});
+
+		return self;
+
+		}
 	},
 
 	calcResults: function(resultSlide) {
