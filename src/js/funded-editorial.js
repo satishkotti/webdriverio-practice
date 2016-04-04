@@ -199,6 +199,8 @@ webmd.fundedEditorial = {
 
 		self.bindEvents();
 
+		self.setClass();
+
 		if(typeof self.articleData !== 'undefined'){
 			self.updateArticleObj();
 		}
@@ -665,8 +667,6 @@ webmd.fundedEditorial = {
 
 	fundedPages: function() {
 		var social = $('#sharebar');
-
-		this.setClass();
 
 		if(social.length < 1){
 			this.noSocial();
