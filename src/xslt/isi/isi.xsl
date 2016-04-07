@@ -198,12 +198,21 @@
 					setIsiH : function() {
 						var isiIntH = null;
 
-						var device = webmd.useragent.getType();
-							isiMinShwDeskPos = $('.isi .isi-min-show-desktop').position().top,
-							isiMinShwMblPos = $('.isi .isi-min-show-mobile').position().top,
+						var device = webmd.useragent.getType(),
+							isiMinShwDeskPos,
+							isiMinShwMblPos,
+							isiH = $('.isi').outerHeight(),
 							isiBtnH = $('.isi .isi-btn').outerHeight(),
+							isiCont = $('.isi .isi-container'),
 							isiContPadTop = parseInt($('.isi-container').css('padding-top')),
 							isiMinH = null;
+
+						if($('.isi .isi-min-show-desktop').length > 0){
+							isiMinShwDeskPos = $('.isi .isi-min-show-desktop').position().top;
+						}
+						if($('.isi .isi-min-show-mobile').length > 0){
+							isiMinShwMblPos = $('.isi .isi-min-show-mobile').position().top;
+						}
 
 						if(device !== 'mobile'){
 							isiMinH = isiMinShwDeskPos + isiBtnH + isiContPadTop;
@@ -213,7 +222,17 @@
 
 						isiIntH = isiMinH;
 
-						$('.isi').css('margin-top', -isiMinH);
+						if(isNaN(isiIntH)){
+							isiContH = isiH - isiBtnH;
+
+							isiCont.css('height', isiContH);
+						} else {
+							isiContH = isiIntH - isiBtnH;
+
+							isiCont.css('height', isiContH);
+						}
+
+						$('.isi').css('margin-top', -isiIntH);
 					},
 
 					scrollCloseIsi : function(){
