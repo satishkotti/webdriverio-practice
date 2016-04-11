@@ -18,7 +18,7 @@ module.exports = function (grunt) {
 		grunt.log.ok('grunt webmd-ingest:qa01');
 	});
 	// Build all
-	grunt.registerTask('build', ['clean', 'copy:css','sass','autoprefixer','cssmin','jshint','uglify','replace:sourceMappingURL','webmd-zip']);
+	grunt.registerTask('build', ['clean','copy:css','sass','autoprefixer','cssmin','jshint','uglify','replace:sourceMappingURL','webmd-zip']);
 	// Build CSS
 	grunt.registerTask('css', ['clean', 'copy:css','sass','autoprefixer','cssmin','webmd-zip']);
 	// Build JS
@@ -153,8 +153,8 @@ module.exports = function (grunt) {
 					compress: {
 						drop_console: true // removes all console.log incase there left in the code
 					},
-					sourceMap: true,
-					sourceMapIncludeSources: true
+					sourceMap: false,
+					sourceMapIncludeSources: false
 				},
 				files:  [{
 					expand: true,

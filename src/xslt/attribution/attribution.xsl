@@ -14,7 +14,7 @@
 			</xsl:if>
 		</xsl:for-each>
 	</xsl:variable>
-	
+
 	<xsl:template match="/">
 		<xsl:apply-templates select="webmd_rendition/content/wbmd_asset/webmd_module/module_data"></xsl:apply-templates>
 	</xsl:template>
@@ -39,15 +39,17 @@
 					<xsl:choose>
 						<xsl:when test="$furl !=''">
 							<a href="{$furl}">
-								<xsl:attribute name="onclick">return sl(this,'
+								<xsl:attribute name="onclick">
+									<xsl:text>return sl(this,'</xsl:text>
 									<xsl:call-template name="GetLinkType">
 										<xsl:with-param name="Value">
 											<xsl:value-of select="module_link_view"></xsl:value-of>
 										</xsl:with-param>
 									</xsl:call-template>
-									','
+									<xsl:text>','</xsl:text>
 									<xsl:value-of select="$moduletitle"></xsl:value-of>
-									');</xsl:attribute>
+									<xsl:text>');</xsl:text>
+								</xsl:attribute>
 								<xsl:value-of select="title" disable-output-escaping="yes"></xsl:value-of>
 							</a>
 						</xsl:when>
@@ -67,7 +69,7 @@
 					</xsl:call-template>
 				</div>
 			</div>
-			
+
 		</xsl:element>
 		<!-- end small editorial-->
 		<xsl:element name="script">
@@ -104,16 +106,13 @@
 	</xsl:template>
 	<xsl:template name="GetURLRef">
 		<xsl:param name="ObjectID"></xsl:param>
-		<xsl:if test="(//referenced_objects/object[@chronic_id=$ObjectID and @pointer='0']/target/@friendlyurl) or (//referenced_objects/object[@chronic_id=$ObjectID and @pointer='1']/target/@friendlyurl)">
+		<xsl:if test="(//referenced_objects/object[@chronic_id=$ObjectID and @pointer='0']/target[@siteid=$site_id]/@friendlyurl) or (//referenced_objects/object[@chronic_id=$ObjectID and @pointer='1']/target/@friendlyurl)">
 			<xsl:choose>
 				<xsl:when test="//referenced_objects/object[@chronic_id=$ObjectID]//@pointer = '1'">
 					<xsl:value-of select="//referenced_objects/object[@chronic_id=$ObjectID][1]/target/@friendlyurl"></xsl:value-of>
 				</xsl:when>
-				<xsl:otherwise>http://
-					<xsl:value-of select="//referenced_objects/object[@chronic_id=$ObjectID][1]/target/@prefix[1]"></xsl:value-of>
-					.
-					<xsl:value-of select="$domain"></xsl:value-of>
-					<xsl:value-of select="//referenced_objects/object[@chronic_id=$ObjectID][1]/target/@friendlyurl[1]"></xsl:value-of>
+				<xsl:otherwise>http://<xsl:value-of select="//referenced_objects/object[@chronic_id=$ObjectID][1]/target[@siteid=$site_id]/@prefix[1]"></xsl:value-of>.<xsl:value-of select="$domain"></xsl:value-of>
+					<xsl:value-of select="//referenced_objects/object[@chronic_id=$ObjectID][1]/target[@siteid=$site_id]/@friendlyurl[1]"></xsl:value-of>
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:if>
@@ -134,6 +133,8 @@
 		<img src="{$src}" alt="{$alt}" border="0"/>
 	</xsl:template>
 </xsl:stylesheet>
+
+
 
 
 
