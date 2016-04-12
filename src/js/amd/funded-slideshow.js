@@ -72,6 +72,12 @@ define(['bx_slider/1/bx_slider'], function(){
 				$ss.find('.slide-count .current').html('1');
 				if(typeof s_geo === 'undefined'){
 					callMetrics();
+				} else {
+					if(typeof webmd.geoTargeting != 'undefined'){
+						webmd.geoTargeting.dfd.done(function(){
+							callMetrics();
+						});
+					}
 				}
 			});
 
