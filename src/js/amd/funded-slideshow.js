@@ -63,7 +63,6 @@ define(['bx_slider/1/bx_slider'], function(){
 
 				$ss.find('.slide.sponsored .image').after($nextSlideLink);
 			});
-
 		}
 
 		function attachEventHandlers() {
@@ -71,6 +70,15 @@ define(['bx_slider/1/bx_slider'], function(){
 				positionArrows(0);
 				$ss.find('.slide-count .current').html('1');
 				callMetrics();
+
+				$ss.find('.controls .prev').on('click tap', function(event) {
+					event.preventDefault();
+					slider.goToPrevSlide();
+				});
+				$ss.find('.controls .next').on('click tap', function(event) {
+					event.preventDefault();
+					slider.goToNextSlide();
+				});
 			});
 
 			$ss.on('onSlideBefore', function(event) {
@@ -117,25 +125,30 @@ define(['bx_slider/1/bx_slider'], function(){
 
 			});
 
-			return self;
 		}
 
 		function positionArrows(index) {
 			var imageHeight = $ss.find('.slide:not(.bx-clone) .image').eq(index).height(),
-				arrowPadding = (imageHeight - 60) / 2;
+				arrowSize = (webmd.useragent.getType() === 'mobile') ? 45 : 60,
+				arrowPadding = (imageHeight - arrowSize) / 2;
 
 			if (index === 0) {
-				$ss.find('.bx-prev').hide();
+				$ss.find('.prev').hide();
 			} else {
-				$ss.find('.bx-prev').show();
+				$ss.find('.prev').show();
 			}
 
-			$ss.find('.bx-prev, .bx-next').css({
-				'padding' : arrowPadding + "px 10px " + arrowPadding + "px 10px",
-				'height' : imageHeight + "px"
-			});
+			if (webmd.useragent.getTouch()) {
+				$ss.find('.controls a').css({
+					'top' : arrowPadding + "px"
+				});
+			} else {
+				$ss.find('.controls a').css({
+					'padding' : arrowPadding + "px 10px " + arrowPadding + "px 10px",
+					'height' : imageHeight + "px"
+				});
+			}
 
-			return this;
 		}
 
 		function doInterstitial(isInterstitial) {
