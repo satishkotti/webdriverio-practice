@@ -14,6 +14,7 @@ define(['bx_slider/1/bx_slider'], function(){
 			totalSlides,
 			currentWidth,
 			timeOut,
+			$interstitial,
 			interstitialNextSlideLink,
 			settings = {
 				slideSelector: '.slide',
@@ -35,9 +36,7 @@ define(['bx_slider/1/bx_slider'], function(){
 
 			$ss = $(selector);
 
-			if (webmd.useragent.getType() === 'mobile') {
-				swapMobileInterstitial();
-			}
+			checkInterstitial();
 
 			$ss.show();
 
@@ -84,13 +83,14 @@ define(['bx_slider/1/bx_slider'], function(){
 				$ss.find('.slide-count .current').html(event.newIndex + 1);
 				positionArrows(event.newIndex);
 
-				// check for interstitial slide
-				if ($ss.find('.slide').eq(event.newIndex).hasClass('sponsored')) {
-					interstitialNextSlideLink();
-					doInterstitial(true);
-				} else {
-					doInterstitial(false);
+				if ($interstitial.length) {
+					if ($ss.find('.slide').eq(event.newIndex).hasClass('sponsored')) {
+						doInterstitial(true);
+					} else {
+						doInterstitial(false);
+					}					
 				}
+
 			});
 
 			$ss.on('onSlideAfter', function(event) {
@@ -159,9 +159,33 @@ define(['bx_slider/1/bx_slider'], function(){
 
 		}
 
+		function checkInterstitial() {
+			$interstitial = $ss.find('.slide.sponsored');
+
+			if ($interstitial.length) {
+
+				if (webmd.useragent.getType() === 'mobile') {
+
+					if ($interstitial.hasClass('desktop')) {
+						$interstitial.remove();
+					} else if ($interstitial.hasClass('both')) {
+						swapMobileInterstitial();
+					}
+
+				} else {
+
+					if ($interstitial.hasClass('mobile')) {
+						$interstitial.remove();
+					} 
+				}
+			} 
+
+		}
+
 		function doInterstitial(isInterstitial) {
 			var $elements = $('.sources, .ed_disclaimer, .attrib_right_fmt, .toolbar .share-open');
 			if (isInterstitial) {
+				interstitialNextSlideLink();
 				$elements.css('visibility', 'hidden');
 			} else {
 				$elements.css('visibility', 'visible');
@@ -177,7 +201,7 @@ define(['bx_slider/1/bx_slider'], function(){
 
 			if (imgSrc) {
 				imgSplit = imgSrc.split('.');
-				imgType= imgSplit.pop();
+				imgType = imgSplit.pop();
 				imgSrc = imgSplit.join('.') + '_mobile.' + imgType;
 
 				// attach error handler to swith back to original image if mobile doesn't exist
