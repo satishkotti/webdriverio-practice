@@ -70,7 +70,15 @@ define(['bx_slider/1/bx_slider'], function(){
 			$ss.on('onSliderLoad', function(event) {
 				positionArrows(0);
 				$ss.find('.slide-count .current').html('1');
-				callMetrics();
+				if(typeof s_geo === 'undefined'){
+					callMetrics();
+				} else {
+					if(typeof webmd.geoTargeting != 'undefined'){
+						webmd.geoTargeting.dfd.done(function(){
+							callMetrics();
+						});
+					}
+				}
 			});
 
 			$ss.on('onSlideBefore', function(event) {
@@ -153,7 +161,7 @@ define(['bx_slider/1/bx_slider'], function(){
 				imgSrc = orgImgSrc,
 				imgSplit,
 				imgType;
-			
+
 			if (imgSrc) {
 				imgSplit = imgSrc.split('.');
 				imgType= imgSplit.pop();
@@ -187,7 +195,7 @@ define(['bx_slider/1/bx_slider'], function(){
 			callMetrics('next', true);
 
 			setTimeout(function(){
-				window.location = url; 
+				window.location = url;
 			}, 1000);
 
 		}
