@@ -71,6 +71,7 @@ define(['bx_slider/1/bx_slider'], function(){
 				$ss.find('.slide-count .current').html('1');
 				callMetrics();
 
+
 				$ss.find('.controls .prev').on('click tap', function(event) {
 					event.preventDefault();
 					slider.goToPrevSlide();
