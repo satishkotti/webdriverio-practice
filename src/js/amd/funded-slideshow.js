@@ -70,16 +70,6 @@ define(['bx_slider/1/bx_slider'], function(){
 				positionArrows(0);
 				$ss.find('.slide-count .current').html('1');
 				callMetrics();
-
-
-				$ss.find('.controls .prev').on('click tap', function(event) {
-					event.preventDefault();
-					slider.goToPrevSlide();
-				});
-				$ss.find('.controls .next').on('click tap', function(event) {
-					event.preventDefault();
-					slider.goToNextSlide();
-				});
 			});
 
 			$ss.on('onSlideBefore', function(event) {
@@ -108,6 +98,15 @@ define(['bx_slider/1/bx_slider'], function(){
 
 			$ss.on('onSlideEnd', function(event) {
 				doEnding();
+			});
+
+			$ss.find('.controls .prev').on('click tap', function(event) {
+				event.preventDefault();
+				slider.goToPrevSlide();
+			});
+			$ss.find('.controls .next, .slide .image').on('click tap', function(event) {
+				event.preventDefault();
+				slider.goToNextSlide();
 			});
 
 			$(window).on('resize', function() {
