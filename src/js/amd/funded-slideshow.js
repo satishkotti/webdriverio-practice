@@ -141,9 +141,9 @@ define(['bx_slider/1/bx_slider'], function(){
 				arrowPadding = (imageHeight - arrowSize) / 2;
 
 			if (index === 0) {
-				$ss.find('.prev').hide();
+				$ss.find('.prev, .bx-prev').hide();
 			} else {
-				$ss.find('.prev').show();
+				$ss.find('.prev, .bx-prev').show();
 			}
 
 			if (webmd.useragent.getTouch()) {
