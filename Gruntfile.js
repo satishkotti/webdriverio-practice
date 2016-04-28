@@ -187,39 +187,46 @@ module.exports = function (grunt) {
 			}
 		},
 		'webmd-ingest' : {
-			live: {
+			prodlive: {
 				src : '<%= fundedEditorialZip %>',
 				options : {
 					'env' : 'prod',
 					'lifeCycle' : 'active'
 				}
 			},
-			staging: {
+			prodstaging: {
 				src : '<%= fundedEditorialZip %>',
 				options : {
 					'env' : 'prod',
 					'lifeCycle' : 'staging'
 				}
 			},
-			perf: {
+			perflive: {
 				src : '<%= fundedEditorialZip %>',
 				options : {
 					'env' : 'perf',
 					'lifeCycle' : 'active'
 				}
 			},
-			qa00: {
+			perfstaging: {
+				src : '<%= fundedEditorialZip %>',
+				options : {
+					'env' : 'perf',
+					'lifeCycle' : 'staging'
+				}
+			},
+			qa00live: {
 				src : '<%= fundedEditorialZip %>',
 				options : {
 					'env' : 'qa00',
 					'lifeCycle' : 'active'
 				}
 			},
-			qa01: {
+			qa00staging: {
 				src : '<%= fundedEditorialZip %>',
 				options : {
-					'env' : 'qa01',
-					'lifeCycle' : 'active'
+					'env' : 'qa00',
+					'lifeCycle' : 'staging'
 				}
 			}
 		},

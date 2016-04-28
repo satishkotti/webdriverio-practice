@@ -13,9 +13,9 @@
     "grunt-contrib-uglify": "~0.9.1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-text-replace": "~0.4.0",
-    "grunt-webmd": "git://github.iad1.webmd.com/webmd/grunt-webmd.git#0.0.3",
-    "grunt-webmd-ingest": "git+https://stash.portal.webmd.com/scm/consui/grunt-webmd-ingest.git#0.4.3",
-    "grunt-webmd-zip": "git+https://stash.portal.webmd.com/scm/consui/grunt-webmd-zip.git#0.1.2",
+    "grunt-webmd": "file:../webmd-build-tools/grunt-webmd",
+    "grunt-webmd-ingest": "file:../webmd-build-tools/grunt-webmd-ingest",
+    "grunt-webmd-zip": "file:../webmd-build-tools/grunt-webmd-zip",
     "load-grunt-tasks": "0.4.0"
   },
   "scripts": {
