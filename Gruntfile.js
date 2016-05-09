@@ -11,11 +11,12 @@ module.exports = function (grunt) {
 		grunt.log.ok('grunt css		build css');
 		grunt.log.ok('grunt js		build js');
 		grunt.log.subhead('Ingestion targets:');
-		grunt.log.error('grunt webmd-ingest:live');
-		grunt.log.ok('grunt webmd-ingest:staging');
-		grunt.log.ok('grunt webmd-ingest:perf');
-		grunt.log.ok('grunt webmd-ingest:qa00');
-		grunt.log.ok('grunt webmd-ingest:qa01');
+		grunt.log.error('grunt webmd-ingest:prodlive');
+		grunt.log.ok('grunt webmd-ingest:prodstaging');
+		grunt.log.ok('grunt webmd-ingest:perflive');
+		grunt.log.ok('grunt webmd-ingest:perfstaging');
+		grunt.log.ok('grunt webmd-ingest:qa00live');
+		grunt.log.ok('grunt webmd-ingest:qa00staging');
 	});
 	// Build all
 	grunt.registerTask('build', ['clean','copy:css','sass','autoprefixer','cssmin','jshint','uglify','replace:sourceMappingURL','webmd-zip']);
