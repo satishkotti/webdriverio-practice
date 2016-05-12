@@ -235,7 +235,6 @@
 							isiCont.css('height', isiContH);
 						}
 
-						//$('.isi').css('margin-top', -isiIntH).css('height', isiIntH);
 						$('.isi').css('height', isiIntH);
 					},
 
