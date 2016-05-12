@@ -4,15 +4,17 @@
 	bottom: 0;
 	right: 0;
 	left: 0;
-	top: 100%;
-	margin-top: -180px;
+	//top: 100%;
+	//margin-top: -180px;
+	height: 180px;
 	width: 100%;
-	transition: all 500ms;
+	transition: top .5s, margin-top .5s, height .5s;
 	z-index: 5999999;
 
 	&.open {
-		top: 20%;
-		margin-top: 0 !important;
+		//top: 20%;
+		//margin-top: 0 !important;
+		height: 80% !important;
 
 		.isi-container {
 			transition: none;
