@@ -58,10 +58,9 @@ node.parentNode.insertBefore(gads, node);
 		s_site="core",
 		s_assetname="",
 		s_searchterm="",
-		s_eqv_chronicleId="",
 		image_server_url="http://img.preview.webmd.com/dtmcms/preview",
 		s_sensitive="false",
-		s_mblv="true",
+		s_mblv="false",
 		s_tagemax="",
 		s_tagemin="",
 		s_cuih="",
@@ -96,18 +95,18 @@ node.parentNode.insertBefore(gads, node);
 		<link rel="apple-touch-icon-precomposed" type="text/css" sizes="114x114" href="/favico/apple-touch-icon-114x114-precomposed.png"/>
 
 		<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/Site/WebMD_091e9c5e8004a224171.css"/>
-		<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/Flexible_Layout_CSS/Runtime/2_column_layout_harmony122.css"/>
+		<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/Flexible_Layout_CSS/Runtime/2_column_layout_harmony123.css"/>
 
-		<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Funded Flexible Layout Base Template_091e9c5e811bec4f/template_Responsive Flexible Layout Base Template_091e9c5e811bec4f_tmodules_css_638.css"/>
-		<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Funded Flexible Layout Base Template_091e9c5e811d0d15/template_Funded Flexible Layout Base Template_091e9c5e811d0d15_tmodules_css_390.css"/>
-		<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Program Title MAIN_091e9c5e811f02e4/template_FED 2 Main Template_091e9c5e811f02e4_tmodules_css_921.css"/>
-		<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Program Title Sponsored Articles_091e9c5e81257bb1/template_Program Title Sponsored Articles_091e9c5e81257bb1_tmodules_css_412.css"/>
+		<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Funded Flexible Layout Base Template_091e9c5e811bec4f/template_Responsive Flexible Layout Base Template_091e9c5e811bec4f_tmodules_css_669.css"/>
+		<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Funded Flexible Layout Base Template_091e9c5e811d0d15/template_Funded Flexible Layout Base Template_091e9c5e811d0d15_tmodules_css_397.css"/>
+		<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Program Title MAIN_091e9c5e811f02e4/template_FED 2 Main Template_091e9c5e811f02e4_tmodules_css_932.css"/>
+		<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS_Aggr/Program Title Sponsored Articles_091e9c5e81257bb1/template_Program Title Sponsored Articles_091e9c5e81257bb1_tmodules_css_434.css"/>
 		<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/responsive/responsive.min64.css"/>
 		<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/funded-editorial/funded-editorial68.css"/>
 		<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/funded-editorial/funded-article-mod16.css"/>
 		<link rel="stylesheet" href="http://css.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/CSS/Template/Program Title Sponsored Articles_091e9c5e81257bb3100.css"/>
 
-		<script type="text/javascript" src="http://js.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/JS/harmony/scripts_harmony301.js"></script>
+		<script type="text/javascript" src="http://js.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/JS/harmony/scripts_harmony326.js"></script>
 		<script type="text/javascript" src="http://js.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/JS/oas168.js"></script>
 		<script type="text/javascript" src="http://js.preview.webmd.com/dtmcms/preview/webmd/PageBuilder_Assets/JS/funded-editorial/funded-editorial138.js"></script>
 
@@ -842,21 +841,19 @@ s_sponsor_program = s_sponsor_program.split("-MobileNo").join("");
 <!-- END - JAWS content --><script>
         	var priTopId='4121', secTopId='';
         </script>
-<div class="ad_rdr top_ad_rdr">
-  <div class="ad_label">Advertisement</div>
-  <div id="top_ad">
-    <div id="ads2-pos-2025-ad_banner" class="ad_placeholder">
+<div id="bannerAd_rdr">
+  <div class="bannerAd_top_fmt">
+  </div>
+  <div id="bannerAd_fmt" class="bannerAd_BG_fmt loaded">
+    <div id="ads2-pos-101-ad_banner" class="ad_placeholder">
     </div>
+  </div>
+  <div class="bannerAd_bottom_fmt">
   </div>
 </div>
 <script>
-										// Multisplice function
-										Array.prototype.multisplice=function(){var r=Array.apply(null,arguments);r.sort(function(r,t){return r-t});for(var t=0;t<r.length;t++){var n=r[t]-t;this.splice(n,1)}};
-										webmd.ads2.adTarget.multisplice('consumer','webmd');
-										if(webmd.ads2.adTarget.indexOf('consmobileweb') == -1){webmd.ads2.adTarget.unshift('consmobileweb','webmdmobileweb');}
-										if (window.s_sponsor_program) {webmd.ads2.adTarget.push('sp-cmbwwbmd');}
-										webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e81257bb5',cc:'10',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=15878',mcent:'',mic:'',pt:'4121',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fzztest%2ffed2%2fstandard%2fspon%2fsponsored-title-01',rd:'1'},blockCodes:'_j_',id:'ads2-pos-2025-ad_banner',pos:'2025',sizes:[[300,50], [320, 50]]});
-									</script></div>
+									webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e81257bb5',cc:'10',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=15878',mcent:'',mic:'',pt:'4121',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fzztest%2ffed2%2fstandard%2fspon%2fsponsored-title-01',rd:'1'},blockCodes:'_j_',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});
+								</script></div>
 			<div id="ContentPane3" class="pane"></div>
 			<div id="ContentPane4" class="pane"></div>
 			<div id="ContentPane5" class="pane"></div>
@@ -1071,16 +1068,19 @@ s_sponsor_program = s_sponsor_program.split("-MobileNo").join("");
 				<div id="ContentPane31" class="pane"><script>
         	var priTopId='4121', secTopId='';
         </script>
-<div class="ad_rdr bottom_ad_rdr">
-  <div class="ad_label">Advertisement</div>
-  <div id="bottom_ad">
-    <div id="ads2-pos-2026-ad_rr_p1" class="ad_placeholder">
+<div id="rightAd_rdr">
+  <div class="rightAd_top_fmt">
+  </div>
+  <div id="rightAd_fmt" class="rightAd_BG_fmt loaded">
+    <div id="ads2-pos-121-ad_rr_p1" class="ad_placeholder">
     </div>
+  </div>
+  <div class="rightAd_bottom_fmt">
   </div>
 </div>
 <script>
-										webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e81257bb5',cc:'10',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=15878',mcent:'',mic:'',pt:'4121',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fzztest%2ffed2%2fstandard%2fspon%2fsponsored-title-01',rd:'1'},blockCodes:'_j_',id:'ads2-pos-2026-ad_rr_p1',pos:'2026',sizes:[[300,50], [300, 51], [300,250], [300,253], [320, 50], [320, 51]]});
-									</script></div>
+									webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e81257bb5',cc:'10',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=15878',mcent:'',mic:'',pt:'4121',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fzztest%2ffed2%2fstandard%2fspon%2fsponsored-title-01',rd:'1'},blockCodes:'_j_',id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});
+								</script></div>
 				<div id="ContentPane32" class="pane"></div>
 				<div id="ContentPane33" class="pane"></div>
 				<div id="ContentPane34" class="pane"></div>
@@ -1428,16 +1428,19 @@ s_sponsor_program = s_sponsor_program.split("-MobileNo").join("");
 						$('.isi-toggle').on('click', function(e){
 							e.preventDefault();
 
-							var isi = $('.isi'),
+							var body = $('body'),
+								isi = $('.isi'),
 								isiArw = $('.isi-toggle-arw'),
 								isiBtnTxt = $('.isi-toggle-txt span');
 
 							if(isi.hasClass('open')){
+								body.css('overflow', '');
 								isi.removeClass('open');
 								isiArw.removeClass('icon-arrow-down');
 								isiBtnTxt.text('More');
 								_this.closeIsi();
 							} else {
+								body.css('overflow', 'hidden');
 								isi.addClass('open');
 								isiArw.addClass('icon-arrow-down');
 								isiBtnTxt.text('Less');
@@ -1482,7 +1485,6 @@ s_sponsor_program = s_sponsor_program.split("-MobileNo").join("");
 							isiCont.css('height', isiContH);
 						}
 
-						//$('.isi').css('margin-top', -isiIntH).css('height', isiIntH);
 						$('.isi').css('height', isiIntH);
 					},
 
@@ -1538,18 +1540,18 @@ s_sponsor_program = s_sponsor_program.split("-MobileNo").join("");
 			<div id="ContentPane65" class="pane"><script>
         	var priTopId='4121', secTopId='';
         </script>
-<div id="ads2-pos-1901-1x1ad" class="ad_placeholder">
+<div id="ads2-pos-901-1x1ad" class="ad_placeholder">
 </div>
 <script>
-										webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e81257bb5',cc:'10',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=15878',mcent:'',mic:'',pt:'4121',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fzztest%2ffed2%2fstandard%2fspon%2fsponsored-title-01',rd:'1'},blockCodes:'_j_',id:'ads2-pos-1901-1x1ad',pos:'1901',sizes:[1,1]});
-									</script>
-<div id="ads2-pos-1920-1x6ad" class="ad_placeholder">
+									webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e81257bb5',cc:'10',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=15878',mcent:'',mic:'',pt:'4121',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fzztest%2ffed2%2fstandard%2fspon%2fsponsored-title-01',rd:'1'},blockCodes:'_j_',id:'ads2-pos-901-1x1ad',pos:'901',sizes:[1,1]});
+								</script>
+<div id="ads2-pos-920-1x6ad" class="ad_placeholder">
 </div>
 <script>
-										if(typeof s_geo !== 'undefined'){
-											webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e81257bb5',cc:'10',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=15878',mcent:'',mic:'',pt:'4121',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fzztest%2ffed2%2fstandard%2fspon%2fsponsored-title-01',rd:'1'},blockCodes:'_j_',id:'ads2-pos-1920-1x6ad',pos:'1920',sizes:[1,6]});
-										}
-									</script></div>
+									if(typeof s_geo !== 'undefined'){
+										webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e81257bb5',cc:'10',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=15878',mcent:'',mic:'',pt:'4121',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fzztest%2ffed2%2fstandard%2fspon%2fsponsored-title-01',rd:'1'},blockCodes:'_j_',id:'ads2-pos-920-1x6ad',pos:'920',sizes:[1,6]});
+									}
+								</script></div>
 			<div id="ContentPane66" class="pane"></div>
 			<div id="ContentPane67" class="pane"></div>
 			<div id="ContentPane68" class="pane"></div>
@@ -1669,7 +1671,7 @@ if(window.s_topic && !isSensitive && excludeTopics.indexOf(window.s_topic) === -
 }
 })();
 </script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=428750600651790&ev=PageView&noscript=1" /></noscript>
+<noscript><img alt="" height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=428750600651790&ev=PageView&noscript=1" /></noscript>
 <!-- End PPE-54085:Facebook Pixel Code --><script type="text/javascript">
 (function(){
 
@@ -1696,7 +1698,7 @@ if(window.s_topic && !isSensitive && excludeTopics.indexOf(window.s_topic) === -
 </script></div>
 			<div id="ContentPane72" class="pane"></div>
 		</section>
-		<script type="text/javascript" src="http://img.preview.webmd.com/bi_common/bi_consumer.js?d=5/16/2016"></script>
+		<script type="text/javascript" src="http://img.preview.webmd.com/bi_common/bi_consumer.js?d=6/1/2016"></script>
 
 
 		<script type="text/javascript">

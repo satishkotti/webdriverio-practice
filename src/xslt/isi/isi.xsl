@@ -181,16 +181,19 @@
 						$('.isi-toggle').on('click', function(e){
 							e.preventDefault();
 
-							var isi = $('.isi'),
+							var body = $('body'),
+								isi = $('.isi'),
 								isiArw = $('.isi-toggle-arw'),
 								isiBtnTxt = $('.isi-toggle-txt span');
 
 							if(isi.hasClass('open')){
+								body.css('overflow', '');
 								isi.removeClass('open');
 								isiArw.removeClass('icon-arrow-down');
 								isiBtnTxt.text('More');
 								_this.closeIsi();
 							} else {
+								body.css('overflow', 'hidden');
 								isi.addClass('open');
 								isiArw.addClass('icon-arrow-down');
 								isiBtnTxt.text('Less');
