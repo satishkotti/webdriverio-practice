@@ -108,6 +108,21 @@
 					<xsl:attribute name="class">total</xsl:attribute>
 				</xsl:element>
 			</xsl:element>
+			
+			<!-- Controls -->
+			<xsl:element name="div">
+				<xsl:attribute name="class">controls</xsl:attribute>
+				<xsl:element name="a">
+					<xsl:attribute name="class">prev</xsl:attribute>
+					<xsl:attribute name="href">#prev</xsl:attribute>
+					<label>Previous Slide</label>
+				</xsl:element>
+				<xsl:element name="a">
+					<xsl:attribute name="class">next</xsl:attribute>
+					<xsl:attribute name="href">#next</xsl:attribute>
+					<label>Next Slide</label>
+				</xsl:element>
+			</xsl:element>
 
 			<!-- Last Slide -->
 			<xsl:element name="div">
@@ -235,7 +250,18 @@
 				</xsl:element>
 			</xsl:element>
 			<div class="caption">
-				<p class="touch-slide-count">Slide <xsl:value-of select="$index"/>/<xsl:value-of select="$total"/></p>
+				<!-- Slide Count -->
+				<xsl:element name="div">
+					<xsl:attribute name="class">count</xsl:attribute>
+					<xsl:text>Slide </xsl:text>
+					<xsl:element name="span">
+						<xsl:attribute name="class">current</xsl:attribute>
+						<xsl:value-of select="$index"/>
+					</xsl:element><xsl:text>/</xsl:text><xsl:element name="span">
+						<xsl:attribute name="class">total</xsl:attribute>
+						<xsl:value-of select="$total"/>
+					</xsl:element>
+				</xsl:element>
 				<h3>
 					<xsl:choose>
 						<xsl:when test="slide_caption_title != ''">
