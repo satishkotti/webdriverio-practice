@@ -96,7 +96,7 @@ define(['bx_slider/1/bx_slider'], {
 					if (webmd.useragent.ua.type !== "mobile") {
 						$('.attrib_right_fmt').show();
 					}
-					
+
 					$(".ed_disclaimer").show();
 					$('.rmq_footer').show();
 					$('#rmq_scorebox').find('.score_text').children().hide();
@@ -343,7 +343,15 @@ define(['bx_slider/1/bx_slider'], {
 		s_md.eVar31 = s_md.prop31 = s_package_name = window.s_pagename.split('/').slice(-1)[0].indexOf('default') === -1 ? window.s_pagename.split('/').slice(-1)[0] : window.s_pagename.split('/').slice(-2)[0];
 
 		if (!self.processDeeplinks()) {
-			self.metrics('pageView', 'quest1');
+			if(typeof s_geo === 'undefined'){
+				self.metrics('pageView', 'quest1');
+			} else {
+				if(typeof webmd.geoTargeting != 'undefined'){
+					webmd.geoTargeting.dfd.done(function(){
+						self.metrics('pageView', 'quest1');
+					});
+				}
+			}
 		}
 
 		self._prevBtnToggle(self.slider.getCurrentSlide());
