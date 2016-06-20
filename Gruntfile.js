@@ -11,11 +11,12 @@ module.exports = function (grunt) {
 		grunt.log.ok('grunt css		build css');
 		grunt.log.ok('grunt js		build js');
 		grunt.log.subhead('Ingestion targets:');
-		grunt.log.error('grunt webmd-ingest:live');
-		grunt.log.ok('grunt webmd-ingest:staging');
-		grunt.log.ok('grunt webmd-ingest:perf');
-		grunt.log.ok('grunt webmd-ingest:qa00');
-		grunt.log.ok('grunt webmd-ingest:qa01');
+		grunt.log.error('grunt webmd-ingest:prodlive');
+		grunt.log.ok('grunt webmd-ingest:prodstaging');
+		grunt.log.ok('grunt webmd-ingest:perflive');
+		grunt.log.ok('grunt webmd-ingest:perfstaging');
+		grunt.log.ok('grunt webmd-ingest:qa00live');
+		grunt.log.ok('grunt webmd-ingest:qa00staging');
 	});
 	// Build all
 	grunt.registerTask('build', ['clean','copy:css','sass','autoprefixer','cssmin','jshint','uglify','replace:sourceMappingURL','webmd-zip']);
@@ -82,7 +83,7 @@ module.exports = function (grunt) {
 		autoprefixer: {
 			dist: {
 				options: {
-					browsers: ['last 2 versions', 'ie 8', 'ie 9']
+					browsers: ['last 2 versions', 'ie 8', 'ie 9', 'iOS 7']
 				},
 				src: '<%= dirBuild %>/**/*.css'
 			}
@@ -187,39 +188,46 @@ module.exports = function (grunt) {
 			}
 		},
 		'webmd-ingest' : {
-			live: {
+			prodlive: {
 				src : '<%= fundedEditorialZip %>',
 				options : {
 					'env' : 'prod',
 					'lifeCycle' : 'active'
 				}
 			},
-			staging: {
+			prodstaging: {
 				src : '<%= fundedEditorialZip %>',
 				options : {
 					'env' : 'prod',
 					'lifeCycle' : 'staging'
 				}
 			},
-			perf: {
+			perflive: {
 				src : '<%= fundedEditorialZip %>',
 				options : {
 					'env' : 'perf',
 					'lifeCycle' : 'active'
 				}
 			},
-			qa00: {
+			perfstaging: {
+				src : '<%= fundedEditorialZip %>',
+				options : {
+					'env' : 'perf',
+					'lifeCycle' : 'staging'
+				}
+			},
+			qa00live: {
 				src : '<%= fundedEditorialZip %>',
 				options : {
 					'env' : 'qa00',
 					'lifeCycle' : 'active'
 				}
 			},
-			qa01: {
+			qa00staging: {
 				src : '<%= fundedEditorialZip %>',
 				options : {
-					'env' : 'qa01',
-					'lifeCycle' : 'active'
+					'env' : 'qa00',
+					'lifeCycle' : 'staging'
 				}
 			}
 		},

@@ -157,19 +157,22 @@
 					},
 
 					bindEvents : function() {
-						var _this = this;
+						var _this = this,
+							width = $(window).width();
 
 						// Re Calc Min Height of ISI if window size changes
 						$(window).resize(function(){
-							var isi = $('.isi');
+							if($(this).width() != width){
+								var isi = $('.isi');
 
-							if(!isi.hasClass('open')){
-								$('.isi .isi-container').scrollTop(0);
+								if(!isi.hasClass('open')){
+									$('.isi .isi-container').scrollTop(0);
 
-								_this.setIsiH();
+									_this.setIsiH();
 
-								if($('#isi-as').length > 0){
-									//as = new Autoscroller(asSettings);
+									if($('#isi-as').length > 0){
+										//as = new Autoscroller(asSettings);
+									}
 								}
 							}
 						});
@@ -178,16 +181,19 @@
 						$('.isi-toggle').on('click', function(e){
 							e.preventDefault();
 
-							var isi = $('.isi'),
+							var body = $('body'),
+								isi = $('.isi'),
 								isiArw = $('.isi-toggle-arw'),
 								isiBtnTxt = $('.isi-toggle-txt span');
 
 							if(isi.hasClass('open')){
+								body.css('overflow', '');
 								isi.removeClass('open');
 								isiArw.removeClass('icon-arrow-down');
 								isiBtnTxt.text('More');
 								_this.closeIsi();
 							} else {
+								body.css('overflow', 'hidden');
 								isi.addClass('open');
 								isiArw.addClass('icon-arrow-down');
 								isiBtnTxt.text('Less');
@@ -232,7 +238,7 @@
 							isiCont.css('height', isiContH);
 						}
 
-						$('.isi').css('margin-top', -isiIntH);
+						$('.isi').css('height', isiIntH);
 					},
 
 					scrollCloseIsi : function(){

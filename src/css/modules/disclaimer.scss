@@ -8,6 +8,11 @@
 	color: #3b3b3c;
 }
 
+.responsive .ed_disclaimer {
+	font-size: 0.938rem;
+	margin: 10px 0;
+}
+
 /* Media Queries */
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-width: 320px) and (max-width: 767px) {
@@ -15,6 +20,9 @@
 		font-size: 1.2rem;
 		line-height: 20px;
 		padding: 0 10px;
+	}
+	.responsive .ed_disclaimer {
+		padding: 0;
 	}
 }
 /* Smartphones (landscape) ----------- */
