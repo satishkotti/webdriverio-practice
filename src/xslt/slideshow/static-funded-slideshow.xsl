@@ -236,6 +236,15 @@
 				<xsl:when test="slide_title='interstitial'">
 					<xsl:attribute name="class">slide sponsored</xsl:attribute>
 				</xsl:when>
+				<xsl:when test="slide_title='interstitial-desktop'">
+					<xsl:attribute name="class">slide sponsored desktop</xsl:attribute>
+				</xsl:when>
+				<xsl:when test="slide_title='interstitial-mobile'">
+					<xsl:attribute name="class">slide sponsored mobile</xsl:attribute>
+				</xsl:when>
+				<xsl:when test="slide_title='interstitial-both'">
+					<xsl:attribute name="class">slide sponsored both</xsl:attribute>
+				</xsl:when>
 				<xsl:otherwise>
 					<xsl:attribute name="class">slide</xsl:attribute>
 				</xsl:otherwise>
