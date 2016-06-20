@@ -54,11 +54,15 @@ webmd.fundedEditorial.paddles = {
 					} else {
 						self.articleData.nextArticle = index + 1;
 					}
+					
+					// Continue to get the page identifier, only if it is the current url and is not sponsored
+					self.getIdentifier();
+					return false;
 				}
 			});
 		}
 
-		self.getIdentifier();
+		return true;
 	},
 
 	checkIfDisabled: function() {
