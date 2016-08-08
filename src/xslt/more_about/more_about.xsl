@@ -64,29 +64,45 @@
                 </xsl:attribute>
                 <xsl:value-of select="module_title" disable-output-escaping="yes" />
             </xsl:element>
-            
             <xsl:for-each select="links/link">
                 <xsl:variable name="i" select="position()"/>
-                <xsl:if test="number($i) &lt;= number($show_output_length)">
-                    <xsl:element name="div">
-                        <xsl:attribute name="class">
-                            <xsl:text>wbmd-moreabout-grid-item</xsl:text>
-                        </xsl:attribute>
-                        <xsl:attribute name="data-metrics-module">
-                            <xsl:value-of select="$data_metrics_module"></xsl:value-of>
-                        </xsl:attribute>
-                        <xsl:attribute name="data-article-num">
-                            <xsl:value-of select="link_text" />
-                        </xsl:attribute>
-                        <xsl:element name="a">
-                            <xsl:attribute name="data-metrics-link">
-                                <xsl:value-of select="$i"></xsl:value-of>
+                <xsl:choose>
+                    <xsl:when test="link_text = 'geo'">
+                        <xsl:element name="div">
+                            <xsl:attribute name="id">
+                                <xsl:text>geo-more-info-brand-card-shell</xsl:text>
                             </xsl:attribute>
-                            <xsl:element name="img"></xsl:element>
-                            <xsl:element name="p"></xsl:element>
+                            <xsl:attribute name="class">
+                                <xsl:text>wbmd-moreabout-grid-item geo-more-info-brand-card</xsl:text>
+                            </xsl:attribute>
+                            <xsl:attribute name="style">
+                                <xsl:text>display: none;</xsl:text>
+                            </xsl:attribute>
                         </xsl:element>
-                    </xsl:element>
-                </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="number($i) &lt;= number($show_output_length)">
+                            <xsl:element name="div">
+                                <xsl:attribute name="class">
+                                    <xsl:text>wbmd-moreabout-grid-item</xsl:text>
+                                </xsl:attribute>
+                                <xsl:attribute name="data-metrics-module">
+                                    <xsl:value-of select="$data_metrics_module"></xsl:value-of>
+                                </xsl:attribute>
+                                <xsl:attribute name="data-article-num">
+                                    <xsl:value-of select="link_text" />
+                                </xsl:attribute>
+                                <xsl:element name="a">
+                                    <xsl:attribute name="data-metrics-link">
+                                        <xsl:value-of select="$i"></xsl:value-of>
+                                    </xsl:attribute>
+                                    <xsl:element name="img"></xsl:element>
+                                    <xsl:element name="p"></xsl:element>
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:if>   
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:for-each>
             
             <xsl:element name="script">
