@@ -54,7 +54,7 @@ webmd.fundedEditorial.paddles = {
 					} else {
 						self.articleData.nextArticle = index + 1;
 					}
-					
+
 					// Continue to get the page identifier, only if it is the current url and is not sponsored
 					self.getIdentifier();
 					return false;
@@ -184,7 +184,7 @@ webmd.fundedEditorial.paddles = {
 			articleHeight = $(self.identifier).innerHeight(),
 			scrollTop = $(window).scrollTop(),
 			scrollBottom = scrollTop + $(window).height(),
-			footerTop = $('.footer').position().top,
+			footerTop = $('.footer .footer-container').position().top,
 			elementTop,
 			elementBottom,
 			elementHeight,
