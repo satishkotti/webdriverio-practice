@@ -64,10 +64,9 @@
                 </xsl:attribute>
                 <xsl:value-of select="module_title" disable-output-escaping="yes" />
             </xsl:element>
-            <xsl:for-each select="links/link">
-                <xsl:variable name="i" select="position()"/>
+            <xsl:for-each select="links/link">      
                 <xsl:choose>
-                    <xsl:when test="link_text = 'geo'">
+                    <xsl:when test="contains(link_text, 'geo')">
                         <xsl:element name="div">
                             <xsl:attribute name="id">
                                 <xsl:text>geo-more-info-brand-card-shell</xsl:text>
@@ -81,7 +80,8 @@
                         </xsl:element>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:if test="number($i) &lt;= number($show_output_length)">
+                        <xsl:variable name="i" select="position()"/>
+                        <!-- <xsl:if test="number($i) &lt;= number($show_output_length)"> -->
                             <xsl:element name="div">
                                 <xsl:attribute name="class">
                                     <xsl:text>wbmd-moreabout-grid-item</xsl:text>
@@ -97,12 +97,16 @@
                                         <xsl:value-of select="$i"></xsl:value-of>
                                     </xsl:attribute>
                                     <xsl:element name="img"></xsl:element>
-                                    <xsl:element name="p"></xsl:element>
+                                        <xsl:element name="p">
+                                            <xsl:element name="span">
+                                                <xsl:attribute name="class">sponsored</xsl:attribute>
+                                            </xsl:element>
+                                        </xsl:element>
                                 </xsl:element>
                             </xsl:element>
-                        </xsl:if>   
-                    </xsl:otherwise>
-                </xsl:choose>
+                        <!-- </xsl:if> -->
+                    </xsl:otherwise>  
+                </xsl:choose>           
             </xsl:for-each>
             
             <xsl:element name="script">
@@ -111,3 +115,10 @@
         </xsl:if>
     </xsl:template>  
 </xsl:stylesheet>
+
+
+
+
+
+
+
