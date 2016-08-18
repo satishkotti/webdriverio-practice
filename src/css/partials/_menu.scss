@@ -285,6 +285,13 @@ body.menu-open {
 			}
 		}
 	}
+	.scroll-up.no-sticky-attribution {
+		.wbmd-toolbar-menu {
+			.webmd-logo, .share, .wbmd-kabob {
+				display: inline-block;
+			}
+		}
+	}
 	.scroll-up {
 		.wbmd-toolbar-menu {
 			.title, .attribution, .client-logo {
@@ -299,7 +306,7 @@ body.menu-open {
 				display: none;
 			}
 			.title {
-				width: calc(100% - 77px);
+				display: none;
 			}
 		}
 	}
@@ -307,7 +314,7 @@ body.menu-open {
 
 @media only screen and (max-width: 499px) {
 	.scroll-up.no-sticky-attribution .wbmd-toolbar-menu .title {
-		width: calc(100% - 72px);
+		display: none;
 	}
 	.wbmd-toolbar-menu .tools {
 		.title h1, .title h2 {
