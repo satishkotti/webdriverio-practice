@@ -191,6 +191,8 @@
 
 		<xsl:element name="script">
 			<![CDATA[
+			var s_video_module_id = "vidrprem",
+				s_video_module_name = "video - rprem", //prop33
 
 			if (!webmd.m.premiumVideoOptions) {
 				webmd.m.premiumVideoOptions = {};
