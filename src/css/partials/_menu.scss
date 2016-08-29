@@ -285,7 +285,7 @@ body.menu-open {
 			}
 		}
 	}
-	.scroll-up.no-sticky-attribution {
+	.scroll-up.no-sticky-attribution.no-title {
 		.wbmd-toolbar-menu {
 			.webmd-logo, .share, .wbmd-kabob {
 				display: inline-block;
@@ -306,6 +306,17 @@ body.menu-open {
 				display: none;
 			}
 			.title {
+				width: calc(100% - 77px);
+			}
+		}
+		&.no-sticky-attribution .no-title .wbmd-toolbar-menu {
+			.wbmd-kabob {
+				display: inline-block;
+			}
+			.client-logo, .attribution {
+				display: none;
+			}
+			.title {
 				display: none;
 			}
 		}
@@ -314,6 +325,9 @@ body.menu-open {
 
 @media only screen and (max-width: 499px) {
 	.scroll-up.no-sticky-attribution .wbmd-toolbar-menu .title {
+		width: calc(100% - 72px);
+	}
+	.scroll-up.no-sticky-attribution.no-title .wbmd-toolbar-menu .title {
 		display: none;
 	}
 	.wbmd-toolbar-menu .tools {
