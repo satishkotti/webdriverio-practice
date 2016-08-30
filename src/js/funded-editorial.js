@@ -205,9 +205,9 @@ webmd.fundedEditorial = {
 			self.updateArticleObj();
 		}
 
-		if ($('#attribution_rdr').length) {
+		//if ($('#attribution_rdr').length) {
 			//self.moveAttribution();
-		}
+		//}
 
 		if (s_sponsor_program !== 'undefined' && s_sponsor_program !== '') {
 			// Funded Editorial Specific Method
@@ -228,6 +228,11 @@ webmd.fundedEditorial = {
 
 		if (window.s_business_reference === "TOC") {
 			self.tocTiles.init();
+		}
+
+		// init sticky mastehead if not initialized elsewhere
+		if ($('.up-next-container, .branded-up-next-container, .wbmd-toolbar-menu').length === 0) {
+			self.createMenu.init();
 		}
 	},
 
