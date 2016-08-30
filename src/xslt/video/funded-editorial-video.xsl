@@ -191,6 +191,9 @@
 
 		<xsl:element name="script">
 			<![CDATA[
+			var s_video_module_id = "vidrprem",
+				s_video_module_name = "video - rprem", //prop33
+				netstoragePath = "live";
 
 			if (!webmd.m.premiumVideoOptions) {
 				webmd.m.premiumVideoOptions = {};
@@ -199,13 +202,28 @@
 
 			s_not_pageview='y';
 
+			if(window.location.hostname.match(/perf/i)) {
+				netstoragePath = "perf";
+			} else if (window.location.hostname.match(/qa00\.staging/i)) {
+				netstoragePath = "qa00_staging";
+			} else if (window.location.hostname.match(/qa00\.preview/i)) {
+				netstoragePath = "qa00_staging";
+			} else if (window.location.hostname.match(/qa00/i)) {
+				netstoragePath = "qa00_live";
+			} else if(window.location.hostname.match(/staging/i)) {
+				netstoragePath = "staging";
+			} else if (window.location.hostname.match(/preview/i)) {
+				netstoragePath = "staging";
+			}
+
 			window.getDynamicVideoComponents = function() {
 				return [
 					'video2/1/api/video-api',
 					'video2/1/premium-video2/dynamic-control-bar',
 					'video2/1/api/video-metrics',
 					'video2/1/api/video-ad',
-					'css!video2/1/css/styles.css'
+					'css!video2/1/css/styles.css',
+					'//webmdplayer-a.akamaihd.net/consumer/' + netstoragePath + '/resources/hls.min.js'
 				];
 			};
 
