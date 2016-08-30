@@ -1319,6 +1319,9 @@ webmd.fundedEditorial = {
 
 			$contentPane.find('.title').append($('.page-header h1').clone(), $('#rmq_header h2').clone());
 
+			if ($contentPane.find('.title').html() === ""){
+				$('html').addClass('no-title');
+			}
 			// If socialshare already ran
 			if ($().socialshareplugin) {
 				$contentPane.find('.share .social-share-tools').socialshareplugin(webmd.m.socialshareconfig);
