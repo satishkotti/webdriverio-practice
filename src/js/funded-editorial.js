@@ -1251,17 +1251,24 @@ webmd.fundedEditorial = {
 		// Display in menu (top to bottom)
 		menuElements: ['.branded-up-next-container', '.up-next-container', '.wbmd-upnext-segments'],
 
+		created: false,
+
 		init: function(createKabob) {
 
 			var self = this;
 
-			self.createKabob = createKabob;
+			if (!self.created) {
 
-			self.buildMenu();
+				self.created = true;
 
-			self.addElementsToMenu();
+				self.createKabob = createKabob;
 
-			self.bind_menuEvents();
+				self.buildMenu();
+
+				self.addElementsToMenu();
+
+				self.bind_menuEvents();
+			}
 
 			return self;
 		},
