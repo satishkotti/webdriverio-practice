@@ -205,9 +205,9 @@ webmd.fundedEditorial = {
 			self.updateArticleObj();
 		}
 
-		if ($('#attribution_rdr').length) {
+		//if ($('#attribution_rdr').length) {
 			//self.moveAttribution();
-		}
+		//}
 
 		if (s_sponsor_program !== 'undefined' && s_sponsor_program !== '') {
 			// Funded Editorial Specific Method
@@ -228,6 +228,11 @@ webmd.fundedEditorial = {
 
 		if (window.s_business_reference === "TOC") {
 			self.tocTiles.init();
+		}
+
+		// init sticky mastehead if not initialized elsewhere
+		if ($('.up-next-container, .branded-up-next-container, .wbmd-toolbar-menu').length === 0) {
+			self.createMenu.init();
 		}
 	},
 
@@ -1246,17 +1251,24 @@ webmd.fundedEditorial = {
 		// Display in menu (top to bottom)
 		menuElements: ['.branded-up-next-container', '.up-next-container', '.wbmd-upnext-segments'],
 
+		created: false,
+
 		init: function(createKabob) {
 
 			var self = this;
 
-			self.createKabob = createKabob;
+			if (!self.created) {
 
-			self.buildMenu();
+				self.created = true;
 
-			self.addElementsToMenu();
+				self.createKabob = createKabob;
 
-			self.bind_menuEvents();
+				self.buildMenu();
+
+				self.addElementsToMenu();
+
+				self.bind_menuEvents();
+			}
 
 			return self;
 		},
