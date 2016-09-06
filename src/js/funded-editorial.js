@@ -231,7 +231,7 @@ webmd.fundedEditorial = {
 		}
 
 		// init sticky mastehead if not initialized elsewhere
-		if ($('.up-next-container, .branded-up-next-container, .wbmd-toolbar-menu').length === 0) {
+		if ( ($('.up-next-container, .branded-up-next-container, .wbmd-toolbar-menu').length === 0) && (window.s_business_reference !== "TOC")) {
 			self.createMenu.init();
 		}
 	},
