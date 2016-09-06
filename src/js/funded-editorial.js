@@ -228,10 +228,7 @@ webmd.fundedEditorial = {
 
 		if (window.s_business_reference === "TOC") {
 			self.tocTiles.init();
-		}
-
-		// init sticky mastehead if not initialized elsewhere
-		if ( ($('.up-next-container, .branded-up-next-container, .wbmd-toolbar-menu').length === 0) && (window.s_business_reference !== "TOC")) {
+		} else if ($('.up-next-container, .branded-up-next-container, .wbmd-toolbar-menu').length === 0) {
 			self.createMenu.init();
 		}
 	},
@@ -1331,6 +1328,9 @@ webmd.fundedEditorial = {
 
 			$contentPane.find('.title').append($('.page-header h1').clone(), $('#rmq_header h2').clone());
 
+			if ($contentPane.find('.title').html() === ""){
+				$('html').addClass('no-title');
+			}
 			// If socialshare already ran
 			if ($().socialshareplugin) {
 				$contentPane.find('.share .social-share-tools').socialshareplugin(webmd.m.socialshareconfig);
