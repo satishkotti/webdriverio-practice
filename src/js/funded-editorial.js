@@ -1234,6 +1234,8 @@ webmd.fundedEditorial = {
 				});
 			});
 
+			webmd.externalLinks.init();
+
 			/*$(window).load(function() {
 				setTimeout(function() {
 					self.fixLayout();
