@@ -93,13 +93,13 @@ webmd.fundedEditorial.paddles = {
 					'<a class="prev {{#if visited}}visited{{/if}}" href="{{prev.article.link}}" data-metrics-link="l-{{prev.articleId}}">' + newline +
 						'<span class="text">' + newline +
 							'<span class="nav">Previous</span>' + newline +
-							'<span class="title">{{prev.article.title}}</span>' + newline +
+							'<span class="title">{{{prev.article.title}}}</span>' + newline +
 						'</span>' + newline +
 					'</a>' + newline +
 					'<a class="next {{#if visited}}visited{{/if}}" href="{{next.article.link}}" data-metrics-link="r-{{next.articleId}}">' + newline +
 						'<span class="text">' + newline +
 							'<span class="nav">Next</span>' + newline +
-							'<span class="title">{{next.article.title}}</span>' + newline +
+							'<span class="title">{{{next.article.title}}}</span>' + newline +
 						'</span>' + newline +
 					'</a>' + newline +
 				'</div>'
