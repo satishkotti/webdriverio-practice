@@ -21,7 +21,7 @@
 
 			<xsl:text disable-output-escaping="yes">
 			<![CDATA[<header class="page-header">
-				<h1>All {{program.title}}</h1>
+				<h1>{{program.title}}</h1>
 			</header>
 
 			<div id="art" class="article see-all">
