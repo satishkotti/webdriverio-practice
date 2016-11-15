@@ -35,19 +35,19 @@
 				<div class="links" data-metrics-module="ftr">
 					<ul>
 						<li>
-							<a href="/about-webmd-policies/default.htm?ss=ftr" data-metrics-link="abt">About WebMD</a>
+							<a href="/www/about-webmd-policies/default.htm?ss=ftr" data-metrics-link="abt">About WebMD</a>
 						</li>
 						<li>
-							<a href="/about-webmd-policies/media/default.htm" data-metrics-link="adv">Advertise With Us</a>
+							<a href="/www/about-webmd-policies/media/default.htm" data-metrics-link="adv">Advertise With Us</a>
 						</li>
 						<li>
-							<a href="/about-webmd-policies/about-terms-and-conditions-of-use?ss=ftr" data-metrics-link="trms">Terms of Use</a>
+							<a href="/www/about-webmd-policies/about-terms-and-conditions-of-use?ss=ftr" data-metrics-link="trms">Terms of Use</a>
 						</li>
 						<li>
-							<a href="/about-webmd-policies/about-privacy-policy?ss=ftr" data-metrics-link="prvy">Privacy Policy</a>
+							<a href="/www/about-webmd-policies/about-privacy-policy?ss=ftr" data-metrics-link="prvy">Privacy Policy</a>
 						</li>
 						<li>
-							<a href="/about-webmd-policies/about-our-sponsors?ss=ftr" data-metrics-link="prvy">Sponsor Policy</a>
+							<a href="/www/about-webmd-policies/about-our-sponsors?ss=ftr" data-metrics-link="prvy">Sponsor Policy</a>
 						</li>
 						<li>
 							<a href="https://customercare.webmd.com/ics/support/default.asp?deptID=18003&amp;task=ticket" data-metrics-link="cnt">Contact Us</a>
@@ -76,7 +76,7 @@
 				</div>
 				<div class="copyright">
 					<p>&#169; 2005-2015 WebMD, LLC. All rights reserved.</p>
-					<p data-metrics-module="disclaimer">WebMD does not provide medical advice, diagnosis or treatment.<br/><a data-metrics-link="info" href="/about-webmd-policies/additional-info?ss=ftr" rel="nofollow">See additional information.</a></p>
+					<p data-metrics-module="disclaimer">WebMD does not provide medical advice, diagnosis or treatment.<br/><a data-metrics-link="info" href="/www/about-webmd-policies/additional-info?ss=ftr" rel="nofollow">See additional information.</a></p>
 				</div>
 			</div>
 		</div>
