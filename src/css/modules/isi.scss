@@ -7,7 +7,7 @@
 	height: 180px;
 	width: 100%;
 	transition: top .5s, margin-top .5s, height .5s;
-	z-index: 5999999;
+	z-index: 4999999;
 
 	&.open {
 		height: 80% !important;
