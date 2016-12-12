@@ -261,6 +261,7 @@
 								} else {
 									$('.isi-container').scrollTop(0);
 									$('.isi').addClass('hide');
+									$('body').css('overflow', '');
 								}
 							},
 							offset: '98%'
