@@ -2,132 +2,132 @@
 @import '../partials/variables';
 
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .grid[data-columns] {
-  -webkit-column-count: 3;
-  -moz-column-count: 3;
-  column-count: 3;
-  -webkit-column-gap: 10px;
-  -moz-column-gap: 10px;
-  column-gap: 10px;
-  text-align: center;
-  width: 100%;
+	-webkit-column-count: 3;
+	-moz-column-count: 3;
+	column-count: 3;
+	-webkit-column-gap: 10px;
+	-moz-column-gap: 10px;
+	column-gap: 10px;
+	text-align: center;
+	width: 100%;
 }
 .grid[data-columns] > .brick {
-  display: inline-block;
-  width: 100%;
+	display: inline-block;
+	width: 100%;
 }
 .grid[data-columns] > .brick:nth-child(even) {
-  order: 2;
+	order: 2;
 }
 @media only screen and (min-width: 480px) {
-  .grid[data-columns] > .brick:nth-child(even) {
-    order: 0;
-  }
+	.grid[data-columns] > .brick:nth-child(even) {
+	order: 0;
+	}
 }
 
 
 
 .brick {
-  margin: 0 auto 10px;
-  padding: 20px;
-  height: 250px;
-  background: #e35252;
-  color: #fff;
-  text-align: center;
-  font-size: 30px;
+	margin: 0 auto 10px;
+	padding: 20px;
+	height: 250px;
+	background: #e35252;
+	color: #fff;
+	text-align: center;
+	font-size: 30px;
 }
 .grid--alt .brick {
-  background: #80cd7e;
+	background: #80cd7e;
 }
 .brick:nth-child(2n) {
-  height: 350px;
-  background: #8E2D2D;
+	height: 350px;
+	background: #8E2D2D;
 }
 .brick:nth-child(5n) {
-  height: 180px;
-  background: #BD7676;
+	height: 180px;
+	background: #BD7676;
 }
 .grid[data-columns] > .brick.ad {
-  min-width: 320px;
-  height: 620px;
+	min-width: 320px;
+	height: 620px;
 }
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-width: 320px) and (max-width: 736px) {
-    .grid[data-columns] {
-      -webkit-column-count: 1;
-      -moz-column-count: 1;
-      column-count: 1;
-    }
+	.grid[data-columns] {
+		-webkit-column-count: 1;
+		-moz-column-count: 1;
+		column-count: 1;
+	}
 }
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width: 321px) {
-    /* STYLES GO HERE */
+	/* STYLES GO HERE */
 }
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: 320px) {
-    /* STYLES GO HERE */
+	/* STYLES GO HERE */
 }
 /* Tablets, iPads (portrait and landscape) ----------- */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-    /* STYLES GO HERE */
+	/* STYLES GO HERE */
 }
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    /* STYLES GO HERE */
+	/* STYLES GO HERE */
 }
 /* Small screens ----------- */
 @media only screen and (min-width: 676px) {
-    /* STYLES GO HERE */
+	/* STYLES GO HERE */
 }
 /* Small screens : Retina ----------- */
 @media only screen and (min-width: 676px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    /* STYLES GO HERE */
+	/* STYLES GO HERE */
 }
 /* Tablets, iPads (landscape) ----------- */
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    /* STYLES GO HERE */
+	/* STYLES GO HERE */
 }
 /* Tablets, iPads (landscape) - Retina ----------- */
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    /* STYLES GO HERE */
+	/* STYLES GO HERE */
 }
 /* Tablets, iPads (portrait) ----------- */
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-    /* STYLES GO HERE */
-    .grid[data-columns] {
-      -webkit-column-count: 2;
-      -moz-column-count: 2;
-      column-count: 2;
-    }
+	/* STYLES GO HERE */
+	.grid[data-columns] {
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
+		column-count: 2;
+	}
 }
 /* Tablets, iPads (portrait) - Retina ----------- */
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    /* STYLES GO HERE */
-    .grid[data-columns] {
-      -webkit-column-count: 2;
-      -moz-column-count: 2;
-      column-count: 2;
-    }
+	/* STYLES GO HERE */
+	.grid[data-columns] {
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
+		column-count: 2;
+	}
 }
 /* Desktops and laptops ----------- */
 @media only screen and (min-width: 1025px) {
-    /* STYLES GO HERE */
+	/* STYLES GO HERE */
 }
 /* Desktops and laptops - Retina ----------- */
 @media only screen and (min-width: 1025px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    /* STYLES GO HERE */
+	/* STYLES GO HERE */
 }
 /* Large screens : Non-Retina ----------- */
 @media only screen and (min-width: 1824px) {
-    /* STYLES GO HERE */
+	/* STYLES GO HERE */
 }
 /* Large screens : Retina ----------- */
 @media only screen and (min-width: 1824px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    /* STYLES GO HERE */
+	/* STYLES GO HERE */
 }
 
