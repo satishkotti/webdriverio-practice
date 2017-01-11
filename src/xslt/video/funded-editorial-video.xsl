@@ -222,7 +222,6 @@
 					'video2/1/premium-video2/dynamic-control-bar',
 					'video2/1/api/video-metrics',
 					'video2/1/api/video-ad',
-					'css!video2/1/css/styles.css',
 					'//webmdplayer-a.akamaihd.net/consumer/' + netstoragePath + '/resources/hls.min.js'
 				];
 			};
