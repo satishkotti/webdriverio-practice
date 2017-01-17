@@ -75,7 +75,7 @@
 					</ul>
 				</div>
 				<div class="copyright">
-					<p>&#169; 2005-2015 WebMD, LLC. All rights reserved.</p>
+					<p>&#169; 2005-2017 WebMD, LLC. All rights reserved.</p>
 					<p data-metrics-module="disclaimer">WebMD does not provide medical advice, diagnosis or treatment.<br/><a data-metrics-link="info" href="/www/about-webmd-policies/additional-info?ss=ftr" rel="nofollow">See additional information.</a></p>
 				</div>
 			</div>
