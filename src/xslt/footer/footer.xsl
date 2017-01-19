@@ -63,9 +63,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="/click?url=https://privacy.truste.com/privacy-seal/WebMD,-LLC/validation?rid=7b3bf16d-37b4-42e0-aec7-836ef1d3680d" class="footer-acc-icon truste" data-metrics-link="truste">
-								<img src="//privacy-policy.truste.com/privacy-seal/WebMD,-LLC/seal?rid=80c33c7c-da0b-4788-8236-61a318f00f4c" alt="TRUSTe online privacy certification" title="TRUSTe online privacy certification"/>
-							</a>
+							<a href="//privacy.truste.com/privacy-seal/validation?rid=07326333-3522-463d-81bf-f00fd7171fff" class="footer-acc-icon truste" data-metrics-link="truste" title="TRUSTe Privacy Certification"><img style="border: none" src="//privacy-policy.truste.com/privacy-seal/seal?rid=07326333-3522-463d-81bf-f00fd7171fff" alt="TRUSTe Privacy Certification"/></a>
 						</li>
 						<li>
 							<a href="/click?url=http://www.hon.ch/HONcode/Conduct.html%3FHONConduct298987" class="footer-acc-icon hon" data-metrics-link="hon">
