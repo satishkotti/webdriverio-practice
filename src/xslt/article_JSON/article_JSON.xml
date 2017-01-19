@@ -207,6 +207,13 @@
                     <source chronic_id="091e9c5e811ef5e7" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/news/2015/06_2015/appendix/650x350_appendix.jpg" alt="illustration of appendix" />
                     <image_link chronic_id="091e9c5e81242beb" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
                 </body_image>
+                <body_image>
+                    <override_text>Related Videos [av]</override_text>
+                    <image_link_view>Page Refresh(Default)</image_link_view>
+                    <alignment>left</alignment>
+                    <source chronic_id="091e9c5e81242beb" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/article_thumbnails/news/2015/06_2015/appendix/650x350_appendix.jpg" alt="illustration of appendix" />
+                    <image_link chronic_id="091e9c5e81257bba" directive="friendlyurl" object_type="wbmd_pb_page" wbmd_lookup_type="" wbmd_storage_value="" />
+                </body_image>
             </body_images>
         </module_data>
     </webmd_module>
