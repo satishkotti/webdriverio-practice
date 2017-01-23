@@ -81,6 +81,7 @@ webmd.fundedEditorial.nextUp = {
 			$subhead = $('.up-next-container > .wbmd-subhead'),
 			subheadText = ($subhead.text().length > 0) ? $subhead.text() : "Next In The Series",
 			articles = self.articleData.articles,
+			$upnextContainer = $('.up-next-container'),
 			$seeAllContainer = $('.up-next-container > .wbmd-see-all'),
 			$seeAllVideoContainer = $('.wbmd-see-all-videos'),
 			seeAllOverrideText = self.articleData.program.seeAllText,
@@ -110,6 +111,7 @@ webmd.fundedEditorial.nextUp = {
 			$a = $('<a></a>');
 			$a.attr({ href : videoLinkUrl }).html(videoLinkText).attr('data-metrics-link', 'v-all');
 			$seeAllVideoContainer.append($a).show();
+			$('.up-next-container').addClass('plus-video');
 		}
 	},
 
