@@ -81,10 +81,14 @@ webmd.fundedEditorial.nextUp = {
 			$subhead = $('.up-next-container > .wbmd-subhead'),
 			subheadText = ($subhead.text().length > 0) ? $subhead.text() : "Next In The Series",
 			articles = self.articleData.articles,
+			$upnextContainer = $('.up-next-container'),
 			$seeAllContainer = $('.up-next-container > .wbmd-see-all'),
+			$seeAllVideoContainer = $('.wbmd-see-all-videos'),
 			seeAllOverrideText = self.articleData.program.seeAllText,
 			linkText = (seeAllOverrideText.length > 0) ? seeAllOverrideText : "See More",
 			linkUrl = self.articleData.program.seeAllLink + '#see-all-non-spon',
+			videoLinkText = (self.articleData.program.seeAllVideosText.length > 0) ? self.articleData.program.seeAllVideosText : 'Related Videos',
+			videoLinkUrl = self.articleData.program.seeAllVideos,
 			count = 0,
 			$a;
 
@@ -101,6 +105,13 @@ webmd.fundedEditorial.nextUp = {
 			$a = $('<a></a>');
 			$a.attr({ href : linkUrl }).html(linkText).attr('data-metrics-link', 'all');
 			$seeAllContainer.append($a).show();
+		}
+
+		if (videoLinkUrl !== "" || !videoLinkUrl){
+			$a = $('<a></a>');
+			$a.attr({ href : videoLinkUrl }).html(videoLinkText).attr('data-metrics-link', 'v-all');
+			$seeAllVideoContainer.append($a).show();
+			$('.up-next-container').addClass('plus-video');
 		}
 	},
 
