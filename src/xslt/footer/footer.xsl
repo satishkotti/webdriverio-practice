@@ -9,9 +9,9 @@
 	<xsl:param name="moduletitle"/>
 	<xsl:param name="s_topic"></xsl:param>
 	<xsl:param name="s_channel_micro"></xsl:param>
-
+	
 	<xsl:template match="/">
-
+		
 		<div class="footer">
 			<div class="footer-container">
 				<div class="footer-social" data-metrics-module="ftr">
@@ -57,8 +57,7 @@
 				<div class="footer-acc" data-metrics-module="ftr">
 					<ul class="clearfix">
 						<li>
-							<a href="/click?url=https://www.urac.org/directory/CompanyView.aspx?cid=C8700000F48&amp;aid=1951&amp;Type=Accreditnet" class="footer-acc-icon urac" data-metrics-link="urac">
-								<!-- <span class="jawsonly">URAC: Accredited Health Web Site</span> -->
+							<a href="/click?url=https://accreditnet2.urac.org/uracportal/Directory/CompanyView/2773" class="footer-acc-icon urac" data-metrics-link="urac">
 								<img src="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/layout/shared/URAC_trans.gif" title="URAC Health Website Accreditation" alt="URAC Seal Image"/>
 							</a>
 						</li>
@@ -69,14 +68,14 @@
 						</li>
 						<li>
 							<a href="/click?url=http://www.hon.ch/HONcode/Conduct.html%3FHONConduct298987" class="footer-acc-icon hon" data-metrics-link="hon">
-								<img alt="HONcode Seal" src="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/layout/shared/honcode14.gif" title="This site complies with the HONcode standard for trustworthy health information."/>
+								<img alt="HONcode Seal" src="http://www.honcode.ch/HONcode/Seal/HONConduct298987_s1.gif" title="This site complies with the HONcode standard for trustworthy health information."/>
 							</a>
 						</li>
 					</ul>
 				</div>
 				<div class="copyright">
-					<p>&#169; 2005-2017 WebMD, LLC. All rights reserved.</p>
-					<p data-metrics-module="disclaimer">WebMD does not provide medical advice, diagnosis or treatment.<br/><a data-metrics-link="info" href="/www/about-webmd-policies/additional-info?ss=ftr" rel="nofollow">See additional information.</a></p>
+					<p>&#169;2005-2017 WebMD, LLC. All rights reserved.</p>
+					<p data-metrics-module="disclaimer">WebMD does not provide medical advice, diagnosis or treatment. <br/> <a data-metrics-link="info" href="/www/about-webmd-policies/additional-info?ss=ftr" rel="nofollow">See additional information.</a></p>
 				</div>
 			</div>
 		</div>
@@ -94,9 +93,16 @@
 			});
 		</script>
 		]]></xsl:text>
-
+		
 	</xsl:template>
 </xsl:stylesheet>
+
+
+
+
+
+
+
 
 
 
