@@ -107,11 +107,15 @@ webmd.fundedEditorial.nextUp = {
 			$seeAllContainer.append($a).show();
 		}
 
-		if (videoLinkUrl !== "" || !videoLinkUrl){
+		if (videoLinkUrl !== "" || videoLinkUrl){
 			$a = $('<a></a>');
 			$a.attr({ href : videoLinkUrl }).html(videoLinkText).attr('data-metrics-link', 'v-all');
 			$seeAllVideoContainer.append($a).show();
-			$('.up-next-container').addClass('plus-video');
+			$upnextContainer.addClass('plus-video');
+		}
+
+		if (videoLinkUrl === "" || !videoLinkUrl){
+			$seeAllVideoContainer.hide(); 
 		}
 	},
 
