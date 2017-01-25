@@ -81,6 +81,7 @@ webmd.fundedEditorial.nextUp = {
 			current_url = window.location.href,
 			$segment = $('.up-next-container > .wbmd-segment'),
 			segmentTitle = self.articleData.program.title,
+			segmentLink = self.articleData.program.tocLink,
 			$subhead = $('.up-next-container > .wbmd-subhead'),
 			subheadText = ($subhead.text().length > 0) ? $subhead.text() : "Next In The Series",
 			vidsubheadText = "More On This Topic",
@@ -130,12 +131,15 @@ webmd.fundedEditorial.nextUp = {
 		//Check to see if we are on the all videos page and build modified up next module
 		if(videoLinkUrl === current_url){
 
-			$segment.html(segmentTitle);	
+			$a = $('<a></a>');
+				$a.attr({ href : segmentLink }).html(segmentTitle).attr('data-metrics-link', 'toc');
+				$segment.append($a).show();	
+
 			$subhead.html(vidsubheadText);
 
 			if (count > this.articles_to_display) {
 				$a = $('<a></a>');
-				$a.attr({ href : linkUrl }).html(linkText).attr('data-metrics-link', 'toc');
+				$a.attr({ href : linkUrl }).html(linkText).attr('data-metrics-link', 'all');
 				$seeAllContainer.append($a).show();
 			}
 
