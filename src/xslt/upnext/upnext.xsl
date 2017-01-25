@@ -60,6 +60,9 @@
 			<xsl:attribute name="class">
 				<xsl:text>wbmd-see-all-videos</xsl:text>
 			</xsl:attribute>
+			<xsl:attribute name="data-metrics-module">
+				<xsl:value-of select="$data_metrics_module"></xsl:value-of>
+			</xsl:attribute>
 		</xsl:element>
 		
 		<xsl:element name="script">
