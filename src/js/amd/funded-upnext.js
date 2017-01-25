@@ -96,17 +96,17 @@ webmd.fundedEditorial.nextUp = {
 			count = 0,
 			$a;
 
-		//Build standard up next module if we are not on the all videos page
-		if(videoLinkUrl !== current_url){	
-
-			$segment.html(segmentTitle);
-			$subhead.html(subheadText);
-
 			for (var i=0; i<articles.length; i++) {
 				if (!articles[i].sponsored) {
 					count++;
 				}
 			}
+
+		//Build standard up next module if we are not on the all videos page
+		if(videoLinkUrl !== current_url){	
+
+			$segment.html(segmentTitle);
+			$subhead.html(subheadText);
 
 			if (count > this.articles_to_display) {
 				$a = $('<a></a>');
@@ -133,12 +133,6 @@ webmd.fundedEditorial.nextUp = {
 			$segment.html(segmentTitle);	
 			$subhead.html(vidsubheadText);
 
-			for (var i=0; i<articles.length; i++) {
-				if (!articles[i].sponsored) {
-					count++;
-				}
-			}
-		
 			if (count > this.articles_to_display) {
 				$a = $('<a></a>');
 				$a.attr({ href : linkUrl }).html(linkText).attr('data-metrics-link', 'toc');
