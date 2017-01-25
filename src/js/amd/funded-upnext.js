@@ -56,7 +56,9 @@ webmd.fundedEditorial.nextUp = {
 
 		self.updateDOM();
 
-		self.getArticleLinks();
+		if(self.articleData.program.seeAllVideos !== current_url){
+			self.getArticleLinks();
+		}
 
 		self.render();
 	},
@@ -76,10 +78,12 @@ webmd.fundedEditorial.nextUp = {
 
 	updateDOM : function() {
 		var self = this,
+			current_url = window.location.href,
 			$segment = $('.up-next-container > .wbmd-segment'),
 			segmentTitle = self.articleData.program.title,
 			$subhead = $('.up-next-container > .wbmd-subhead'),
 			subheadText = ($subhead.text().length > 0) ? $subhead.text() : "Next In The Series",
+			vidsubheadText = "More On This Topic",
 			articles = self.articleData.articles,
 			$upnextContainer = $('.up-next-container'),
 			$seeAllContainer = $('.up-next-container > .wbmd-see-all'),
@@ -92,29 +96,55 @@ webmd.fundedEditorial.nextUp = {
 			count = 0,
 			$a;
 
-		$segment.html(segmentTitle);
-		$subhead.html(subheadText);
+		//Build standard up next module if we are not on the all videos page
+		if(videoLinkUrl !== current_url){	
 
-		for (var i=0; i<articles.length; i++) {
-			if (!articles[i].sponsored) {
-				count++;
+			$segment.html(segmentTitle);
+			$subhead.html(subheadText);
+
+			for (var i=0; i<articles.length; i++) {
+				if (!articles[i].sponsored) {
+					count++;
+				}
 			}
+
+			if (count > this.articles_to_display) {
+				$a = $('<a></a>');
+				$a.attr({ href : linkUrl }).html(linkText).attr('data-metrics-link', 'all');
+				$seeAllContainer.append($a).show();
+			}
+
+			if (videoLinkUrl !== "" || videoLinkUrl){
+				$a = $('<a></a>');
+				$a.attr({ href : videoLinkUrl }).html(videoLinkText).attr('data-metrics-link', 'allvid');
+				$seeAllVideoContainer.append($a).show();
+				$upnextContainer.addClass('plus-video');
+			}
+
+			if (videoLinkUrl === "" || !videoLinkUrl){
+				$seeAllVideoContainer.hide(); 
+			}
+
 		}
 
-		if (count > this.articles_to_display) {
-			$a = $('<a></a>');
-			$a.attr({ href : linkUrl }).html(linkText).attr('data-metrics-link', 'all');
-			$seeAllContainer.append($a).show();
-		}
+		//Check to see if we are on the all videos page and build modified up next module
+		if(videoLinkUrl === current_url){
 
-		if (videoLinkUrl !== "" || videoLinkUrl){
-			$a = $('<a></a>');
-			$a.attr({ href : videoLinkUrl }).html(videoLinkText).attr('data-metrics-link', 'v-all');
-			$seeAllVideoContainer.append($a).show();
-			$upnextContainer.addClass('plus-video');
-		}
+			$segment.html(segmentTitle);	
+			$subhead.html(vidsubheadText);
 
-		if (videoLinkUrl === "" || !videoLinkUrl){
+			for (var i=0; i<articles.length; i++) {
+				if (!articles[i].sponsored) {
+					count++;
+				}
+			}
+		
+			if (count > this.articles_to_display) {
+				$a = $('<a></a>');
+				$a.attr({ href : linkUrl }).html(linkText).attr('data-metrics-link', 'toc');
+				$seeAllContainer.append($a).show();
+			}
+
 			$seeAllVideoContainer.hide(); 
 		}
 	},

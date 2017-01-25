@@ -145,7 +145,7 @@
 	font-family: 'Chivo', Arial, sans-serif;
 	font-size: 1.4em;
 	line-height: 22px;
-	color: #1b88bf;
+	color: #187AAB;
 	&:hover {
 		color: #ffffff !important;
 		text-decoration: none;
@@ -153,14 +153,15 @@
 }
 .wbmd-see-all-videos{
 	border-radius: 3px;
-	border: 1px solid #1b88bf;
+	border: 1px solid #187AAB;
 	display: inline-block;
-	height: 42px;
+	height: 36px;
 	margin: 16px 0;
 	padding: 10px;
 	text-align: center;
+	width: 138px;
 	&:hover {
-		background-color: #1b88bf;
+		background-color: #187AAB;
 	}
 }
 
