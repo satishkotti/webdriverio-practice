@@ -141,25 +141,21 @@
 	display: none !important;
 }
 
-.wbmd-see-all-videos a {
-	font-family: 'Source Sans Pro', Arial, sans-serif;
-	font-size: 16px;
-	color: #187AAB;
-	&:hover {
-		color: #ffffff !important;
-		text-decoration: none;
-	}
-}
-.wbmd-see-all-videos{
+.wbmd-see-all-videos a{
 	border-radius: 3px;
 	border: 1px solid #187AAB;
+	color: #187AAB;
 	display: inline-block;
+	font-family: 'Source Sans Pro', Arial, sans-serif;
+	font-size: 16px;
 	margin: 16px 0;
 	padding: 10px;
 	text-align: center;
 	width: 138px;
 	&:hover {
 		background-color: #187AAB;
+		color: #ffffff !important;
+		text-decoration: none;
 	}
 }
 
