@@ -128,6 +128,7 @@
 					</xsl:call-template>
 				</xsl:element>
 			</xsl:element>
+		</xsl:element>
 
 			<!-- <xsl:if test="/webmd_rendition/content/wbmd_asset/metadata_section/wbmd_prim_med_revr/wbmd_lst_nm">
 				<xsl:element name="div">

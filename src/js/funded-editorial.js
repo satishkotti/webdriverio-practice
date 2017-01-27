@@ -205,6 +205,8 @@ webmd.fundedEditorial = {
 			self.updateArticleObj();
 		}
 
+		self.addVideoLink();
+
 		//if ($('#attribution_rdr').length) {
 			//self.moveAttribution();
 		//}
@@ -231,6 +233,26 @@ webmd.fundedEditorial = {
 		} else if ($('.up-next-container, .branded-up-next-container, .wbmd-toolbar-menu').length === 0) {
 			self.createMenu.init();
 		}
+	},
+
+	addVideoLink : function (){
+
+		var self = this,
+			$videoDescriptionContainer = $('.desc'),
+			videoLinkText = (self.articleData.program.seeAllVideosText.length > 0) ? self.articleData.program.seeAllVideosText : 'Related Videos',
+			videoLinkUrl = self.articleData.program.seeAllVideos,
+			$a;
+
+			if (videoLinkUrl !== "" || videoLinkUrl){
+				$a = $('<a></a>');
+				$a.attr({ href : videoLinkUrl }).html(videoLinkText).attr('data-metrics-link', 'allvid');
+				$a.addClass('wbmd-see-all-videos');
+				$videoDescriptionContainer.after($a).show();
+			}
+
+			if (videoLinkUrl === "" || !videoLinkUrl){
+				$seeAllVideoContainer.hide(); 
+			}	
 	},
 
 	hasStorage: function() {

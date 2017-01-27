@@ -1,6 +1,9 @@
 .premium-video-container {
 	background-color: inherit !important;
 }
+.funded-editorial .premium-video-container .playlists{
+	background: #fff;
+}
 .fed-video {
 	position: relative;
 	font-size: 1rem;
@@ -55,6 +58,22 @@
 }
 .fed-video .video-end .loading_medium_png {
 	margin: 15px auto 0;
+}
+.fed-video a.wbmd-see-all-videos{
+	border-radius: 3px;
+  	border: 1px solid #187AAB;
+  	display: inline-block;
+  	font-size: 16px;
+  	margin: 16px 0;
+ 	padding: 10px;
+  	text-align: center;
+  	width: 138px;
+}
+
+.fed-video a.wbmd-see-all-videos:hover {
+  background-color: #187AAB;
+  color: #ffffff !important;
+  text-decoration: none;
 }
 
 /* Loading Spinner */
