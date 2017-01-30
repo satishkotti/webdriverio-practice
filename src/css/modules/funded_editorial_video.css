@@ -59,18 +59,16 @@
 .fed-video .video-end .loading_medium_png {
 	margin: 15px auto 0;
 }
-.fed-video a.wbmd-see-all-videos{
+.fed-video a .wbmd-related-videos{
 	border-radius: 3px;
   	border: 1px solid #187AAB;
   	display: inline-block;
   	font-size: 16px;
-  	margin: 16px 0;
+  	margin: 30px 0;
  	padding: 10px;
-  	text-align: center;
-  	width: 138px;
 }
 
-.fed-video a.wbmd-see-all-videos:hover {
+.fed-video a .wbmd-related-videos:hover {
   background-color: #187AAB;
   color: #ffffff !important;
   text-decoration: none;

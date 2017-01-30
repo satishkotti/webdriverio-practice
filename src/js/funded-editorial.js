@@ -238,7 +238,7 @@ webmd.fundedEditorial = {
 	addVideoLink : function (){
 
 		var self = this,
-			$videoDescriptionContainer = $('.desc'),
+			$videoDescriptionContainer = $('.fed-video > .desc'),
 			videoLinkText = (self.articleData.program.seeAllVideosText.length > 0) ? self.articleData.program.seeAllVideosText : 'Related Videos',
 			videoLinkUrl = self.articleData.program.seeAllVideos,
 			$a;
@@ -246,13 +246,9 @@ webmd.fundedEditorial = {
 			if (videoLinkUrl !== "" || videoLinkUrl){
 				$a = $('<a></a>');
 				$a.attr({ href : videoLinkUrl }).html(videoLinkText).attr('data-metrics-link', 'allvid');
-				$a.addClass('wbmd-see-all-videos');
-				$videoDescriptionContainer.after($a).show();
+				$a.addClass('wbmd-related-videos');
+				$videoDescriptionContainer.after($a);
 			}
-
-			if (videoLinkUrl === "" || !videoLinkUrl){
-				$seeAllVideoContainer.hide(); 
-			}	
 	},
 
 	hasStorage: function() {

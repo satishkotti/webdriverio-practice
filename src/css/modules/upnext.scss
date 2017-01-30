@@ -51,19 +51,6 @@
 			padding-top: 0px;
 		}
 	}
-	.wbmd-see-all {
-		display: none;
-		padding-top: 22px;
-		a {
-			font-family: 'Chivo', Arial, sans-serif;
-			font-size: 1.4em;
-			line-height: 22px;
-			color: #1b88bf;
-		}
-	}
-	&.hide {
-		display: none !important;
-	}
 }
 
 .wbmd-upnext-segments {
@@ -151,7 +138,6 @@
 	margin: 16px 0;
 	padding: 10px;
 	text-align: center;
-	width: 138px;
 	&:hover {
 		background-color: #187AAB;
 		color: #ffffff !important;
