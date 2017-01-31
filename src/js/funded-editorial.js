@@ -243,15 +243,11 @@ webmd.fundedEditorial = {
 			videoLinkUrl = self.articleData.program.seeAllVideos,
 			$a;
 
-			if (videoLinkUrl !== "" || videoLinkUrl){
+			if (videoLinkUrl !== "" || videoLinkUrl && videoLinkUrl !== current_url){
 				$a = $('<a></a>');
-				$a.attr({ href : videoLinkUrl }).html(videoLinkText).attr('data-metrics-module', 'ed-rspsvlnchallvid').attr('data-metrics-link', 'allvid');
+				$a.attr({ href : videoLinkUrl }).html(videoLinkText).attr('data-metrics-module', 'ed-rspsvlnchallvid').attr('data-metrics-link', '1');
 				$a.addClass('wbmd-related-videos');
 				$videoDescriptionContainer.after($a);
-			}
-
-			if(videoLinkUrl === current_url){
-				$a.hide(); 
 			}
 	},
 

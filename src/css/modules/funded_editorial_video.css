@@ -61,11 +61,12 @@
 }
 .fed-video a.wbmd-related-videos{
 	border-radius: 3px;
-  	border: 1px solid #187AAB;
-  	display: inline-block;
-  	font-size: 16px;
-  	margin: 20px 0;
- 	padding: 10px;
+	border: 1px solid #187AAB;
+	display: inline-block;
+	font-family: 'Source Sans Pro', Arial, sans-serif;
+	font-size: 16px;
+	margin: 20px 0;
+	padding: 10px;
 }
 
 .fed-video a.wbmd-related-videos:hover {
