@@ -1266,7 +1266,7 @@ webmd.fundedEditorial = {
 		menu: 'wbmd-slidein-menu',
 
 		// Display in menu (top to bottom)
-		menuElements: ['.branded-up-next-container', '.up-next-container', '.wbmd-upnext-segments'],
+		menuElements: ['.branded-up-next-container', '.up-next-container', '.wbmd-upnext-segments', '.wbmd-see-all-videos'],
 
 		created: false,
 

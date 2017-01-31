@@ -131,11 +131,11 @@ webmd.fundedEditorial.nextUp = {
 		//Check to see if we are on the all videos page and build modified up next module
 		if(videoLinkUrl === current_url){
 
+			$subhead.html(vidsubheadText);
+
 			$a = $('<a></a>');
 				$a.attr({ href : segmentLink }).html(segmentTitle).attr('data-metrics-link', 'toc');
 				$segment.append($a).show();	
-
-			$subhead.html(vidsubheadText);
 
 			if (count > this.articles_to_display) {
 				$a = $('<a></a>');
