@@ -139,7 +139,7 @@ webmd.fundedEditorial.nextUp = {
 
 			if (count > this.articles_to_display) {
 				$a = $('<a></a>');
-				$a.attr({ href : linkUrl }).html(linkText).attr('data-metrics-link', 'allvid');
+				$a.attr({ href : linkUrl }).html(linkText).attr('data-metrics-link', 'all');
 				$seeAllContainer.append($a).show();
 			}
 

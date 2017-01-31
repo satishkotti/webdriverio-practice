@@ -203,9 +203,8 @@ webmd.fundedEditorial = {
 
 		if(typeof self.articleData !== 'undefined'){
 			self.updateArticleObj();
+			self.addVideoLink();
 		}
-
-		self.addVideoLink();
 
 		//if ($('#attribution_rdr').length) {
 			//self.moveAttribution();
@@ -238,6 +237,7 @@ webmd.fundedEditorial = {
 	addVideoLink : function (){
 
 		var self = this,
+			current_url = window.location.href,
 			$videoDescriptionContainer = $('.fed-video > .desc'),
 			videoLinkText = (self.articleData.program.seeAllVideosText.length > 0) ? self.articleData.program.seeAllVideosText : 'Related Videos',
 			videoLinkUrl = self.articleData.program.seeAllVideos,
