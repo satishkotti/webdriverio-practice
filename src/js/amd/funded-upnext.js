@@ -132,6 +132,7 @@ webmd.fundedEditorial.nextUp = {
 		if(videoLinkUrl === current_url){
 
 			$subhead.html(vidsubheadText);
+			$segment.before($subhead);
 
 			$a = $('<a></a>');
 				$a.attr({ href : segmentLink }).html(segmentTitle).attr('data-metrics-link', 'toc');
