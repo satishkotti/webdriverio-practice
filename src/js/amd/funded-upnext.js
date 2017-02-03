@@ -118,7 +118,7 @@ webmd.fundedEditorial.nextUp = {
 			if (videoLinkUrl !== "" || videoLinkUrl){
 				$a = $('<a></a>');
 				$a.attr({ href : videoLinkUrl }).html(videoLinkText).attr('data-metrics-link', 'allvid');
-				$seeAllVideoContainer.append($a).show();
+				$seeAllVideoContainer.append($a);
 				$upnextContainer.addClass('plus-video');
 			}
 

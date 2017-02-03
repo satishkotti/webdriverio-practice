@@ -156,6 +156,9 @@
 		color: #ffffff !important;
 		text-decoration: none;
 	}
+	&.hide {
+		display: none !important;
+	}
 }
 
 /* Smartphones (portrait and landscape) ----------- */
@@ -169,7 +172,7 @@
 		.wbmd-upnext-segments {
 			display: none;
 		}
-		.wbmd-upnext-segments {
+		.wbmd-see-all-videos {
 			display: none;
 		}
 	}
