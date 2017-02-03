@@ -78,30 +78,30 @@ webmd.fundedEditorial.nextUp = {
 
 	updateDOM : function() {
 		var self = this,
-			current_url = window.location.href,
-			$segment = $('.up-next-container > .wbmd-segment'),
-			segmentTitle = self.articleData.program.title,
-			segmentLink = self.articleData.program.tocLink,
-			$subhead = $('.up-next-container > .wbmd-subhead'),
-			subheadText = ($subhead.text().length > 0) ? $subhead.text() : "Next In The Series",
-			vidsubheadText = "More On This Topic",
-			articles = self.articleData.articles,
-			$upnextContainer = $('.up-next-container'),
-			$seeAllContainer = $('.up-next-container > .wbmd-see-all'),
-			$seeAllVideoContainer = $('.wbmd-see-all-videos'),
-			seeAllOverrideText = self.articleData.program.seeAllText,
-			linkText = (seeAllOverrideText.length > 0) ? seeAllOverrideText : "See More",
-			linkUrl = self.articleData.program.seeAllLink + '#see-all-non-spon',
-			videoLinkText = (self.articleData.program.seeAllVideosText.length > 0) ? self.articleData.program.seeAllVideosText : 'Related Videos',
-			videoLinkUrl = self.articleData.program.seeAllVideos,
-			count = 0,
-			$a;
+		current_url = window.location.href,
+		$segment = $('.up-next-container > .wbmd-segment'),
+		segmentTitle = self.articleData.program.title,
+		segmentLink = self.articleData.program.tocLink,
+		$subhead = $('.up-next-container > .wbmd-subhead'),
+		subheadText = ($subhead.text().length > 0) ? $subhead.text() : "Next In The Series",
+		vidsubheadText = "More On This Topic",
+		articles = self.articleData.articles,
+		$upnextContainer = $('.up-next-container'),
+		$seeAllContainer = $('.up-next-container > .wbmd-see-all'),
+		$seeAllVideoContainer = $('.wbmd-see-all-videos'),
+		seeAllOverrideText = self.articleData.program.seeAllText,
+		linkText = (seeAllOverrideText.length > 0) ? seeAllOverrideText : "See More",
+		linkUrl = self.articleData.program.seeAllLink + '#see-all-non-spon',
+		videoLinkText = (self.articleData.program.seeAllVideosText.length > 0) ? self.articleData.program.seeAllVideosText : 'Related Videos',
+		videoLinkUrl = self.articleData.program.seeAllVideos,
+		count = 0,
+		$a;
 
-			for (var i=0; i<articles.length; i++) {
-				if (!articles[i].sponsored) {
-					count++;
-				}
+		for (var i = 0; i < articles.length; i++) {
+			if (!articles[i].sponsored) {
+				count++;
 			}
+		}
 
 		//Build standard up next module if we are not on the all videos page
 		if(videoLinkUrl !== current_url){	
@@ -207,7 +207,7 @@ webmd.fundedEditorial.nextUp = {
 					complete++;
 					if (complete === webmd.fundedEditorial.segments.length) {
 						$.each(segmentBlocks, function(index, nodes) {
-							for (var i=0; i<nodes.length; i++) {
+							for (var i = 0; i < nodes.length; i++) {
 								$segments.append(nodes[i]);
 							}
 						});
@@ -281,7 +281,7 @@ webmd.fundedEditorial.nextUp = {
 				position,
 				articleId;
 
-			for (var i=0; i<articles_len; i++) {
+			for (var i = 0; i < articles_len; i++) {
 				article = self.article_data.articles[i].article;
 				position = i + 1; // add 1 (i starts from 0)
 				articleId = self.article_ids_to_display[i] + 1; // value inside array is from a 0 index array, add 1

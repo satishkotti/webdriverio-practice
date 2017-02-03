@@ -237,18 +237,18 @@ webmd.fundedEditorial = {
 	addVideoLink : function (){
 
 		var self = this,
-			current_url = window.location.href,
-			$videoDescriptionContainer = $('.fed-video > .desc'),
-			videoLinkText = (self.articleData.program.seeAllVideosText.length > 0) ? self.articleData.program.seeAllVideosText : 'Related Videos',
-			videoLinkUrl = self.articleData.program.seeAllVideos,
-			$a;
+		current_url = window.location.href,
+		$videoDescriptionContainer = $('.fed-video > .desc'),
+		videoLinkText = (self.articleData.program.seeAllVideosText.length > 0) ? self.articleData.program.seeAllVideosText : 'Related Videos',
+		videoLinkUrl = self.articleData.program.seeAllVideos,
+		$a;
 
-			if (videoLinkUrl !== "" || videoLinkUrl && videoLinkUrl !== current_url){
-				$a = $('<a></a>');
-				$a.attr({ href : videoLinkUrl }).html(videoLinkText).attr('data-metrics-module', 'ed-rspsvlnchallvid').attr('data-metrics-link', '1');
-				$a.addClass('wbmd-related-videos');
-				$videoDescriptionContainer.after($a);
-			}
+		if (videoLinkUrl !== "" || videoLinkUrl && videoLinkUrl !== current_url){
+			$a = $('<a></a>');
+			$a.attr({ href : videoLinkUrl }).html(videoLinkText).attr('data-metrics-module', 'ed-rspsvlnchallvid').attr('data-metrics-link', '1');
+			$a.addClass('wbmd-related-videos');
+			$videoDescriptionContainer.after($a);
+		}
 	},
 
 	hasStorage: function() {
