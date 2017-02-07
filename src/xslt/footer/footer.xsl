@@ -58,7 +58,7 @@
 					<ul class="clearfix">
 						<li>
 							<a href="/click?url=https://accreditnet2.urac.org/uracportal/Directory/CompanyView/2773" class="footer-acc-icon urac" data-metrics-link="urac">
-								<img src="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/layout/shared/URAC_trans.gif" title="URAC Health Website Accreditation" alt="URAC Seal Image"/>
+								<img src="//img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/layout/shared/URAC_trans.gif" title="URAC Health Website Accreditation" alt="URAC Seal Image"/>
 							</a>
 						</li>
 						<li>
@@ -66,7 +66,7 @@
 						</li>
 						<li>
 							<a href="/click?url=http://www.hon.ch/HONcode/Conduct.html%3FHONConduct298987" class="footer-acc-icon hon" data-metrics-link="hon">
-								<img alt="HONcode Seal" src="http://www.honcode.ch/HONcode/Seal/HONConduct298987_s1.gif" title="This site complies with the HONcode standard for trustworthy health information."/>
+								<img alt="HONcode Seal" src="//www.honcode.ch/HONcode/Seal/HONConduct298987_s1.gif" title="This site complies with the HONcode standard for trustworthy health information."/>
 							</a>
 						</li>
 					</ul>
