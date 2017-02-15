@@ -13,6 +13,9 @@
 	&.plus-segments {
 		margin-bottom: 0 !important;
 	}
+	&.plus-video {
+		margin-bottom: 10px;
+	}
 	.wbmd-segment {
 		font-family: 'Lato', Arial, sans-serif;
 		font-weight: bold;
@@ -138,6 +141,25 @@
 	display: none !important;
 }
 
+.wbmd-see-all-videos a {
+	border-radius: 3px;
+	border: 1px solid #187AAB;
+	color: #187AAB;
+	display: inline-block;
+	font-family: 'Source Sans Pro', Arial, sans-serif;
+	font-size: 16px;
+	margin: 6px 0 16px 0;
+	padding: 6px 14px;
+	text-align: center;
+	&:hover {
+		background-color: #187AAB;
+		color: #ffffff;
+		text-decoration: none;
+	}
+	&.hide {
+		display: none !important;
+	}
+}
 
 /* Smartphones (portrait and landscape) ----------- */
 
@@ -148,6 +170,9 @@
 			display: none;
 		}
 		.wbmd-upnext-segments {
+			display: none;
+		}
+		.wbmd-see-all-videos {
 			display: none;
 		}
 	}
