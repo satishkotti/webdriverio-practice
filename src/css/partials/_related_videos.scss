@@ -1,9 +1,9 @@
-.premium-video-container .playlists {
+.premium-video-container .playlists.all-videos {
 	background-color: #fff;
 }
 
 @media only screen and (max-width: 736px) and (min-width: 10px){
-	.premium-video-container .playlists.mobile .playlist {
-    	background-color: #fff;
+	.premium-video-container .playlists.all-videos.mobile {
+		background-color: #fff;
 	}
 }	
