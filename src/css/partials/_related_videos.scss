@@ -13,13 +13,13 @@
 }
 
 .fed-video a.wbmd-related-videos:hover {
-  background-color: #187AAB;
-  color: #ffffff !important;
-  text-decoration: none;
+	background-color: #187AAB;
+	color: #ffffff !important;
+	text-decoration: none;
 }
 
 @media only screen and (max-width: 736px) and (min-width: 10px){
-	.premium-video-container .playlists.all-videos.mobile {
+	.premium-video-container .playlists.all-videos.mobile .playlists {
 		background-color: #fff;
 	}
 	.fed-video a.wbmd-related-videos{
