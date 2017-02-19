@@ -1,0 +1,59 @@
+{
+  "uid" : "8adeff639ea472e7",
+  "name" : "\"before all\" hook",
+  "title" : "\"before all\" hook",
+  "time" : {
+    "start" : 1487459934901,
+    "stop" : 1487459944905,
+    "duration" : 10004
+  },
+  "summary" : {
+    "attachments" : 1,
+    "steps" : 1
+  },
+  "failure" : {
+    "message" : "timeout of 10000ms exceeded. The execution in the test \"Home Page \"before all\" hook\" took too long. Try to reduce the run time or increase your timeout for test specs (http://webdriver.io/guide/testrunner/timeouts.html).",
+    "stackTrace" : "Error: timeout of 10000ms exceeded. The execution in the test \"Home Page \"before all\" hook\" took too long. Try to reduce the run time or increase your timeout for test specs (http://webdriver.io/guide/testrunner/timeouts.html).\n    at null.<anonymous> (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\mocha\\lib\\runnable.js:226:19)\n    at Timer.listOnTimeout (timers.js:92:15)"
+  },
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "BROKEN",
+  "suite" : {
+    "uid" : "7b98b8c820d1754",
+    "name" : "Home Page",
+    "title" : "Home Page"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/9ab556ec-cd8f-4a4a-ba5a-2aaeda8ff551/url",
+    "title" : "POST /wd/hub/session/9ab556ec-cd8f-4a4a-ba5a-2aaeda8ff551/url",
+    "time" : {
+      "start" : 1487459934905,
+      "stop" : 1487459944905,
+      "duration" : 10000
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "BROKEN",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "e1b44ca4-9d80-4a6a-bf28-41f16692e2a4-attachment.json",
+      "type" : "application/json",
+      "size" : 37,
+      "uid" : "d865df6aafcad739"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Home Page"
+  }, {
+    "name" : "suite-title",
+    "value" : "Home Page"
+  } ],
+  "parameters" : [ ]
+}

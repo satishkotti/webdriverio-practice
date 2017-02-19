@@ -1,0 +1,73 @@
+{
+  "uid" : "1aa9620411139bfb",
+  "name" : "should load social sharing tags",
+  "title" : "should load social sharing tags",
+  "time" : {
+    "start" : 1487430754337,
+    "stop" : 1487430755047,
+    "duration" : 710
+  },
+  "summary" : {
+    "attachments" : 2,
+    "steps" : 1
+  },
+  "failure" : {
+    "message" : "invalid selector: An invalid or illegal selector was specified",
+    "stackTrace" : "Error: invalid selector: An invalid or illegal selector was specified\n    at Object.getAttribute (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:431:27)\n    at Context.<anonymous> (C:\\Temp\\wdio-test\\test\\rt\\ui\\dynamicUrlTests.js:20:18)\n    at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:678:26\n    at Context.executeSync (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:676:12)\n    at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:902:34\n    at elements(\"fb:pages\") - C:\\Temp\\wdio-test\\node_modules\\webdriverio\\build\\lib\\commands\\getAttribute.js:25:17\n    at getAttribute(\"fb:pages\", \"meta\") -     at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\at Object.Future.wait (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\node_modules\\fibers\\future.js:449:15)"
+  },
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "BROKEN",
+  "suite" : {
+    "uid" : "7b98b8c820d1754",
+    "name" : "Home Page",
+    "title" : "Home Page"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/7c4a4d75-5511-4944-838d-ec0b6a7c811e/elements",
+    "title" : "POST /wd/hub/session/7c4a4d75-5511-4944-838d-ec0b6a7c811e/elements",
+    "time" : {
+      "start" : 1487430754338,
+      "stop" : 1487430755008,
+      "duration" : 670
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "3d4e21d9-9284-4001-aabd-260b1768a30f-attachment.json",
+      "type" : "application/json",
+      "size" : 56,
+      "uid" : "8cf1b52ed0ecd965"
+    }, {
+      "title" : "Response",
+      "source" : "31e9af5f-0b4d-44b1-b71f-f8234404d2f0-attachment.json",
+      "type" : "application/json",
+      "size" : 1085852,
+      "uid" : "931232cb6f82be7f"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Home Page"
+  }, {
+    "name" : "suite-title",
+    "value" : "Home Page"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\rt\\\\ui\\\\dynamicUrlTests.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}

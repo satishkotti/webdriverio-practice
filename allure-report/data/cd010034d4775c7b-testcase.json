@@ -1,0 +1,97 @@
+{
+  "uid" : "cd010034d4775c7b",
+  "name" : "should load social sharing tags",
+  "title" : "should load social sharing tags",
+  "time" : {
+    "start" : 1487479324716,
+    "stop" : 1487479324789,
+    "duration" : 73
+  },
+  "summary" : {
+    "attachments" : 4,
+    "steps" : 2
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "7b98b8c820d1754",
+    "name" : "Home Page",
+    "title" : "Home Page"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/387c9529-fbaa-4ade-a001-b3a55681e626/elements",
+    "title" : "POST /wd/hub/session/387c9529-fbaa-4ade-a001-b3a55681e626/elements",
+    "time" : {
+      "start" : 1487479324718,
+      "stop" : 1487479324757,
+      "duration" : 39
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "58e6b8a7-f547-4936-bde4-bf3ed89119c6-attachment.json",
+      "type" : "application/json",
+      "size" : 96,
+      "uid" : "b39888216ded2ec5"
+    }, {
+      "title" : "Response",
+      "source" : "98138599-e8ba-4fb4-a09d-b8403b8bcfc0-attachment.json",
+      "type" : "application/json",
+      "size" : 244,
+      "uid" : "3c10d15d8287a99f"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/387c9529-fbaa-4ade-a001-b3a55681e626/elements",
+    "title" : "POST /wd/hub/session/387c9529-fbaa-4ade-a001-b3a55681e626/elements",
+    "time" : {
+      "start" : 1487479324758,
+      "stop" : 1487479324788,
+      "duration" : 30
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "e0ec63bb-3bdb-46f2-b4b4-b4f138500067-attachment.json",
+      "type" : "application/json",
+      "size" : 101,
+      "uid" : "46fb88b38bff8f4b"
+    }, {
+      "title" : "Response",
+      "source" : "f0271884-a99d-44f5-8fe3-d05210908f67-attachment.json",
+      "type" : "application/json",
+      "size" : 244,
+      "uid" : "40ff4ed7c0c1f556"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Home Page"
+  }, {
+    "name" : "suite-title",
+    "value" : "Home Page"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\rt\\\\ui\\\\homePage.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}

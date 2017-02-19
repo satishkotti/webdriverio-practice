@@ -1,0 +1,73 @@
+{
+  "uid" : "dedcaeec183e27c4",
+  "name" : "should load social sharing tags",
+  "title" : "should load social sharing tags",
+  "time" : {
+    "start" : 1487436712772,
+    "stop" : 1487436712815,
+    "duration" : 43
+  },
+  "summary" : {
+    "attachments" : 2,
+    "steps" : 1
+  },
+  "failure" : {
+    "message" : "expected undefined to equal 1",
+    "stackTrace" : "AssertionError: expected undefined to equal 1\n    at Assertion.assertEqual (C:\\Temp\\wdio-test\\node_modules\\chai\\lib\\chai\\core\\assertions.js:487:12)\n    at Assertion.ctx.(anonymous function) [as equal] (C:\\Temp\\wdio-test\\node_modules\\chai\\lib\\chai\\utils\\addMethod.js:41:25)\n    at Context.<anonymous> (C:\\Temp\\wdio-test\\test\\rt\\ui\\dynamicUrlTests.js:20:92)\n    at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:678:26\n    at Context.executeSync (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:676:12)\n    at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:902:34"
+  },
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "FAILED",
+  "suite" : {
+    "uid" : "503368d65612ed9d",
+    "name" : "Home Page",
+    "title" : "Home Page"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/2affb2f6-f904-44ac-8075-2fe270f36abd/element",
+    "title" : "POST /wd/hub/session/2affb2f6-f904-44ac-8075-2fe270f36abd/element",
+    "time" : {
+      "start" : 1487436712773,
+      "stop" : 1487436712811,
+      "duration" : 38
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "ce67fe3c-069f-4e49-b3e4-ab5e95c5cc99-attachment.json",
+      "type" : "application/json",
+      "size" : 96,
+      "uid" : "756c465fe36c91ad"
+    }, {
+      "title" : "Response",
+      "source" : "244f9e5d-3a99-4e72-b0d7-45971687aa25-attachment.json",
+      "type" : "application/json",
+      "size" : 220,
+      "uid" : "b32c693a1cac2c20"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Home Page"
+  }, {
+    "name" : "suite-title",
+    "value" : "Home Page"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\rt\\\\ui\\\\dynamicUrlTests.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}

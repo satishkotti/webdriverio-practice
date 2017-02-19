@@ -1,0 +1,64 @@
+{
+  "uid" : "ea12c85c8fff6344",
+  "name" : "should load successfully",
+  "title" : "should load successfully",
+  "time" : {
+    "start" : 1487435652040,
+    "stop" : 1487435652059,
+    "duration" : 19
+  },
+  "summary" : {
+    "attachments" : 1,
+    "steps" : 1
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "7b98b8c820d1754",
+    "name" : "Home Page",
+    "title" : "Home Page"
+  },
+  "steps" : [ {
+    "name" : "GET /wd/hub/session/084e20de-756f-43f3-9e35-9ad75f1dbab7/title",
+    "title" : "GET /wd/hub/session/084e20de-756f-43f3-9e35-9ad75f1dbab7/title",
+    "time" : {
+      "start" : 1487435652042,
+      "stop" : 1487435652058,
+      "duration" : 16
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Response",
+      "source" : "e1cc398f-5172-4e05-955d-9d35887d42fd-attachment.json",
+      "type" : "application/json",
+      "size" : 234,
+      "uid" : "56174d8e2045fe74"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Home Page"
+  }, {
+    "name" : "suite-title",
+    "value" : "Home Page"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\rt\\\\ui\\\\dynamicUrlTests.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}

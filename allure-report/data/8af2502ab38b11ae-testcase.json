@@ -1,0 +1,100 @@
+{
+  "uid" : "8af2502ab38b11ae",
+  "name" : "webdriver.io: should be able to filter for commands",
+  "title" : "webdriver.io: should be able to filter for commands",
+  "time" : {
+    "start" : 1487370731642,
+    "stop" : 1487370737679,
+    "duration" : 6037
+  },
+  "summary" : {
+    "attachments" : 4,
+    "steps" : 2
+  },
+  "failure" : {
+    "message" : "no such window: target window already closed\nfrom unknown error: web view not found",
+    "stackTrace" : "Error: no such window: target window already closed\n    at Object.element (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:431:27)\n    at global.$ (C:\\Temp\\wdio-test\\node_modules\\webdriverio\\build\\lib\\runner.js:233:59)\n    at Context.<anonymous> (C:\\Temp\\wdio-test\\test\\specs\\spec.js:7:3)\n    at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:678:26\n    at Context.executeSync (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:676:12)\n    at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:902:34\n    from unknown error: web view not found\n    at element(\".searchbar input\") -     at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\at Object.Future.wait (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\node_modules\\fibers\\future.js:449:15)"
+  },
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "BROKEN",
+  "suite" : {
+    "uid" : "e2a2305ede4a598c",
+    "name" : "Sample Spec",
+    "title" : "Sample Spec"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/80214e79-4461-4d92-bc8a-10872067013f/url",
+    "title" : "POST /wd/hub/session/80214e79-4461-4d92-bc8a-10872067013f/url",
+    "time" : {
+      "start" : 1487370731646,
+      "stop" : 1487370737207,
+      "duration" : 5561
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "a2fcbb13-0978-4642-9a20-44ed6e2508ca-attachment.json",
+      "type" : "application/json",
+      "size" : 45,
+      "uid" : "85ec8385e62d1de0"
+    }, {
+      "title" : "Response",
+      "source" : "3cb0a7e8-75ae-49fd-ad3d-4a56480ca7cd-attachment.json",
+      "type" : "application/json",
+      "size" : 194,
+      "uid" : "a8e507a5cd4c41d0"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/80214e79-4461-4d92-bc8a-10872067013f/element",
+    "title" : "POST /wd/hub/session/80214e79-4461-4d92-bc8a-10872067013f/element",
+    "time" : {
+      "start" : 1487370737211,
+      "stop" : 1487370737671,
+      "duration" : 460
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "4eaa901f-854d-4840-a327-328e146462e3-attachment.json",
+      "type" : "application/json",
+      "size" : 64,
+      "uid" : "145fa8724d26a761"
+    }, {
+      "title" : "Response",
+      "source" : "d9b46f19-e941-494c-8a79-57a005d3d657-attachment.json",
+      "type" : "application/json",
+      "size" : 103083,
+      "uid" : "a0ca2f91175ed1e7"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-title",
+    "value" : "Sample Spec"
+  }, {
+    "name" : "suite-name",
+    "value" : "Sample Spec"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\specs\\\\spec.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}

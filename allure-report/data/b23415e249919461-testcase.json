@@ -1,0 +1,94 @@
+{
+  "uid" : "b23415e249919461",
+  "name" : "should load social sharing tags",
+  "title" : "should load social sharing tags",
+  "time" : {
+    "start" : 1487460039598,
+    "stop" : 1487460039679,
+    "duration" : 81
+  },
+  "summary" : {
+    "attachments" : 3,
+    "steps" : 2
+  },
+  "failure" : {
+    "message" : "expected { width: 0, height: 0 } to equal 1",
+    "stackTrace" : "AssertionError: expected { width: 0, height: 0 } to equal 1\n    at Assertion.assertEqual (C:\\Temp\\wdio-test\\node_modules\\chai\\lib\\chai\\core\\assertions.js:487:12)\n    at Assertion.ctx.(anonymous function) [as equal] (C:\\Temp\\wdio-test\\node_modules\\chai\\lib\\chai\\utils\\addMethod.js:41:25)\n    at Context.<anonymous> (C:\\Temp\\wdio-test\\test\\rt\\ui\\homePage.js:21:102)\n    at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:678:26\n    at Context.executeSync (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:676:12)\n    at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:902:34"
+  },
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "FAILED",
+  "suite" : {
+    "uid" : "503368d65612ed9d",
+    "name" : "Home Page",
+    "title" : "Home Page"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/0ed4ca94-8812-4881-a8c2-10b14c2d2a21/element",
+    "title" : "POST /wd/hub/session/0ed4ca94-8812-4881-a8c2-10b14c2d2a21/element",
+    "time" : {
+      "start" : 1487460039598,
+      "stop" : 1487460039641,
+      "duration" : 43
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "68f2abb9-6e89-48d3-b907-0e5bf655a0a0-attachment.json",
+      "type" : "application/json",
+      "size" : 96,
+      "uid" : "3ee0b17c50212062"
+    }, {
+      "title" : "Response",
+      "source" : "c23d262e-967f-47cf-bece-01bbbf6eeb6f-attachment.json",
+      "type" : "application/json",
+      "size" : 218,
+      "uid" : "71d99b1ccf1b89b9"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "GET /wd/hub/session/0ed4ca94-8812-4881-a8c2-10b14c2d2a21/element/0/size",
+    "title" : "GET /wd/hub/session/0ed4ca94-8812-4881-a8c2-10b14c2d2a21/element/0/size",
+    "time" : {
+      "start" : 1487460039651,
+      "stop" : 1487460039673,
+      "duration" : 22
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Response",
+      "source" : "d99406e2-9dd5-45d5-a91f-64fd8bf8b5cb-attachment.json",
+      "type" : "application/json",
+      "size" : 307,
+      "uid" : "4f29d119655dc0d1"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Home Page"
+  }, {
+    "name" : "suite-title",
+    "value" : "Home Page"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\rt\\\\ui\\\\homePage.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}

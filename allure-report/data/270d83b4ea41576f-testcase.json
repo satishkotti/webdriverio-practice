@@ -1,0 +1,118 @@
+{
+  "uid" : "270d83b4ea41576f",
+  "name" : "should load channel dynamic url",
+  "title" : "should load channel dynamic url",
+  "time" : {
+    "start" : 1487488321701,
+    "stop" : 1487488345784,
+    "duration" : 24083
+  },
+  "summary" : {
+    "attachments" : 5,
+    "steps" : 3
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "f09cb4a779c4537d",
+    "name" : "Dynamic Url",
+    "title" : "Dynamic Url"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/6d92c605-ffbc-4c8a-9896-2827b70ba491/url",
+    "title" : "POST /wd/hub/session/6d92c605-ffbc-4c8a-9896-2827b70ba491/url",
+    "time" : {
+      "start" : 1487488321707,
+      "stop" : 1487488345734,
+      "duration" : 24027
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "39eefa4f-6569-419c-89ce-4974dc8aefb0-attachment.json",
+      "type" : "application/json",
+      "size" : 66,
+      "uid" : "f1922939db22eaa6"
+    }, {
+      "title" : "Response",
+      "source" : "e4fc96c9-8ecb-4ce0-a050-50f80d4c229c-attachment.json",
+      "type" : "application/json",
+      "size" : 194,
+      "uid" : "d73f1d2c3351198d"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/6d92c605-ffbc-4c8a-9896-2827b70ba491/cookie",
+    "title" : "POST /wd/hub/session/6d92c605-ffbc-4c8a-9896-2827b70ba491/cookie",
+    "time" : {
+      "start" : 1487488345739,
+      "stop" : 1487488345757,
+      "duration" : 18
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "7ea77ffe-87dc-430b-bc38-fc2b299ee80d-attachment.json",
+      "type" : "application/json",
+      "size" : 80,
+      "uid" : "d465869203593290"
+    }, {
+      "title" : "Response",
+      "source" : "82270dc5-fc0f-4adb-8049-273f206bfcee-attachment.json",
+      "type" : "application/json",
+      "size" : 193,
+      "uid" : "bcba2c4cecd0decd"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "GET /wd/hub/session/6d92c605-ffbc-4c8a-9896-2827b70ba491/title",
+    "title" : "GET /wd/hub/session/6d92c605-ffbc-4c8a-9896-2827b70ba491/title",
+    "time" : {
+      "start" : 1487488345761,
+      "stop" : 1487488345783,
+      "duration" : 22
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Response",
+      "source" : "8e580cd1-d410-4431-861d-e94c9a1f8b99-attachment.json",
+      "type" : "application/json",
+      "size" : 271,
+      "uid" : "40316802d8b8482f"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Dynamic Url"
+  }, {
+    "name" : "suite-title",
+    "value" : "Dynamic Url"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\rt\\\\ui\\\\dynamicUrl.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}

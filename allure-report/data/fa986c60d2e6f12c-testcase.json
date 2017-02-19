@@ -1,0 +1,73 @@
+{
+  "uid" : "fa986c60d2e6f12c",
+  "name" : "should load social sharing tags",
+  "title" : "should load social sharing tags",
+  "time" : {
+    "start" : 1487435652060,
+    "stop" : 1487435652103,
+    "duration" : 43
+  },
+  "summary" : {
+    "attachments" : 2,
+    "steps" : 1
+  },
+  "failure" : {
+    "message" : "Cannot read property 'be' of undefined",
+    "stackTrace" : "TypeError: Cannot read property 'be' of undefined\n    at Context.<anonymous> (C:\\Temp\\wdio-test\\test\\rt\\ui\\dynamicUrlTests.js:20:57)\n    at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:678:26\n    at Context.executeSync (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:676:12)\n    at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:902:34"
+  },
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "BROKEN",
+  "suite" : {
+    "uid" : "503368d65612ed9d",
+    "name" : "Home Page",
+    "title" : "Home Page"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/084e20de-756f-43f3-9e35-9ad75f1dbab7/element",
+    "title" : "POST /wd/hub/session/084e20de-756f-43f3-9e35-9ad75f1dbab7/element",
+    "time" : {
+      "start" : 1487435652060,
+      "stop" : 1487435652100,
+      "duration" : 40
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "861cc14f-2708-4f80-b2a6-fa5fafb23e97-attachment.json",
+      "type" : "application/json",
+      "size" : 73,
+      "uid" : "c82b14a49245ceca"
+    }, {
+      "title" : "Response",
+      "source" : "de81ff0f-39ef-4917-a4a8-f5ec68f581f7-attachment.json",
+      "type" : "application/json",
+      "size" : 220,
+      "uid" : "1adba46aaf5c0da9"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Home Page"
+  }, {
+    "name" : "suite-title",
+    "value" : "Home Page"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\rt\\\\ui\\\\dynamicUrlTests.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}

@@ -1,0 +1,67 @@
+{
+  "uid" : "1c94ce4376b34c61",
+  "name" : "should load top level channel indexer url PPE-#####",
+  "title" : "should load top level channel indexer url PPE-#####",
+  "time" : {
+    "start" : 1487459735320,
+    "stop" : 1487459745325,
+    "duration" : 10005
+  },
+  "summary" : {
+    "attachments" : 1,
+    "steps" : 1
+  },
+  "failure" : {
+    "message" : "timeout of 10000ms exceeded. The execution in the test \"Dynamic Url should load top level channel indexer url PPE-#####\" took too long. Try to reduce the run time or increase your timeout for test specs (http://webdriver.io/guide/testrunner/timeouts.html).",
+    "stackTrace" : "Error: timeout of 10000ms exceeded. The execution in the test \"Dynamic Url should load top level channel indexer url PPE-#####\" took too long. Try to reduce the run time or increase your timeout for test specs (http://webdriver.io/guide/testrunner/timeouts.html).\n    at null.<anonymous> (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\mocha\\lib\\runnable.js:226:19)\n    at Timer.listOnTimeout (timers.js:92:15)"
+  },
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "BROKEN",
+  "suite" : {
+    "uid" : "5d11ea3ec55dbaa9",
+    "name" : "Dynamic Url",
+    "title" : "Dynamic Url"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/e51532d3-017a-431a-a333-9cd2c2f05853/url",
+    "title" : "POST /wd/hub/session/e51532d3-017a-431a-a333-9cd2c2f05853/url",
+    "time" : {
+      "start" : 1487459735327,
+      "stop" : 1487459745325,
+      "duration" : 9998
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "BROKEN",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "bfaf3e5b-7c30-423d-af87-aa23b83cc0e8-attachment.json",
+      "type" : "application/json",
+      "size" : 61,
+      "uid" : "446cf75bc3fe54cf"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Dynamic Url"
+  }, {
+    "name" : "suite-title",
+    "value" : "Dynamic Url"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\rt\\\\ui\\\\dynamicUrl.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}

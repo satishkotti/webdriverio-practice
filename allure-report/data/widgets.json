@@ -1,0 +1,159 @@
+{
+  "hash" : "e7105c43ada45c9f6e0006854ef1a1d95249231d",
+  "plugins" : {
+    "total" : {
+      "statistic" : {
+        "total" : 168,
+        "passed" : 75,
+        "pending" : 0,
+        "canceled" : 0,
+        "failed" : 32,
+        "broken" : 61
+      },
+      "time" : {
+        "start" : 1487370731642,
+        "stop" : 1487488357620,
+        "duration" : 117625978
+      }
+    },
+    "defects" : {
+      "totalCount" : 39,
+      "items" : [ {
+        "count" : 9,
+        "uid" : "64a1948fa809fe85",
+        "message" : "expected '' to equal 'Username or password incorrect'",
+        "status" : "FAILED"
+      }, {
+        "count" : 4,
+        "uid" : "968523530f6a6e69",
+        "message" : "expected { width: 0, height: 0 } to equal 1",
+        "status" : "FAILED"
+      }, {
+        "count" : 2,
+        "uid" : "238a32b64257b30c",
+        "message" : "expected { Object (type, message, ...) } to be true",
+        "status" : "FAILED"
+      }, {
+        "count" : 2,
+        "uid" : "436369a34422f7d9",
+        "message" : "expected undefined to equal 'Username or password incorrect'",
+        "status" : "FAILED"
+      }, {
+        "count" : 2,
+        "uid" : "34a716b8f7d12c4d",
+        "message" : "expected null to equal '11736558481'",
+        "status" : "FAILED"
+      }, {
+        "count" : 1,
+        "uid" : "8c8229141c6dfe4d",
+        "message" : "expected '404 Not Found' to equal 'WebMD - Better information. Better health.'",
+        "status" : "FAILED"
+      }, {
+        "count" : 1,
+        "uid" : "79721cae83d046d6",
+        "message" : "expected false to be true",
+        "status" : "FAILED"
+      }, {
+        "count" : 1,
+        "uid" : "f6c1f0c243ddc638",
+        "message" : "expected undefined to equal 1",
+        "status" : "FAILED"
+      }, {
+        "count" : 1,
+        "uid" : "a4a009aa40786b67",
+        "message" : "expected null to equal 'Username or password incorrect'",
+        "status" : "FAILED"
+      }, {
+        "count" : 1,
+        "uid" : "71d09966710c1749",
+        "message" : "expected 'WebMD - Better information. Better health.' to equal ''",
+        "status" : "FAILED"
+      } ]
+    },
+    "xunit" : {
+      "totalCount" : 6,
+      "items" : [ {
+        "uid" : "f09cb4a779c4537d",
+        "title" : "Dynamic Url",
+        "statistic" : {
+          "total" : 12,
+          "passed" : 9,
+          "pending" : 0,
+          "canceled" : 0,
+          "failed" : 0,
+          "broken" : 3
+        }
+      }, {
+        "uid" : "7b98b8c820d1754",
+        "title" : "Home Page",
+        "statistic" : {
+          "total" : 101,
+          "passed" : 58,
+          "pending" : 0,
+          "canceled" : 0,
+          "failed" : 16,
+          "broken" : 27
+        }
+      }, {
+        "uid" : "be6b5c84146844e",
+        "title" : "Login",
+        "statistic" : {
+          "total" : 4,
+          "passed" : 0,
+          "pending" : 0,
+          "canceled" : 0,
+          "failed" : 0,
+          "broken" : 4
+        }
+      }, {
+        "uid" : "1230d167f1ae6f07",
+        "title" : "PB 2 Login",
+        "statistic" : {
+          "total" : 2,
+          "passed" : 0,
+          "pending" : 0,
+          "canceled" : 0,
+          "failed" : 0,
+          "broken" : 2
+        }
+      }, {
+        "uid" : "9115f4573c967a29",
+        "title" : "PB2 Login",
+        "statistic" : {
+          "total" : 43,
+          "passed" : 5,
+          "pending" : 0,
+          "canceled" : 0,
+          "failed" : 16,
+          "broken" : 22
+        }
+      }, {
+        "uid" : "9d9238eda79d93cf",
+        "title" : "Sample Spec",
+        "statistic" : {
+          "total" : 6,
+          "passed" : 3,
+          "pending" : 0,
+          "canceled" : 0,
+          "failed" : 0,
+          "broken" : 3
+        }
+      } ]
+    },
+    "behaviors" : {
+      "totalCount" : 1,
+      "items" : [ {
+        "title" : "Without feature",
+        "statistic" : {
+          "total" : 168,
+          "passed" : 75,
+          "pending" : 0,
+          "canceled" : 0,
+          "failed" : 32,
+          "broken" : 61
+        }
+      } ]
+    },
+    "environment" : [ ]
+  }
+}

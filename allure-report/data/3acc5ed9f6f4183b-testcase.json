@@ -1,0 +1,89 @@
+{
+  "uid" : "3acc5ed9f6f4183b",
+  "name" : "\"before all\" hook",
+  "title" : "\"before all\" hook",
+  "time" : {
+    "start" : 1487479307904,
+    "stop" : 1487479324671,
+    "duration" : 16767
+  },
+  "summary" : {
+    "attachments" : 4,
+    "steps" : 2
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "503368d65612ed9d",
+    "name" : "Home Page",
+    "title" : "Home Page"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/387c9529-fbaa-4ade-a001-b3a55681e626/url",
+    "title" : "POST /wd/hub/session/387c9529-fbaa-4ade-a001-b3a55681e626/url",
+    "time" : {
+      "start" : 1487479307912,
+      "stop" : 1487479324643,
+      "duration" : 16731
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "b81d7995-6210-480b-a5f9-2544c2ac30dd-attachment.json",
+      "type" : "application/json",
+      "size" : 37,
+      "uid" : "309a141c045328fb"
+    }, {
+      "title" : "Response",
+      "source" : "8e4c2222-5272-4f3e-80fd-0761b1f927fb-attachment.json",
+      "type" : "application/json",
+      "size" : 194,
+      "uid" : "299f73dbaf69e33"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/387c9529-fbaa-4ade-a001-b3a55681e626/cookie",
+    "title" : "POST /wd/hub/session/387c9529-fbaa-4ade-a001-b3a55681e626/cookie",
+    "time" : {
+      "start" : 1487479324647,
+      "stop" : 1487479324669,
+      "duration" : 22
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "bacd310d-1d5e-4de9-b1cd-132a396f2ba3-attachment.json",
+      "type" : "application/json",
+      "size" : 80,
+      "uid" : "7ce7bceb5662a5f"
+    }, {
+      "title" : "Response",
+      "source" : "6d7e0e31-9b13-446b-8ccc-9bc21e033c42-attachment.json",
+      "type" : "application/json",
+      "size" : 193,
+      "uid" : "bff6dfad475b8d98"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Home Page"
+  }, {
+    "name" : "suite-title",
+    "value" : "Home Page"
+  } ],
+  "parameters" : [ ]
+}

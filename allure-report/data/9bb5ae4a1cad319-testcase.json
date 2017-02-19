@@ -1,0 +1,89 @@
+{
+  "uid" : "9bb5ae4a1cad319",
+  "name" : "\"before all\" hook",
+  "title" : "\"before all\" hook",
+  "time" : {
+    "start" : 1487436706861,
+    "stop" : 1487436712751,
+    "duration" : 5890
+  },
+  "summary" : {
+    "attachments" : 4,
+    "steps" : 2
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "503368d65612ed9d",
+    "name" : "Home Page",
+    "title" : "Home Page"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/2affb2f6-f904-44ac-8075-2fe270f36abd/url",
+    "title" : "POST /wd/hub/session/2affb2f6-f904-44ac-8075-2fe270f36abd/url",
+    "time" : {
+      "start" : 1487436706864,
+      "stop" : 1487436712723,
+      "duration" : 5859
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "75593741-bd1d-45f7-a62b-501740bbb233-attachment.json",
+      "type" : "application/json",
+      "size" : 37,
+      "uid" : "ed1436bc7981e00d"
+    }, {
+      "title" : "Response",
+      "source" : "ab47e3d4-e831-43ac-a1ce-44d941434b31-attachment.json",
+      "type" : "application/json",
+      "size" : 194,
+      "uid" : "94af12f7d1869484"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/2affb2f6-f904-44ac-8075-2fe270f36abd/cookie",
+    "title" : "POST /wd/hub/session/2affb2f6-f904-44ac-8075-2fe270f36abd/cookie",
+    "time" : {
+      "start" : 1487436712727,
+      "stop" : 1487436712745,
+      "duration" : 18
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "8ef4c652-c88e-4893-bf24-f83e066258a5-attachment.json",
+      "type" : "application/json",
+      "size" : 80,
+      "uid" : "bac79614ce18999e"
+    }, {
+      "title" : "Response",
+      "source" : "012b9948-71a5-4d8e-bbd0-1c3c4b7abb62-attachment.json",
+      "type" : "application/json",
+      "size" : 194,
+      "uid" : "59a847001db66fd9"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Home Page"
+  }, {
+    "name" : "suite-title",
+    "value" : "Home Page"
+  } ],
+  "parameters" : [ ]
+}

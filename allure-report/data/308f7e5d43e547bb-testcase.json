@@ -1,0 +1,67 @@
+{
+  "uid" : "308f7e5d43e547bb",
+  "name" : "should login with pb super user access",
+  "title" : "should login with pb super user access",
+  "time" : {
+    "start" : 1487428524211,
+    "stop" : 1487428534223,
+    "duration" : 10012
+  },
+  "summary" : {
+    "attachments" : 1,
+    "steps" : 1
+  },
+  "failure" : {
+    "message" : "timeout of 10000ms exceeded. The execution in the test \"PB 2 Login should login with pb super user access\" took too long. Try to reduce the run time or increase your timeout for test specs (http://webdriver.io/guide/testrunner/timeouts.html).",
+    "stackTrace" : "Error: timeout of 10000ms exceeded. The execution in the test \"PB 2 Login should login with pb super user access\" took too long. Try to reduce the run time or increase your timeout for test specs (http://webdriver.io/guide/testrunner/timeouts.html).\n    at null.<anonymous> (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\mocha\\lib\\runnable.js:226:19)\n    at Timer.listOnTimeout (timers.js:92:15)"
+  },
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "BROKEN",
+  "suite" : {
+    "uid" : "1230d167f1ae6f07",
+    "name" : "PB 2 Login",
+    "title" : "PB 2 Login"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/126bfa56-6c9e-43f9-816e-d58df60c3ede/url",
+    "title" : "POST /wd/hub/session/126bfa56-6c9e-43f9-816e-d58df60c3ede/url",
+    "time" : {
+      "start" : 1487428524215,
+      "stop" : 1487428534223,
+      "duration" : 10008
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "BROKEN",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "e93df285-9e34-4836-8f9c-038df9cf5e21-attachment.json",
+      "type" : "application/json",
+      "size" : 47,
+      "uid" : "f7b0c59d266102a4"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-title",
+    "value" : "PB 2 Login"
+  }, {
+    "name" : "suite-name",
+    "value" : "PB 2 Login"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\pb2\\\\ui\\\\login.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}

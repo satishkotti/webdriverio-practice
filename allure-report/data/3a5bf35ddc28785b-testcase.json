@@ -1,0 +1,67 @@
+{
+  "uid" : "3a5bf35ddc28785b",
+  "name" : "Test webmd.com title",
+  "title" : "Test webmd.com title",
+  "time" : {
+    "start" : 1487371831239,
+    "stop" : 1487371841243,
+    "duration" : 10004
+  },
+  "summary" : {
+    "attachments" : 1,
+    "steps" : 1
+  },
+  "failure" : {
+    "message" : "timeout of 10000ms exceeded. The execution in the test \"Sample Spec Test webmd.com title\" took too long. Try to reduce the run time or increase your timeout for test specs (http://webdriver.io/guide/testrunner/timeouts.html).",
+    "stackTrace" : "Error: timeout of 10000ms exceeded. The execution in the test \"Sample Spec Test webmd.com title\" took too long. Try to reduce the run time or increase your timeout for test specs (http://webdriver.io/guide/testrunner/timeouts.html).\n    at null.<anonymous> (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\mocha\\lib\\runnable.js:226:19)\n    at Timer.listOnTimeout (timers.js:92:15)"
+  },
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "BROKEN",
+  "suite" : {
+    "uid" : "d862270a0e505e24",
+    "name" : "Sample Spec",
+    "title" : "Sample Spec"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/37627e9c-dd7d-4c08-b049-bfa64cba3910/url",
+    "title" : "POST /wd/hub/session/37627e9c-dd7d-4c08-b049-bfa64cba3910/url",
+    "time" : {
+      "start" : 1487371831240,
+      "stop" : 1487371841243,
+      "duration" : 10003
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "BROKEN",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "5843070c-9253-4eef-9041-66696fc2a31b-attachment.json",
+      "type" : "application/json",
+      "size" : 37,
+      "uid" : "8727225c1719a583"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-title",
+    "value" : "Sample Spec"
+  }, {
+    "name" : "suite-name",
+    "value" : "Sample Spec"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\specs\\\\spec.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}

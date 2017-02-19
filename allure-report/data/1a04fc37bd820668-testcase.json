@@ -1,0 +1,298 @@
+{
+  "uid" : "1a04fc37bd820668",
+  "name" : "Invalid username and password should fail access should fail",
+  "title" : "Invalid username and password should fail access should fail",
+  "time" : {
+    "start" : 1487486010952,
+    "stop" : 1487486026063,
+    "duration" : 15111
+  },
+  "summary" : {
+    "attachments" : 17,
+    "steps" : 10
+  },
+  "failure" : {
+    "message" : "Cannot read property 'getText' of undefined",
+    "stackTrace" : "TypeError: Cannot read property 'getText' of undefined\n    at Page.Object.create.failLoginText.get (C:\\Temp\\wdio-test\\test\\common\\pbLogin.js:13:63)\n    at Context.<anonymous> (C:\\Temp\\wdio-test\\test\\pb2\\ui\\login.js:22:25)\n    at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:678:26\n    at Context.executeSync (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:676:12)\n    at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:902:34"
+  },
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "BROKEN",
+  "suite" : {
+    "uid" : "9115f4573c967a29",
+    "name" : "PB2 Login",
+    "title" : "PB2 Login"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/url",
+    "title" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/url",
+    "time" : {
+      "start" : 1487486010955,
+      "stop" : 1487486025655,
+      "duration" : 14700
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "c73b297c-3734-49fd-94ab-ac908a27872a-attachment.json",
+      "type" : "application/json",
+      "size" : 47,
+      "uid" : "548b20ddeee26309"
+    }, {
+      "title" : "Response",
+      "source" : "2090acb2-2479-46ae-8a08-32bbb7e3353a-attachment.json",
+      "type" : "application/json",
+      "size" : 194,
+      "uid" : "112b82d9e1e00a43"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element",
+    "title" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element",
+    "time" : {
+      "start" : 1487486025661,
+      "stop" : 1487486025698,
+      "duration" : 37
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "31bc3d0d-19e1-429e-af8f-97ce52713a74-attachment.json",
+      "type" : "application/json",
+      "size" : 46,
+      "uid" : "eacd39067c06a5b0"
+    }, {
+      "title" : "Response",
+      "source" : "9faf59c4-ce6c-4442-b381-718cd5702190-attachment.json",
+      "type" : "application/json",
+      "size" : 220,
+      "uid" : "7ff90b48b5a607ce"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element/0/clear",
+    "title" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element/0/clear",
+    "time" : {
+      "start" : 1487486025703,
+      "stop" : 1487486025738,
+      "duration" : 35
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Response",
+      "source" : "a9447bdd-6ca4-4c1b-ac14-8c47cfc6247e-attachment.json",
+      "type" : "application/json",
+      "size" : 192,
+      "uid" : "1c10cfabdb6d53fa"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element/0/value",
+    "title" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element/0/value",
+    "time" : {
+      "start" : 1487486025738,
+      "stop" : 1487486025817,
+      "duration" : 79
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "e4bda192-3b69-4011-abd6-9faf8171b32e-attachment.json",
+      "type" : "application/json",
+      "size" : 166,
+      "uid" : "cdd01fa10351abe7"
+    }, {
+      "title" : "Response",
+      "source" : "07182558-768a-48e5-a737-a1712b58fd2c-attachment.json",
+      "type" : "application/json",
+      "size" : 194,
+      "uid" : "6ea3ba3484dfaedf"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element",
+    "title" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element",
+    "time" : {
+      "start" : 1487486025818,
+      "stop" : 1487486025850,
+      "duration" : 32
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "afebe012-c63c-4ab9-af85-e2a35d0521d8-attachment.json",
+      "type" : "application/json",
+      "size" : 46,
+      "uid" : "8916d6bd88b62055"
+    }, {
+      "title" : "Response",
+      "source" : "3e3e40b5-dac5-441a-b4da-20f8e46d15b2-attachment.json",
+      "type" : "application/json",
+      "size" : 220,
+      "uid" : "744463c3127ee3a5"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element/1/clear",
+    "title" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element/1/clear",
+    "time" : {
+      "start" : 1487486025853,
+      "stop" : 1487486025890,
+      "duration" : 37
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Response",
+      "source" : "0233c69a-e741-4373-9721-fc32f4c89063-attachment.json",
+      "type" : "application/json",
+      "size" : 194,
+      "uid" : "904f7d55dd38a2f7"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element/1/value",
+    "title" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element/1/value",
+    "time" : {
+      "start" : 1487486025890,
+      "stop" : 1487486025961,
+      "duration" : 71
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "40b37570-42dd-4ddc-a665-f1465d1c704f-attachment.json",
+      "type" : "application/json",
+      "size" : 166,
+      "uid" : "32283599f5347884"
+    }, {
+      "title" : "Response",
+      "source" : "5f6935f3-fa4b-40e7-9001-3595c51328b9-attachment.json",
+      "type" : "application/json",
+      "size" : 194,
+      "uid" : "f14ada820b8e537d"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element",
+    "title" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element",
+    "time" : {
+      "start" : 1487486025962,
+      "stop" : 1487486025992,
+      "duration" : 30
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "bea5b638-88fd-4e11-830a-107074eea057-attachment.json",
+      "type" : "application/json",
+      "size" : 46,
+      "uid" : "892903ba88b151fa"
+    }, {
+      "title" : "Response",
+      "source" : "43ef79dc-64a9-41f7-b595-27bf8fb230fd-attachment.json",
+      "type" : "application/json",
+      "size" : 220,
+      "uid" : "92541d6e0a2c9dc7"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element/2/submit",
+    "title" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element/2/submit",
+    "time" : {
+      "start" : 1487486025994,
+      "stop" : 1487486026025,
+      "duration" : 31
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Response",
+      "source" : "cbc8c9d6-4329-46d2-aae5-78e1e6927b83-attachment.json",
+      "type" : "application/json",
+      "size" : 194,
+      "uid" : "ce3e5703501a5d44"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element",
+    "title" : "POST /wd/hub/session/dfbc4d6d-836b-4441-962c-b28b0efd468e/element",
+    "time" : {
+      "start" : 1487486026027,
+      "stop" : 1487486026058,
+      "duration" : 31
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "da235922-4e53-4d59-9518-d861b7d455d0-attachment.json",
+      "type" : "application/json",
+      "size" : 68,
+      "uid" : "777bdfa05ee2b0f9"
+    }, {
+      "title" : "Response",
+      "source" : "064aa57a-ff90-4d26-ba18-c68355e75b11-attachment.json",
+      "type" : "application/json",
+      "size" : 219,
+      "uid" : "288f11c55c01fad8"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "PB2 Login"
+  }, {
+    "name" : "suite-title",
+    "value" : "PB2 Login"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\pb2\\\\ui\\\\login.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}

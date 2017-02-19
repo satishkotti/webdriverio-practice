@@ -1,0 +1,4 @@
+{
+    "using": "xpath",
+    "value": "//span[normalize-space() = \"Username or password incorrect\"]"
+}

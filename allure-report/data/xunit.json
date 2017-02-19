@@ -1,0 +1,1970 @@
+{
+  "time" : {
+    "start" : 1487370731642,
+    "stop" : 1487488357620,
+    "duration" : 117625978
+  },
+  "testSuites" : [ {
+    "uid" : "9115f4573c967a29",
+    "name" : "PB2 Login",
+    "title" : "PB2 Login",
+    "time" : {
+      "start" : 1487482790821,
+      "stop" : 1487488357620,
+      "duration" : 5566799
+    },
+    "statistic" : {
+      "total" : 43,
+      "passed" : 5,
+      "pending" : 0,
+      "canceled" : 0,
+      "failed" : 16,
+      "broken" : 22
+    },
+    "description" : null,
+    "testCases" : [ {
+      "uid" : "90ce8d6f2ba3489e",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487487742744,
+        "stop" : 1487487762418,
+        "duration" : 19674
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "d9e0ebc178c7144c",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487487762418,
+        "stop" : 1487487765218,
+        "duration" : 2800
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "4c60fa1d884fd894",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487487141445,
+        "stop" : 1487487157183,
+        "duration" : 15738
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "75005b0878529813",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487485785918,
+        "stop" : 1487485804429,
+        "duration" : 18511
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "282cd091062c66",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487488321052,
+        "stop" : 1487488351056,
+        "duration" : 30004
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "abd8dc8ba025a2c3",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487488351057,
+        "stop" : 1487488357620,
+        "duration" : 6563
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "1d6ac1f726c036de",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487487567339,
+        "stop" : 1487487583752,
+        "duration" : 16413
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "5769d875c694aa4f",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487486066077,
+        "stop" : 1487486081237,
+        "duration" : 15160
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "5ae354da66587abc",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487484266909,
+        "stop" : 1487484266912,
+        "duration" : 3
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "aac7a4b45bf0f3b9",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487484266912,
+        "stop" : 1487484266913,
+        "duration" : 1
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "8e6d74027da9e2ba",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487483062532,
+        "stop" : 1487483092539,
+        "duration" : 30007
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "90e770f0e6825c5b",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487485743298,
+        "stop" : 1487485760679,
+        "duration" : 17381
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "8184d38928fe8d58",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487483149096,
+        "stop" : 1487483179100,
+        "duration" : 30004
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "5f2d53ccdb72fea6",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487485638611,
+        "stop" : 1487485653815,
+        "duration" : 15204
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "548ede8cbbc46721",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487485351092,
+        "stop" : 1487485366119,
+        "duration" : 15027
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "4818d0dfa3ae8911",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487485581835,
+        "stop" : 1487485597062,
+        "duration" : 15227
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "f1af6a66e308dcce",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487486352953,
+        "stop" : 1487486367893,
+        "duration" : 14940
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "5b5a0be8565b024a",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487486286850,
+        "stop" : 1487486301870,
+        "duration" : 15020
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "ec613452059136d6",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487486434381,
+        "stop" : 1487486449374,
+        "duration" : 14993
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "96972e0c53e1537",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487487294662,
+        "stop" : 1487487312388,
+        "duration" : 17726
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "708734b1bfc8e69",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487485468661,
+        "stop" : 1487485484110,
+        "duration" : 15449
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "1f1d8119f1389928",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487486914626,
+        "stop" : 1487486930017,
+        "duration" : 15391
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "cfca9649b62485f0",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487485091089,
+        "stop" : 1487485106071,
+        "duration" : 14982
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "85b99173ff5a3b16",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487487690334,
+        "stop" : 1487487707096,
+        "duration" : 16762
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "d4e36a0136dc90b6",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487484519245,
+        "stop" : 1487484536238,
+        "duration" : 16993
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "9c0417379133009b",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487485277404,
+        "stop" : 1487485293898,
+        "duration" : 16494
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "55078f9a1d56818a",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487487254335,
+        "stop" : 1487487269872,
+        "duration" : 15537
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "e75e1da4fb1b5a63",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487483242432,
+        "stop" : 1487483272443,
+        "duration" : 30011
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "4ecfb0113845034b",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487484655814,
+        "stop" : 1487484670827,
+        "duration" : 15013
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "93ffcf7aa986c349",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487482790821,
+        "stop" : 1487482805850,
+        "duration" : 15029
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "792a505a82ac4b34",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487487394972,
+        "stop" : 1487487411193,
+        "duration" : 16221
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "45a29b3b3a3c53f9",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487488013870,
+        "stop" : 1487488032240,
+        "duration" : 18370
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "3aa8c80559c8c5d0",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487488032241,
+        "stop" : 1487488035029,
+        "duration" : 2788
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "1a04fc37bd820668",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487486010952,
+        "stop" : 1487486026063,
+        "duration" : 15111
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "60ce96168acd82e3",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487486651770,
+        "stop" : 1487486666737,
+        "duration" : 14967
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "12b414558173ce40",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487483388722,
+        "stop" : 1487483406336,
+        "duration" : 17614
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "6b47ad3643b036ec",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487484826108,
+        "stop" : 1487484841204,
+        "duration" : 15096
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "fde875e24fdf66dc",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487486704965,
+        "stop" : 1487486719943,
+        "duration" : 14978
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "357eb1ab341f8a9e",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487484301137,
+        "stop" : 1487484318739,
+        "duration" : 17602
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "c9d09fd9c0e1e09f",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487484318739,
+        "stop" : 1487484321643,
+        "duration" : 2904
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "9e6eadf947cc509a",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487488277061,
+        "stop" : 1487488297136,
+        "duration" : 20075
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "e1c79c6ff47825dd",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487488297136,
+        "stop" : 1487488300113,
+        "duration" : 2977
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "cca9df748bdc36ae",
+      "name" : "Invalid username and password should fail access should fail",
+      "title" : "Invalid username and password should fail access should fail",
+      "time" : {
+        "start" : 1487484442237,
+        "stop" : 1487484459640,
+        "duration" : 17403
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    } ]
+  }, {
+    "uid" : "7b98b8c820d1754",
+    "name" : "Home Page",
+    "title" : "Home Page",
+    "time" : {
+      "start" : 1487428931344,
+      "stop" : 1487488342183,
+      "duration" : 59410839
+    },
+    "statistic" : {
+      "total" : 101,
+      "passed" : 58,
+      "pending" : 0,
+      "canceled" : 0,
+      "failed" : 16,
+      "broken" : 27
+    },
+    "description" : null,
+    "testCases" : [ {
+      "uid" : "bd2c18fa5a1329cf",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487478683482,
+        "stop" : 1487478693485,
+        "duration" : 10003
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "f7446abc6824935a",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487480698711,
+        "stop" : 1487480710065,
+        "duration" : 11354
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "ff3f98c55d7e2e49",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487480710066,
+        "stop" : 1487480710102,
+        "duration" : 36
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "30018711e0bfe03f",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487480710103,
+        "stop" : 1487480710206,
+        "duration" : 103
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "90717e63c3e0c3a8",
+      "name" : "should not redirect",
+      "title" : "should not redirect",
+      "time" : {
+        "start" : 1487480710206,
+        "stop" : 1487480710207,
+        "duration" : 1
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "64d63923093e7476",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487459735194,
+        "stop" : 1487459745197,
+        "duration" : 10003
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "33dcc112dfb7c91e",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487480663025,
+        "stop" : 1487480663029,
+        "duration" : 4
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "893ee5de82fce897",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487460407015,
+        "stop" : 1487460416691,
+        "duration" : 9676
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "eaf41941215ff174",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487460416692,
+        "stop" : 1487460416718,
+        "duration" : 26
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "b8d6eaeaa12b51cb",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487460416719,
+        "stop" : 1487460416859,
+        "duration" : 140
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "791ced93d70e5c20",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487479640381,
+        "stop" : 1487479651811,
+        "duration" : 11430
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "ca488541e4a75197",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487479651812,
+        "stop" : 1487479651854,
+        "duration" : 42
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "9d0baf7a6c37c164",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487479651854,
+        "stop" : 1487479651957,
+        "duration" : 103
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "a9de9009064701d3",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487477078852,
+        "stop" : 1487477079091,
+        "duration" : 239
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "992e48a1ea97a4af",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487477079092,
+        "stop" : 1487477079151,
+        "duration" : 59
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "32411f4365323dcd",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487477079152,
+        "stop" : 1487477079201,
+        "duration" : 49
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "4f6d8f808629be70",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487459867849,
+        "stop" : 1487459877854,
+        "duration" : 10005
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "c2feadce04d858ac",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487430283139,
+        "stop" : 1487430293143,
+        "duration" : 10004
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "a0e0ecd5b27c41e3",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487436706861,
+        "stop" : 1487436712751,
+        "duration" : 5890
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "4272f2f25cb71cd4",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487436712751,
+        "stop" : 1487436712772,
+        "duration" : 21
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "9a37506d66b14a2a",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487436712772,
+        "stop" : 1487436712815,
+        "duration" : 43
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "e9fe9bb5943223ca",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487482565176,
+        "stop" : 1487482582330,
+        "duration" : 17154
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "97c3cfd07729bcbf",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487482582330,
+        "stop" : 1487482582379,
+        "duration" : 49
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "e3223c7194373edc",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487482582380,
+        "stop" : 1487482582510,
+        "duration" : 130
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "bfc38c91cfa56a90",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487460031278,
+        "stop" : 1487460039572,
+        "duration" : 8294
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "6da8e9b2bd4b8fba",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487460039573,
+        "stop" : 1487460039597,
+        "duration" : 24
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "5e94bea271b39586",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487460039598,
+        "stop" : 1487460039679,
+        "duration" : 81
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "794a9b0018110ce3",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487436003498,
+        "stop" : 1487436009522,
+        "duration" : 6024
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "23fdddef8ba867ef",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487436009523,
+        "stop" : 1487436009546,
+        "duration" : 23
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "799ba073efaef47f",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487436009547,
+        "stop" : 1487436010199,
+        "duration" : 652
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "11443d0259855d3c",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487431231295,
+        "stop" : 1487431240696,
+        "duration" : 9401
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "116fdd0f61eee3ff",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487431240697,
+        "stop" : 1487431240716,
+        "duration" : 19
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "8605db2019b8f742",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487431240716,
+        "stop" : 1487431240787,
+        "duration" : 71
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "5a3508109eccf971",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487481146821,
+        "stop" : 1487481162561,
+        "duration" : 15740
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "7cc791ee98d824b5",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487481162561,
+        "stop" : 1487481162606,
+        "duration" : 45
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "47d4d6cc21a0dca4",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487481162607,
+        "stop" : 1487481162720,
+        "duration" : 113
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "6897f8b6fd00b2d3",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487431138520,
+        "stop" : 1487431148526,
+        "duration" : 10006
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "8e7302e623cc360",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487480281800,
+        "stop" : 1487480293095,
+        "duration" : 11295
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "57f74fe1b4067df2",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487480293096,
+        "stop" : 1487480293137,
+        "duration" : 41
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "ca97e2a38d65139f",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487480293138,
+        "stop" : 1487480293241,
+        "duration" : 103
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "36d30331adddff8f",
+      "name" : "should not redirect",
+      "title" : "should not redirect",
+      "time" : {
+        "start" : 1487480293242,
+        "stop" : 1487480293242,
+        "duration" : 0
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "3dbf919070520913",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487478159162,
+        "stop" : 1487478169165,
+        "duration" : 10003
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "c1d64f2f304151d7",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487430745511,
+        "stop" : 1487430754312,
+        "duration" : 8801
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "de59ba89d94a97f5",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487430754312,
+        "stop" : 1487430754336,
+        "duration" : 24
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "1aa9620411139bfb",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487430754337,
+        "stop" : 1487430755047,
+        "duration" : 710
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "9ab5e84d5d4c76e5",
+      "name" : "should load successfully in less than 10 seconds",
+      "title" : "should load successfully in less than 10 seconds",
+      "time" : {
+        "start" : 1487428992763,
+        "stop" : 1487428999051,
+        "duration" : 6288
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "5546aeb65fee88b4",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487431104627,
+        "stop" : 1487431114632,
+        "duration" : 10005
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "9764935848c42974",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487488321790,
+        "stop" : 1487488342015,
+        "duration" : 20225
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "48dc860ef0029b7f",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487488342015,
+        "stop" : 1487488342058,
+        "duration" : 43
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "67141926c5a9b57a",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487488342058,
+        "stop" : 1487488342183,
+        "duration" : 125
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "4fb243487d429b95",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487459628077,
+        "stop" : 1487459638079,
+        "duration" : 10002
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "22da839677d8d811",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487480621228,
+        "stop" : 1487480621231,
+        "duration" : 3
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "2512623ccef6e888",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487480764833,
+        "stop" : 1487480779002,
+        "duration" : 14169
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "b74aebcd7e944762",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487480779002,
+        "stop" : 1487480779039,
+        "duration" : 37
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "7e0125bbb0da8f08",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487480779040,
+        "stop" : 1487480779147,
+        "duration" : 107
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "1a3efff8528f3380",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487436523256,
+        "stop" : 1487436529569,
+        "duration" : 6313
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "bd82b1b9e335f744",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487436529570,
+        "stop" : 1487436529593,
+        "duration" : 23
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "e56b3774952c8650",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487436529594,
+        "stop" : 1487436529640,
+        "duration" : 46
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "a97f507a039ac593",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487435646288,
+        "stop" : 1487435652040,
+        "duration" : 5752
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "ea12c85c8fff6344",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487435652040,
+        "stop" : 1487435652059,
+        "duration" : 19
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "84419df3f401355c",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487435652060,
+        "stop" : 1487435652103,
+        "duration" : 43
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "5aef4bf832d17cba",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487428931344,
+        "stop" : 1487428941347,
+        "duration" : 10003
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "c0e3e35428edbf15",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487477667147,
+        "stop" : 1487477677150,
+        "duration" : 10003
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "acec5defb93bfc77",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487430619451,
+        "stop" : 1487430629455,
+        "duration" : 10004
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "cf5ddd2489e1b91a",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487477261780,
+        "stop" : 1487477271788,
+        "duration" : 10008
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "7cd498254cfafc54",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487431335241,
+        "stop" : 1487431342299,
+        "duration" : 7058
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "1570374c8aa750be",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487431342299,
+        "stop" : 1487431342322,
+        "duration" : 23
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "20922f6b4ca18bb3",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487431342322,
+        "stop" : 1487431342388,
+        "duration" : 66
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "3d620791c1e8a69",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487436650051,
+        "stop" : 1487436656880,
+        "duration" : 6829
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "bd40a71830d54f16",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487436656881,
+        "stop" : 1487436656904,
+        "duration" : 23
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "44c88f17e833580f",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487436656905,
+        "stop" : 1487436656951,
+        "duration" : 46
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "aa3c1a3f1b86614b",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487477842379,
+        "stop" : 1487477852383,
+        "duration" : 10004
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "93e3b2f7c848404c",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487431184638,
+        "stop" : 1487431194644,
+        "duration" : 10006
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "46d76f5d7bb9137",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487478586846,
+        "stop" : 1487478596853,
+        "duration" : 10007
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "717458cae36f18c",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487478596854,
+        "stop" : 1487478598731,
+        "duration" : 1877
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "f8e75fa523d576f4",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487479256781,
+        "stop" : 1487479268442,
+        "duration" : 11661
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "7a14044f589a5105",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487479268442,
+        "stop" : 1487479268487,
+        "duration" : 45
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "b9ef17c597c877e6",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487479268488,
+        "stop" : 1487479268568,
+        "duration" : 80
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "5d427be66df5299f",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487478822554,
+        "stop" : 1487478832557,
+        "duration" : 10003
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "5baff9bdcd22beb2",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487435438756,
+        "stop" : 1487435445059,
+        "duration" : 6303
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "fef8a3b67ce37cab",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487435445060,
+        "stop" : 1487435445081,
+        "duration" : 21
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "c9d3417aad50317f",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487435445082,
+        "stop" : 1487435445740,
+        "duration" : 658
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "532b562a183ec40c",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487460212405,
+        "stop" : 1487460220362,
+        "duration" : 7957
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "94b1f32d5717b33b",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487460220362,
+        "stop" : 1487460220387,
+        "duration" : 25
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "ab5024a5901b86a1",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487460220388,
+        "stop" : 1487460220504,
+        "duration" : 116
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "efd4b446d07d3b31",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487478524440,
+        "stop" : 1487478534444,
+        "duration" : 10004
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "8adeff639ea472e7",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487459934901,
+        "stop" : 1487459944905,
+        "duration" : 10004
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "95d9e8c5885d4fa0",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487478053225,
+        "stop" : 1487478063228,
+        "duration" : 10003
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "de5db187385a2d6f",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487478964278,
+        "stop" : 1487478975992,
+        "duration" : 11714
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "d369d226bd32660a",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487478975992,
+        "stop" : 1487478976064,
+        "duration" : 72
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "15507ace8456cdb8",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487478976065,
+        "stop" : 1487478976165,
+        "duration" : 100
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "a17fabce6e6d540c",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487480191619,
+        "stop" : 1487480202957,
+        "duration" : 11338
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "115f552ce51cfd19",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487480202957,
+        "stop" : 1487480202993,
+        "duration" : 36
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "8378040f9eec2ba5",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487480202994,
+        "stop" : 1487480203099,
+        "duration" : 105
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "caa36ae636587e91",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487479307904,
+        "stop" : 1487479324671,
+        "duration" : 16767
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "62c65eb80e2a6c9c",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487479324671,
+        "stop" : 1487479324715,
+        "duration" : 44
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    }, {
+      "uid" : "cd010034d4775c7b",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487479324716,
+        "stop" : 1487479324789,
+        "duration" : 73
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "66c70170df46abcc",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487430251311,
+        "stop" : 1487430261316,
+        "duration" : 10005
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "6c604a2eec3c0bc2",
+      "name" : "\"before all\" hook",
+      "title" : "\"before all\" hook",
+      "time" : {
+        "start" : 1487437227319,
+        "stop" : 1487437233932,
+        "duration" : 6613
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "c989dcb8321e52c5",
+      "name" : "should load successfully",
+      "title" : "should load successfully",
+      "time" : {
+        "start" : 1487437233933,
+        "stop" : 1487437233959,
+        "duration" : 26
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "795dd0f9fdb263bb",
+      "name" : "should load social sharing tags",
+      "title" : "should load social sharing tags",
+      "time" : {
+        "start" : 1487437233960,
+        "stop" : 1487437234027,
+        "duration" : 67
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    } ]
+  }, {
+    "uid" : "9d9238eda79d93cf",
+    "name" : "Sample Spec",
+    "title" : "Sample Spec",
+    "time" : {
+      "start" : 1487370731642,
+      "stop" : 1487372195123,
+      "duration" : 1463481
+    },
+    "statistic" : {
+      "total" : 6,
+      "passed" : 3,
+      "pending" : 0,
+      "canceled" : 0,
+      "failed" : 0,
+      "broken" : 3
+    },
+    "description" : null,
+    "testCases" : [ {
+      "uid" : "fa709d405d4e897f",
+      "name" : "webdriver.io: should be able to filter for commands",
+      "title" : "webdriver.io: should be able to filter for commands",
+      "time" : {
+        "start" : 1487371825923,
+        "stop" : 1487371831239,
+        "duration" : 5316
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "f06c4ac670cbffec",
+      "name" : "Test webmd.com title",
+      "title" : "Test webmd.com title",
+      "time" : {
+        "start" : 1487371831239,
+        "stop" : 1487371841243,
+        "duration" : 10004
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "1dbc46ede3d7883f",
+      "name" : "webdriver.io: should be able to filter for commands",
+      "title" : "webdriver.io: should be able to filter for commands",
+      "time" : {
+        "start" : 1487372182805,
+        "stop" : 1487372188781,
+        "duration" : 5976
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "183158c3a10044a",
+      "name" : "Test webmd.com title",
+      "title" : "Test webmd.com title",
+      "time" : {
+        "start" : 1487372188781,
+        "stop" : 1487372195123,
+        "duration" : 6342
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "63640928198d6f2e",
+      "name" : "webdriver.io: should be able to filter for commands",
+      "title" : "webdriver.io: should be able to filter for commands",
+      "time" : {
+        "start" : 1487370731642,
+        "stop" : 1487370737679,
+        "duration" : 6037
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "e258a447aa70f598",
+      "name" : "Test webmd.com title",
+      "title" : "Test webmd.com title",
+      "time" : {
+        "start" : 1487370737679,
+        "stop" : 1487370737999,
+        "duration" : 320
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    } ]
+  }, {
+    "uid" : "f09cb4a779c4537d",
+    "name" : "Dynamic Url",
+    "title" : "Dynamic Url",
+    "time" : {
+      "start" : 1487459628077,
+      "stop" : 1487488349528,
+      "duration" : 28721451
+    },
+    "statistic" : {
+      "total" : 12,
+      "passed" : 9,
+      "pending" : 0,
+      "canceled" : 0,
+      "failed" : 0,
+      "broken" : 3
+    },
+    "description" : null,
+    "testCases" : [ {
+      "uid" : "36cb50b8e8fcbd87",
+      "name" : "should load top level channel indexer url PPE-#####",
+      "title" : "should load top level channel indexer url PPE-#####",
+      "time" : {
+        "start" : 1487459868044,
+        "stop" : 1487459878046,
+        "duration" : 10002
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "7b8c3835fb43ef67",
+      "name" : "should load top level channel and sub channel indexer url PPE-#####",
+      "title" : "should load top level channel and sub channel indexer url PPE-#####",
+      "time" : {
+        "start" : 1487459878046,
+        "stop" : 1487459886507,
+        "duration" : 8461
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "8cfb35b5f2fb29fa",
+      "name" : "should load channel dynamic url",
+      "title" : "should load channel dynamic url",
+      "time" : {
+        "start" : 1487482565361,
+        "stop" : 1487482582797,
+        "duration" : 17436
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "3db8f1f3e1a60d60",
+      "name" : "should load channel sub channel dynamic url",
+      "title" : "should load channel sub channel dynamic url",
+      "time" : {
+        "start" : 1487482582798,
+        "stop" : 1487482591957,
+        "duration" : 9159
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "d05d4cc8e6cf5fed",
+      "name" : "should load top level channel indexer url PPE-#####",
+      "title" : "should load top level channel indexer url PPE-#####",
+      "time" : {
+        "start" : 1487459735320,
+        "stop" : 1487459745325,
+        "duration" : 10005
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "4bbad677ff24f135",
+      "name" : "should load top level channel and sub channel indexer url PPE-#####",
+      "title" : "should load top level channel and sub channel indexer url PPE-#####",
+      "time" : {
+        "start" : 1487459745326,
+        "stop" : 1487459754076,
+        "duration" : 8750
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "270d83b4ea41576f",
+      "name" : "should load channel dynamic url",
+      "title" : "should load channel dynamic url",
+      "time" : {
+        "start" : 1487488321701,
+        "stop" : 1487488345784,
+        "duration" : 24083
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "8dabf893b95ba24e",
+      "name" : "should load channel sub channel dynamic url",
+      "title" : "should load channel sub channel dynamic url",
+      "time" : {
+        "start" : 1487488345784,
+        "stop" : 1487488349528,
+        "duration" : 3744
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "2bacdcca6ddd832",
+      "name" : "should load channel dynamic url",
+      "title" : "should load channel dynamic url",
+      "time" : {
+        "start" : 1487481146823,
+        "stop" : 1487481166249,
+        "duration" : 19426
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "54a5e8a2c870de44",
+      "name" : "should load channel sub channel dynamic url",
+      "title" : "should load channel sub channel dynamic url",
+      "time" : {
+        "start" : 1487481166249,
+        "stop" : 1487481169048,
+        "duration" : 2799
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "7c9e8893cb22d9d8",
+      "name" : "should load top level channel indexer url PPE-#####",
+      "title" : "should load top level channel indexer url PPE-#####",
+      "time" : {
+        "start" : 1487459628077,
+        "stop" : 1487459638091,
+        "duration" : 10014
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "d6f079b0e49c5cc6",
+      "name" : "should load top level channel and sub channel indexer url PPE-#####",
+      "title" : "should load top level channel and sub channel indexer url PPE-#####",
+      "time" : {
+        "start" : 1487459638092,
+        "stop" : 1487459643558,
+        "duration" : 5466
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    } ]
+  }, {
+    "uid" : "1230d167f1ae6f07",
+    "name" : "PB 2 Login",
+    "title" : "PB 2 Login",
+    "time" : {
+      "start" : 1487428322261,
+      "stop" : 1487428534223,
+      "duration" : 211962
+    },
+    "statistic" : {
+      "total" : 2,
+      "passed" : 0,
+      "pending" : 0,
+      "canceled" : 0,
+      "failed" : 0,
+      "broken" : 2
+    },
+    "description" : null,
+    "testCases" : [ {
+      "uid" : "49a0859cbcf3039a",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487428322261,
+        "stop" : 1487428332270,
+        "duration" : 10009
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "308f7e5d43e547bb",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487428524211,
+        "stop" : 1487428534223,
+        "duration" : 10012
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    } ]
+  }, {
+    "uid" : "be6b5c84146844e",
+    "name" : "Login",
+    "title" : "Login",
+    "time" : {
+      "start" : 1487427486099,
+      "stop" : 1487428024387,
+      "duration" : 538288
+    },
+    "statistic" : {
+      "total" : 4,
+      "passed" : 0,
+      "pending" : 0,
+      "canceled" : 0,
+      "failed" : 0,
+      "broken" : 4
+    },
+    "description" : null,
+    "testCases" : [ {
+      "uid" : "e3d133c30c7ca907",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487427882572,
+        "stop" : 1487427892575,
+        "duration" : 10003
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "bf2839ef9b8eb6a",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487428014369,
+        "stop" : 1487428024387,
+        "duration" : 10018
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "2192ea6ed0632463",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487427548305,
+        "stop" : 1487427558322,
+        "duration" : 10017
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "a7b7d086d3de24e7",
+      "name" : "should login with pb super user access",
+      "title" : "should login with pb super user access",
+      "time" : {
+        "start" : 1487427486099,
+        "stop" : 1487427486102,
+        "duration" : 3
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    } ]
+  } ]
+}

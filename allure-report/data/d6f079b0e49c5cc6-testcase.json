@@ -1,0 +1,172 @@
+{
+  "uid" : "d6f079b0e49c5cc6",
+  "name" : "should load top level channel and sub channel indexer url PPE-#####",
+  "title" : "should load top level channel and sub channel indexer url PPE-#####",
+  "time" : {
+    "start" : 1487459638092,
+    "stop" : 1487459643558,
+    "duration" : 5466
+  },
+  "summary" : {
+    "attachments" : 9,
+    "steps" : 5
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "f09cb4a779c4537d",
+    "name" : "Dynamic Url",
+    "title" : "Dynamic Url"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/6394536d-0352-4af7-a931-8318dc0c5b2d/url",
+    "title" : "POST /wd/hub/session/6394536d-0352-4af7-a931-8318dc0c5b2d/url",
+    "time" : {
+      "start" : 1487459638092,
+      "stop" : 1487459640513,
+      "duration" : 2421
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "c55bfa14-969c-4832-8fc8-84434442b036-attachment.json",
+      "type" : "application/json",
+      "size" : 87,
+      "uid" : "266bd3e8fc67bbe2"
+    }, {
+      "title" : "Response",
+      "source" : "1819c45c-546f-40c7-a02d-dc4c1db940e1-attachment.json",
+      "type" : "application/json",
+      "size" : 194,
+      "uid" : "5e074e0b54972e21"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/6394536d-0352-4af7-a931-8318dc0c5b2d/cookie",
+    "title" : "POST /wd/hub/session/6394536d-0352-4af7-a931-8318dc0c5b2d/cookie",
+    "time" : {
+      "start" : 1487459640514,
+      "stop" : 1487459643487,
+      "duration" : 2973
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "de640367-c098-49f0-8e75-f73c5e04ad64-attachment.json",
+      "type" : "application/json",
+      "size" : 80,
+      "uid" : "b7961f73a9012f41"
+    }, {
+      "title" : "Response",
+      "source" : "c431657f-c792-4572-b329-0a655ec373eb-attachment.json",
+      "type" : "application/json",
+      "size" : 193,
+      "uid" : "c49349fbafb85098"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/6394536d-0352-4af7-a931-8318dc0c5b2d/cookie",
+    "title" : "POST /wd/hub/session/6394536d-0352-4af7-a931-8318dc0c5b2d/cookie",
+    "time" : {
+      "start" : 1487459643493,
+      "stop" : 1487459643500,
+      "duration" : 7
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "cc297f73-7166-40ff-a4c6-cac94d6b2b8f-attachment.json",
+      "type" : "application/json",
+      "size" : 80,
+      "uid" : "c6d18c8605faf14a"
+    }, {
+      "title" : "Response",
+      "source" : "5c540c1f-c562-4f9b-99a9-a7279291b08c-attachment.json",
+      "type" : "application/json",
+      "size" : 192,
+      "uid" : "919270f08c4cf98a"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "GET /wd/hub/session/6394536d-0352-4af7-a931-8318dc0c5b2d/title",
+    "title" : "GET /wd/hub/session/6394536d-0352-4af7-a931-8318dc0c5b2d/title",
+    "time" : {
+      "start" : 1487459643504,
+      "stop" : 1487459643530,
+      "duration" : 26
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Response",
+      "source" : "afd40b62-399e-4de5-abc6-9c78b8f49fcf-attachment.json",
+      "type" : "application/json",
+      "size" : 268,
+      "uid" : "d63ed6d6a42cce8f"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "GET /wd/hub/session/6394536d-0352-4af7-a931-8318dc0c5b2d/title",
+    "title" : "GET /wd/hub/session/6394536d-0352-4af7-a931-8318dc0c5b2d/title",
+    "time" : {
+      "start" : 1487459643540,
+      "stop" : 1487459643557,
+      "duration" : 17
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Response",
+      "source" : "a7fbb75a-22a8-4218-b356-f9a580fcd2d7-attachment.json",
+      "type" : "application/json",
+      "size" : 267,
+      "uid" : "57f928fd925e825f"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ {
+    "title" : "Response",
+    "source" : "60ba4130-fb22-4dec-a541-46a730116e0f-attachment.json",
+    "type" : "application/json",
+    "size" : 194,
+    "uid" : "d9ad1d1bd8426acf"
+  } ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Dynamic Url"
+  }, {
+    "name" : "suite-title",
+    "value" : "Dynamic Url"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\rt\\\\ui\\\\dynamicUrl.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}

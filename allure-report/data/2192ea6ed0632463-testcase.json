@@ -1,0 +1,67 @@
+{
+  "uid" : "2192ea6ed0632463",
+  "name" : "should login with pb super user access",
+  "title" : "should login with pb super user access",
+  "time" : {
+    "start" : 1487427548305,
+    "stop" : 1487427558322,
+    "duration" : 10017
+  },
+  "summary" : {
+    "attachments" : 1,
+    "steps" : 1
+  },
+  "failure" : {
+    "message" : "timeout of 10000ms exceeded. The execution in the test \"Login should login with pb super user access\" took too long. Try to reduce the run time or increase your timeout for test specs (http://webdriver.io/guide/testrunner/timeouts.html).",
+    "stackTrace" : "Error: timeout of 10000ms exceeded. The execution in the test \"Login should login with pb super user access\" took too long. Try to reduce the run time or increase your timeout for test specs (http://webdriver.io/guide/testrunner/timeouts.html).\n    at null.<anonymous> (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\mocha\\lib\\runnable.js:226:19)\n    at Timer.listOnTimeout (timers.js:92:15)"
+  },
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "BROKEN",
+  "suite" : {
+    "uid" : "be6b5c84146844e",
+    "name" : "Login",
+    "title" : "Login"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/ebbea0d2-b384-4f9d-a1cb-c5b548e0e3e7/url",
+    "title" : "POST /wd/hub/session/ebbea0d2-b384-4f9d-a1cb-c5b548e0e3e7/url",
+    "time" : {
+      "start" : 1487427548308,
+      "stop" : 1487427558322,
+      "duration" : 10014
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "BROKEN",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "90f2a607-9cfe-4ba2-8480-df8d81fd61f6-attachment.json",
+      "type" : "application/json",
+      "size" : 47,
+      "uid" : "100f1431747e54ee"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Login"
+  }, {
+    "name" : "suite-title",
+    "value" : "Login"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\pb2\\\\ui\\\\login.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}

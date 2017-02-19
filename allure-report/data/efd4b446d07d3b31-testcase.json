@@ -1,0 +1,86 @@
+{
+  "uid" : "efd4b446d07d3b31",
+  "name" : "\"before all\" hook",
+  "title" : "\"before all\" hook",
+  "time" : {
+    "start" : 1487478524440,
+    "stop" : 1487478534444,
+    "duration" : 10004
+  },
+  "summary" : {
+    "attachments" : 3,
+    "steps" : 2
+  },
+  "failure" : {
+    "message" : "timeout of 10000ms exceeded. The execution in the test \"Home Page \"before all\" hook\" took too long. Try to reduce the run time or increase your timeout for test specs (http://webdriver.io/guide/testrunner/timeouts.html).",
+    "stackTrace" : "Error: timeout of 10000ms exceeded. The execution in the test \"Home Page \"before all\" hook\" took too long. Try to reduce the run time or increase your timeout for test specs (http://webdriver.io/guide/testrunner/timeouts.html).\n    at null.<anonymous> (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\mocha\\lib\\runnable.js:226:19)\n    at Timer.listOnTimeout (timers.js:92:15)"
+  },
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "BROKEN",
+  "suite" : {
+    "uid" : "7b98b8c820d1754",
+    "name" : "Home Page",
+    "title" : "Home Page"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/3fcac6cf-bf4c-48cf-a469-ce4ba54a2c0b/timeouts",
+    "title" : "POST /wd/hub/session/3fcac6cf-bf4c-48cf-a469-ce4ba54a2c0b/timeouts",
+    "time" : {
+      "start" : 1487478524444,
+      "stop" : 1487478524473,
+      "duration" : 29
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "d395821a-1344-4859-bc77-c2e4a120f1db-attachment.json",
+      "type" : "application/json",
+      "size" : 44,
+      "uid" : "39cfcacd0d72d998"
+    }, {
+      "title" : "Response",
+      "source" : "1a87e6c7-9814-44f5-9bb4-3684dc1fc339-attachment.json",
+      "type" : "application/json",
+      "size" : 194,
+      "uid" : "60f5bc909f8096fa"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "POST /wd/hub/session/3fcac6cf-bf4c-48cf-a469-ce4ba54a2c0b/url",
+    "title" : "POST /wd/hub/session/3fcac6cf-bf4c-48cf-a469-ce4ba54a2c0b/url",
+    "time" : {
+      "start" : 1487478524475,
+      "stop" : 1487478534444,
+      "duration" : 9969
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "BROKEN",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "d94c47c2-d5a3-41e0-9c64-9b2aa67e9666-attachment.json",
+      "type" : "application/json",
+      "size" : 37,
+      "uid" : "96c723b9a5346431"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Home Page"
+  }, {
+    "name" : "suite-title",
+    "value" : "Home Page"
+  } ],
+  "parameters" : [ ]
+}

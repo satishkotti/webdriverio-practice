@@ -1,0 +1,85 @@
+{
+  "uid" : "6d44e15d35e80b15",
+  "name" : "should load successfully",
+  "title" : "should load successfully",
+  "time" : {
+    "start" : 1487482582330,
+    "stop" : 1487482582379,
+    "duration" : 49
+  },
+  "summary" : {
+    "attachments" : 2,
+    "steps" : 2
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "503368d65612ed9d",
+    "name" : "Home Page",
+    "title" : "Home Page"
+  },
+  "steps" : [ {
+    "name" : "GET /wd/hub/session/f5660aa4-822a-4b46-85a7-5cdc1d6b3196/title",
+    "title" : "GET /wd/hub/session/f5660aa4-822a-4b46-85a7-5cdc1d6b3196/title",
+    "time" : {
+      "start" : 1487482582335,
+      "stop" : 1487482582360,
+      "duration" : 25
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Response",
+      "source" : "66fd5717-7fa7-4263-97d7-7b98bad79a0c-attachment.json",
+      "type" : "application/json",
+      "size" : 233,
+      "uid" : "cb0a10df9f46cd3f"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "GET /wd/hub/session/f5660aa4-822a-4b46-85a7-5cdc1d6b3196/url",
+    "title" : "GET /wd/hub/session/f5660aa4-822a-4b46-85a7-5cdc1d6b3196/url",
+    "time" : {
+      "start" : 1487482582360,
+      "stop" : 1487482582378,
+      "duration" : 18
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Response",
+      "source" : "ad47ceee-dd26-4c31-92e2-25b5fca00232-attachment.json",
+      "type" : "application/json",
+      "size" : 213,
+      "uid" : "806995c47c8a212f"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Home Page"
+  }, {
+    "name" : "suite-title",
+    "value" : "Home Page"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\rt\\\\ui\\\\homePage.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}

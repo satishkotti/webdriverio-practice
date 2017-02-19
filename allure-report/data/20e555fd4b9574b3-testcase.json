@@ -1,0 +1,94 @@
+{
+  "uid" : "20e555fd4b9574b3",
+  "name" : "should load successfully in less than 10 seconds",
+  "title" : "should load successfully in less than 10 seconds",
+  "time" : {
+    "start" : 1487428992763,
+    "stop" : 1487428999051,
+    "duration" : 6288
+  },
+  "summary" : {
+    "attachments" : 3,
+    "steps" : 2
+  },
+  "failure" : {
+    "message" : "expected 'WebMD - Better information. Better health.' to equal ''",
+    "stackTrace" : "AssertionError: expected 'WebMD - Better information. Better health.' to equal ''\n    at Assertion.assertEqual (C:\\Temp\\wdio-test\\node_modules\\chai\\lib\\chai\\core\\assertions.js:487:12)\n    at Assertion.ctx.(anonymous function) [as equal] (C:\\Temp\\wdio-test\\node_modules\\chai\\lib\\chai\\utils\\addMethod.js:41:25)\n    at Context.<anonymous> (C:\\Temp\\wdio-test\\test\\rt\\ui\\dynamicUrlTests.js:6:23)\n    at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:678:26\n    at Context.executeSync (C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:676:12)\n    at C:\\Temp\\wdio-test\\node_modules\\wdio-mocha-framework\\node_modules\\wdio-sync\\build\\index.js:902:34"
+  },
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "FAILED",
+  "suite" : {
+    "uid" : "503368d65612ed9d",
+    "name" : "Home Page",
+    "title" : "Home Page"
+  },
+  "steps" : [ {
+    "name" : "POST /wd/hub/session/fe25ff5f-a6ce-4a65-b68a-5f3f55c2023b/url",
+    "title" : "POST /wd/hub/session/fe25ff5f-a6ce-4a65-b68a-5f3f55c2023b/url",
+    "time" : {
+      "start" : 1487428992766,
+      "stop" : 1487428999021,
+      "duration" : 6255
+    },
+    "summary" : {
+      "attachments" : 2,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Request",
+      "source" : "c8427e6a-b72e-4745-b57c-6944cfc045d8-attachment.json",
+      "type" : "application/json",
+      "size" : 37,
+      "uid" : "828ecb9559eca478"
+    }, {
+      "title" : "Response",
+      "source" : "090ce13b-241a-4c81-834b-f524676bb551-attachment.json",
+      "type" : "application/json",
+      "size" : 194,
+      "uid" : "e48dcfd0a79d63bc"
+    } ],
+    "steps" : [ ]
+  }, {
+    "name" : "GET /wd/hub/session/fe25ff5f-a6ce-4a65-b68a-5f3f55c2023b/title",
+    "title" : "GET /wd/hub/session/fe25ff5f-a6ce-4a65-b68a-5f3f55c2023b/title",
+    "time" : {
+      "start" : 1487428999025,
+      "stop" : 1487428999047,
+      "duration" : 22
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ {
+      "title" : "Response",
+      "source" : "c15d10a5-3e09-4472-aedc-edf22971805f-attachment.json",
+      "type" : "application/json",
+      "size" : 234,
+      "uid" : "618127e3b915b6d8"
+    } ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Home Page"
+  }, {
+    "name" : "suite-title",
+    "value" : "Home Page"
+  } ],
+  "parameters" : [ {
+    "name" : "capabilities",
+    "value" : "{\"browserName\":\"chrome\"}",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  }, {
+    "name" : "spec files",
+    "value" : "[\"C:\\\\Temp\\\\wdio-test\\\\test\\\\rt\\\\ui\\\\dynamicUrlTests.js\"]",
+    "kind" : "ENVIRONMENT_VARIABLE"
+  } ]
+}
