@@ -111,7 +111,7 @@
 				<xsl:when test="//referenced_objects/object[@chronic_id=$ObjectID]//@pointer = '1'">
 					<xsl:value-of select="//referenced_objects/object[@chronic_id=$ObjectID][1]/target/@friendlyurl"></xsl:value-of>
 				</xsl:when>
-				<xsl:otherwise>//<xsl:value-of select="//referenced_objects/object[@chronic_id=$ObjectID][1]/target[@siteid=$site_id]/@prefix[1]"></xsl:value-of>.<xsl:value-of select="$domain"></xsl:value-of>
+				<xsl:otherwise>
 					<xsl:value-of select="//referenced_objects/object[@chronic_id=$ObjectID][1]/target[@siteid=$site_id]/@friendlyurl[1]"></xsl:value-of>
 				</xsl:otherwise>
 			</xsl:choose>
