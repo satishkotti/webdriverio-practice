@@ -1,26 +1,29 @@
 var LoginPage = require('./../common/pbLogin');
+var common = require('./../common/commonLib');
+var data = require('./../data/testRunConfig');
 
-describe('PB2 Login', function () {
-    it('should login with pb super user access PPE-#####', function () {
+describe('PB2 Login Tests', function () {
+
+/*    
+    it('should be able to login with pb super user access', function () {
 
         LoginPage.open();
-        LoginPage.username.setValue('QAPublication');
-        LoginPage.password.setValue('QA-Doc#1');
+        LoginPage.username.setValue(data.testData.username);
+        LoginPage.password.setValue(data.testData.password);
         LoginPage.submit();
         LoginPage.browser.waitForVisible("#grid-favorites");
 
         expect(LoginPage.title).to.equal('Dashboard - WebMD PageBuilder');
     });
-
-     it('Invalid username and password should fail access should fail PPE-#####', function () {
-
-        LoginPage.open();
-        LoginPage.username.setValue('InvalidUser');
-        LoginPage.password.setValue('InvalidPass');
-        LoginPage.submit();
-        LoginPage.browser.waitForVisible(".pb-login-error");
-
-
-       // expect(LoginPage.failLoginText).to.be.true;
+*/
+     it('should be able to login with pb super user access', function () {
+         browser.login(data.testData);
+         expect(browser.getUrlAndTitle().title).to.equal(data.expectedResults.homepageTitle);
     });
+
+    before( function(){
+      browser.addCommand('login', common.login.bind(browser));
+      browser.addCommand('getUrlAndTitle', common.getUrlAndTitle.bind(browser));
+});
+
 });
