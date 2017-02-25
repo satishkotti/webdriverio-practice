@@ -1,6 +1,9 @@
 var Q = require("q");
 exports.config = {
 
+    debug: false,
+    maxInstances: 10,
+    
     //
     // ==================
     // Specify Test Files
@@ -11,12 +14,11 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        //'./test/rt/**/*.js',
         './test/pb2/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
-        // 'path/to/excluded/files'
+        './test/pb2/common/**/*.js'
     ],
     //
     // ============
@@ -54,7 +56,7 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-    waitforTimeout: 60000,
+    waitforTimeout: 6000000,
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as property. Make sure you have
@@ -100,7 +102,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 30000
+        timeout: 600000
     },
 
     //
@@ -144,7 +146,7 @@ exports.config = {
         should = chai.should();
         _ = require('lodash');
 
-        configs = require("./config/")
+        //configs = require("./config/")
         
         global.pb2Url = "genesys."+ testEnv +"webmd.com";
 		global.rtUrl = "http://www." + testEnv + "webmd.com";
