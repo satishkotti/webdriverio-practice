@@ -2,7 +2,7 @@ var LoginPage = require('./../common/pbLogin');
 var common = require('./../common/commonLib');
 var data = require('./../data/testRunConfig');
 
-describe('PB2 Navigation Map Tests', function () {
+describe('PB2 Navigation Map Tests', function (){
 
      it('Should display site structure nodes when Edit Site Structure from menu selected - PPE-81340', function () {
          browser.selectSiteStructureFromEdit();
@@ -27,6 +27,17 @@ describe('PB2 Navigation Map Tests', function () {
          expect(tabs.nodeCQTab).to.equal(data.expectedResults.nodeCQTab); //verify node display name
     });
 
+    it.only('should have valid nav map info in readonly mode PPE-81340', function(){
+
+         browser.selectSiteStructureFromEdit();
+         var node = browser.getSiteStructureNavMapNodeIdAndName();
+
+debugger
+        var dbResults = browser.siteManagementGetNodeId(node.id,1);
+
+        dbResults.forEach(function(value){ console.log(value); });
+
+    });
 
 before( function(){
       browser.addCommand('login', common.login.bind(browser));
@@ -34,7 +45,8 @@ before( function(){
       browser.addCommand('getSiteStructureNavMapNodeIdAndName', common.getSiteStructureNavMapNodeIdAndName.bind(browser));
       browser.addCommand('selectSiteStructureFromInteriorMenu', common.selectSiteStructureFromInteriorMenu.bind(browser));
       browser.addCommand('getSiteStructureNavMapTabsNames', common.getSiteStructureNavMapTabsNames.bind(browser));
-      
+      browser.addCommand('siteManagementGetNodeId', common.siteManagementGetNodeId.bind(browser));
+
       browser.login(data.testData);
     });
 });
