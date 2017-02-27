@@ -66,6 +66,7 @@
 						</li>
 						<li>
 							<a data-metrics-link="tag"><img title="TAG accredation" alt="TAG seal" src="//img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/layout/shared/tag-registered.png?resize=*:60px"/></a>
+						</li>
 						<li>
 							<a href="/click?url=http://www.hon.ch/HONcode/Conduct.html%3FHONConduct298987" class="footer-acc-icon hon" data-metrics-link="hon">
 								<img alt="HONcode Seal" src="//www.honcode.ch/HONcode/Seal/HONConduct298987_s1.gif" title="This site complies with the HONcode standard for trustworthy health information."/>
