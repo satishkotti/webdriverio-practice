@@ -3,7 +3,7 @@ var data = require('./../data/testRunConfig');
 
 describe('PB2 Favorite and Unfavorite Tests', function () {
 
-    it.only('Should create Favorite and Unfavorite for Template from Edit  Template & Pages', function () {
+    it('Should create Favorite and Unfavorite for Template from Edit Template & Pages', function () {
         
         templatePageToggeleFav(data.expectedResults.baseTemplateName, data.expectedResults.level0NavMapNodeId)
     });

@@ -14,11 +14,10 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/pb2/**/*.js'
+        './test/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
-        './test/pb2/common/**/*.js'
     ],
     //
     // ============
@@ -148,7 +147,7 @@ exports.config = {
 
         //configs = require("./config/")
         
-        global.pb2Url = "genesys."+ testEnv +"webmd.com";
+        global.pb2Url = "http://genesys."+ testEnv +"webmd.com";
 		global.rtUrl = "http://www." + testEnv + "webmd.com";
 		global.profD2Url = "http://www." + testEnv + "webmd.com";
     },
@@ -163,5 +162,23 @@ exports.config = {
     // possible to defer the end of the process using a promise.
     onComplete: function() {
         // do something
+    },
+    suites: {
+        pb2Sanity: [
+            './test/pb2/sanity/favorite.js',
+            './test/pb2/sanity/page.js',
+            './test/pb2/sanity/template.js'
+            ],
+        pb2Ui:[
+            './test/pb2/ui/login.js',
+            './test/pb2/ui/navmap.js',
+            './test/pb2/ui/ppe-81340.js'
+            ],
+        rtSanity: [ 
+            './test/rt/sanity/dynamicUrl.js',
+            './test/rt/sanity/homePage.js'
+            ],
+        rtUi:[
+            ],
     }
 };
