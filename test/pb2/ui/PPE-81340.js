@@ -31,9 +31,7 @@ describe('PB2 Navigation Map Tests', function (){
 
          browser.selectSiteStructureFromEdit();
          var node = browser.getSiteStructureNavMapNodeIdAndName();
-
-debugger
-        var dbResults = browser.siteManagementGetNodeId(node.id,1);
+         var dbResults = browser.siteManagementGetNodeId(node.id,1);
 
         dbResults.forEach(function(value){ console.log(value); });
 

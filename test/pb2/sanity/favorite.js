@@ -14,6 +14,7 @@ describe('PB2 Favorite and Unfavorite Tests', function () {
     });
 
     it('Should create Favorite and Unfavorite for Node from Edit site structure', function () {
+        
         browser.selectEditTemplatesAndPages();
         var nodeId = browser.getWorkcenterNavMapNodeId();
         expect(nodeId).to.equal(nodeId);
@@ -30,7 +31,7 @@ describe('PB2 Favorite and Unfavorite Tests', function () {
 
     it('Should create Favorite and Unfavorite for Search Query', function () {
 
-         throw new Error("Test Incomplete");
+         throw new Error("Add Test Here");
     });
 
     it('Should create Favorite and Unfavorite for Sharedmodule', function () {

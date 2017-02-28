@@ -42,7 +42,7 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: silent | verbose | command | data | result | error
-    logLevel: 'error',
+    logLevel: 'verbose',
     //
     // Enables colors for log output.
     coloredLogs: true,
@@ -55,7 +55,7 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-    waitforTimeout: 6000000,
+    waitforTimeout: 999999999,
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as property. Make sure you have
@@ -101,7 +101,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 600000
+        timeout: 999999999
     },
 
     //
@@ -169,7 +169,7 @@ exports.config = {
             './test/pb2/sanity/page.js',
             './test/pb2/sanity/template.js'
             ],
-        pb2Ui:[
+        pb2Ui: [
             './test/pb2/ui/login.js',
             './test/pb2/ui/navmap.js',
             './test/pb2/ui/ppe-81340.js'
