@@ -10,5 +10,6 @@ module.exports.expectedResults={
     level0NodeDisplayName: "Level 0",
     nodePropTab: "Node Properties",
     nodeCQTab: "Name / Content Queries",
-    baseTemplateName: "Base Template"
+    baseTemplateName: "Base Template",
+    errorPage: "Error 404"
 };

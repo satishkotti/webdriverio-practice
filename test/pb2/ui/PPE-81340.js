@@ -40,13 +40,17 @@ debugger
     });
 
 before( function(){
-      browser.addCommand('login', common.login.bind(browser));
-      browser.addCommand('selectSiteStructureFromEdit', common.selectSiteStructureFromEdit.bind(browser));
-      browser.addCommand('getSiteStructureNavMapNodeIdAndName', common.getSiteStructureNavMapNodeIdAndName.bind(browser));
-      browser.addCommand('selectSiteStructureFromInteriorMenu', common.selectSiteStructureFromInteriorMenu.bind(browser));
-      browser.addCommand('getSiteStructureNavMapTabsNames', common.getSiteStructureNavMapTabsNames.bind(browser));
-      browser.addCommand('siteManagementGetNodeId', common.siteManagementGetNodeId.bind(browser));
+        browser.addCommand('login', common.login.bind(browser));
+        browser.addCommand('selectSiteStructureFromEdit', common.selectSiteStructureFromEdit.bind(browser));
+        browser.addCommand('getSiteStructureNavMapNodeIdAndName', common.getSiteStructureNavMapNodeIdAndName.bind(browser));
+        browser.addCommand('selectSiteStructureFromInteriorMenu', common.selectSiteStructureFromInteriorMenu.bind(browser));
+        browser.addCommand('getSiteStructureNavMapTabsNames', common.getSiteStructureNavMapTabsNames.bind(browser));
+        browser.addCommand('siteManagementGetNodeId', common.siteManagementGetNodeId.bind(browser));
 
+        browser.setViewportSize({
+            width: 1024,
+            height: 768
+        });
       browser.login(data.testData);
     });
 });

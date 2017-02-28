@@ -1,16 +1,18 @@
 var smdb = require('./../../common/siteManagementDb');
 
-var getUrlAndTitle = function(){
+module.exports.getUrlAndTitle = function(){
     return {
             url: this.getUrl(),
             title: this.getTitle()};
 };
-module.exports.getUrlAndTitle = getUrlAndTitle;
 
-var login = function (params) {
-    console.log('url:' + params.url);
-    console.log('username:'+ params.username);
-    console.log('password:'  + params.password);
+module.exports.login = function (params) {
+    
+    /*
+        console.log('url:' + params.url);
+        console.log('username:'+ params.username);
+        console.log('password:'  + params.password);
+    */
     this.url(params.url);
     this.element('#username').setValue(params.username);
     this.element('#password').setValue(params.password);
@@ -18,16 +20,14 @@ var login = function (params) {
     this.waitForVisible("#grid-favorites");
     return;
 };
-module.exports.login = login;
 
-var selectCreateTemplatesAndPages = function(){
+module.exports.selectCreateTemplatesAndPages = function(){
     this.click("li.pb-topbar-nav-button:nth-child(2)");
     this.click("//li[text()='Create']//li[text()='Templates & Pages']");
     this.waitForExist("span.pb-tree-node");
     this.click("span.pb-tree-node")
     this.waitForExist("div.pb-workcenter-list h3 span", 20000);
 };
-module.exports.selectCreateTemplatesAndPages = selectCreateTemplatesAndPages;
 
 module.exports.selectEditTemplatesAndPages = function(){
     this.click("li.pb-topbar-nav-button:nth-child(3)");
@@ -37,25 +37,22 @@ module.exports.selectEditTemplatesAndPages = function(){
     this.waitForExist("div.pb-workcenter-list h3 span", 20000);
 };
 
-var getWorkcenterNavMapNodeId = function(){
+module.exports.getWorkcenterNavMapNodeId = function(){
     return this.getText("div.pb-workcenter-list h3 span");
 };
-module.exports.getWorkcenterNavMapNodeId = getWorkcenterNavMapNodeId;
 
-var getSiteStructureNavMapNodeIdAndName = function(){
+module.exports.getSiteStructureNavMapNodeIdAndName = function(){
     this.pause(2000);
     return { id: this.getText("Form label b.ng-binding"),
             displayName: this.getText("span.pb-workcenter-breadcrumb b")};
 };
-module.exports.getSiteStructureNavMapNodeIdAndName = getSiteStructureNavMapNodeIdAndName;
 
-var getSiteStructureNavMapTabsNames = function(){
+module.exports.getSiteStructureNavMapTabsNames = function(){
     return { nodePropTab: this.getText("div.pb-workcenter.ng-scope div.ng-isolate-scope ul.nav-tabs li:nth-child(1) a"),
             nodeCQTab: this.getText("div.pb-workcenter.ng-scope div.ng-isolate-scope ul.nav-tabs li:nth-child(2) a")};
 };
-module.exports.getSiteStructureNavMapTabsNames = getSiteStructureNavMapTabsNames;
 
-var selectSiteStructureFromEdit = function(){
+module.exports.selectSiteStructureFromEdit = function(){
    
     this.click("li.pb-topbar-nav-button:nth-child(3)");
     this.click("//li[text()='Edit']//li[text()='Site Structure']");
@@ -63,9 +60,8 @@ var selectSiteStructureFromEdit = function(){
     this.click("span.pb-tree-node");
     this.waitForExist("Form label b.ng-binding", 20000)
 };
-module.exports.selectSiteStructureFromEdit = selectSiteStructureFromEdit;
 
-var selectSiteStructureFromInteriorMenu = function(nodeHierarchy){
+module.exports.selectSiteStructureFromInteriorMenu = function(nodeHierarchy){
     this.click("li.pb-topbar-nav-button:nth-child(3)");
     this.click("//li[text()='Edit']//li[text()='Templates & Pages']");
     this.waitForExist("span.pb-tree-node");
@@ -87,25 +83,38 @@ var selectSiteStructureFromInteriorMenu = function(nodeHierarchy){
     */
     return;
 };
-module.exports.selectSiteStructureFromInteriorMenu = selectSiteStructureFromInteriorMenu;
 
 module.exports.selectNodeResultGridRowByName = function(name){
     //select level0--> BaseTemplate
     this.waitForText("#workcenterListGrid");
-    //console.log("(//TD[@role='gridcell' and text()=' "+name+" '])");
     this.element("(//TD[@role='gridcell' and text()=' "+name+" ']/parent::*)").click();
 };
 
 //Feature: favorite
-module.exports.setFavorite = function(){
+module.exports.toggleFavoriteFromWorkcenter = function(){
     //favorite menu --> click favorite icon
+    //console.log('toggleFavoriteFromWorkcenter');
     this.click("div:nth-child(3) > button[type='button'].button-menu");
-        this.click("//LI[@data-ng-click='toggleFavorite()']");
+    this.click("//LI[@data-ng-click='toggleFavorite()']");
     this.pause(2000);
 };
 
-module.exports.getFavoriteByName = function(name){
-    return this.getText("//*[@id='favoritesWidget']/table/tbody/tr/td[2]/span[text()='"+name+"']");  
+module.exports.toggleFavoriteForNode = function(){
+    //favorite menu --> click favorite icon
+    //console.log('toggleFavoriteForNode');
+    this.click("//BUTTON[@type='button'][text()='Node Actions']");
+    this.click("//LI[@data-ng-click='toggleFavoriteNode()']");
+    this.pause(2000);
+};
+
+module.exports.isFavoriteSaved = function(name){
+
+    //console.log('isFavoriteSaved');
+    this.waitForText("#grid-favorites");
+    this.pause(2500);
+
+    //console.log(name);
+    return this.isExisting("//SPAN[@ng-bind='dataItem.name'][text()='"+name+"']");  
 };
 
 module.exports.clickHome = function(){
@@ -113,28 +122,24 @@ module.exports.clickHome = function(){
     this.waitForExist("#grid-favorites");
 };
 
-var selectLevel0Node = function(){
+module.exports.selectLevel0Node = function(){
     //selects Level0 node
     this.click("li.pb-topbar-nav-button:nth-child(3)");
 };
-module.exports.selectLevel0Node = selectLevel0Node;
 
-var traverseScopeMapTreeSelectNode = function(param){
+module.exports.traverseScopeMapTreeSelectNode = function(param){
     this.click("li.pb-topbar-nav-button:nth-child(3)");
     this.click("//li[text()='Create']//li[text()='Site Structure']");
     this.waitForExist("span.pb-tree-node");
     this.click("span.pb-tree-node")
     this.waitForExist("div.pb-workcenter-list h3 span", 20000);
 };
-module.exports.traverseScopeMapTreeSelectNode = traverseScopeMapTreeSelectNode;
 
-var siteManagementGetNodeId = function(id, mapstate){
+module.exports.siteManagementGetNodeId = function(id, mapstate){
      return smdb.getSiteVieMapNodeInfo(id, mapstate);
 };
-module.exports.siteManagementGetNodeId = siteManagementGetNodeId;
 
-var testVerify = function () {
+module.exports.testVerify = function () {
     console.log('testVerify')
     return "Pass";
 };
-module.exports.testVerify = testVerify;

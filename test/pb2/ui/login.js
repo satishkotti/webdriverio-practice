@@ -22,8 +22,12 @@ describe('PB2 Login Tests', function () {
     });
 
     before( function(){
-      browser.addCommand('login', common.login.bind(browser));
-      browser.addCommand('getUrlAndTitle', common.getUrlAndTitle.bind(browser));
+        browser.addCommand('login', common.login.bind(browser));
+        browser.addCommand('getUrlAndTitle', common.getUrlAndTitle.bind(browser));
+        browser.setViewportSize({
+            width: 1024,
+            height: 768
+        });
 });
 
 });

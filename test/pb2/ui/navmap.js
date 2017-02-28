@@ -18,11 +18,16 @@ describe('PB2 Navigation Map Tests', function () {
     });
 
 before( function(){
-      browser.addCommand('login', common.login.bind(browser));
-      browser.addCommand('getUrlAndTitle', common.getUrlAndTitle.bind(browser));
-      browser.addCommand('selectCreateTemplatesAndPages', common.selectCreateTemplatesAndPages.bind(browser));
-      browser.addCommand('getWorkcenterNavMapNodeId', common.getWorkcenterNavMapNodeId.bind(browser)); 
-      browser.addCommand('selectEditTemplatesAndPages', common.selectEditTemplatesAndPages.bind(browser));
+        browser.addCommand('login', common.login.bind(browser));
+        browser.addCommand('getUrlAndTitle', common.getUrlAndTitle.bind(browser));
+        browser.addCommand('selectCreateTemplatesAndPages', common.selectCreateTemplatesAndPages.bind(browser));
+        browser.addCommand('getWorkcenterNavMapNodeId', common.getWorkcenterNavMapNodeId.bind(browser)); 
+        browser.addCommand('selectEditTemplatesAndPages', common.selectEditTemplatesAndPages.bind(browser));
+        browser.setViewportSize({
+            width: 1024,
+            height: 768
+        });
       browser.login(data.testData);
+      
     });
 });
