@@ -63,7 +63,7 @@
 							<a href="http://privacy.truste.com/privacy-seal/validation?rid=07326333-3522-463d-81bf-f00fd7171fff" class="footer-acc-icon truste" data-metrics-link="truste" title="TRUSTe Privacy Certification"><img style="border: none" src="//privacy-policy.truste.com/privacy-seal/seal?rid=07326333-3522-463d-81bf-f00fd7171fff" alt="TRUSTe Privacy Certification"/></a>
 						</li>
 						<li>
-							<a href="http://www.hon.ch/HONcode/Conduct.html%3FHONConduct298987" class="footer-acc-icon hon" data-metrics-link="hon"><img alt="HONcode Seal" src="//www.honcode.ch/HONcode/Seal/HONConduct298987_s1.gif" title="This site complies with the HONcode standard for trustworthy health information."/></a>
+							<a href="https://www.hon.ch/HONcode/Conduct.html?HONConduct298987" class="footer-acc-icon hon" data-metrics-link="hon"><img alt="HONcode Seal" src="//www.honcode.ch/HONcode/Seal/HONConduct298987_s1.gif" title="This site complies with the HONcode standard for trustworthy health information."/></a>
 						</li>
 					</ul>
 				</div>
