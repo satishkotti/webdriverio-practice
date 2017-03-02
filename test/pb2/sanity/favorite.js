@@ -1,10 +1,11 @@
 var common = require('./../common/commonLib');
 var data = require('./../data/testRunConfig');
 
+
 describe('PB2 Favorite and Unfavorite Tests', function () {
 
     it('Should create Favorite and Unfavorite for Template from Edit Template & Pages', function () {
-        
+
         templatePageToggeleFav(data.expectedResults.baseTemplateName, data.expectedResults.level0NavMapNodeId)
     });
 
@@ -28,17 +29,15 @@ describe('PB2 Favorite and Unfavorite Tests', function () {
         browser.clickHome();
         expect(browser.isFavoriteSaved(data.expectedResults.level0NodeDisplayName)).to.false;
     });
+    it.skip('Should create Favorite and Unfavorite for Search Query', function () {
 
-    it('Should create Favorite and Unfavorite for Search Query', function () {
-
-         throw new Error("Add Test Here");
+          throw new Error("Add Test");
     });
 
-    it('Should create Favorite and Unfavorite for Sharedmodule', function () {
+    it.skip('Should create Favorite and Unfavorite for Sharedmodule', function () {
 
-         throw new Error("Test Incomplete");
+         throw new Error("Add Test");
     });
-
     var templatePageToggeleFav = function(objectName, nodeId) {
         browser.selectEditTemplatesAndPages();
         var nodeId =browser.getWorkcenterNavMapNodeId();
@@ -71,7 +70,7 @@ before( function(){
             height: 768
         });
       browser.login(data.testData);
-
+      
       //clean up fav if exits.
     });
 });
