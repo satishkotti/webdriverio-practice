@@ -239,7 +239,7 @@ webmd.fundedEditorial = {
 		var self = this,
 		current_url = window.location.href,
 		$videoDescriptionContainer = $('.fed-video > .desc'),
-		videoLinkText = (typeof self.articleData.program.seeAllVideosText !== 'undefined' && self.articleData.program.seeAllVideosText.length > 0) ? self.articleData.program.seeAllVideosText : 'Related Videos',
+		videoLinkText = (typeof self.articleData.program.seeAllVideosText !== 'undefined' && self.articleData.program.seeAllVideosText.length > 0) ? self.articleData.program.seeAllVideosText : 'Watch More Videos',
 		videoLinkUrl = self.articleData.program.seeAllVideos,
 		$videoPlayList = $('.premium-video-container > .playlists'),
 		$a;
