@@ -92,7 +92,7 @@ webmd.fundedEditorial.nextUp = {
 		seeAllOverrideText = self.articleData.program.seeAllText,
 		linkText = (seeAllOverrideText.length > 0) ? seeAllOverrideText : "See More",
 		linkUrl = self.articleData.program.seeAllLink + '#see-all-non-spon',
-		videoLinkText = (typeof self.articleData.program.seeAllVideosText !== 'undefined' && self.articleData.program.seeAllVideosText.length > 0) ? self.articleData.program.seeAllVideosText : 'Related Videos',
+		videoLinkText = (typeof self.articleData.program.seeAllVideosText !== 'undefined' && self.articleData.program.seeAllVideosText.length > 0) ? self.articleData.program.seeAllVideosText : 'All Videos',
 		videoLinkUrl = self.articleData.program.seeAllVideos,
 		count = 0,
 		$a;
@@ -104,7 +104,7 @@ webmd.fundedEditorial.nextUp = {
 		}
 
 		//Build standard up next module if we are not on the all videos page
-		if(videoLinkUrl !== current_url){	
+		if(videoLinkUrl !== current_url){
 
 			$segment.html(segmentTitle);
 			$subhead.html(subheadText);
@@ -123,7 +123,7 @@ webmd.fundedEditorial.nextUp = {
 			}
 
 			if (videoLinkUrl === "" || !videoLinkUrl){
-				$seeAllVideoContainer.hide(); 
+				$seeAllVideoContainer.hide();
 			}
 
 		}
@@ -136,7 +136,7 @@ webmd.fundedEditorial.nextUp = {
 
 			$a = $('<a></a>');
 				$a.attr({ href : segmentLink }).html(segmentTitle).attr('data-metrics-link', 'toc');
-				$segment.append($a).show();	
+				$segment.append($a).show();
 
 			if (count > this.articles_to_display) {
 				$a = $('<a></a>');
@@ -144,7 +144,7 @@ webmd.fundedEditorial.nextUp = {
 				$seeAllContainer.append($a).show();
 			}
 
-			$seeAllVideoContainer.hide(); 
+			$seeAllVideoContainer.hide();
 		}
 	},
 
