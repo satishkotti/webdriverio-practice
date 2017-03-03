@@ -5,15 +5,13 @@ var Promise = require('bluebird');
 var dbConfig = {
     user: "appsa",
     password: "Dintapp$",
-    server: "sqlvp-cdv2-08.portal.webmd.com\\cdv2",
-    database: "Pagebuilder_SiteManagement",
-    port:1433
+    server: "sqlvp-cdv2-08.portal.webmd.com",
+    database: "Pagebuilder_SiteManagement"
 };
 
 module.exports = {
     executeQuery: function ExecuteQuery(query) {
-        //console.log(query);
-       var msUrl = "mssql://" + dbConfig.user + ":" + dbConfig.password + "@" + dbConfig.server + "/" + dbConfig.database;
+        console.log(query);
         return new Promise(function (resolve, reject) {
             sql.connect(dbConfig, function(connErr){
                     if(connErr != null)
@@ -29,10 +27,10 @@ module.exports = {
                             return reject(queryErr);
                         }
 
-                      recordset.forEach(function (value) {
+/*                         recordset.forEach(function (value) {
                                 console.log(value);
                             });
-
+*/
                     return resolve(recordset);
                     });
                 });
