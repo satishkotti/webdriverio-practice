@@ -5,5 +5,9 @@ var siteViewMapQuery = "select svmn.id as NavMapNodeId, svmn.NodeType as NavMapS
 
 module.exports.getSiteVieMapNodeInfo = function(id, mapState)
 {
-   return db.executeQuery(util.format(siteViewMapQuery, id, mapState, mapState));
+   return Promise.resolve(
+       db.executeQuery(util.format(siteViewMapQuery, id, mapState, mapState))
+        .then(function (result) {
+            return result;
+        }));
 };

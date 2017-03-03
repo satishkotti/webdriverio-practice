@@ -11,8 +11,6 @@ describe('Xml Test', function () {
     var expectedAssetId = '091e9c5e812978bc';
     
     it('Xml get attribute and node values', function () {
-            //var result = getAtsXml(testUrl);            Promise.resolve(
-
             return Promise.resolve(
                 parseXml.getXmlFromUrl(testUrl, null).then(function (result) {
                     var assetId = result.webmd_rendition.content[0].wbmd_asset[0].$.id;
