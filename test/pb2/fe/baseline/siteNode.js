@@ -62,8 +62,8 @@ describe('PB2 Site Node (Scope & Nav Map)', function () {
         browser.addCommand('login', common.login.bind(browser));
         browser.addCommand('getUrlAndTitle', common.getUrlAndTitle.bind(browser));
         browser.setViewportSize({
-            width: 1024,
-            height: 768
+            width: 1920,
+            height: 1080
         });
         browser.login(data.testData);
     });
