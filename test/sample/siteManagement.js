@@ -1,6 +1,6 @@
 var Promise = require('bluebird');
 var request = require('request');
-var smdb = require('./../common/siteManagementDb.js');
+var smdb = require('./../common/smdb/siteManagementDb');
 
 describe('Site Management DB Sample Test', function () {
     

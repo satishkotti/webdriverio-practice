@@ -14,7 +14,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/**/*.js'
+        './test/pb2/**/PPE-81340.js',
     ],
     // Patterns to exclude.
     exclude: [
@@ -42,8 +42,8 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: silent | verbose | command | data | result | error
-    logLevel: 'error',
-    //
+    logLevel: 'command',
+    //log
     // Enables colors for log output.
     coloredLogs: true,
     //

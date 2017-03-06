@@ -1,5 +1,5 @@
 var sql = require('mssql');
-var config = require('./config');
+var config = require('./../config');
 var Promise = require('bluebird');
 
 var dbConfig = {
@@ -11,7 +11,7 @@ var dbConfig = {
 
 module.exports = {
     executeQuery: function ExecuteQuery(query) {
-        console.log(query);
+        //console.log(query);
         return new Promise(function (resolve, reject) {
             sql.connect(dbConfig, function(connErr){
                     if(connErr != null)

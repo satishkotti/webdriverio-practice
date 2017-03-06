@@ -1,9 +1,9 @@
-var LoginPage = require('./../common/pbLogin');
-var common = require('./../common/commonLib');
-var data = require('./../data/testRunConfig');
+var LoginPage = require('./../../common/pbLogin');
+var common = require('./../../common/commonLib');
+var data = require('./../../data/testRunConfig');
 var util = require('util');
 
-describe('PB2 Scope Nav Map Testing', function () {
+describe('PB2 Site Node (Scope & Nav Map)', function () {
 
     describe('Create ScopeMap and Nav Map', function () {
 
@@ -20,7 +20,7 @@ describe('PB2 Scope Nav Map Testing', function () {
             browser.traverseScopeMapTreeSelectNode(browser, sourceNodes);
         });
         
-        it('should create new scope map node under QA and Dev and publish to staging', function () {
+        it('should create new scope map node under QA and Dev and Publish to Staging', function () {
 
             var d = new Date();
             var newNodeName = util.format('IntTest-%s%s%s%s%s%s', d.getUTCMonth(), d.getUTCDate(), d.getUTCFullYear(),
@@ -38,7 +38,7 @@ describe('PB2 Scope Nav Map Testing', function () {
             browser.traverseScopeMapTreeSelectNode(browser, sourceNodes);
         });
 
-        it('should publish new scopemap node to live', function () {
+        it('should Publish new scopemap node to Live', function () {
             
             var sourceNodes = newScopeMapNodePath.split("/");
             browser.clickHome();
@@ -47,11 +47,10 @@ describe('PB2 Scope Nav Map Testing', function () {
             browser.publishMap(browser, 'live');
         });
 
-        it.skip('should create new scope map node under QA and Dev and publish to live', function () {
+        it.skip('should create new scope map node under QA and Dev and Publish to Live', function () {
                         
         });
     });
-
 
     before( function(){
         

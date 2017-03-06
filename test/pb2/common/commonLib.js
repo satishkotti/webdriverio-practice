@@ -1,4 +1,4 @@
-var smdb = require('./../../common/siteManagementDb');
+var smdb = require('./../../common/smdb/siteManagementDb');
 
 module.exports.getUrlAndTitle = function(){
     return {
@@ -196,10 +196,6 @@ var publishMap = function publishMap(browser, publishTo)
     browser.click("//BUTTON[@id='modal-ok']");
 };
 module.exports.publishMap = publishMap;
-
-module.exports.siteManagementGetNodeId = function(id, mapstate){
-     return smdb.getSiteVieMapNodeInfo(id, mapstate);
-};
 
 module.exports.testVerify = function () {
     console.log('testVerify')

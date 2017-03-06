@@ -1,8 +1,7 @@
-var common = require('./../common/commonLib');
-var data = require('./../data/testRunConfig');
+var common = require('./../../common/commonLib');
+var data = require('./../../data/testRunConfig');
 
-
-describe('PB2 Favorite and Unfavorite Tests', function () {
+describe('PB2 Favorite and Unfavorite', function () {
 
     it('Should create Favorite and Unfavorite for Template from Edit Template & Pages', function () {
 
@@ -15,7 +14,8 @@ describe('PB2 Favorite and Unfavorite Tests', function () {
     });
 
     it('Should create Favorite and Unfavorite for Node from Edit site structure', function () {
-        
+
+        browser.clickHome();
         browser.selectEditTemplatesAndPages();
         var nodeId = browser.getWorkcenterNavMapNodeId();
         expect(nodeId).to.equal(nodeId);

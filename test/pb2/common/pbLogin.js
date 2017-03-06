@@ -21,6 +21,7 @@ var pbLoginPg = Object.create(page, {
     submit: { value: function() {
         this.form.submitForm();
     } }
+
 });
 
 module.exports = pbLoginPg

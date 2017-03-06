@@ -1,8 +1,8 @@
-var LoginPage = require('./../common/pbLogin');
-var common = require('./../common/commonLib');
-var data = require('./../data/testRunConfig');
+var LoginPage = require('./../../common/pbLogin');
+var common = require('./../../common/commonLib');
+var data = require('./../../data/testRunConfig');
 
-describe('PB2 Login Tests', function () {
+describe('PB2 Login', function () {
 
 /*    
     it('should be able to login with pb super user access', function () {
