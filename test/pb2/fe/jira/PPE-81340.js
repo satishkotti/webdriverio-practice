@@ -30,17 +30,19 @@ describe('PB2 Navigation Map', function () {
     });
 
     it('should have valid nav map info in readonly mode PPE-81340', function () {
-
-        /*browser.selectSiteStructureFromEdit();
-        var node = browser.getSiteStructureNavMapNodeIdAndName();
-        return Promise.resolve(
-                smdb.siteManagementGetNodeId(node.id, 1).then(function (resultset) {
         
-                expect(resultset[0].ScopeMapNodeId).to.equal(data.expectedResults.level0ScopeMapNodeId);
-                expect(resultset[0].ScopemapDisplayName).to.equal(data.expectedResults.level0NodeDisplayName);
-            }));
-            */
+        browser.selectSiteStructureFromEdit();
+        var node = browser.getSiteStructureNavMapNodeIdAndName();
+
+        return Promise.resolve(
+            smdb.getSiteVieMapNodeInfo(node.id, 1).then(function (resultset) {
+    
+            expect(resultset[0].ScopeMapNodeId).to.equal(data.expectedResults.level0ScopeMapNodeId);
+            expect(resultset[0].ScopemapDisplayName).to.equal(data.expectedResults.level0NodeDisplayName);
+        }));
     });
+
+
 
     before(function () {
         browser.addCommand('login', common.login.bind(browser));
@@ -48,8 +50,6 @@ describe('PB2 Navigation Map', function () {
         browser.addCommand('getSiteStructureNavMapNodeIdAndName', common.getSiteStructureNavMapNodeIdAndName.bind(browser));
         browser.addCommand('selectSiteStructureFromInteriorMenu', common.selectSiteStructureFromInteriorMenu.bind(browser));
         browser.addCommand('getSiteStructureNavMapTabsNames', common.getSiteStructureNavMapTabsNames.bind(browser));
-        browser.addCommand('siteManagementGetNodeId', common.siteManagementGetNodeId.bind(browser));
-
         browser.setViewportSize({
             width: 1024,
             height: 768

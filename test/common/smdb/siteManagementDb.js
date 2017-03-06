@@ -8,31 +8,17 @@ var siteViewMap = 'Select * from dbo.SiteViewMap where id=%s';
 
 module.exports.getSiteVieMapNodeInfo = function(id, mapState)
 {
-   return Promise.resolve(
-       db.executeQuery(util.format(siteViewMapQuery, id, mapState, mapState))
-        .then(function (result) {
-            return result;
-        }));
+   return db.executeQuery(util.format(siteViewMapQuery, id, mapState, mapState));
 };
 
 module.exports.getScopeVieMap = function(id)
 {
-    //get scopeMap details by site id
-   return Promise.resolve(
-       db.executeQuery(util.format(scopeMap, id))
-        .then(function (result) {
-            return result;
-        }));
+    return db.executeQuery(util.format(scopeMap, id));
 };
 
 module.exports.getSiteViewMap = function(id)
 {
-    //get siteViewMap details by site id
-   return Promise.resolve(
-       db.executeQuery(util.format(siteViewMap, id))
-        .then(function (result) {
-            return result;
-        }));
+   return db.executeQuery(util.format(siteViewMap, id));
 };
 
 

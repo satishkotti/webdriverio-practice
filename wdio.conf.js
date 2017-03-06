@@ -14,7 +14,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/pb2/**/PPE-81340.js',
+        './test/pb2/**/siteNode.js',
     ],
     // Patterns to exclude.
     exclude: [
@@ -42,7 +42,7 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: silent | verbose | command | data | result | error
-    logLevel: 'command',
+    logLevel: 'error',
     //log
     // Enables colors for log output.
     coloredLogs: true,
@@ -55,7 +55,7 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-    waitforTimeout: 999999999,
+    waitforTimeout: 60000,
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as property. Make sure you have
@@ -101,7 +101,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 999999999
+        timeout: 120000
     },
 
     //
