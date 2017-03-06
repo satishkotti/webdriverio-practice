@@ -5,6 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/wdio wdio.conf.js",
+    "pb2Sanity": "./node_modules/.bin/wdio wdio.conf.js --suite pb2Sanity",
+    "pb2Ui": "./node_modules/.bin/wdio wdio.conf.js --suite pb2Ui",
+    "rtSanity": "./node_modules/.bin/wdio wdio.conf.js --suite rtSanity",
+    "rtUi": "./node_modules/.bin/wdio wdio.conf.js --suite rtUi",
     "reports": "./node_modules/.bin/allure generate allure-results/",
     "report-view": "./node_modules/.bin/allure generate allure-results/ && allure report open",
     "runTest": "gulp runTest"
@@ -22,12 +26,19 @@
     "selenium-standalone": "^5.9.0",
     "wdio-mocha-framework": "^0.4.0",
     "webdriverio": "^4.4.0",
-	"supertest":"3.0.0"
+    "supertest":"3.0.0",
+    "mssql":"3.3.0",
+    "q":"1.4.1",
+    "bluebird":"3.4.7",
+    "xml2js":"^0.4.17",
+    "request":"2.80.0",
+    "assert":"1.4.1"
   },
   "directories": {
     "test": "test"
   },
   "devDependencies": {
+    "karma-expect": "^1.1.3",
     "wdio-allure-reporter": "^0.1.2",
     "wdio-spec-reporter": "0.0.3"
   }

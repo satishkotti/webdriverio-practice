@@ -1,6 +1,7 @@
 var page = require('./../../common/page')
+var data = require('./../data/testRunConfig');
 
-var testUrl = 'http://genesys.dev01.webmd.com';
+var testUrl = data.testData.url;
 
 var pbLoginPg = Object.create(page, {
     
@@ -20,6 +21,7 @@ var pbLoginPg = Object.create(page, {
     submit: { value: function() {
         this.form.submitForm();
     } }
+
 });
 
 module.exports = pbLoginPg
