@@ -61,7 +61,7 @@ module.exports.selectSiteStructureFromEdit = function(){
     this.waitForExist("Form label b.ng-binding", 20000)
 };
 
-module.exports.selectSiteStructureFromInteriorMenu = function(nodeHierarchy){
+module.exports.selectSiteStructureFromInteriorMenu = function(){
     this.click("li.pb-topbar-nav-button:nth-child(3)");
     this.click("//li[text()='Edit']//li[text()='Templates & Pages']");
     this.waitForExist("span.pb-tree-node");
@@ -70,17 +70,6 @@ module.exports.selectSiteStructureFromInteriorMenu = function(nodeHierarchy){
     this.click("div.pb-workcenter-pane select.pb-workcenter-mode-toggle");
     browser.click("div.pb-workcenter-pane select.pb-workcenter-mode-toggle option:nth-child(2)")
     this.waitForExist("Form label b.ng-binding", 20000)
-    
-    /*if(nodeHierarchy)
-    {
-        traverseScopeMapTreeSelectNode(nodeHierarchy)
-    }
-    else
-    {
-        this.click("span.pb-tree-node")
-        this.waitForExist("div.pb-workcenter-list h3 span", 20000);
-    }
-    */
     return;
 };
 
@@ -127,13 +116,86 @@ module.exports.selectLevel0Node = function(){
     this.click("li.pb-topbar-nav-button:nth-child(3)");
 };
 
-module.exports.traverseScopeMapTreeSelectNode = function(param){
-    this.click("li.pb-topbar-nav-button:nth-child(3)");
-    this.click("//li[text()='Create']//li[text()='Site Structure']");
-    this.waitForExist("span.pb-tree-node");
-    this.click("span.pb-tree-node")
-    this.waitForExist("div.pb-workcenter-list h3 span", 20000);
+module.exports.traverseScopeMapTreeSelectNode = function traverseScopeMapNode(browser, nodePathArray)
+{
+    if(nodePathArray && nodePathArray.length > 0)
+    {
+        browser.click("//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"']");
+        if(browser.isExisting("//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"']/parent::*/parent::*/span[@class='k-icon k-plus']"))
+        {
+            browser.click("//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"']/parent::*/parent::*/span[@class='k-icon k-plus']");
+        }
+        browser.waitForExist("#workcenterListGrid");
+        browser.waitForExist("//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"']/parent::*/parent::*/span[@class='k-icon k-minus']");
+        nodePathArray.shift();
+        return traverseScopeMapNode( browser, nodePathArray);
+    }
+    return;
 };
+
+var traverseNavMapNodeSelectNode = function traverseNavMapNode(browser, nodePathArray)
+{
+    if(nodePathArray && nodePathArray.length > 0)
+    {
+        browser.click("(//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"'])[2]");
+
+        if(browser.isExisting("(//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"'])[2]/parent::*/parent::*/span[@class='k-icon k-plus']"))
+        {
+            browser.click("(//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"'])[2]/parent::*/parent::*/span[@class='k-icon k-plus']");
+        }
+        
+        browser.waitForExist("(//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"'])[2]/parent::*/parent::*/span[@class='k-icon k-minus']");
+        nodePathArray.shift();
+        return traverseNavMapNode( browser, nodePathArray);
+    }
+    return;
+};
+module.exports.traverseNavMapNodeSelectNode = traverseNavMapNodeSelectNode;
+
+module.exports.createScopegNavMapNodeAndPublish = function(browser, parentNodeName, newNodeName, newNodeDisplayName, navMapPathArray, publishTo)
+{
+    browser.click("//SPAN[@class='pb-tree-node'][text()='"+parentNodeName+"']");
+    browser.waitForExist("#workcenterListGrid");
+
+    browser.click("div.pb-workcenter-pane select.pb-workcenter-mode-toggle option:nth-child(2)");
+    browser.waitForExist("Form label b.ng-binding", 20000);
+    browser.pause(1000);
+
+    browser.click('div.pb-create-node > button.ng-scope');
+    browser.waitForText('.pb-overlay-content .ng-scope');
+    browser.pause(1000);
+
+    browser.setValue("//INPUT[@name='name']", newNodeName);
+    browser.setValue("//INPUT[@name='displayName']", newNodeDisplayName);
+    browser.click("//BUTTON[@data-ng-click='saveNewNode()']");
+
+    browser.waitForText('#navTree', 30000);
+    browser.pause(3000);
+    traverseNavMapNodeSelectNode(browser, navMapPathArray);
+
+    browser.click("//BUTTON[@data-ng-click='saveParentNode(newParentNode)']");
+    browser.waitForValue('Form label b.ng-binding', 5000); //scopemap load wait
+
+     browser.pause(5000);
+    publishMap(browser, publishTo);
+};
+
+var publishMap = function publishMap(browser, publishTo)
+{
+    browser.click("//BUTTON[@id='navSavePublish']");
+    if(publishTo === 'live')
+    {
+        browser.click("(//LI[@role='menuitem'])[2]") //publish to live
+    }
+    else
+    {    
+        browser.click("(//LI[@role='menuitem'])[1]") //publish to staging
+    }
+    
+    browser.waitForText("(//DIV[@class='pb-overlay-content ng-scope'])[4]");
+    browser.click("//BUTTON[@id='modal-ok']");
+};
+module.exports.publishMap = publishMap;
 
 module.exports.siteManagementGetNodeId = function(id, mapstate){
      return smdb.getSiteVieMapNodeInfo(id, mapstate);
