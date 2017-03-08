@@ -17,22 +17,24 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "JSONPath": "^0.11.2",
     "allure-commandline": "^1.5.0",
+    "assert": "1.4.1",
+    "bluebird": "3.4.7",
     "chai": "^3.5.0",
+    "deep-diff": "^0.3.4",
     "gulp": "^3.9.1",
     "gulp-webdriver": "1.0.3",
     "lodash": "^4.17.2",
     "mocha": "^3.0.2",
+    "mssql": "3.3.0",
+    "q": "1.4.1",
+    "request": "2.80.0",
     "selenium-standalone": "^5.9.0",
+    "supertest": "3.0.0",
     "wdio-mocha-framework": "^0.4.0",
     "webdriverio": "^4.4.0",
-    "supertest":"3.0.0",
-    "mssql":"3.3.0",
-    "q":"1.4.1",
-    "bluebird":"3.4.7",
-    "xml2js":"^0.4.17",
-    "request":"2.80.0",
-    "assert":"1.4.1"
+    "xml2js": "^0.4.17"
   },
   "directories": {
     "test": "test"
