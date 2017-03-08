@@ -4,8 +4,8 @@ var Promise = require('bluebird');
 
 var dbConfig = {
     user: "appsa",
-    password: "Dintapp$",
-    server: "sqlvp-cdv2-08.portal.webmd.com",
+    password: "Dconapp$",
+    server: "sqlvp-cdv1-08.portal.webmd.com",
     database: "Pagebuilder_SiteManagement"
 };
 

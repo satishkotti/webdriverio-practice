@@ -17,15 +17,18 @@ module.exports.login = function (params) {
     this.element('#username').setValue(params.username);
     this.element('#password').setValue(params.password);
     this.element('#pb-login').submitForm();
-    this.waitForVisible("#grid-favorites");
+    this.waitForVisible("ul.pb-topbar-nav");
     return;
 };
 
 module.exports.selectCreateTemplatesAndPages = function(){
+    this.waitForVisible("li.pb-topbar-nav-button:nth-child(2)", 10000);
     this.click("li.pb-topbar-nav-button:nth-child(2)");
     this.click("//li[text()='Create']//li[text()='Templates & Pages']");
     this.waitForExist("span.pb-tree-node");
-    this.click("span.pb-tree-node")
+    this.moveToObject("div.pb-workcenter-pane");
+    //this.click("span.pb-tree-node")
+    this.click("//SPAN[@class='pb-tree-node'][text()='Level 0']"); //select default node
     this.waitForExist("div.pb-workcenter-list h3 span", 20000);
 };
 
@@ -111,7 +114,8 @@ module.exports.isFavoriteSaved = function(name){
 };
 
 module.exports.clickHome = function(){
-    this.click("i.fa-home");
+    this.waitForVisible("li.pb-topbar-nav-button:nth-child(1)", 10000);
+    this.click("li.pb-topbar-nav-button:nth-child(1)");
     this.waitForExist("#grid-favorites");
 };
 
@@ -124,13 +128,19 @@ module.exports.traverseScopeMapTreeSelectNode = function traverseScopeMapNode(br
 {
     if(nodePathArray && nodePathArray.length > 0)
     {
+
+console.log(nodePathArray[0]);
+
         browser.click("//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"']");
         if(browser.isExisting("//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"']/parent::*/parent::*/span[@class='k-icon k-plus']"))
         {
             browser.click("//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"']/parent::*/parent::*/span[@class='k-icon k-plus']");
+
+            browser.waitForExist("//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"']/parent::*/parent::*/span[@class='k-icon k-minus']", 20000);
         }
-        browser.waitForExist("#workcenterListGrid");
-        browser.waitForExist("//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"']/parent::*/parent::*/span[@class='k-icon k-minus']");
+
+        browser.waitForExist("#workcenterListGrid");      
+        
         nodePathArray.shift();
         return traverseScopeMapNode( browser, nodePathArray);
     }
@@ -145,10 +155,11 @@ var traverseNavMapNodeSelectNode = function traverseNavMapNode(browser, nodePath
 
         if(browser.isExisting("(//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"'])[2]/parent::*/parent::*/span[@class='k-icon k-plus']"))
         {
-            browser.click("(//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"'])[2]/parent::*/parent::*/span[@class='k-icon k-plus']");
+            browser.click("(//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"'])[2]/parent::*/parent::*/span[@class='k-icon k-plus']");     
+
+            browser.waitForExist("(//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"'])[2]/parent::*/parent::*/span[@class='k-icon k-minus']");   
         }
-        
-        browser.waitForExist("(//SPAN[@class='pb-tree-node'][text()='"+nodePathArray[0]+"'])[2]/parent::*/parent::*/span[@class='k-icon k-minus']");
+
         nodePathArray.shift();
         return traverseNavMapNode( browser, nodePathArray);
     }
@@ -156,7 +167,7 @@ var traverseNavMapNodeSelectNode = function traverseNavMapNode(browser, nodePath
 };
 module.exports.traverseNavMapNodeSelectNode = traverseNavMapNodeSelectNode;
 
-module.exports.createScopegNavMapNodeAndPublish = function(browser, parentNodeName, newNodeName, newNodeDisplayName, navMapPathArray, publishTo)
+module.exports.createScopeNavMapNodeAndPublish = function(browser, parentNodeName, newNodeName, newNodeDisplayName, navMapPathArray, publishTo)
 {
     browser.click("//SPAN[@class='pb-tree-node'][text()='"+parentNodeName+"']");
     browser.waitForExist("#workcenterListGrid");
@@ -178,14 +189,17 @@ module.exports.createScopegNavMapNodeAndPublish = function(browser, parentNodeNa
     traverseNavMapNodeSelectNode(browser, navMapPathArray);
 
     browser.click("//BUTTON[@data-ng-click='saveParentNode(newParentNode)']");
+    
+    browser.pause(3000);
     browser.waitForValue('Form label b.ng-binding', 5000); //scopemap load wait
 
-     browser.pause(5000);
     publishMap(browser, publishTo);
 };
 
 var publishMap = function publishMap(browser, publishTo)
 {
+    browser.waitForExist("button[class~='dropdown-toggle']");
+    browser.pause(2000);
     browser.click("//BUTTON[@id='navSavePublish']");
     if(publishTo === 'live')
     {
@@ -195,9 +209,19 @@ var publishMap = function publishMap(browser, publishTo)
     {    
         browser.click("(//LI[@role='menuitem'])[1]") //publish to staging
     }
-    
-    browser.waitForText("(//DIV[@class='pb-overlay-content ng-scope'])[4]");
-    browser.click("//BUTTON[@id='modal-ok']");
+
+    browser.waitForExist("button[id~='modal-ok']");
+    browser.click("//button[@id='modal-ok']");
+    browser.waitForText("section[class~=pb-notification-container]", 20000); //wait for publishing
+
+    browser.pause(5000);
+    var msg = browser.element("section[class~=pb-notification-container]").getText();
+    if(publishTo === 'live')
+    {
+        expect(msg).to.equal("NavMap published successfully to live.");
+        return;
+    }
+        expect(msg).to.equal("NavMap published successfully to staging.");
 };
 module.exports.publishMap = publishMap;
 

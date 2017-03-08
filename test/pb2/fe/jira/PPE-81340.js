@@ -41,9 +41,7 @@ describe('PB2 Navigation Map', function () {
             expect(resultset[0].ScopemapDisplayName).to.equal(data.expectedResults.level0NodeDisplayName);
         }));
     });
-
-
-
+    
     before(function () {
         browser.addCommand('login', common.login.bind(browser));
         browser.addCommand('selectSiteStructureFromEdit', common.selectSiteStructureFromEdit.bind(browser));
