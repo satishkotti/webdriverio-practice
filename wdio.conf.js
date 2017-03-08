@@ -1,7 +1,7 @@
 var Q = require("q");
 exports.config = {
 
-    debug: false,
+    debug: true,
     maxInstances: 10,
     
     //
@@ -14,7 +14,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/pb2/**/*.js',
+        './test/pb2/**/siteNode.js',
     ],
     // Patterns to exclude.
     exclude: [

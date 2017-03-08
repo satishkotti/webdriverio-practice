@@ -20,7 +20,7 @@
                 "--timeout",
                 "999999",
                 "--colors",
-                "${workspaceRoot}/test/pb2/sanity/page.js"
+                "${workspaceRoot}/test/sample/xmlDiff.js"
             ],
             "internalConsoleOptions": "openOnSessionStart"
         },
@@ -38,7 +38,7 @@
             // This args config runs only the file that's open and displayed
             // (e.g., a file in test/spec/):
             "args":[
-                "--spec", "${workspaceRoot}/test/pb2/sanity/page.js"
+                "--spec", "${relativeFile}"
                 // To run a specific file, you can also do:
                 //"--spec", "test/specs/foo.spec.js"
             ]
