@@ -1,19 +1,18 @@
 var LoginPage = require('./../../common/pbLogin');
 var common = require('./../../common/commonLib');
-var data = require('./../../data/testRunConfig');
 
 describe('PB2 Navigation Map', function () {
 
     it('Should display NavMap node id in interior work center from Create menu - PPE-72925', function () {
         browser.selectCreateTemplatesAndPages();
         var nodeId = browser.getWorkcenterNavMapNodeId();
-        expect(nodeId).to.equal(data.expectedResults.level0NavMapNodeId);
+        expect(nodeId).to.equal(global.dataSettings.level0NavMapNodeId);
     });
 
     it('Should display NavMap node id in interior work center from Edit menu - PPE-72925', function () {
         browser.selectEditTemplatesAndPages();
         var nodeId = browser.getWorkcenterNavMapNodeId();
-        expect(nodeId).to.equal(data.expectedResults.level0NavMapNodeId);
+        expect(nodeId).to.equal(global.dataSettings.level0NavMapNodeId);
     });
 
     before(function () {
@@ -26,7 +25,11 @@ describe('PB2 Navigation Map', function () {
             width: 1024,
             height: 768
         });
-        browser.login(data.testData);
+        browser.login({
+            url: common.getEnvTestUrl(),
+            username: common.getQAPublicationInfo().username,
+            password: common.getQAPublicationInfo().password
+        });
 
     });
 });

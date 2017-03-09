@@ -2,15 +2,19 @@ var sql = require('mssql');
 var config = require('./../config');
 var Promise = require('bluebird');
 
+/*
 var dbConfig = {
     user: "appsa",
     password: "Dconapp$",
     server: "sqlvp-cdv1-08.portal.webmd.com",
     database: "Pagebuilder_SiteManagement"
 };
-
+*/
+var dbConfig = global.envSettings.siteMgmtDb;
 module.exports = {
     executeQuery: function ExecuteQuery(query) {
+    
+       
         //console.log(query);
         return new Promise(function (resolve, reject) {
             sql.connect(dbConfig, function(connErr){

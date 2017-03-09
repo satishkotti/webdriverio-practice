@@ -1,7 +1,5 @@
-var page = require('./../../common/page')
-var data = require('./../data/testRunConfig');
-
-var testUrl = data.testData.url;
+var page = require('./../../common/page');
+var common = require('./commonLib');
 
 var pbLoginPg = Object.create(page, {
     
@@ -15,7 +13,7 @@ var pbLoginPg = Object.create(page, {
     browser: { get: function()  { return browser }},
 
     open: { value: function() {
-        page.open.call(this, testUrl);
+        page.open.call(this, common.getEnvTestUrl());
     } },
 
     submit: { value: function() {

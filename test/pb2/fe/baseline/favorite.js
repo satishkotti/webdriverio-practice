@@ -1,16 +1,15 @@
 var common = require('./../../common/commonLib');
-var data = require('./../../data/testRunConfig');
 
 describe('PB2 Favorite and Unfavorite', function () {
 
     it('Should create Favorite and Unfavorite for Template from Edit Template & Pages', function () {
 
-        templatePageToggeleFav(data.expectedResults.baseTemplateName, data.expectedResults.level0NavMapNodeId)
+        templatePageToggeleFav(global.dataSettings.baseTemplateName, global.dataSettings.level0NavMapNodeId)
     });
 
     it('Should create Favorite and Unfavorite for Page from Edit Template & Pages', function () {
 
-        templatePageToggeleFav(data.expectedResults.errorPage, data.expectedResults.level0NavMapNodeId)
+        templatePageToggeleFav(global.dataSettings.errorPage, global.dataSettings.level0NavMapNodeId)
     });
 
     it('Should create Favorite and Unfavorite for Node from Edit site structure', function () {
@@ -22,12 +21,12 @@ describe('PB2 Favorite and Unfavorite', function () {
 
         browser.toggleFavoriteForNode();
         browser.clickHome();
-        expect(browser.isFavoriteSaved(data.expectedResults.level0NodeDisplayName)).to.true;
+        expect(browser.isFavoriteSaved(global.dataSettings.level0NodeDisplayName)).to.true;
 
         browser.selectEditTemplatesAndPages();
         browser.toggleFavoriteForNode();
         browser.clickHome();
-        expect(browser.isFavoriteSaved(data.expectedResults.level0NodeDisplayName)).to.false;
+        expect(browser.isFavoriteSaved(global.dataSettings.level0NodeDisplayName)).to.false;
     });
     it.skip('Should create Favorite and Unfavorite for Search Query', function () {
 
@@ -69,7 +68,11 @@ before( function(){
             width: 1024,
             height: 768
         });
-      browser.login(data.testData);
+      browser.login({
+            url: common.getEnvTestUrl(),
+            username: common.getQAPublicationInfo().username,
+            password: common.getQAPublicationInfo().password
+        });
       
       //clean up fav if exits.
     });

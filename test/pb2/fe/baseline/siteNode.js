@@ -1,7 +1,6 @@
 var util = require('util');
 var LoginPage = require('./../../common/pbLogin');
 var common = require('./../../common/commonLib');
-var data = require('./../../data/testRunConfig');
 var smdb = require('./../../../common/smdb/siteManagementDb');
 
 describe('PB2 Site Node Create ScopeMap and Nav Map', function () {
@@ -92,6 +91,11 @@ console.log('is access'+ newScopeMapNodePath);
             width: 1920,
             height: 1080
         });
-        browser.login(data.testData);
+
+        browser.login({
+            url: common.getEnvTestUrl(),
+            username: common.getQAPublicationInfo().username,
+            password: common.getQAPublicationInfo().password
+        });
     });
 });

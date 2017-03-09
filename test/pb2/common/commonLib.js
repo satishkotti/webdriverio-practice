@@ -1,5 +1,15 @@
 var smdb = require('./../../common/smdb/siteManagementDb');
 
+module.exports.getEnvTestUrl = function()
+{
+    return global.envSettings.genesys.url;
+};
+
+module.exports.getQAPublicationInfo = function()
+{
+    return global.envSettings.genesys.users[0];
+};
+
 module.exports.getUrlAndTitle = function(){
     return {
             url: this.getUrl(),
@@ -7,7 +17,6 @@ module.exports.getUrlAndTitle = function(){
 };
 
 module.exports.login = function (params) {
-    
     /*
         console.log('url:' + params.url);
         console.log('username:'+ params.username);

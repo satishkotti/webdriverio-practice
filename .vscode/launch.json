@@ -38,7 +38,9 @@
             // This args config runs only the file that's open and displayed
             // (e.g., a file in test/spec/):
             "args":[
-                "--spec", "${relativeFile}"
+                "--spec", "${relativeFile}",
+                "--testEnv=dev01",
+                "--testApp=pb2"
                 // To run a specific file, you can also do:
                 //"--spec", "test/specs/foo.spec.js"
             ]

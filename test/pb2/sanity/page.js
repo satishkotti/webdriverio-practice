@@ -7,15 +7,13 @@ var LoginPage = require('./../common/pbLogin');
 var assert = require('assert');
 
 var common = require('./../common/commonLib');
-var comm_data = require('./../data/testRunConfig');
 var dctmService = require('../../common/dctmService');
 const Promise = require('bluebird');
 var request = Promise.promisifyAll(require('request'), {
     multiArgs: true
 });
-var pb2Config = require("../../common/config");
 
-
+var pb2Config = global.envSettings;
 var pageData = {
     r_object_id: null,
     r_object_type: "wbmd_pb_page",
@@ -101,7 +99,11 @@ describe('Checkout a page: => ', function () {
     var dmticket = "";
 
     it('[page] logIn', function () {
-        browser.login(comm_data.testData);
+        browser.login({
+            url: common.getEnvTestUrl(),
+            username: common.getQAPublicationInfo().username,
+            password: common.getQAPublicationInfo().password
+        });
     });
 
     it('[page] Click: on serach', function () {
