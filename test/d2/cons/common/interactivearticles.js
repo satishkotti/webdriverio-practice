@@ -1,6 +1,6 @@
 var data = require('./../data/d2testRunConfig');
 
-
+//E2E flow for inserting module
 module.exports.interactivemodulebullet= function(browser,objectTitle)
 {
 
@@ -13,7 +13,6 @@ module.exports.interactivemodulebullet= function(browser,objectTitle)
             var testval = browser.execute(function () {
                 return document.getElementById('ExternalWidget-3').getElementsByTagName('iframe').item(0).id;
             });
-
 
 
             browser.frame(testval.value);
@@ -62,7 +61,7 @@ module.exports.interactivemodulebullet= function(browser,objectTitle)
     
     }; 
 
-    // Publish Operation
+// Method to validate the availability of bulletlist Modules for richtext fields 
 module.exports.interactiveModuleBulletAvailability = function(browser,CKeditorfields,i)
 {
              var testval = browser.execute(function () {

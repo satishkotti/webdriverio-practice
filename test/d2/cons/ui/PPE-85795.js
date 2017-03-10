@@ -8,7 +8,7 @@ var data = require('./../data/d2testRunConfig');
 debugger
 
 
-describe('Create NewArticle and Nav Map', function () {
+describe('Interactive Article - BulletList Module', function () {
 
     before(function () {
 
@@ -32,13 +32,7 @@ describe('Create NewArticle and Nav Map', function () {
 
 
 
-    //  it('should Navigate', function (){
-
-
-    //             browser.Navigation(browser,data.inputData.rootnode, data.inputData.rotpath);
-    // });
-
-    it('should create new Asset under test ', function () {
+    it('should verify the availability of BulletList Module ', function () {
 
 
         //   browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName,data.inputData.articleeditdescr, data.inputData.articletitle);
