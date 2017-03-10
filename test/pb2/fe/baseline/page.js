@@ -384,7 +384,7 @@ describe('Checkout a page: => ', function() {
 
                 var options = {
                     method: 'post',
-                    dmTicket: options.dmTicket,
+                    dmTicket: options.dmticket,
                     payload: {
                         dql: "select relation_name from dm_relation where parent_id = '" + rObjectId + "' and relation_name = 'wbmd_pb_assetmodule'"
                     },
