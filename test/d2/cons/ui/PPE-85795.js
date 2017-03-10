@@ -1,38 +1,65 @@
 
-var LoginPage = require('./../common/login');
-var Features = require('./../common/features');
-var data = require('./../data/testRunConfig');
-var randomstring = require("randomstring");
-var randomtext = randomstring.generate(5);
+var LoginPage = require('./../common/d2login');
+var common = require('./../common/d2commonLib');
+var interactivearticles = require('./../common/interactivearticles');
+var data = require('./../data/d2testRunConfig');
 
 
-before(function () {
+debugger
 
-    LoginPage.open();
-    browser.windowHandleMaximize();
-    LoginPage.username.setValue(data.testData.username);
-    LoginPage.password.setValue(data.testData.password);
-    LoginPage.login();
-    expect(LoginPage.title).to.equal('D2');
 
-    //  Features.Navigation();
-});
+describe('Create NewArticle and Nav Map', function () {
 
-describe('Consumer D2 Interactive Module - Bullet List', function () {
-    it('Base functions', function () {
-         Features.Navigation();
-    //   var objectTitle = 'QATestAsset_' + randomtext;
-    var objectTitle = "QANewsArticle";
-    //     Features.newArticle("News Template", objectTitle);
-    //     Features.editProperties(objectTitle, "Medical Reference", "WebMD Medical News");
-    //    // Features.CheckoutCheckin(objectTitle);
-    //     Features.Checkout(objectTitle);
-    //     Features.Checkin(objectTitle);
-    //     Features.promote(objectTitle);
-    //     Features.demote(objectTitle);
-    //     Features.powerpromote(objectTitle);
-    //     Features.publish(objectTitle, "Active");
-        Features.interactivemodulebullet(objectTitle);
+    before(function () {
+
+        // browser.addCommand('Publish', common.Publish.bind(browser));
+        // browser.addCommand('LifeCycle', common.LifeCycle.bind(browser));
+        browser.addCommand('CheckoutAndCheckin', common.CheckoutAndCheckin.bind(browser))
+        // browser.addCommand('EditProperties', common.EditProperties.bind(browser));
+        // browser.addCommand('CreateNewContent', common.CreateNewContent.bind(browser));
+        browser.addCommand('Navigation', common.Navigation.bind(browser));
+        browser.addCommand('login', common.login.bind(browser));
+        browser.addCommand('interactivemodulebullet', interactivearticles.interactivemodulebullet.bind(browser));
+        browser.addCommand('interactiveModuleBulletAvailability', interactivearticles.interactiveModuleBulletAvailability.bind(browser));
+        browser.addCommand('getUrlAndTitle', common.getUrlAndTitle.bind(browser));
+        browser.setViewportSize({
+            width: 1920,
+            height: 1080
+        });
+        browser.login(data.testData);
+        browser.Navigation(browser, data.inputData.rootnode, data.inputData.rotpath);
+    });
+
+
+
+    //  it('should Navigate', function (){
+
+
+    //             browser.Navigation(browser,data.inputData.rootnode, data.inputData.rotpath);
+    // });
+
+    it('should create new Asset under test ', function () {
+
+
+        //   browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName,data.inputData.articleeditdescr, data.inputData.articletitle);
+        //   browser.EditProperties(browser,data.inputData.articletitle,'TestQANewss', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','Testwindowtitle','WebMD Newsletter',data.inputData.webmdcpyrights,'News Page');
+
+        browser.CheckoutAndCheckin(browser, data.inputData.objectTitle, 'Check-out');
+        //   browser.CheckoutAndCheckin(browser,data.inputData.articletitle,'Check-in');
+
+        //   browser.LifeCycle(browser,data.inputData.articletitle,'Power Promote');
+        //  browser.interactiveModuleBulletAvailability (browser,data.inputData.articleContentFields)
+        // browser.interactivemodulebullet(browser,data.inputData.objectTitle);
+
+
+        var richtextFields = data.inputData.articleContentFields;
+        var i = 1;
+        console.log(richtextFields);
+        richtextFields.split(',').forEach(function (x) {
+            browser.interactiveModuleBulletAvailability(browser, x, i);
+            browser.pause(2000);
+            i++;
+        });
 
 
     });
@@ -40,30 +67,7 @@ describe('Consumer D2 Interactive Module - Bullet List', function () {
 
 
 
- });
-
-// describe('Consumer D2 Interactive Module - Bullet List', function () {
-//     it('Availability for bulletList', function () {
-//         Features.Navigation();
-//         //     var objectTitle = 'QATestAsset_' + randomtext;
-//         var objectTitle = "QANewsArticle";
-//         //     Features.newArticle("News Template", objectTitle);
-
-//         Features.Checkout(objectTitle);
-//         var CKEditorFields = data.testData.articleContentFields;
-//         var i = 1;
-//         CKEditorFields.split(',').forEach(function (x) {
-
-//             Features.interactivemoduleBulletListAvailability(objectTitle, x, i);
-//             browser.pause(2000);
-//             i++;
-//         });
+});
 
 
-//     });
-
-
-
-
-// });
 

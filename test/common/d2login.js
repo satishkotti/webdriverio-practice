@@ -1,7 +1,6 @@
-var page = require('./../../../common/page');
-var data = require('./../data/testRunConfig');
-var testUrl = data.testData.url;
+var page = require('./../../../common/page')
 
+var testUrl = 'http://d2.qa01.webmd.com';
 
 var d2LoginPg = Object.create(page, {
     
@@ -22,7 +21,6 @@ var d2LoginPg = Object.create(page, {
     } },
 
     login: { value: function() {
-
 
         browser.click('#Login-button button.x-btn-text');
         browser.waitForVisible(".x-panel-bwrap", 20000);
