@@ -7,7 +7,7 @@ var dctmService = require('../../../common/dctmService');
 var request = Promise.promisifyAll(require('request'), {
     multiArgs: true
 });
-var pb2Config = require("../../../common/config");
+
 var mssqlSitemanagmentDb = require("../../../common/MsSqlService");
 var comm_data = global.envSettings;
 
@@ -45,8 +45,8 @@ var callSql = function(options) {
         mssqlSitemanagmentDb.execute({
             query: options.query,
             callback: function(recordsets) {
-                
-//                console.log(JSON.stringify(recordsets));
+
+                //                console.log(JSON.stringify(recordsets));
                 resolve(recordsets)
             }
         });
@@ -134,9 +134,9 @@ describe('Checkout a Template: => ', function() {
 
                 return dctm(options)
             }).then(function(dctmdata) {
-                
-//                console.log(JSON.stringify(dctmdata));
-                expect(dctmdata.data[0][0].r_lock_owner).to.equal(pb2Config.dctmApiConfig.dctmUsername);
+
+                //                console.log(JSON.stringify(dctmdata));
+                expect(dctmdata.data[0][0].r_lock_owner).to.equal(pcommon.getQAPublicationInfo().username);
             }));
     });
 
@@ -160,7 +160,7 @@ describe('Checkout a Template: => ', function() {
                 return dctm(options)
             }).then(function(dctmdata) {
 
-               console.log(JSON.stringify(dctmdata));
+                console.log(JSON.stringify(dctmdata));
                 expect(dctmdata.data[0][0].r_lock_owner).to.equal('');
             }));
     });
@@ -184,7 +184,7 @@ describe('Checkout a Template: => ', function() {
                 return dctm(options);
             }).then(function(dctmdata) {
                 console.log("Verify the Template is checkedout in dctm" + JSON.stringify(dctmdata));
-                expect(dctmdata.data[0][0].r_lock_owner).to.equal(pb2Config.dctmApiConfig.dctmUsername);
+                expect(dctmdata.data[0][0].r_lock_owner).to.equal(common.getQAPublicationInfo().username);
             }));
     });
 

@@ -7,7 +7,7 @@ var dctmService = require('../../../common/dctmService');
 var request = Promise.promisifyAll(require('request'), {
     multiArgs: true
 });
-var pb2Config = require("../../../common/config");
+
 var mssqlSitemanagmentDb = require("../../../common/MsSqlService");
 var comm_data = global.envSettings;
 
@@ -151,7 +151,7 @@ describe('Checkout a page: => ', function() {
                 return dctm(options)
             }).then(function(dctmdata) {
                 //console.log(JSON.stringify(dctmdata));
-                expect(dctmdata.data[0][0].r_lock_owner).to.equal(pb2Config.dctmApiConfig.dctmUsername);
+                expect(dctmdata.data[0][0].r_lock_owner).to.equal(common.getQAPublicationInfo().username);
             }));
     });
 
@@ -198,7 +198,7 @@ describe('Checkout a page: => ', function() {
                 return dctm(options);
             }).then(function(dctmdata) {
                 //console.log("Verify the Template is checkedout in dctm" + JSON.stringify(dctmdata));
-                expect(dctmdata.data[0][0].r_lock_owner).to.equal(pb2Config.dctmApiConfig.dctmUsername);
+                expect(dctmdata.data[0][0].r_lock_owner).to.equal(common.getQAPublicationInfo().username);
             }));
     });
 
