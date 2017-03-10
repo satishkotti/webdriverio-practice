@@ -21,7 +21,7 @@ before(function () {
 describe('Consumer D2 Interactive Module - Bullet List', function () {
     it('Base functions', function () {
          Features.Navigation();
-   //     var objectTitle = 'QATestAsset_' + randomtext;
+    //   var objectTitle = 'QATestAsset_' + randomtext;
     var objectTitle = "QANewsArticle";
     //     Features.newArticle("News Template", objectTitle);
     //     Features.editProperties(objectTitle, "Medical Reference", "WebMD Medical News");
@@ -40,5 +40,30 @@ describe('Consumer D2 Interactive Module - Bullet List', function () {
 
 
 
-});
+ });
+
+// describe('Consumer D2 Interactive Module - Bullet List', function () {
+//     it('Availability for bulletList', function () {
+//         Features.Navigation();
+//         //     var objectTitle = 'QATestAsset_' + randomtext;
+//         var objectTitle = "QANewsArticle";
+//         //     Features.newArticle("News Template", objectTitle);
+
+//         Features.Checkout(objectTitle);
+//         var CKEditorFields = data.testData.articleContentFields;
+//         var i = 1;
+//         CKEditorFields.split(',').forEach(function (x) {
+
+//             Features.interactivemoduleBulletListAvailability(objectTitle, x, i);
+//             browser.pause(2000);
+//             i++;
+//         });
+
+
+//     });
+
+
+
+
+// });
 

@@ -7,11 +7,6 @@ module.exports.testData={
     username: "QAPublication",
      password: "QA-Doc#1",
      path:"webmd::2/consumer_assets::3/editorial::4",
-    articleContentField: "Section Text",
-    articleContentField2: "Highlights",
-    articleContentField3: "Pull Quotes",
-    articleContentField4: "Citations",
-    articleContentField5: "Related Links Text",
     articleContentFields: "Section Text,Highlights,Pull Quotes,Citations,Related Links Text"
 
 };
