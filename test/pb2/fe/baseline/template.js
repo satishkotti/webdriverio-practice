@@ -1,21 +1,15 @@
 'use strict';
-var LoginPage = require('./../../common/pbLogin');
-//var webdriverio = require('webdriverio');
-//var options = {     desiredCapabilities: {browserName: 'chrome'}};
-//var browser = webdriverio.remote(options);
-
 var assert = require('assert');
-
-var common = require('./../../common/commonLib');
-var comm_data = require('./../../data/testRunConfig');
-var dctmService = require('../../../common/dctmService');
 const Promise = require('bluebird');
+var LoginPage = require('./../../common/pbLogin');
+var common = require('./../../common/commonLib');
+var dctmService = require('../../../common/dctmService');
 var request = Promise.promisifyAll(require('request'), {
     multiArgs: true
 });
 var pb2Config = require("../../../common/config");
 var mssqlSitemanagmentDb = require("../../../common/MsSqlService");
-
+var comm_data = global.envSettings;
 
 var templateData = {
     r_object_id: null,
@@ -51,7 +45,8 @@ var callSql = function(options) {
         mssqlSitemanagmentDb.execute({
             query: options.query,
             callback: function(recordsets) {
-                console.log(JSON.stringify(recordsets));
+                
+//                console.log(JSON.stringify(recordsets));
                 resolve(recordsets)
             }
         });
@@ -110,7 +105,11 @@ describe('Checkout a Template: => ', function() {
     var dmticket = "";
 
     it('[Template] logIn', function() {
-        browser.login(comm_data.testData);
+        browser.login({
+            url: common.getEnvTestUrl(),
+            username: common.getQAPublicationInfo().username,
+            password: common.getQAPublicationInfo().password
+        });
     });
 
     it('[Template] Click: on serach', function() {
@@ -135,7 +134,8 @@ describe('Checkout a Template: => ', function() {
 
                 return dctm(options)
             }).then(function(dctmdata) {
-                console.log(JSON.stringify(dctmdata));
+                
+//                console.log(JSON.stringify(dctmdata));
                 expect(dctmdata.data[0][0].r_lock_owner).to.equal(pb2Config.dctmApiConfig.dctmUsername);
             }));
     });
@@ -159,7 +159,8 @@ describe('Checkout a Template: => ', function() {
 
                 return dctm(options)
             }).then(function(dctmdata) {
-                console.log(JSON.stringify(dctmdata));
+
+               console.log(JSON.stringify(dctmdata));
                 expect(dctmdata.data[0][0].r_lock_owner).to.equal('');
             }));
     });
@@ -382,7 +383,7 @@ describe('Checkout a Template: => ', function() {
     });
 
     it('[Template] check Preview ATS', function() {
-        var scsUrl = comm_data.atsUrl.url + pageId;
+        var scsUrl = comm_data.ats.url + pageId;
         return Promise.resolve(
             callweb({ url: scsUrl })
             .then(function(data) {

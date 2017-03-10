@@ -1,16 +1,15 @@
 'use strict';
-var LoginPage = require('./../../common/pbLogin');
 var assert = require('assert');
-var common = require('./../../common/commonLib');
-var comm_data = require('./../../data/testRunConfig');
-var dctmService = require('../../../common/dctmService');
 const Promise = require('bluebird');
+var LoginPage = require('./../../common/pbLogin');
+var common = require('./../../common/commonLib');
+var dctmService = require('../../../common/dctmService');
 var request = Promise.promisifyAll(require('request'), {
     multiArgs: true
 });
 var pb2Config = require("../../../common/config");
 var mssqlSitemanagmentDb = require("../../../common/MsSqlService");
-
+var comm_data = global.envSettings;
 
 var pageData = {
     r_object_id: null,
@@ -75,7 +74,7 @@ var callSql = function(options) {
         mssqlSitemanagmentDb.execute({
             query: options.query,
             callback: function(recordsets) {
-                console.log(JSON.stringify(recordsets));
+                ////console.log(JSON.stringify(recordsets));
                 resolve(recordsets)
             }
         });
@@ -122,7 +121,11 @@ describe('Checkout a page: => ', function() {
     var dmticket = "";
 
     it('[page] logIn', function() {
-        browser.login(comm_data.testData);
+        browser.login({
+            url: common.getEnvTestUrl(),
+            username: common.getQAPublicationInfo().username,
+            password: common.getQAPublicationInfo().password
+        });
     });
 
     it('[page] Click: on serach', function() {
@@ -147,7 +150,7 @@ describe('Checkout a page: => ', function() {
 
                 return dctm(options)
             }).then(function(dctmdata) {
-                console.log(JSON.stringify(dctmdata));
+                //console.log(JSON.stringify(dctmdata));
                 expect(dctmdata.data[0][0].r_lock_owner).to.equal(pb2Config.dctmApiConfig.dctmUsername);
             }));
     });
@@ -171,7 +174,7 @@ describe('Checkout a page: => ', function() {
 
                 return dctm(options)
             }).then(function(dctmdata) {
-                console.log(JSON.stringify(dctmdata));
+                //console.log(JSON.stringify(dctmdata));
                 expect(dctmdata.data[0][0].r_lock_owner).to.equal('');
             }));
     });
@@ -194,7 +197,7 @@ describe('Checkout a page: => ', function() {
 
                 return dctm(options);
             }).then(function(dctmdata) {
-                console.log("Verify the Template is checkedout in dctm" + JSON.stringify(dctmdata));
+                //console.log("Verify the Template is checkedout in dctm" + JSON.stringify(dctmdata));
                 expect(dctmdata.data[0][0].r_lock_owner).to.equal(pb2Config.dctmApiConfig.dctmUsername);
             }));
     });
@@ -217,7 +220,7 @@ describe('Checkout a page: => ', function() {
 
                 return dctm(options)
             }).then(function(dctmdata) {
-                console.log(JSON.stringify(dctmdata));
+                //console.log(JSON.stringify(dctmdata));
                 expect(dctmdata.data[0][0].r_lock_owner).to.equal('');
             }));
     });
@@ -240,10 +243,10 @@ describe('Checkout a page: => ', function() {
 
                 return dctm(options);
             }).then(function(dctmdata) {
-                console.log("Verify the Page is checkedout in dctm" + JSON.stringify(dctmdata));
+                //console.log("Verify the Page is checkedout in dctm" + JSON.stringify(dctmdata));
                 var label = '';
 
-                console.log("[Staging] Array length: [" + dctmdata.data[0] + "}");
+                //console.log("[Staging] Array length: [" + dctmdata.data[0] + "}");
 
                 for (var i in dctmdata.data) {
                     if (dctmdata.data[i][0].r_version_label[0] == "Staging")
@@ -272,10 +275,10 @@ describe('Checkout a page: => ', function() {
 
                 return dctm(options);
             }).then(function(dctmdata) {
-                console.log("Verify the Template is checkedout in dctm" + JSON.stringify(dctmdata));
+                //console.log("Verify the Template is checkedout in dctm" + JSON.stringify(dctmdata));
                 var label = '';
 
-                console.log("[Live] Array length: [" + dctmdata.data[0] + "}");
+                //console.log("[Live] Array length: [" + dctmdata.data[0] + "}");
 
                 for (var i in dctmdata.data) {
                     if (dctmdata.data[i][0].r_version_label[0] == "Live")
@@ -302,7 +305,7 @@ describe('Checkout a page: => ', function() {
             }).then(function(dctmdata) {
                 var relationName = '';
 
-                console.log("DctmRelation: " + JSON.stringify(dctmdata));
+                //console.log("DctmRelation: " + JSON.stringify(dctmdata));
 
                 for (var i in dctmdata.data) {
                     if (dctmdata.data[i][0].relation_name == "wcm_layout_template")
@@ -347,7 +350,7 @@ describe('Checkout a page: => ', function() {
     });
 
     it('[Page] check Preview ATS', function() {
-        var scsUrl = comm_data.atsUrl.url + pageId;
+        var scsUrl = comm_data.ats.url + pageId;
         return Promise.resolve(
             callweb({ url: scsUrl })
             .then(function(data) {
@@ -451,6 +454,6 @@ describe('Checkout a page: => ', function() {
 
 
     after(function() {
-        console.log("test end");
+        //console.log("test end");
     });
 });
