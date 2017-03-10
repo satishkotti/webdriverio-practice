@@ -1,9 +1,10 @@
-module.exports.testData={
+module.exports.testData = {
     url: "http://genesys.dev01.webmd.com",
     username: "QAPublication",
-    password: "QA-Doc#1"};
+    password: "QA-Doc#1"
+};
 
-module.exports.expectedResults={
+module.exports.expectedResults = {
     homepageTitle: "Dashboard - WebMD PageBuilder",
     level0NavMapNodeId: "- Node ID [1031]",
     level0NodeId: "1031",
@@ -14,3 +15,6 @@ module.exports.expectedResults={
     baseTemplateName: "Base Template",
     errorPage: "Error 404"
 };
+module.exports.atsUrl = {
+    url: 'http://ats.preview.dev01.webmd.com/SCSFile.aspx?ID='
+}

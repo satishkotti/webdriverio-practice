@@ -20,28 +20,28 @@
                 "--timeout",
                 "999999",
                 "--colors",
-                "${workspaceRoot}/test/pb2/sanity/page.js"
+                "${workspaceRoot}/test/pb2/fe/baseline/myTest.js"
             ],
             "internalConsoleOptions": "openOnSessionStart"
         },
         {
-            "type": "node",
-            "request": "launch",
-            "port": 5859,
-            "name": "WebdriverIO",
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
-            "windows": {
-                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio.cmd"
-            },
-            "cwd": "${workspaceRoot}",
-            "console": "integratedTerminal",
-            // This args config runs only the file that's open and displayed
-            // (e.g., a file in test/spec/):
-            "args":[
-                "--spec", "${workspaceRoot}/test/pb2/sanity/page.js"
-                // To run a specific file, you can also do:
-                //"--spec", "test/specs/foo.spec.js"
-            ]
-        }
+            "type": "node",
+            "request": "launch",
+            "port": 5859,
+            "name": "WebdriverIO",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
+            "windows": {
+                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio.cmd"
+            },
+            "cwd": "${workspaceRoot}",
+            "console": "integratedTerminal",
+            // This args config runs only the file that's open and displayed
+            // (e.g., a file in test/spec/):
+            "args":[
+                "--spec", "${relativeFile}"
+                // To run a specific file, you can also do:
+                //"--spec", "test/specs/foo.spec.js"
+            ]
+        }
     ]
 }

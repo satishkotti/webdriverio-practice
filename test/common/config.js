@@ -1,7 +1,7 @@
 module.exports.siteMgmtConfigDev01={    
     user: "appsa",
     password: "Dconapp$",
-    server: "sqlvp-cdv1-08.portal.webmd.com\cdv1,1433",
+    server: "sqlvp-cdv1-08.portal.webmd.com",
     database: "Pagebuilder_SiteManagement"
 };
 
