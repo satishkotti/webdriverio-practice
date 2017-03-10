@@ -239,20 +239,71 @@ module.exports.testVerify = function () {
     return "Pass";
 };
 
-module.exports.searchCommon = function (id) {
-    this.element('input.ng-pristine').setValue(id);    
-    this.element('button.fa-search').click().waitForExist("button.button-highlight", 2000);    
+module.exports.searchCommon = function(id) {
+    this.element('input.ng-pristine').setValue(id);
+    this.element('button.fa-search').click().waitForExist("button.button-highlight", 2000);
     this.pause(2000);
 }
 
-module.exports.checkout = function () {        
+module.exports.checkout = function() {
     this.click("//button[@class='button button-highlight ng-scope']/span[1]/parent::*");
     this.pause(20000);
+    //this.click("ul.nav.nav-tabs > li:nth-of-type(2) > a > uib-tab-heading > span:nth-of-type(1)");
+    //this.pause(20000);
 }
 
-module.exports.cancelCheckout = function () {        
+module.exports.cancelCheckout = function() {
     this.click("//button[@class='button button-link ng-scope']");
     this.pause(2000);
     this.click("//button[@class='button-highlight ng-binding']")
     this.pause(20000);
+}
+
+module.exports.checkFromHistory = function(index) {
+    this.click("//BUTTON[@type='button'][text()='More Actions']");
+    this.click("//I[@class='fa fa-history fa-fw']");
+    this.pause(2000);
+    this.click("//table[@class='k-selectable']/tbody/tr[" + index + "]");
+    this.click("//BUTTON[text()='Checkout & Edit']");
+    this.pause(20000);
+}
+
+module.exports.PublishAsset = function(Stage) {
+    this.click("//BUTTON[@type='button'][text()='More Actions']");
+    this.click("//li[@class='ng-binding ng-scope'][text()='Publish']");
+    this.pause(2000);
+
+    if (Stage == 'Staging') {
+        this.click("//span[@class='pb-lifecycle staging']");
+    }
+
+    if (Stage == 'Live') {
+        this.click("//span[@class='pb-lifecycle active']");
+    }
+
+    this.click("//BUTTON[text()='Publish']");
+    this.pause(20000);
+}
+
+module.exports.EditAndAddModule = function(moduleType, isPage) {
+    this.click("//button[@class='button button-highlight ng-scope']/span[1]/parent::*");
+    this.pause(10000);
+    this.moveToObject("div.pb-layout > section:nth-of-type(1) > div.pb-contentpane > span.pb-contentpane-title")
+    this.click("div.pb-layout > section:nth-of-type(1) > div.pb-contentpane > span.pb-contentpane-title > i.fa.fa-plus.add-module");
+
+    if (isPage)
+        this.element("div.container-fluid > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input").setValue('testmodule');
+    else
+        this.element("form > div.container-fluid > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input").setValue('testmodule');
+
+    this.click("div.container-fluid > div:nth-of-type(1) > div:nth-of-type(3) > label.pb-label > div.chosen-container.chosen-container-single > a.chosen-single.chosen-default > div > b");
+    this.element("div.chosen-container.chosen-container-single.chosen-with-drop > div.chosen-drop > div.chosen-search > input").setValue(moduleType);
+    this.click("ul.chosen-results > li");
+    this.click("section.pb-buttonpane.pb-buttonpane-inModule > button.floatright");
+    this.pause(15000);
+    this.click("#editSavePublish");
+    this.click("div.btn-group.dropdown.open > ul.dropdown-menu > li:nth-of-type(3)");
+    this.element("#saveComment").setValue("test comment");
+    this.click("#modal-ok");
+    this.pause(15000);
 }

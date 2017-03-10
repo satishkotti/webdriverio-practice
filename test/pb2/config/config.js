@@ -36,6 +36,9 @@ module.exports.testSettings = {
                     "type": "user"
                 }
             ]
+        },
+        "ats":{
+            url:"http://ats.preview.dev01.webmd.com/SCSFile.aspx?ID="
         }
     },
     "dev02": {
@@ -51,25 +54,33 @@ module.exports.testSettings = {
             "dctmDocbase": "webmddoc01",
             "url": "http://dmrest.dev02.webmd.com/pbws"
         },
-        "PB2": {
-            "url": "http://genesys.dev01.webmd.com",
-            "users": [{
-                    "username": "QAPublication09",
-                    "password": "QA-Doc#1",
-                    "type": "super user"
-                },
+        "genesys": {
+            "url": "http://genesys.dev02.webmd.com",
+            "users": [
                 {
+                    "id": "1",
                     "username": "QAPublication",
                     "password": "QA-Doc#1",
                     "type": "user"
                 },
                 {
+                    "id": "2",
+                    "username": "QAPublication09",
+                    "password": "QA-Doc#1",
+                    "type": "super user"
+                },
+                {
+                    "id": "3",
                     "username": "QAPublication1",
                     "password": "QA-Doc#1",
                     "type": "user"
                 }
             ]
+        },
+        "ats":{
+            url:"http://ats.preview.dev02.webmd.com/SCSFile.aspx?ID="
         }
+        
     },
     "data": {
         "homepageTitle": "Dashboard - WebMD PageBuilder",

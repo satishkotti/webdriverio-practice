@@ -1,6 +1,5 @@
-module.exports = {    
-    login: function (options) {           
-        var config = require('./config');               
+module.exports = {
+    login: function(options) {
         var headers = {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json;charset=UTF-8',
@@ -8,30 +7,28 @@ module.exports = {
 
         var requestOptions = {
             method: 'POST',
-            uri: config.dctmApiConfig.url + '/dctm/auth/login',
+            uri: global.envSettings.dctmApiConfig.url + '/dctm/auth/login',
             headers: headers,
             json: {
-                userName: config.dctmApiConfig.dctmUsername,
-                password: config.dctmApiConfig.dctmPassword,
-                repoName: config.dctmApiConfig.dctmDocbase
+                userName: global.envSettings.dctmApiConfig.dctmUsername,
+                password: global.envSettings.dctmApiConfig.dctmPassword,
+                repoName: global.envSettings.dctmApiConfig.dctmDocbase
             }
-        };        
+        };
         var request = require('request');
         request(requestOptions, options.callback);
     },
-    execute: function (options) {
-        
-        var config = require('./config');            
-        var url = config.dctmApiConfig.url + options.uri;                
+    execute: function(options) {
+        var url = global.envSettings.dctmApiConfig.url + options.uri;
         var method = options.method.toUpperCase();
 
         var headers = {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json;charset=UTF-8',
             'WBMD-LOGIN-TICKET': options.dmTickets,
-            'WBMD-USERNAME': config.dctmApiConfig.dctmUsername,
-            'WBMD-REPOSITORY': config.dctmApiConfig.dctmDocbase,
-            'Authorization' : 'bearer DCYMpdkP79jDjW1IHSGBkO1z2YaKeZmAWH5KoY8x+azCK1iX'
+            'WBMD-USERNAME': global.envSettings.dctmApiConfig.dctmUsername,
+            'WBMD-REPOSITORY': global.envSettings.dctmApiConfig.dctmDocbase,
+            'Authorization': 'bearer DCYMpdkP79jDjW1IHSGBkO1z2YaKeZmAWH5KoY8x+azCK1iX'
 
         };
 
@@ -44,5 +41,5 @@ module.exports = {
 
         var request = require('request');
         request(requestOptions, options.callback);
-    }    
+    }
 };
