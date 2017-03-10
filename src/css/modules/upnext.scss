@@ -141,7 +141,8 @@
 	display: none !important;
 }
 
-.ua_type_desktop.funded-editorial-video .wbmd-see-all-videos {
+.ua_type_desktop.funded-editorial-video .wbmd-see-all-videos,
+.ua_type_tablet.funded-editorial-video .wbmd-see-all-videos {
     display: none;
 }
 .wbmd-see-all-videos a {
