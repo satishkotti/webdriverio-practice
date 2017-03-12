@@ -16,6 +16,7 @@ module.exports.interactivemodulebullet= function(browser,objectTitle)
 
 
             browser.frame(testval.value);
+            browser.pause(10000);
             browser.leftClick('//button[contains(string(),"Check-out")]');
             browser.pause(20000);
             browser.scroll("//h2[span[contains(.,'Section Text')]]//following-sibling::div//div[text()='Enter text here']");
@@ -45,11 +46,19 @@ module.exports.interactivemodulebullet= function(browser,objectTitle)
             browser.moveToObject("//option[contains(.,'Left')]").click("//option[contains(.,'Left')]");
 
  
-            browser.pause(50000);
+            browser.pause(10000);
             browser.waitForVisible("//input[@ng-model='bulletTitle']", 50000);
             browser.setValue("//input[@ng-model='bulletTitle']","QAtest");
-            browser.frame("bulletDescContentFrame").execute("document.getElementsByTagName('iframe').item(0).contentWindow.document.getElementsByTagName('p').item(0).textContent = 'D2'").pause(10000);
+            browser.frame("bulletDescContentFrame");
+            browser.click('//*[@id="cke_12"]');
+            browser.click('//*[@id="cke_13"]');
+            browser.click('//*[@id="cke_14"]');
+            browser.frameParent();
+            browser.pause(10000);
+            browser.frame("bulletDescContentFrame").execute("document.getElementsByTagName('iframe').item(0).contentWindow.document.getElementsByTagName('p').item(0).textContent = 'D2 Description'").pause(10000);
+            browser.click('//*[@id="cke_15"]');
 
+            browser.pause(50000);
                 browser.frameParent();
             browser.leftClick('//button[@ng-click="addBullet()"]');
 
