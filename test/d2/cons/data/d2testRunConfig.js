@@ -30,5 +30,16 @@ module.exports.inputData=
 };
 
 module.exports.expectedResults={
-    bulletlist: "Bulleted List"
+    bulletlist: "Bulleted List",
+    headline: "Module Headline",
+    moduleDescription: "Module Description",
+    align: "Align",
+    alignLeftOption: "Left",
+    alignMiddleOption: "Middle",
+    alignRightOption:  "Right",
+    bullet: "Bullets",
+    bulletTitle: "Title",
+    insertBulletTitle: "Insert Bullet Title",
+    insertBulletDescription: "Insert Bullet Description"
+
 };

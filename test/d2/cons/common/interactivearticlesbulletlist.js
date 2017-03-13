@@ -132,16 +132,41 @@ module.exports.interactiveModuleBulletMenu = function(browser,CKeditorfields,i)
             browser.frame(mModuleIF.value);
              browser.waitForVisible("(//span[text()='Bulleted List'])["+i+"]", 50000);
             browser.moveToObject("(//span[text()='Bulleted List'])["+i+"]");
-            
-            browser.frameParent();
-            browser.frameParent();
             browser.click("(//span[text()='Bulleted List'])["+i+"]");
-            var headline = browser.getText("//div[@class='row']//div[contains(.,'Module Headline')]")
+            browser.frameParent();
+            browser.frameParent();
+            browser.pause(10000);
+            var headline = browser.getText("//div[@class='row']//div[contains(.,'Module Headline')]");
+            var moduleDescription = browser.getText("//div[@class='row']//div[contains(.,'Module Description')]");
+            var align = browser.getText("//div[@class='row']//div[contains(.,'Align')]");
+            var alignLeftOption = browser.getText("//option[contains(.,'Left')]");
+            var alignMiddleOption = browser.getText("//option[contains(.,'Middle')]");
+            var alignRightOption = browser.getText("//option[contains(.,'Right')]");
+            var bullet= browser.getText("//div[@class='row']//div[contains(.,'Bullets')]");
+            var bulletTitle = browser.getText("//div[@class='row']//div[contains(.,'Bullets')]//following-sibling::div//th[contains(.,'Title')]");
+            var insertBulletTitle= browser.getText("//div[@class='row']//div[contains(.,'Insert Bullet Title')]");
+            var insertBulletDescription = browser.getText("//div[@class='row']//div[contains(.,'Insert Bullet Description')]");
+
+            browser.scroll("//button[contains(.,'Cancel')]");
+            browser.click("//button[contains(.,'Cancel')]");
+            //browser.pause(000);
+            
             var vals = {};
             vals = {
-	"headline": headline
-};
-
+	        "headline": headline,
+            "moduleDescription": moduleDescription,
+            "align": align,
+            "alignLeftOption": alignLeftOption,
+            "alignMiddleOption": alignMiddleOption,
+            "alignRightOption": alignRightOption,
+            "bullet": bullet,
+            "bulletTitle": bulletTitle,
+            "insertBulletTitle": insertBulletTitle,
+            "insertBulletDescription": insertBulletDescription
+            };
+            
             return vals;
+
+         
     
 };
