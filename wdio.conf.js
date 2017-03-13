@@ -54,6 +54,9 @@ exports.config = {
     specs: module.exports.getSpecs(),
     // Patterns to exclude.
     exclude: [
+        './test/**/config/*.*',
+        './test/**/functions/*.*',
+        './test/**/common/*.*'
     ],
     //
     // ============
