@@ -11,12 +11,12 @@ module.exports.interactivemodulebullet= function(browser,objectTitle)
             browser.pause(5000);
             //IFrame switch start
             var testval = browser.execute(function () {
-                return document.getElementById('ExternalWidget-3').getElementsByTagName('iframe').item(0).id;
+                //return document.getElementById('ExternalWidget-3').getElementsByTagName('iframe').item(0).id;
+                 return document.querySelectorAll('div[tag_id="Content-widget"]').item(0).getElementsByTagName('iframe').item(0).id;
             });
 
 
             browser.frame(testval.value);
-            browser.pause(10000);
             browser.leftClick('//button[contains(string(),"Check-out")]');
             browser.pause(20000);
             browser.scroll("//h2[span[contains(.,'Section Text')]]//following-sibling::div//div[text()='Enter text here']");
@@ -46,20 +46,30 @@ module.exports.interactivemodulebullet= function(browser,objectTitle)
             browser.moveToObject("//option[contains(.,'Left')]").click("//option[contains(.,'Left')]");
 
  
-            browser.pause(10000);
+            browser.pause(5000);
             browser.waitForVisible("//input[@ng-model='bulletTitle']", 50000);
             browser.setValue("//input[@ng-model='bulletTitle']","QAtest");
             browser.frame("bulletDescContentFrame");
-            browser.click('//*[@id="cke_12"]');
-            browser.click('//*[@id="cke_13"]');
-            browser.click('//*[@id="cke_14"]');
-            browser.frameParent();
-            browser.pause(10000);
-            browser.frame("bulletDescContentFrame").execute("document.getElementsByTagName('iframe').item(0).contentWindow.document.getElementsByTagName('p').item(0).textContent = 'D2 Description'").pause(10000);
-            browser.click('//*[@id="cke_15"]');
+            browser.pause(5000);
+            browser.click("//span[contains(@class,'bold_icon')]");
+            browser.execute("document.getElementsByTagName('iframe').item(0).contentWindow.document.getElementsByTagName('p').item(0).textContent = 'D2'").pause(10000);
+            //  var mModulebullet = browser.execute(function () {
+            //     return document.getElementsByTagName('iframe').item(0).id;
+            // });
 
-            browser.pause(50000);
-                browser.frameParent();
+            // browser.frame(mModulebullet.value);
+     
+            // browser.pause(5000);
+           // browser.frame("bulletDescContentFrame");
+            browser.click("//a[@title='body element']");
+            // browser.pause(5000);
+            // browser.click("//span[contains(@class,'bold_icon')]");
+             browser.pause(5000);
+            browser.click("//span[contains(@class,'italic_icon')]");
+             browser.pause(5000);
+            browser.click("//span[contains(@class,'underline_icon')]");
+            browser.frameParent();
+           // browser.frameParent();
             browser.leftClick('//button[@ng-click="addBullet()"]');
 
             browser.waitForVisible("//div[@class='modal-footer']//button[contains(.,'Insert')]", 50000);
@@ -67,14 +77,15 @@ module.exports.interactivemodulebullet= function(browser,objectTitle)
 
             browser.pause(5000);
 
-    
+          
     }; 
 
 // Method to validate the availability of bulletlist Modules for richtext fields 
 module.exports.interactiveModuleBulletAvailability = function(browser,CKeditorfields,i)
 {
              var testval = browser.execute(function () {
-                return document.getElementById('ExternalWidget-3').getElementsByTagName('iframe').item(0).id;
+               // return document.getElementById('ExternalWidget-3').getElementsByTagName('iframe').item(0).id;
+                 return document.querySelectorAll('div[tag_id="Content-widget"]').item(0).getElementsByTagName('iframe').item(0).id;
             });
             browser.frame(testval.value);
             browser.scroll("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']");
@@ -96,5 +107,41 @@ module.exports.interactiveModuleBulletAvailability = function(browser,CKeditorfi
             
             browser.frameParent();
             browser.frameParent();
+    
+};
+
+
+// Method to validate the options in the bulletlist menu
+module.exports.interactiveModuleBulletMenu = function(browser,CKeditorfields,i)
+{
+             var testval = browser.execute(function () {
+                 return document.querySelectorAll('div[tag_id="Content-widget"]').item(0).getElementsByTagName('iframe').item(0).id;
+            });
+            browser.frame(testval.value);
+            browser.scroll("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']");
+            browser.setValue("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']", "QA");
+            browser.moveToObject("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+i+"]");
+            browser.click("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+i+"]");
+
+            var mModuleIF = browser.execute(function () {
+                return document.getElementsByTagName('iframe').item(0).id;
+                
+            });
+            
+            
+            browser.frame(mModuleIF.value);
+             browser.waitForVisible("(//span[text()='Bulleted List'])["+i+"]", 50000);
+            browser.moveToObject("(//span[text()='Bulleted List'])["+i+"]");
+            
+            browser.frameParent();
+            browser.frameParent();
+            browser.click("(//span[text()='Bulleted List'])["+i+"]");
+            var headline = browser.getText("//div[@class='row']//div[contains(.,'Module Headline')]")
+            var vals = {};
+            vals = {
+	"headline": headline
+};
+
+            return vals;
     
 };

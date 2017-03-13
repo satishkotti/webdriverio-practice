@@ -151,7 +151,8 @@ module.exports.CheckoutAndCheckin = function(browser, Articletitle,ChkAction)
            // browser.doubleClick("//span[text()='Content']");
             //IFrame switch start
             var frameval = browser.execute(function () {
-                return document.getElementById('ExternalWidget-3').getElementsByTagName('iframe').item(0).id;
+                //return document.getElementById('ExternalWidget-3').getElementsByTagName('iframe').item(0).id;
+                return document.querySelectorAll('div[tag_id="Content-widget"]').item(0).getElementsByTagName('iframe').item(0).id;
             });
             
        
