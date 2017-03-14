@@ -19,23 +19,17 @@ module.exports.TraverseSS = (level) =>
     iwc.TraverseSS(level);
 }
 
-<<<<<<< HEAD
 module.exports.Create = (assetType, assetDetails) =>
 {
-    iwc.AddToNode(assetType);
     switch (assetType)
     {
-        case 'Page': props.PopulatePageProps(assetDetails); break;
-        case 'Template': props.PopulateTemplateProps(assetDetails); break;
-        case 'Shared Module': break;
+        case 'Page': iwc.AddToNode(assetType); return props.PopulatePageProps(assetDetails); break;
+        case 'Template': iwc.AddToNode(assetType); return props.PopulateTemplateProps(assetDetails); break;
+        case 'Shared Module': return props.PopulateSMProps(assetDetails); break;
     }
-    
-=======
-module.exports.AddToNode = (assetType, assetDetails) =>
-{
-    var assetProps = this.assetDetails;
-    iwc.AddToNode('Page');
-    props.SelectTypeOfPage('standalone', 'Responsive', '3 Column Responsive');
->>>>>>> 02aa792cb553da063878b037d5c1787c0272f85f
+}
 
+module.exports.AddModule = (contentPane, moduleDetails) =>
+{
+    props.AddModule(contentPane, moduleDetails);
 }

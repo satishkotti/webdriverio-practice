@@ -1,9 +1,9 @@
 var page = require('./../../common/page');
 
-var smdata = Object.create(page, {
+var pmdata = Object.create(page, {
 
         adModule: {get : () => {
-        var smProps = {};
+        var pmProps = {};
         smProps  = 
         {
             "moduleName": "test",
@@ -22,8 +22,8 @@ var smdata = Object.create(page, {
 
         }
 
-        return smProps;
+        return pmProps;
     }}
 });
 
-module.exports = smdata;
+module.exports = pmdata;

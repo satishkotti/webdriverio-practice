@@ -1,14 +1,11 @@
-<<<<<<< HEAD
+
 var func = require('./../common/functions/functions');
 var pageTestData = require('./../data/page.assets');
 var templateTestData = require('./../data/template.assets');
+var smTestData = require('./../data/sm.assets');
+var pmTestData = require('./../data/pagemodule.assets');
 
 describe('Unit Tests', () => {
-=======
-var func = require('./../common/functions/functions')
-
-describe('U-Tests', () => {
->>>>>>> 02aa792cb553da063878b037d5c1787c0272f85f
 
     it('Launch App and login', () => {
         func.LaunchAppAndLogin();
@@ -22,17 +19,20 @@ describe('U-Tests', () => {
         func.TraverseSS('Level 0/zTest/zSubTest1');
     });
 
-<<<<<<< HEAD
-    it.skip('Add Normal Standalone Page to the Node', () => {
+    it('Add Normal Standalone Page to the Node', () => {
         func.Create('Page', pageTestData.normalStandalonePage);
     });
 
-    it('Add Normal Standalone Template to the Node', () => { 
+    it('Add a page module', () => {
+        func.AddModule('ContentPane0', pmTestData.adModule);
+    })
+
+    it.skip('Add Normal Standalone Template to the Node', () => { 
         func.Create('Template', templateTestData.normalStandaloneTemplate);
-=======
-    it('Add to Node', () => {
-        func.AddToNode('Page', null);
->>>>>>> 02aa792cb553da063878b037d5c1787c0272f85f
+    });
+
+    it.skip('Create a Shared Module', () => { 
+        func.Create('Shared Module', smTestData.adModule);
     });
     
 });

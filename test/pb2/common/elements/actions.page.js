@@ -2,10 +2,8 @@ var page = require('./../../../common/page');
 
 var button = '//button[string()="***"]'; // For More Actions, Cancel Checkout, Save Publish, Checkout & Edit, Expire, Cancel, Continue, Ok
 var button2 = '//span[string()="***"]'; //For View Read-Only, Edit
-<<<<<<< HEAD
 var button3 = '//button[contains(.,"***")]' //Just in case if the button does not have standard text
-=======
->>>>>>> 02aa792cb553da063878b037d5c1787c0272f85f
+
 var label = '.pb-lifecycle.***'; //WIP, Staging, Active
 var locator;
 
@@ -27,8 +25,6 @@ var acts = Object.create(page, {
             }
         }
     },
-
-<<<<<<< HEAD
     splbutton: {
         value: {
             get: (buttonText) => {
@@ -40,9 +36,6 @@ var acts = Object.create(page, {
             }
         }
     },
-
-=======
->>>>>>> 02aa792cb553da063878b037d5c1787c0272f85f
     label: {
         value: {
             get: (version) => {
@@ -53,6 +46,21 @@ var acts = Object.create(page, {
                 return acts.Ele;
 
             }
+        }
+    },
+
+    buttonMenu:
+    {
+        value:
+        {
+            get:
+                (buttonText, menuItem) =>
+                {
+                    acts.button.get(buttonText).click();
+                    locator = '//li[string()="' + menuItem + '"]';
+                    acts.Ele.waitForVisible();
+                    acts.Ele.click();
+                }
         }
     }
 

@@ -8,12 +8,3 @@ var menu = Object.create(page, {
     browser: { get: () => { return browser;} }
 });
 module.exports = menu;
-
-/*
-//Actions
-var action = Object.create(page, {
-    viewReadOnly: { get: () => { return browser.element('//span[string()="View Read-Only"]'); } },
-    edit: {get: () => { return browser.element('button[data-ng-click="goToAsset()"]'); } }
-});
-module.exports = action;
-*/

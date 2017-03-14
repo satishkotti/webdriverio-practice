@@ -2,7 +2,6 @@ var page = require('./../../common/page');
 
 var pagedata = Object.create(page, {
 
-<<<<<<< HEAD
     normalStandalonePage : {get : () => {
         var pageProps = {};
         pageProps  = 
@@ -29,7 +28,7 @@ var pagedata = Object.create(page, {
             "metaDesc": "test",
             "isGated": 0,
             "sslRequired": 0,
-            "tier": 2,
+            "tier": "tier2",
             "collectionCategory": null,
             "secondaryTopicID": null,
             "pageThumbnail": null,
@@ -47,44 +46,3 @@ var pagedata = Object.create(page, {
 });
 
 module.exports = pagedata;
-=======
-    inheritedPage : {value : () => {
-        var page = {};
-        page  = 
-        {
-            "type": "standalone",
-            "inheritFrom" : "",
-            "layout": "Responsive",
-            "layoutCSS": "3 Column Responsive",
-            "pageName":"",
-            "friendlyName":"",
-            "channel":"",
-            "programCollection":"",
-            "isCAP":"",
-            "isDefault":"",
-            "useArticleProperties":"",
-            "linkTitle":"",
-            "windowTitle":"",
-            "contentClassification":"",
-            "primaryTopicID":"",
-            "sponsorProgram":"",
-            "keywords":"",
-            "userDesc":"",
-            "metaDesc":"",
-            "isGated":"",
-            "sslRequired":"",
-            "tier":"",
-            "collectionCategory":"",
-            "secondaryTopicID":"",
-            "pageThumbnail":"",
-            "publication":'',
-            "healthRefType":"",
-            "authRequired":"",
-            "webmdNickname":"",
-            "internallySearchable":"",
-            "externallySearchable":"" 
-
-        }
-    }}
-})
->>>>>>> 02aa792cb553da063878b037d5c1787c0272f85f

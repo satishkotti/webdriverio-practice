@@ -18,16 +18,13 @@ var props = Object.create(page, {
     GetElement: { get: () => { return browser.element(locator); } },
 
     input : { value: { get: (labelName) => {
-<<<<<<< HEAD
         switch (labelName)
         {
             case 'WebMD Nickname': locator = input.replace('***:', labelName); return  props.GetElement; break;
             default: locator = input.replace('***', labelName); return  props.GetElement; break;
         }
-=======
         locator = input.replace('***', labelName);
         return  props.GetElement;
->>>>>>> 02aa792cb553da063878b037d5c1787c0272f85f
     }}},
 
     textarea : { value: { get: (labelName) =>
@@ -38,26 +35,33 @@ var props = Object.create(page, {
 
     checkbox : { value: { get: (labelName) => {
         locator = checkbox.replace('***', labelName); 
-        console.log(locator);  
          return  props.GetElement;
     }}},
 
     dropdown: { value: (labelName, option) => {
-        locator = dropdown.replace('***', labelName);
-        props.UntilExist(locator);
-        props.UntilEnabled(locator);
+        locator = selectDD.replace('***', labelName);
+        props.UntilExist();
+        props.UntilEnabled();
+         locator = dropdown.replace('***', labelName);
         props.GetElement.click();
 
         locator = locator.split('//a')[0] + dropdownOption.replace('***', option);
-        props.UntilExist(locator);
-        props.UntilVisible(locator);
+        props.UntilExist();
+        props.UntilVisible();
         props.GetElement.click();
     }},
 
     select: { value: (labelName, option) => {
         locator = selectDD.replace('***', labelName);
         browser.selectByVisibleText(locator, option);
-    }}
+    }},
+
+    element: { value: (eleLocator) => 
+        { 
+            locator = eleLocator;
+            props.UntilExist();
+            return props.GetElement();
+        }},
 
 });
 

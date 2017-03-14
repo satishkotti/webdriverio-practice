@@ -1,17 +1,16 @@
 var props = require('./../elements/assetprops.page');
 var page = require('./../../../common/page');
 var actions = require('./assetactions.actions');
+var iwc = require('./iwc.actions');
+var menu = require('./menus.actions');
 
 module.exports.PopulatePageProps = (assetProps) =>
 {
-
-    browser.pause(25000);
-
     switch (assetProps.type)
     {
         case 'inherited': props.checkbox.get('Inherit from Template').click(); props.dropdown('Inherit From Template', assetProps.inheritFrom); break;
-        case 'standalone': props.checkbox.get('New Standalone').click(); browser.pause(2000); props.dropdown('Layout', assetProps.layout); 
-        if( assetProps.layoutCSS != null ) { browser.pause(2000); props.dropdown('CSS Option', assetProps.layoutCSS); } break;
+        case 'standalone': props.checkbox.get('New Standalone').click(); props.dropdown('Layout', assetProps.layout); 
+        if( assetProps.layoutCSS != null ) { props.dropdown('CSS Option', assetProps.layoutCSS); } break;
     }
 
     actions.ClickModalContinueButton();
@@ -87,31 +86,23 @@ module.exports.PopulatePageProps = (assetProps) =>
         props.textarea.get('Meta Description').setValue(assetProps.metaDesc);
         if(assetProps.isGated != 0) { props.checkbox.get('Is Gated?').click(); }
         if(assetProps.sslRequired != 0) { props.checkbox.get('SSL Required?').click(); }
-        if(assetProps.tier != 2) { props.dropdown('Tier', assetProps.tier) };
+        if(assetProps.tier != "tier2") { props.dropdown('Tier', assetProps.tier) };
         if(assetProps.collectionCategory != null ) { props.input.dropdown('Collection Category', assetProps.collectionCategory) };
         if(assetProps.secondaryTopicID != null ) { props.input.dropdown('Secondary Topic ID', assetProps.secondaryTopicID) };
         if(assetProps.pageThumbnail != null ) { props.input.get('Page Thumbnail').setValue(assetProps.pageThumbnail) };
         if(assetProps.publication != null ) { props.dropdown('Publication', assetProps.publication) };
         if(assetProps.healthRefType != null ) { props.dropdown('Health Reference Type', assetProps.healthRefType) };
-        if(assetProps.authRequired != 'No' || assetProps.authRequired != null) { props.dropdown('Authentication Required', assetProps.authRequired) };
+        if(assetProps.authRequired != 'No') { props.dropdown('Authentication Required', assetProps.authRequired) };
         if(assetProps.webmdNickname != null ) { props.input.get('WebMD Nickname').setValue(assetProps.webmdNickname) };
-        if(assetProps.internallySearchable != null || assetProps.internallySearchable != 1) { props.checkbox.get('Internally Searchable?').click(); }
-        if(assetProps.externallySearchable != null || assetProps.externallySearchable != 1) { props.checkbox.get('Externally Searchable?').click(); }
-=======
-    browser.pause(25000);
-
-    switch (pageType)
-    {
-        case 'inherited': props.checkbox.get('Inherit from Template').click(); props.dropdown('Inherit From Template', inheritFromORLayout); break;
-        case 'standalone': props.checkbox.get('New Standalone').click(); browser.pause(2000); props.dropdown('Layout', inheritFromORLayout); 
-        if( layoutCSS != null ) { browser.pause(2000); props.dropdown('CSS Option', layoutCSS); } break;
->>>>>>> 02aa792cb553da063878b037d5c1787c0272f85f
+        if(assetProps.internallySearchable != 1) { props.checkbox.get('Internally Searchable?').click(); }
+        if(assetProps.externallySearchable != 1) { props.checkbox.get('Externally Searchable?').click(); }
     }
 
     actions.ClickContinueButton();
+    browser.waitForVisible('//div[@name="ContentPane0"]');
+    return browser.getText('.pb-chron');
 }
 
-<<<<<<< HEAD
 module.exports.PopulateTemplateProps = (assetProps) =>
 {
     browser.pause(25000); 
@@ -133,15 +124,49 @@ module.exports.PopulateTemplateProps = (assetProps) =>
     if(assetProps.isGated != 0) { props.checkbox.get('Is Gated?').click(); }
 
     actions.ClickContinueButton();
+    browser.waitForVisible('//div[@name="ContentPane0"]');
+    return browser.getText('.pb-chron');
 
 }
 
-=======
-module.exports.PopulateTextIn = (labelName, text) =>
+module.exports.PopulateSMProps = (assetProps) =>
 {
-    switch (labelName)
-    {
-        case 'keywords': props.text
-    }
+    menu.SelectCreateMenuItem('Shared Modules');
+    props.input.get('Module Name').setValue(assetProps.moduleName);
+    if ( assetProps.moduleName != null || assetProps.moduleName != '' ) { props.input.get('Module Display Name').setValue(assetProps.moduleDispName) };
+    props.dropdown('Module Type', assetProps.moduleType);
+    if ( assetProps.category != null ) { props.dropdown('Category', assetProps.category); }
+    if ( assetProps.selectXSL != null ) { props.dropdown('Select XSL', assetProps.selectXSL); }
+    if ( assetProps.selectCSS != null ) { props.dropdown('Select CSS', assetProps.selectCSS); }
+    if ( assetProps.dynamicModuleCategory != null ) { props.dropdown('Dynamic Module Category', assetProps.dynamicModuleCategory); }
+    if ( assetProps.moduleLabel1 != null ) { props.dropdown('Module Label 1', assetProps.moduleLabel1); }
+    if ( assetProps.moduleLabel2 != null ) { props.dropdown('Module Label 2', assetProps.moduleLabel2); }
+    if ( assetProps.linkedModule != null ) { props.input.get('Linked Module').setValue(assetProps.linkedModule); }
+    if ( assetProps.description != null ) { props.textarea.get('Description').setValue(assetProps.description); }
+    if(assetProps.sponsorProgram != null ) { props.dropdown('Sponsor Program', assetProps.sponsorProgram) };
+    if(assetProps.tier != 2) { props.dropdown('Tier', assetProps.tier) };
+    actions.ClickContinueButton();
+    actions.ClickContinueButton();
+    browser.waitForVisible('.pb-chron');
+    return browser.getText('.pb-chron');
 }
->>>>>>> 02aa792cb553da063878b037d5c1787c0272f85f
+
+module.exports.AddModule = (contentPane, assetProps) =>
+{
+
+    props.element('div[name="' + contentPane + '"').moveToObject();
+    props.element('div[name="' + contentPane + '"] .fa-plus.add-module').click();
+    props.input.get('Module Name').waitForVisible();
+    props.input.get('Module Name').setValue(assetProps.moduleName);
+    if ( assetProps.moduleName != null || assetProps.moduleName != '' ) { props.input.get('Module Display Name').setValue(assetProps.moduleDispName) };
+    props.dropdown('Module Type', assetProps.moduleType);
+    if ( assetProps.dynamicModuleCategory != null ) { props.dropdown('Dynamic Module Category', assetProps.dynamicModuleCategory); }
+    if ( assetProps.selectXSL != null ) { props.dropdown('Select XSL', assetProps.selectXSL); }
+    if ( assetProps.selectCSS != null ) { props.dropdown('Select CSS', assetProps.selectCSS); }
+    if ( assetProps.moduleLabel1 != null ) { props.dropdown('Module Label 1', assetProps.moduleLabel1); }
+    if ( assetProps.moduleLabel2 != null ) { props.dropdown('Module Label 2', assetProps.moduleLabel2); }
+    actions.ClickAddModuleButton();
+    browser.waitForVisible('.fa-eye');
+    browser.pause(20000);
+
+}
