@@ -18,8 +18,16 @@ var props = Object.create(page, {
     GetElement: { get: () => { return browser.element(locator); } },
 
     input : { value: { get: (labelName) => {
+<<<<<<< HEAD
+        switch (labelName)
+        {
+            case 'WebMD Nickname': locator = input.replace('***:', labelName); return  props.GetElement; break;
+            default: locator = input.replace('***', labelName); return  props.GetElement; break;
+        }
+=======
         locator = input.replace('***', labelName);
         return  props.GetElement;
+>>>>>>> 02aa792cb553da063878b037d5c1787c0272f85f
     }}},
 
     textarea : { value: { get: (labelName) =>
