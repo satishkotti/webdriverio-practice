@@ -114,29 +114,40 @@ module.exports.interactiveModuleBulletAvailability = function(browser,CKeditorfi
 // Method to validate the options in the bulletlist menu
 module.exports.interactiveModuleBulletMenu = function(browser,CKeditorfields,i)
 {
-             var testval = browser.execute(function () {
-                 return document.querySelectorAll('div[tag_id="Content-widget"]').item(0).getElementsByTagName('iframe').item(0).id;
-            });
-            browser.frame(testval.value);
-            browser.scroll("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']");
-            browser.setValue("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']", "QA");
-            browser.moveToObject("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+i+"]");
-            browser.click("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+i+"]");
+    var contentWidgetIFrame = browser.element("iframe[id*='oam_id==ExternalWidget-2!!oam_target_type==ExternalWidget']");
+    browser.frame(contentWidgetIFrame.value);
+    browser.scroll("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']");
+    browser.setValue("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']", "QA");
+    browser.moveToObject("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+i+"]");
+    browser.click("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+i+"]");
+            
+    var ckEditorIFrame = browser.element("iframe[id*='cke_251']");
+    browser.frame(ckEditorIFrame.value);
+    browser.waitForVisible("(//span[text()='Bulleted List'])["+i+"]", 50000);
+    browser.moveToObject("(//span[text()='Bulleted List'])["+i+"]");
+    browser.click("(//span[text()='Bulleted List'])["+i+"]");
+    //browser.frameParent();
+    //browser.frameParent();
+    browser.frame();
+    browser.pause(5000);
 
-            var mModuleIF = browser.execute(function () {
-                return document.getElementsByTagName('iframe').item(0).id;
-                
-            });
-            
-            
-            browser.frame(mModuleIF.value);
-             browser.waitForVisible("(//span[text()='Bulleted List'])["+i+"]", 50000);
-            browser.moveToObject("(//span[text()='Bulleted List'])["+i+"]");
-            browser.click("(//span[text()='Bulleted List'])["+i+"]");
-            browser.frameParent();
-            browser.frameParent();
-            browser.pause(10000);
-            var headline = browser.getText("//div[@class='row']//div[contains(.,'Module Headline')]");
+    var moduleHeadline = browser.element("#moduletitle").getValue();
+    var moduleDescription = browser.element("#moduledescription").getValue();
+    //var alignSelected =  browser.element("select[ng-model='moduleConfiguration.module.align']").getValue();
+
+    browser.frame();
+    var insertBulletiFrame = browser.element("iframe#bulletDescContentFrame");
+    browser.frame(insertBulletiFrame.value);
+
+    //get bullet desc text iframe
+    var insertBulletiFrameText = browser.element("iframe.cke_wysiwyg_frame.cke_reset");
+    browser.frame(insertBulletiFrameText.value);
+
+    var insertBulletDescTextWithMarkup = browser.getHTML("body", false);
+
+
+
+/*          var headline = browser.getText("//div[@class='row']//div[contains(.,'Module Headline')]");
             var moduleDescription = browser.getText("//div[@class='row']//div[contains(.,'Module Description')]");
             var align = browser.getText("//div[@class='row']//div[contains(.,'Align')]");
             var alignLeftOption = browser.getText("//option[contains(.,'Left')]");
@@ -146,29 +157,24 @@ module.exports.interactiveModuleBulletMenu = function(browser,CKeditorfields,i)
             var bulletTitle = browser.getText("//div[@class='row']//div[contains(.,'Bullets')]//following-sibling::div//th[contains(.,'Title')]");
             var insertBulletTitle= browser.getText("//div[@class='row']//div[contains(.,'Insert Bullet Title')]");
             var insertBulletDescription = browser.getText("//div[@class='row']//div[contains(.,'Insert Bullet Description')]");
+*/
 
-             browser.waitForVisible("//button[contains(.,'Cancel')]", 50000);
-             browser.moveToObject("//button[contains(.,'Cancel')]");
-             browser.click("//button[contains(.,'Cancel')]");
+            browser.frame();
+            browser.waitForExist("button[ng-click='$cancel()']", 20000);
+            browser.click("button[ng-click='$cancel()']");
 
-            
-            var vals = {};
-            vals = {
-	        "headline": headline,
+            return vals = {
+	        "headline": moduleHeadline,
             "moduleDescription": moduleDescription,
-            "align": align,
+           /* "align": align,
             "alignLeftOption": alignLeftOption,
             "alignMiddleOption": alignMiddleOption,
             "alignRightOption": alignRightOption,
             "bullet": bullet,
             "bulletTitle": bulletTitle,
-            "insertBulletTitle": insertBulletTitle,
-            "insertBulletDescription": insertBulletDescription
-            };
-            
-            return vals;
-
-         
+            "insertBulletTitle": insertBulletTitle, */
+            "insertBulletDescription": insertBulletDescTextWithMarkup
+            };      
     
 };
 

@@ -45,7 +45,20 @@ module.exports.CreateNewContent = function(browser, FillcreationprofileName, Fil
 
 
     
-    };    
+    };
+    
+module.exports.traverseTree = function traverseTree(browser, nodePathArray)
+{
+    if(nodePathArray && nodePathArray.length > 0)
+    {
+        browser.waitForExist("span[class='x-tree3-node-text'][title='"+nodePathArray[0]+"']", 20000);
+        browser.click("span[class='x-tree3-node-text'][title='"+nodePathArray[0]+"']");
+        nodePathArray.shift();
+        return traverseTree( browser, nodePathArray);
+    }
+    return;
+};
+
 // Navigation operation  
 module.exports.Navigation = function(browser,rootnode,rootpath)
 {
@@ -60,7 +73,7 @@ if(isExist==true)        
 {      
       
 
-    browser.timeoutsImplicitWait(6000);   
+    browser.pause(6000);   
     browser.element('//div[@aria-label="'+rootnode+'"] //Span[contains(text(),"'+ rootnode +'")]').click();  
   
 }     
@@ -72,7 +85,7 @@ if(isExist==true)        
         browser.waitForVisible("//div[@aria-label='"+arr[0].trim()+"' and @aria-level='"+arr[1].trim()+"']",100000)
         browser.element("//div[@aria-label='"+arr[0].trim()+"' and @aria-level='"+arr[1].trim()+"']").click();
 
-        browser.pause(2000);
+        browser.pause(4000);
         });
 };
 

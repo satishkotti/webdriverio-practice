@@ -69,6 +69,20 @@ describe('Interactive Article - BulletList Module', function () {
 
     // });
 
+    it('should verify editing bullet list field text - PPE-102328', function () {
+
+        browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
+        browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
+        var richtextFields = data.inputData.articleContentFields;
+        var i = 1;
+        richtextFields.split(',').forEach(function (x) {
+            browser.interactiveModuleBulletMenu(browser, x, i);
+            browser.pause(2000);
+            i++;
+        });
+
+    });
+
 
     it('should verify availibilty for the Bullet List module - PPE-102328', function () {
 
