@@ -1,9 +1,17 @@
-//var smdb = require('./../../common/smdb/siteManagementDb');
-
 module.exports.getUrlAndTitle = function(){
     return {
             url: this.getUrl(),
             title: this.getTitle()};
+};
+
+module.exports.getEnvTestUrl = function()
+{
+    return global.envSettings.d2cons.url;
+};
+
+module.exports.getQAPublicationInfo = function()
+{
+    return global.envSettings.d2cons.users[0];
 };
 
 module.exports.login = function (params) {

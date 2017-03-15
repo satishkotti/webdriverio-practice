@@ -2,8 +2,6 @@
 var LoginPage = require('./../common/d2login');
 var common = require('./../common/d2commonLib');
 var interactivearticles = require('./../common/interactivearticlesbulletlist');
-var data = require('./../data/d2testRunConfig');
-var randomstring = require("randomstring");
 
 describe('Interactive Article - BulletList Module', function () {
 
@@ -29,8 +27,12 @@ describe('Interactive Article - BulletList Module', function () {
             width: 1920,
             height: 1080
         });
-        browser.login(data.testData);
-        browser.Navigation(browser, data.inputData.rootnode, data.inputData.rotpath);
+        browser.login({
+            url: common.getEnvTestUrl(),
+            username: common.getQAPublicationInfo().username,
+            password: common.getQAPublicationInfo().password
+        });
+        browser.Navigation(browser, global.d2ConDataSettings.inputData.rootnode, global.d2ConDataSettings.inputData.rotpath);
     });
 
 
@@ -38,10 +40,10 @@ describe('Interactive Article - BulletList Module', function () {
     // it('should verify the availability of BulletList Module ', function () {
 
 
-    //     // browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
+    //     // browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
     //     //   browser.EditProperties(browser,data.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','TestlinkTitle','Testwindowtitle','WebMD Newsletter',data.inputData.webmdcpyrights,'News Page');
 
-    //       browser.CheckoutAndCheckin(browser, data.inputData.objectTitle, 'Check-out');
+    //       browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.objectTitle, 'Check-out');
     //     //   browser.CheckoutAndCheckin(browser,data.inputData.articletitle,'Check-in');
 
     //     //   browser.LifeCycle(browser,data.inputData.articletitle,'Power Promote');
@@ -50,7 +52,7 @@ describe('Interactive Article - BulletList Module', function () {
 
     //    // browser.interactiveModuleBulletMenu(browser,data.inputData.objectTitle);
 
-    //     var richtextFields = data.inputData.articleContentFields;
+    //     var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
     //     var i = 1;
     //     richtextFields.split(',').forEach(function (x) {
     //         var vals = browser.interactiveModuleBulletMenu(browser, x, i);
@@ -72,9 +74,9 @@ describe('Interactive Article - BulletList Module', function () {
 
     it.skip('should verify editing bullet list field text - PPE-102328', function () {
 
-        browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
-        browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
-        var richtextFields = data.inputData.articleContentFields;
+        browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
+        browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
+        var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
         var i = 1;
         richtextFields.split(',').forEach(function (x) {
             browser.interactiveModuleBulletMenu(browser, x, i);
@@ -87,9 +89,9 @@ describe('Interactive Article - BulletList Module', function () {
 
     // it('should verify availibilty for the Bullet List module - PPE-102328', function () {
 
-    //     browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
-    //     browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
-    //     var richtextFields = data.inputData.articleContentFields;
+    //     browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
+    //     browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
+    //     var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
     //     var i = 1;
     //     richtextFields.split(',').forEach(function (x) {
     //         browser.interactiveModuleBulletAvailability(browser, x, i);
@@ -101,9 +103,9 @@ describe('Interactive Article - BulletList Module', function () {
 
     //  it('should Verify the bullet list options in the module menu - PPE-101666', function () {
 
-    //     browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
-    //     browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
-    //     var richtextFields = data.inputData.articleContentFields;
+    //     browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
+    //     browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
+    //     var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
     //     var i = 1;
     //     richtextFields.split(',').forEach(function (x) {
     //         var vals = browser.interactiveModuleBulletMenu(browser, x, i);
@@ -126,9 +128,9 @@ describe('Interactive Article - BulletList Module', function () {
     
     //  it('should verify user is able access bullet list with data in the Rich text editor - PPE-102329', function () {
 
-    //     browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
-    //     browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
-    //     var richtextFields = data.inputData.articleContentFields;
+    //     browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
+    //     browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
+    //     var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
     //     var i = 1;
     //     richtextFields.split(',').forEach(function (x) {
     //         var moduleName = browser.interactiveModuleBulletList(browser, x, i);
@@ -140,9 +142,9 @@ describe('Interactive Article - BulletList Module', function () {
 
     //   it('should Verify that user is able to insert multiple list within content - PPE-102331', function () {
 
-    //     browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
-    //     browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
-    //     var richtextFields = data.inputData.articleContentFields;
+    //     browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
+    //     browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
+    //     var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
     //     var i = 1;
     //     richtextFields.split(',').forEach(function (x) {
     //         var moduleName = browser.interactiveModuleBulletModule(browser, x, i);
@@ -154,9 +156,9 @@ describe('Interactive Article - BulletList Module', function () {
 
      it.skip('should Verify user is able to edit the bulletlist module - PPE-102759 ', function () {
 
-        browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
-        browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
-        var richtextFields = data.inputData.articleContentFields;
+        browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
+        browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
+        var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
         var i = 1;
         richtextFields.split(',').forEach(function (x) {
             var moduleName = browser.interactiveModuleBulletListEdit(browser, x, i);
@@ -168,9 +170,9 @@ describe('Interactive Article - BulletList Module', function () {
 
      it('should Verify user is not able to insert bulletlist module without title and description - PPE-102332', function () {
 
-        browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
-        browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
-        var richtextFields = data.inputData.articleContentFields;
+        browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
+        browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
+        var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
         var i = 1;
         richtextFields.split(',').forEach(function (x) {
         browser.interactiveModuleBulletTitleDescription(browser, x, i);
@@ -181,10 +183,10 @@ describe('Interactive Article - BulletList Module', function () {
 
     it.skip('should Verify the lifecycle operations on the asset having interactive module - PPE-102333', function () {
 
-        browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
+        browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
         browser.EditProperties(browser,data.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','TestlinkTitle','Testwindowtitle','WebMD Medical News',data.inputData.webmdcpyrights,'ADD-ADHD (Adult)');
-        browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
-        var richtextFields = data.inputData.articleContentFields;
+        browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
+        var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
         var i = 1;
         richtextFields.split(',').forEach(function (x) {
         var moduleName = browser.interactiveModuleBulletList(browser, x, i);
@@ -201,10 +203,10 @@ describe('Interactive Article - BulletList Module', function () {
 
     it.skip('should Verify the XML rendition after inserting the bulletlist module - PPE-102334', function () {
 
-        browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
+        browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
         browser.EditProperties(browser,data.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','TestlinkTitle','Testwindowtitle','WebMD Medical News',data.inputData.webmdcpyrights,'ADD-ADHD (Adult)');
-        browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
-        var richtextFields = data.inputData.articleContentFields;
+        browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
+        var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
         var i = 1;
         richtextFields.split(',').forEach(function (x) {
         var moduleName = browser.interactiveModuleBulletList(browser, x, i);
@@ -222,9 +224,9 @@ describe('Interactive Article - BulletList Module', function () {
 it.skip('should verify user is able access bullet list with data in the Rich text editor - new', function () {
         var alignment=data.inputData.bulletlistalignment;
         alignment.split(',').forEach(function(bulletalignment) {
-        browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
-        browser.CheckoutAndCheckin(browser, data.inputData.articleeditdescr, 'Check-out');
-        var richtextFields = data.inputData.articleContentFields;
+        browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
+        browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articleeditdescr, 'Check-out');
+        var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
         var i = 1;
         richtextFields.split(',').forEach(function (x) {
        

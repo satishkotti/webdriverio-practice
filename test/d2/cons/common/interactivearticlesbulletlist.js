@@ -1,4 +1,3 @@
-var data = require('./../data/d2testRunConfig');
 
 //E2E flow for inserting module
 module.exports.interactivemodulebullet= function(browser,objectTitle)
@@ -103,7 +102,7 @@ module.exports.interactiveModuleBulletAvailability = function(browser,CKeditorfi
              browser.waitForVisible("(//span[text()='Bulleted List'])["+i+"]", 50000);
             browser.moveToObject("(//span[text()='Bulleted List'])["+i+"]");
 
-             expect(browser.getText("(//span[text()='Bulleted List'])["+i+"]")).to.equal(data.expectedResults.bulletlist);
+             expect(browser.getText("(//span[text()='Bulleted List'])["+i+"]")).to.equal(global.d2ConDataSettings.expectedResults.bulletlist);
             
             browser.frameParent();
             browser.frameParent();
@@ -441,11 +440,11 @@ module.exports.interactiveModuleBulletTitleDescription = function(browser,CKedit
             browser.pause(1000);
             browser.leftClick('//button[@ng-click="addBullet()"]');
             browser.moveToObject("//div[@class='toast-message' and contains(.,'Please enter a title for the bullet!')]");
-            expect(browser.getText("//div[@class='toast-message' and contains(.,'Please enter a title for the bullet!')]")).to.equal(data.expectedResults.bulletTitleValidation);
+            expect(browser.getText("//div[@class='toast-message' and contains(.,'Please enter a title for the bullet!')]")).to.equal(global.d2ConDataSettings.expectedResults.bulletTitleValidation);
             browser.setValue("//input[@ng-model='bulletTitle']","QAtest");
             browser.leftClick('//button[@ng-click="addBullet()"]');
             browser.moveToObject("//div[@class='toast-message' and contains(.,'Please enter a description for the bullet!')]");
-            expect(browser.getText("//div[@class='toast-message' and contains(.,'Please enter a description for the bullet!')]")).to.equal(data.expectedResults.bulletDescriptionValidation);
+            expect(browser.getText("//div[@class='toast-message' and contains(.,'Please enter a description for the bullet!')]")).to.equal(global.d2ConDataSettings.expectedResults.bulletDescriptionValidation);
            
             browser.waitForVisible("//button[contains(.,'Cancel')]", 50000);
             browser.moveToObject("//button[contains(.,'Cancel')]");
