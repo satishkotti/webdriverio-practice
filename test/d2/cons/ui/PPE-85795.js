@@ -9,8 +9,8 @@ describe('Interactive Article - BulletList Module', function () {
 
     before(function () {
 
-        // browser.addCommand('Publish', common.Publish.bind(browser));
-        // browser.addCommand('LifeCycle', common.LifeCycle.bind(browser));
+        browser.addCommand('Publish', common.Publish.bind(browser));
+        browser.addCommand('LifeCycle', common.LifeCycle.bind(browser));
         browser.addCommand('CheckoutAndCheckin', common.CheckoutAndCheckin.bind(browser))
         browser.addCommand('EditProperties', common.EditProperties.bind(browser));
         browser.addCommand('CreateNewContent', common.CreateNewContent.bind(browser));
@@ -23,6 +23,7 @@ describe('Interactive Article - BulletList Module', function () {
         browser.addCommand('interactiveModuleBulletModule', interactivearticles.interactiveModuleBulletModule.bind(browser));
         browser.addCommand('interactiveModuleBulletListEdit', interactivearticles.interactiveModuleBulletListEdit.bind(browser));
         browser.addCommand('interactiveModuleBulletTitleDescription', interactivearticles.interactiveModuleBulletTitleDescription.bind(browser));
+         browser.addCommand('interactiveModuleBulletAlign', interactivearticles.interactiveModuleBulletAlign.bind(browser));
         browser.addCommand('getUrlAndTitle', common.getUrlAndTitle.bind(browser));
         browser.setViewportSize({
             width: 1920,
@@ -69,7 +70,7 @@ describe('Interactive Article - BulletList Module', function () {
 
     // });
 
-    it('should verify editing bullet list field text - PPE-102328', function () {
+    it.skip('should verify editing bullet list field text - PPE-102328', function () {
 
         browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
         browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
@@ -151,7 +152,7 @@ describe('Interactive Article - BulletList Module', function () {
 
     // });
 
-     it('should Verify that user is able to edit inserted bullet title and description - new', function () {
+     it.skip('should Verify user is able to edit the bulletlist module - PPE-102759 ', function () {
 
         browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
         browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
@@ -165,18 +166,38 @@ describe('Interactive Article - BulletList Module', function () {
 
     });
 
-    //  it('should Verify user is not able to insert bulletlist module without title and description - PPE-102332', function () {
+     it('should Verify user is not able to insert bulletlist module without title and description - PPE-102332', function () {
 
-    //     browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
-    //     browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
-    //     var richtextFields = data.inputData.articleContentFields;
-    //     var i = 1;
-    //     richtextFields.split(',').forEach(function (x) {
-    //     browser.interactiveModuleBulletTitleDescription(browser, x, i);
-    //         i++;
-    //     });
+        browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
+        browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
+        var richtextFields = data.inputData.articleContentFields;
+        var i = 1;
+        richtextFields.split(',').forEach(function (x) {
+        browser.interactiveModuleBulletTitleDescription(browser, x, i);
+            i++;
+        });
 
-    // });
+    });
+
+    it.skip('should Verify the lifecycle operations on the asset having interactive module - PPE-102333', function () {
+
+        browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
+        browser.EditProperties(browser,data.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','TestlinkTitle','Testwindowtitle','WebMD Medical News',data.inputData.webmdcpyrights,'ADD-ADHD (Adult)');
+        browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
+        var richtextFields = data.inputData.articleContentFields;
+        var i = 1;
+        richtextFields.split(',').forEach(function (x) {
+        var moduleName = browser.interactiveModuleBulletList(browser, x, i);
+        expect(moduleName.mName).to.equal(data.expectedResults.moduleTitle);
+            i++;
+        });
+        browser.CheckoutAndCheckin(browser,data.inputData.articletitle,'Check-in');
+        browser.LifeCycle(browser,data.inputData.articletitle,'Promote');
+        browser.LifeCycle(browser,data.inputData.articletitle,'Demote');
+        browser.LifeCycle(browser,data.inputData.articletitle,'Power Promote');
+        browser.Publish(browser,data.inputData.articletitle,'Active');
+
+    });
 
     it.skip('should Verify the XML rendition after inserting the bulletlist module - PPE-102334', function () {
 
@@ -192,11 +213,32 @@ describe('Interactive Article - BulletList Module', function () {
         });
         browser.CheckoutAndCheckin(browser,data.inputData.articletitle,'Check-in');
         browser.LifeCycle(browser,data.inputData.articletitle,'Power Promote');
-        browser.Publish =(browser,datda.inputData.articletitle,'Active');
+        browser.Publish =(browser,data.inputData.articletitle,'Active');
 
     });
 
+
+
+it.skip('should verify user is able access bullet list with data in the Rich text editor - new', function () {
+        var alignment=data.inputData.bulletlistalignment;
+        alignment.split(',').forEach(function(bulletalignment) {
+        browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
+        browser.CheckoutAndCheckin(browser, data.inputData.articleeditdescr, 'Check-out');
+        var richtextFields = data.inputData.articleContentFields;
+        var i = 1;
+        richtextFields.split(',').forEach(function (x) {
+       
+            var moduleName = browser.interactiveModuleBulletAlign(browser, x, i,bulletalignment);
+            expect(moduleName.mName).to.equal(data.expectedResults.moduleTitle);
+            i++;
+        });
+        browser.CheckoutAndCheckin(browser,data.inputData.articletitle,'Check-in');
+        });
+ console.log(bulletalignment);
+
+
 });
 
+});
 
 

@@ -20,6 +20,7 @@ module.exports.inputData=
   
     rootnode: "webmddoc01",
     articletitle :"QATestAsset"+GenerateRandomString(),
+  // articletitle: "QATestAssetBlIy7",
     //'QANewsArtcle4444',
     Articleprofilename: 'Consumer Portal US / Article Templates',
     ArticledescrName :'Article /  News Template',
@@ -30,7 +31,8 @@ module.exports.inputData=
     //objectTitle: "QATestAsset"+randomtext,
     objectTitle:"QAArticleNews",
     
-    articleContentFields: "Section Text,Highlights,Pull Quotes,Citations,Related Links Text"
+    articleContentFields: "Section Text,Highlights,Pull Quotes,Citations,Related Links Text",
+    bulletlistalignment:"Right,Left,Middle"
 };
 
 module.exports.expectedResults={

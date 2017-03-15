@@ -204,7 +204,7 @@ module.exports.interactiveModuleBulletList = function(browser,CKeditorfields,i)
             browser.leftClick("//span[text()='Bulleted List']");
             browser.frameParent();
             browser.frameParent();
-            
+            browser.pause(5000);
             browser.setValue("#moduletitle", "QA");
             browser.setValue("#moduledescription", "QA");
 
@@ -356,12 +356,12 @@ module.exports.interactiveModuleBulletListEdit = function(browser,CKeditorfields
             
             
             browser.frame(mModuleIF.value);
-                browser.pause(5000);
+                    browser.pause(5000);
             browser.moveToObject("//span[text()='Bulleted List']");
-            browser.leftClick("//span[text()='Bulleted List']");
+            browser.click("//span[text()='Bulleted List']");
             browser.frameParent();
             browser.frameParent();
-            
+            browser.pause(5000);
             browser.setValue("#moduletitle", "QA");
             browser.setValue("#moduledescription", "QA");
 
@@ -373,16 +373,11 @@ module.exports.interactiveModuleBulletListEdit = function(browser,CKeditorfields
             browser.pause(5000);
             browser.waitForVisible("//input[@ng-model='bulletTitle']", 50000);
             browser.setValue("//input[@ng-model='bulletTitle']","QAtest");
-           // var bulletTitle= browser.getText("//input[@ng-model='bulletTitle']");
+
             browser.frame("bulletDescContentFrame");
             browser.pause(5000);
-            browser.click("//span[contains(@class,'bold_icon')]");
+            browser.leftClick("//span[contains(@class,'bold_icon')]");
             browser.execute("document.getElementsByTagName('iframe').item(0).contentWindow.document.getElementsByTagName('p').item(0).textContent = 'D2'").pause(5000);
-            // var bulletdescription= browser.execute("return document.getElementsByTagName('iframe').item(0).contentDocument.getElementsByTagName('p').item(0).textContent");
-            // var b= browser.execute("return document.getElementsByTagName('iframe').item(0).contentDocument.getElementsByTagName('p').item(0).innerText");
-            // var c= browser.execute("document.getElementsByTagName('iframe').item(0).contentDocument.getElementsByTagName('p').item(0).innerHTML");
-
-            // console.log(a);
             browser.frameParent();
             browser.leftClick('//button[@ng-click="addBullet()"]');
 
@@ -391,23 +386,23 @@ module.exports.interactiveModuleBulletListEdit = function(browser,CKeditorfields
              browser.waitForVisible("//input[@ng-model='bulletTitle']", 50000);
              browser.setValue("//input[@ng-model='bulletTitle']","QAtest123");
              
-            var bulletTitle= browser.getText("//input[@ng-model='bulletTitle']");
+            var bulletTitle= browser.execute("return document.querySelectorAll('.form-control').item(3).value").value;
              browser.frame("bulletDescContentFrame");
             browser.pause(5000);
             browser.click("//span[contains(@class,'bold_icon')]");
             browser.execute("document.getElementsByTagName('iframe').item(0).contentWindow.document.getElementsByTagName('p').item(0).textContent = 'D2QA'").pause(5000);
             var bulletdescription= browser.execute("return document.getElementsByTagName('iframe').item(0).contentDocument.getElementsByTagName('p').item(0).textContent").value;
             
-            console.log(bulletdescription);
+
             browser.frameParent();
             browser.leftClick('//button[@ng-click="saveBullet()"]');
             browser.leftClick("//img[@ng-click='editBullet(bullet)']");
-            var expectedbulletTitle= browser.getText("//input[@ng-model='bulletTitle']");
+            var expectedbulletTitle= browser.execute("return document.querySelectorAll('.form-control').item(3).value").value;
             browser.frame("bulletDescContentFrame");
             browser.pause(5000);
             var expectedbulletdescription= browser.execute("return document.getElementsByTagName('iframe').item(0).contentDocument.getElementsByTagName('p').item(0).textContent").value;
             
-            console.log(bulletdescription);
+
             browser.frameParent();
             expect(bulletTitle).to.equal(expectedbulletTitle);
             expect(bulletdescription).to.equal(expectedbulletdescription);
@@ -456,6 +451,79 @@ module.exports.interactiveModuleBulletTitleDescription = function(browser,CKedit
             browser.moveToObject("//button[contains(.,'Cancel')]");
             browser.click("//button[contains(.,'Cancel')]");
             browser.pause(1000);
+
+
+};
+
+
+// Method to validate alignment for bulletlist Modules
+module.exports.interactiveModuleBulletAlign = function(browser,CKeditorfields,i,align)
+{
+             var testval = browser.execute(function () {
+                 return document.querySelectorAll('div[tag_id="Content-widget"]').item(0).getElementsByTagName('iframe').item(0).id;
+            });
+            browser.frame(testval.value);
+            browser.scroll("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']");
+            browser.setValue("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']", "QA");
+            browser.moveToObject("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+i+"]");
+            browser.pause(1000);
+            browser.click("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+i+"]");
+            browser.pause(1000);
+            var mModuleIF = browser.execute(function () {
+                return document.getElementsByTagName('iframe').item(0).id;
+                
+            });
+            
+            
+            browser.frame(mModuleIF.value);
+                browser.pause(5000);
+            browser.moveToObject("//span[text()='Bulleted List']");
+            browser.leftClick("//span[text()='Bulleted List']");
+            browser.frameParent();
+            browser.frameParent();
+            browser.pause(5000);
+            browser.setValue("#moduletitle", "QA");
+            browser.setValue("#moduledescription", "QA");
+
+            browser.leftClick("//select[@ng-model='moduleConfiguration.module.align']");
+            browser.waitForVisible("//option[contains(.,'"+align+"')]", 50000);
+            browser.moveToObject("//option[contains(.,'"+align+"')]").click("//option[contains(.,'"+align+"')]");
+
+ 
+            browser.pause(5000);
+            browser.waitForVisible("//input[@ng-model='bulletTitle']", 50000);
+            browser.setValue("//input[@ng-model='bulletTitle']","QAtest");
+            browser.frame("bulletDescContentFrame");
+            browser.pause(5000);
+            browser.click("//span[contains(@class,'bold_icon')]");
+            browser.execute("document.getElementsByTagName('iframe').item(0).contentWindow.document.getElementsByTagName('p').item(0).textContent = 'D2'").pause(10000);
+
+            browser.click("//a[@title='body element']");
+            browser.pause(5000);
+            browser.click("//span[contains(@class,'bold_icon')]");
+            browser.click("//span[contains(@class,'italic_icon')]");
+            browser.click("//span[contains(@class,'underline_icon')]");
+            browser.frameParent();
+            browser.leftClick('//button[@ng-click="addBullet()"]');
+
+            browser.waitForVisible("//div[@class='modal-footer']//button[contains(.,'Insert')]", 50000);
+            browser.leftClick("//div[@class='modal-footer']//button[contains(.,'Insert')]");
+
+            browser.pause(5000);
+            var contentframe = browser.execute(function () {
+                 return document.querySelectorAll('div[tag_id="Content-widget"]').item(0).getElementsByTagName('iframe').item(0).id;
+            });
+            browser.frame(contentframe.value);
+            browser.pause(5000);
+            var mName = browser.getText("(//figcaption[@class='embedModuleClickable' and contains(.,'QA')])["+i+"]");
+            browser.frameParent();
+
+             var moduleName = {};
+             moduleName = {
+	        "mName": mName,
+             };
+            
+            return moduleName;
 
 
 };
