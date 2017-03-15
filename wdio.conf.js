@@ -3,7 +3,7 @@ var Q = require("q");
 module.exports.getSpecs = function()
 {
     var specList;
-    var testApp = process.env.npm_config_testApp ? process.env.npm_config_testApp : 'pb2' ;
+    var testApp = process.env.npm_config_testApp ? process.env.npm_config_testApp : 'd2prof' ;
     try
     {
         switch(testApp) {
@@ -17,7 +17,7 @@ module.exports.getSpecs = function()
             break;
             case "d2prof":
                 var config = require('./test/d2/prof/config/config');
-                specList = [ './test/d2/prof/**/*.js' ];
+                specList = [ './test/d2/prof/fe/jira/PPE-98169.js' ];
             break;
             case "rt":
                 var config = require('./test/rt/config/config');
@@ -174,8 +174,8 @@ exports.config = {
     // variables like `browser`. It is the perfect place to define custom commands.
     before: function() {
 
-        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'dev01';
-        var testApp = (process.env.npm_config_testApp) ? process.env.npm_config_testApp : 'pb2' ;
+        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'dev04';
+        var testApp = (process.env.npm_config_testApp) ? process.env.npm_config_testApp : 'd2prof' ;
         
         var chai = require('chai');
         chai.config.includeStack = true;
@@ -199,9 +199,11 @@ exports.config = {
                 global.d2ConDataSettings = config.EnvSettings.getEnvData(testEnv);
             break;
             case "d2prof":
+            
                 var config = require('./test/d2/prof/config/config');
                 global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
                 global.d2ProfDataSettings = config.EnvSettings.getEnvData(testEnv);
+                //console.log("Murali"+ global.envSettings)
             break;
             case "rt":
                 var config = require('./test/rt/config/config');
