@@ -35,7 +35,7 @@ module.exports.AddModule = (contentPane, moduleDetails) =>
     props.AddModule(contentPane, moduleDetails);
 }
 
-module.exports.SearchFor = (assetType, keyword, from, level) =>
+module.exports.SearchFor = (assetType, keyword, from, level) => // assetType can have 'Page', 'Template', 'SM', 'DPM'. keyword can be Chronicle ID or keyword like test
 {
     switch (from)
     {
@@ -54,4 +54,9 @@ module.exports.SearchFor = (assetType, keyword, from, level) =>
                 search.SearchFromIWC(level, keyword);
             }
     }
+}
+
+module.exports.EnterEditMode = () =>
+{
+    act.ClickEditButton();
 }

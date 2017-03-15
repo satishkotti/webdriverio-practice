@@ -34,3 +34,22 @@ module.exports.CheckinTheAsset = () =>
     acts.buttonMenu.get('Save/Publish', 'Checkin');
 
 }
+
+module.exports.PublishToLive = () =>
+{
+    acts.buttonMenu.get('Save/Publish', 'Publish to Live');
+
+}
+
+module.exports.PublishToStaging = () =>
+{
+    acts.buttonMenu.get('Save/Publish', 'Publish to Staging');
+
+}
+
+module.exports.ClickEditButton = () =>
+{
+    acts.button.get('Edit').click();
+    acts.button.get('Save/Publish').waitForVisible();
+
+}
