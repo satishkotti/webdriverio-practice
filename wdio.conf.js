@@ -1,6 +1,9 @@
 var Q = require("q");
 exports.config = {
 
+    debug: false,
+    maxInstances: 10,
+    
     //
     // ==================
     // Specify Test Files
@@ -11,12 +14,10 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        //'./test/rt/**/*.js',
-        './test/pb2/**/*.js'
+       './test/d2/**/PPE-95959.js'
     ],
     // Patterns to exclude.
     exclude: [
-        // 'path/to/excluded/files'
     ],
     //
     // ============
@@ -42,7 +43,7 @@ exports.config = {
     //
     // Level of logging verbosity: silent | verbose | command | data | result | error
     logLevel: 'error',
-    //
+    //log
     // Enables colors for log output.
     coloredLogs: true,
     //
@@ -100,7 +101,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 30000
+        timeout: 120000
     },
 
     //
@@ -144,9 +145,9 @@ exports.config = {
         should = chai.should();
         _ = require('lodash');
 
-        configs = require("./config/")
+        //configs = require("./config/")
         
-        global.pb2Url = "genesys."+ testEnv +"webmd.com";
+        global.pb2Url = "http://genesys."+ testEnv +"webmd.com";
 		global.rtUrl = "http://www." + testEnv + "webmd.com";
 		global.profD2Url = "http://www." + testEnv + "webmd.com";
     },
@@ -161,5 +162,23 @@ exports.config = {
     // possible to defer the end of the process using a promise.
     onComplete: function() {
         // do something
+    },
+    suites: {
+        pb2Sanity: [
+            './test/pb2/sanity/favorite.js',
+            './test/pb2/sanity/page.js',
+            './test/pb2/sanity/template.js'
+            ],
+        pb2Ui: [
+            './test/pb2/ui/login.js',
+            './test/pb2/ui/navmap.js',
+            './test/pb2/ui/ppe-81340.js'
+            ],
+        rtSanity: [ 
+            './test/rt/sanity/dynamicUrl.js',
+            './test/rt/sanity/homePage.js'
+            ],
+        rtUi:[
+            ],
     }
 };
