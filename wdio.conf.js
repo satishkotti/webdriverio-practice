@@ -13,7 +13,7 @@ module.exports.getSpecs = function()
             break;
             case "d2cons":
                 var config = require('./test/d2/cons/config/config');
-                specList = [ './test/d2/con/**/*.js' ];
+                specList = [ './test/d2/cons/**/*.js' ];
             break;
             case "d2prof":
                 var config = require('./test/d2/prof/config/config');
