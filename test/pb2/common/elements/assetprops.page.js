@@ -60,7 +60,7 @@ var props = Object.create(page, {
         { 
             locator = eleLocator;
             props.UntilExist();
-            return props.GetElement();
+            return props.GetElement;
         }},
 
 });

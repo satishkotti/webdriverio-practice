@@ -2,6 +2,7 @@ var app = require('./../actions/login.actions');
 var iwc = require('./../actions/iwc.actions')
 var act = require('./../actions/assetactions.actions')
 var props = require('./../actions/assetprops.actions')
+var search = require('./../actions/search.actions')
 
 module.exports.LaunchAppAndLogin = () =>
 {
@@ -32,4 +33,25 @@ module.exports.Create = (assetType, assetDetails) =>
 module.exports.AddModule = (contentPane, moduleDetails) =>
 {
     props.AddModule(contentPane, moduleDetails);
+}
+
+module.exports.SearchFor = (assetType, keyword, from, level) =>
+{
+    switch (from)
+    {
+        case 'Global Search':
+            if (assetType == null && (keyword.length == 16 && keyword.startsWith('091')))
+            {
+                search.GlobalSearchUsingChronID(keyword);
+            }
+            else
+            {
+                search.GlobalSearchUsingKeyword(assetType, keyword);
+            }
+        case 'Interior Workcenter':
+            if (level != null)
+            {
+                search.SearchFromIWC(level, keyword);
+            }
+    }
 }

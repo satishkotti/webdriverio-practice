@@ -26,3 +26,19 @@ module.exports.AddToNode = function(assetType)
     IWC.addToNode.get(assetType);
     return IWC.browser;
 }
+
+module.exports.CollapseSS = () =>
+{
+    if (IWC.isTreeExpanded) {
+        var elements = IWC.collapseIcons;
+
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].ELEMENT.click();
+        }
+    }
+}
+
+module.exports.SelectAsset = (assetName) =>
+{
+    IWC.selectGridAsset.get(assetName);
+}

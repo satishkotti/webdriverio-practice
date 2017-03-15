@@ -5,6 +5,5 @@ var menu = Object.create(page, {
     createEdit : { value: { get: function (cemenu) { return browser.element('//li[text()="' +  cemenu + '"]'); } } },
     home: { get: () => { return browser.element('.pb-home'); } },
     hamburger: { get: () => { return browser.element('.fa-bars'); } },
-    browser: { get: () => { return browser;} }
 });
 module.exports = menu;
