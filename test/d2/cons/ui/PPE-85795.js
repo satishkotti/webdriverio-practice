@@ -12,7 +12,7 @@ describe('Interactive Article - BulletList Module', function () {
         // browser.addCommand('Publish', common.Publish.bind(browser));
         // browser.addCommand('LifeCycle', common.LifeCycle.bind(browser));
         browser.addCommand('CheckoutAndCheckin', common.CheckoutAndCheckin.bind(browser))
-        // browser.addCommand('EditProperties', common.EditProperties.bind(browser));
+        browser.addCommand('EditProperties', common.EditProperties.bind(browser));
         browser.addCommand('CreateNewContent', common.CreateNewContent.bind(browser));
         browser.addCommand('Navigation', common.Navigation.bind(browser));
         browser.addCommand('login', common.login.bind(browser));
@@ -38,7 +38,7 @@ describe('Interactive Article - BulletList Module', function () {
 
 
     //     // browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
-    //     //   browser.EditProperties(browser,data.inputData.articletitle,'TestQANewss', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','Testwindowtitle','WebMD Newsletter',data.inputData.webmdcpyrights,'News Page');
+    //     //   browser.EditProperties(browser,data.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','TestlinkTitle','Testwindowtitle','WebMD Newsletter',data.inputData.webmdcpyrights,'News Page');
 
     //       browser.CheckoutAndCheckin(browser, data.inputData.objectTitle, 'Check-out');
     //     //   browser.CheckoutAndCheckin(browser,data.inputData.articletitle,'Check-in');
@@ -84,19 +84,19 @@ describe('Interactive Article - BulletList Module', function () {
     });
 
 
-    it('should verify availibilty for the Bullet List module - PPE-102328', function () {
+    // it('should verify availibilty for the Bullet List module - PPE-102328', function () {
 
-        browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
-        browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
-        var richtextFields = data.inputData.articleContentFields;
-        var i = 1;
-        richtextFields.split(',').forEach(function (x) {
-            browser.interactiveModuleBulletAvailability(browser, x, i);
-            browser.pause(2000);
-            i++;
-        });
+    //     browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
+    //     browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
+    //     var richtextFields = data.inputData.articleContentFields;
+    //     var i = 1;
+    //     richtextFields.split(',').forEach(function (x) {
+    //         browser.interactiveModuleBulletAvailability(browser, x, i);
+    //         browser.pause(2000);
+    //         i++;
+    //     });
 
-    });
+    // });
 
     //  it('should Verify the bullet list options in the module menu - PPE-101666', function () {
 
@@ -151,19 +151,19 @@ describe('Interactive Article - BulletList Module', function () {
 
     // });
 
-    //  it('should Verify that user is able to edit inserted bullet title and description - new', function () {
+     it('should Verify that user is able to edit inserted bullet title and description - new', function () {
 
-    //     browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
-    //     browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
-    //     var richtextFields = data.inputData.articleContentFields;
-    //     var i = 1;
-    //     richtextFields.split(',').forEach(function (x) {
-    //         var moduleName = browser.interactiveModuleBulletListEdit(browser, x, i);
-    //         expect(moduleName.mName).to.equal(data.expectedResults.moduleTitle);
-    //         i++;
-    //     });
+        browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
+        browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
+        var richtextFields = data.inputData.articleContentFields;
+        var i = 1;
+        richtextFields.split(',').forEach(function (x) {
+            var moduleName = browser.interactiveModuleBulletListEdit(browser, x, i);
+            expect(moduleName.mName).to.equal(data.expectedResults.moduleTitle);
+            i++;
+        });
 
-    // });
+    });
 
     //  it('should Verify user is not able to insert bulletlist module without title and description - PPE-102332', function () {
 
@@ -177,6 +177,24 @@ describe('Interactive Article - BulletList Module', function () {
     //     });
 
     // });
+
+    it.skip('should Verify the XML rendition after inserting the bulletlist module - PPE-102334', function () {
+
+        browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
+        browser.EditProperties(browser,data.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','TestlinkTitle','Testwindowtitle','WebMD Medical News',data.inputData.webmdcpyrights,'ADD-ADHD (Adult)');
+        browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
+        var richtextFields = data.inputData.articleContentFields;
+        var i = 1;
+        richtextFields.split(',').forEach(function (x) {
+        var moduleName = browser.interactiveModuleBulletList(browser, x, i);
+        expect(moduleName.mName).to.equal(data.expectedResults.moduleTitle);
+            i++;
+        });
+        browser.CheckoutAndCheckin(browser,data.inputData.articletitle,'Check-in');
+        browser.LifeCycle(browser,data.inputData.articletitle,'Power Promote');
+        browser.Publish =(browser,datda.inputData.articletitle,'Active');
+
+    });
 
 });
 

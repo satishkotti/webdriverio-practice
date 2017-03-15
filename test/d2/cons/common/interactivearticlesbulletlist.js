@@ -373,16 +373,45 @@ module.exports.interactiveModuleBulletListEdit = function(browser,CKeditorfields
             browser.pause(5000);
             browser.waitForVisible("//input[@ng-model='bulletTitle']", 50000);
             browser.setValue("//input[@ng-model='bulletTitle']","QAtest");
+           // var bulletTitle= browser.getText("//input[@ng-model='bulletTitle']");
             browser.frame("bulletDescContentFrame");
             browser.pause(5000);
             browser.click("//span[contains(@class,'bold_icon')]");
-            browser.execute("document.getElementsByTagName('iframe').item(0).contentWindow.document.getElementsByTagName('p').item(0).textContent = 'D2'").pause(10000);
-            var a= browser.execute("document.getElementsByTagName('iframe').item(0).contentWindow.document.getElementsByTagName('p').item(0).innerHTML");
-            console.log(a);
+            browser.execute("document.getElementsByTagName('iframe').item(0).contentWindow.document.getElementsByTagName('p').item(0).textContent = 'D2'").pause(5000);
+            // var bulletdescription= browser.execute("return document.getElementsByTagName('iframe').item(0).contentDocument.getElementsByTagName('p').item(0).textContent");
+            // var b= browser.execute("return document.getElementsByTagName('iframe').item(0).contentDocument.getElementsByTagName('p').item(0).innerText");
+            // var c= browser.execute("document.getElementsByTagName('iframe').item(0).contentDocument.getElementsByTagName('p').item(0).innerHTML");
+
+            // console.log(a);
             browser.frameParent();
             browser.leftClick('//button[@ng-click="addBullet()"]');
 
+
             browser.leftClick("//img[@ng-click='editBullet(bullet)']");
+             browser.waitForVisible("//input[@ng-model='bulletTitle']", 50000);
+             browser.setValue("//input[@ng-model='bulletTitle']","QAtest123");
+             
+            var bulletTitle= browser.getText("//input[@ng-model='bulletTitle']");
+             browser.frame("bulletDescContentFrame");
+            browser.pause(5000);
+            browser.click("//span[contains(@class,'bold_icon')]");
+            browser.execute("document.getElementsByTagName('iframe').item(0).contentWindow.document.getElementsByTagName('p').item(0).textContent = 'D2QA'").pause(5000);
+            var bulletdescription= browser.execute("return document.getElementsByTagName('iframe').item(0).contentDocument.getElementsByTagName('p').item(0).textContent").value;
+            
+            console.log(bulletdescription);
+            browser.frameParent();
+            browser.leftClick('//button[@ng-click="saveBullet()"]');
+            browser.leftClick("//img[@ng-click='editBullet(bullet)']");
+            var expectedbulletTitle= browser.getText("//input[@ng-model='bulletTitle']");
+            browser.frame("bulletDescContentFrame");
+            browser.pause(5000);
+            var expectedbulletdescription= browser.execute("return document.getElementsByTagName('iframe').item(0).contentDocument.getElementsByTagName('p').item(0).textContent").value;
+            
+            console.log(bulletdescription);
+            browser.frameParent();
+            expect(bulletTitle).to.equal(expectedbulletTitle);
+            expect(bulletdescription).to.equal(expectedbulletdescription);
+
              browser.waitForVisible("//input[@ng-model='bulletTitle']", 50000);
             browser.setValue("//input[@ng-model='bulletTitle']","QAtest123");
             browser.pause(10000);

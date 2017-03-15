@@ -90,7 +90,7 @@ if(isExist==true)        
 };
 
 // EditProperties operation  
- module.exports.EditProperties = function(browser,ArticleTitle, FriendlyName, DescriptiveName, ContentClassification, UserDescription, WebMDKeywords,WindowTitle,Publication,Wbmdcpyright,PrimaryTopicID)
+ module.exports.EditProperties = function(browser,ArticleTitle, FriendlyName, DescriptiveName, ContentClassification, UserDescription, WebMDKeywords,LinkTitle,WindowTitle,Publication,Wbmdcpyright,PrimaryTopicID)
 {
 
         browser.leftClick("//span[@title='" + ArticleTitle + "']");
@@ -98,7 +98,7 @@ if(isExist==true)        
         browser.pause(5000);
         browser.waitForVisible("//span[contains(.,'Properties')]",50000);
         browser.leftClick("//span[contains(.,'Properties')]");
-        browser.pause(4000);
+        browser.pause(10000);
         
 
         browser.element("//button[text()='Edit']");
@@ -125,6 +125,10 @@ if(isExist==true)        
 
         browser.waitForVisible("#wbmd_keywords-input");
         browser.setValue('#wbmd_keywords-input', WebMDKeywords);
+
+
+        browser.waitForVisible("#wbmd_lk_ttl-input");
+        browser.setValue('#wbmd_lk_ttl-input', LinkTitle);
 
         browser.waitForVisible("#wbmd_wdw_ttl-input");
         browser.setValue('#wbmd_wdw_ttl-input', WindowTitle);
