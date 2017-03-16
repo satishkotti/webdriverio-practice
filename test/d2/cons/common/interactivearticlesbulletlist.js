@@ -40,7 +40,7 @@ module.exports.interactivemodulebullet= function(browser,objectTitle)
             browser.frameParent();
             browser.frameParent();
 
-            browser.setValue("#moduletitle", "QA");
+            browser.setValue("#moduleheadline", "QA");
             browser.setValue("#moduledescription", "QA");
 
             browser.leftClick("//select[@ng-model='moduleConfiguration.module.align']");
@@ -116,7 +116,7 @@ module.exports.interactiveModuleBulletAvailability = function(browser,CKeditorfi
 // Method to validate the options in the bulletlist menu
 module.exports.interactiveModuleBulletMenu = function(browser,CKeditorfields,i)
 {
-    var contentWidgetIFrame = browser.element("iframe[id*='oam_id==ExternalWidget-2!!oam_target_type==ExternalWidget']");
+  /*  var contentWidgetIFrame = browser.element("iframe[id*='oam_id==ExternalWidget-2!!oam_target_type==ExternalWidget']");
     browser.frame(contentWidgetIFrame.value);
     browser.scroll("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']");
     browser.setValue("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']", "QA");
@@ -131,9 +131,32 @@ module.exports.interactiveModuleBulletMenu = function(browser,CKeditorfields,i)
     //browser.frameParent();
     //browser.frameParent();
     browser.frame();
-    browser.pause(5000);
+    browser.pause(5000);*/
+     var testval = browser.execute(function () {
+                 return document.querySelectorAll('div[tag_id="Content-widget"]').item(0).getElementsByTagName('iframe').item(0).id;
+            });
+            browser.frame(testval.value);
+            browser.scroll("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']");
+            browser.setValue("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']", "QA");
+            browser.moveToObject("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+i+"]");
+            browser.pause(1000);
+            browser.click("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+i+"]");
+            browser.pause(1000);
+            var mModuleIF = browser.execute(function () {
+                return document.getElementsByTagName('iframe').item(0).id;
+                
+            });
+            
+            
+            browser.frame(mModuleIF.value);
+                browser.pause(5000);
+            browser.moveToObject("//span[text()='Bulleted List']");
+            browser.leftClick("//span[text()='Bulleted List']");
+            browser.frameParent();
+            browser.frameParent();
+            browser.pause(5000);
 
-    var moduleHeadline = browser.element("#moduletitle").getValue();
+   /* var moduleHeadline = browser.element("#moduleheadline").getValue();
     var moduleDescription = browser.element("#moduledescription").getValue();
     //var alignSelected =  browser.element("select[ng-model='moduleConfiguration.module.align']").getValue();
 
@@ -145,11 +168,11 @@ module.exports.interactiveModuleBulletMenu = function(browser,CKeditorfields,i)
     var insertBulletiFrameText = browser.element("iframe.cke_wysiwyg_frame.cke_reset");
     browser.frame(insertBulletiFrameText.value);
 
-    var insertBulletDescTextWithMarkup = browser.getHTML("body", false);
+    var insertBulletDescTextWithMarkup = browser.getHTML("body", false);*/
 
 
 
-/*          var headline = browser.getText("//div[@class='row']//div[contains(.,'Module Headline')]");
+          var headline = browser.getText("//div[@class='row']//div[contains(.,'Module Headline')]");
             var moduleDescription = browser.getText("//div[@class='row']//div[contains(.,'Module Description')]");
             var align = browser.getText("//div[@class='row']//div[contains(.,'Align')]");
             var alignLeftOption = browser.getText("//option[contains(.,'Left')]");
@@ -159,23 +182,26 @@ module.exports.interactiveModuleBulletMenu = function(browser,CKeditorfields,i)
             var bulletTitle = browser.getText("//div[@class='row']//div[contains(.,'Bullets')]//following-sibling::div//th[contains(.,'Title')]");
             var insertBulletTitle= browser.getText("//div[@class='row']//div[contains(.,'Insert Bullet Title')]");
             var insertBulletDescription = browser.getText("//div[@class='row']//div[contains(.,'Insert Bullet Description')]");
-*/
 
+/*
             browser.frame();
             browser.waitForExist("button[ng-click='$cancel()']", 20000);
             browser.click("button[ng-click='$cancel()']");
+*/
+            browser.waitForExist("//div[@class='modal-footer']//button[contains(.,'Cancel')]", 20000);
+            browser.click("//div[@class='modal-footer']//button[contains(.,'Cancel')]");
 
             return vals = {
-	        "headline": moduleHeadline,
+	        "headline": headline,
             "moduleDescription": moduleDescription,
-           /* "align": align,
+            "align": align,
             "alignLeftOption": alignLeftOption,
             "alignMiddleOption": alignMiddleOption,
             "alignRightOption": alignRightOption,
             "bullet": bullet,
             "bulletTitle": bulletTitle,
-            "insertBulletTitle": insertBulletTitle, */
-            "insertBulletDescription": insertBulletDescTextWithMarkup
+            "insertBulletTitle": insertBulletTitle, 
+            "insertBulletDescription": insertBulletDescription
             };      
     
 };
@@ -207,7 +233,7 @@ module.exports.interactiveModuleBulletList = function(browser,CKeditorfields,i)
             browser.frameParent();
             browser.frameParent();
             browser.pause(5000);
-            browser.setValue("#moduletitle", "QA");
+            browser.setValue("#moduleheadline", "QA");
             browser.setValue("#moduledescription", "QA");
 
             browser.leftClick("//select[@ng-model='moduleConfiguration.module.align']");
@@ -277,8 +303,8 @@ module.exports.interactiveModuleBulletModule = function(browser,CKeditorfields,i
             browser.leftClick("//span[text()='Bulleted List']");
             browser.frameParent();
             browser.frameParent();
-            
-            browser.setValue("#moduletitle", "QA");
+            browser.pause(5000);
+            browser.setValue("#moduleheadline", "QA");
             browser.setValue("#moduledescription", "QA");
 
             browser.leftClick("//select[@ng-model='moduleConfiguration.module.align']");
@@ -364,7 +390,7 @@ module.exports.interactiveModuleBulletListEdit = function(browser,CKeditorfields
             browser.frameParent();
             browser.frameParent();
             browser.pause(5000);
-            browser.setValue("#moduletitle", "QA");
+            browser.setValue("#moduleheadline", "QA");
             browser.setValue("#moduledescription", "QA");
 
             browser.leftClick("//select[@ng-model='moduleConfiguration.module.align']");
@@ -484,7 +510,7 @@ module.exports.interactiveModuleBulletAlign = function(browser,CKeditorfields,i,
             browser.frameParent();
             browser.frameParent();
             browser.pause(5000);
-            browser.setValue("#moduletitle", "QA");
+            browser.setValue("#moduleheadline", "QA");
             browser.setValue("#moduledescription", "QA");
 
             browser.leftClick("//select[@ng-model='moduleConfiguration.module.align']");
@@ -555,7 +581,7 @@ module.exports.interactiveModuleBulletListXML = function(browser,CKeditorfields,
             browser.frameParent();
             browser.frameParent();
             browser.pause(5000);
-            browser.setValue("#moduletitle", "QA");
+            browser.setValue("#moduleheadline", "QA");
             browser.setValue("#moduledescription", "QA");
 
             browser.leftClick("//select[@ng-model='moduleConfiguration.module.align']");

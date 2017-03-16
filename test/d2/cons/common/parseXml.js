@@ -1,4 +1,4 @@
-var parseString = require('xml2js').parseString;
+var xml2js = require('xml2js');
 var request = require('request');
 var Promise = require('bluebird');
 
@@ -16,7 +16,8 @@ ParseXml.prototype.getXmlFromUrl = function getXmlFromUrl(url, options) {
         try {
             request.get(url, options, function (err, response, body) {
                 if (!err && response.statusCode == 200) {
-                    parseString(body, function (err, result) {
+                    var parser = new xml2js.Parser({explicitArray: false});
+                        parser.parseString(body, function (err, result) {
                         if (!err && result !== '') {
                             resolve(result);
                         } else {
