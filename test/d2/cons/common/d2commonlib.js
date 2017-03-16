@@ -1,3 +1,4 @@
+var randomstring = require("randomstring");
 module.exports.getUrlAndTitle = function(){
     return {
             url: this.getUrl(),
@@ -30,7 +31,7 @@ module.exports.CreateNewContent = function(browser, FillcreationprofileName, Fil
 {
 
         browser.click('#menuFileNew');
-        browser.waitForVisible("#menuFileNewDocument",20000);
+        browser.waitForVisible("#menuFileNewDocument",30000);
         browser.click('#menuFileNewDocument');
         
         browser.waitForVisible("#creationProfileChooser-input");
@@ -112,7 +113,9 @@ if(isExist==true)        
         browser.element("//button[text()='Edit']");
         browser.moveToObject("//button[text()='Edit']");
         browser.leftClick("//button[text()='Edit']");   
-
+        var chronicleID = browser.getText("#i_chronicle_id");
+        console.log(chronicleID);
+       
         
         browser.waitForEnabled('#wbmd_c_frnd_nm-input', 30000);
        
@@ -126,6 +129,7 @@ if(isExist==true)        
         
         //browser.waitForVisible("#wbmd_keywords-input");
         browser.waitForVisible('#wbmd_bus_ref-input',40000);
+        browser.pause(5000);
         browser.setValue('#wbmd_bus_ref-input', ContentClassification);
         
         browser.waitForVisible('#wbmd_desc_user-input',40000);
@@ -141,16 +145,23 @@ if(isExist==true)        
         browser.waitForVisible("#wbmd_wdw_ttl-input");
         browser.setValue('#wbmd_wdw_ttl-input', WindowTitle);
 
-        browser.waitForVisible("#wbmd_publ-input");
-        browser.setValue('#wbmd_publ-input', Publication);
+        browser.scroll("//div[@id='wbmd_publ']/img");
+        browser.waitForVisible("#wbmd_publ-input",5000);
+        browser.leftClick("//div[@id='wbmd_publ']/img");
+        browser.pause(5000);
+        browser.leftClick("//div[@title='"+Publication+"']");
         
         
         browser.waitForVisible("#wbmd_cpyrt-input",5000);
         browser.leftClick("//div[@id='wbmd_cpyrt']/img");
+        browser.pause(5000);
         browser.leftClick("//div[@title='"+Wbmdcpyright+"']");
 
+
+        browser.scroll("//div[@id='wbmd_c_prim_top_id']/img");
         browser.waitForVisible("#wbmd_c_prim_top_id-input",5000);
         browser.leftClick("//div[@id='wbmd_c_prim_top_id']/img");
+        browser.pause(5000);
         browser.leftClick("//div[@title='"+PrimaryTopicID+"']");
         //Original Publish Date
         browser.waitForVisible("#wbmd_orig_pub_dt-input",5000);
@@ -159,6 +170,12 @@ if(isExist==true)        
         //Save
         browser.leftClick("#save-button");
         browser.pause(5000);
+         var chronicleID = {};
+             chronicleID = {
+	        "chronicleID": chronicleID,
+             };
+            
+            return chronicleID;
 
 } ;
 
@@ -197,16 +214,17 @@ module.exports.CheckoutAndCheckin = function(browser, Articletitle,ChkAction)
 
             browser.rightClick("//span[@title='" + Articletitle + "']");
             browser.waitForVisible("#menuContextDocumentLifeCycle", 5000);
-            browser.leftClick("#menuContextDocumentLifeCycle");
+            browser.click("#menuContextDocumentLifeCycle");
             browser.waitForVisible("//a[contains(text(),'"+LAction+"')]", 5000);
-            browser.leftClick("//a[contains(text(),'"+LAction+"')]");
+            browser.click("//a[contains(text(),'"+LAction+"')]");
+            browser.pause(5000);
             browser.waitForVisible("//div[@class='modal-content']//button[contains(text(),'OK')]", 50000);
-            browser.leftClick("//div[@class='modal-content']//button[contains(text(),'OK')]");
+            browser.click("//div[@class='modal-content']//button[contains(text(),'OK')]");
 
-            if(LAction="Power Promote")
+            if(LAction=="Power Promote")
             {
             browser.waitForVisible("//div[@class='modal-content']//button[contains(text(),'OK')]", 50000);
-            browser.leftClick("//div[@class='modal-content']//button[contains(text(),'OK')]");
+            browser.click("//div[@class='modal-content']//button[contains(text(),'OK')]");
             }
             browser.pause(7000);
 };
@@ -231,3 +249,8 @@ module.exports.Publish = function(browser, Articletitle,publishState)
             browser.pause(7000);
     
 };
+
+
+module.exports.GenerateRandomText = function GenerateRandomString() {
+    return randomstring.generate(5);
+}

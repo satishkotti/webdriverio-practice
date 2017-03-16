@@ -22,6 +22,9 @@ describe('Interactive Article - BulletList Module', function () {
         browser.addCommand('interactiveModuleBulletListEdit', interactivearticles.interactiveModuleBulletListEdit.bind(browser));
         browser.addCommand('interactiveModuleBulletTitleDescription', interactivearticles.interactiveModuleBulletTitleDescription.bind(browser));
          browser.addCommand('interactiveModuleBulletAlign', interactivearticles.interactiveModuleBulletAlign.bind(browser));
+         browser.addCommand('interactiveModuleBulletListXML', interactivearticles.interactiveModuleBulletListXML.bind(browser));
+         browser.addCommand('interactiveModuleBulletListXMLValidation', interactivearticles.interactiveModuleBulletListXMLValidation.bind(browser));
+         browser.addCommand('randomtext', common.GenerateRandomText.bind(browser));
         browser.addCommand('getUrlAndTitle', common.getUrlAndTitle.bind(browser));
         browser.setViewportSize({
             width: 1920,
@@ -168,7 +171,7 @@ describe('Interactive Article - BulletList Module', function () {
 
     });
 
-     it('should Verify user is not able to insert bulletlist module without title and description - PPE-102332', function () {
+     it.skip('should Verify user is not able to insert bulletlist module without title and description - PPE-102332', function () {
 
         browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
         browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
@@ -183,63 +186,110 @@ describe('Interactive Article - BulletList Module', function () {
 
     it.skip('should Verify the lifecycle operations on the asset having interactive module - PPE-102333', function () {
 
-        browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
-        browser.EditProperties(browser,data.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','TestlinkTitle','Testwindowtitle','WebMD Medical News',data.inputData.webmdcpyrights,'ADD-ADHD (Adult)');
+       browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
+        browser.EditProperties(browser,global.d2ConDataSettings.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','TestlinkTitle','Testwindowtitle','WebMD Medical News', global.d2ConDataSettings.inputData.webmdcpyrights,'ADD-ADHD (Adult)');
         browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
         var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
         var i = 1;
         richtextFields.split(',').forEach(function (x) {
         var moduleName = browser.interactiveModuleBulletList(browser, x, i);
-        expect(moduleName.mName).to.equal(data.expectedResults.moduleTitle);
+        expect(moduleName.mName).to.equal(global.d2ConDataSettings.expectedResults.moduleTitle);
             i++;
         });
-        browser.CheckoutAndCheckin(browser,data.inputData.articletitle,'Check-in');
-        browser.LifeCycle(browser,data.inputData.articletitle,'Promote');
-        browser.LifeCycle(browser,data.inputData.articletitle,'Demote');
-        browser.LifeCycle(browser,data.inputData.articletitle,'Power Promote');
-        browser.Publish(browser,data.inputData.articletitle,'Active');
+        browser.CheckoutAndCheckin(browser,global.d2ConDataSettings.inputData.articletitle,'Check-in');
+        browser.LifeCycle(browser,global.d2ConDataSettings.inputData.articletitle,'Promote');
+        browser.LifeCycle(browser,global.d2ConDataSettings.inputData.articletitle,'Demote');
+        browser.LifeCycle(browser,global.d2ConDataSettings.inputData.articletitle,'Power Promote');
+        browser.Publish(browser,global.d2ConDataSettings.inputData.articletitle,'Active');
 
     });
 
-    it.skip('should Verify the XML rendition after inserting the bulletlist module - PPE-102334', function () {
+    it('should Verify the XML rendition after inserting the bulletlist module - PPE-102334', function () {
 
-        browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
-        browser.EditProperties(browser,data.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','TestlinkTitle','Testwindowtitle','WebMD Medical News',data.inputData.webmdcpyrights,'ADD-ADHD (Adult)');
-        browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
-        var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
-        var i = 1;
-        richtextFields.split(',').forEach(function (x) {
-        var moduleName = browser.interactiveModuleBulletList(browser, x, i);
-        expect(moduleName.mName).to.equal(data.expectedResults.moduleTitle);
-            i++;
-        });
-        browser.CheckoutAndCheckin(browser,data.inputData.articletitle,'Check-in');
-        browser.LifeCycle(browser,data.inputData.articletitle,'Power Promote');
-        browser.Publish =(browser,data.inputData.articletitle,'Active');
+    //      browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
+    //    var Chronicleid= browser.EditProperties(browser,global.d2ConDataSettings.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','TestlinkTitle','Testwindowtitle','WebMD Medical News', global.d2ConDataSettings.inputData.webmdcpyrights,'ADD-ADHD (Adult)');
+    //     browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
+    //     var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
+    //     var i = 1;
+    //     richtextFields.split(',').forEach(function (x) {
+    //     var moduleName = browser.interactiveModuleBulletListXML(browser, x, i);
+    //     expect(moduleName.mName).to.equal(global.d2ConDataSettings.expectedResults.moduleTitle);
+    //         i++;
+    //     });
+    //     browser.CheckoutAndCheckin(browser,global.d2ConDataSettings.inputData.articletitle,'Check-in');
+    //     browser.LifeCycle(browser,global.d2ConDataSettings.inputData.articletitle,'Promote');
+    //     browser.LifeCycle(browser,global.d2ConDataSettings.inputData.articletitle,'Demote');
+    //     browser.LifeCycle(browser,global.d2ConDataSettings.inputData.articletitle,'Power Promote');
+    //     browser.Publish(browser,global.d2ConDataSettings.inputData.articletitle,'Active');
+        browser.interactiveModuleBulletListXMLValidation(browser,'091e9c5e8148792b');
 
     });
 
 
 
-it.skip('should verify user is able access bullet list with data in the Rich text editor - new', function () {
-        var alignment=data.inputData.bulletlistalignment;
-        alignment.split(',').forEach(function(bulletalignment) {
-        browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
-        browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articleeditdescr, 'Check-out');
-        var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
-        var i = 1;
-        richtextFields.split(',').forEach(function (x) {
+// it('should verify user is able access bullet list with data in the Rich text editor - new', function () {
+//        // var objectName= "QATestAsset_"+common.GenerateRandomText();
+//         var alignment= global.d2ConDataSettings.inputData.bulletlistalignment;
+//         alignment.split(',').forEach(function(bulletalignment) {
+//       var objectName= "QATestAsset_"+common.GenerateRandomText();
+//        browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, objectName, global.d2ConDataSettings.inputData.articletitle);
+//         browser.CheckoutAndCheckin(browser, objectName, 'Check-out');
+//         var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
+//         var i = 1;
+//         richtextFields.split(',').forEach(function (x) {
        
-            var moduleName = browser.interactiveModuleBulletAlign(browser, x, i,bulletalignment);
-            expect(moduleName.mName).to.equal(data.expectedResults.moduleTitle);
-            i++;
-        });
-        browser.CheckoutAndCheckin(browser,data.inputData.articletitle,'Check-in');
-        });
- console.log(bulletalignment);
+//             var moduleName = browser.interactiveModuleBulletAlign(browser, x, i,bulletalignment);
+//             expect(moduleName.mName).to.equal(global.d2ConDataSettings.expectedResults.moduleTitle);
+//             i++;
+//         });
+//         browser.CheckoutAndCheckin(browser,objectName,'Check-in');
+//         });
+//  console.log(objectName);
 
 
-});
+// });
+
+
+ it.skip('should Verify the left alignment after insersting the module - PPE-102330', function () {
+
+        browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
+        browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
+        var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
+        var i = 1;
+        richtextFields.split(',').forEach(function (x) {
+        
+           var moduleName = browser.interactiveModuleBulletAlign(browser, x, i,'Left');
+            expect(moduleName.mName).to.equal(global.d2ConDataSettings.expectedResults.moduleTitle);
+             i++;
+        });
+    });
+
+    it.skip('should Verify the right alignment after insersting the module - PPE-102330', function () {
+
+        browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
+        browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
+        var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
+        var i = 1;
+        richtextFields.split(',').forEach(function (x) {
+        
+           var moduleName = browser.interactiveModuleBulletAlign(browser, x, i,'Right');
+            expect(moduleName.mName).to.equal(global.d2ConDataSettings.expectedResults.moduleTitle);
+             i++;
+        });
+    });
+     it.skip('should Verify the Middle alignment after insersting the module - PPE-102330', function () {
+
+        browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, global.d2ConDataSettings.inputData.articleeditdescr, global.d2ConDataSettings.inputData.articletitle);
+        browser.CheckoutAndCheckin(browser, global.d2ConDataSettings.inputData.articletitle, 'Check-out');
+        var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
+        var i = 1;
+        richtextFields.split(',').forEach(function (x) {
+        
+           var moduleName = browser.interactiveModuleBulletAlign(browser, x, i,'Middle');
+            expect(moduleName.mName).to.equal(global.d2ConDataSettings.expectedResults.moduleTitle);
+             i++;
+        });
+    }); 
 
 });
 
