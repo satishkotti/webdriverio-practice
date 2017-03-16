@@ -10,7 +10,7 @@ describe('Interactive Article - JavaScript Module', function () {
     before(function () {
 
        
-        browser.addCommand('interactiveModuleJavaScript', interactivearticles.interactiveModuleJavaScript.bind(browser));
+        browser.addCommand('interactiveModuleJavaScriptAvlblyCodeType', interactivearticles.interactiveModuleJavaScriptAvlblyCodeType.bind(browser));
         browser.addCommand('interactiveModuleJavaScript', interactivearticles.interactiveModuleJavaScript.bind(browser));
         browser.addCommand('interactiveModuleJavaScriptAvailability', interactivearticles.interactiveModuleJavaScriptAvailability.bind(browser));
         browser.addCommand('CheckoutAndCheckin', common.CheckoutAndCheckin.bind(browser))
