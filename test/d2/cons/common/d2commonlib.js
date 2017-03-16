@@ -68,8 +68,10 @@ if(isExist==true)        
 
         rootpath.split('/').forEach(function(x){
         var arr = x.split('::');
-       console.log("//div[@aria-label='"+arr[0].trim()+"' and @aria-level='"+arr[1].trim()+"']");
+       
         browser.waitForVisible("//div[@aria-label='"+arr[0].trim()+"' and @aria-level='"+arr[1].trim()+"']",100000)
+        
+
         browser.element("//div[@aria-label='"+arr[0].trim()+"' and @aria-level='"+arr[1].trim()+"']").click();
 
         browser.pause(2000);
@@ -83,7 +85,7 @@ if(isExist==true)        
         browser.leftClick("//span[@title='" + ArticleTitle + "']");
 
         browser.pause(5000);
-        browser.waitForVisible("//span[contains(.,'Properties')]",50000);
+        browser.waitForVisible("//span[contains(.,'Properties')]",5000);
         browser.leftClick("//span[contains(.,'Properties')]");
         browser.pause(4000);
         
@@ -93,21 +95,21 @@ if(isExist==true)        
         browser.leftClick("//button[text()='Edit']");   
 
         
-        browser.waitForEnabled('#wbmd_c_frnd_nm-input', 30000);
+        browser.waitForEnabled('#wbmd_c_frnd_nm-input', 3000);
        
         //browser.waitForVisible("#wbmd_c_frnd_nm-input");
-        browser.waitForVisible('#wbmd_c_frnd_nm-input',40000);
+        browser.waitForVisible('#wbmd_c_frnd_nm-input',4000);
         browser.setValue('#wbmd_c_frnd_nm-input', FriendlyName);
         
         //browser.waitForVisible("#wbmd_desc_user-input");
-        browser.waitForVisible('#wbmd_desc_user-input',40000);
+        browser.waitForVisible('#wbmd_desc_user-input',4000);
         browser.setValue('#wbmd_desc_user-input', DescriptiveName);
         
         //browser.waitForVisible("#wbmd_keywords-input");
-        browser.waitForVisible('#wbmd_bus_ref-input',40000);
+        browser.waitForVisible('#wbmd_bus_ref-input',4000);
         browser.setValue('#wbmd_bus_ref-input', ContentClassification);
         
-        browser.waitForVisible('#wbmd_desc_user-input',40000);
+        browser.waitForVisible('#wbmd_desc_user-input',4000);
         browser.setValue('#wbmd_desc_user-input', UserDescription);
 
         browser.waitForVisible("#wbmd_keywords-input");

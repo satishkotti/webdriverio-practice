@@ -15,7 +15,7 @@ module.exports.testData={
 
 module.exports.inputData=
 {   
-    rotpath: "webmd::2/consumer_assets::3/editorial::4/articles::5/other::6/test::7",
+    rotpath: "webmd::2/consumer_assets::3/editorial::4/articles::5/other::6",
     //rotpath:"webmd::2/consumer_assets::3/editorial::4",
   
     rootnode: "webmddoc01",
@@ -30,5 +30,7 @@ module.exports.inputData=
     //objectTitle: "QATestAsset"+randomtext,
     objectTitle:"QAArticleNews",
     
-    articleContentFields: "Section Text,Highlights,Pull Quotes,Citations,Related Links Text"
+    articleContentFields: "Section Text,Highlights,Pull Quotes,Citations,Related Links Text",
+
+     CodeTypes: "Facebook, Youtube, Twitter, Pinterest, Reddit, Imgur, Snapchat, Tumblr, Instagram"
 };

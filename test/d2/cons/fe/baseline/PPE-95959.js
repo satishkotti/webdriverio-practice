@@ -11,6 +11,7 @@ describe('Interactive Article - JavaScript Module', function () {
 
        
         browser.addCommand('interactiveModuleJavaScript', interactivearticles.interactiveModuleJavaScript.bind(browser));
+        browser.addCommand('interactiveModuleJavaScript', interactivearticles.interactiveModuleJavaScript.bind(browser));
         browser.addCommand('interactiveModuleJavaScriptAvailability', interactivearticles.interactiveModuleJavaScriptAvailability.bind(browser));
         browser.addCommand('CheckoutAndCheckin', common.CheckoutAndCheckin.bind(browser))
         browser.addCommand('EditProperties', common.EditProperties.bind(browser));
@@ -28,7 +29,7 @@ describe('Interactive Article - JavaScript Module', function () {
 
 
 
-    it.skip('should verify availibilty for the Bullet List module - PPE-102328', function () {
+    it.skip('should verify  Verify there is Code Module Button will be available for selection among the M selection button- PPE-102781', function () {
 
         browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
         browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
@@ -41,6 +42,23 @@ describe('Interactive Article - JavaScript Module', function () {
         });
 
     });
+
+
+     it.skip('Should Verify the availability of Look up values in Code Type -  PPE-102786', function () {
+
+        browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
+         browser.EditProperties(browser,data.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','Testwindowtitle','WebMD Newsletter',data.inputData.webmdcpyrights,'News Page');
+        browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
+        var richtextFields = data.inputData.articleContentFields;
+        var i = 1;
+        richtextFields.split(',').forEach(function (x) {
+            browser.interactiveModuleJavaScriptAvlblyCodeType(browser, x, i);
+            browser.pause(2000);
+            i++;
+        });
+
+    });
+
 
     it('should verify capable of storing field text -  PPE-102785', function () {
 
@@ -56,6 +74,11 @@ describe('Interactive Article - JavaScript Module', function () {
         });
 
     });
+
+    
+
+
+
 
 
 
