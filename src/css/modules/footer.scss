@@ -34,6 +34,8 @@
 	.footer-social,
 	.footer-acc {
 
+		margin-bottom: 0;
+
 		p {
 			font-size: 1.6rem;
 			color: #666;
@@ -41,13 +43,19 @@
 		ul {
 			display: inline-block;
 			vertical-align: middle;
+			white-space: nowrap;
+			margin: 0 20px 20px 0;
+
 
 			li {
-				float: left;
+				display: inline-block;
 				margin-right: 20px;
 
 				&:last-child {
 					margin-right: 0;
+				}
+				&.urac {
+					margin-right: 10px;
 				}
 			}
 		}
@@ -66,24 +74,7 @@
 				background-position: 0 -67px;
 			}
 		}
-		.footer-acc-icon {
-			display: inline-block;
 
-			&.urac {
-				width: 71px;
-				height: 68px;
-				display: block;
-				background: url(//img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/layout/shared/URAC_trans.gif) 0 0 no-repeat;
-				margin-right: 1px;
-			}
-			&.truste {
-				margin-top: 15px;
-				margin-right: 14px;
-			}
-			&.hon {
-				margin-top: 6px;
-			}
-		}
 	}
 	.disclaimers {
 		.logo_AdChoices {
@@ -153,13 +144,14 @@
 			font-size: 1.2rem;
 			line-height: 16px;
 		}
+		.footer-social,
+		.footer-acc {
+			margin-bottom: 0;
+		}
 		.footer-social {
 			p {
 				font-size: 1.4em;
 			}
-		}
-		.footer-acc ul li {
-			margin-right: 10px;
 		}
 		.copyright {
 			br {
