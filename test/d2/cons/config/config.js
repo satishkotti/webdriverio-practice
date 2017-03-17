@@ -98,11 +98,12 @@ module.exports.testSettings = {
             "insertBulletTitle": "Insert Bullet Title",
             "insertBulletDescription": "Insert Bullet Description",
             "moduleTitle": "QA",
+            "bullettitleupdated": "QAUpdated",
             "bulletTitleValidation": "Please enter a title for the bullet!",
             "bulletDescriptionValidation": "Please enter a description for the bullet!",
         },
         "inputData": {
-            "rotpath": "webmd::2/consumer_assets::3/editorial::4/articles::5/other::6/test::7",
+            "rotpath": "webmd::2/consumer_assets::3/editorial::4/articles::5/other::6",
            //  "rotpath": "webmd::2/consumer_assets::3/editorial::4",
             "rootnode": "webmddoc01",
             "articletitle": "QATestAsset" + exports.GenerateRandomString(),

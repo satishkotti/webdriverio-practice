@@ -90,7 +90,7 @@ describe('Interactive Article - BulletList Module', function () {
     // });
 
 
-    it('should verify availibilty for the Bullet List module - PPE-102328', function () {
+    it.skip('should verify availibilty for the Bullet List module - PPE-102328', function () {
         var objectName = "QATestAsset_" + common.GenerateRandomText();
         browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, objectName, objectName);
         browser.CheckoutAndCheckin(browser, objectName, 'Check-out');
@@ -104,7 +104,7 @@ describe('Interactive Article - BulletList Module', function () {
         browser.CheckoutAndCheckin(browser, objectName, 'Check-in');
     });
 
-    it('should Verify the bullet list options in the module menu - PPE-101666', function () {
+    it.skip('should Verify the bullet list options in the module menu - PPE-101666', function () {
 
         var objectName = "QATestAsset_" + common.GenerateRandomText();
         browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, objectName, objectName);
@@ -130,7 +130,7 @@ describe('Interactive Article - BulletList Module', function () {
 
 
 
-    it('should verify user is able access bullet list with data in the Rich text editor - PPE-102329', function () {
+    it.skip('should verify user is able access bullet list with data in the Rich text editor - PPE-102329', function () {
         var objectName = "QATestAsset_" + common.GenerateRandomText();
         browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, objectName, objectName);
         browser.CheckoutAndCheckin(browser, objectName, 'Check-out');
@@ -144,7 +144,7 @@ describe('Interactive Article - BulletList Module', function () {
         browser.CheckoutAndCheckin(browser, objectName, 'Check-in');
     });
 
-    it('should Verify that user is able to insert multiple list within content - PPE-102331', function () {
+    it.skip('should Verify that user is able to insert multiple list within content - PPE-102331', function () {
         var objectName = "QATestAsset_" + common.GenerateRandomText();
         browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, objectName, objectName);
         browser.CheckoutAndCheckin(browser, objectName, 'Check-out');
@@ -158,7 +158,7 @@ describe('Interactive Article - BulletList Module', function () {
         browser.CheckoutAndCheckin(browser, objectName, 'Check-in');
     });
 
-    it.skip('should Verify user is able to edit the bulletlist module - PPE-102759 ', function () {
+    it('should Verify user is able to edit the bulletlist module - PPE-102759 ', function () {
 
         var objectName = "QATestAsset_" + common.GenerateRandomText();
         browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, objectName, objectName);
@@ -167,13 +167,13 @@ describe('Interactive Article - BulletList Module', function () {
         var i = 1;
         richtextFields.split(',').forEach(function (x) {
             var moduleName = browser.interactiveModuleBulletListEdit(browser, x, i);
-            // expect(moduleName.mName).to.equal(global.d2ConDataSettings.expectedResults.moduleTitle);
+          // expect(moduleName.mName).to.equal(global.d2ConDataSettings.expectedResults.bullettitleupdated);
             i++;
         });
         browser.CheckoutAndCheckin(browser, objectName, 'Check-in');
     });
 
-    it('should Verify user is not able to insert bulletlist module without title and description - PPE-102332', function () {
+    it.skip('should Verify user is not able to insert bulletlist module without title and description - PPE-102332', function () {
 
         var objectName = "QATestAsset_" + common.GenerateRandomText();
         browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, objectName, objectName);

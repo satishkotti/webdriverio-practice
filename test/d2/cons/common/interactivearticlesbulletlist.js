@@ -366,7 +366,11 @@ module.exports.interactiveModuleBulletModule = function(browser,CKeditorfields,i
 
 // Method to edit bulletlist Modules for richtext fields 
 module.exports.interactiveModuleBulletListEdit = function(browser,CKeditorfields,i)
-{
+{               
+
+            browser.doubleClick("//span[text()='Content']");
+            browser.pause(10000);
+
              var testval = browser.execute(function () {
                  return document.querySelectorAll('div[tag_id="Content-widget"]').item(0).getElementsByTagName('iframe').item(0).id;
             });
@@ -389,7 +393,7 @@ module.exports.interactiveModuleBulletListEdit = function(browser,CKeditorfields
             browser.click("//span[text()='Bulleted List']");
             browser.frameParent();
             browser.frameParent();
-            browser.pause(5000);
+            browser.pause(10000);
             browser.setValue("#moduleheadline", "QA");
             browser.setValue("#moduledescription", "QA");
 
@@ -435,11 +439,48 @@ module.exports.interactiveModuleBulletListEdit = function(browser,CKeditorfields
             expect(bulletTitle).to.equal(expectedbulletTitle);
             expect(bulletdescription).to.equal(expectedbulletdescription);
 
-             browser.waitForVisible("//input[@ng-model='bulletTitle']", 50000);
-            browser.setValue("//input[@ng-model='bulletTitle']","QAtest123");
-            browser.pause(10000);
+
+
+             browser.waitForVisible("//div[@class='modal-footer']//button[contains(.,'Insert')]", 50000);
+             browser.click("//div[@class='modal-footer']//button[contains(.,'Insert')]");
+             browser.pause(5000);
+
+              var contentframe = browser.execute(function () {
+                 return document.querySelectorAll('div[tag_id="Content-widget"]').item(0).getElementsByTagName('iframe').item(0).id;
+            });
+            browser.frame(contentframe.value);
+            browser.pause(5000);
+            browser.doubleClick("(//figcaption[@class='embedModuleClickable' and contains(.,'QA')])["+i+"]");
+            // browser.leftClick("(//figcaption[@class='embedModuleClickable' and contains(.,'QA')])["+i+"]");
+            // browser.leftClick("(//figcaption[@class='embedModuleClickable' and contains(.,'QA')])["+i+"]");
+
+            browser.frameParent();
+            browser.pause(5000);
+            browser.setValue("#moduleheadline", "QAUpdated");
+             browser.waitForVisible("//div[@class='modal-footer']//button[contains(.,'Update')]", 50000);
+             browser.click("//div[@class='modal-footer']//button[contains(.,'Update')]");
+             browser.pause(5000);
+
+             var contentframe = browser.execute(function () {
+                 return document.querySelectorAll('div[tag_id="Content-widget"]').item(0).getElementsByTagName('iframe').item(0).id;
+            });
+            browser.frame(contentframe.value);
+            browser.pause(5000);
+            var mName = browser.getText("(//figcaption[@class='embedModuleClickable' and contains(.,'QAUpdated')])["+i+"]");
+            browser.frameParent();
+             browser.doubleClick("//span[text()='Content']");
+            browser.pause(5000);
+
+             var moduleName = {};
+             moduleName = {
+	        "mName": mName,
+             };
+            
+            return moduleName;
+
 
 };
+
 
 // Method to validate bulletlist Modules for without Title and Description
 module.exports.interactiveModuleBulletTitleDescription = function(browser,CKeditorfields,i)
