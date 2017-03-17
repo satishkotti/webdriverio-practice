@@ -185,7 +185,10 @@ module.exports.SwitchAssetTabs = (tabName) =>
 module.exports.GetAssetVersionAndStage = () =>
 {
     var element = props.element('//span[contains(@class, "pb-lifecycle")]');
-    return {"version" : element.getText(),
-            "stage" : element.getAttribute('class').split('pb-lifecycle ')[1]
-            };
+    var assetDetails = {};
+    return assetDetails =  
+    {
+        "version" : element.getText(),
+        "stage" : element.getAttribute('class').split('pb-lifecycle ')[1]
+    };
 }

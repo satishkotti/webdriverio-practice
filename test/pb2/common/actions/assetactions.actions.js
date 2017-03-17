@@ -39,18 +39,20 @@ module.exports.SavePublish = (action, comment) =>
             page.textarea.get('Enter a comment below to publish to staging').setValue(comment);
             acts.button.get('Okay').click();
             acts.button.get('More Actions').waitForVisible();
+            page.element('.pb-layout-view').waitForVisible();
             break;
         case 'Publish to Live':
             acts.buttonMenu.get('Save/Publish', 'Publish to Live');
             page.textarea.get('Enter a comment below to publish to live').setValue(comment);
             acts.button.get('Okay').click();
             acts.button.get('More Actions').waitForVisible();
-            break;
+            page.element('.pb-layout-container').waitForVisible();
         default:
             acts.buttonMenu.get('Save/Publish', 'Checkin');
             page.textarea.get('Enter a comment below to checkin asset').setValue(comment);
             acts.button.get('Okay').click();
             acts.button.get('More Actions').waitForVisible();
+            page.element('.pb-layout-container').waitForVisible();
             break;
     }
 }
@@ -58,11 +60,14 @@ module.exports.SavePublish = (action, comment) =>
 module.exports.ClickEditButton = () =>
 {
     acts.button.get('Edit').click();
-    acts.button.get('Save/Publish').waitForVisible();
+    acts.splbutton.get('Save/Publish').waitForVisible();
+    page.element('.pb-layout-view').waitForVisible();
 }
 
 module.exports.ClickCheckoutAndEditButton = () =>
 {
-    acts.button.get('Checkout & Edit').click();
-    acts.button.get('Save/Publish').waitForVisible();
+    acts.splbutton.get('Checkout & Edit').click();
+    acts.splbutton.get('Save/Publish').waitForVisible();
+    page.element('.pb-layout-view').waitForVisible();
+    browser.pause(3000);
 }

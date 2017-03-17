@@ -66,7 +66,7 @@ module.exports.EditTheAsset = () =>
 
 module.exports.CheckoutAndEditTheAsset = () =>
 {
-    acts.ClickCheckoutAndEditButton();
+    act.ClickCheckoutAndEditButton();
 }
 
 module.exports.SaveOrPublishTheAsset = (action, comment) =>
@@ -83,12 +83,12 @@ module.exports.GetAssetVersionAndStage = (assetName, from) =>
 {
     switch(from)
     {
-        case 'Asset Screen' : props.GetAssetVersionAndStage(); break;
-        case 'Grid' : iwc.GetVersionAndStageOfAsset(assetName);
+        case 'Asset Screen' : return props.GetAssetVersionAndStage(); break;
+        default : return iwc.GetVersionAndStageOfAsset(assetName); break;
     }
 }
 
-module.exports.EnterQueueStatusPage = () =>
+module.exports.EnterActivityQueueStatusPage = () =>
 {
     menu.EnterActivityQueueStatusPage();
 }
