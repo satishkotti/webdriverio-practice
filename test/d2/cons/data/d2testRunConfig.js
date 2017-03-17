@@ -30,7 +30,7 @@ module.exports.inputData=
     //objectTitle: "QATestAsset"+randomtext,
     objectTitle:"QAArticleNews",
     
-    articleContentFields: "Section Text,Highlights,Pull Quotes,Citations,Related Links Text",
+    articleContentFields: "Section Text",
 
-     CodeTypes: "Facebook, Youtube, Twitter, Pinterest, Reddit, Imgur, Snapchat, Tumblr, Instagram"
+     CodeTypes: "Facebook, Youtube"
 };

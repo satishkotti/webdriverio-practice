@@ -160,6 +160,8 @@ module.exports.CheckoutAndCheckin = function(browser, Articletitle,ChkAction)
             browser.frame(frameval.value);
             browser.leftClick('//button[contains(string(),"'+ChkAction+'")]');
             browser.pause(7000);
+            browser.doubleClick("//span[text()='Content']");
+            browser.pause(10000);
             browser.frameParent();
             browser.pause(7000);
 };

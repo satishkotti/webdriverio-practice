@@ -4,7 +4,7 @@ var randomstring = require("randomstring");
 
 function Generate5000RandomString()
 {
-    return randomstring.generate(5100);
+    return randomstring.generate(5);
 }
 
 var Random5000char=Generate5000RandomString();
@@ -105,7 +105,7 @@ module.exports.interactiveModuleJavaScript = function(browser,CKeditorfields,i)
             browser.waitForVisible("(//span[text()='Code'])["+i+"]", 50000);
             browser.moveToObject("(//span[text()='Code'])["+i+"]");
             browser.click("(//span[text()='Code'])["+i+"]");
-             browser.pause(1000);
+             browser.pause(100);
                var frameval = browser.execute(function () {
                 return document.getElementById('x3_portal');
             });
@@ -180,14 +180,14 @@ module.exports.interactiveModuleJavaScriptAvlblyCodeType = function(browser,CKed
 // Method to validate the a free text field capable of storing 5000+ characters in the JavaScript Modules 
 module.exports.interactiveModuleJavaScript = function(browser,CKeditorfields,i)
 {
-    
+   
    
     var contentWidgetIFrame = browser.element("iframe[id*='oam_id==ExternalWidget-2!!oam_target_type==ExternalWidget']");
     browser.frame(contentWidgetIFrame.value);
     
     
     browser.scroll("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']");
-    browser.setValue("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']", "QA");
+    browser.setValue("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//div[text()='Enter text here']", "QAsdfsd");
     browser.moveToObject("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+i+"]");
     browser.pause(1000);
     browser.click("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+i+"]");
@@ -201,7 +201,7 @@ module.exports.interactiveModuleJavaScript = function(browser,CKeditorfields,i)
             
             browser.frame(mModuleIF.value);
             browser.timeoutsImplicitWait(10000);  
-            browser.waitForVisible("(//span[text()='Code'])["+i+"]", 5000);
+            browser.waitForVisible("(//span[text()='Code'])["+i+"]", 500);
             browser.moveToObject("(//span[text()='Code'])["+i+"]");
             browser.click("(//span[text()='Code'])["+i+"]");
             browser.pause(10000);
@@ -212,27 +212,54 @@ module.exports.interactiveModuleJavaScript = function(browser,CKeditorfields,i)
        
             browser.frame(frameval.value);
             browser.pause(10000);
-            browser.waitForVisible("//div[@class='row']//textarea", 5000);
+            browser.waitForVisible("//div[@class='row']//textarea", 500);
             browser.setValue("//div[@class='row']//textarea", Random5000char);
 
             browser.leftClick("//*[@id='codeTypeSelect']");
             
             browser.moveToObject("//option[contains(.,'Youtube')]").click("//option[contains(.,'Youtube')]");
             
-           browser.pause(1000);
+            browser.pause(1000);
             
            
             browser.moveToObject("//div[@class='modal edit ng-scope top am-fade-and-scale']//button[contains(text(),'Insert')]");
             browser.click("//div[@class='modal edit ng-scope top am-fade-and-scale']//button[contains(text(),'Insert')]");
            
-            // browser.moveToObject("//div[@class='modal edit ng-scope top am-fade-and-scale']//button[contains(text(),'Cancel')]");
-            // browser.click("//div[@class='modal edit ng-scope top am-fade-and-scale']//button[contains(text(),'Cancel')]");
+           
             
-               browser.pause(1000);
+            browser.pause(1000);
+ 
+
+            var contentWidgetIFrame = browser.element("iframe[id*='oam_id==ExternalWidget-2!!oam_target_type==ExternalWidget']");
+            browser.frame(contentWidgetIFrame.value);
+            browser.pause(500);
+            
+            browser.doubleClick("//h2[span[contains(.,'"+CKeditorfields+"')]]//following-sibling::div//strong[contains(.,'Module: jsembed')]["+i+"]");
+
+             browser.pause(10000);
+               var frameval = browser.execute(function () {
+                return document.getElementById('x3_portal');
+            });
+            
+       
+            browser.frame(frameval.value);
+            browser.pause(10000);
+            
+            browser.waitForVisible("//div[@class='row']//textarea", 500);
+
+            
+            var expectedJavascrptdescription=browser.execute("return document.querySelectorAll('.form-control').item(0).value").value
+            console.log(expectedJavascrptdescription);
+
+            browser.moveToObject("//div[@class='modal edit ng-scope top am-fade-and-scale']//button[contains(text(),'Cancel')]");
+            browser.click("//div[@class='modal edit ng-scope top am-fade-and-scale']//button[contains(text(),'Cancel')]");
+              
+             browser.pause(1000);
  
     
     
 };
+
 
 
 

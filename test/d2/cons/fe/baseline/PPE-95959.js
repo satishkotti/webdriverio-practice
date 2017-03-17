@@ -29,7 +29,8 @@ describe('Interactive Article - JavaScript Module', function () {
 
 
 
-    it.skip('should verify  Verify there is Code Module Button will be available for selection among the M selection button- PPE-102781', function () {
+    it.skip('should verify  Verify there is Code Module Button will be available for selection among the M selection button- PPE-102781', function () 
+    {
 
         browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
         browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
@@ -44,10 +45,11 @@ describe('Interactive Article - JavaScript Module', function () {
     });
 
 
-     it.skip('Should Verify the availability of Look up values in Code Type -  PPE-102786', function () {
+     it.skip('Should Verify the availability of Look up values in Code Type -  PPE-102786', function () 
+     {
 
         browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
-         browser.EditProperties(browser,data.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','Testwindowtitle','WebMD Newsletter',data.inputData.webmdcpyrights,'News Page');
+        browser.EditProperties(browser,data.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','Testwindowtitle','WebMD Newsletter',data.inputData.webmdcpyrights,'News Page');
         browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
         var richtextFields = data.inputData.articleContentFields;
         var i = 1;
@@ -60,11 +62,12 @@ describe('Interactive Article - JavaScript Module', function () {
     });
 
 
-    it('should verify capable of storing field text -  PPE-102785', function () {
+    it('should verify capable of storing field text -  PPE-102785', function () 
+    {
 
-        browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
-         browser.EditProperties(browser,data.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','Testwindowtitle','WebMD Newsletter',data.inputData.webmdcpyrights,'News Page');
-        browser.CheckoutAndCheckin(browser, data.inputData.articletitle, 'Check-out');
+        //browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
+        //browser.EditProperties(browser,data.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','Testwindowtitle','WebMD Newsletter',data.inputData.webmdcpyrights,'News Page');
+        browser.CheckoutAndCheckin(browser, 'QATestAssetlzBTQ', 'Check-out');
         var richtextFields = data.inputData.articleContentFields;
         var i = 1;
         richtextFields.split(',').forEach(function (x) {
