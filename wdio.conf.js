@@ -1,6 +1,47 @@
 var Q = require("q");
+
+module.exports.getSpecs = function()
+{
+    var specList;
+    var testApp = process.env.npm_config_testApp ? process.env.npm_config_testApp : 'd2cons' ;
+    try
+    {
+        switch(testApp) {
+            case "pb2":
+                var config = require('./test/pb2/config/config');
+                specList = [ './test/pb2/**/*.js' ];
+            break;
+            case "d2cons":
+                var config = require('./test/d2/cons/config/config');
+                specList = [ './test/d2/cons/**/*.js' ];
+            break;
+            case "d2prof":
+                var config = require('./test/d2/prof/config/config');
+                specList = [ './test/d2/prof/**/*.js' ];
+            break;
+            case "rt":
+                var config = require('./test/rt/config/config');
+                specList = [ './test/rt/**/*.js' ];
+                break;
+            default:
+                throw "Missing Specs"
+            }  
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+
+console.log('specs: '+specList);
+
+        return specList;
+};
+
 exports.config = {
 
+    debug: false,
+    maxInstances: 10,
+    
     //
     // ==================
     // Specify Test Files
@@ -10,13 +51,10 @@ exports.config = {
     // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
-    specs: [
-        //'./test/rt/**/*.js',
-        './test/pb2/**/*.js'
-    ],
+    specs: module.exports.getSpecs(),
     // Patterns to exclude.
     exclude: [
-        // 'path/to/excluded/files'
+         './test/d2/cons/config/**/*.*' 
     ],
     //
     // ============
@@ -42,7 +80,7 @@ exports.config = {
     //
     // Level of logging verbosity: silent | verbose | command | data | result | error
     logLevel: 'error',
-    //
+    //log
     // Enables colors for log output.
     coloredLogs: true,
     //
@@ -54,7 +92,7 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-    waitforTimeout: 60000,
+    waitforTimeout: 120000,
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as property. Make sure you have
@@ -100,7 +138,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 30000
+        timeout: 1200000
     },
 
     //
@@ -133,8 +171,10 @@ exports.config = {
     // Gets executed before test execution begins. At this point you will have access to all global
     // variables like `browser`. It is the perfect place to define custom commands.
     before: function() {
+
+        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'dev04';
+        var testApp = process.env.npm_config_testApp ? process.env.npm_config_testApp : 'd2cons' ;
         
-        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv + '.' : '';
         var chai = require('chai');
         chai.config.includeStack = true;
         expect = chai.expect;
@@ -144,11 +184,38 @@ exports.config = {
         should = chai.should();
         _ = require('lodash');
 
-        configs = require("./config/")
-        
-        global.pb2Url = "genesys."+ testEnv +"webmd.com";
-		global.rtUrl = "http://www." + testEnv + "webmd.com";
-		global.profD2Url = "http://www." + testEnv + "webmd.com";
+    try
+    {
+        switch(testApp) {
+            case "pb2":
+                var config = require('./test/pb2/config/config');
+                global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
+                global.dataSettings = config.EnvSettings.getEnvData(testEnv);
+            break;
+            case "d2cons":
+                var config = require('./test/d2/cons/config/config');
+                global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
+                global.d2ConDataSettings = config.EnvSettings.getEnvData(testEnv);
+            break;
+            case "d2prof":
+                var config = require('./test/d2/prof/config/config');
+                global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
+                global.d2ProfDataSettings = config.EnvSettings.getEnvData(testEnv);
+            break;
+            case "rt":
+                var config = require('./test/rt/config/config');
+                global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
+                global.rt2DataSettings = config.EnvSettings.getEnvData(testEnv);
+                break;
+            default:
+                specs = [ ];
+            }  
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+
     },
     //
     // Gets executed after all tests are done. You still have access to all global variables from
@@ -161,5 +228,23 @@ exports.config = {
     // possible to defer the end of the process using a promise.
     onComplete: function() {
         // do something
+    },
+    suites: {
+        pb2Sanity: [
+            './test/pb2/sanity/favorite.js',
+            './test/pb2/sanity/page.js',
+            './test/pb2/sanity/template.js'
+            ],
+        pb2Ui: [
+            './test/pb2/ui/login.js',
+            './test/pb2/ui/navmap.js',
+            './test/pb2/ui/ppe-81340.js'
+            ],
+        rtSanity: [ 
+            './test/rt/sanity/dynamicUrl.js',
+            './test/rt/sanity/homePage.js'
+            ],
+        rtUi:[
+            ],
     }
 };
