@@ -1,6 +1,6 @@
 var page = require('./../../../common/page');
 
-var tabHeading = '//li[contains(.,"***")]'
+var tabHeading = '//div[@type="pills"]//li[contains(.,"***")]'
 var spinnerLoc = '//span[@data-ng-show="*Loading" and contains(@class, "ng-hide")]';
 var locator = '';
 

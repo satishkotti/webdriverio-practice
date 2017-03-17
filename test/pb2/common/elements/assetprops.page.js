@@ -23,8 +23,6 @@ var props = Object.create(page, {
             case 'WebMD Nickname': locator = input.replace('***:', labelName); return  props.GetElement; break;
             default: locator = input.replace('***', labelName); return  props.GetElement; break;
         }
-        locator = input.replace('***', labelName);
-        return  props.GetElement;
     }}},
 
     textarea : { value: { get: (labelName) =>
@@ -39,12 +37,12 @@ var props = Object.create(page, {
     }}},
 
     dropdown: { value: (labelName, option) => {
-        locator = selectDD.replace('***', labelName);
-        props.UntilExist();
-        props.UntilEnabled();
-         locator = dropdown.replace('***', labelName);
-        props.GetElement.click();
-
+        switch(labelName)
+        {
+            case 'Module Type': locator = selectDD.replace('***:', labelName); props.UntilExist(); props.UntilEnabled(); locator = dropdown.replace('***:', labelName); props.GetElement.click(); break;
+            default: locator = selectDD.replace('***', labelName); props.UntilExist(); props.UntilEnabled(); locator = dropdown.replace('***', labelName); props.GetElement.click(); break;
+        }
+        
         locator = locator.split('//a')[0] + dropdownOption.replace('***', option);
         props.UntilExist();
         props.UntilVisible();

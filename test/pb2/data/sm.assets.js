@@ -4,7 +4,7 @@ var smdata = Object.create(page, {
 
         adModule: {get : () => {
         var smProps = {};
-        smProps  = 
+        return smProps  = 
         {
             "moduleName": "test",
             "moduleDispName": "test",
@@ -21,8 +21,6 @@ var smdata = Object.create(page, {
             "tier": 2,
 
         }
-
-        return smProps;
     }}
 });
 

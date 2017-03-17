@@ -4,7 +4,7 @@ var pagedata = Object.create(page, {
 
     normalStandalonePage : {get : () => {
         var pageProps = {};
-        pageProps  = 
+        return pageProps  = 
         {
             "type": "standalone",
             "inheritFrom" : null,
@@ -40,8 +40,6 @@ var pagedata = Object.create(page, {
             "externallySearchable": 1 
 
         }
-
-        return pageProps;
     }}
 });
 

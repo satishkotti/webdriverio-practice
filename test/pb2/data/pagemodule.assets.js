@@ -4,7 +4,7 @@ var pmdata = Object.create(page, {
 
         adModule: {get : () => {
         var pmProps = {};
-        smProps  = 
+        return pmProps  = 
         {
             "moduleName": "test",
             "moduleDispName": "test",
@@ -18,11 +18,9 @@ var pmdata = Object.create(page, {
             "linkedModule":null,
             "sponsorProgram": null,
             "description": "test",
-            "tier": 2,
+            "tier": "tier2",
 
         }
-
-        return pmProps;
     }}
 });
 

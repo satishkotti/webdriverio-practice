@@ -156,7 +156,7 @@ module.exports.AddModule = (contentPane, assetProps) =>
 
     props.element('div[name="' + contentPane + '"').moveToObject();
     props.element('div[name="' + contentPane + '"] .fa-plus.add-module').click();
-    props.input.get('Module Name').waitForVisible();
+    props.element('.pb-add-module.section-open').waitForVisible();
     props.input.get('Module Name').setValue(assetProps.moduleName);
     if ( assetProps.moduleName != null || assetProps.moduleName != '' ) { props.input.get('Module Display Name').setValue(assetProps.moduleDispName) };
     props.dropdown('Module Type', assetProps.moduleType);
@@ -166,7 +166,14 @@ module.exports.AddModule = (contentPane, assetProps) =>
     if ( assetProps.moduleLabel1 != null ) { props.dropdown('Module Label 1', assetProps.moduleLabel1); }
     if ( assetProps.moduleLabel2 != null ) { props.dropdown('Module Label 2', assetProps.moduleLabel2); }
     actions.ClickAddModuleButton();
-    browser.waitForVisible('.fa-eye');
+    browser.waitUntil( () => {
+        return browser.isExisting('//div[contains(@class,"tab-pane") and contains(@class,"active")]//i[contains(@class,"fa-pulse")]') == true;
+    }, 30000, "Module is not yet added to the content pane", 500);
+    browser.waitUntil( () => {
+        return browser.isExisting('//div[contains(@class,"tab-pane") and contains(@class,"active")]//i[contains(@class,"fa-pulse")]') == false;
+    }, 30000, "Module is not yet added to the content pane", 500);
+    props.element('.pb-node-breadcrumb a').waitForVisible();
+    props.element('.pb-layout-view').waitForVisible();
     browser.pause(20000);
 
 }

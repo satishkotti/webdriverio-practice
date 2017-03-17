@@ -4,7 +4,7 @@ var templatedata = Object.create(page, {
 
     normalStandaloneTemplate : {get : () => {
         var templateProps = {};
-        templateProps  = 
+        return templateProps  = 
         {
             "type": "standalone",
             "inheritFrom" : null,
@@ -18,8 +18,6 @@ var templatedata = Object.create(page, {
             "webmdNickname": null,
 
         }
-
-        return templateProps;
     }}
 });
 
