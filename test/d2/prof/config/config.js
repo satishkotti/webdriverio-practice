@@ -1,4 +1,6 @@
 var JSONPath = require('JSONPath');
+var randomstring = require("randomstring");
+var randomtext = randomstring.generate(5);
 
 module.exports.testSettings = {
     "dev04": {
@@ -19,7 +21,41 @@ module.exports.testSettings = {
                 },
                 {
                     "id": "2",
-                    "username": "QAPublication09",
+                    "username": "QANews",
+                    "password": "QA-Doc#1",
+                    "type": "super user"
+                },
+                {
+                    "id": "3",
+                    "username": "QAPublication1",
+                    "password": "QA-Doc#1",
+                    "type": "user"
+                }
+            ]
+        },
+        "ats":{
+            url:"http://ats.preview.dev01.webmd.com/SCSFile.aspx?ID="
+        }
+    },
+    "qa01": {
+       "dctmApiConfig": {
+            "dctmUsername": "QAPublication",
+            "dctmPassword": "QA-Doc#1",
+            "dctmDocbase": "webmddoc01",
+            "url": "http://dmrest.dev01.webmd.com/pbws"
+        },
+        "d2prof": {
+            "url": "http://d2.qa01.webmdprofessional.com/D2/#d2",
+            "users": [
+                {
+                    "id": "1",
+                    "username": "QAPublication",
+                    "password": "QA-Doc#1",
+                    "type": "user"
+                },
+                {
+                    "id": "2",
+                    "username": "QANews",
                     "password": "QA-Doc#1",
                     "type": "super user"
                 },
@@ -37,14 +73,11 @@ module.exports.testSettings = {
     },
     "data": {
         "homepageTitle": "D2",
-        "level0NavMapNodeId": "- Node ID [1031]",
-        "level0NodeId": "1031",
-        "level0ScopeMapNodeId": "1032",
-        "level0NodeDisplayName": "Level 0",
-        "nodePropTab": "Node Properties",
-        "nodeCQTab": "Name / Content Queries",
-        "baseTemplateName": "Base Template",
-        "errorPage": "Error 404"
+        "template": "News Article",
+        "objectTitle": "QATest_"+randomtext,
+        "rootpath": "webmd::2/professional_assets::3/medscape::4/news::5/heartwire::6/news::7/200005::8",
+        "profilename": "News Article Templates",
+        "contentType":"News"
     }
 }
 

@@ -203,7 +203,6 @@ exports.config = {
                 var config = require('./test/d2/prof/config/config');
                 global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
                 global.d2ProfDataSettings = config.EnvSettings.getEnvData(testEnv);
-                //console.log("Murali"+ global.envSettings)
             break;
             case "rt":
                 var config = require('./test/rt/config/config');
