@@ -10,3 +10,8 @@ module.exports.SelectEditMenuItem = function(option)
 {
     homepage.createEdit.get('Edit').moveToObject().click('//li[text()="Edit"]//li[text()="' + option + '"]');
 }
+
+module.exports.EnterActivityQueueStatusPage = () =>
+{
+    homepage.queue.click();
+}

@@ -11,16 +11,16 @@ var acts = Object.create(page, {
 
     UntilExist: { value: () => { browser.waitForExist(locator, 30000); } },
     UntilVisible: { value: () => { browser.waitForVisible(locator, 30000); } },
-    Ele: { get: () => { return browser.element(locator); } },
+    GetElement: { get: () => { return browser.element(locator); } },
 
 
     button: {
         value: {
             get: (buttonText) => {
                 switch (buttonText) {
-                    case 'View Read-Only': locator = button2.replace('***', 'View Read-Only'); acts.UntilExist; acts.UntilVisible; return acts.Ele; break;
-                    case 'Edit': locator = button2.replace('***', 'Edit'); acts.UntilExist; acts.UntilVisible; return acts.Ele; break;
-                    default: locator = button.replace('***', buttonText); acts.UntilExist(); acts.UntilVisible(); return acts.Ele; break;
+                    case 'View Read-Only': locator = button2.replace('***', 'View Read-Only'); acts.UntilExist; acts.UntilVisible; return acts.GetElement; break;
+                    case 'Edit': locator = button2.replace('***', 'Edit'); acts.UntilExist; acts.UntilVisible; return acts.GetElement; break;
+                    default: locator = button.replace('***', buttonText); acts.UntilExist(); acts.UntilVisible(); return acts.GetElement; break;
                 }
             }
         }
@@ -29,9 +29,9 @@ var acts = Object.create(page, {
         value: {
             get: (buttonText) => {
                 switch (buttonText) {
-                    case 'View Read-Only': locator = button2.replace('***', 'View Read-Only'); acts.UntilExist; acts.UntilVisible; return acts.Ele; break;
-                    case 'Edit': locator = button2.replace('***', 'Edit'); acts.UntilExist; acts.UntilVisible; return acts.Ele; break;
-                    default: locator = button3.replace('***', buttonText); acts.UntilExist(); acts.UntilVisible(); return acts.Ele; break;
+                    case 'View Read-Only': locator = button2.replace('***', 'View Read-Only'); acts.UntilExist; acts.UntilVisible; return acts.GetElement; break;
+                    case 'Edit': locator = button2.replace('***', 'Edit'); acts.UntilExist; acts.UntilVisible; return acts.GetElement; break;
+                    default: locator = button3.replace('***', buttonText); acts.UntilExist(); acts.UntilVisible(); return acts.GetElement; break;
                 }
             }
         }
@@ -43,7 +43,7 @@ var acts = Object.create(page, {
                 locator = label.replace('***', version);
                 acts.UntilExist;
                 acts.UntilVisible;
-                return acts.Ele;
+                return acts.GetElemente;
 
             }
         }
@@ -58,11 +58,17 @@ var acts = Object.create(page, {
                 {
                     acts.button.get(buttonText).click();
                     locator = '//li[string()="' + menuItem + '"]';
-                    acts.Ele.waitForVisible();
-                    acts.Ele.click();
+                    acts.GetElement.waitForVisible();
+                    acts.GetElement.click();
                 }
         }
-    }
+    },
+   element: { value: (eleLocator) => 
+        { 
+            locator = eleLocator;
+            props.UntilExist();
+            return props.GetElement;
+        }},
 
 });
 

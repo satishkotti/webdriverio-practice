@@ -42,3 +42,28 @@ module.exports.SelectAsset = (assetName) =>
 {
     IWC.selectGridAsset.get(assetName);
 }
+
+module.exports.GetVersionAndStageOfAsset = (assetName) =>
+{
+    switch (assetName) {
+                case 'selected':
+                    var element = IWC.element.get('//tr[contains(@class, "k-state-selected")]//span[contains(@class, "pb-lifecycle")]');
+                    var stage = element.getAttribute('class').split('pb-lifecycle ')[1];
+                    var version = element.getText();
+
+                    return {
+                        "version": version,
+                        "stage": stage
+                    }; break;
+
+                default:
+                    var element = IWC.element.get('//tr[td[contains(., "' + assetName + '")]]//span[contains(@class, "pb-lifecycle")]');
+                    var stage = element.getAttribute('class').split('pb-lifecycle ')[1];
+                    var version = element.getText();
+
+                    return {
+                        "version": version,
+                        "stage": stage
+                    }; break;
+    }
+}

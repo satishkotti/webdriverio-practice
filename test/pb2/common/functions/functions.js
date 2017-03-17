@@ -1,8 +1,9 @@
 var app = require('./../actions/login.actions');
-var iwc = require('./../actions/iwc.actions')
-var act = require('./../actions/assetactions.actions')
-var props = require('./../actions/assetprops.actions')
-var search = require('./../actions/search.actions')
+var iwc = require('./../actions/iwc.actions');
+var act = require('./../actions/assetactions.actions');
+var props = require('./../actions/assetprops.actions');
+var search = require('./../actions/search.actions');
+var menu = require('./../actions/menus.actions');
 
 module.exports.LaunchAppAndLogin = () =>
 {
@@ -48,15 +49,46 @@ module.exports.SearchFor = (assetType, keyword, from, level) => // assetType can
             {
                 search.GlobalSearchUsingKeyword(assetType, keyword);
             }
+            break;
         case 'Interior Workcenter':
             if (level != null)
             {
                 search.SearchFromIWC(level, keyword);
             }
+            break;
     }
 }
 
-module.exports.EnterEditMode = () =>
+module.exports.EditTheAsset = () =>
 {
     act.ClickEditButton();
+}
+
+module.exports.CheckoutAndEditTheAsset = () =>
+{
+    acts.ClickCheckoutAndEditButton();
+}
+
+module.exports.SaveOrPublishTheAsset = (action, comment) =>
+{
+    act.SavePublish(action, comment);
+}
+
+module.exports.SwitchAssetTabs = (tabName) =>
+{
+    props.SwitchAssetTabs(tabName);
+}
+
+module.exports.GetAssetVersionAndStage = (assetName, from) =>
+{
+    switch(from)
+    {
+        case 'Asset Screen' : props.GetAssetVersionAndStage(); break;
+        case 'Grid' : iwc.GetVersionAndStageOfAsset(assetName);
+    }
+}
+
+module.exports.EnterQueueStatusPage = () =>
+{
+    menu.EnterActivityQueueStatusPage();
 }

@@ -25,7 +25,15 @@ describe('Unit Tests', () => {
 
     it('Add a page module', () => {
         func.AddModule('ContentPane0', pmTestData.adModule);
-    })
+    });
+
+    it('Add another page module', () => {
+        func.AddModule('ContentPane1', pmTestData.adModule);
+    });
+
+    it('Publish the page to Live', () => {
+        func.SaveOrPublishTheAsset('Save', 'Test');
+    });
 
     it.skip('Add Normal Standalone Template to the Node', () => { 
         func.Create('Template', templateTestData.normalStandaloneTemplate);

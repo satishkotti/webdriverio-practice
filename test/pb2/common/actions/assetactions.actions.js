@@ -1,4 +1,5 @@
 var acts = require('./../elements/actions.page');
+var page = require('./../elements/assetprops.page');
 
 module.exports.SelectMoreActions = (action) => 
 {
@@ -29,27 +30,39 @@ module.exports.ClickShowEmptyContentPanes = () =>
     acts.splbutton.get(' Show').click();
 }
 
-module.exports.CheckinTheAsset = () =>
+module.exports.SavePublish = (action, comment) =>
 {
-    acts.buttonMenu.get('Save/Publish', 'Checkin');
-
-}
-
-module.exports.PublishToLive = () =>
-{
-    acts.buttonMenu.get('Save/Publish', 'Publish to Live');
-
-}
-
-module.exports.PublishToStaging = () =>
-{
-    acts.buttonMenu.get('Save/Publish', 'Publish to Staging');
-
+    switch(action)
+    {
+        case 'Publish to Staging': 
+            acts.buttonMenu.get('Save/Publish', 'Publish to Staging');
+            page.textarea.get('Enter a comment below to publish to staging').setValue(comment);
+            acts.button.get('Okay').click();
+            acts.button.get('More Actions').waitForVisible();
+            break;
+        case 'Publish to Live':
+            acts.buttonMenu.get('Save/Publish', 'Publish to Live');
+            page.textarea.get('Enter a comment below to publish to live').setValue(comment);
+            acts.button.get('Okay').click();
+            acts.button.get('More Actions').waitForVisible();
+            break;
+        default:
+            acts.buttonMenu.get('Save/Publish', 'Checkin');
+            page.textarea.get('Enter a comment below to checkin asset').setValue(comment);
+            acts.button.get('Okay').click();
+            acts.button.get('More Actions').waitForVisible();
+            break;
+    }
 }
 
 module.exports.ClickEditButton = () =>
 {
     acts.button.get('Edit').click();
     acts.button.get('Save/Publish').waitForVisible();
+}
 
+module.exports.ClickCheckoutAndEditButton = () =>
+{
+    acts.button.get('Checkout & Edit').click();
+    acts.button.get('Save/Publish').waitForVisible();
 }

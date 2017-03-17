@@ -136,6 +136,9 @@ exports.config = {
     before: function() {
         
         var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv + '.' : '';
+        var username = 'QAPbUser09';
+        var password = 'Complexwordsforaccounts!';
+        var testNode = 'Level 0/zTest/zSubTest1';
         var chai = require('chai');
         chai.config.includeStack = true;
         expect = chai.expect;

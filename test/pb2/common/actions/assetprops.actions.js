@@ -153,7 +153,7 @@ module.exports.PopulateSMProps = (assetProps) =>
 
 module.exports.AddModule = (contentPane, assetProps) =>
 {
-
+    props.element('.fa-eye').click();
     props.element('div[name="' + contentPane + '"').moveToObject();
     props.element('div[name="' + contentPane + '"] .fa-plus.add-module').click();
     props.element('.pb-add-module.section-open').waitForVisible();
@@ -174,6 +174,18 @@ module.exports.AddModule = (contentPane, assetProps) =>
     }, 30000, "Module is not yet added to the content pane", 500);
     props.element('.pb-node-breadcrumb a').waitForVisible();
     props.element('.pb-layout-view').waitForVisible();
-    browser.pause(20000);
 
+}
+
+module.exports.SwitchAssetTabs = (tabName) =>
+{
+    props.tab.get(tabName).click();
+}
+
+module.exports.GetAssetVersionAndStage = () =>
+{
+    var element = props.element('//span[contains(@class, "pb-lifecycle")]');
+    return {"version" : element.getText(),
+            "stage" : element.getAttribute('class').split('pb-lifecycle ')[1]
+            };
 }

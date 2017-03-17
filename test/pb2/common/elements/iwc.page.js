@@ -15,7 +15,14 @@ var iwc = Object.create(page, {
     navMapNodeId: { get: () => { return browser.getAttribute('.k-state-selected .pb-tree-node', 'data-nav_node_id'); } },
     isTreeExpanded: { get: () => {return browser.getAttribute('//li[contains(@class,"k-first")]', 'aria-expanded');} },
     collapseIcons: { get: () => { return browser.elements('.k-minus').value; } },
-    selectGridAsset: { value: { get: (assetName) => { locator = assetLoc.replace('***', assetName); browser.waitForVisible(locator); browser.scroll(locator); browser.click(locator); } } }
+    selectGridAsset: { value: { get: (assetName) => { locator = assetLoc.replace('***', assetName); browser.waitForVisible(locator); browser.scroll(locator); browser.click(locator); } } },
+    element:
+    {
+        value:
+        {
+            get: (loc) => { locator = loc; browser. waitForExist(locator); browser.waitForVisible(locator); return browser.element(locator);}
+        }
+    }
 
 });
 module.exports = iwc;
