@@ -12,6 +12,16 @@ var ckEditorObj = {
         var selectedOption = contentTabUI.mModuleCodeMenuClick(sectionIndex);
         expect(selectedOption).to.equal('Code');
     },
+     mModulePullQuoteMenuClick: function(sectionIndex)
+    {
+        contentTabUI.switchTomModuleMenuFrame();
+        var selectedOption = contentTabUI.mModulePullQuoteMenuClick(sectionIndex);
+        expect(selectedOption).to.equal('Pull Quote');
+    },
+    sectionTextPullQuoteMenuClick: function(){
+        contentTabUI.mModuleckEditorMenuClick(1);
+        ckEditorObj.mModulePullQuoteMenuClick(1);
+    },
     sectionTextCodeMenuClick: function(){
         contentTabUI.mModuleckEditorMenuClick(1);
         ckEditorObj.mModuleCodeMenuClick(1);

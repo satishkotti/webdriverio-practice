@@ -22,18 +22,18 @@ var mModuleCodeUIObj = {
         var selectBox = browser.element("select[data-test='codemodule-codetype']");
         selectBox.selectByVisibleText(codeType);
     },
-    insertCode: function (codeText, codeType) {
+    insertCode: function () {
         mModuleCodeUIObj.verfiyElementExists("button[data-test='codemodule-insertbutton']");
         browser.waitForExist("button[data-test='codemodule-insertbutton']", maxWaitTimeInMs);
         browser.click("button[data-test='codemodule-insertbutton']");
         browser.pause(1000);
     },
-    updateCode: function (codeText, codeType) {
+    updateCode: function () {
         mModuleCodeUIObj.verfiyElementExists("button[data-test='codemodule-updatebutton']");
         browser.click("button[data-test='codemodule-updatebutton']");
         browser.pause(1000);
     },
-    cancelCode: function (codeText, codeType) {
+    cancelCode: function () {
         mModuleCodeUIObj.verfiyElementExists("button[data-test='codemodule-cancelbutton']");
         browser.click("button[data-test='codemodule-cancelbutton']");
         browser.pause(1000);

@@ -117,7 +117,10 @@ module.exports.testSettings = {
             "ArticleTemplate": 'Article /  News Template',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
-            "FacebookCodeType": "Facebook"
+            "FacebookCodeType": "Facebook",
+            "PullQuoteText": "QA Pull Quote Text",
+            "PullQuoteAttribution": "QA Pull Quote Attribution",
+            "PullQuoteAlignLeft": "Left"
         }
     }
 }

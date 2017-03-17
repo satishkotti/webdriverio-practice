@@ -74,5 +74,12 @@ var ContentTabObj = module.exports = {
         browser.leftClick("(//span[text()='Code'])["+sectionIndex+"]");
         browser.pause(5000);
         return browser.getText("(//span[text()='Code'])["+sectionIndex+"]")
+    },
+     mModulePullQuoteMenuClick: function(sectionIndex){
+        browser.waitForVisible("(//span[text()='Pull Quote'])["+sectionIndex+"]", maxWaitTimeInMs);
+        browser.moveToObject("(//span[text()='Pull Quote'])["+sectionIndex+"]");
+        browser.leftClick("(//span[text()='Pull Quote'])["+sectionIndex+"]");
+        browser.pause(5000);
+        return browser.getText("(//span[text()='Pull Quote'])["+sectionIndex+"]")
     }
 }

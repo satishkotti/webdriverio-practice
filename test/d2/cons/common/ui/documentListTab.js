@@ -1,5 +1,4 @@
 module.exports = {
-
     selectDocumentListTab: function(){
             
     },
