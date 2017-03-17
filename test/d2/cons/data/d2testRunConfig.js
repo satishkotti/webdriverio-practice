@@ -32,5 +32,6 @@ module.exports.inputData=
     
     articleContentFields: "Section Text",
 
-     CodeTypes: "Facebook, Youtube"
+     CodeTypes: "Facebook, Youtube",
+     Lengthofthetext: 5100
 };

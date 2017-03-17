@@ -67,7 +67,7 @@ describe('Interactive Article - JavaScript Module', function () {
 
         //browser.CreateNewContent(browser, data.inputData.Articleprofilename, data.inputData.ArticledescrName, data.inputData.articleeditdescr, data.inputData.articletitle);
         //browser.EditProperties(browser,data.inputData.articletitle,'TestQANews', 'TestQANewsArtcle', 'News', 'Testuserdesc','TestwebmdKeywords','Testwindowtitle','WebMD Newsletter',data.inputData.webmdcpyrights,'News Page');
-        browser.CheckoutAndCheckin(browser, 'QATestAssetlzBTQ', 'Check-out');
+        browser.CheckoutAndCheckin(browser, 'QATestAsset_y7YeF', 'Check-out');
         var richtextFields = data.inputData.articleContentFields;
         var i = 1;
         richtextFields.split(',').forEach(function (x) {

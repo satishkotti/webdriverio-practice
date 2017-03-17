@@ -4,7 +4,7 @@ var randomstring = require("randomstring");
 
 function Generate5000RandomString()
 {
-    return randomstring.generate(5);
+    return randomstring.generate(5100);
 }
 
 var Random5000char=Generate5000RandomString();
@@ -180,7 +180,9 @@ module.exports.interactiveModuleJavaScriptAvlblyCodeType = function(browser,CKed
 // Method to validate the a free text field capable of storing 5000+ characters in the JavaScript Modules 
 module.exports.interactiveModuleJavaScript = function(browser,CKeditorfields,i)
 {
-   
+    browser.doubleClick("//span[text()='Content']");
+    
+browser.pause(10000);
    
     var contentWidgetIFrame = browser.element("iframe[id*='oam_id==ExternalWidget-2!!oam_target_type==ExternalWidget']");
     browser.frame(contentWidgetIFrame.value);
@@ -246,10 +248,15 @@ module.exports.interactiveModuleJavaScript = function(browser,CKeditorfields,i)
             browser.pause(10000);
             
             browser.waitForVisible("//div[@class='row']//textarea", 500);
+             var inputtextarea = $("//div[@class='row']//textarea");
+             var Textareavalue = inputtextarea.getValue();
+             
+            
+
+            expect(data.inputData.Lengthofthetext).to.equal(Textareavalue.length);
 
             
-            var expectedJavascrptdescription=browser.execute("return document.querySelectorAll('.form-control').item(0).value").value
-            console.log(expectedJavascrptdescription);
+            
 
             browser.moveToObject("//div[@class='modal edit ng-scope top am-fade-and-scale']//button[contains(text(),'Cancel')]");
             browser.click("//div[@class='modal edit ng-scope top am-fade-and-scale']//button[contains(text(),'Cancel')]");
