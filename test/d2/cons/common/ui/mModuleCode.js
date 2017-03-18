@@ -9,11 +9,10 @@ var mModuleCodeUIObj = {
         return browser.getText("div[data-test='codemodule-codetypelabel']");
     },
     getCodeValue: function () {
-        return browser.getText("textarea[data-test='codemodule-code']");
+        return browser.getValue("textarea[data-test='codemodule-code']");
     },
     getCodeTypeValue: function () {
-        var codeTypeSelect = browser.element("select[data-test='codemodule-codetype']");
-        return codeTypeSelect.getValue();
+        return browser.element("select[data-test='codemodule-codetype']").getValue();
     },
     codeAndTypeSetValue: function (codeText, codeType) {
         mModuleCodeUIObj.verfiyElementExists("textarea[data-test='codemodule-code']");
@@ -24,7 +23,6 @@ var mModuleCodeUIObj = {
     },
     insertCode: function (codeText, codeType) {
         mModuleCodeUIObj.verfiyElementExists("button[data-test='codemodule-insertbutton']");
-        browser.waitForExist("button[data-test='codemodule-insertbutton']", maxWaitTimeInMs);
         browser.click("button[data-test='codemodule-insertbutton']");
         browser.pause(1000);
     },

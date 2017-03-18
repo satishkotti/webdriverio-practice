@@ -80,7 +80,7 @@ module.exports.testSettings = {
                 }
             ]
         },
-        "ats": {
+    "ats": {
             "url": "http://ats.preview.dev04.webmd.com/SCSFile.aspx?ID="
         }
     },
