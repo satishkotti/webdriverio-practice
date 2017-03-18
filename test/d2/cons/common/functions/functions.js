@@ -1,8 +1,9 @@
 var app = require("./../actions/login.actions");
+var randomstring = require("randomstring");
 
 module.exports = {
     
-    generateRandomString: function GenerateRandomString(characterLength) {
+    generateRandomString: function(characterLength) {
         return randomstring.generate(characterLength);
     },
     getEnvTestUrl: function() {
@@ -11,4 +12,7 @@ module.exports = {
     getQAPublicationUser: function(){
         return global.envSettings.d2cons.users[0];
     },
+    getAtsScsFileUrl: function() {
+        return global.envSettings.ats.url;
+    },  
 }

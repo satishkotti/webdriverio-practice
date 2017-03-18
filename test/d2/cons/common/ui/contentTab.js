@@ -1,14 +1,19 @@
 var maxWaitTimeInMs = 20000;
-var sectionTextSelector= "//h2[span[contains(.,'Section Text')]]//following-sibling::div//div[text()='Enter text here']";
-var highlightsSelector = "//h2[span[contains(.,'Highlights')]]//following-sibling::div//div[text()='Enter text here']";
-var pullQuotesSelector= "//h2[span[contains(.,'Pull Quotes')]]//following-sibling::div//div[text()='Enter text here']";
-var citationsSelector= "//h2[span[contains(.,'Citations')]]//following-sibling::div//div[text()='Enter text here']";
-var relatedLinksTextSelector= "//h2[span[contains(.,'Related Links Text')]]//following-sibling::div//div[text()='Enter text here']";
+var sectionTextSelector= "//h2[span[contains(.,'Section Text')]]//following-sibling::div//div";
+var highlightsSelector = "//h2[span[contains(.,'Highlights')]]//following-sibling::div//div";
+var pullQuotesSelector= "//h2[span[contains(.,'Pull Quotes')]]//following-sibling::div//div";
+var citationsSelector= "//h2[span[contains(.,'Citations')]]//following-sibling::div//div";
+var relatedLinksTextSelector= "//h2[span[contains(.,'Related Links Text')]]//following-sibling::div//div";
+var checkoutButtonSelector= "//button[contains(string(),'Check-out')]";
+var checkInButonSelector= "//button[contains(string(),'Check-in')]";
+var contentTabSelector= "//span[text()='Content']";
+var contentPaneFrameSelector= "iframe[id*='oam_id==ExternalWidget-2!!oam_target_type==ExternalWidget']";
 
-var ContentTabObj = module.exports = {
+var contentTabUIObj = {
     
     switchToExternalWidgetFrame: function(){
-        var contentWidgetIFrameElement = browser.element("iframe[id*='oam_id==ExternalWidget-2!!oam_target_type==ExternalWidget']");
+        browser.frame();
+        var contentWidgetIFrameElement = browser.element(contentPaneFrameSelector);
         browser.frame(contentWidgetIFrameElement.value);
     },
     switchTomModuleMenuFrame: function(){
@@ -27,20 +32,21 @@ var ContentTabObj = module.exports = {
         browser.frame(frameval.value);
     },
     selectContenTab: function(){
-        browser.click("//span[text()='Content']");
+        browser.click(contentTabSelector);
         browser.pause(1000);
     },
     checkOut: function(){
-        browser.waitForVisible("//button[contains(string(),'Check-out')]");
-        browser.click("//button[contains(string(),'Check-out')]");
+        browser.waitForVisible(checkoutButtonSelector);
+        browser.scroll(checkoutButtonSelector);
+        browser.click(checkoutButtonSelector);
         browser.pause(5000);
-        browser.frameParent(); // set focus to parent frame
+        browser.frameParent();
         browser.pause(5000);
     },
     checkIn: function(){
-        browser.click("//button[contains(string(),'Check-in')]");
+        browser.click(checkInButonSelector);
         browser.pause(5000);
-        browser.frameParent(); // set focus to parent frame
+        browser.frameParent();
         browser.pause(5000);
     },
     sectionTextSetValue: function(sectionTextVal){
@@ -66,7 +72,7 @@ var ContentTabObj = module.exports = {
     mModuleckEditorMenuClick: function(sectionIndex){
         browser.moveToObject("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+sectionIndex+"]");
         browser.click("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+sectionIndex+"]");
-        browser.pause(4000);
+        browser.pause(5000);
     },
     mModuleCodeMenuClick: function(sectionIndex){
         browser.waitForVisible("(//span[text()='Code'])["+sectionIndex+"]", maxWaitTimeInMs);
@@ -76,3 +82,5 @@ var ContentTabObj = module.exports = {
         return browser.getText("(//span[text()='Code'])["+sectionIndex+"]")
     }
 }
+
+module.exports = contentTabUIObj;

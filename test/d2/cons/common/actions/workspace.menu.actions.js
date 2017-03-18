@@ -5,5 +5,7 @@ module.exports = {
     createContent: function(creationProflieName, articleTemplateName, objectName, descriptionName){
        workspaceMenuUI.selectNewContent();
        newContentModal.createNewArticle(creationProflieName, articleTemplateName, objectName, descriptionName);
+
+//Add: assert new article is created and added to documentList Tab.
     }
 }
