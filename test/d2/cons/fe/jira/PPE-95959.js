@@ -37,20 +37,19 @@ describe('Interactive Article - JavaScript Module', function () {
             documentListTab.selectAsset(global.d2ConDataSettings.inputData.ArticleObjectName);
          contentTab.checkOut();
 
-         jsCodeValue = functions.generateRandomString(5000);
-        
+         jsCodeValue = 'Test code field';
     });
 
-    it.skip('should select Section Text then Select Code and Cancel', function () {
+    it('should select Section Text then Select Code and Cancel', function () {
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextCodeMenuClick();
         mModuleCodeOption.addCodeAndTypeCancel('Test', global.d2ConDataSettings.inputData.FacebookCodeType);
     });
 
-    it.skip('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
+    it('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
         contentTab.sectionTextSetValue("more sample test data");
         ckEditorMenu.sectionTextCodeMenuClick();
-        mModuleCodeOption.addCodeAndTypeInsert(functions.generateRandomString(5000), 
+        mModuleCodeOption.addCodeAndTypeInsert(jsCodeValue, 
                     global.d2ConDataSettings.inputData.FacebookCodeType);        
         contentTab.checkIn();
 
@@ -66,6 +65,7 @@ describe('Interactive Article - JavaScript Module', function () {
          return Promise.resolve(
             parseXml.getXmlFromUrl(functions.getAtsScsFileUrl()+chronicleId, null).then(function (result) {
 
+                var expectedJsCode = ' '+jsCodeValue;
                 var jsEmbedAssets = JSONPath({json: result,  path: "$..section_text.embeded_module[?(@.type =='jsembed')]", resultType: 'all' });
 
                 expect(jsEmbedAssets.length).to.equal(1);
@@ -80,7 +80,7 @@ describe('Interactive Article - JavaScript Module', function () {
                 
                 var jsBlobVal = JSONPath({json: result,  path: "$..section_text.embeded_module.jsblob" });
                 expect(jsEmbedAssets.length).to.equal(1);
-                expect(jsBlobVal[0]).to.equal(jsCodeValue);
+                expect(jsBlobVal[0]).to.equal(expectedJsCode);
         }));        
     });
 });

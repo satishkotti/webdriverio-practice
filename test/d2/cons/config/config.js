@@ -100,6 +100,7 @@ module.exports.testSettings = {
             "moduleTitle": "QA",
             "bulletTitleValidation": "Please enter a title for the bullet!",
             "bulletDescriptionValidation": "Please enter a description for the bullet!",
+            "HomePageTitle": "D2"
         },
         "inputData": {
             "rotpath": "webmd::2/consumer_assets::3/editorial::4/articles::5/other::6/test::7",
