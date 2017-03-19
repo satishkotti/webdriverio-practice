@@ -13,7 +13,7 @@ module.exports.getSpecs = function()
             break;
             case "d2cons":
                 var config = require('./test/d2/cons/config/config');
-                specList = [ './test/d2/cons/**/PPE-95959.js' ];
+                specList = [ './test/d2/cons/**/*.js' ];
             break;
             case "d2prof":
                 var config = require('./test/d2/prof/config/config');
@@ -39,8 +39,8 @@ console.log('specs: '+specList);
 
 exports.config = {
 
-    debug: true,
-    maxInstances: 1,
+    debug: false,
+    maxInstances: 10,
     
     //
     // ==================
