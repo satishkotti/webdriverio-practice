@@ -32,8 +32,9 @@ var queue = Object.create(page, {
                 browser.waitForVisible('#activityGrid');
                 locator = '//td[span[@chron="' + chronID + '"]]';
                 var assetDetailsInQueue = {};
-                
-                var a = browser.isExisting(locator);
+                browser.waitUntil( () => {
+                    return browser.isExisting('#activityGrid tbody tr') == true;
+                }, 30000, "Grid items not displayed", 1000);
 
                 if (browser.isExisting(locator)) {
 
