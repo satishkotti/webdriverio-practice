@@ -118,7 +118,12 @@ module.exports.testSettings = {
             "ArticleTemplate": 'Article /  News Template',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
-            "FacebookCodeType": "Facebook"
+            "FacebookCodeType": "Facebook",
+            "ShareableTitle":"Shareable Title Test",
+            "ShareableDescription": "Shareable Description Test",
+            "ShareableAlign":"Left",
+            "ShareableSupressSocialShare":"true"
+
         }
     }
 }

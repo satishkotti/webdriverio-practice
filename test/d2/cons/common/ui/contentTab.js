@@ -74,6 +74,13 @@ var contentTabUIObj = {
         browser.click("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+sectionIndex+"]");
         browser.pause(5000);
     },
+    mModuleSubMenuOptionClick: function(optionToSelectName, sectionIndex){
+        browser.waitForVisible("(//span[text()='"+optionToSelectName+"'])["+sectionIndex+"]", maxWaitTimeInMs);
+        browser.moveToObject("(//span[text()='"+optionToSelectName+"'])["+sectionIndex+"]");
+        browser.leftClick("(//span[text()='"+optionToSelectName+"'])["+sectionIndex+"]");
+        browser.pause(5000);
+        return browser.getText("(//span[text()='"+optionToSelectName+"'])["+sectionIndex+"]")
+    },
     mModuleCodeMenuClick: function(sectionIndex){
         browser.waitForVisible("(//span[text()='Code'])["+sectionIndex+"]", maxWaitTimeInMs);
         browser.moveToObject("(//span[text()='Code'])["+sectionIndex+"]");
