@@ -4,6 +4,7 @@ var act = require('./../actions/assetactions.actions');
 var props = require('./../actions/assetprops.actions');
 var search = require('./../actions/search.actions');
 var menu = require('./../actions/menus.actions');
+var queue = require('./../actions/queue.actions');
 
 module.exports.LaunchAppAndLogin = () =>
 {
@@ -91,4 +92,34 @@ module.exports.GetAssetVersionAndStage = (assetName, from) =>
 module.exports.EnterActivityQueueStatusPage = () =>
 {
     menu.EnterActivityQueueStatusPage();
+}
+
+module.exports.FilterResultsInQueue = (filter) =>
+{
+    queue.Show(filter);
+}
+
+module.exports.GetAssetDetailsFromQueue = (chronID) =>
+{
+    return queue.GetAssetDetailsFromQueue(chronID);
+}
+
+module.exports.RefreshTheQueue = () =>
+{
+    queue.RefreshTheQueue();
+}
+
+module.exports.EnableDisableAutoRefresh = (action) =>
+{
+    queue.ClickAutoRefresh(action);
+}
+
+module.exports.GetCurrentSite = () =>
+{
+    return app.GetCurrentSite();
+}
+
+module.exports.GetChronIDOfTheSelectedAsset = () =>
+{
+    return iwc.GetChronIDOfTheSelectedAsset();
 }

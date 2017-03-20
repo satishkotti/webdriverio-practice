@@ -67,3 +67,9 @@ module.exports.GetVersionAndStageOfAsset = (assetName) =>
                     }; break;
     }
 }
+
+module.exports.GetChronIDOfTheSelectedAsset = (assetName) =>
+{
+    var a = IWC.element.get('//tr[@aria-selected="true"]//td[2]//a').getAttribute('data-chron');
+    return  IWC.element.get('//tr[@aria-selected="true"]//td[2]//a').getAttribute('data-chron');
+}

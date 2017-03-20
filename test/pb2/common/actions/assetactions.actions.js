@@ -40,13 +40,27 @@ module.exports.SavePublish = (action, comment) =>
             acts.button.get('Okay').click();
             acts.button.get('More Actions').waitForVisible();
             page.element('.pb-layout-view').waitForVisible();
+            browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';
+            }, 30000, 'Publish is taking longer than expected', 500);
+            browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
+            }, 30000, 'Publish is taking longer than expected', 500);
             break;
         case 'Publish to Live':
             acts.buttonMenu.get('Save/Publish', 'Publish to Live');
             page.textarea.get('Enter a comment below to publish to live').setValue(comment);
             acts.button.get('Okay').click();
+            browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';
+            }, 30000, 'Publish is taking longer than expected', 500);
+            browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
+            }, 30000, 'Publish is taking longer than expected', 500);
             acts.button.get('More Actions').waitForVisible();
             page.element('.pb-layout-container').waitForVisible();
+            break;
+            
         default:
             acts.buttonMenu.get('Save/Publish', 'Checkin');
             page.textarea.get('Enter a comment below to checkin asset').setValue(comment);
