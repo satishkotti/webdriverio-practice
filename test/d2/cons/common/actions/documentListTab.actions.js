@@ -1,6 +1,6 @@
 var documentListUI = require('./../ui/documentListTab');
 
-module.exports = {
+var documentListObj = {
     selectDocumentListTab: function(){
         documentListUI.selectDocumentListTab();
     },
@@ -14,8 +14,25 @@ module.exports = {
                     folerPathArr.shift();
                 }
             } while(folerPathArr && folerPathArr.length > 0)
+
+//Add: assert folder selected and ui rendered.
     },
     selectAsset: function(assetName){
         documentListUI.selectItemByName(assetName);
+
+//Add logic for pagination if asset not found.
+//Add: assert asset selected is highlighted        
+    },
+    powerPromoteAsset: function(assetName){
+        documentListUI.powerPromote(assetName);
+    },
+    publishAssetToStaging: function(assetName){
+        documentListUI.publishToStaging(assetName);
+    },
+    assetPowerPromotePublishToStaging:function(assetName){
+        documentListObj.selectAsset(assetName);
+        documentListObj.powerPromoteAsset(assetName);
+        documentListObj.publishAssetToStaging(assetName);
     }
 }
+module.exports = documentListObj;

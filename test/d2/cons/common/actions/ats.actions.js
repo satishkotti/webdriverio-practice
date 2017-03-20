@@ -1,8 +1,9 @@
 var LoginPage = require('./../ui/login');
 
 module.exports = {
-    login: function(params) {
+    login: (params) => {
         LoginPage.login(params.url, params.username, params.password, '','');
-        expect(browser.getTitle()).to.equal(global.d2ConDataSettings.expectedResults.HomePageTitle);
+
+//Add: assert get title and url confirm login successful
     }
 }

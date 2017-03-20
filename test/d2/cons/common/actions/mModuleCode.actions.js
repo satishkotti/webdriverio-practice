@@ -29,7 +29,7 @@ var mModuleCodeObj = {
         var codeTypeVal =codeUI.getCodeTypeValue();
 
         expect(codeVal).to.equal(codeText);
-        expect(codeTypeVal).to.equal(codeType);
+        expect(codeTypeVal.toLowerCase()).to.equal(codeType.toLowerCase());
     }
 }
 
