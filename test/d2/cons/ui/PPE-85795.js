@@ -163,13 +163,9 @@ describe('Interactive Article - BulletList Module', function () {
         var objectName = "QATestAsset_" + common.GenerateRandomText();
         browser.CreateNewContent(browser, global.d2ConDataSettings.inputData.Articleprofilename, global.d2ConDataSettings.inputData.ArticledescrName, objectName, objectName);
         browser.CheckoutAndCheckin(browser, objectName, 'Check-out');
-        var richtextFields = global.d2ConDataSettings.inputData.articleContentFields;
-        var i = 1;
-        richtextFields.split(',').forEach(function (x) {
-            var moduleName = browser.interactiveModuleBulletListEdit(browser, x, i);
-          // expect(moduleName.mName).to.equal(global.d2ConDataSettings.expectedResults.bullettitleupdated);
-            i++;
-        });
+            var moduleName = browser.interactiveModuleBulletListEdit(browser, 'Section Text', '1');
+          expect(moduleName.mName).to.equal(global.d2ConDataSettings.expectedResults.bullettitleupdated);
+
         browser.CheckoutAndCheckin(browser, objectName, 'Check-in');
     });
 
