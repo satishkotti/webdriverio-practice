@@ -80,7 +80,11 @@ module.exports.testSettings = {
                 }
             ]
         },
+<<<<<<< HEAD
+        "ats": {
+=======
     "ats": {
+>>>>>>> release-d2cons_integration
             "url": "http://ats.preview.dev04.webmd.com/SCSFile.aspx?ID="
         }
     },
@@ -98,6 +102,21 @@ module.exports.testSettings = {
             "insertBulletTitle": "Insert Bullet Title",
             "insertBulletDescription": "Insert Bullet Description",
             "moduleTitle": "QA",
+<<<<<<< HEAD
+            "bullettitleupdated": "QAUpdated",
+            "bulletTitleValidation": "Please enter a title for the bullet!",
+            "bulletDescriptionValidation": "Please enter a description for the bullet!",
+        },
+        "inputData": {
+            "rotpath": "webmd::2/consumer_assets::3/editorial::4/articles::5/other::6",
+           //  "rotpath": "webmd::2/consumer_assets::3/editorial::4",
+            "rootnode": "webmddoc01",
+            "articletitle": "QATestAsset" + exports.GenerateRandomString(),
+          //  "articletitle": "QATestAsset47pxM",
+            "Articleprofilename": 'Consumer Portal US / Article Templates',
+            "ArticledescrName": 'Article /  News Template',
+            "articleeditdescr": "QATestAsset" + exports.GenerateRandomString(),
+=======
             "bulletTitleValidation": "Please enter a title for the bullet!",
             "bulletDescriptionValidation": "Please enter a description for the bullet!",
             "HomePageTitle": "D2"
@@ -105,12 +124,16 @@ module.exports.testSettings = {
         "inputData": {
             "rotpath": "webmd::2/consumer_assets::3/editorial::4/articles::5/other::6/test::7",
             "rootnode": "webmddoc01",
+>>>>>>> release-d2cons_integration
             "webmdcpyrights": '2015 WebMD',
             "objectTitle": "QAArticleNews",
             "articleContentFields": "Section Text,Highlights,Pull Quotes,Citations,Related Links Text",
             "leftalignent": "Left",
             "rightalignent": "Right",
             "middlealignent": "Middle",
+<<<<<<< HEAD
+            "bulletlistalignment": "Right,Left,Middle"
+=======
             "bulletlistalignment": "Right,Left,Middle",
             "CodeTypes": "Facebook, Youtube, Twitter, Pinterest, Reddit, Imgur, Snapchat, Tumblr, Instagram",
             "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other/test",
@@ -119,6 +142,7 @@ module.exports.testSettings = {
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
             "FacebookCodeType": "Facebook"
+>>>>>>> release-d2cons_integration
         }
     }
 }
