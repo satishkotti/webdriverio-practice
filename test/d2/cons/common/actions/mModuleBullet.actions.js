@@ -1,22 +1,14 @@
-var codeUI = require('./../ui/mModuleCode');
+var mModuleBulletListUI = require('./../ui/mModuleBulletList');
 
-var mModuleCodeObj = {
+var mModuleBulletListObj = {
     addCodeAndTypeInsert: function (codeText, codeType) {
-        codeUI.codeAndTypeSetValue(codeText, codeType);
-        mModuleCodeObj.verifyLabels();
-        mModuleCodeObj.verifyCodeAndType(codeText, codeType);
-        codeUI.insertCode(codeText, codeType);
+       
     },
     addCodeAndTypeCancel: function (codeText, codeType) {
-        codeUI.codeAndTypeSetValue(codeText, codeType);
-        mModuleCodeObj.verifyLabels();
-        mModuleCodeObj.verifyCodeAndType(codeText, codeType);
-        codeUI.cancelCode(codeText, codeType);
+       
     },
     updateCodeAndTypeCancel: function (codeText, codeType) {
-        codeUI.codeAndTypeSetValue(codeText, codeType);
-        mModuleCodeObj.verifyCodeAndType(codeText, codeType);
-        codeUI.updateCode(codeText, codeType);
+       
     },
     verifyLabels: function () {
         var codeLabel = codeUI.getCodeLabel();
