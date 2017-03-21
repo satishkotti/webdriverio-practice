@@ -1,20 +1,21 @@
 var test = require('./../common/functions/functions');
 
-describe('PPE-77199:Verify Page Cancel Check Out functionality from Search Results Screen', () => {
+describe('PPE-77199:Verify Template Cancel Check Out functionality from Checked Out Objects widget', () => {
   var assetDetails = {};
   var preData = {};
   var postData = {};
+  var testAsset = 'Irritable Bowel Center Harmony Flexible Template';
     before(() => {
         
          test.LaunchAppAndLogin();
-         test.SearchFor(null, 'Irritable Bowel Syndrome Center New Feature Page', 'Interior Workcenter', 'Level 0/Centers - Health/Irritable Bowel Syndrome');
+         test.SearchFor(null, testAsset, 'Interior Workcenter', 'Level 0/Centers - Health/Irritable Bowel Syndrome');
          var chronID = test.GetChronIDOfTheSelectedAsset();
          preData = test.GetAssetVersionAndStage('selected');
          test.CheckoutAndEditTheAsset();
          test.NavigateToHomepage();
-         test.SearchFor('Page', 'Irritable Bowel Syndrome Center New Feature Page', 'Global Search', null);
-         browser.waitForVisible('//td[contains(.,"Irritable Bowel Syndrome Center New Feature Page")]');
-         browser.click('//td[contains(.,"Irritable Bowel Syndrome Center New Feature Page")]');
+         test.SortTableColumn('Checked Out Objects', 'Last Modified', 'Sort Descending');
+         browser.waitForVisible('//td[contains(.,"' + testAsset + '")]');
+         browser.click('//td[contains(.,"' + testAsset + '")]');
          test.SelectMoreActionsMenuItem('Cancel Checkout');
 
         //enter into the Queue Page  
@@ -29,12 +30,12 @@ describe('PPE-77199:Verify Page Cancel Check Out functionality from Search Resul
     });
    
     //assertions
-    it('Page Name should be Irritable Bowel Syndrome Center New Feature Page', () => {
-        expect(assetDetails.Name).to.equal('Irritable Bowel Syndrome Center New Feature Page');
+    it('Template Name should be Irritable Bowel Center Harmony Flexible Template', () => {
+        expect(assetDetails.Name).to.equal(testAsset);
     });
 
     it('Action should be Cancel Checkout Page', () => {
-        expect(assetDetails.Action).to.equal('Cancel Checkout Page');
+        expect(assetDetails.Action).to.equal('Cancel Checkout Template');
     });
     
     it('Site should be the current Site under test', () => {
@@ -43,8 +44,8 @@ describe('PPE-77199:Verify Page Cancel Check Out functionality from Search Resul
 
     it('Version of the asset should remain the same after Cancel Checkout', () => {
         test.EnterIWC('Edit', 'Templates & Pages');
-        browser.waitForVisible('//td[contains(.,"Irritable Bowel Syndrome Center New Feature Page")]');
-        browser.click('//td[contains(.,"Irritable Bowel Syndrome Center New Feature Page")]');
+        browser.waitForVisible('//td[contains(.,"' + testAsset + '")]');
+        browser.click('//td[contains(.,"' + testAsset + '")]');
         postData = test.GetAssetVersionAndStage('selected');
         expect(postData.version).to.equal(preData.version);
     });
