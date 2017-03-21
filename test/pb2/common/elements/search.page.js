@@ -17,7 +17,7 @@ var search = Object.create(page, {
             case 'Page': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 'p'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', category)); break;
         }
     }},
-    waitForAssetScreen: { value: () => { browser.waitForVisible('a.pb-chron'); } }
+    waitForAssetScreen: { value: () => { browser.waitForVisible('div[ui-view="properties"]'); } }
 });
 
 module.exports = search;

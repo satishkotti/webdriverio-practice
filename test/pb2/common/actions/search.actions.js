@@ -14,7 +14,6 @@ module.exports.GlobalSearchUsingChronID = (chronID) =>
     search.globalSearch.setValue(chronID);
     search.magnifyingGlass.click();
     search.waitForAssetScreen();
-    browser.pause(3000);
 }
 
 module.exports.SearchFromIWC = (level, assetName) =>
