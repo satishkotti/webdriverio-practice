@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 30000;
+var maxWaitTimeInMs = 50000;
 
 var ppModalLabel = "Power Promote Confirmation Message";
 var ppModalMsg = " Are you sure you want to power promote this document?"
@@ -12,6 +12,7 @@ var documentListUIObj = {
         browser.waitForExist("div.x-grid3-hd-inner.x-grid3-hd-object_name.x-component");
     },
     selectItemByName: function (assetName) {
+        browser.pause(1000);
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
     },

@@ -10,6 +10,8 @@ var contentTab = require('./../../common/actions/contentTab.actions');
 var ckEditorMenu = require('./../../common/actions/ckEditor.actions');
 var mModuleCodeOption = require('./../../common/actions/mModuleCode.actions');
 var propertiesTab = require('./../../common/actions/propertiesTab.actions');
+var moduleOption = require('./../../common/actions/Module.actions'); 
+var randomstring = require("randomstring");
 
 describe('Interactive Article - JavaScript Module', function () {
 
@@ -28,25 +30,59 @@ describe('Interactive Article - JavaScript Module', function () {
             });
         
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+
+    });
+
+    beforeEach(function() {
+
+   var AssetTitle=global.d2ConDataSettings.inputData.ArticleObjectName+randomstring.generate(2);
+   var AssetName= global.d2ConDataSettings.inputData.ArticleDescription+randomstring.generate(2);
+   
         workspaceMenu.createContent(
                 global.d2ConDataSettings.inputData.ArticleProfileName,
                 global.d2ConDataSettings.inputData.ArticleTemplate, 
-                global.d2ConDataSettings.inputData.ArticleObjectName, 
-                global.d2ConDataSettings.inputData.ArticleDescription);
+                AssetTitle,
+                AssetName);
+
         
-            documentListTab.selectAsset(global.d2ConDataSettings.inputData.ArticleObjectName);
-         contentTab.checkOut();
+            documentListTab.selectAsset(AssetTitle);
+           contentTab.checkOut();
+  });
 
-         jsCodeValue = 'Test code field';
-    });
-
-    it('should select Section Text then Select Code and Cancel', function () {
+    it('should verify the presence of the Social Share and absence of Size attribute for the Video type', function () {
         contentTab.sectionTextSetValue("Sample Test Data");
-        ckEditorMenu.sectionTextCodeMenuClick();
-        mModuleCodeOption.addCodeAndTypeCancel('Test', global.d2ConDataSettings.inputData.FacebookCodeType);
+        ckEditorMenu.sectionTextModuleMenuClick();
+        moduleOption.moduleframe();
+        moduleOption.moduleSelect('Video','heart');
+        var sizelabel = moduleOption.moduleSizeLabel();
+        expect(sizelabel).to.be.false;
+         var sizefield = moduleOption.moduleSizeField();
+        expect(sizefield).to.be.false;
+        var socialshare = moduleOption.moduleSocialShare();
+        expect(socialshare).to.be.true;
+        moduleOption.moduleCancel();
+        contentTab.checkIn();
+
+        
     });
 
-    it('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
+    it('should verify the presence of the Social Share and absence of Size attribute for the image type', function () {
+        contentTab.sectionTextSetValue("Sample Test Data");
+        ckEditorMenu.sectionTextModuleMenuClick();
+        moduleOption.moduleframe();
+        moduleOption.moduleSelect('Image','heart');
+        var sizelabel = moduleOption.moduleSizeLabel();
+        expect(sizelabel).to.be.false;
+         var sizefield = moduleOption.moduleSizeField();
+        expect(sizefield).to.be.false;
+        var socialshare = moduleOption.moduleSocialShare();
+        expect(socialshare).to.be.true;
+        moduleOption.moduleCancel();
+        contentTab.checkIn();
+        
+    });
+
+   /* it('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
         contentTab.sectionTextSetValue("more sample test data");
         ckEditorMenu.sectionTextCodeMenuClick();
         mModuleCodeOption.addCodeAndTypeInsert(jsCodeValue, 
@@ -82,5 +118,5 @@ describe('Interactive Article - JavaScript Module', function () {
                 expect(jsEmbedAssets.length).to.equal(1);
                 expect(jsBlobVal[0]).to.equal(expectedJsCode);
         }));        
-    });
+    });*/
 });

@@ -80,7 +80,14 @@ var contentTabUIObj = {
         browser.leftClick("(//span[text()='Code'])["+sectionIndex+"]");
         browser.pause(5000);
         return browser.getText("(//span[text()='Code'])["+sectionIndex+"]")
+    },
+     ModuleckEditorMenuClick: function(sectionIndex){
+        browser.moveToObject("(//a[@title='Insert Module'])["+sectionIndex+"]");
+        browser.click("(//a[@title='Insert Module'])["+sectionIndex+"]");
+        browser.pause(5000);
     }
+
+
 }
 
 module.exports = contentTabUIObj;

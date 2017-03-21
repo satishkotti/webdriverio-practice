@@ -1,7 +1,7 @@
 var randomstring = require("randomstring");
 var JSONPath = require('JSONPath');
 
-module.exports.GenerateRandomString = function GenerateRandomString() {
+module.exports.GenerateRandomString = function () {
     return randomstring.generate(5);
 }
 module.exports.testSettings = {

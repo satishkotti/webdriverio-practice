@@ -39,7 +39,7 @@ console.log('specs: '+specList);
 
 exports.config = {
 
-    debug: false,
+    debug: true,
     maxInstances: 10,
     
     //
