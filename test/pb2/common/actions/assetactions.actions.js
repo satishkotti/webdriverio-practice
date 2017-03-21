@@ -138,7 +138,9 @@ module.exports.SelectMoreActionsMenuItem = (menuItem) =>
     switch(menuItem)
     {
         case 'Cancel Checkout':
-        acts.button.get('Okay').click();
+        var ele = acts.button.get('Okay');
+        ele.waitForVisible();
+        ele.click();
         browser.waitUntil( () => {
                 return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';
             }, 30000, 'Cancel Checkout is not pushed to queue yet', 500);
@@ -148,6 +150,7 @@ module.exports.SelectMoreActionsMenuItem = (menuItem) =>
             break; 
 
         case 'Expire':
+        browser.waitForVisible('#modal-ok');
         browser.click('#modal-ok');
         browser.waitUntil( () => {
                 return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';

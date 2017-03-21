@@ -105,8 +105,6 @@ module.exports.PopulatePageProps = (assetProps) =>
 
 module.exports.PopulateTemplateProps = (assetProps) =>
 {
-    browser.pause(25000); 
-
     switch (assetProps.type)
     {
         case 'inherited': props.checkbox.get('Inherit from Template').click(); props.dropdown('Inherit From Template', assetProps.inheritFrom); break;
