@@ -4,8 +4,8 @@ describe('PB2 Login', function () {
     it('should login with pb super user access PPE-#####', function () {
 
         LoginPage.open();
-        LoginPage.username.setValue('QAPublication');
-        LoginPage.password.setValue('QA-Doc#1');
+        LoginPage.username.setValue('QAPbUser09');
+        LoginPage.password.setValue('Complexwordsforaccounts!');
         LoginPage.submit();
         LoginPage.browser.waitForVisible("#grid-favorites");
 
