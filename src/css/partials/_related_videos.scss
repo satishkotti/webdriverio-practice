@@ -1,0 +1,28 @@
+.premium-video-container .playlists.all-videos {
+	background-color: #fff;
+}
+
+.fed-video a.wbmd-related-videos {
+	border-radius: 3px;
+	border: 1px solid #187AAB;
+	display: inline-block;
+	font-family: 'Source Sans Pro', Arial, sans-serif;
+	font-size: 16px;
+	margin: 20px 0;
+	padding: 6px 14px;
+}
+
+.fed-video a.wbmd-related-videos:hover {
+	background-color: #187AAB;
+	color: #ffffff !important;
+	text-decoration: none;
+}
+
+@media only screen and (max-width: 736px) and (min-width: 10px) {
+	.premium-video-container .playlists.all-videos.mobile .playlist {
+		background-color: #fff;
+	}
+	.fed-video a.wbmd-related-videos{
+		margin: 20px 10px;
+	}
+}
