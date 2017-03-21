@@ -5,11 +5,11 @@ var randomtext = randomstring.generate(5);
 
 describe('News Team - Customization Template PPE-98169', function () {
    
-
+    var ArtTitle=global.d2ProfDataSettings.objectTitle;
     it('Verify the user is able to create the article or not', function () {
        helper.articlecreation(browser,{
             template: global.d2ProfDataSettings.template,
-            objectTitle: global.d2ProfDataSettings.objectTitle,
+            objectTitle: ArtTitle,
             profilename:global.d2ProfDataSettings.profilename,
             contentType:global.d2ProfDataSettings.contentType,
         });        
@@ -26,6 +26,13 @@ describe('News Team - Customization Template PPE-98169', function () {
         var test="";
         expect(isexits).to.equal(test);
     });
+
+     it('Update the article with mandatory fields', function () {
+         
+       helper.editproperties(browser,ArtTitle);               
+        expect(browser.getTitle()).to.equal(global.d2ProfDataSettings.homepageTitle);
+    });
+
     before(function () {
 
         browser.addCommand('login', helper.login.bind(browser));

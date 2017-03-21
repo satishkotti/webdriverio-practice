@@ -94,7 +94,7 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-    waitforTimeout: 99999,
+    waitforTimeout: 999999,
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as property. Make sure you have
@@ -140,7 +140,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 99999
+        timeout: 999999
     },
 
     //
@@ -174,7 +174,7 @@ exports.config = {
     // variables like `browser`. It is the perfect place to define custom commands.
     before: function() {
 
-        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'dev04';
+        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'qa01';
         var testApp = (process.env.npm_config_testApp) ? process.env.npm_config_testApp : 'd2prof' ;
         
         var chai = require('chai');
