@@ -81,6 +81,7 @@ var contentTabUIObj = {
         browser.pause(5000);
         return browser.getText("(//span[text()='Code'])["+sectionIndex+"]")
     }
+    
 }
 
 module.exports = contentTabUIObj;

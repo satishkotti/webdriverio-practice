@@ -14,6 +14,13 @@ var mModuleCodeUIObj = {
     getCodeTypeValue: function () {
         return browser.element("select[data-test='codemodule-codetype']").getValue();
     },
+      
+      getcode_socialvalue: function () {
+        
+         var inputlookuptypeinput= $('#wbmd_lookup_type-input');
+         return inputlookuptypeinput.getValue();
+    },
+     
     codeAndTypeSetValue: function (codeText, codeType) {
         mModuleCodeUIObj.verfiyElementExists("textarea[data-test='codemodule-code']");
         browser.setValue("textarea[data-test='codemodule-code']", codeText);

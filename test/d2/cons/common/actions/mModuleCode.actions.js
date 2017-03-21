@@ -1,4 +1,5 @@
 var codeUI = require('./../ui/mModuleCode');
+var propertiesTabUI = require('./../ui/propertiesTab');
 
 var mModuleCodeObj = {
     addCodeAndTypeInsert: function (codeText, codeType) {
@@ -29,8 +30,38 @@ var mModuleCodeObj = {
         var codeTypeVal =codeUI.getCodeTypeValue();
 
         expect(codeVal).to.equal(codeText);
+        expect(codeText.length).to.equal(codeVal.length);
         expect(codeTypeVal.toLowerCase()).to.equal(codeType.toLowerCase());
-    }
+        
+    },
+
+    VerifyAvlblyCodeType: function (codeText, codeType) {
+        
+        codeUI.codeAndTypeSetValue(codeText, codeType);
+        var codeTypeVal =codeUI.getCodeTypeValue();
+        if(codeType=="")
+        {
+         expect(codeTypeVal.toLowerCase()).to.equal("? string: ?");
+        }
+        else
+        {
+            expect(codeTypeVal.toLowerCase()).to.equal(codeType.toLowerCase());
+        }
+    
+
+    },
+
+
+    
+
+    VerifyAvlblycode_social: function (code_social) {
+        
+        propertiesTabUI.propertiesTabSelect();
+        browser.click("//span[text()='Properties']");
+        var getcode_scl =codeUI.getcode_socialvalue();
+        expect(getcode_scl.toLowerCase()).to.equal(code_social.toLowerCase());
+        
+    },
 }
 
 module.exports = mModuleCodeObj;

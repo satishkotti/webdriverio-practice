@@ -40,7 +40,9 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.relatedLinksSetValue(data);
         contentTabObj.mModuleckEditorMenuClick(5);
-    }    
+    }  
+
+     
 }
 
 module.exports = contentTabObj;

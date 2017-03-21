@@ -11,6 +11,7 @@ var ckEditorMenu = require('./../../common/actions/ckEditor.actions');
 var mModuleCodeOption = require('./../../common/actions/mModuleCode.actions');
 var propertiesTab = require('./../../common/actions/propertiesTab.actions');
 
+
 describe('Interactive Article - JavaScript Module', function () {
 
     var chronicleId;
@@ -46,7 +47,43 @@ describe('Interactive Article - JavaScript Module', function () {
         mModuleCodeOption.addCodeAndTypeCancel('Test', global.d2ConDataSettings.inputData.FacebookCodeType);
     });
 
-    it('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
+  
+
+       
+      it('Should Verify default option for codetype -  PPE-102788', function () {
+        contentTab.sectionTextSetValue("more sample test data");
+        ckEditorMenu.sectionTextCodeMenuClick();
+       
+         mModuleCodeOption.VerifyAvlblyCodeType(jsCodeValue, "");     
+            
+            
+         mModuleCodeOption.addCodeAndTypeCancel(jsCodeValue, 
+                    global.d2ConDataSettings.inputData.FacebookCodeType);       
+        
+         
+       
+    });
+       
+      it('Should Verify the availability of Look up values in Code Type -  PPE-102786', function () {
+        contentTab.sectionTextSetValue("more sample test data");
+        ckEditorMenu.sectionTextCodeMenuClick();
+        var CodeTypes = global.d2ConDataSettings.inputData.CodeTypes;
+              var j = 1;
+            CodeTypes.split(',').forEach(function (x) {
+              
+                 mModuleCodeOption.VerifyAvlblyCodeType(jsCodeValue, x);     
+            
+            j++;
+           });
+         mModuleCodeOption.addCodeAndTypeCancel(jsCodeValue, 
+                    global.d2ConDataSettings.inputData.FacebookCodeType);       
+        
+         
+       
+    });
+
+
+ it.skip('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
         contentTab.sectionTextSetValue("more sample test data");
         ckEditorMenu.sectionTextCodeMenuClick();
         mModuleCodeOption.addCodeAndTypeInsert(jsCodeValue, 
@@ -61,7 +98,25 @@ describe('Interactive Article - JavaScript Module', function () {
         documentListTab.assetPowerPromotePublishToStaging(global.d2ConDataSettings.inputData.ArticleObjectName);
     });
 
-    it('should be part of scs rendition', function () {
+    it.skip('should verify Stored under webmd/web_publisher_list/lookups/interactive_articles -  PPE-PPE-103419', function () {
+
+              repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.LookupFolderPath);
+              var CodeTypes = global.d2ConDataSettings.inputData.CodeTypes;
+              var j = 1;
+              CodeTypes.split(',').forEach(function (x) {
+               
+                documentListTab.selectAsset(x);
+                
+                mModuleCodeOption.VerifyAvlblycode_social("code_social");     
+            
+            j++;
+           });
+
+          
+
+    });
+
+    it.skip('should be part of scs rendition', function () {
          return Promise.resolve(
             parseXml.getXmlFromUrl(functions.getAtsScsFileUrl()+chronicleId, null).then(function (result) {
 
