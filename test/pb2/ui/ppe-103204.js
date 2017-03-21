@@ -1,7 +1,7 @@
 var test = require('./../common/functions/functions');
 var pageTestData = require('./../data/page.assets');
 
-describe('PPE-77199:Verify Page Expire functionality from Interior Work Center Screen', () => {
+describe('PPE-77199:Verify Page Expire functionality from Search Results Screen', () => {
   var assetDetails = {};
   var preData = {};
   var postData = {};
@@ -25,8 +25,10 @@ describe('PPE-77199:Verify Page Expire functionality from Interior Work Center S
                 assetDetails = test.GetAssetDetailsFromQueue(chronID);
                 return assetDetails.Status != 'IN PROGRESS';
             }, 120000, "Asset not pushed to the publishing queue yet", 20000);
-        test.SearchFor(null, testAsset, 'Interior Workcenter', 'Level 0/zTest/zSubTest1');
-         test.SelectMoreActionsMenuItem('Expire');
+        test.SearchFor('Page', testAsset, 'Global Search', null);
+        browser.waitForVisible('//td[contains(.,"' + testAsset + '")]');
+        browser.click('//td[contains(.,"' + testAsset + '")]');
+        test.SelectMoreActionsMenuItem('Expire');
 
         //enter into the Queue Page  
         test.EnterActivityQueueStatusPage();       
