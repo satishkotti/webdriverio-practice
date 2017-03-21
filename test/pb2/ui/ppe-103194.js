@@ -2,11 +2,14 @@ var test = require('./../common/functions/functions');
 
 describe('PPE-77199:Verify Page Cancel Check Out functionality from Checked Out Objects widget', () => {
   var assetDetails = {};
+  var preData = {};
+  var postData = {};
     before(() => {
         
          test.LaunchAppAndLogin();
          test.SearchFor(null, 'Irritable Bowel Syndrome Center New Feature Page', 'Interior Workcenter', 'Level 0/Centers - Health/Irritable Bowel Syndrome');
          var chronID = test.GetChronIDOfTheSelectedAsset();
+         preData = test.GetAssetVersionAndStage('selected');
          test.CheckoutAndEditTheAsset();
          test.NavigateToHomepage();
          test.SortTableColumn('Checked Out Objects', 'Last Modified', 'Sort Descending');
@@ -37,5 +40,17 @@ describe('PPE-77199:Verify Page Cancel Check Out functionality from Checked Out 
     it('Site should be the current Site under test', () => {
         expect(assetDetails.Site).to.equal(test.GetCurrentSite());
     });
+
+    it('Version of the asset should remain the same after Cancel Checkout', () => {
+        test.EnterIWC('Edit', 'Templates & Pages');
+        browser.waitForVisible('//td[contains(.,"Irritable Bowel Syndrome Center New Feature Page")]');
+        browser.click('//td[contains(.,"Irritable Bowel Syndrome Center New Feature Page")]');
+        postData = test.GetAssetVersionAndStage('selected');
+        expect(postData.version).to.equal(preData.version);
+    });
+
+    it('Stage of the asset should remain the same after Cancel Checkout', () => {
+        expect(postData.stage).to.equal(preData.stage);
+    })
    
 });
