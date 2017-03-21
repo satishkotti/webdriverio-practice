@@ -123,3 +123,8 @@ module.exports.GetChronIDOfTheSelectedAsset = () =>
 {
     return iwc.GetChronIDOfTheSelectedAsset();
 }
+
+module.exports.SaveOrPublishTheAssetFromMoreActions = (action, comment) =>
+{
+    act.SavePublishFromMoreActions(action, comment);
+}

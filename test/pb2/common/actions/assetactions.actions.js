@@ -85,3 +85,33 @@ module.exports.ClickCheckoutAndEditButton = () =>
     page.element('.pb-layout-view').waitForVisible();
     browser.pause(3000);
 }
+
+module.exports.SavePublishFromMoreActions = (action, comment) =>
+{
+    switch(action)
+    {
+        case 'Publish to Staging': 
+            acts.buttonMenu.get('More Actions', 'Publish');
+            page.checkbox.get('Staging').click();  
+            acts.button.get('Publish').click();   
+            browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';
+            }, 30000, 'Publish is taking longer than expected', 500);
+            browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
+            }, 30000, 'Publish is taking longer than expected', 500);
+            break;
+        case 'Publish to Live':
+           acts.buttonMenu.get('More Actions', 'Publish');
+           page.checkbox.get('Live').click();  
+           acts.button.get('Publish').click();        
+           browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';
+            }, 30000, 'Publish is taking longer than expected', 500);
+            browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
+            }, 30000, 'Publish is taking longer than expected', 500);
+            break;           
+        
+    }
+}
