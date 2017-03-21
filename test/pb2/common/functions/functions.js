@@ -148,3 +148,8 @@ module.exports.SelectMoreActionsMenuItem = (menuItem) =>
 {
     act.SelectMoreActionsMenuItem(menuItem);
 }
+
+module.exports.ClickShowExpired = () =>
+{
+    act.ClickShowExpired();
+}

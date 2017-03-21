@@ -5,7 +5,6 @@ module.exports.SelectMoreActions = (action) =>
 {
     acts.button.get('More Actions').click();
     browser.pause(10000);
-    
 }
 
 module.exports.ClickContinueButton = () =>
@@ -35,12 +34,19 @@ module.exports.ClickShowEmptyContentPanes = () =>
     acts.splbutton.get(' Show').click();
 }
 
+module.exports.ClickShowExpired = () =>
+{
+
+    acts.splbutton.get('Expired').click();
+}
+
 module.exports.SavePublish = (action, comment) =>
 {
     switch(action)
     {
         case 'Publish to Staging': 
             acts.buttonMenu.get('Save/Publish', 'Publish to Staging');
+            page.textarea.get('Enter a comment below to publish to live').waitForVisible();
             page.textarea.get('Enter a comment below to publish to staging').setValue(comment);
             acts.button.get('Okay').click();
             acts.button.get('More Actions').waitForVisible();
@@ -54,6 +60,7 @@ module.exports.SavePublish = (action, comment) =>
             break;
         case 'Publish to Live':
             acts.buttonMenu.get('Save/Publish', 'Publish to Live');
+            page.textarea.get('Enter a comment below to publish to live').waitForVisible();
             page.textarea.get('Enter a comment below to publish to live').setValue(comment);
             acts.button.get('Okay').click();
             browser.waitUntil( () => {
@@ -68,6 +75,7 @@ module.exports.SavePublish = (action, comment) =>
             
         default:
             acts.buttonMenu.get('Save/Publish', 'Checkin');
+            page.textarea.get('Enter a comment below to publish to live').waitForVisible();
             page.textarea.get('Enter a comment below to checkin asset').setValue(comment);
             acts.button.get('Okay').click();
             acts.button.get('More Actions').waitForVisible();
@@ -137,6 +145,16 @@ module.exports.SelectMoreActionsMenuItem = (menuItem) =>
             browser.waitUntil( () => {
                 return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
             }, 30000, 'Cancel Checkout is not pushed to queue yet', 500);
+            break; 
+
+        case 'Expire':
+        browser.click('#modal-ok');
+        browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';
+            }, 30000, 'Expire is not pushed to queue yet', 500);
+            browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
+            }, 30000, 'Expire is not pushed to queue yet', 500);
             break; 
     }
 }

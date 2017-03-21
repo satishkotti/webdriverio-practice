@@ -34,7 +34,7 @@ module.exports.PopulatePageProps = (assetProps) =>
         if(assetProps.channel != null ) { props.dropdown('Channel', assetProps.channel) };
         if(assetProps.programCollection != null ) { props.dropdown('Program Collection', assetProps.programCollection) };
         props.input.get('Link Title').setValue(assetProps.linkTitle);
-        props.input.get('Window Title').setValue(assetProps.linkTitle);
+        props.input.get('Window Title').setValue(assetProps.windowTitle);
         props.dropdown('Content Classification', assetProps.contentClassification);
         props.dropdown('Primary Topic ID', assetProps.primaryTopicID);
         if(assetProps.sponsorProgram != null ) { props.dropdown('Sponsor Program', assetProps.sponsorProgram) };
@@ -77,7 +77,7 @@ module.exports.PopulatePageProps = (assetProps) =>
         if(assetProps.channel != null ) { props.dropdown('Channel', assetProps.channel) };
         if(assetProps.programCollection != null ) { props.dropdown('Program Collection', assetProps.programCollection) };
         props.input.get('Link Title').setValue(assetProps.linkTitle);
-        props.input.get('Window Title').setValue(assetProps.linkTitle);
+        props.input.get('Window Title').setValue(assetProps.windowTitle);
         props.dropdown('Content Classification', assetProps.contentClassification);
         props.dropdown('Primary Topic ID', assetProps.primaryTopicID);
         if(assetProps.sponsorProgram != null ) { props.dropdown('Sponsor Program', assetProps.sponsorProgram) };
