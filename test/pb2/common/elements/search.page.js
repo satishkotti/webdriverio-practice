@@ -10,11 +10,11 @@ var search = Object.create(page, {
     switchToCategory: { value : (category) => {
         switch(category)
         {
-            case 'DPM': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 'm'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', category));
-            case 'SM': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 'm'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', category));
-            case 'XSL': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 'x'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', category));
-            case 'Template': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 't'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', category));
-            case 'Page': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 'p'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', category));
+            case 'DPM': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 'm'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', category)); break;
+            case 'SM': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 'm'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', category)); break;
+            case 'XSL': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 'x'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', category)); break;
+            case 'Template': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 't'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', category)); break;
+            case 'Page': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 'p'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', category)); break;
         }
     }},
     waitForAssetScreen: { value: () => { browser.waitForVisible('a.pb-chron'); } }

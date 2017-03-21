@@ -128,3 +128,8 @@ module.exports.SaveOrPublishTheAssetFromMoreActions = (action, comment) =>
 {
     act.SavePublishFromMoreActions(action, comment);
 }
+
+module.exports.SelectAsset = (assetName) =>
+{
+    iwc.SelectAsset(assetName);
+}
