@@ -34,13 +34,12 @@ module.exports.ClickAutoRefresh = (action) =>
         default:
         if(!isChecked)
         {
-            action.input.get('Auto Refresh').click(); break;
+            props.checkbox.get('Auto Refresh').click(); break;
         }
-        case 'Uncheck':
+        case 'Disable':
         if(isChecked)
         {
-            action.input.get('Auto Refresh').click(); break;
+            props.checkbox.get('Auto Refresh').click(); break;
         }
     }
-    action.input.get('Auto Refresh').click();
 }

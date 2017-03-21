@@ -36,16 +36,20 @@ var queue = Object.create(page, {
                     return browser.isExisting('#activityGrid tbody tr') == true;
                 }, 30000, "Grid items not displayed", 1000);
 
+                browser.waitUntil( () => {
+                    return browser.isExisting('//td[span[@chron="' + chronID + '"]]') == true;
+                }, 30000, "Grid items not displayed", 1000);
+
                 if (browser.isExisting(locator)) {
 
                     assetDetailsInQueue =
                         {
                             "ChronID": chronID,
-                            "Name": browser.getText(locator + '//following-sibling::td[1]//span'),
-                            "Action": browser.getText(locator + '//following-sibling::td[2]//span'),
-                            "Time": browser.getText(locator + '//following-sibling::td[3]'),
-                            "Site": browser.getText(locator + '//following-sibling::td[4]//span'),
-                            "Status": browser.getText(locator + '//following-sibling::td[5]//span[contains(@class,"pb-activity-status")]')
+                            "Name": browser.getText('(' + locator + '//following-sibling::td[1]//span)[1]'),
+                            "Action": browser.getText('(' + locator + '//following-sibling::td[2]//span)[1]'),
+                            "Time": browser.getText('(' + locator + '//following-sibling::td[3])[1]'),
+                            "Site": browser.getText('(' + locator + '//following-sibling::td[4]//span)[1]'),
+                            "Status": browser.getText('(' + locator + '//following-sibling::td[5]//span[contains(@class,"pb-activity-status")])[1]')
                         };
 
                     return assetDetailsInQueue;

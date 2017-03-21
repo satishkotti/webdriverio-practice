@@ -2,6 +2,7 @@ var LoginPage = require('./../elements/login.page');
 
 module.exports.Login = function()
 {
+
         LoginPage.open();
         LoginPage.username.setValue('QAPublication');
         LoginPage.password.setValue('QA-Doc#1');
