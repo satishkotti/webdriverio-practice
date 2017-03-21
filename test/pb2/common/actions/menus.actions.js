@@ -15,3 +15,16 @@ module.exports.EnterActivityQueueStatusPage = () =>
 {
     homepage.queue.click();
 }
+
+module.exports.GoHome = () => 
+{
+    homepage.home.click();
+    homepage.checkedOutDB.waitForVisible();
+    homepage.favoritesDB.waitForVisible();
+}
+
+module.exports.SortColumn = (table, column, sortType) =>
+{
+    homepage.tableColumnSort.get(table, column, sortType);
+
+}

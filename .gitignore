@@ -3,3 +3,6 @@
 **/**/allure-results/*
 **/**/errorShots/*
 npm-debug.log
+test/pb2/ui/PPE-103188.js
+test/pb2/ui/PPE-103200.js
+test/pb2/ui/PPE-103202.js

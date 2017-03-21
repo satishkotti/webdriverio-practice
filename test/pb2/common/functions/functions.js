@@ -133,3 +133,18 @@ module.exports.SelectAsset = (assetName) =>
 {
     iwc.SelectAsset(assetName);
 }
+
+module.exports.NavigateToHomepage = () =>
+{
+    menu.GoHome();
+}
+
+module.exports.SortTableColumn = (table, column, sortType) =>
+{
+    menu.SortColumn(table, column, sortType);
+}
+
+module.exports.SelectMoreActionsMenuItem = (menuItem) =>
+{
+    act.SelectMoreActionsMenuItem(menuItem);
+}

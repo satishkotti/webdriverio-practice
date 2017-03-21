@@ -13,6 +13,11 @@ module.exports.ClickContinueButton = () =>
     acts.button.get('Continue').click();
 }
 
+module.exports.ClickModalOkayButton = () =>
+{
+    acts.button.get('Okay').click();
+}
+
 module.exports.ClickModalContinueButton = () =>
 
 {
@@ -115,5 +120,23 @@ module.exports.SavePublishFromMoreActions = (action, comment) =>
             }, 30000, 'Publish is taking longer than expected', 500);
             break;           
         
+    }
+}
+
+module.exports.SelectMoreActionsMenuItem = (menuItem) =>
+{
+    acts.buttonMenu.get('More Actions', menuItem);
+
+    switch(menuItem)
+    {
+        case 'Cancel Checkout':
+        acts.button.get('Okay').click();
+        browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';
+            }, 30000, 'Cancel Checkout is not pushed to queue yet', 500);
+            browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
+            }, 30000, 'Cancel Checkout is not pushed to queue yet', 500);
+            break; 
     }
 }
