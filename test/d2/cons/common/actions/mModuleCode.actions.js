@@ -62,6 +62,12 @@ var mModuleCodeObj = {
         expect(getcode_scl.toLowerCase()).to.equal(code_social.toLowerCase());
         
     },
+
+    RepositoryRefresh: function()
+    {
+
+        codeUI.RepositoryRefresh();
+    }
 }
 
 module.exports = mModuleCodeObj;

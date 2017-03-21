@@ -36,15 +36,19 @@ describe('Interactive Article - JavaScript Module', function () {
                 global.d2ConDataSettings.inputData.ArticleDescription);
         
             documentListTab.selectAsset(global.d2ConDataSettings.inputData.ArticleObjectName);
-         contentTab.checkOut();
+            contentTab.checkOut();
 
          jsCodeValue = 'Test code field';
     });
 
     it('should select Section Text then Select Code and Cancel', function () {
-        contentTab.sectionTextSetValue("Sample Test Data");
+       contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextCodeMenuClick();
-        mModuleCodeOption.addCodeAndTypeCancel('Test', global.d2ConDataSettings.inputData.FacebookCodeType);
+       mModuleCodeOption.addCodeAndTypeCancel('Test', global.d2ConDataSettings.inputData.FacebookCodeType);
+      
+        
+       
+        
     });
 
   
@@ -65,7 +69,9 @@ describe('Interactive Article - JavaScript Module', function () {
     });
        
       it('Should Verify the availability of Look up values in Code Type -  PPE-102786', function () {
+        
         contentTab.sectionTextSetValue("more sample test data");
+
         ckEditorMenu.sectionTextCodeMenuClick();
         var CodeTypes = global.d2ConDataSettings.inputData.CodeTypes;
               var j = 1;
@@ -77,17 +83,20 @@ describe('Interactive Article - JavaScript Module', function () {
            });
          mModuleCodeOption.addCodeAndTypeCancel(jsCodeValue, 
                     global.d2ConDataSettings.inputData.FacebookCodeType);       
-        
-         
+        browser.pause(2000);              
+        contentTab.checkIn();
+          
        
     });
 
 
  it.skip('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
         contentTab.sectionTextSetValue("more sample test data");
+
         ckEditorMenu.sectionTextCodeMenuClick();
         mModuleCodeOption.addCodeAndTypeInsert(jsCodeValue, 
-                    global.d2ConDataSettings.inputData.FacebookCodeType);        
+                    global.d2ConDataSettings.inputData.FacebookCodeType);    
+        browser.pause(2000);              
         contentTab.checkIn();
 
         var cidName = propertiesTab.getChronicleIdAndName();
@@ -96,25 +105,10 @@ describe('Interactive Article - JavaScript Module', function () {
         propertiesTab.setRequiredProperties(objName,'ZZ - Dummy Content Classification',objName,objName,objName,objName,'No URL dummy publication','2015 WebMD','Cold and Flu')
         
         documentListTab.assetPowerPromotePublishToStaging(global.d2ConDataSettings.inputData.ArticleObjectName);
-    });
-
-    it.skip('should verify Stored under webmd/web_publisher_list/lookups/interactive_articles -  PPE-PPE-103419', function () {
-
-              repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.LookupFolderPath);
-              var CodeTypes = global.d2ConDataSettings.inputData.CodeTypes;
-              var j = 1;
-              CodeTypes.split(',').forEach(function (x) {
-               
-                documentListTab.selectAsset(x);
-                
-                mModuleCodeOption.VerifyAvlblycode_social("code_social");     
-            
-            j++;
-           });
-
-          
 
     });
+
+   
 
     it.skip('should be part of scs rendition', function () {
          return Promise.resolve(
@@ -137,5 +131,26 @@ describe('Interactive Article - JavaScript Module', function () {
                 expect(jsEmbedAssets.length).to.equal(1);
                 expect(jsBlobVal[0]).to.equal(expectedJsCode);
         }));        
+    });
+
+
+     it('should verify Stored under webmd/web_publisher_list/lookups/interactive_articles -  PPE-PPE-103419', function () {
+
+              mModuleCodeOption.RepositoryRefresh();
+              browser.pause(5000);
+              repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.LookupFolderPath);
+              var CodeTypes = global.d2ConDataSettings.inputData.CodeTypes;
+              var j = 1;
+              CodeTypes.split(',').forEach(function (x) {
+               
+                documentListTab.selectAsset(x);
+                
+                mModuleCodeOption.VerifyAvlblycode_social("code_social");     
+            
+            j++;
+           });
+
+          
+
     });
 });
