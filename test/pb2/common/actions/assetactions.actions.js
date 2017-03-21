@@ -92,7 +92,8 @@ module.exports.SavePublishFromMoreActions = (action, comment) =>
     {
         case 'Publish to Staging': 
             acts.buttonMenu.get('More Actions', 'Publish');
-            page.checkbox.get('Staging').click();  
+            $('//input[@value="staging"]').waitForVisible();
+            $('//input[@value="staging"]').click();           
             acts.button.get('Publish').click();   
             browser.waitUntil( () => {
                 return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';
@@ -103,7 +104,8 @@ module.exports.SavePublishFromMoreActions = (action, comment) =>
             break;
         case 'Publish to Live':
            acts.buttonMenu.get('More Actions', 'Publish');
-           page.checkbox.get('Live').click();  
+           $('//input[@value="live"]').waitForVisible();
+           $('//input[@value="live"]').click();  
            acts.button.get('Publish').click();        
            browser.waitUntil( () => {
                 return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';
