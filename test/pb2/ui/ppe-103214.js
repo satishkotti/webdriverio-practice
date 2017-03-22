@@ -1,7 +1,7 @@
 var test = require('./../common/functions/functions');
 var pageTestData = require('./../data/page.assets');
 
-describe('PPE-77199:Verify Shared Module Publish to Live functionality from Edit Screen', () => {
+describe('PPE-77199:Verify Shared Module Publish to Live functionality from Search Results Screen', () => {
   var assetDetails = {};
   var preData = {};
   var postData = {};
@@ -13,8 +13,7 @@ describe('PPE-77199:Verify Shared Module Publish to Live functionality from Edit
          test.SelectAsset(testAsset);
          var chronID = test.GetChronIDOfTheSelectedAsset('Search Results');
          preData = test.GetAssetVersionAndStage('selected');
-         test.EditTheAsset();
-         test.SaveOrPublishTheAsset('Publish to Live', 'Testing Activity Status Queue');
+         test.SaveOrPublishTheAssetFromMoreActions('Publish to Live', 'Testing Activity Status Queue');
 
          //enter activity queue page
          test.EnterActivityQueueStatusPage();

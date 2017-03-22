@@ -1,23 +1,25 @@
 var page = require('./../../common/page');
+var randomstring = require("randomstring");
 
 var smdata = Object.create(page, {
-
-        adModule: {get : () => {
-        var smProps = {};
+    
+        htmlModule: {get : () => {
+            var assetName = "QASM-ActivityQueue-" + randomstring.generate(5);
+            var smProps = {};
         return smProps  = 
         {
-            "moduleName": "test",
-            "moduleDispName": "test",
-            "moduleType": "AdModule",
+            "moduleName": assetName,
+            "moduleDispName": assetName,
+            "moduleType": "HTML",
             "category": null,
-            "selectXSL": "Ad Seed Call",
+            "selectXSL": "HTML",
             "selectCSS": null,
             "dynamicModuleCategory": null,
             "moduleLabel1":null,
             "moduleLabel2":null,
             "linkedModule":null,
             "sponsorProgram": null,
-            "description": "test",
+            "description": assetName + "-desc",
             "tier": 2,
 
         }
