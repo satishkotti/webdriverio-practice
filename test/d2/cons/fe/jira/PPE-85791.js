@@ -13,7 +13,7 @@ var propertiesTab = require('./../../common/actions/propertiesTab.actions');
 var moduleOption = require('./../../common/actions/Module.actions'); 
 var randomstring = require("randomstring");
 
-describe('Interactive Article - Cleanup Module- US News Article', function () {
+describe.skip('Interactive Article - Cleanup Module- US News Article', function () {
 
     var chronicleId;
     var AssetTitle;
