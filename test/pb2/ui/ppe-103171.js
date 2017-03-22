@@ -21,10 +21,10 @@ describe('PPE-77199:Verify Template Expire functionality from Interior Work Cent
          preData = test.GetAssetVersionAndStage('selected');
          test.EnterActivityQueueStatusPage();
          browser.waitUntil( () => 
-            {
-                assetDetails = test.GetAssetDetailsFromQueue(chronID);
-                return assetDetails.Status != 'IN PROGRESS';
-            }, 120000, "Asset not pushed to the publishing queue yet", 20000);
+         {
+              assetDetails = test.GetAssetDetailsFromQueue(chronID);
+              return assetDetails.Status != 'IN PROGRESS';
+         }, 120000, "Asset not pushed to the publishing queue yet", 20000);
         test.SearchFor(null, testAsset, 'Interior Workcenter', 'Level 0/zTest/zSubTest1');
         test.SelectMoreActionsMenuItem('Expire');
 

@@ -68,8 +68,12 @@ module.exports.GetVersionAndStageOfAsset = (assetName) =>
     }
 }
 
-module.exports.GetChronIDOfTheSelectedAsset = (assetName) =>
+module.exports.GetChronIDOfTheSelectedAsset = (screen) =>
 {
-    var a = IWC.element.get('//tr[@aria-selected="true"]//td[2]//a').getAttribute('data-chron');
-    return  IWC.element.get('//tr[@aria-selected="true"]//td[2]//a').getAttribute('data-chron');
+    switch(screen)
+    {
+        default: return  IWC.element.get('//tr[@aria-selected="true"]//td[2]//a').getAttribute('data-chron'); break;
+        case 'Search Results': return  IWC.element.get('//tr[@aria-selected="true"]//td[2]//a').getText(); break;
+    }
+    
 }

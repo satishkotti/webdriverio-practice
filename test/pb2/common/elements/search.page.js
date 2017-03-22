@@ -10,8 +10,8 @@ var search = Object.create(page, {
     switchToCategory: { value : (category) => {
         switch(category)
         {
-            case 'DPM': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 'm'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', category)); break;
-            case 'SM': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 'm'); browser.waitForExist('(' + locator + ')[2]'); browser.click(tabHeading.replace('***', category)); break;
+            case 'DPM': locator = tabHeading.replace('***', 'Dynamic Programmed Modules') + spinnerLoc.replace('*', 'm'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', 'Dynamic Programmed Modules')); break;
+            case 'SM': locator = tabHeading.replace('***', 'Shared Modules') + spinnerLoc.replace('*', 'm'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', 'Shared Modules')); break;
             case 'XSL': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 'x'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', category)); break;
             case 'Template': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 't'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', category)); break;
             case 'Page': locator = tabHeading.replace('***', category) + spinnerLoc.replace('*', 'p'); browser.waitForExist(locator); browser.click(tabHeading.replace('***', category)); break;

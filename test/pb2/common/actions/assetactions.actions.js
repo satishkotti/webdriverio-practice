@@ -57,6 +57,8 @@ module.exports.SavePublish = (action, comment) =>
             browser.waitUntil( () => {
                 return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
             }, 30000, 'Publish is taking longer than expected', 500);
+            acts.button.get('More Actions').waitForVisible();
+            page.element('(//section[contains(@class, "pb-module-bottom-pad")])[2]').waitForVisible();
             break;
         case 'Publish to Live':
             acts.buttonMenu.get('Save/Publish', 'Publish to Live');
@@ -70,7 +72,7 @@ module.exports.SavePublish = (action, comment) =>
                 return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
             }, 30000, 'Publish is taking longer than expected', 500);
             acts.button.get('More Actions').waitForVisible();
-            page.element('.pb-layout-container').waitForVisible();
+            page.element('(//section[contains(@class, "pb-module-bottom-pad")])[2]').waitForVisible();
             break;
             
         default:
@@ -78,8 +80,14 @@ module.exports.SavePublish = (action, comment) =>
             page.textarea.get('Enter a comment below to publish to live').waitForVisible();
             page.textarea.get('Enter a comment below to checkin asset').setValue(comment);
             acts.button.get('Okay').click();
+            browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';
+            }, 30000, 'Checkin is taking longer than expected', 500);
+            browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
+            }, 30000, 'Checkin is taking longer than expected', 500);
             acts.button.get('More Actions').waitForVisible();
-            page.element('.pb-layout-container').waitForVisible();
+            page.element('(//section[contains(@class, "pb-module-bottom-pad")])[2]').waitForVisible();
             break;
     }
 }
@@ -88,7 +96,7 @@ module.exports.ClickEditButton = () =>
 {
     acts.button.get('Edit').click();
     acts.splbutton.get('Save/Publish').waitForVisible();
-    page.element('.pb-layout-view').waitForVisible();
+    page.element('(//section[contains(@class, "pb-module-bottom-pad")])[2]').waitForVisible();
 }
 
 module.exports.ClickCheckoutAndEditButton = () =>

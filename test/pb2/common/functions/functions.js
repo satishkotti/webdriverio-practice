@@ -119,9 +119,9 @@ module.exports.GetCurrentSite = () =>
     return app.GetCurrentSite();
 }
 
-module.exports.GetChronIDOfTheSelectedAsset = () =>
+module.exports.GetChronIDOfTheSelectedAsset = (screen) =>
 {
-    return iwc.GetChronIDOfTheSelectedAsset();
+    return iwc.GetChronIDOfTheSelectedAsset(screen);
 }
 
 module.exports.SaveOrPublishTheAssetFromMoreActions = (action, comment) =>
