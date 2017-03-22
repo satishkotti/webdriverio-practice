@@ -17,6 +17,10 @@ describe('Interactive Article - JavaScript Module', function () {
 
     var chronicleId;
     var jsCodeValue;
+
+    var AssetTitle;
+    var AssetName;
+
     before(function () {        
         browser.setViewportSize({
             width: 1920,
@@ -35,8 +39,8 @@ describe('Interactive Article - JavaScript Module', function () {
 
     beforeEach(function() {
 
-   var AssetTitle=global.d2ConDataSettings.inputData.ArticleObjectName+randomstring.generate(2);
-   var AssetName= global.d2ConDataSettings.inputData.ArticleDescription+randomstring.generate(2);
+   AssetTitle=global.d2ConDataSettings.inputData.ArticleObjectName+randomstring.generate(2);
+   AssetName= global.d2ConDataSettings.inputData.ArticleDescription+randomstring.generate(2);
    
         workspaceMenu.createContent(
                 global.d2ConDataSettings.inputData.ArticleProfileName,
@@ -49,7 +53,7 @@ describe('Interactive Article - JavaScript Module', function () {
            contentTab.checkOut();
   });
 
-  it.skip('Verify the Sizelabel and option is removed for Image,Video and Slideshow modules- US News', function () {
+  it('Verify the Sizelabel and option is removed for Image,Video and Slideshow modules- US News', function () {
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextModuleMenuClick();
         moduleOption.moduleframe();
@@ -121,6 +125,64 @@ describe('Interactive Article - JavaScript Module', function () {
         
     });
 
+      it(' Verify the XML attributes after inserting the Video module - US ', function () {
+        contentTab.sectionTextSetValue("Sample Test Data");
+        ckEditorMenu.sectionTextModuleMenuClick();
+        moduleOption.moduleframe();
+        moduleOption.moduleSelect('Video','heart');
+        moduleOption.moduleTitle('QA');
+        moduleOption.moduleInsert();
+        contentTab.checkIn();
+
+        var cidName = propertiesTab.getChronicleIdAndName();
+        var objName = cidName.objectName;
+        chronicleId = cidName.chronicleId;
+        propertiesTab.setRequiredProperties(objName,'News',objName,objName,objName,objName,'WebMD Medical News','2015 WebMD','ADD-ADHD (Adult)')
+        documentListTab.assetPowerPromotePublishToStaging(AssetTitle);
+
+                  return Promise.resolve(
+            parseXml.getXmlFromUrl(functions.getAtsScsFileUrl()+chronicleId, null).then(function (result) {
+
+             var moduleSizeAtt = JSONPath({json: result,  path: "$..section_text.embeded_module[?(@.module_size)]", resultType: 'all' });
+             expect(moduleSizeAtt.length).to.equal(0);     
+
+              var shareSocialAtt = JSONPath({json: result,  path: "$..section_text.embeded_module[?(@.suppress_share)]", resultType: 'all' });
+             expect(shareSocialAtt.length).to.equal(0);  
+                }));   
+    });
+
+      it('Verify the XML attributes after inserting the image module - US News', function () {
+        contentTab.sectionTextSetValue("Sample Test Data");
+        ckEditorMenu.sectionTextModuleMenuClick();
+        moduleOption.moduleframe();
+        moduleOption.moduleSelect('Image','heart');
+        moduleOption.moduleTitle('QA');
+        moduleOption.moduleInsert();
+        contentTab.checkIn();
+
+        var cidName = propertiesTab.getChronicleIdAndName();
+        var objName = cidName.objectName;
+        chronicleId = cidName.chronicleId;
+        propertiesTab.setRequiredProperties(objName,'News',objName,objName,objName,objName,'WebMD Medical News','2015 WebMD','ADD-ADHD (Adult)')
+        documentListTab.assetPowerPromotePublishToStaging(AssetTitle);
+
+      //  browser.pause(5000);
+        
+        return Promise.resolve(
+            parseXml.getXmlFromUrl(functions.getAtsScsFileUrl()+chronicleId, null).then(function (result) {
+
+            var jsEmbedAssets = JSONPath({json: result,  path: "$..section_text.embeded_module[?(@.class =='wbmdembededmodule cke_widget_inline')]", resultType: 'all' });
+
+                  expect(jsEmbedAssets[0].parent.$.suppress_share).to.equal('false');
+
+             var moduleSizeAtt = JSONPath({json: result,  path: "$..section_text.embeded_module[?(@.module_size)]", resultType: 'all' });
+             expect(moduleSizeAtt.length).to.equal(0);     
+                }));   
+      
+    });
+
+    
+
     it.skip('should verify the presence of the Social Share and absence of Size attribute for the Video type', function () {
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextModuleMenuClick();
@@ -153,10 +215,11 @@ describe('Interactive Article - JavaScript Module', function () {
         moduleOption.moduleInsert();
         //moduleOption.moduleCancel();
         contentTab.checkIn();
+
         
     });
 
-   /* it('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
+  /*  it('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
         contentTab.sectionTextSetValue("more sample test data");
         ckEditorMenu.sectionTextCodeMenuClick();
         mModuleCodeOption.addCodeAndTypeInsert(jsCodeValue, 
@@ -172,15 +235,21 @@ describe('Interactive Article - JavaScript Module', function () {
     });*/
 
     it.skip('should be part of scs rendition', function () {
-         return Promise.resolve(
-            parseXml.getXmlFromUrl(functions.getAtsScsFileUrl()+'091e9c5e8148cc85', null).then(function (result) {
-
+         url='http://ats.preview.qa01.webmd.com/SCSFile.aspx?ID=091e9c5e80032f76';
+     /*   return Promise.resolve(
+            
+            parseXml.getXmlFromUrl(url, null).then(function (result) {
+              //  functions.getAtsScsFileUrl()+'091e9c5e8148cc85'
                 var expectedJsCode = ' '+jsCodeValue;
             var jsEmbedAssets = JSONPath({json: result,  path: "$..section_text.embeded_module[?(@.class =='wbmdembededmodule cke_widget_inline')]", resultType: 'all' });
 
                    //  expect(jsEmbedAssets.length).to.equal(1);
 
-                  expect(jsEmbedAssets[0].parent.$.suppress_share).to.equal('false');
+              //    expect(jsEmbedAssets[0].parent.module_size).to.be.false;*/
+               browser.url(url);
+                var a= browser.isExisting("//embeded_module[@module_size]");
+                 console.log(a);
+                 expect(a).to.be.true;
                //   expect(result.wbmd_asset.content_section[0].cons_news[0].section_groups[0].section_group[0].section_text[0].embeded_module[0].$.suppress_share).to.equal('false');
               /*  expect(jsEmbedAssets.length).to.equal(1);
                 expect(jsEmbedAssets[0].parent.$.jstype).to.equal('facebook');
@@ -195,6 +264,6 @@ describe('Interactive Article - JavaScript Module', function () {
                 var jsBlobVal = JSONPath({json: result,  path: "$..section_text.embeded_module.jsblob" });
                // expect(jsEmbedAssets.length).to.equal(1);
                // expect(jsBlobVal[0]).to.equal(expectedJsCode);*/
-        }));        
+       // }));        
     });
 });

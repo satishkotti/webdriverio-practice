@@ -42,28 +42,52 @@ module.exports = {
         return browser.getValue("input#wbmd_lk_ttl-input");
     },
     publicationSet: function(textValue){
-          browser.setValue("input#wbmd_publ-input", textValue);
+         // browser.setValue("input#wbmd_publ-input", textValue);
+          browser.click("//div[@id='wbmd_publ']/img")
+          browser.pause(1000);  
+          browser.click("//div[@title='"+textValue+"']")
+          browser.pause(1000);
     },
     publicationGet: function(){
         return browser.getValue("input#wbmd_publ-input");
+        browser.pause(1000);
     },
     copyrightSet: function(textValue){
-          browser.setValue("input#wbmd_cpyrt-input", textValue);
+         // browser.setValue("input#wbmd_cpyrt-input", textValue);
+         browser.click("//div[@id='wbmd_cpyrt']/img")
+          browser.pause(1000);  
+          browser.click("//div[@title='"+textValue+"']")
+          browser.pause(1000);
     },
     copyrightGet: function(){
         return browser.getValue("input#wbmd_cpyrt-input");
     },
     primaryTopicIdSet: function(textValue){
-          browser.setValue("input#wbmd_c_prim_top_id-input", textValue);
+         // browser.setValue("input#wbmd_c_prim_top_id-input", textValue);
+           browser.click("//div[@id='wbmd_c_prim_top_id']/img")
+          browser.pause(1000);  
+          browser.click("//div[@title='"+textValue+"']")
+          browser.pause(1000);
     },
     primaryTopicIdGet: function(){
         return browser.getValue("input#wbmd_c_prim_top_id-input");
     },
     busRefNameSet: function(textValue){
-          browser.setValue("input#wbmd_bus_ref-input", textValue);
+          browser.click("//div[@id='wbmd_bus_ref']/img")
+          browser.pause(1000);  
+          browser.click("//div[@title='"+textValue+"']")
+          //browser.setValue("input#wbmd_bus_ref-input", textValue);
+          browser.pause(1000);
     },
     busRefNameGet: function(){
         return browser.getValue("input#wbmd_bus_ref-input");
+    },
+    originalPublishDateSet: function(){
+          browser.click("//div[@id='wbmd_orig_pub_dt']/img")
+          browser.pause(1000);  
+          browser.click("//button[contains(.,'Today')]")
+          //browser.setValue("input#wbmd_bus_ref-input", textValue);
+          browser.pause(1000);
     },
 
     articleTabSelect: function(){
