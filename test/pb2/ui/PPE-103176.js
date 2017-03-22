@@ -1,6 +1,6 @@
 var test = require('./../common/functions/functions');
 
-describe('PPE-77199:Verify Template Publish to Staging functionality from Search Results Screen', () => {
+describe('PPE-77199:Verify Template Publish to Live functionality from Read Only Screen', () => {
   var assetDetails = {};
   var preData = {};
   var postData = {};
@@ -15,9 +15,8 @@ describe('PPE-77199:Verify Template Publish to Staging functionality from Search
          test.SaveOrPublishTheAsset('Save', 'Testing activity queue');       
 
          test.NavigateToHomepage();
-         test.SearchFor('Template', testAsset, 'Global Search', null);
-         test.SelectAsset(testAsset);        
-         test.SaveOrPublishTheAssetFromMoreActions('Publish to Staging','Activty Queue publish to staging');
+         test.SearchFor(null, chronID, 'Global Search', null);              
+         test.SaveOrPublishTheAssetFromMoreActions('Publish to Live','Activty Queue publish to live');
 
         //enter into the Queue Page  
         test.EnterActivityQueueStatusPage();       
@@ -43,7 +42,7 @@ describe('PPE-77199:Verify Template Publish to Staging functionality from Search
         expect(assetDetails.Site).to.equal(test.GetCurrentSite());
     });
 
-    it('Version of the asset should not be same after publish to Staging', () => {
+    it('Version of the asset should not be same after publish to live', () => {
         test.EnterIWC('Edit', 'Templates & Pages');
         test.SelectAsset(testAsset);     
         postData = test.GetAssetVersionAndStage('selected');

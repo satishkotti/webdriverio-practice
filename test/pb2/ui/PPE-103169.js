@@ -40,7 +40,7 @@ describe('PPE-77199:Verify Template Publish to Staging functionality from Interi
         expect(assetDetails.Site).to.equal(test.GetCurrentSite());
     });
    
-   it('Version of the asset should not be same after publish to live', () => {
+   it('Version of the asset should not be same after publish to Staging', () => {
         test.EnterIWC('Edit', 'Templates & Pages');
         test.SelectAsset('Irritable Bowel Center Harmony Flexible Template');      
         postData = test.GetAssetVersionAndStage('selected');
