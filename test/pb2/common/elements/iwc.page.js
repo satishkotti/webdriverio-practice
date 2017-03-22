@@ -11,7 +11,7 @@ var iwc = Object.create(page, {
     nodeCollapse: { value: { get: (node) => { iwc.nodeVisible.get(node); return browser.element('//span[@class= "pb-tree-node" and contains(.,"' + node + '")]//parent::span//preceding-sibling::span[contains(@class,"k-minus")]'); } } },
     nodeVisible: { value: { get: (node) => {  browser.waitForExist('//span[@class= "pb-tree-node" and contains(.,"' + node + '")]', 20000); } } },
     toggle: { get: () => { return browser.element('.pb-workcenter-mode-toggle'); } },
-    addToNode: { value:{ get: (assetType) => { browser.click('//button[contains(.,"Add to Node")]').click('//li[contains(.,"Add ' + assetType + '")]'); } } },
+    addToNode: { value:{ get: (assetType) => { locator = '//button[contains(.,"Add to Node")]'; browser.waitForVisible(locator); browser.click(locator).click('//li[contains(.,"Add ' + assetType + '")]'); } } },
     navMapNodeId: { get: () => { return browser.getAttribute('.k-state-selected .pb-tree-node', 'data-nav_node_id'); } },
     isTreeExpanded: { get: () => {return browser.getAttribute('//li[contains(@class,"k-first")]', 'aria-expanded');} },
     collapseIcons: { get: () => { return browser.elements('.k-minus').value; } },

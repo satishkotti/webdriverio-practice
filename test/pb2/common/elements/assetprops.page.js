@@ -7,7 +7,7 @@ var dropdown = '//label[contains(.,"***:")]//a'; //Dropdown using Un-ordered Lis
 var dropdownOption = '//li[string()="***"]' //Select an option (li) from dropdown using Un-ordered List (ul)
 var selectDD = '//label[contains(.,"***:")]//select'; //Dropdown using Select
 var checkbox = '//label[contains(.,"***")]//input'; //For Checkbox and Radio button
-var tab = '//li[contains(.,"***")]'; //For Properties, Page Layout and Preview tabs
+var tab = '//uib-tab-heading[contains(.,"***")]'; //For Properties, Page Layout and Preview tabs
 var locator = '';
 
 
@@ -55,11 +55,13 @@ var props = Object.create(page, {
         browser.selectByVisibleText(locator, option);
     }},
 
-    tab: { get: (tabName) => 
+    tab: { value: { get: (tabName) => 
     {
         locator = tab.replace('***', tabName);
+        props.UntilExist();
+        props.UntilVisible();
         return props.GetElement;
-    }},
+    }}},
 
     element: { value: (eleLocator) => 
         { 

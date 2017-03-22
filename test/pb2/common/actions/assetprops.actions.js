@@ -1,4 +1,5 @@
 var props = require('./../elements/assetprops.page');
+var act = require('./../elements/actions.page');
 var page = require('./../../../common/page');
 var actions = require('./assetactions.actions');
 var iwc = require('./iwc.actions');
@@ -189,4 +190,58 @@ module.exports.GetAssetVersionAndStage = () =>
         "version" : element.getText(),
         "stage" : element.getAttribute('class').split('pb-lifecycle ')[1]
     };
+}
+
+module.exports.Propagate = (specs) =>
+{
+    var propagateSpecs = {};
+    propagateSpecs = specs;
+
+    var modules = specs.modules;
+    var childTemplates = specs.childTemplates;
+    var childPageStage = specs.childPageStage;
+
+    var locator = '';
+    var element = '';
+
+    var propagateButton = act.splbutton.get('Propagate Modules');
+    propagateButton.moveToObject();
+    propagateButton.click();
+
+    for (var i = 0; i < modules.length; i++)
+    {
+        locator = 'span[data-title="' + modules[i].moduleName + '"] input';
+        element = props.element(locator);
+        element.waitForVisible(); element.click();
+
+        var position = modules[i].modulePosition;
+
+        if(position != 'Top of Content Pane')
+        {
+            locator = 'span[title="' + modules[i].moduleName + '"] + select';
+            element = props.element(locator);
+            element.waitForVisible(); element.selectByVisibleText(position);
+        }
+    }
+
+    actions.ClickContinueButton();
+
+    for ( var j = 0; j < childTemplates.length; j++)
+    {
+        locator = '//td[span[contains(.,"' + childTemplates[j] + '")]]//preceding-sibling::td//input';
+        props.element(locator).click();
+    }
+
+    locator = 'input[name="pagePubAction" ][value="' + childPageStage + '"]';
+    props.element(locator).click();
+
+    actions.ClickContinueButton();
+
+    browser.waitUntil(() => {
+        return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';
+    }, 30000, 'Propagate is taking longer than expected', 500);
+    browser.waitUntil(() => {
+        return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
+    }, 30000, 'Propagate is taking longer than expected', 500);
+
 }

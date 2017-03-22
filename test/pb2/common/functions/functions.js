@@ -153,3 +153,8 @@ module.exports.ClickShowExpired = () =>
 {
     act.ClickShowExpired();
 }
+
+module.exports.Propagate = (specs) =>
+{
+    props.Propagate(specs);
+}
