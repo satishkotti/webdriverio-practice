@@ -4,6 +4,7 @@ describe('PPE-77199:Verify Shared Module Cancel Check Out functionality from Sea
   var assetDetails = {};
   var preData = {};
   var postData = {};
+  
   var testAsset = 'healthy-blood-sugar-levels-quiz-results';
     before(() => {
         
