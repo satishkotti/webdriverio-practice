@@ -1,6 +1,6 @@
 var test = require('./../common/functions/functions');
 
-describe('PPE-77199:Verify Template Publish to Live functionality from Edit Screen', () => {
+describe('PPE-77199:Verify Template Publish to Staging functionality from Edit Screen', () => {
   var assetDetails = {};
     before(() => {
         
@@ -12,7 +12,7 @@ describe('PPE-77199:Verify Template Publish to Live functionality from Edit Scre
 
         test.SearchFor('Template','Irritable Bowel Center Harmony Flexible Template','Global Search',null);  
         test.SelectAsset('Irritable Bowel Center Harmony Flexible Template');
-        test.SaveOrPublishTheAssetFromMoreActions('Publish to Live','Activty Queue publish to live');     
+        test.SaveOrPublishTheAssetFromMoreActions('Publish to Staging','Activty Queue Published to Staging');     
         //enter into the Queue Page  
         test.EnterActivityQueueStatusPage();       
 
