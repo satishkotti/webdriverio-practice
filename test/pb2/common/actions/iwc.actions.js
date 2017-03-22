@@ -49,7 +49,7 @@ module.exports.GetVersionAndStageOfAsset = (assetName) =>
                 case 'selected':
                     var element = IWC.element.get('//tr[contains(@class, "k-state-selected")]//span[contains(@class, "pb-lifecycle")]');
                     var stage = element.getAttribute('class').split('pb-lifecycle ')[1];
-                    var version = element.getText();
+                    var version = parseFloat(element.getText());
 
                     return {
                         "version": version,
@@ -59,7 +59,7 @@ module.exports.GetVersionAndStageOfAsset = (assetName) =>
                 default:
                     var element = IWC.element.get('//tr[td[contains(., "' + assetName + '")]]//span[contains(@class, "pb-lifecycle")]');
                     var stage = element.getAttribute('class').split('pb-lifecycle ')[1];
-                    var version = element.getText();
+                    var version = parseFloat(element.getText());
 
                     return {
                         "version": version,

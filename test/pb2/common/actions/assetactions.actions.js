@@ -49,8 +49,6 @@ module.exports.SavePublish = (action, comment) =>
             page.textarea.get('Enter a comment below to publish to staging').waitForVisible();
             page.textarea.get('Enter a comment below to publish to staging').setValue(comment);
             acts.button.get('Okay').click();
-            acts.button.get('More Actions').waitForVisible();
-            page.element('.pb-layout-view').waitForVisible();
             browser.waitUntil( () => {
                 return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';
             }, 30000, 'Publish is taking longer than expected', 500);
