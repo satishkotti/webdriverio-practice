@@ -31,6 +31,10 @@ var ModuleUIObj = {
         browser.click("//div[@class='modal-footer']//button[contains(.,'Cancel')]");
         browser.pause(1000);
     },
+    insertModule: function () {
+        browser.click("//div[@class='modal-footer']//button[contains(.,'Insert')]");
+        browser.pause(1000);
+    },
    modulesizelabel: function () {
       var sizelabel = browser.isExisting("//div[@class='row']//div[contains(.,'Size')]");
       return sizelabel; 
@@ -39,6 +43,10 @@ var ModuleUIObj = {
    modulesizefield: function () {
       var sizefield = browser.isExisting("//select[@ng-model='module.size']");
       return sizefield; 
+   },
+   moduletitle: function (moduleTitle) {
+      browser.setValue('#moduletitle',moduleTitle);
+      browser.pause(2000);
    },
      moduleSocialShare: function () {
       var socialshare = browser.isExisting("//input[@id='editmodule-suppressShare']/following-sibling::label[contains(.,'Suppress Social Share')]");

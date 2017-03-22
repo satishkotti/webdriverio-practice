@@ -39,6 +39,14 @@ var ModuleObj = {
       return socialshare;
       
     },
+
+     moduleTitle: function(moduleTitle) {
+      ModuleUI.moduletitle(moduleTitle);
+      
+    },
+     moduleInsert: function(){
+         ModuleUI.insertModule(); 
+     },
      moduleCancel: function(){
          ModuleUI.cancelModule();
      }

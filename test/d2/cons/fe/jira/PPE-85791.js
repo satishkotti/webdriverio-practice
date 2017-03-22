@@ -23,13 +23,13 @@ describe('Interactive Article - JavaScript Module', function () {
             height: 1080
         });
 
-         Login.login({
+        Login.login({
                 url: functions.getEnvTestUrl(),
                 username: functions.getQAPublicationUser().username,
                 password: functions.getQAPublicationUser().password
             });
         
-        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+    repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
 
     });
 
@@ -49,7 +49,79 @@ describe('Interactive Article - JavaScript Module', function () {
            contentTab.checkOut();
   });
 
-    it('should verify the presence of the Social Share and absence of Size attribute for the Video type', function () {
+  it.skip('Verify the Sizelabel and option is removed for Image,Video and Slideshow modules- US News', function () {
+        contentTab.sectionTextSetValue("Sample Test Data");
+        ckEditorMenu.sectionTextModuleMenuClick();
+        moduleOption.moduleframe();
+        moduleOption.moduleSelect('Image','heart');
+        
+        var sizelabel = moduleOption.moduleSizeLabel();
+        expect(sizelabel).to.be.false;
+        var sizefield = moduleOption.moduleSizeField();
+        expect(sizefield).to.be.false;
+        moduleOption.moduleCancel();
+
+        contentTab.sectionTextSetValue("Sample Test Data");
+        ckEditorMenu.sectionTextModuleMenuClick();
+        moduleOption.moduleframe();
+        moduleOption.moduleSelect('Video','heart');
+        
+        var sizelabel = moduleOption.moduleSizeLabel();
+        expect(sizelabel).to.be.false;
+        var sizefield = moduleOption.moduleSizeField();
+        expect(sizefield).to.be.false;
+        moduleOption.moduleCancel();
+
+         contentTab.sectionTextSetValue("Sample Test Data");
+        ckEditorMenu.sectionTextModuleMenuClick();
+        moduleOption.moduleframe();
+        moduleOption.moduleSelect('Slideshow','heart');
+        
+        var sizelabel = moduleOption.moduleSizeLabel();
+        expect(sizelabel).to.be.false;
+        var sizefield = moduleOption.moduleSizeField();
+        expect(sizefield).to.be.false;
+        moduleOption.moduleCancel();
+         contentTab.checkIn();
+    });
+
+      it('Verify the presence hare checkbox and Social Media Share name for Image module - US News', function () {
+        contentTab.sectionTextSetValue("Sample Test Data");
+        ckEditorMenu.sectionTextModuleMenuClick();
+        moduleOption.moduleframe();
+        moduleOption.moduleSelect('Image','heart');
+        
+        var socialshare = moduleOption.moduleSocialShare();
+        expect(socialshare).to.be.true;
+        moduleOption.moduleCancel();
+        contentTab.checkIn();
+
+    });
+
+     it('Verify there is no share checkbox and Social Media Share name for Video,Slideshow module - US News', function () {
+        contentTab.sectionTextSetValue("Sample Test Data");
+        ckEditorMenu.sectionTextModuleMenuClick();
+        moduleOption.moduleframe();
+        moduleOption.moduleSelect('Video','heart');
+        
+        var socialshare = moduleOption.moduleSocialShare();
+        expect(socialshare).to.be.false;
+        moduleOption.moduleCancel();
+
+
+        contentTab.sectionTextSetValue("Sample Test Data");
+        ckEditorMenu.sectionTextModuleMenuClick();
+        moduleOption.moduleframe();
+        moduleOption.moduleSelect('Slideshow','heart');
+        
+        var socialshare = moduleOption.moduleSocialShare();
+        expect(socialshare).to.be.false;
+        moduleOption.moduleCancel();
+        contentTab.checkIn();
+        
+    });
+
+    it.skip('should verify the presence of the Social Share and absence of Size attribute for the Video type', function () {
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextModuleMenuClick();
         moduleOption.moduleframe();
@@ -66,7 +138,7 @@ describe('Interactive Article - JavaScript Module', function () {
         
     });
 
-    it('should verify the presence of the Social Share and absence of Size attribute for the image type', function () {
+    it.skip('should verify the presence of the Social Share and absence of Size attribute for the image type', function () {
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextModuleMenuClick();
         moduleOption.moduleframe();
@@ -77,7 +149,9 @@ describe('Interactive Article - JavaScript Module', function () {
         expect(sizefield).to.be.false;
         var socialshare = moduleOption.moduleSocialShare();
         expect(socialshare).to.be.true;
-        moduleOption.moduleCancel();
+        moduleOption.moduleTitle('QA');
+        moduleOption.moduleInsert();
+        //moduleOption.moduleCancel();
         contentTab.checkIn();
         
     });
@@ -95,16 +169,20 @@ describe('Interactive Article - JavaScript Module', function () {
         propertiesTab.setRequiredProperties(objName,'ZZ - Dummy Content Classification',objName,objName,objName,objName,'No URL dummy publication','2015 WebMD','Cold and Flu')
         
         documentListTab.assetPowerPromotePublishToStaging(global.d2ConDataSettings.inputData.ArticleObjectName);
-    });
+    });*/
 
-    it('should be part of scs rendition', function () {
+    it.skip('should be part of scs rendition', function () {
          return Promise.resolve(
-            parseXml.getXmlFromUrl(functions.getAtsScsFileUrl()+chronicleId, null).then(function (result) {
+            parseXml.getXmlFromUrl(functions.getAtsScsFileUrl()+'091e9c5e8148cc85', null).then(function (result) {
 
                 var expectedJsCode = ' '+jsCodeValue;
-                var jsEmbedAssets = JSONPath({json: result,  path: "$..section_text.embeded_module[?(@.type =='jsembed')]", resultType: 'all' });
+            var jsEmbedAssets = JSONPath({json: result,  path: "$..section_text.embeded_module[?(@.class =='wbmdembededmodule cke_widget_inline')]", resultType: 'all' });
 
-                expect(jsEmbedAssets.length).to.equal(1);
+                   //  expect(jsEmbedAssets.length).to.equal(1);
+
+                  expect(jsEmbedAssets[0].parent.$.suppress_share).to.equal('false');
+               //   expect(result.wbmd_asset.content_section[0].cons_news[0].section_groups[0].section_group[0].section_text[0].embeded_module[0].$.suppress_share).to.equal('false');
+              /*  expect(jsEmbedAssets.length).to.equal(1);
                 expect(jsEmbedAssets[0].parent.$.jstype).to.equal('facebook');
                 expect(jsEmbedAssets[0].parent.$.align).to.equal('');
                 expect(jsEmbedAssets[0].parent.$.asset_description).to.equal('');
@@ -115,8 +193,8 @@ describe('Interactive Article - JavaScript Module', function () {
                 expect(jsEmbedAssets[0].parent.$.thumbnail).to.equal('');
                 
                 var jsBlobVal = JSONPath({json: result,  path: "$..section_text.embeded_module.jsblob" });
-                expect(jsEmbedAssets.length).to.equal(1);
-                expect(jsBlobVal[0]).to.equal(expectedJsCode);
+               // expect(jsEmbedAssets.length).to.equal(1);
+               // expect(jsBlobVal[0]).to.equal(expectedJsCode);*/
         }));        
-    });*/
+    });
 });

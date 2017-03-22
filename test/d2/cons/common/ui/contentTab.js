@@ -34,6 +34,8 @@ var contentTabUIObj = {
     selectContenTab: function(){
         browser.click(contentTabSelector);
         browser.pause(1000);
+        browser.doubleClick(contentTabSelector);
+        browser.pause(5000);
     },
     checkOut: function(){
         browser.waitForVisible(checkoutButtonSelector);
@@ -42,11 +44,14 @@ var contentTabUIObj = {
         browser.pause(5000);
         browser.frameParent();
         browser.pause(5000);
+        browser.doubleClick(contentTabSelector);
+        browser.pause(5000);
     },
     checkIn: function(){
         browser.click(checkInButonSelector);
         browser.pause(5000);
         browser.frameParent();
+        browser.doubleClick(contentTabSelector);
         browser.pause(5000);
     },
     sectionTextSetValue: function(sectionTextVal){

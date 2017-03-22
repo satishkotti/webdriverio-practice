@@ -80,7 +80,7 @@ module.exports.testSettings = {
                 }
             ]
         },
-    "ats": {
+        "ats": {
             "url": "http://ats.preview.dev04.webmd.com/SCSFile.aspx?ID="
         }
     },
@@ -113,7 +113,7 @@ module.exports.testSettings = {
             "middlealignent": "Middle",
             "bulletlistalignment": "Right,Left,Middle",
             "CodeTypes": "Facebook, Youtube, Twitter, Pinterest, Reddit, Imgur, Snapchat, Tumblr, Instagram",
-            "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other/test",
+            "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
             "ArticleTemplate": 'Article /  News Template',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),

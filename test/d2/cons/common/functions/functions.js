@@ -13,6 +13,7 @@ module.exports = {
         return global.envSettings.d2cons.users[0];
     },
     getAtsScsFileUrl: function() {
-        return global.envSettings.ats.url;
+       // return global.envSettings.ats.url;
+       return global.envSettings.ats.url;
     },  
 }
