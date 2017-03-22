@@ -1,6 +1,6 @@
 var test = require('./../common/functions/functions');
 
-describe('PPE-77199:Verify Page Publish to Live functionality from Read Only Screen', () => {
+describe('PPE-77199:Verify Page Publish to Staging functionality from Interior Work Center Screen', () => {
   var assetDetails = {};
     before(() => {
         
@@ -9,8 +9,9 @@ describe('PPE-77199:Verify Page Publish to Live functionality from Read Only Scr
          var chronID = test.GetChronIDOfTheSelectedAsset();
          test.CheckoutAndEditTheAsset();
          test.SaveOrPublishTheAsset('Save', 'Testing activity queue');  
-         test.SearchFor(null, chronID, 'Global Search', null);
-         test.SaveOrPublishTheAssetFromMoreActions('Publish to Live', 'Testing activity queue');
+         test.EnterIWC('Edit','Templates & Pages');
+         test.SelectAsset('Irritable Bowel Syndrome Center New Feature Page');
+         test.SaveOrPublishTheAssetFromMoreActions('Publish to Staging', 'Testing activity queue');
         //enter into the Queue Page  
         test.EnterActivityQueueStatusPage();       
         
@@ -27,7 +28,7 @@ describe('PPE-77199:Verify Page Publish to Live functionality from Read Only Scr
         expect(assetDetails.Name).to.equal('Irritable Bowel Syndrome Center New Feature Page');
     });
 
-    it('Page Action should be Page Template', () => {
+    it('Page Action should be Publish Page', () => {
         expect(assetDetails.Action).to.equal('Publish Page');
     });
     

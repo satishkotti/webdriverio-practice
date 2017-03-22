@@ -28,7 +28,7 @@ describe('PPE-77199:Verify Page Publish to Live functionality from Interior Work
         expect(assetDetails.Name).to.equal('Irritable Bowel Syndrome Center New Feature Page');
     });
 
-    it('Template Action should be Publish Template', () => {
+    it('Page Action should be Publish Page', () => {
         expect(assetDetails.Action).to.equal('Publish Page');
     });
     

@@ -1,6 +1,6 @@
 var test = require('./../common/functions/functions');
 
-describe('Page Flows - Publish to Live', () => {
+describe('PPE-77199:Verify whether Page Publish to Live from Edit Screen is sent to Activity Queue', () => {
 
     var assetDetails = {};
 
