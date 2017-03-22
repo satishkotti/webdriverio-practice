@@ -116,6 +116,8 @@ module.exports.testSettings = {
             "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
             "ArticleTemplate": 'Article /  News Template',
+            "FeatureTemplate": 'Article / Feature Template',
+            "HealthRefTemplate": 'Article / Health Reference Template',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
             "FacebookCodeType": "Facebook"
