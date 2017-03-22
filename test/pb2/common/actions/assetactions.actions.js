@@ -46,7 +46,7 @@ module.exports.SavePublish = (action, comment) =>
     {
         case 'Publish to Staging': 
             acts.buttonMenu.get('Save/Publish', 'Publish to Staging');
-            page.textarea.get('Enter a comment below to publish to live').waitForVisible();
+            page.textarea.get('Enter a comment below to publish to staging').waitForVisible();
             page.textarea.get('Enter a comment below to publish to staging').setValue(comment);
             acts.button.get('Okay').click();
             acts.button.get('More Actions').waitForVisible();
@@ -77,7 +77,7 @@ module.exports.SavePublish = (action, comment) =>
             
         default:
             acts.buttonMenu.get('Save/Publish', 'Checkin');
-            page.textarea.get('Enter a comment below to publish to live').waitForVisible();
+            page.textarea.get('Enter a comment below to checkin asset').waitForVisible();
             page.textarea.get('Enter a comment below to checkin asset').setValue(comment);
             acts.button.get('Okay').click();
             browser.waitUntil( () => {
