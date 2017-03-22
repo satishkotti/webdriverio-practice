@@ -13,7 +13,7 @@ module.exports.getSpecs = function()
             break;
             case "d2cons":
                 var config = require('./test/d2/cons/config/config');
-                specList = [ './test/d2/cons/**/*.js' ];
+                specList = [ './test/d2/cons/**/PPE-95969.js' ];
             break;
             case "d2prof":
                 var config = require('./test/d2/prof/config/config');
@@ -39,8 +39,8 @@ console.log('specs: '+specList);
 
 exports.config = {
 
-    debug: false,
-    maxInstances: 10,
+    debug: true,
+    maxInstances: 1,
     
     //
     // ==================
@@ -80,7 +80,7 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: silent | verbose | command | data | result | error
-    logLevel: 'error',
+    logLevel: 'command',
     //log
     // Enables colors for log output.
     coloredLogs: true,
