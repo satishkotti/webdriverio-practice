@@ -19,6 +19,7 @@ var ckEditorObj = {
         expect(selectedOption).to.equal('Code');
     },
     sectionTextmModuleSelectModuleClick: function(mModuleOptionName){
+        
         contentTabUI.mModuleckEditorMenuClick(1);
         ckEditorObj.mModuleSubMenuClick(mModuleOptionName, 1);
     },

@@ -43,15 +43,11 @@ var mModuleShareableFactObj = {
         expect(socialShareLabel).to.equal('Suppress Social Share');
     },
     verifyTitleDescriptionAlignSocialSS: function (titleText, descriptionText, alignSelected, isSocialShareSupressChecked) {
-        var title = mModuleShareableFactUI.titleGet();
-        var desc = mModuleShareableFactUI.descriptionGet();
-        var align = mModuleShareableFactUI.alignGet();
-        var isSocialShareSelected = mModuleShareableFactUI.supressSocialShareChkBoxGet();
-
-        expect(title).to.equal(titleText);
-        expect(desc).to.equal(descriptionText);
-        expect(align).to.equal(alignSelected);
-        expect(isSocialShareSupress).to.equal(isSocialShareSupressChecked);
+        mModuleShareableFactUI.descriptionSet(descriptionText);
+        mModuleShareableFactUI.alignSet(alignSelected);
+        mModuleShareableFactUI.supressSocialShareChkBoxSet(isSocialShareSupressChecked);
+        mModuleShareableFactObj.verifyLabels();
+        mModuleShareableFactUI.cancel();
     }
 }
 

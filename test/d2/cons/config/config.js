@@ -1,8 +1,8 @@
 var randomstring = require("randomstring");
 var JSONPath = require('JSONPath');
 
-module.exports.GenerateRandomString = function GenerateRandomString() {
-    return randomstring.generate(5);
+module.exports.GenerateRandomString = function GenerateRandomString(X) {
+    return randomstring.generate(X);
 }
 module.exports.testSettings = {
     "dev01": {
@@ -122,7 +122,8 @@ module.exports.testSettings = {
             "ShareableTitle":"Shareable Title Test",
             "ShareableDescription": "Shareable Description Test",
             "ShareableAlign":"Left",
-            "ShareableSupressSocialShare":"true"
+            "ShareableSupressSocialShare":"true",
+            "SectionTextData":"sample test data"+ exports.GenerateRandomString(2)
 
         }
     }
