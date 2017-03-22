@@ -13,7 +13,7 @@ exports.config = {
     //
     specs: [
         //'./test/rt/**/*.js',
-        './test/pb2/**/*.js'
+        './test/pb2/**/PPE-103200.js'
     ],
     // Patterns to exclude.
     exclude: [
