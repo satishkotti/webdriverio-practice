@@ -1,7 +1,7 @@
 var test = require('./../common/functions/functions');
 var pageTestData = require('./../data/page.assets');
 
-describe('PPE-77199:Verify Shared Module Publish to Staging functionality from Search Results Screen', () => {
+describe('PPE-77199:Verify Shared Module Publish to Live functionality from Read Only Screen', () => {
   var assetDetails = {};
   var preData = {};
   var postData = {};
@@ -13,7 +13,8 @@ describe('PPE-77199:Verify Shared Module Publish to Staging functionality from S
          test.SelectAsset(testAsset);
          var chronID = test.GetChronIDOfTheSelectedAsset('Search Results');
          preData = test.GetAssetVersionAndStage('selected');
-         test.SaveOrPublishTheAssetFromMoreActions('Publish to Staging', 'Testing Activity Status Queue');
+         test.SearchFor(null, chronID, 'Global Search', null);
+         test.SaveOrPublishTheAssetFromMoreActions('Publish to Live', 'Testing Activity Status Queue');
 
          //enter activity queue page
          test.EnterActivityQueueStatusPage();
@@ -45,7 +46,7 @@ describe('PPE-77199:Verify Shared Module Publish to Staging functionality from S
     });
 
     it('Stage of the shared module should be active after publishing it to live', () => {
-        expect(postData.stage).to.equal('staging');
+        expect(postData.stage).to.equal('active');
     });
    
 });
