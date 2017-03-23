@@ -72,7 +72,28 @@ module.exports.SavePublish = (action, comment) =>
             acts.button.get('More Actions').waitForVisible();
             page.element('(//section[contains(@class, "pb-module-bottom-pad")])[2]').waitForVisible();
             break;
-            
+        case 'Schedule Publish':
+            acts.buttonMenu.get('Save/Publish', 'Publish to Live');
+            page.textarea.get('Enter a comment below to publish to live').waitForVisible();
+            page.textarea.get('Enter a comment below to publish to live').setValue(comment);         
+            $('//input[@id="schedPub"]').click();  
+            var datetime=browser.execute(function() {return $('input#pubDateTime').get(0).value}).value           
+            var splitDate = datetime.split(' ');
+            var time=splitDate[1].split(':');
+            var minutues=parseInt(time[1])+2;
+            minutues=minutues > 9 ? "" + minutues: "0" + minutues;
+            var futureDate=splitDate[0]+' '+time[0]+':'+minutues+' '+splitDate[2];            
+            browser.execute(function(date) {  $('input#pubDateTime').get(0).value=date; }, futureDate);      
+            acts.button.get('Okay').click();
+            browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';
+            }, 30000, 'Checkin is taking longer than expected', 500);
+            browser.waitUntil( () => {
+                return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
+            }, 30000, 'Checkin is taking longer than expected', 500);
+            acts.button.get('More Actions').waitForVisible();
+            page.element('(//section[contains(@class, "pb-module-bottom-pad")])[2]').waitForVisible();
+            break;       
         default:
             acts.buttonMenu.get('Save/Publish', 'Checkin');
             page.textarea.get('Enter a comment below to checkin asset').waitForVisible();
@@ -167,3 +188,6 @@ module.exports.SelectMoreActionsMenuItem = (menuItem) =>
             break; 
     }
 }
+
+
+
