@@ -1,8 +1,8 @@
 var randomstring = require("randomstring");
 var JSONPath = require('JSONPath');
 
-module.exports.GenerateRandomString = function GenerateRandomString(X) {
-    return randomstring.generate(X);
+module.exports.GenerateRandomString = function GenerateRandomString(numberOfChars) {
+    return randomstring.generate(numberOfChars);
 }
 module.exports.testSettings = {
     "dev01": {
@@ -102,6 +102,17 @@ module.exports.testSettings = {
             "bulletDescriptionValidation": "Please enter a description for the bullet!",
             "HomePageTitle": "D2"
         },
+        "pullQuote": {
+                "menuOptionText": "Pull Quote",
+                "text": "QA Pull Quote Text",
+                "attribution": "QA Pull Quote Attribution",
+                "alignLeft": "Left",
+                "contentClassification":"ZZ - Dummy Content Classification",
+                "publication":"No URL dummy publication",
+                "copyright": "2015 WebMD",
+                "primaryTopicId": "Cold and Flu",
+                "expectedClass": "wbmdembededmodule cke_widget_inline"
+            },
         "inputData": {
             "rotpath": "webmd::2/consumer_assets::3/editorial::4/articles::5/other::6/test::7",
             "rootnode": "webmddoc01",
@@ -124,7 +135,6 @@ module.exports.testSettings = {
             "ShareableAlign":"Left",
             "ShareableSupressSocialShare":"true",
             "SectionTextData":"sample test data"+ exports.GenerateRandomString(2)
-
         }
     }
 }

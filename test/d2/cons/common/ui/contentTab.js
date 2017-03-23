@@ -44,6 +44,8 @@ var contentTabUIObj = {
         browser.pause(5000);
     },
     checkIn: function(){
+        browser.waitForVisible(checkInButonSelector);
+        browser.scroll(0,0);
         browser.click(checkInButonSelector);
         browser.pause(5000);
         browser.frameParent();
