@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 50000;
+var maxWaitTimeInMs = 80000;
 
 module.exports = {
     login: function(url, username, password, repository, domain){
@@ -19,10 +19,12 @@ module.exports = {
             browser.waitForVisible("#menuDownArrow-button", maxWaitTimeInMs);
         },
     logoutCloseWindow: function(){
+        browser.waitForVisible('//*[@id="*menuUser"]//button',maxWaitTimeInMs);
         browser.click('//*[@id="*menuUser"]//button');
         browser.waitForVisible('#menuUserLogout', maxWaitTimeInMs);
         browser.click('#menuUserLogout');
         browser.waitForVisible("#login_username-input", maxWaitTimeInMs);
         browser.close();
+        browser.pause(5000);
     }
 }

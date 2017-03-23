@@ -232,19 +232,20 @@ describe('Interactive Article - Cleanup Module- US Feature Article', function ()
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextModuleMenuClick();
         moduleOption.selectModuleTypeSearchText('Image', 'heart');
-        moduleOption.verifySocialSharing();
+        //moduleOption.verifySocialSharing();
+        moduleOption.verifySocialSharingExists();
         moduleOption.moduleCancel();
 
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextModuleMenuClick();
         moduleOption.selectModuleTypeSearchText('Video', 'heart');
-        moduleOption.verifySocialSharing();
+        moduleOption.verifySocialSharingNotExists();
         moduleOption.moduleCancel();
 
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextModuleMenuClick();
         moduleOption.selectModuleTypeSearchText('Slideshow', 'heart');
-        moduleOption.verifySocialSharing();
+        moduleOption.verifySocialSharingNotExists();
         moduleOption.moduleCancel();
 
         contentTab.checkIn();
@@ -411,19 +412,19 @@ describe('Interactive Article - Cleanup Module - US Health Reference Article', f
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextModuleMenuClick();
         moduleOption.selectModuleTypeSearchText('Image', 'heart');
-        moduleOption.verifySocialSharing();
+        moduleOption.verifySocialSharingExists();
         moduleOption.moduleCancel();
 
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextModuleMenuClick();
         moduleOption.selectModuleTypeSearchText('Video', 'heart');
-        moduleOption.verifySocialSharing();
+        moduleOption.verifySocialSharingNotExists();
         moduleOption.moduleCancel();
 
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextModuleMenuClick();
         moduleOption.selectModuleTypeSearchText('Slideshow', 'heart');
-        moduleOption.verifySocialSharing();
+        moduleOption.verifySocialSharingNotExists();
         moduleOption.moduleCancel();
 
         contentTab.checkIn();
