@@ -41,6 +41,10 @@ var ckEditorObj = {
     relatedLinksCodeMenuClick: function(){
        contentTabUI.mModuleckEditorMenuClick(5);
         ckEditorObj.mModuleCodeMenuClick(5);
-    }    
+    },
+    sectionTextModuleMenuClick: function(){
+        contentTabUI.ModuleckEditorMenuClick(1);
+
+    }   
 }
 module.exports = ckEditorObj;
