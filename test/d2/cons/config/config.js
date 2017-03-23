@@ -113,6 +113,26 @@ module.exports.testSettings = {
                 "primaryTopicId": "Cold and Flu",
                 "expectedClass": "wbmdembededmodule cke_widget_inline"
             },
+    	"featureTemplate": {
+            "articleFeatureTemplate": 'Article / Feature Template',
+            "imageSearchText":"heart",
+            "featureModuleTitle":"QA Title",
+            "featureAssetTitle":"QA Asset Title",
+            "featureAssetDescription":"QA Asset Description",
+            "alignLeft": "Left",
+            "contentClassification":"ZZ - Dummy Content Classification",
+            "publication":"No URL dummy publication",
+            "copyright": "2015 WebMD",
+            "primaryTopicId": "Cold and Flu",
+            "expectedClass": "wbmdembededmodule cke_widget_inline",
+            "moduleTitleLabel": "Module Title",
+            "assetTitleLabel": "Asset Title",
+            "assetDescriptionLabel": "Asset Description",
+            "chronicleIdLabel": "Chronicle Id",
+            "alignLabel": "Align",
+            "thumbnailLabel": "Thumbnail",
+            "suppressSocialLabel": "Suppress Social Share"
+            },
         "inputData": {
             "rotpath": "webmd::2/consumer_assets::3/editorial::4/articles::5/other::6/test::7",
             "rootnode": "webmddoc01",
