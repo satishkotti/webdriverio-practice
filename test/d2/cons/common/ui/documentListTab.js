@@ -39,14 +39,17 @@ var documentListUIObj = {
     {
         browser.waitForExist("#x-menu-el-menuContextDocumentLifeCycle");
         browser.click("#x-menu-el-menuContextDocumentLifeCycle");
+        browser.pause(1000);
     },
     lifeCyclePowerPromoteSelect: function(){
         browser.waitForExist("//a[text()='Power Promote']");
         browser.click("//a[text()='Power Promote']");
+        browser.pause(1000);
     },
     lifeCyclePublishSelect: function(){
         browser.waitForExist("//a[text()='Publish']");
         browser.click("//a[text()='Publish']");
+        browser.pause(1000);
     },
     powerPromoteConfirmDialogueOkSelect: function(){
         browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
