@@ -23,8 +23,9 @@ default:
         browser.waitForVisible(locator);
         browser.click(locator);
         break;
-    case '':
-    locator = locator.split('//')[1];
+    case null:
+        var arr = tableColumn.split('//section[contains(.,"***")]');
+        locator = arr[1];
         locator = locator.replace('###', column);
         browser.waitForVisible(locator);
         browser.moveToObject(locator).click(locator);
