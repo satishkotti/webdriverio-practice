@@ -8,21 +8,18 @@ describe('PPE-77199:Verify Page Publish to Live functionality from Read Only Scr
          test.SearchFor(null, 'Irritable Bowel Syndrome Center New Feature Page', 'Interior Workcenter', 'Level 0/Centers - Health/Irritable Bowel Syndrome');
          var chronID = test.GetChronIDOfTheSelectedAsset();
          test.CheckoutAndEditTheAsset();
-         test.SaveOrPublishTheAsset('Save', 'Testing activity queue'); 
-       //  browser.pause(20000); 
-         test.SearchFor(null, chronID, 'Global Search', null);
-     //    browser.pause(20000); 
-         test.SaveOrPublishTheAssetFromMoreActions('Publish to Live', 'Testing activity queue');
-        //enter into the Queue Page  
-        test.EnterActivityQueueStatusPage();       
-        
-        browser.waitUntil( () => 
+         test.SaveOrPublishTheAsset('Publish to Live', 'Testing activity queue'); 
+         //enter into the Queue Page 
+         test.EnterActivityQueueStatusPage(); 
+         browser.waitUntil( () => 
         {
             assetDetails = test.GetAssetDetailsFromQueue(chronID);
-            return assetDetails.Status != 'IN PROGRESS';
+            return assetDetails.Status == 'IN PROGRESS';
         }, 120000, "Asset not pushed to the publishing queue yet", 30000);
 
-    });
+         test.SearchFor(null, chronID, 'Global Search', null);
+         test.EditTheAsset();
+        });
    
     //assertions
     it('Page Name should be Irritable Bowel Syndrome Center New Feature Page', () => {

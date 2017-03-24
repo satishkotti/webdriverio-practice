@@ -13,7 +13,8 @@ var menu = Object.create(page, {
     checkedOutDB: { get: () => { return browser.element('#grid-checkedOut');}},
     favoritesDB: {get: () => {return browser.element('#grid-favorites');}},
     tableColumnSort: { value: {get: (table, column, sortType) => {
-
+switch(table){
+default: 
         locator = tableColumn.replace('***', table);
         locator = locator.replace('###', column);
         browser.waitForVisible(locator);
@@ -21,6 +22,18 @@ var menu = Object.create(page, {
         locator = sort.replace('***', sortType);
         browser.waitForVisible(locator);
         browser.click(locator);
+        break;
+    case '':
+    locator = locator.split('//')[1];
+        locator = locator.replace('###', column);
+        browser.waitForVisible(locator);
+        browser.moveToObject(locator).click(locator);
+        locator = sort.replace('***', sortType);
+        browser.waitForVisible(locator);
+        browser.click(locator);
+        break;
+}
+
 
     }}}
 });

@@ -12,7 +12,11 @@ describe('PPE-77199:Verify Shared Module Publish to Live functionality from Sear
          test.SearchFor('SM', testAsset, 'Global Search', null);
          test.SelectAsset(testAsset);
          var chronID = test.GetChronIDOfTheSelectedAsset('Search Results');
-         preData = test.GetAssetVersionAndStage('selected');
+         test.EditTheAsset();
+         test.SaveOrPublishTheAsset('Save', 'Testing activity queue'); 
+         test.SearchFor('SM', testAsset, 'Global Search', null);
+         test.SelectAsset(testAsset);
+         preData = test.GetAssetVersionAndStage('selected'); 
          test.SaveOrPublishTheAssetFromMoreActions('Publish to Live', 'Testing Activity Status Queue');
 
          //enter activity queue page
@@ -41,7 +45,7 @@ describe('PPE-77199:Verify Shared Module Publish to Live functionality from Sear
         test.SearchFor('SM', testAsset, 'Global Search', null);
         test.SelectAsset(testAsset);
         postData = test.GetAssetVersionAndStage('selected');
-        expect(postData.version).to.equal(preData.version + 1.0);
+        expect(postData.version).to.equal(preData.version);
     });
 
     it('Stage of the shared module should be active after publishing it to live', () => {
