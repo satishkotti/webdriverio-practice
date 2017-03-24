@@ -103,7 +103,7 @@ describe('Interactive Article - JavaScript Module', function () {
         var objName = cidName.objectName;
         chronicleId = cidName.chronicleId;
         propertiesTab.setRequiredProperties(objName,'ZZ - Dummy Content Classification',objName,objName,objName,objName,'No URL dummy publication','2015 WebMD','Cold and Flu')
-        
+        browser.pause(2000);
         documentListTab.assetPowerPromotePublishToStaging(global.d2ConDataSettings.inputData.ArticleObjectName);
 
     });
@@ -119,13 +119,8 @@ describe('Interactive Article - JavaScript Module', function () {
 
                 expect(jsEmbedAssets.length).to.equal(1);
                 expect(jsEmbedAssets[0].parent.$.jstype).to.equal('facebook');
-                expect(jsEmbedAssets[0].parent.$.align).to.equal('');
-                expect(jsEmbedAssets[0].parent.$.asset_description).to.equal('');
-                expect(jsEmbedAssets[0].parent.$.asset_title).to.equal('');
-                expect(jsEmbedAssets[0].parent.$.chronic_id).to.equal('');
                 expect(jsEmbedAssets[0].parent.$.class).to.equal('wbmdembededmodule cke_widget_inline');
-                expect(jsEmbedAssets[0].parent.$.module_title).to.equal('');
-                expect(jsEmbedAssets[0].parent.$.thumbnail).to.equal('');
+                
                 
                 var jsBlobVal = JSONPath({json: result,  path: "$..section_text.embeded_module.jsblob" });
                 expect(jsEmbedAssets.length).to.equal(1);
@@ -136,7 +131,7 @@ describe('Interactive Article - JavaScript Module', function () {
 
      it('should verify Stored under webmd/web_publisher_list/lookups/interactive_articles -  PPE-PPE-103419', function () {
 
-              mModuleCodeOption.RepositoryRefresh();
+              browser.refresh();
               browser.pause(5000);
               repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.LookupFolderPath);
               var CodeTypes = global.d2ConDataSettings.inputData.CodeTypes;
