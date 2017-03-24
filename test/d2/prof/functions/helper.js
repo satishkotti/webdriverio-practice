@@ -1,3 +1,4 @@
+var randomstring = require("randomstring");
 var maxWaitInMs = 20000;
 
 module.exports.getUrlAndTitle = function(){
@@ -123,11 +124,11 @@ module.exports.verifypropertieslabels = function checkeditpropertieslabels(brows
 //     return isExist;
 // };
 
-module.exports.editproperties = function editproperties(browser,ArtTitle)
+module.exports.editproperties = function(browser,ArtTitle)
 { 
     //browser.pause(10000);
         browser.leftClick("//span[@title='"+ArtTitle+"']")
-        browser.pause(15000);
+        browser.pause(7000);
         browser.leftClick("//span[text()='Properties']");
         browser.doubleClick("//span[text()='Properties']");
         browser.pause(10000);
@@ -136,15 +137,15 @@ module.exports.editproperties = function editproperties(browser,ArtTitle)
         browser.pause(10000);
 
         //Window Title Override
-        browser.setValue('#wbmd_wdw_ttl-input',"testing");
+        browser.setValue('#wbmd_wdw_ttl-input',randomstring.generate(5));
         //Super Title
-        browser.setValue('#wbmd_super_title-input',"testing");
+        browser.setValue('#wbmd_super_title-input',randomstring.generate(5));
         //Sub Title
-        browser.setValue('#wbmd_sub_title-input',"testing");
-         //Lead Specialty
+        browser.setValue('#wbmd_sub_title-input',randomstring.generate(5));
+        //Lead Specialty
         browser.leftClick("//div[@id='wbmd_lead_spclty']/img");
-        browser.waitForVisible("//div[@title='Cardiology']",20000);
-        browser.leftClick("//div[@title='Cardiology']");
+        browser.waitForVisible("//div[@title='"+global.d2ProfDataSettings.LeadSpecialty+"']",20000);
+        browser.leftClick("//div[@title='"+global.d2ProfDataSettings.LeadSpecialty+"']");
         //Specialties ( High )
         browser.click("#assistance");
         browser.waitForVisible("#AssistanceListDialog",60000);
@@ -194,11 +195,11 @@ module.exports.editproperties = function editproperties(browser,ArtTitle)
         browser.pause(3000);
 
         //WebMD Keywords
-        browser.setValue('#wbmd_keywords-input',"testing");
+        browser.setValue('#wbmd_keywords-input',randomstring.generate(5));
          //User Description
-        browser.setValue('#wbmd_desc_user-input',"testing");
+        browser.setValue('#wbmd_desc_user-input',randomstring.generate(5));
         //Meta Description
-        browser.setValue('#wbmd_desc_meta-input',"testing");
+        browser.setValue('#wbmd_desc_meta-input',randomstring.generate(5));
          //Thumbnail Image
        // browser.setValue('#wbmd_desc_meta-input',"testing");
 
@@ -223,9 +224,9 @@ module.exports.editproperties = function editproperties(browser,ArtTitle)
 
         //Content Developer
         browser.leftClick("//div[@id='wbmd_cont_dev']/img");
-        browser.waitForVisible("//div[@title='Medscape']",20000);
-        browser.leftClick("//div[@title='Medscape']");  
-
+        browser.waitForVisible("//div[@title='"+global.d2ProfDataSettings.ContentDeveloper+"']",20000);
+        browser.leftClick("//div[@title='"+global.d2ProfDataSettings.ContentDeveloper+"']");  
+   
         //Bucket Collections
         browser.leftClick("//div[@id='x-form-el-wbmd_bkt_gen_coll_id']//div[@id='assistance']");
         browser.waitForVisible("#AssistanceListDialog",60000);
@@ -288,10 +289,143 @@ module.exports.editproperties = function editproperties(browser,ArtTitle)
         browser.waitForVisible("//button[contains(.,'Now')]",30000);
         browser.leftClick("//button[contains(.,'Now')]");
        
-
-
-
         //Save
         browser.leftClick("#save-button");
         browser.pause(40000);
 };
+
+module.exports.editMandatoryFields  = function(browser,ArtTitle)
+{ 
+    //browser.pause(10000);
+        browser.leftClick("//span[@title='"+ArtTitle+"']")
+        browser.pause(15000);
+        browser.leftClick("//span[text()='Properties']");
+        browser.doubleClick("//span[text()='Properties']");
+        browser.pause(7000);
+        console.log(browser.getAttribute('#title-input', 'readonly'))
+        
+        browser.moveToObject("//button[text()='Edit']");
+        browser.leftClick("//button[text()='Edit']");
+        browser.pause(7000);
+        console.log(browser.getAttribute('#title-input', 'readonly'))
+        //Window Title Override
+        browser.setValue('#wbmd_wdw_ttl-input',randomstring.generate(5));
+        //Super Title
+        browser.setValue('#wbmd_super_title-input',randomstring.generate(5));
+        //Sub Title
+        browser.setValue('#wbmd_sub_title-input',randomstring.generate(5));
+         //Lead Specialty
+        browser.leftClick("//div[@id='wbmd_lead_spclty']/img");
+        browser.waitForVisible("//div[@title='"+global.d2ProfDataSettings.LeadSpecialty+"']",20000);
+        browser.leftClick("//div[@title='"+global.d2ProfDataSettings.LeadSpecialty+"']");
+       
+
+        //Content Developer
+        browser.leftClick("//div[@id='wbmd_cont_dev']/img");
+        browser.waitForVisible("//div[@title='"+global.d2ProfDataSettings.ContentDeveloper+"']",20000);
+        browser.leftClick("//div[@title='"+global.d2ProfDataSettings.ContentDeveloper+"']");  
+             
+        //Save
+        browser.leftClick("#save-button");
+        browser.pause(30000);
+        //browser.doubleClick("//span[text()='Properties']");
+};
+
+//Promote Operation
+module.exports.promote = function(browser,objectTitle,promotemsg)
+   {
+    browser.rightClick("//span[@title='" + objectTitle + "']");
+    browser.waitForVisible("#menuContextDocumentLifeCycle", 5000);
+    browser.leftClick("#menuContextDocumentLifeCycle");
+    browser.waitForVisible("//a[contains(text(),'Promote')]", 5000);
+    browser.leftClick("//a[contains(text(),'Promote')]");
+    browser.waitForVisible("//div[@class='modal-content']//button[contains(text(),'OK')]", 50000);
+    browser.waitForVisible("//table[@id='validateTable']//td[text()='"+promotemsg+"']",50000);
+    var msg= browser.getText("//table[@id='validateTable']//td[text()='"+promotemsg+"']");
+    browser.leftClick("//div[@class='modal-content']//button[contains(text(),'OK')]");
+   
+    browser.pause(5000); 
+    return msg; 
+    };
+
+// Demote Operation
+module.exports.demote = function(browser,objectTitle,msg)
+   {
+    browser.rightClick("//span[@title='" + objectTitle + "']");
+    browser.waitForVisible("#menuContextDocumentLifeCycle");
+    browser.leftClick("#menuContextDocumentLifeCycle");
+    browser.waitForVisible("//a[contains(text(),'Demote')]", 5000);
+    browser.leftClick("//a[contains(text(),'Demote')]");
+    browser.waitForVisible("//div[@class='modal-content']//button[contains(text(),'OK')]", 5000);
+    var rmsg= browser.getText("//table[@id='validateTable']//td[text()='"+msg+"']");
+    browser.leftClick("//div[@class='modal-content']//button[contains(text(),'OK')]");
+    browser.pause(7000);
+    return rmsg;
+   };
+
+
+// PowerPromote Operation
+module.exports.powerpromote = function(browser,objectTitle,promotemsg)
+    {
+        browser.rightClick("//span[@title='" + objectTitle + "']");
+        browser.waitForVisible("#menuContextDocumentLifeCycle");
+        browser.leftClick("#menuContextDocumentLifeCycle");
+        browser.waitForVisible("//a[contains(text(),'Power Promote')]", 5000);
+        browser.leftClick("//a[contains(text(),'Power Promote')]");
+        browser.waitForVisible("//div[@class='modal-dialog prompt']//button[contains(text(),'OK')]", 50000);
+        browser.leftClick("//div[@class='modal-dialog prompt']//button[contains(text(),'OK')]");
+        browser.waitForVisible("//div[@class='modal-content']//button[contains(text(),'OK')]", 50000);
+        var msg= browser.getText("//table[@id='validateTable']//td[text()='"+promotemsg+"']");
+        browser.leftClick("//div[@class='modal-content']//button[contains(text(),'OK')]");
+        browser.pause(7000);
+        return msg;
+    };
+// Publish
+module.exports.publish=function(browser,objectTitle,publishState)
+{
+    browser.rightClick("//span[@title='" + objectTitle + "']");
+    browser.waitForVisible("#menuContextDocumentLifeCycle");
+    browser.leftClick("#menuContextDocumentLifeCycle");
+    browser.waitForVisible("//a[contains(text(),'Publish')]", 35000);
+    browser.leftClick("//a[contains(text(),'Publish')]");
+    browser.waitForVisible("//div[@class='modal-dialog prompt']//button[contains(text(),'OK')]", 30000);
+    browser.waitForVisible("//input[@value='"+publishState+"']", 50000);
+    browser.leftClick("//input[@value='"+publishState+"']");
+    browser.leftClick("//div[@class='modal-dialog prompt']//button[contains(text(),'OK')]");
+    browser.pause(7000);
+};
+//Expire Now
+module.exports.expireNow = function(browser,objectTitle,msg)
+   {
+    browser.rightClick("//span[@title='" + objectTitle + "']");
+    browser.waitForVisible("#menuContextDocumentLifeCycle", 5000);
+    browser.leftClick("#menuContextDocumentLifeCycle");
+    browser.waitForVisible("//a[contains(text(),'Expire Now')]", 5000);
+    browser.leftClick("//a[contains(text(),'Expire Now')]");
+    browser.waitForVisible("//div[@class='modal-content']//button[contains(text(),'OK')]", 50000);
+    var rmsg= browser.getText("//table[@id='validateTable']//td[text()='"+msg+"']");
+    browser.leftClick("//div[@class='modal-content']//button[contains(text(),'OK')]");
+   
+    browser.pause(5000); 
+    return rmsg; 
+};
+
+// CheckoutCheckin operation  
+    module.exports.checkoutCheckIn = function(browser,objectTitle)
+    {
+        browser.leftClick("//span[@title='" + objectTitle + "']");
+        browser.leftClick("//span[text()='Content']");
+        browser.pause(1000);
+        browser.doubleClick("//span[text()='Content']");
+        browser.pause(5000);
+        //IFrame switch start
+        var testval = browser.execute(function () {
+            return document.getElementById('ExternalWidget-3').getElementsByTagName('iframe').item(0).id;
+        });
+        browser.frame(testval.value);
+        browser.leftClick('//button[contains(string(),"Check-out")]');
+        browser.pause(15000);
+        browser.setValue("//h2[span[contains(.,'Above Title')]]//following-sibling::div//div[text()='Enter text here']", "Sample Text entered")
+        browser.leftClick("//button[contains(text(),'Check-in')]");
+        browser.pause(5000);
+    };
