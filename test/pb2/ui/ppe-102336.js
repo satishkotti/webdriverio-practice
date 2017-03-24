@@ -20,7 +20,7 @@ describe('PPE-77199:Verify the default sort order on Activity Queue Page is by a
     it('Default sort should be based on the action time', () => {
         var i = 0;
         var flag = true;
-        do
+        while(i < actionTimes.length-1)
         {
             at1 = moment(actionTimes[i]);
             at2 = moment(actionTimes[i + 1]);
@@ -30,7 +30,7 @@ describe('PPE-77199:Verify the default sort order on Activity Queue Page is by a
                 flag = false;
             }
             i++;
-        }while(i < actionTimes.length-1);
+        };
         expect(flag).to.be.true;
     });
 
