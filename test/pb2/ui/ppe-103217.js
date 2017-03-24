@@ -52,6 +52,7 @@ describe('PPE-77199:Verify Page Expire functionality from Search Results Screen'
     it('Version of the asset should remain the same after expiring the asset', () => {
         test.SearchFor('SM', testAsset, 'Global Search', null);
         test.ClickShowExpired();
+        browser.click('//uib-tab-heading[contains(.,"Shared Modules")]');
         test.SelectAsset(testAsset);
         postData = test.GetAssetVersionAndStage('selected');
         expect(postData.version).to.equal(preData.version);
