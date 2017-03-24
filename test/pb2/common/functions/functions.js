@@ -158,3 +158,8 @@ module.exports.Propagate = (specs) =>
 {
     props.Propagate(specs);
 }
+
+module.exports.CancelCheckout = () =>
+{
+    act.CancelCheckout();
+}

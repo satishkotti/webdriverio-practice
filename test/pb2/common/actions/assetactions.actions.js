@@ -167,3 +167,11 @@ module.exports.SelectMoreActionsMenuItem = (menuItem) =>
             break; 
     }
 }
+
+module.exports.CancelCheckout = () =>
+{
+    acts.button.get('Cancel Checkout').click();
+    var ele = acts.button.get('Okay');
+        ele.waitForVisible();
+        ele.click();
+}
