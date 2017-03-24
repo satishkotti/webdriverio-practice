@@ -189,7 +189,6 @@ module.exports.SelectMoreActionsMenuItem = (menuItem) =>
     }
 }
 
-<<<<<<< HEAD
 module.exports.CancelCheckout = () =>
 {
     acts.button.get('Cancel Checkout').click();
@@ -197,7 +196,3 @@ module.exports.CancelCheckout = () =>
         ele.waitForVisible();
         ele.click();
 }
-=======
-
-
->>>>>>> 29c59ed8fffe3d2b42755f883728f4050adf951d
