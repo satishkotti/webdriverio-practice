@@ -49,6 +49,8 @@ describe('PPE-77199:Verify the Propagation & Delete Propagation functionality fo
 
          test.SearchFor(null,parentChronId,'Global Search', null);
          test.SwitchAssetTabs('Template Layout');
+
+         //Propagate
          test.Propagate({
             "modules":
             [{

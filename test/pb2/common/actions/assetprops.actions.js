@@ -153,6 +153,7 @@ module.exports.PopulateSMProps = (assetProps) =>
 module.exports.AddModule = (contentPane, assetProps) =>
 {
     props.element('.fa-eye').click();
+    props.element('div[name="' + contentPane + '"').waitForVisible();
     props.element('div[name="' + contentPane + '"').moveToObject();
     props.element('div[name="' + contentPane + '"] .fa-plus.add-module').click();
     props.element('.pb-add-module.section-open').waitForVisible();

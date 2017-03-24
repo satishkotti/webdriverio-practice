@@ -115,7 +115,7 @@ module.exports.ClickEditButton = () =>
 {
     acts.button.get('Edit').click();
     acts.splbutton.get('Save/Publish').waitForVisible();
-    page.element('(//section[contains(@class, "pb-module-bottom-pad")])[2]').waitForVisible();
+    page.element('div.tab-pane.active').waitForVisible();
 }
 
 module.exports.ClickCheckoutAndEditButton = () =>
@@ -189,7 +189,6 @@ module.exports.SelectMoreActionsMenuItem = (menuItem) =>
     }
 }
 
-<<<<<<< HEAD
 module.exports.CancelCheckout = () =>
 {
     acts.button.get('Cancel Checkout').click();
@@ -197,7 +196,3 @@ module.exports.CancelCheckout = () =>
         ele.waitForVisible();
         ele.click();
 }
-=======
-
-
->>>>>>> 29c59ed8fffe3d2b42755f883728f4050adf951d
