@@ -145,7 +145,6 @@ module.exports.PopulateSMProps = (assetProps) =>
     if(assetProps.sponsorProgram != null ) { props.dropdown('Sponsor Program', assetProps.sponsorProgram) };
     if(assetProps.tier != 2) { props.dropdown('Tier', assetProps.tier) };
     actions.ClickContinueButton();
-    actions.ClickContinueButton();
     browser.waitForVisible('.pb-chron');
     return browser.getText('.pb-chron');
 }
