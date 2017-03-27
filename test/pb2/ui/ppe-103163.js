@@ -12,9 +12,14 @@ describe('PPE-77199:Verify Template Check In functionality from Edit Screen', ()
         test.LaunchAppAndLogin();
         test.SearchFor(null, 'Irritable Bowel Center Harmony Flexible Template', 'Interior Workcenter', 'Level 0/Centers - Health/Irritable Bowel Syndrome');
         chronID = test.GetChronIDOfTheSelectedAsset();
-        preData = test.GetAssetVersionAndStage('selected');
+       
         test.CheckoutAndEditTheAsset();
         test.SaveOrPublishTheAsset('Publish to Live', 'Testing activity queue');
+        
+        test.SearchFor('Template', 'Irritable Bowel Center Harmony Flexible Template', 'Global Search', null);
+        test.SelectAsset('Irritable Bowel Center Harmony Flexible Template');
+        preData = test.GetAssetVersionAndStage('selected');
+
         test.EnterActivityQueueStatusPage();
         browser.waitUntil(() => {
             assetDetails = test.GetAssetDetailsFromQueue(chronID);
