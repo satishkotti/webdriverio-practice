@@ -187,7 +187,7 @@ module.exports.GetAssetVersionAndStage = () =>
     var assetDetails = {};
     return assetDetails =  
     {
-        "version" : element.getText(),
+        "version" : parseFloat(element.getText()),
         "stage" : element.getAttribute('class').split('pb-lifecycle ')[1]
     };
 }

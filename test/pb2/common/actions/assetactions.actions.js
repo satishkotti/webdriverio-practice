@@ -189,10 +189,15 @@ module.exports.SelectMoreActionsMenuItem = (menuItem) =>
     }
 }
 
-module.exports.CancelCheckout = () =>
-{
+module.exports.CancelCheckout = () => {
     acts.button.get('Cancel Checkout').click();
     var ele = acts.button.get('Okay');
-        ele.waitForVisible();
-        ele.click();
+    ele.waitForVisible();
+    ele.click();
+    browser.waitUntil(() => {
+        return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';
+    }, 30000, 'Cancel Checkout did not happen yet', 500);
+    browser.waitUntil(() => {
+        return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
+    }, 30000, 'Cancel Checkout did not happen yet', 500);
 }
