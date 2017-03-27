@@ -116,6 +116,7 @@ module.exports.ClickEditButton = () =>
     acts.button.get('Edit').click();
     acts.splbutton.get('Save/Publish').waitForVisible();
     page.element('div.tab-pane.active').waitForVisible();
+    browser.pause(3000);
 }
 
 module.exports.ClickCheckoutAndEditButton = () =>
