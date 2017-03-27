@@ -56,6 +56,21 @@
 .fed-video .video-end .loading_medium_png {
 	margin: 15px auto 0;
 }
+.fed-video a.wbmd-related-videos {
+	border-radius: 3px;
+	border: 1px solid #187AAB;
+	display: inline-block;
+	font-family: 'Source Sans Pro', Arial, sans-serif;
+	font-size: 16px;
+	margin: 20px 0;
+	padding: 6px 14px;
+}
+
+.fed-video a.wbmd-related-videos:hover {
+	background-color: #187AAB;
+	color: #ffffff !important;
+	text-decoration: none;
+}
 
 /* Loading Spinner */
 .loading_medium_png {
@@ -112,6 +127,9 @@
 	}
 	.fed-video .vid-byline {
 		padding: 0 10px;
+	}
+	.fed-video a.wbmd-related-videos{
+		margin: 20px 10px;
 	}
 }
 /* Smartphones (landscape) ----------- */
