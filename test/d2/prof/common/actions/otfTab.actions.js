@@ -1,10 +1,27 @@
 var otfTabUI = require('./../ui/otfTab');
+var contentTabUI = require('./../ui/contentTab');
 
 module.exports = {
     selectOTFTab: function(shortTitle,subTitle,superTitle,leadSpecialty,contentDeveloper){
         otfTabUI.otfTabSelect();
     },
-    verfiyElementExists: function(selectorVal){
-        return browser.isExisting(selectorVal);
+    selectExternalWidget: function(data) {
+        contentTabUI.switchToExternalWidget3Frame();
+    },
+    verfiyIfElementExists: function(selectorVal) {
+        var isExisting =  browser.isExisting(selectorVal);
+        return isExisting;
+    },
+    verifyOTFHeader: function() {
+        otfTabUI.verifyOTFHeader();
+    },
+    verifyOTFValues: function(objName, newsObjectname){
+        otfTabUI.verifyOTFValues(objName, newsObjectname);
+    },
+    verifyOTFOutputVersionValues: function(){
+        otfTabUI.verifyOTFOutputVersionValues();
+    },
+    verifyCreateOutputVersion: function() {
+        otfTabUI.verifyCreateOutputVersion();
     }
 }

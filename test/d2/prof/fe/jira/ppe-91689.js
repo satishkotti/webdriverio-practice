@@ -18,10 +18,12 @@ describe('OTF Widget Verifications - PPE-91689', function () {
         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
     });
 
+    var objName;
+    var chronicleId;
     var  newsObjectname= global.d2ProfDataSettings.inputData.NewsArticleObjectName;
-    var objectName=global.d2ProfDataSettings.inputData.ArticleObjectName;
+
     console.log("obj1" + newsObjectname);
-    console.log("obj1" + objectName);
+
     it('Should verify the navigation and article creation functionality', function () {
         workspaceMenu.createContent(global.d2ProfDataSettings.inputData.ArticleProfileName,
                     global.d2ProfDataSettings.inputData.ArticleTemplate, 
@@ -30,8 +32,28 @@ describe('OTF Widget Verifications - PPE-91689', function () {
         documentListTab.selectAsset(newsObjectname);
     });
 
-     it('Should verify the OTF Widget existence', function () {
+    it('Should verify if the OTF Widget is highlighted for the selected asset', function () {
+        var cidName = propertiesTab.getChronicleIdAndName();
+        objName = cidName.objectName;
+        chronicleId = cidName.chronicleId;
         otfTab.selectOTFTab();
+        otfTab.selectExternalWidget();
+    });
+
+    it('Should verify if the OTF Header is displayed as expected for the selected asset', function () {
+        otfTab.verifyOTFHeader();
+    });
+
+    it('Should verify if the Asset values are displayed as expected under OTF Header', function () {
+        otfTab.verifyOTFValues(objName, newsObjectname);
+    });
+
+    it('Should verify if the default Output version values are displayed as expected under Article', function () {
+        otfTab.verifyOTFOutputVersionValues();
+    });
+
+    it('Should verify if new Output Version is created for selected Asset', function () {
+        otfTab.verifyCreateOutputVersion();
     });
 
 });

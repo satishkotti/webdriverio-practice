@@ -69,6 +69,7 @@ module.exports = {
         browser.click("//span[@text()='Other']")
     },
     propertiesTabSelect: function(){
+        browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
         browser.click(propertiesTabSelector);
         browser.waitForVisible("#wbmd_legacy_id", maxWaitTimeInMs);
     },
