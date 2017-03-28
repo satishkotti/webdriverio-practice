@@ -57,10 +57,10 @@
 				<div class="footer-acc" data-metrics-module="ftr">
 					<ul>
 						<li class="urac">
-							<a href="http://accreditnet2.urac.org/uracportal/Directory/CompanyView/2773" class="footer-acc-icon" data-metrics-link="urac"><img src="//img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/layout/shared/URAC_trans.gif" title="URAC Health Website Accreditation" alt="URAC Seal Image"/></a>
+							<a href="https://accreditnet2.urac.org/uracportal/Directory/CompanyView/2773" class="footer-acc-icon" data-metrics-link="urac"><img src="//img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/layout/shared/URAC_trans.gif" title="URAC Health Website Accreditation" alt="URAC Seal Image"/></a>
 						</li>
 						<li class="truste">
-							<a href="http://privacy.truste.com/privacy-seal/validation?rid=07326333-3522-463d-81bf-f00fd7171fff" class="footer-acc-icon" data-metrics-link="truste" title="TRUSTe Privacy Certification"><img style="border: none" src="//privacy-policy.truste.com/privacy-seal/seal?rid=07326333-3522-463d-81bf-f00fd7171fff" alt="TRUSTe Privacy Certification"/></a>
+							<a href="https://privacy.truste.com/privacy-seal/validation?rid=07326333-3522-463d-81bf-f00fd7171fff" class="footer-acc-icon" data-metrics-link="truste" title="TRUSTe Privacy Certification"><img style="border: none" src="//privacy-policy.truste.com/privacy-seal/seal?rid=07326333-3522-463d-81bf-f00fd7171fff" alt="TRUSTe Privacy Certification"/></a>
 						</li>
 					</ul>
 					<ul>
@@ -68,7 +68,7 @@
 							<a data-metrics-link="tag"><img title="TAG accredation" alt="TAG seal" src="//img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/layout/shared/tag-registered.png?resize=*:60px"/></a>
 						</li>
 						<li class="hon">
-							<a href="http://www.hon.ch/HONcode/Conduct.html?HONConduct298987" class="footer-acc-icon" data-metrics-link="hon"><img alt="HONcode Seal" src="//www.honcode.ch/HONcode/Seal/HONConduct298987_s1.gif" title="This site complies with the HONcode standard for trustworthy health information."/></a>
+							<a href="https://www.hon.ch/HONcode/Conduct.html?HONConduct298987" class="footer-acc-icon" data-metrics-link="hon"><img alt="HONcode Seal" src="//www.honcode.ch/HONcode/Seal/HONConduct298987_s1.gif" title="This site complies with the HONcode standard for trustworthy health information."/></a>
 						</li>
 					</ul>
 				</div>
