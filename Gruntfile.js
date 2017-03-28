@@ -19,11 +19,11 @@ module.exports = function (grunt) {
 		grunt.log.ok('grunt webmd-ingest:qa00staging');
 	});
 	// Build all
-	grunt.registerTask('build', ['clean','copy:css','sass','autoprefixer','cssmin','jshint','uglify','replace:sourceMappingURL','webmd-zip']);
+	grunt.registerTask('build', ['clean','copy:css','sass','autoprefixer','cssmin','jshint','uglify','replace:sourceMappingURL','gitinfo','usebanner','webmd-zip']);
 	// Build CSS
-	grunt.registerTask('css', ['clean', 'copy:css','sass','autoprefixer','cssmin','webmd-zip']);
+	grunt.registerTask('css', ['clean', 'copy:css','sass','autoprefixer','cssmin','gitinfo','usebanner','webmd-zip']);
 	// Build JS
-	grunt.registerTask('js', ['clean','jshint','uglify','replace:sourceMappingURL','webmd-zip']);
+	grunt.registerTask('js', ['clean','jshint','uglify','replace:sourceMappingURL','gitinfo','usebanner','webmd-zip']);
 
 	require('load-grunt-tasks')(grunt);
 
@@ -38,6 +38,11 @@ module.exports = function (grunt) {
 		dirDctmPbCssPath : 'webmd/PageBuilder_Assets/CSS/funded-editorial',
 		dirDctmPbImgPath : 'webmd/consumer_assets/site_images/funded-editorial',
 		fundedEditorialZip : 'ingest.zip',
+
+		// Banner Information
+		_pkg: grunt.file.readJSON('package.json'),
+		_banner: '/* repo: <%= _pkg.name %>/<%= gitinfo.local.branch.current.name %>@<%= gitinfo.description %> - Package Version: <%= _pkg.version %> - <%= grunt.template.today("yyyy-mm-dd hh:MM tt") %> - User: <%= gitinfo.local.branch.current.currentUser %> */\n',
+
 		// Build Tasks
 		clean: {
 			all: ['dist','build','sourcemaps','ingest.zip']
@@ -179,6 +184,27 @@ module.exports = function (grunt) {
 					from: 'sourceMappingURL=',
 					to: 'sourceMappingURL=<%= dirDctmPbJsSourcemapPath %>/'
 				}]
+			}
+		},
+		gitinfo: {
+			commands: {
+				'description': ['describe', '--tags', '--always', '--long', '--dirty']
+			}
+		},
+		usebanner: {
+			all: {
+				options: {
+					banner: '<%= _banner %>',
+					linebreak: false
+				},
+				files: {
+					src: [
+						'build/**/*.css',
+						'build/**/*.js',
+						'dist/**/*.css',
+						'dist/**/*.js'
+					]
+				}
 			}
 		},
 		"webmd-zip" : {

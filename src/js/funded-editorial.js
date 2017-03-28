@@ -270,11 +270,12 @@ webmd.fundedEditorial = {
 		var self = this,
 			chronId = window.s_unique_id;
 
-		if (chronId && !self.visitedPages[chronId]) {
+		if (chronId && self.visitedPages && !self.visitedPages[chronId]) {
 			self.visitedPages[chronId] = 1;
 		}
-
-		sessionStorage.setItem('visited', JSON.stringify(self.visitedPages));
+		if (self.hasStorage()) {
+			sessionStorage.setItem('visited', JSON.stringify(self.visitedPages));
+		}
 	},
 
 	updateArticleObj: function() {
@@ -282,7 +283,7 @@ webmd.fundedEditorial = {
 			articles = self.articleData ? self.articleData.articles : {},
 			current_url = window.location.href.split("?")[0].split("#")[0]; // remove querystring and hash from url
 
-		if (self.visitedPages[self.articleData.program.tocId]) {
+		if (self.visitedPages && self.visitedPages[self.articleData.program.tocId]) {
 			self.articleData.program.tocVisited = true;
 		}
 
@@ -295,7 +296,7 @@ webmd.fundedEditorial = {
 		$.each(articles, function(index) {
 			this.isCurrent = false;
 
-			if (self.visitedPages[this.id]) {
+			if (self.visitedPages && self.visitedPages[this.id]) {
 				this.visited = true;
 			}
 
