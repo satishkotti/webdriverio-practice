@@ -30,14 +30,24 @@ var queue = Object.create(page, {
             get: (chronID) => {
                 browser.waitForExist('#activityGrid');
                 browser.waitForVisible('#activityGrid');
-                locator = '//td[span[@chron="' + chronID + '"]]';
+               
+                if(chronID.length==16 && chronID.startsWith('091'))
+                {
+                    locator = '//td[span[@chron="' + chronID + '"]]';
+                }
+                else{
+                  locator = '//td[span[@chron="[' + chronID + ']"]]';
+                }
+                   
+               
                 var assetDetailsInQueue = {};
                 browser.waitUntil( () => {
                     return browser.isExisting('#activityGrid tbody tr') == true;
                 }, 30000, "Grid items not displayed", 1000);
 
                 browser.waitUntil( () => {
-                    return browser.isExisting('//td[span[@chron="' + chronID + '"]]') == true;
+                     return browser.isExisting(locator) == true;
+                    //return browser.isExisting('//td[span[@chron="' + chronID + '"]]') == true;
                 }, 30000, "Grid items not displayed", 1000);
 
                 if (browser.isExisting(locator)) {
