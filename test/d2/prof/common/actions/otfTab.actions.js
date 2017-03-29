@@ -21,7 +21,7 @@ module.exports = {
     verifyOTFOutputVersionValues: function(){
         otfTabUI.verifyOTFOutputVersionValues();
     },
-    verifyCreateOutputVersion: function() {
-        otfTabUI.verifyCreateOutputVersion();
+    verifyCreateOutputVersion: function(newsObjectname) {
+        otfTabUI.verifyCreateOutputVersion(newsObjectname);
     }
 }

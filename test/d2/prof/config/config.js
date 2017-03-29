@@ -107,6 +107,22 @@ module.exports.testSettings = {
 
             
              
+        },
+        "otfData": {
+            "objectType":"Object Type",
+            "objectName":"Object Name",
+            "title":"Title",
+            "status":"Status",
+            "primary":"Primary",
+            "link":"Link",
+            "unlink":"UnLink",
+            "article":"Article",
+            "audio":"Audio",
+            "wip":"WIP",
+            "outputVersion":"Output Version",
+            "text":"text",
+            "transcript":"Transcript",
+            "active":"Active"
         }
     }
 }

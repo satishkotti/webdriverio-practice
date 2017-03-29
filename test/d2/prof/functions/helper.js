@@ -34,8 +34,8 @@ module.exports.login = function (browser, params) {
 
 module.exports.isFindByIdExists = function(browser){
 
-    browser.waitForExist("//div[@id='tab-container-0']//span[text()='Find']/parent::*", maxWaitInMs);
-    return browser.isExisting("//div[@id='tab-container-0']//span[text()='Find']/parent::*");
+    browser.waitForExist("//div[@id='border-layout-container-1']//span[text()='Find']/parent::*", maxWaitInMs);
+    return browser.isExisting("//div[@id='border-layout-container-1']//span[text()='Find']/parent::*");
 };
 module.exports.traverspath = function(browser,parms){
     parms.rootpath.split('/').forEach(function(x){

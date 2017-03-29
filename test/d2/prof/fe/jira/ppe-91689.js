@@ -12,20 +12,17 @@ describe('OTF Widget Verifications - PPE-91689', function () {
         browser.windowHandleMaximize();  
         Login.login({
         url: functions.getEnvTestUrl(),
-        username: functions.getQANewsUser().username,
-        password: functions.getQANewsUser().password
+        username: functions.getQAPublicationUser().username,
+        password: functions.getQAPublicationUser().password
         });
         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
     });
 
     var objName;
-    var chronicleId;
     var  newsObjectname= global.d2ProfDataSettings.inputData.NewsArticleObjectName;
 
-    console.log("obj1" + newsObjectname);
-
     it('Should verify the navigation and article creation functionality', function () {
-        workspaceMenu.createContent(global.d2ProfDataSettings.inputData.ArticleProfileName,
+        workspaceMenu.createContent(global.d2ProfDataSettings.inputData.ProfileName,
                     global.d2ProfDataSettings.inputData.ArticleTemplate, 
                     newsObjectname, 
                     global.d2ProfDataSettings.inputData.ContentType);
@@ -33,9 +30,8 @@ describe('OTF Widget Verifications - PPE-91689', function () {
     });
 
     it('Should verify if the OTF Widget is highlighted for the selected asset', function () {
-        var cidName = propertiesTab.getChronicleIdAndName();
+        var cidName = propertiesTab.getObjectNameBasicTab();
         objName = cidName.objectName;
-        chronicleId = cidName.chronicleId;
         otfTab.selectOTFTab();
         otfTab.selectExternalWidget();
     });
@@ -53,7 +49,7 @@ describe('OTF Widget Verifications - PPE-91689', function () {
     });
 
     it('Should verify if new Output Version is created for selected Asset', function () {
-        otfTab.verifyCreateOutputVersion();
+        otfTab.verifyCreateOutputVersion(newsObjectname);
     });
 
 });

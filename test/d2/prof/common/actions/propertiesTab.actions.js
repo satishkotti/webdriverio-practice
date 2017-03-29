@@ -10,6 +10,14 @@ module.exports = {
             title:propertiesTabUI.titileGet()
         };
     },
+    getObjectNameBasicTab: function(){
+        propertiesTabUI.propertiesBasicTabSelect();
+        return {
+            chronicleId: propertiesTabUI.chronicleIdGet(),
+            objectName: propertiesTabUI.objectNameGet(),
+            title:propertiesTabUI.titileGet()
+        };
+    },
     setRequiredProperties: function(shortTitle,subTitle,superTitle,leadSpecialty,contentDeveloper){
         
         propertiesTabUI.propertiesTabSelect();

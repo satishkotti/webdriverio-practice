@@ -1,5 +1,6 @@
 var maxWaitTimeInMs = 30000;
 var propertiesTabSelector= "//span[text()='Properties']";
+var basicTabSelector="//span[text()='Basic Information']";
 var isExist="";
 module.exports = {
     chronicleIdGet: function(){
@@ -73,7 +74,13 @@ module.exports = {
         browser.click(propertiesTabSelector);
         browser.waitForVisible("#wbmd_legacy_id", maxWaitTimeInMs);
     },
-
+    propertiesBasicTabSelect: function(){
+        browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
+        browser.click(propertiesTabSelector);
+        browser.waitForVisible(basicTabSelector, maxWaitTimeInMs);
+        browser.click(basicTabSelector);
+        browser.waitForVisible("#wbmd_legacy_id", maxWaitTimeInMs);
+    },
     edit: function(){
         browser.click("//div[@tag_id='Properties-widget']//button[text()='Edit']");
     },
