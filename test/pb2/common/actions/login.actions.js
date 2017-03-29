@@ -1,15 +1,16 @@
 var LoginPage = require('./../elements/login.page');
 
-module.exports.Login = function()
+module.exports.LaunchApp = () =>
 {
+        LoginPage.open(global.appUrl);
+}
 
-        LoginPage.open();
-        LoginPage.username.setValue('QAPbUser09');
-        LoginPage.password.setValue('Complexwordsforaccounts!');
+module.exports.Login = (user, pass) => {
+
+        LoginPage.username.setValue(user);
+        LoginPage.password.setValue(pass);
         LoginPage.submit();
         LoginPage.browser.waitForVisible("#grid-favorites");
-
-        //expect(LoginPage.title).to.equal('Dashboard - WebMD PageBuilder');
 }
 
 module.exports.GetCurrentSite = () =>

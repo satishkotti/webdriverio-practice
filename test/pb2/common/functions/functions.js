@@ -5,10 +5,27 @@ var props = require('./../actions/assetprops.actions');
 var search = require('./../actions/search.actions');
 var menu = require('./../actions/menus.actions');
 var queue = require('./../actions/queue.actions');
+var usersDetails = require('./../../config/users');
+var user = usersDetails.users;
 
-module.exports.LaunchAppAndLogin = () =>
+module.exports.LaunchAppAndLogin = (user) =>
 {
-    app.Login();
+    switch (user)
+    {
+        default: app.LaunchApp(); app.Login(global.username, global.password);break;
+        case 'superuser': app.LaunchApp(); app.Login(user.superuser.username, user.superuser.password);break;
+        case 'superuser1': app.LaunchApp(); app.Login(user.superuser1.username, user.superuser1.password);break;
+    }
+    
+}
+
+module.exports.Login = (user) => {
+    switch (user)
+    {
+        default: app.Login(global.username, global.password);
+        case 'superuser': app.Login(user.superuser.username, user.superuser.password);
+        case 'superuser1': app.Login(user.superuser1.username, user.superuser1.password);
+    }
 }
 
 module.exports.EnterIWC = (menu, option) => 

@@ -1,4 +1,4 @@
-var test = require('./../common/functions/functions');
+var test = require('./../../../../common/functions/functions');
 var moment = require('moment-timezone');
 
 describe('PPE-77199:Verify the default sort order on Activity Queue Page is by action date', () => {
