@@ -202,3 +202,28 @@ module.exports.CancelCheckout = () => {
         return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
     }, 30000, 'Cancel Checkout did not happen yet', 500);
 }
+module.exports.SelectNodeAction=([actionName, publishNode,templateStatus,pageStatus])=>
+{
+    acts.buttonMenu.get('Node Actions',actionName);   
+    switch(actionName)
+    {
+         case 'Publish Node':               
+            browser.waitForVisible('//span[text()="'+publishNode+'"]//parent::span//preceding-sibling::span//input');
+            var node=$('//span[text()="'+publishNode+'"]//parent::span//preceding-sibling::span//input');
+            node.click();
+            if(templateStatus=='Live' && pageStatus=='Live')
+            {
+                $('//span[@class="pb-lifecycle active" and text()="Live"]//parent::span[text()="Template"]//parent::div//preceding-sibling::input').click();
+            }
+            else if(templateStatus=='Live' && pageStatus=='Staging')
+            {                
+                 $('(//span[@class="pb-lifecycle active" and text()="Live"]//parent::span[text()="Templates"]//parent::div//preceding-sibling::input)[1]').click();
+            }
+            else
+            {
+                $('(//span[@class="pb-lifecycle active" and text()="Live"]//parent::span[text()="Templates"]//parent::div//preceding-sibling::input)[2]').click();                
+            }
+           $('//button[contains(.,"Publish")]').click();
+        break;
+    }
+}

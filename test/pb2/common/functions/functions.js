@@ -180,3 +180,8 @@ module.exports.CancelCheckout = () =>
 {
     act.CancelCheckout();
 }
+
+module.exports.SelectNodeAction=([actionName, publishNode,templateStatus,pageStatus])=>
+{
+     act.SelectNodeAction([actionName, publishNode,templateStatus,pageStatus]);
+}
