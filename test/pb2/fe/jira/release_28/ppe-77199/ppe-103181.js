@@ -1,7 +1,7 @@
-var test = require('./../common/functions/functions');
-var templateTestData = require('./../data/template.assets');
-var pageTestData = require('./../data/page.assets');
-var pmTestData = require('./../data/pagemodule.assets');
+var test = require('./../../../../common/functions/functions');
+var templateTestData = require('./../../../../data/template.assets');
+var pageTestData = require('./../../../../data/page.assets');
+var pmTestData = require('./../../../../data/pagemodule.assets');
 
 describe('PPE-77199:Verify the Propagation & Delete Propagation functionality for New Template', () => {
   var assetDetails = {};

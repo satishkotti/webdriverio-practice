@@ -10,14 +10,15 @@
             "port": 5859,
             "name": "WBDIO - Run Tests",
             "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
-            "windows": {
-                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio.cmd"
-            },
+            //"windows": {
+                //"runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio.cmd"
+            //},
             "cwd": "${workspaceRoot}",
             "console": "integratedTerminal",
             // This args config runs only the file that's open and displayed
             // (e.g., a file in test/spec/):
             "args":[
+                "wdio.pbtest.conf",
                 "--spec", "${relativeFile}"
                 // To run a specific file, you can also do:
                 //"--spec", "test/specs/foo.spec.js"

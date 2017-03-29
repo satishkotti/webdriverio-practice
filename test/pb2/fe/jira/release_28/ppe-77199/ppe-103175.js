@@ -1,5 +1,5 @@
-var test = require('./../common/functions/functions');
-var templateTestData = require('./../data/template.assets');
+var test = require('./../../../../common/functions/functions');
+var templateTestData = require('./../../../../data/template.assets');
 
 describe('PPE-77199:Verify Template Expire functionality from Search Results Screen', () => {
   var assetDetails = {};

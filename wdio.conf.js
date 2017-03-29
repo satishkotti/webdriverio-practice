@@ -11,7 +11,7 @@ exports.config = {
     // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
-    //spec:['./test/pb2/ui/fe/jira/release_28/ppe-77199/ppe-102336.js'],
+    spec:['./test/pb2/**.js'],
     
     // Patterns to exclude.
     exclude: [
@@ -36,7 +36,7 @@ exports.config = {
         chromeOptions:
         {
             //args: ['window-size=1920,1080']
-            args:['start-maximized']
+            args:['start-maximized', 'disable-infobars']
         }
     }],
     //
@@ -140,11 +140,6 @@ exports.config = {
     before: function() {
         
         var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'dev01';
-        var testApp = process.env.npm_config_testApp ? process.env.npm_config_testApp : 'pb2' ;
-
-        var username = 'QAPbUser09';
-        var password = 'Complexwordsforaccounts!';
-        var testNode = 'Level 0/zTest/zSubTest1';
         var chai = require('chai');
         chai.config.includeStack = true;
         expect = chai.expect;
@@ -154,39 +149,11 @@ exports.config = {
         should = chai.should();
         _ = require('lodash');
 
-          try
-    {
-        switch(testApp) {
-            case "pb2":
-                var config = require('./pb2.config');
-                global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
-                global.dataSettings = config.EnvSettings.getEnvData(testEnv);
-            break;
-            case "d2cons":
-                var config = require('./test/d2/cons/config/config');
-                global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
-                global.d2ConDataSettings = config.EnvSettings.getEnvData(testEnv);
-            break;
-            case "d2prof":
-                var config = require('./test/d2/prof/config/config');
-                global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
-                global.d2ProfDataSettings = config.EnvSettings.getEnvData(testEnv);
-            break;
-            case "rt":
-                var config = require('./test/rt/config/config');
-                global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
-                global.rt2DataSettings = config.EnvSettings.getEnvData(testEnv);
-                break;
-            }  
-        }
-        catch(err)
-        {
-            console.log(err);
-        }
-        
-        global.pb2Url = "genesys."+ testEnv +"webmd.com";
-		global.rtUrl = "http://www." + testEnv + "webmd.com";
-		global.profD2Url = "http://www." + testEnv + "webmd.com";
+        var appConfigFile = require('./test/pb2/config/test.config');
+        var appConfig = appConfigFile.config;
+        global.appUrl = 'http://genesys.' + appConfig.testEnv.dev + '.webmd.com';
+        global.username = appConfig.appAccess.users.default.username;
+        global.password = appConfig.appAccess.users.default.password;
     },
     //
     // Gets executed after all tests are done. You still have access to all global variables from

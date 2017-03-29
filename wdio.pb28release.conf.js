@@ -5,7 +5,7 @@ var wdioConf = require('./wdio.conf.js');
 exports.config = merge(wdioConf.config, {
 
     debug: false,
-    specs: ['./test/pb2/**/PPE-103161.js',],
+    //specs: ['./test/pb2/**/PPE-103161.js',],
     suites: {
             templates: [
                 './test/pb2/**/PPE-103161.js',
@@ -84,7 +84,7 @@ exports.config = merge(wdioConf.config, {
         chromeOptions:
         {
             //args: ['window-size=1920,1080']
-            args:['start-maximized']
+            args:['start-maximized', 'disable-infobars']
         }
     }],
 
@@ -101,7 +101,7 @@ exports.config = merge(wdioConf.config, {
 
         var appConfigFile = require('./test/pb2/config/release28.config');
         var appConfig = appConfigFile.config;
-        global.appUrl = 'http://genesys.' + appConfig.testEnv + '.webmd.com';
+        global.appUrl = 'http://genesys.' + appConfig.testEnv.dev + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
 

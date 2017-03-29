@@ -1,4 +1,4 @@
-var test = require('./../common/functions/functions');
+var test = require('./../../../../common/functions/functions');
 
 describe('PPE-77199:Verify the Schedule Publish functionality for pages', () => {
   var assetDetails = {};

@@ -1,4 +1,4 @@
-var test = require('./../common/functions/functions');
+var test = require('./../../../../common/functions/functions');
 
 describe('PPE-77199: Verify the ability to sort the Activity Queue Page results by Action Name', () => {
     var assetDetails = {};

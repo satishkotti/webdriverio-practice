@@ -1,5 +1,5 @@
-var test = require('./../common/functions/functions');
-var pageTestData = require('./../data/page.assets');
+var test = require('./../../../../common/functions/functions');
+var pageTestData = require('./../../../../data/page.assets');
 
 describe('PPE-77199:Verify Shared Module Publish to Live functionality from Edit Screen', () => {
   var assetDetails = {};

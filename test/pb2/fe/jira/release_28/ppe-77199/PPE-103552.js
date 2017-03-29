@@ -1,4 +1,4 @@
-var test = require('./../common/functions/functions');
+var test = require('./../../../../common/functions/functions');
 
 describe('PPE-77199:Verify whether Page Publish to Live from Edit Screen is sent to Activity Queue', () => {
 

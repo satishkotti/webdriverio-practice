@@ -1,4 +1,4 @@
-var test = require('./../common/functions/functions');
+var test = require('./../../../../common/functions/functions');
 
 describe('PPE-77199:Verify Template Publish to Staging functionality from Read Only Screen', () => {
   var assetDetails = {};

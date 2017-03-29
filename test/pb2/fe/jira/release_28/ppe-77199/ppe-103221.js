@@ -1,5 +1,5 @@
-var test = require('./../common/functions/functions');
-var smTestData = require('./../data/sm.assets');
+var test = require('./../../../../common/functions/functions');
+var smTestData = require('./../../../../data/sm.assets');
 
 describe('PPE-77199:Verify Shared Module Expire functionality from Read Only Screen', () => {
   var assetDetails = {};
