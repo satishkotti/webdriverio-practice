@@ -87,7 +87,7 @@
 					/* Social buttons at bottom of non-spon article */
 					if (window.s_topic !== "4121") {
 						webmd.m.socialshareconfig.baseHtmlTmpl = '<div class="plugin plugin-socialshare" data-metrics-module="rspsv-sharesubcntnt"></div>';
-						$articleCP.append(btmShare).find('#fed-sharebar-btm').socialshareplugin(webmd.m.socialshareconfig);
+						$article.append(btmShare).find('#fed-sharebar-btm').socialshareplugin(webmd.m.socialshareconfig);
 					}
 			
 				});
