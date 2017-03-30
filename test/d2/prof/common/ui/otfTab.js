@@ -11,11 +11,18 @@ module.exports = {
             browser.waitForVisible("//center[@title='OnTheFly']", maxWaitTimeInMs);
             browser.click("//center[@title='OnTheFly']");
         }else{
+            browser.waitForExist(otfTabSelector, maxWaitTimeInMs);
             browser.click(otfTabSelector);
             browser.waitForExist(otfWidget, maxWaitTimeInMs);
         }
 
     }, 
+    otfWidgetSelector: function(){
+        return otfWidget;
+    },
+    otfTabSelector: function(){
+        return otfTabSelector;
+    },
     objectTypeHeader: function(){
         return browser.getText("//table[@st-table='displayedCollection']/thead/tr/th[2]");
     },

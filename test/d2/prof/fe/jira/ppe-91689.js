@@ -52,7 +52,7 @@ describe('OTF Widget Verifications - PPE-91689', function () {
         otfTab.verifyCreateOutputVersion(newsObjectname);
     });
     
-    it.skip('Should verify the data for new Output Version created for selected Asset', function () {
+    it('Should verify the data for new Output Version created for selected Asset', function () {
         otfTab.verifyNewOutputVersionData(newsObjectname);
     });
 });

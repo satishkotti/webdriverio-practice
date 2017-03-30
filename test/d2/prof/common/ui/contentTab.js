@@ -24,7 +24,7 @@ var contentTabUIObj = {
     },
     switchToExternalWidget4Frame: function(){
         browser.frame();
-        var contentWidgetIFrameElement = browser.element(externalWidget3Selector);
+        var contentWidgetIFrameElement = browser.element(externalWidget4Selector);
         browser.frame(contentWidgetIFrameElement.value);
     },
     switchTomModuleMenuFrame: function(){
