@@ -81,11 +81,18 @@ module.exports.testSettings = {
         "inputData": {
             "AssetName":"QATestAssethNrnC",
             "testFolderPath": "webmd/professional_assets/medscape/news/heartwire/news/200005",
+            "SlideFolderPath": "webmd/professional_assets/medscape/articles/article/2015",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
             "ArticleTemplate": 'News Article',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "NewsArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
+
+            
+            "SlideArticleTemplate": "News Article",
+            "SlideArticleObjectName": "QATestSlide" + exports.GenerateRandomString(5),
+            "SlideContentType": "Slide/Lecture Presentation",
+
             "ContentType":"News",
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
             "LeadSpecialty": "Cardiology",
