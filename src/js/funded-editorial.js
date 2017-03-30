@@ -203,6 +203,7 @@ webmd.fundedEditorial = {
 
 		if(typeof self.articleData !== 'undefined'){
 			self.updateArticleObj();
+			self.addVideoLink();
 		}
 
 		//if ($('#attribution_rdr').length) {
@@ -230,6 +231,28 @@ webmd.fundedEditorial = {
 			self.tocTiles.init();
 		} else if ($('.up-next-container, .branded-up-next-container, .wbmd-toolbar-menu').length === 0) {
 			self.createMenu.init();
+		}
+	},
+
+	addVideoLink : function (){
+
+		var self = this,
+		current_url = window.location.href,
+		$videoDescriptionContainer = $('.fed-video > .desc'),
+		videoLinkText = (typeof self.articleData.program.seeAllVideosText !== 'undefined' && self.articleData.program.seeAllVideosText.length > 0) ? self.articleData.program.seeAllVideosText : 'Watch More Videos',
+		videoLinkUrl = self.articleData.program.seeAllVideos,
+		$videoPlayList = $('.premium-video-container > .playlists'),
+		$a;
+
+		if(videoLinkUrl === current_url){
+			$videoPlayList.addClass('all-videos');
+		}
+
+		if (videoLinkUrl !== "" || videoLinkUrl && videoLinkUrl !== current_url){
+			$a = $('<a></a>');
+			$a.attr({ href : videoLinkUrl }).html(videoLinkText).attr('data-metrics-module', 'ed-rspsvlnchallvid').attr('data-metrics-link', '1');
+			$a.addClass('wbmd-related-videos');
+			$videoDescriptionContainer.after($a);
 		}
 	},
 
@@ -1248,7 +1271,7 @@ webmd.fundedEditorial = {
 		menu: 'wbmd-slidein-menu',
 
 		// Display in menu (top to bottom)
-		menuElements: ['.branded-up-next-container', '.up-next-container', '.wbmd-upnext-segments'],
+		menuElements: ['.branded-up-next-container', '.up-next-container', '.wbmd-upnext-segments', '.wbmd-see-all-videos'],
 
 		created: false,
 
@@ -1319,7 +1342,7 @@ webmd.fundedEditorial = {
 				$locator = ($('.attrib_right_fmt').length) ? $('.attrib_right_fmt') : $('#fed-sharebar'),
 				$contentPane = $locator.closest('div.pane'),
 				menu = '<div class="wbmd-toolbar-menu mlr"><div class="tools">' +
-						'	<div class="webmd-logo" data-metrics-module=""><a href="http://www.webmd.com" data-metrics-link="logo"><img src="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/masthead2015/logo-webmd-site.png"  alt="WebMD: Better information. Better health." title="WebMD: Better information. Better health." /></a></div>' +
+						'	<div class="webmd-logo" data-metrics-module=""><a href="http://www.webmd.com" data-metrics-link="logo"><img src="//img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/masthead2015/logo-webmd-site.png"  alt="WebMD: Better information. Better health." title="WebMD: Better information. Better health." /></a></div>' +
 						'	<div class="title"></div>' +
 						'	<div class="share"><div class="social-share-tools"></div></div>' +
 						'	<div class="attribution"></div>' +

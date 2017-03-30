@@ -25,12 +25,11 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:param>
-
+	
 	<xsl:template match="/">
 		<xsl:apply-templates select="webmd_rendition/content/wbmd_asset/webmd_module/module_data"></xsl:apply-templates>
 	</xsl:template>
 	<xsl:template match="module_data">
-
 	<xsl:if test="substring-before(substring-after(module_title, ' ['), ']') or substring-before(substring-after(module_title, '['), ']')">
 		<xsl:element name="style"><![CDATA[.branded-color {color:]]><xsl:choose>
 				<xsl:when test="substring-before(substring-after(module_title, ' ['), ']')">
@@ -82,7 +81,9 @@
 			<![CDATA[},]]>
 			<![CDATA["tocImageAlt" : "]]><xsl:value-of select="body_images/body_image/source/@alt" disable-output-escaping="yes" /><![CDATA[",]]>
 			<![CDATA["seeAllLink" : "]]><xsl:call-template name="GetURLRef"><xsl:with-param name="ObjectID"><xsl:value-of select="body_images/body_image/image_link/@chronic_id" /></xsl:with-param></xsl:call-template><![CDATA[",]]>
-			<![CDATA["seeAllText" : "]]><xsl:value-of select="body_images/body_image/override_text" disable-output-escaping="yes" /><![CDATA[",]]>
+			<![CDATA["seeAllText" : "]]><xsl:value-of select="body_images/body_image/override_text" disable-output-escaping="yes" /><![CDATA[",]]>	
+			<![CDATA["seeAllVideos" : "]]><xsl:call-template name="GetURLRef"><xsl:with-param name="ObjectID"><xsl:value-of select="body_images/body_image[2]/image_link/@chronic_id" /></xsl:with-param></xsl:call-template><![CDATA[",]]>
+			<![CDATA["seeAllVideosText" : "]]><xsl:value-of select="normalize-space(substring-before(body_images/body_image[2]/override_text, ' ['))" disable-output-escaping="yes" /><![CDATA[",]]>
 			<![CDATA["brandedColor" : ]]><xsl:choose>
 				<xsl:when test="substring-before(substring-after(module_title, ' ['), ']')">
 					<xsl:text>"</xsl:text><xsl:value-of select="normalize-space(substring-before(substring-after(module_title, ' ['), ']'))"/><xsl:text>"</xsl:text>
