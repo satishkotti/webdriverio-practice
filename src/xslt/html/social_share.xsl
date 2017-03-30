@@ -47,28 +47,11 @@
 			<xsl:attribute name="class">social-share-tools</xsl:attribute>
 			<xsl:attribute name="id">fed-sharebar</xsl:attribute>
 		</xsl:element>
-		<xsl:element name="div">
-			<xsl:attribute name="class">readspeaker</xsl:attribute>
-			<xsl:attribute name="id">readspeaker_area</xsl:attribute>
-			<xsl:element name="a">
-				<xsl:attribute name="class">readspeaker-button icon-listen</xsl:attribute>
-				<xsl:attribute name="accesskey">L</xsl:attribute>
-				<xsl:attribute name="title">Listen to article content</xsl:attribute>
-				<xsl:attribute name="href"><![CDATA[http://app.readspeaker.com/cgi-bin/rsent?customerid=5841&lang=en_us&readid=textArea]]></xsl:attribute>
-				<xsl:attribute name="target">_blank</xsl:attribute>
-				<xsl:attribute name="onclick">readpage(this.href, 'readspeaker-controls'); return false;</xsl:attribute>
-			</xsl:element>
-			
-			<xsl:element name="div">
-				<xsl:attribute name="id">readspeaker-controls</xsl:attribute>
-			</xsl:element>
-		</xsl:element>
 		<xsl:element name="script">
 			<xsl:attribute name="type">text/javascript</xsl:attribute>
 			<xsl:text disable-output-escaping="yes"><![CDATA[
 			$(function() {
-				var requiredItems = ["webmd.m.socialshareplugin", "css!socialshareplugin/1/socialshareplugin.min.css"],
-					useRS = false;
+				var requiredItems = ['socialshareplugin/3/webmd.m.socialshareplugin.min', 'css!socialshareplugin/3/socialshareplugin.min.css'];
 				
 				if (!webmd.m.socialshareconfig) {
 					webmd.m.socialshareconfig = {
@@ -77,24 +60,16 @@
 						<xsl:text disable-output-escaping="yes"><![CDATA[
 					};
 				}
-				
-				if (($('#textArea').length > 0) && (webmd.useragent.ua.type !== "mobile") && (webmd.m.socialshareconfig.readspeaker)) {
-					requiredItems.push('http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/javascript/readspeaker/en.js');
-					useRS = true;
-				}
-			
-				require.config({
-					paths: {
-						"webmd.m.socialshareplugin": "socialshareplugin/1/webmd.m.socialshareplugin.min"
-					}
-				});
-			
-				require(requiredItems, function() {
+	
+				require(requiredItems, function(socialshare) {
 					var $videoShare = $('.fed-video .info-container .cmd-section'),
-						$articleCP = $('article.article').parent(),
-						btmShare = '<div class="social-share-tools" id="fed-sharebar-btm"></div>',
-						btmRS = '<div class="readspeaker"> <a class="readspeaker-button icon-listen" href="#readspeaker_area" onclick="readpage(\'http://app.readspeaker.com/cgi-bin/rsent?customerid=5841&lang=en_us&readid=textArea\', \'readspeaker-controls\');" title="Listen to article content"></a> </div>';
+						$article = $('article.article'),
+						btmShare = '<div class="social-share-tools" id="fed-sharebar-btm"></div>';
+						
+					$article.addClass('active-page');
 			
+					socialshare.init();
+
 					if (webmd.m.socialshareconfig.shareOrder.indexOf('twitter') === -1) {
 						$videoShare.find('.cmd-twitr').hide();
 					}
@@ -110,14 +85,6 @@
 						$articleCP.append(btmShare).find('#fed-sharebar-btm').socialshareplugin(webmd.m.socialshareconfig);
 					}
 			
-					/* Readspeaker */
-					if (useRS) {
-						if (window.s_topic !== "4121") {
-							$articleCP.append(btmRS);
-						}
-						$('.readspeaker').show();
-						webmd.readspeakerPrep.init();
-					}
 				});
 			});
 			]]></xsl:text>
