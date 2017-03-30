@@ -32,6 +32,8 @@ var newContentObj = module.exports = {
         browser.waitForVisible('//div[@title="'+descName+'"]',maxWaitTimeInMs);
         browser.leftClick('//div[@title="'+descName+'"]');
         browser.click('//*[@id="next-button"]');
+        browser.waitForVisible("//div[@class='Thumbnail xml']", maxWaitTimeInMs);
+        browser.click('//*[@id="next-button"]');
         browser.waitForText('//span[@title="'+objName+'"]',40000);
     }
 }

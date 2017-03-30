@@ -52,7 +52,7 @@ var otfTabActionObj = {
         expect(statusValueOV).to.equal(global.d2ProfDataSettings.otfData.active);
          //unable to validate the primary input radio button
          var isPrimaryOV = otfTabUI.isPrimaryOV();
-         console.log("isPrimaryOV"+isPrimaryOV);        
+         console.log("isPrimaryOV:"+isPrimaryOV);        
     },
     verifyCreateOutputVersion: function(newsObjectname) {
         otfTabUI.verifyCreateOutputVersion(newsObjectname);
@@ -66,20 +66,39 @@ var otfTabActionObj = {
         otfTabActionObj.selectExternalWidget();
         browser.waitForVisible("//table[@st-table='displayedCollection']/tbody/tr[3]/td[2]/span[@ng-style='getRowStyle(item.level)']", maxWaitTimeInMs);
         var objectTypeValueNewOV= otfTabUI.objectTypeValueNewOV();
-        console.log("objectTypeValueOV"+objectTypeValueNewOV);
         expect(objectTypeValueNewOV).to.equal(global.d2ProfDataSettings.otfData.outputVersion);
         var objectNameValueNewOV = otfTabUI.objectNameValueNewOV();
-        console.log("objectNameValueOV"+objectNameValueNewOV);
         expect(objectNameValueNewOV).to.equal("OutputVersion-"+newsObjectname);
         var titleValueNewOV= otfTabUI.titleValueNewOV();
-        console.log("titleValueNewOV"+titleValueNewOV);
         expect(titleValueNewOV).to.equal("OutputVersion-Title-"+newsObjectname);
         var statusValueNewOV = otfTabUI.statusValueNewOV();
-        console.log("statusValueNewOV"+statusValueNewOV);
         expect(statusValueNewOV).to.equal(global.d2ProfDataSettings.otfData.active);
          //unable to validate the primary input radio button
          var isPrimaryNewOV = otfTabUI.isPrimaryNewOV();
-         console.log("isPrimaryNewOV"+isPrimaryNewOV);
+         console.log("isPrimaryNewOV:"+isPrimaryNewOV);
+    },
+    verifyMultipleOutputVersionCreation: function(newsObjectname) {
+        otfTabUI.verifyMultipleOutputVersionCreation(newsObjectname);
+    },
+    verifySecondOutputVersionData: function(newsObjectname) {
+        browser.pause(10000);
+        var otfTabSelector = otfTabUI.otfTabSelector();
+        browser.click(otfTabSelector);
+        var otfWidgetSelector = otfTabUI.otfWidgetSelector();
+        browser.waitForExist(otfWidgetSelector, 30000);
+        otfTabActionObj.selectExternalWidget();
+        browser.waitForVisible("//table[@st-table='displayedCollection']/tbody/tr[4]/td[2]/span[@ng-style='getRowStyle(item.level)']", maxWaitTimeInMs);
+        var objectTypeValueSecondOV= otfTabUI.objectTypeValueSecondOV();
+        expect(objectTypeValueSecondOV).to.equal(global.d2ProfDataSettings.otfData.outputVersion);
+        var objectNameValueSecondOV = otfTabUI.objectNameValueSecondOV();
+        expect(objectNameValueSecondOV).to.equal("OutputVersion-2-"+newsObjectname);
+        var titleValueSecondOV= otfTabUI.titleValueSecondOV();
+        expect(titleValueSecondOV).to.equal("OutputVersion-Title-2-"+newsObjectname);
+        var statusValueSecondOV = otfTabUI.statusValueSecondOV();
+        expect(statusValueSecondOV).to.equal(global.d2ProfDataSettings.otfData.active);
+         //unable to validate the primary input radio button
+         var isPrimarySecondOV = otfTabUI.isPrimarySecondOV();
+         console.log("isPrimarySecondOV:"+isPrimarySecondOV);
     }
 }
 
