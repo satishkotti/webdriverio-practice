@@ -60,29 +60,34 @@
 						<xsl:text disable-output-escaping="yes"><![CDATA[
 					};
 				}
-	
+
 				require(requiredItems, function(socialshare) {
 					var $videoShare = $('.fed-video .info-container .cmd-section'),
 						$article = $('article.article'),
+						$share = $(".social-share-tools"),
 						btmShare = '<div class="social-share-tools" id="fed-sharebar-btm"></div>';
 						
 					$article.addClass('active-page');
-			
-					socialshare.init();
 
+					socialshare.init();
+					
 					if (webmd.m.socialshareconfig.shareOrder.indexOf('twitter') === -1) {
 						$videoShare.find('.cmd-twitr').hide();
 					}
 					if (webmd.m.socialshareconfig.shareOrder.indexOf('facebook') === -1) {
 						$videoShare.find('.cmd-fb').hide();
 					}
-			
-					$(".social-share-tools").socialshareplugin(webmd.m.socialshareconfig);
-			
+
+					$share.socialshareplugin(webmd.m.socialshareconfig);
+
+					if ( ($('#textArea').length < 1 ) || (webmd.useragent.ua.type === "mobile") ) {
+						$share.find('.rsbtn').hide(); 
+					}
+
 					/* Social buttons at bottom of non-spon article */
 					if (window.s_topic !== "4121") {
 						webmd.m.socialshareconfig.baseHtmlTmpl = '<div class="plugin plugin-socialshare" data-metrics-module="rspsv-sharesubcntnt"></div>';
-						$articleCP.append(btmShare).find('#fed-sharebar-btm').socialshareplugin(webmd.m.socialshareconfig);
+						$article.append(btmShare).find('#fed-sharebar-btm').socialshareplugin(webmd.m.socialshareconfig);
 					}
 			
 				});
