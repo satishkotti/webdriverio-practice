@@ -1,8 +1,8 @@
 var randomstring = require("randomstring");
 var JSONPath = require('JSONPath');
 
-module.exports.GenerateRandomString = function () {
-    return randomstring.generate(5);
+module.exports.GenerateRandomString = function GenerateRandomString(numberOfChars) {
+    return randomstring.generate(numberOfChars);
 }
 module.exports.testSettings = {
     "dev01": {
@@ -80,8 +80,47 @@ module.exports.testSettings = {
                 }
             ]
         },
-        "ats": {
+    "ats": {
             "url": "http://ats.preview.dev04.webmd.com/SCSFile.aspx?ID="
+        }
+    },
+    "qa01": {
+        "siteMgmtDb": {
+            "user": "appsa",
+            "password": "",
+            "server": "",
+            "database": "Pagebuilder_SiteManagement"
+        },
+        "dctmApiConfig": {
+            "dctmUsername": "QAPublication",
+            "dctmPassword": "QA-Doc#1",
+            "dctmDocbase": "webmddoc01",
+            "url": "http://dmrest.qa01.webmd.com/pbws"
+        },
+        "d2cons": {
+            "url": "http://d2.qa01.webmd.com/D2/#d2",
+            "users": [{
+                    "id": "1",
+                    "username": "QAPublication",
+                    "password": "QA-Doc#1",
+                    "type": "user"
+                },
+                {
+                    "id": "2",
+                    "username": "QAPublication09",
+                    "password": "QA-Doc#1",
+                    "type": "super user"
+                },
+                {
+                    "id": "3",
+                    "username": "QAPublication1",
+                    "password": "QA-Doc#1",
+                    "type": "user"
+                }
+            ]
+        },
+    "ats": {
+            "url": "http://ats.preview.qa01.webmd.com/SCSFile.aspx?ID="
         }
     },
     "data": {
@@ -102,8 +141,39 @@ module.exports.testSettings = {
             "bulletDescriptionValidation": "Please enter a description for the bullet!",
             "HomePageTitle": "D2"
         },
+        "pullQuote": {
+                "menuOptionText": "Pull Quote",
+                "text": "QA Pull Quote Text",
+                "attribution": "QA Pull Quote Attribution",
+                "alignLeft": "Left",
+                "contentClassification":"ZZ - Dummy Content Classification",
+                "publication":"No URL dummy publication",
+                "copyright": "2015 WebMD",
+                "primaryTopicId": "Cold and Flu",
+                "expectedClass": "wbmdembededmodule cke_widget_inline"
+            },
+    	"featureTemplate": {
+            "articleFeatureTemplate": 'Article / Feature Template',
+            "imageSearchText":"heart",
+            "featureModuleTitle":"QA Title",
+            "featureAssetTitle":"QA Asset Title",
+            "featureAssetDescription":"QA Asset Description",
+            "alignLeft": "Left",
+            "contentClassification":"ZZ - Dummy Content Classification",
+            "publication":"No URL dummy publication",
+            "copyright": "2015 WebMD",
+            "primaryTopicId": "Cold and Flu",
+            "expectedClass": "wbmdembededmodule cke_widget_inline",
+            "moduleTitleLabel": "Module Title",
+            "assetTitleLabel": "Asset Title",
+            "assetDescriptionLabel": "Asset Description",
+            "chronicleIdLabel": "Chronicle Id",
+            "alignLabel": "Align",
+            "thumbnailLabel": "Thumbnail",
+            "suppressSocialLabel": "Suppress Social Share"
+            },
         "inputData": {
-            "rotpath": "webmd::2/consumer_assets::3/editorial::4/articles::5/other::6/test::7",
+            "rotpath": "webmd::2/consumer_assets::3/editorial::4/articles::5/other::6",
             "rootnode": "webmddoc01",
             "webmdcpyrights": '2015 WebMD',
             "objectTitle": "QAArticleNews",
@@ -116,11 +186,14 @@ module.exports.testSettings = {
             "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
             "ArticleTemplate": 'Article /  News Template',
-            "FeatureTemplate": 'Article / Feature Template',
-            "HealthRefTemplate": 'Article / Health Reference Template',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
-            "FacebookCodeType": "Facebook"
+            "FacebookCodeType": "Facebook",
+            "ShareableTitle":"Shareable Title Test",
+            "ShareableDescription": "Shareable Description Test",
+            "ShareableAlign":"Left",
+            "ShareableSupressSocialShare":"true",
+            "SectionTextData":"sample test data"+ exports.GenerateRandomString(2)
         }
     }
 }

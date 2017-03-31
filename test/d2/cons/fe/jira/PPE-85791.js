@@ -51,7 +51,7 @@ describe('Interactive Article - Cleanup Module- US Feature Article', function ()
         contentTab.checkOut();
     });
 
-    it('Verify the presence of checkbox and Social Media Share name for Image, Video, Slideshow module - US Feature Article', function () {
+    it.skip('Verify the presence of checkbox and Social Media Share name for Image, Video, Slideshow module - US Feature Article', function () {
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextModuleMenuClick();
         moduleOption.selectModuleTypeSearchText('Image', 'heart');
@@ -75,7 +75,7 @@ describe('Interactive Article - Cleanup Module- US Feature Article', function ()
 
     });
 
-    it(' Verify the XML attributes after inserting the Video module - US Feature Article ', function () {
+    it.skip(' Verify the XML attributes after inserting the Video module - US Feature Article ', function () {
 
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextModuleMenuClick();
@@ -115,7 +115,7 @@ describe('Interactive Article - Cleanup Module- US Feature Article', function ()
             }));
     });
 
-    it(' Verify the XML attributes after inserting the Slideshow module - US ', function () {
+    it.skip(' Verify the XML attributes after inserting the Slideshow module - US ', function () {
 
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextModuleMenuClick();
@@ -197,7 +197,7 @@ describe('Interactive Article - Cleanup Module- US Feature Article', function ()
     });
 });
 
-describe('Interactive Article - Cleanup Module - US Health Reference Article', function () {
+describe.skip('Interactive Article - Cleanup Module - US Health Reference Article', function () {
 
     var chronicleId;
     var AssetTitle;
@@ -376,7 +376,7 @@ describe('Interactive Article - Cleanup Module - US Health Reference Article', f
     });
 });
 
-describe('Interactive Article - Cleanup Module- US News Article', function () {
+describe.skip('Interactive Article - Cleanup Module- US News Article', function () {
 
     var chronicleId;
     var AssetTitle;

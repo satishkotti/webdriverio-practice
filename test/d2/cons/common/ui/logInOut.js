@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 80000;
+var maxWaitTimeInMs = 500000;
 
 module.exports = {
     login: function(url, username, password, repository, domain){
