@@ -24,7 +24,10 @@
     "webdriverio": "^4.4.0",
 	"supertest":"3.0.0",
   "moment-timezone":"0.5.11",
-  "randomstring":"1.1.5"
+  "randomstring":"1.1.5",
+  "xml2js":"3.10.8",
+  "request":"3.10.8",
+  "bluebird":"3.10.8"
   },
   "directories": {
     "test": "test"
