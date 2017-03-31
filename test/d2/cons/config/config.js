@@ -123,7 +123,7 @@ module.exports.testSettings = {
             "middlealignent": "Middle",
             "bulletlistalignment": "Right,Left,Middle",
             "CodeTypes": "Facebook, Youtube, Twitter, Pinterest, Reddit, Imgur, Snapchat, Tumblr, Instagram",
-            "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other",
+            "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other/test",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
             "ArticleTemplate": 'Article /  News Template',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),

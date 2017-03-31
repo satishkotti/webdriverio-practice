@@ -1,5 +1,6 @@
 var mModuleBulletListUI = require('./../ui/mModuleBulletList');
 
+
 var mModuleBulletListObj = {
     getHeadlineDescAlignBullets: function () {
         return info= {
@@ -15,11 +16,55 @@ var mModuleBulletListObj = {
         mModuleBulletListUI.setAlign(align);
      
             mModuleBulletListUI.setInsertBulletTitle(title);
-            mModuleBulletListUI.setInsertBulletDescription(description)
+            mModuleBulletListUI.setInsertBulletDescription(description);
       
         mModuleBulletListObj.verifyLabels();
-        mModuleBulletListObj.verifyData(headline, description, align, title,bulletdescription);
+
+        mModuleBulletListUI.insertBulletDescriptionValueSet();
+        mModuleBulletListUI.insert();
+        mModuleBulletListUI.insertModuleValidation(headline)
+        //contentTab.contenttabframeswitching();
+        //expect(headline).to.equal(browser.getText("(//figcaption[@class='embedModuleClickable' and contains(.,'"+headline+"')])"));
+
+       // mModuleBulletListObj.verifyData(headline, description, align, title,bulletdescription);
     },
+
+    multiplebulletlist: function(headline, description, align, title,title2){
+             mModuleBulletListUI.setModuleHeadline(headline);
+        mModuleBulletListUI.setModuleDescription(description);
+        mModuleBulletListUI.setAlign(align); 
+            mModuleBulletListUI.setInsertBulletTitle(title);
+            mModuleBulletListUI.setInsertBulletDescription();
+            mModuleBulletListUI.insertBulletDescriptionValueSet();
+            mModuleBulletListUI.setInsertBulletTitle(title2);
+            mModuleBulletListUI.setInsertBulletDescription();
+            mModuleBulletListUI.insertBulletDescriptionValueSet();
+            mModuleBulletListUI.insert();
+             mModuleBulletListUI.insertModuleValidation(headline)
+
+    },
+
+bulletlistEdit: function(headline, description, align,title,updatedbulletTitle){
+       mModuleBulletListUI.setModuleHeadline(headline);
+        mModuleBulletListUI.setModuleDescription(description);
+        mModuleBulletListUI.setAlign(align); 
+        mModuleBulletListUI.setInsertBulletTitle(title);
+            mModuleBulletListUI.setInsertBulletDescription();
+            mModuleBulletListUI.insertBulletDescriptionValueSet();
+            mModuleBulletListUI.bulletEdit(updatedbulletTitle);
+             mModuleBulletListUI.insert();
+             mModuleBulletListUI.insertModuleValidation(headline);
+
+},
+
+
+bulletlistTitleEdit: function(headline,updatedheadline){
+    mModuleBulletListUI.bulletTitleEdit(headline,updatedheadline);
+     mModuleBulletListUI.insertModuleValidation(updatedheadline);
+
+
+},
+
     updateCodeAndTypeCancel: function (headline, description, align, title,bulletdescription) {
         mModuleBulletListUI.setModuleHeadline(headline);
         mModuleBulletListUI.setModuleDescription(description);
@@ -64,7 +109,7 @@ var mModuleBulletListObj = {
         
         var moduleheadline = mModuleBulletListUI.getModuleHeadline();
         var moduledescription = mModuleBulletListUI.getModuleDescription();
-        var modulealign = mModuleBulletListUI.getAlign();
+        var align = mModuleBulletListUI.getAlign();
       //  var bulletsAdded = mModuleBulletListUI.getBullets();
         var bullettitle= mModuleBulletListUI.getInsertBulletTitle();
         var bulletdesc= mModuleBulletListUI.getInsertBulletDescription();
@@ -72,7 +117,7 @@ var mModuleBulletListObj = {
 
         expect(moduleheadline).to.equal(headline);
         expect(moduledescription).to.equal(description);
-        expect(moduleheadline.toLowercase()).to.equal(align);
+        expect(align.toLowercase()).to.equal(align);
         expect(bullettitle).to.equal(title);
         expect(bulletdesc).to.equal("D2");
 

@@ -22,6 +22,10 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.sectionTextSetValue(data);
     },
+
+    contenttabframeswitching: function(){
+        contentTabUI.switchToExternalWidgetFrame();
+    },
     highlightsSetValue: function(data){
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.highlightsSetValue(data);

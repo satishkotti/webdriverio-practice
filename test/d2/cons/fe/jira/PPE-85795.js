@@ -35,11 +35,11 @@ describe('Interactive Article - BulletList Module', function () {
                 global.d2ConDataSettings.inputData.ArticleObjectName, 
                 global.d2ConDataSettings.inputData.ArticleDescription);
         browser.pause(20000);*/
-        documentListTab.selectAsset("TestNewsArticle");
+        documentListTab.selectAsset("QATestAssetBKVpL");
         contentTab.checkOut();
     });
 
-    it('should Verify the bullet list options in the module menu,Bullet List module & verify user is able access bullet list with data in the Rich text editor', function () {
+    it.skip('should Verify the bullet list options in the module menu,Bullet List module & verify user is able access bullet list with data in the Rich text editor', function () {
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");
         
@@ -47,7 +47,29 @@ describe('Interactive Article - BulletList Module', function () {
         global.d2ConDataSettings.inputData.bulletlistmoduleDescription,
         global.d2ConDataSettings.inputData.leftalignent,"BulletTitle","D2"
          );
+
     });
+     it.skip('should Verify that user is able to insert multiple list within content - PPE-102331', function () {
+        contentTab.sectionTextSetValue("Sample Test Data");
+        ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");
+        
+        mModuleBulletOption.multiplebulletlist(global.d2ConDataSettings.inputData.bulletlistheadline, 
+        global.d2ConDataSettings.inputData.bulletlistmoduleDescription,
+        global.d2ConDataSettings.inputData.leftalignent,"BulletTitle","BulletTitle2"
+         );
+
+    });
+    it('should Verify the bullet list options in the module menu,Bullet List module & verify user is able access bullet list with data in the Rich text editor', function () {
+        contentTab.sectionTextSetValue("Sample Test Data");
+        ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");
+        
+        mModuleBulletOption.bulletlistEdit(global.d2ConDataSettings.inputData.bulletlistheadline, 
+        global.d2ConDataSettings.inputData.bulletlistmoduleDescription,
+        global.d2ConDataSettings.inputData.leftalignent,"QA","QAtest");
+        contentTab.contenttabframeswitching();
+        mModuleBulletOption.bulletlistTitleEdit(global.d2ConDataSettings.inputData.bulletlistheadline,"QAUpdated");
+
+  });
 
     it.skip('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
         contentTab.sectionTextSetValue("more sample test data");

@@ -1,4 +1,5 @@
 var maxWaitTimeInMs = 20000;
+var contentTab = require('./../../common/actions/contentTab.actions');
 
 var mModuleBulletUIObj = {
     
@@ -42,6 +43,8 @@ var mModuleBulletUIObj = {
     },
     setInsertBulletTitle: function(textValue){
       // $("input[data-test='bulletedlist-bullettitle']").clearElement().setValue(textValue);
+      mModuleBulletUIObj.verfiyElementExists("input[data-test='bulletedlist-bullettitle']");
+     // browser.pause(2000);
        browser.setValue("input[data-test='bulletedlist-bullettitle']",textValue);
     },
      getBullets: function(){
@@ -88,6 +91,50 @@ var mModuleBulletUIObj = {
          browser.execute("document.getElementsByTagName('iframe').item(0).contentWindow.document.getElementsByTagName('p').item(0).textContent = 'D2'").pause(10000);
           browser.frameParent();
     },
+
+    bulletEdit: function(bullettitle){
+        browser.leftClick("//img[@ng-click='editBullet(bullet)']");
+             browser.waitForVisible("//input[@ng-model='bulletTitle']", 50000);
+             browser.setValue("//input[@ng-model='bulletTitle']",bullettitle);
+             
+            var bulletTitle= browser.execute("return document.querySelectorAll('.form-control').item(3).value").value;
+             browser.frame("bulletDescContentFrame");
+            browser.pause(5000);
+            browser.click("//span[contains(@class,'bold_icon')]");
+            browser.execute("document.getElementsByTagName('iframe').item(0).contentWindow.document.getElementsByTagName('p').item(0).textContent = 'D2QA'").pause(5000);
+            var bulletdescription= browser.execute("return document.getElementsByTagName('iframe').item(0).contentDocument.getElementsByTagName('p').item(0).textContent").value;
+            
+
+            browser.frameParent();
+			
+            browser.leftClick('//button[@ng-click="saveBullet()"]');
+			
+			
+            browser.leftClick("//img[@ng-click='editBullet(bullet)']");
+            var expectedbulletTitle= browser.execute("return document.querySelectorAll('.form-control').item(3).value").value;
+            browser.frame("bulletDescContentFrame");
+            browser.pause(5000);
+            var expectedbulletdescription= browser.execute("return document.getElementsByTagName('iframe').item(0).contentDocument.getElementsByTagName('p').item(0).textContent").value;
+            
+
+            browser.frameParent();
+            expect(bulletTitle).to.equal(expectedbulletTitle);
+            expect(bulletdescription).to.equal(expectedbulletdescription);
+
+
+    },
+
+
+    bulletTitleEdit: function(headline,updatedheadline){
+
+        browser.doubleClick("(//figcaption[@class='embedModuleClickable' and contains(.,'"+headline+"')])");
+        browser.frameParent();
+         browser.pause(5000);
+            browser.setValue("#moduleheadline",updatedheadline);
+             browser.waitForVisible("//div[@class='modal-footer']//button[contains(.,'Update')]", 50000);
+             browser.click("//div[@class='modal-footer']//button[contains(.,'Update')]");
+             browser.pause(5000);
+    },
    moduleHeadlineValueSet: function () {
         return browser.getValue("textarea[data-test='codemodule-code']");
     },
@@ -96,23 +143,27 @@ var mModuleBulletUIObj = {
     },
     insertBulletDescriptionValueSet: function (bulletDescTextValue) {
         //Add logic to switch frames
-        mModuleBulletUIObj.verfiyElementExists("button[data-test='codemodule-insertbutton']");
-        browser.click("button[data-test='codemodule-insertbutton']");
+        mModuleBulletUIObj.verfiyElementExists("button[data-test='bulletedlist-bulletinsertbutton']");
+        browser.click("button[data-test='bulletedlist-bulletinsertbutton']");
         browser.pause(1000);
     },
     insert: function (codeText, codeType) {
-        mModuleBulletUIObj.verfiyElementExists("button[data-test='codemodule-insertbutton']");
-        browser.click("button[data-test='codemodule-insertbutton']");
+            mModuleBulletUIObj.verfiyElementExists("button[data-test='bulletedlist-insertbutton']");
+            browser.click("button[data-test='bulletedlist-insertbutton']");
+            browser.pause(1000);
+    },
+    save: function (codeText, codeType) {
+        mModuleBulletUIObj.verfiyElementExists("button[data-test='bulletedlist-bulletsavebutton']");
+        browser.click("button[data-test='bulletedlist-bulletsavebutton']");
         browser.pause(1000);
     },
-    update: function (codeText, codeType) {
-        mModuleBulletUIObj.verfiyElementExists("button[data-test='codemodule-updatebutton']");
-        browser.click("button[data-test='codemodule-updatebutton']");
-        browser.pause(1000);
+    insertModuleValidation: function (headline) {
+       contentTab.contenttabframeswitching();
+        expect(headline).to.equal(browser.getText("(//figcaption[@class='embedModuleClickable' and contains(.,'"+headline+"')])"));
     },
     cancel: function (codeText, codeType) {
-        mModuleBulletUIObj.verfiyElementExists("button[data-test='codemodule-cancelbutton']");
-        browser.click("button[data-test='codemodule-cancelbutton']");
+        mModuleBulletUIObj.verfiyElementExists("button[data-test='bulletedlist-bulletcancelbutton']");
+        browser.click("button[data-test='bulletedlist-bulletcancelbutton']");
         browser.pause(1000);
     
     },
