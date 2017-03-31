@@ -63,6 +63,23 @@ var props = Object.create(page, {
         return props.GetElement;
     }}},
 
+    lookup: { value: {get: (labelName, dctmIdOrUrl) => {
+        locator = input.replace('***', labelName);
+        props.UntilExist();
+        props.UntilVisible();
+        props.GetElement.setValue(dctmIdOrUrl);
+        locator = locator + '//following-sibling::button//i[contains(@class, "fa-search")]';
+        props.UntilExist();
+        props.UntilVisible();
+        props.GetElement.click();
+        locator = locator.replace('fa-search', 'fa-trash');
+        browser.waitUntil( () => {
+            return browser.isExisting(locator) == true;
+        }, 30000, 'DCTM Id or Url is not added', 250);
+        props.UntilVisible();
+
+    }}},
+
     element: { value: (eleLocator) => 
         { 
             locator = eleLocator;
