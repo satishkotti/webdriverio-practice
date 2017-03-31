@@ -26,6 +26,7 @@ describe('Slide Presentation PPE-96831', function () {
                     slideObjectname, 
                     global.d2ProfDataSettings.inputData.SlideContentType);
         documentListTab.selectAsset(slideObjectname);
+        
     });
 
     it('Verify the messages when mandatory fields are left blank for Slide Article template', function () {
@@ -33,7 +34,7 @@ describe('Slide Presentation PPE-96831', function () {
         expect(AlertMessage).to.be.true;
     });
 
-    it.skip('Verify Slide Article Template creation with only mandatory fields', function () {
+    it('Verify Slide Article Template creation with only mandatory fields', function () {
         var cidName = propertiesTab.getChronicleIdAndName();
         var objName = cidName.objectName;
         var title = cidName.title;
