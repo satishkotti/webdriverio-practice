@@ -58,7 +58,7 @@ var otfTabActionObj = {
         otfTabUI.verifyCreateOutputVersion(newsObjectname);
     },
     verifyNewOutputVersionData: function(newsObjectname) {
-        browser.pause(10000);
+        browser.pause(20000);
         var otfTabSelector = otfTabUI.otfTabSelector();
         browser.click(otfTabSelector);
         var otfWidgetSelector = otfTabUI.otfWidgetSelector();

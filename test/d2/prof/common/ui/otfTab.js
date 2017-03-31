@@ -1,5 +1,5 @@
 var otfTab = require('./../../common/actions/otfTab.actions');
-var maxWaitTimeInMs = 30000;
+var maxWaitTimeInMs = 60000;
 var otfTabSelector="//li[@tag_id='OnTheFly-widgetTab']";
 var otfWidget="//div[@tag_id='OnTheFly-widget']";
 
