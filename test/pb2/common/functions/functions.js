@@ -267,3 +267,7 @@ module.exports.SelectNodeAction = ([actionName, publishNode,templateStatus,pageS
 {
      act.SelectNodeAction([actionName, publishNode,templateStatus,pageStatus]);
 }
+
+module.exports.ArrayFromJSONObj=(result)=>{
+    return act.ArrayFromJSONObj(result);
+}
