@@ -1,5 +1,5 @@
 var otfTab = require('./../../common/actions/otfTab.actions');
-var maxWaitTimeInMs = 30000;
+var maxWaitTimeInMs = 60000;
 var otfTabSelector="//li[@tag_id='OnTheFly-widgetTab']";
 var otfWidget="//div[@tag_id='OnTheFly-widget']";
 
@@ -11,12 +11,20 @@ module.exports = {
             browser.waitForVisible("//center[@title='OnTheFly']", maxWaitTimeInMs);
             browser.click("//center[@title='OnTheFly']");
         }else{
+            browser.waitForExist(otfTabSelector, maxWaitTimeInMs);
             browser.click(otfTabSelector);
             browser.waitForExist(otfWidget, maxWaitTimeInMs);
         }
 
     }, 
+    otfWidgetSelector: function(){
+        return otfWidget;
+    },
+    otfTabSelector: function(){
+        return otfTabSelector;
+    },
     objectTypeHeader: function(){
+        browser.waitForExist("//table[@st-table='displayedCollection']/thead/tr/th[2]", maxWaitTimeInMs);
         return browser.getText("//table[@st-table='displayedCollection']/thead/tr/th[2]");
     },
     objectNameHeader: function(){
@@ -81,7 +89,17 @@ module.exports = {
         outputType.selectByVisibleText("Audio");
         browser.click("//button[text()='Create']");
     },
-    
+    verifyMultipleOutputVersionCreation: function(newsObjectname){
+        browser.click("//button[@id='single-button']");
+        browser.click("//li[@ng-repeat='createItem in searchResponse.createItems']/a");
+        browser.frameParent();
+        browser.waitForExist("//div[@ng-repeat='attr in createItem.inputAttributes'][1]//div//input[@id='attr.attributeName']",maxWaitTimeInMs);
+        browser.setValue("//div[@ng-repeat='attr in createItem.inputAttributes'][1]//div//input[@id='attr.attributeName']","OutputVersion-2-"+newsObjectname);
+        browser.setValue("//div[@ng-repeat='attr in createItem.inputAttributes'][2]//div//input[@id='attr.attributeName']","OutputVersion-Title-2-"+newsObjectname);
+        var outputType = browser.element("//div[@ng-repeat='attr in createItem.inputAttributes'][3]//div[2]//select[@ng-model='attr.value']");
+        outputType.selectByVisibleText("Audio");
+        browser.click("//button[text()='Create']");
+    },
     objectTypeValueNewOV: function(){
         return browser.getText("//table[@st-table='displayedCollection']/tbody/tr[3]/td[2]/span[@ng-style='getRowStyle(item.level)']");
     },
@@ -96,6 +114,21 @@ module.exports = {
     },
     isPrimaryNewOV: function(){
         return browser.getValue("//table[@st-table='displayedCollection']/tbody/tr[3]/td[6]/span/span/input");
+    },
+    objectTypeValueSecondOV: function(){
+        return browser.getText("//table[@st-table='displayedCollection']/tbody/tr[4]/td[2]/span[@ng-style='getRowStyle(item.level)']");
+    },
+    objectNameValueSecondOV: function(){
+        return browser.getText("//table[@st-table='displayedCollection']/tbody/tr[4]/td[3]/a[@ng-click='itemSelected(item)']/span[@ng-style='getRowStyle(item.level)']");
+    },
+    titleValueSecondOV: function(){
+        return browser.getText("//table[@st-table='displayedCollection']/tbody/tr[4]/td[4]");
+    },
+    statusValueSecondOV: function(){
+        return browser.getText("//table[@st-table='displayedCollection']/tbody/tr[4]/td[5]");
+    },
+    isPrimarySecondOV: function(){
+        return browser.getValue("//table[@st-table='displayedCollection']/tbody/tr[4]/td[6]/span/span/input");
     }
 }
 

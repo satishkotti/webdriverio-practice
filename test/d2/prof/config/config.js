@@ -80,7 +80,7 @@ module.exports.testSettings = {
         },
         "inputData": {
             "AssetName":"QATestAssethNrnC",
-            "testFolderPath": "webmd/professional_assets/medscape/news/heartwire/news/200005",
+            "testFolderPath": "webmd/professional_assets/medscape/news/qa_test",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
             "ArticleTemplate": 'News Article',

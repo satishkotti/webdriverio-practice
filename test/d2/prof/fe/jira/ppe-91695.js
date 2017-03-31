@@ -7,8 +7,9 @@ var propertiesTab = require('./../../common/actions/propertiesTab.actions');
 var otfTab = require('./../../common/actions/otfTab.actions');
 
 
-describe('OTF Widget Verifications with one output version - PPE-91689', function () {
+describe('OTF Widget Verifications - PPE-91695', function () {
     before(function () {
+        
         Login.login({
         url: functions.getEnvTestUrl(),
         username: functions.getQAPublicationUser().username,
@@ -31,28 +32,25 @@ describe('OTF Widget Verifications with one output version - PPE-91689', functio
     it('Should verify if the OTF Widget is highlighted for the selected asset', function () {
         var cidName = propertiesTab.getObjectNameBasicTab();
         objName = cidName.objectName;
+        documentListTab.selectAsset(newsObjectname);
         otfTab.selectOTFTab();
         otfTab.selectExternalWidget();
     });
 
-    it('Should verify if the OTF Header is displayed as expected for the selected asset', function () {
+    it('Should verify if the default Output version is displayed in OTF Widget for an Article', function () {
         otfTab.verifyOTFHeader();
-    });
-
-    it('Should verify if the Asset values are displayed as expected under OTF Header', function () {
         otfTab.verifyOTFValues(objName, newsObjectname);
-    });
-
-    it('Should verify if the default Output version values are displayed as expected under Article', function () {
         otfTab.verifyOTFOutputVersionValues();
     });
 
-    it('Should verify if new Output Version is created for selected Asset', function () {
+    it('Should verify if the OTF Widget is refreshed when a new Output Version is created for selected Article', function () {
         otfTab.verifyCreateOutputVersion(newsObjectname);
+        otfTab.verifyNewOutputVersionData(newsObjectname);
     });
     
-    it('Should verify the data for new Output Version created for selected Asset', function () {
-        otfTab.verifyNewOutputVersionData(newsObjectname);
+    it('Should verify the ability to create multiple Output Versions for selected Article through OTF', function () {
+        otfTab.verifyMultipleOutputVersionCreation(newsObjectname);
+        otfTab.verifySecondOutputVersionData(newsObjectname);
     });
 });
 

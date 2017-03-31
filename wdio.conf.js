@@ -17,7 +17,7 @@ module.exports.getSpecs = function()
             break;
             case "d2prof":
                 var config = require('./test/d2/prof/config/config');
-                specList = [ './test/d2/prof/fe/jira/ppe-91689.js' ];
+                specList = [ './test/d2/prof/**/*.js' ];
             break;
             case "rt":
                 var config = require('./test/rt/config/config');
@@ -40,7 +40,7 @@ console.log('specs: '+specList);
 exports.config = {
 
     debug: false,
-    maxInstances: 10,
+    maxInstances: 1,
     
     //
     // ==================
@@ -71,7 +71,27 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+		 chromeOptions: {
+            "args": [
+                "start-maximized",
+                "no-proxy-server",
+                "no-default-browser-check",
+                "no-first-run",
+                "disable-boot-animation",
+                "disable-default-apps",
+                "disable-extensions",
+                "no-experiments",
+                "no-service-autorun"
+                ],
+			"prefs":{
+				"credentials_enable_service": false,
+				"profile":{
+					password_manager_enabled: false
+				}
+			}
+		}
+
     }],
     //
     // ===================
@@ -93,7 +113,7 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-    waitforTimeout: 999999,
+    waitforTimeout: 120000,
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as property. Make sure you have
@@ -139,7 +159,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 999999
+        timeout: 120000
     },
 
     //
@@ -229,23 +249,5 @@ exports.config = {
     // possible to defer the end of the process using a promise.
     onComplete: function() {
         // do something
-    },
-    suites: {
-        pb2Sanity: [
-            './test/pb2/sanity/favorite.js',
-            './test/pb2/sanity/page.js',
-            './test/pb2/sanity/template.js'
-            ],
-        pb2Ui: [
-            './test/pb2/ui/login.js',
-            './test/pb2/ui/navmap.js',
-            './test/pb2/ui/ppe-81340.js'
-            ],
-        rtSanity: [ 
-            './test/rt/sanity/dynamicUrl.js',
-            './test/rt/sanity/homePage.js'
-            ],
-        rtUi:[
-            ],
     }
 };

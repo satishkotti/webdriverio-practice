@@ -28,10 +28,11 @@ var newContentObj = module.exports = {
     setObjectName: function(objName, descName){
         browser.waitForVisible("#title-input");
         browser.setValue('#title-input', objName);
-        browser.leftClick('//div[@id="wbmd_bus_ref"]//img');
+        browser.click('//div[@id="wbmd_bus_ref"]//img');
         browser.waitForVisible('//div[@title="'+descName+'"]',maxWaitTimeInMs);
-        browser.leftClick('//div[@title="'+descName+'"]');
+        browser.click('//div[@title="'+descName+'"]');
+        browser.waitForVisible('//*[@id="next-button"]');
         browser.click('//*[@id="next-button"]');
-        browser.waitForText('//span[@title="'+objName+'"]',40000);
+        browser.waitForVisible('//span[@title="'+objName+'"]',40000);
     }
 }

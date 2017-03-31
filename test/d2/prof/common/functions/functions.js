@@ -17,5 +17,5 @@ module.exports = {
     },
     getAtsScsFileUrl: function() {
         return global.envSettings.ats.url;
-    },  
+    }
 }
