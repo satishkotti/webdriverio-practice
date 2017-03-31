@@ -40,7 +40,7 @@ console.log('specs: '+specList);
 exports.config = {
 
     debug: false,
-    maxInstances: 10,
+    maxInstances: 1,
     
     //
     // ==================
@@ -71,7 +71,27 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+		 chromeOptions: {
+            "args": [
+                "start-maximized",
+                "no-proxy-server",
+                "no-default-browser-check",
+                "no-first-run",
+                "disable-boot-animation",
+                "disable-default-apps",
+                "disable-extensions",
+                "no-experiments",
+                "no-service-autorun"
+                ],
+			"prefs":{
+				"credentials_enable_service": false,
+				"profile":{
+					password_manager_enabled: false
+				}
+			}
+		}
+
     }],
     //
     // ===================
@@ -229,23 +249,5 @@ exports.config = {
     // possible to defer the end of the process using a promise.
     onComplete: function() {
         // do something
-    },
-    suites: {
-        pb2Sanity: [
-            './test/pb2/sanity/favorite.js',
-            './test/pb2/sanity/page.js',
-            './test/pb2/sanity/template.js'
-            ],
-        pb2Ui: [
-            './test/pb2/ui/login.js',
-            './test/pb2/ui/navmap.js',
-            './test/pb2/ui/ppe-81340.js'
-            ],
-        rtSanity: [ 
-            './test/rt/sanity/dynamicUrl.js',
-            './test/rt/sanity/homePage.js'
-            ],
-        rtUi:[
-            ],
     }
 };

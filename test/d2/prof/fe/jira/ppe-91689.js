@@ -9,7 +9,6 @@ var otfTab = require('./../../common/actions/otfTab.actions');
 
 describe('OTF Widget Verifications - PPE-91689', function () {
     before(function () {
-        browser.windowHandleMaximize();  
         Login.login({
         url: functions.getEnvTestUrl(),
         username: functions.getQAPublicationUser().username,
