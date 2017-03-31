@@ -7,7 +7,7 @@ var repositoryBrowserTab = require('./../../common/actions/repositoryBrowserTab.
 var workspaceMenu = require('./../../common/actions/workspace.menu.actions');
 var documentListTab = require('./../../common/actions/documentListTab.actions');
 var propertiesTab = require('./../../common/actions/propertiesTab.actions');
-
+var  slideObjectname= global.d2ProfDataSettings.inputData.SlideArticleObjectName;
 
 describe('Slide Presentation PPE-96831', function () {
     before(function () {
@@ -21,19 +21,19 @@ describe('Slide Presentation PPE-96831', function () {
         password: functions.getQAPublicationUser().password
         });
         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.SlideFolderPath);
-    });
-
-    var  slideObjectname= global.d2ProfDataSettings.inputData.SlideArticleObjectName;
-    //var objectName=global.d2ProfDataSettings.inputData.ArticleObjectName;
-    console.log("obj1" + slideObjectname);
-    //console.log("obj1" + objectName);
-    it('Verify Slide Article Template creation with only mandatory fields', function () {
-       
         workspaceMenu.createContent(global.d2ProfDataSettings.inputData.ProfileName,
                     global.d2ProfDataSettings.inputData.SlideArticleTemplate, 
                     slideObjectname, 
                     global.d2ProfDataSettings.inputData.SlideContentType);
         documentListTab.selectAsset(slideObjectname);
+    });
+
+    it('Verify the messages when mandatory fields are left blank for Slide Article template', function () {
+        var AlertMessage = propertiesTab.verifyMandatoryFieldsforProperties();
+        expect(AlertMessage).to.be.true;
+    });
+
+    it.skip('Verify Slide Article Template creation with only mandatory fields', function () {
         var cidName = propertiesTab.getChronicleIdAndName();
         var objName = cidName.objectName;
         var title = cidName.title;
@@ -41,6 +41,7 @@ describe('Slide Presentation PPE-96831', function () {
                     global.d2ProfDataSettings.inputData.ContentDeveloper);
         expect(slideObjectname).to.equal(title);
     });
+    
 });
 
 

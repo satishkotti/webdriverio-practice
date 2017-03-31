@@ -89,7 +89,7 @@ module.exports.testSettings = {
             "NewsArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
 
             
-            "SlideArticleTemplate": "News Article",
+            "SlideArticleTemplate": "Article Slide Presentation",
             "SlideArticleObjectName": "QATestSlide" + exports.GenerateRandomString(5),
             "SlideContentType": "Slide/Lecture Presentation",
 

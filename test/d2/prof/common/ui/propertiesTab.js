@@ -72,10 +72,7 @@ module.exports = {
     propertiesTabSelect: function(){
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
         browser.click(propertiesTabSelector);
-        browser.waitForVisible(basicTabSelector, maxWaitTimeInMs);
-        browser.click(basicTabSelector);
-        //browser.waitForVisible("#wbmd_legacy_id", maxWaitTimeInMs);
-        
+        browser.waitForVisible("#wbmd_legacy_id", maxWaitTimeInMs);
     },
     propertiesBasicTabSelect: function(){
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
@@ -131,6 +128,22 @@ module.exports = {
         return articleTabpropertieslabels( browser, labelPropertiesArray);
         }
         return isExist;
-    }
+    },
+
+    verifyMandatoryFieldsforProperties: function(){
+        
+        var IsExistLead = browser.isExisting("//span[contains(., 'Lead Specialty')]");
+        var IsExistContent = browser.isExisting("//span[contains(., 'Content Developer')]");
+        var IsExistwarningClass = browser.isExisting("//div[contains(@class,'ext-mb-warning')]");
+        browser.click("//div[@class='x-window-br']//button[contains(.,'OK')]");
+        if(IsExistLead == true && IsExistwarningClass == true && IsExistContent == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    },
 }
 
