@@ -28,20 +28,23 @@ describe('Interactive Article - JavaScript Module', function () {
                 password: functions.getQAPublicationUser().password
             });
         
+        
+       browser.pause(20000);
+       mModuleCodeOption.RepositoryRefresh();
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
         workspaceMenu.createContent(
                 global.d2ConDataSettings.inputData.ArticleProfileName,
                 global.d2ConDataSettings.inputData.ArticleTemplate, 
                 global.d2ConDataSettings.inputData.ArticleObjectName, 
                 global.d2ConDataSettings.inputData.ArticleDescription);
-        
+            browser.pause(20000);
             documentListTab.selectAsset(global.d2ConDataSettings.inputData.ArticleObjectName);
             contentTab.checkOut();
 
          jsCodeValue = 'Test code field';
     });
 
-    it('should select Section Text then Select Code and Cancel', function () {
+     it.skip('should select Section Text then Select Code and Cancel', function () {
        contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextCodeMenuClick();
        mModuleCodeOption.addCodeAndTypeCancel('Test', global.d2ConDataSettings.inputData.FacebookCodeType);
@@ -54,7 +57,7 @@ describe('Interactive Article - JavaScript Module', function () {
   
 
        
-      it('Should Verify default option for codetype -  PPE-102788', function () {
+       it.skip('Should Verify default option for codetype -  PPE-102788', function () {
         contentTab.sectionTextSetValue("more sample test data");
         ckEditorMenu.sectionTextCodeMenuClick();
        
@@ -68,7 +71,7 @@ describe('Interactive Article - JavaScript Module', function () {
        
     });
        
-      it('Should Verify the availability of Look up values in Code Type -  PPE-102786', function () {
+      it.skip('Should Verify the availability of Look up values in Code Type -  PPE-102786', function () {
         
         contentTab.sectionTextSetValue("more sample test data");
 
@@ -83,14 +86,14 @@ describe('Interactive Article - JavaScript Module', function () {
            });
          mModuleCodeOption.addCodeAndTypeCancel(jsCodeValue, 
                     global.d2ConDataSettings.inputData.FacebookCodeType);       
-        browser.pause(2000);              
-        contentTab.checkIn();
+            
+        
           
        
     });
 
 
- it.skip('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
+ it('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
         contentTab.sectionTextSetValue("more sample test data");
 
         ckEditorMenu.sectionTextCodeMenuClick();
@@ -103,14 +106,14 @@ describe('Interactive Article - JavaScript Module', function () {
         var objName = cidName.objectName;
         chronicleId = cidName.chronicleId;
         propertiesTab.setRequiredProperties(objName,'ZZ - Dummy Content Classification',objName,objName,objName,objName,'No URL dummy publication','2015 WebMD','Cold and Flu')
-        browser.pause(2000);
+        
         documentListTab.assetPowerPromotePublishToStaging(global.d2ConDataSettings.inputData.ArticleObjectName);
 
     });
 
    
 
-    it.skip('should be part of scs rendition', function () {
+    it('should be part of scs rendition', function () {
          return Promise.resolve(
             parseXml.getXmlFromUrl(functions.getAtsScsFileUrl()+chronicleId, null).then(function (result) {
 
@@ -118,7 +121,7 @@ describe('Interactive Article - JavaScript Module', function () {
                 var jsEmbedAssets = JSONPath({json: result,  path: "$..section_text.embeded_module[?(@.type =='jsembed')]", resultType: 'all' });
 
                 expect(jsEmbedAssets.length).to.equal(1);
-                expect(jsEmbedAssets[0].parent.$.jstype).to.equal('facebook');
+                expect(jsEmbedAssets[0].parent.$.jstype).to.equal('Youtube');
                 expect(jsEmbedAssets[0].parent.$.class).to.equal('wbmdembededmodule cke_widget_inline');
                 
                 
@@ -129,10 +132,12 @@ describe('Interactive Article - JavaScript Module', function () {
     });
 
 
-     it('should verify Stored under webmd/web_publisher_list/lookups/interactive_articles -  PPE-PPE-103419', function () {
+     it.skip('should verify Stored under webmd/web_publisher_list/lookups/interactive_articles -  PPE-PPE-103419', function () {
 
-              browser.refresh();
-              browser.pause(5000);
+           
+              
+               browser.pause(20000);
+               mModuleCodeOption.RepositoryRefresh();
               repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.LookupFolderPath);
               var CodeTypes = global.d2ConDataSettings.inputData.CodeTypes;
               var j = 1;
