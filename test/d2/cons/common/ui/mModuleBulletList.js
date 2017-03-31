@@ -135,6 +135,18 @@ var mModuleBulletUIObj = {
              browser.click("//div[@class='modal-footer']//button[contains(.,'Update')]");
              browser.pause(5000);
     },
+
+     bulletlistEmptyValidation: function(){
+
+       browser.moveToObject("//div[@class='toast-message' and contains(.,'Please add at least 1 bullet to the bullet list!')]");
+            expect(browser.getText("//div[@class='toast-message' and contains(.,'Please add at least 1 bullet to the bullet list!')]")).to.equal(global.d2ConDataSettings.expectedResults.bulletEmptyValidation);
+    },
+
+    bulletlistInsertEmptyValidation: function(){
+
+      browser.moveToObject("//div[@class='toast-message' and contains(.,'Please enter a title for the bullet!')]");
+            expect(browser.getText("//div[@class='toast-message' and contains(.,'Please enter a title for the bullet!')]")).to.equal(global.d2ConDataSettings.expectedResults.bulletTitleValidation);
+    },
    moduleHeadlineValueSet: function () {
         return browser.getValue("textarea[data-test='codemodule-code']");
     },
@@ -160,7 +172,8 @@ var mModuleBulletUIObj = {
     insertModuleValidation: function (headline) {
        contentTab.contenttabframeswitching();
         expect(headline).to.equal(browser.getText("(//figcaption[@class='embedModuleClickable' and contains(.,'"+headline+"')])"));
-    },
+    
+},
     cancel: function (codeText, codeType) {
         mModuleBulletUIObj.verfiyElementExists("button[data-test='bulletedlist-bulletcancelbutton']");
         browser.click("button[data-test='bulletedlist-bulletcancelbutton']");

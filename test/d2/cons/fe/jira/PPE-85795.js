@@ -59,7 +59,7 @@ describe('Interactive Article - BulletList Module', function () {
          );
 
     });
-    it('should Verify the bullet list options in the module menu,Bullet List module & verify user is able access bullet list with data in the Rich text editor', function () {
+    it.skip('should Verify user is able to edit the bulletlist module - PPE-102759', function () {
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");
         
@@ -70,7 +70,33 @@ describe('Interactive Article - BulletList Module', function () {
         mModuleBulletOption.bulletlistTitleEdit(global.d2ConDataSettings.inputData.bulletlistheadline,"QAUpdated");
 
   });
+it.skip('should Verify user is not able to insert bulletlist module without bulletlist and bulletlist title - PPE-102332', function () {
+        contentTab.sectionTextSetValue("Sample Test Data");
+        ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");
+        mModuleBulletOption.bulletlistEmptyValidation();
+        mModuleBulletOption.bulletlistInsertEmptyValidation();
 
+
+  });
+
+  it.skip('should Verify the Right alignment after insersting the module - PPE-102330', function () {
+        contentTab.sectionTextSetValue("Sample Test Data");
+        ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");
+         mModuleBulletOption.bulletlistAlign(global.d2ConDataSettings.inputData.bulletlistheadline, 
+        global.d2ConDataSettings.inputData.bulletlistmoduleDescription,
+        "Right","BulletTitle","D2"
+         );
+
+  });
+   it('should Verify the Middle alignment after insersting the module - PPE-102330', function () {
+        contentTab.sectionTextSetValue("Sample Test Data");
+        ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");
+         mModuleBulletOption.bulletlistAlign(global.d2ConDataSettings.inputData.bulletlistheadline, 
+        global.d2ConDataSettings.inputData.bulletlistmoduleDescription,
+        "Middle","BulletTitle","D2"
+         );
+
+  });
     it.skip('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
         contentTab.sectionTextSetValue("more sample test data");
         ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");

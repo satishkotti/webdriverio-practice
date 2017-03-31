@@ -100,6 +100,7 @@ module.exports.testSettings = {
             "moduleTitle": "QA",
             "bulletTitleValidation": "Please enter a title for the bullet!",
             "bulletDescriptionValidation": "Please enter a description for the bullet!",
+            "bulletEmptyValidation": "Please add at least 1 bullet to the bullet list!",
             "HomePageTitle": "D2"
         },
         "inputData": {

@@ -58,10 +58,37 @@ bulletlistEdit: function(headline, description, align,title,updatedbulletTitle){
 },
 
 
+ bulletlistAlign: function (headline, description, align, title,bulletdescription) {
+        mModuleBulletListUI.setModuleHeadline(headline);
+        mModuleBulletListUI.setModuleDescription(description);
+        mModuleBulletListUI.setAlign(align);
+     
+            mModuleBulletListUI.setInsertBulletTitle(title);
+            mModuleBulletListUI.setInsertBulletDescription(description);
+      
+        mModuleBulletListObj.verifyLabels();
+
+        mModuleBulletListUI.insertBulletDescriptionValueSet();
+        mModuleBulletListUI.insert();
+        mModuleBulletListUI.insertModuleValidation(headline)
+    },
+
 bulletlistTitleEdit: function(headline,updatedheadline){
     mModuleBulletListUI.bulletTitleEdit(headline,updatedheadline);
      mModuleBulletListUI.insertModuleValidation(updatedheadline);
 
+
+},
+
+bulletlistEmptyValidation: function(){
+     mModuleBulletListUI.insert();
+     mModuleBulletListUI.bulletlistEmptyValidation();
+
+},
+
+bulletlistInsertEmptyValidation: function(){
+     mModuleBulletListUI.insertBulletDescriptionValueSet();
+     mModuleBulletListUI.bulletlistInsertEmptyValidation();
 
 },
 
