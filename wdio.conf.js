@@ -3,7 +3,7 @@ var Q = require("q");
 module.exports.getSpecs = function()
 {
     var specList;
-    var testApp = process.env.npm_config_testApp ? process.env.npm_config_testApp : 'pb2' ;
+    var testApp = process.env.npm_config_testApp ? process.env.npm_config_testApp : 'd2prof' ;
     try
     {
         switch(testApp) {
@@ -40,7 +40,7 @@ console.log('specs: '+specList);
 exports.config = {
 
     debug: false,
-    maxInstances: 10,
+    maxInstances: 1,
     
     //
     // ==================
@@ -54,9 +54,8 @@ exports.config = {
     specs: module.exports.getSpecs(),
     // Patterns to exclude.
     exclude: [
-        './test/**/config/*.*',
-        './test/**/functions/*.*',
-        './test/**/common/*.*'
+        './test/d2/prof/config/**/*.*',
+         './test/d2/prof/common/**/*.*',
     ],
     //
     // ============
@@ -72,7 +71,27 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+		 chromeOptions: {
+            "args": [
+                "start-maximized",
+                "no-proxy-server",
+                "no-default-browser-check",
+                "no-first-run",
+                "disable-boot-animation",
+                "disable-default-apps",
+                "disable-extensions",
+                "no-experiments",
+                "no-service-autorun"
+                ],
+			"prefs":{
+				"credentials_enable_service": false,
+				"profile":{
+					password_manager_enabled: false
+				}
+			}
+		}
+
     }],
     //
     // ===================
@@ -94,7 +113,7 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-    waitforTimeout: 99999,
+    waitforTimeout: 120000,
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as property. Make sure you have
@@ -140,7 +159,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 99999
+        timeout: 120000
     },
 
     //
@@ -174,8 +193,8 @@ exports.config = {
     // variables like `browser`. It is the perfect place to define custom commands.
     before: function() {
 
-        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'dev01';
-        var testApp = (process.env.npm_config_testApp) ? process.env.npm_config_testApp : 'pb2' ;
+        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'dev04';
+        var testApp = (process.env.npm_config_testApp) ? process.env.npm_config_testApp : 'd2prof' ;
         
         var chai = require('chai');
         chai.config.includeStack = true;
@@ -199,6 +218,7 @@ exports.config = {
                 global.d2ConDataSettings = config.EnvSettings.getEnvData(testEnv);
             break;
             case "d2prof":
+            
                 var config = require('./test/d2/prof/config/config');
                 global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
                 global.d2ProfDataSettings = config.EnvSettings.getEnvData(testEnv);
@@ -229,23 +249,5 @@ exports.config = {
     // possible to defer the end of the process using a promise.
     onComplete: function() {
         // do something
-    },
-    suites: {
-        pb2Sanity: [
-            './test/pb2/sanity/favorite.js',
-            './test/pb2/sanity/page.js',
-            './test/pb2/sanity/template.js'
-            ],
-        pb2Ui: [
-            './test/pb2/ui/login.js',
-            './test/pb2/ui/navmap.js',
-            './test/pb2/ui/ppe-81340.js'
-            ],
-        rtSanity: [ 
-            './test/rt/sanity/dynamicUrl.js',
-            './test/rt/sanity/homePage.js'
-            ],
-        rtUi:[
-            ],
     }
 };
