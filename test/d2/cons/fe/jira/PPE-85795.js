@@ -8,7 +8,7 @@ var workspaceMenu = require('./../../common/actions/workspace.menu.actions');
 var documentListTab = require('./../../common/actions/documentListTab.actions');
 var contentTab = require('./../../common/actions/contentTab.actions');
 var ckEditorMenu = require('./../../common/actions/ckEditor.actions');
-var mModuleCodeOption = require('./../../common/actions/mModuleCode.actions');
+var mModuleBulletOption = require('./../../common/actions/mModuleBullet.actions');
 var propertiesTab = require('./../../common/actions/propertiesTab.actions');
 
 describe('Interactive Article - BulletList Module', function () {
@@ -25,27 +25,33 @@ describe('Interactive Article - BulletList Module', function () {
                 username: functions.getQAPublicationUser().username,
                 password: functions.getQAPublicationUser().password
             });
-        
+
+        browser.pause(20000);
+        mModuleBulletOption.RepositoryRefresh();
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
-        workspaceMenu.createContent(
+    /* workspaceMenu.createContent(
                 global.d2ConDataSettings.inputData.ArticleProfileName,
                 global.d2ConDataSettings.inputData.ArticleTemplate, 
                 global.d2ConDataSettings.inputData.ArticleObjectName, 
                 global.d2ConDataSettings.inputData.ArticleDescription);
-        
-        documentListTab.selectAsset(global.d2ConDataSettings.inputData.ArticleObjectName);
+        browser.pause(20000);*/
+        documentListTab.selectAsset("TestNewsArticle");
         contentTab.checkOut();
     });
 
-    it('should select Section Text then Select Code and Cancel', function () {
+    it('should Verify the bullet list options in the module menu,Bullet List module & verify user is able access bullet list with data in the Rich text editor', function () {
         contentTab.sectionTextSetValue("Sample Test Data");
-        ckEditorMenu.sectionTextCodeMenuClick();
-        mModuleCodeOption.addCodeAndTypeCancel('Test', global.d2ConDataSettings.inputData.FacebookCodeType);
+        ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");
+        
+        mModuleBulletOption.addHeadlineDescrAlignBullet(global.d2ConDataSettings.inputData.bulletlistheadline, 
+        global.d2ConDataSettings.inputData.bulletlistmoduleDescription,
+        global.d2ConDataSettings.inputData.leftalignent,"BulletTitle","D2"
+         );
     });
 
-    it('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
+    it.skip('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
         contentTab.sectionTextSetValue("more sample test data");
-        ckEditorMenu.sectionTextCodeMenuClick();
+        ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");
         mModuleCodeOption.addCodeAndTypeInsert(jsCodeValue, 
                     global.d2ConDataSettings.inputData.FacebookCodeType);        
         contentTab.checkIn();
@@ -58,7 +64,7 @@ describe('Interactive Article - BulletList Module', function () {
         documentListTab.assetPowerPromotePublishToStaging(global.d2ConDataSettings.inputData.ArticleObjectName);
     });
 
-    it('should be part of scs rendition', function () {
+    it.skip('should be part of scs rendition', function () {
          return Promise.resolve(
             parseXml.getXmlFromUrl(functions.getAtsScsFileUrl()+chronicleId, null).then(function (result) {
 

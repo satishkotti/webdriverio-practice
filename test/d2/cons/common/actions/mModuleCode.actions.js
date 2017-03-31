@@ -31,6 +31,7 @@ var mModuleCodeObj = {
         expect(codeVal).to.equal(codeText);
         expect(codeTypeVal.toLowerCase()).to.equal(codeType.toLowerCase());
     }
+    
 }
 
 module.exports = mModuleCodeObj;

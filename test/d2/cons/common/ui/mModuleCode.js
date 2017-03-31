@@ -42,7 +42,15 @@ var mModuleCodeUIObj = {
             browser.frame();
             browser.waitForExist(selectorVal, maxWaitTimeInMs);
         }
-    }
+    },
+
+     RepositoryRefresh:function()
+        {
+
+            browser.leftClick('//span[contains(.,"Repository browser")]//*[@id="menuDownArrow-button"]');
+            browser.waitForVisible("//*[@id='refreshWidget-menuItem']");
+            browser.leftClick("//*[@id='refreshWidget-menuItem']");
+        }
 }
 
 module.exports = mModuleCodeUIObj;

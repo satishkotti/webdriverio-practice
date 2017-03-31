@@ -1,8 +1,8 @@
 var randomstring = require("randomstring");
 var JSONPath = require('JSONPath');
 
-module.exports.GenerateRandomString = function GenerateRandomString() {
-    return randomstring.generate(5);
+module.exports.GenerateRandomString = function GenerateRandomString(X) {
+    return randomstring.generate(X);
 }
 module.exports.testSettings = {
     "dev01": {
@@ -56,7 +56,7 @@ module.exports.testSettings = {
             "dctmUsername": "QAPublication",
             "dctmPassword": "QA-Doc#1",
             "dctmDocbase": "webmddoc01",
-            "url": "http://dmrest.dev04.webmd.com/pbws"
+            "url": "http://dmrest.qa01.webmd.com/pbws"
         },
         "d2cons": {
             "url": "http://d2.dev04.webmd.com/D2/#d2",
@@ -81,7 +81,7 @@ module.exports.testSettings = {
             ]
         },
     "ats": {
-            "url": "http://ats.preview.dev04.webmd.com/SCSFile.aspx?ID="
+            "url": "http://ats.staging.qa01.webmd.com/SCSFile.aspx?ID="
         }
     },
     "data": {
@@ -108,17 +108,33 @@ module.exports.testSettings = {
             "webmdcpyrights": '2015 WebMD',
             "objectTitle": "QAArticleNews",
             "articleContentFields": "Section Text,Highlights,Pull Quotes,Citations,Related Links Text",
+            "bulletlistheadline": "Module Headline",
+            "bulletlistmoduleDescription": "Module Description",
+            "align": "Align",
+            "alignLeftOption": "Left",
+            "alignMiddleOption": "Middle",
+            "alignRightOption": "Right",
+            "bullet": "Bullets",
+            "bulletTitle": "Title",
+            "insertBulletTitle": "Insert Bullet Title",
+            "insertBulletDescription": "Insert Bullet Description",
             "leftalignent": "Left",
             "rightalignent": "Right",
             "middlealignent": "Middle",
             "bulletlistalignment": "Right,Left,Middle",
             "CodeTypes": "Facebook, Youtube, Twitter, Pinterest, Reddit, Imgur, Snapchat, Tumblr, Instagram",
-            "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other/test",
+            "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
             "ArticleTemplate": 'Article /  News Template',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
-            "FacebookCodeType": "Facebook"
+            "FacebookCodeType": "Facebook",
+            "ShareableTitle":"Shareable Title Test",
+            "ShareableDescription": "Shareable Description Test",
+            "ShareableAlign":"Left",
+            "ShareableSupressSocialShare":"true",
+            "SectionTextData":"sample test data"+ exports.GenerateRandomString(2)
+
         }
     }
 }

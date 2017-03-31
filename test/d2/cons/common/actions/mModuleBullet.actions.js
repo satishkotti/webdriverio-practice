@@ -9,72 +9,98 @@ var mModuleBulletListObj = {
             bullets: mModuleBulletListUI.getBullets()
         };
     },
-    addHeadlineDescrAlignBullet: function (headline, description, align, bullets) {
+    addHeadlineDescrAlignBullet: function (headline, description, align, title,bulletdescription) {
         mModuleBulletListUI.setModuleHeadline(headline);
         mModuleBulletListUI.setModuleDescription(description);
         mModuleBulletListUI.setAlign(align);
-        
-        bullets.forEach( function (bullet)
-        {
-            mModuleBulletListUI.setInsertBulletTitle(bullet.title);
-            mModuleBulletListUI.setInsertBulletDescription(bullet.description)
-        });
+     
+            mModuleBulletListUI.setInsertBulletTitle(title);
+            mModuleBulletListUI.setInsertBulletDescription(description)
+      
         mModuleBulletListObj.verifyLabels();
-        mModuleBulletListObj.verifyData(headline, description, align, bullets);
+        mModuleBulletListObj.verifyData(headline, description, align, title,bulletdescription);
     },
-    updateCodeAndTypeCancel: function (headline, description, align, bullets) {
+    updateCodeAndTypeCancel: function (headline, description, align, title,bulletdescription) {
         mModuleBulletListUI.setModuleHeadline(headline);
         mModuleBulletListUI.setModuleDescription(description);
         mModuleBulletListUI.setAlign(align);
+
         
-        //for each bullet add bullet info
-        bullets.forEach( function (bullet)
-        {
-            mModuleBulletListUI.setInsertBulletTitle(bullet.title);
-            mModuleBulletListUI.setInsertBulletDescription(bullet.description)
-        });
+
+       
+        // //for each bullet add bullet info
+        // bullets.forEach( function (bullet)
+        // {
+        //     mModuleBulletListUI.setInsertBulletTitle(bullet.title);
+        //     mModuleBulletListUI.setInsertBulletDescription(bullet.description)
+        // });
+
+          mModuleBulletListUI.setInsertBulletTitle(title);
+            mModuleBulletListUI.setInsertBulletDescription(description)
+      
         mModuleBulletListObj.verifyLabels();
-        mModuleBulletListObj.verifyData(headline, description, align, bullets);
+       mModuleBulletListObj.verifyData(headline, description, align, title,bulletdescription);
+
+        mModuleBulletListObj.cancel();
     },
     verifyLabels: function () {
        var moduleHeadline = mModuleBulletListUI.getModuleHeadlineLabel();
-       var moduleHeadline = mModuleBulletListUI.getModuleDescriptionLabel();
+       var moduleDescription = mModuleBulletListUI.getModuleDescriptionLabel();
        var align = mModuleBulletListUI.getAlignLabel();
        var bullets= mModuleBulletListUI.getBulletsLabel();
        var insertBulletTitle = mModuleBulletListUI.getInsertBulletTitleLabel();
        var insertBulletDesc = mModuleBulletListUI.getInsertBulletDescriptionLabel();
-       var bulletsTblTitle =  mModuleBulletListUI.getBulletsTableTitle();
+
        
         expect(moduleHeadline).to.equal('Module Headline');
-        expect(moduleHeadline).to.equal('Module Description');
+        expect(moduleDescription).to.equal('Module Description');
         expect(align).to.equal('Align');
         expect(bullets).to.equal('Bullets');
         expect(insertBulletTitle).to.equal('Insert Bullet Title');
         expect(insertBulletDesc).to.equal('Insert Bullet Description');
-        expect(bulletsTblTitle).to.equal('Title');
+        
     },
-    verifyData: function (headline, description, align, bullets) {
+    verifyData: function (headline, description, align, title,bulletdescription) {
         
-        var headline = mModuleBulletListUI.getModuleHeadline();
-        var description = mModuleBulletListUI.getModuleDescription();
-        var align = mModuleBulletListUI.getAlign();
-        var bulletsAdded = mModuleBulletListUI.getBullets();
+        var moduleheadline = mModuleBulletListUI.getModuleHeadline();
+        var moduledescription = mModuleBulletListUI.getModuleDescription();
+        var modulealign = mModuleBulletListUI.getAlign();
+      //  var bulletsAdded = mModuleBulletListUI.getBullets();
+        var bullettitle= mModuleBulletListUI.getInsertBulletTitle();
+        var bulletdesc= mModuleBulletListUI.getInsertBulletDescription();
 
-        expect(headline).to.equal(headline);
-        expect(description).to.equal(description);
-        expect(align.toLowercase()).to.equal(align);
+
+        expect(moduleheadline).to.equal(headline);
+        expect(moduledescription).to.equal(description);
+        expect(moduleheadline.toLowercase()).to.equal(align);
+        expect(bullettitle).to.equal(title);
+        expect(bulletdesc).to.equal("D2");
+
+
         
-         bulletsAdded.forEach( function (bullet)
-        {
-            //find bullet from list if not found then throw error
-            var itemIndex = bullets.indexOf(bullet.title);
-            if(itemIndex < 0)
-                assert.fail(0,1,'Fail to find bullet title:' + bullet.title);
+        //  bulletsAdded.forEach( function (bullet)
+        // {
+        //     //find bullet from list if not found then throw error
+        //     var itemIndex = bullets.indexOf(bullet.title);
+        //     if(itemIndex < 0)
+        //         assert.fail(0,1,'Fail to find bullet title:' + bullet.title);
             
-            expect(bullets[itemIndex].description).to.equal(bullet.description)
+        //     expect(bullets[itemIndex].description).to.equal(bullet.description)
 
-        });
+        // });
+        //expect(bullets[itemIndex].description).to.equal(bullet.description)
+   },
+     RepositoryRefresh: function()
+    {
+
+        mModuleBulletListUI.RepositoryRefresh();
     }
+
+
+ 
+    
+
+
 }
 
-module.exports = mModuleCodeObj;
+module.exports = mModuleBulletListObj;
