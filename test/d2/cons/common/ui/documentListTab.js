@@ -12,6 +12,8 @@ var documentListUIObj = {
         browser.waitForExist("div.x-grid3-hd-inner.x-grid3-hd-object_name.x-component");
     },
     selectItemByName: function (assetName) {
+        
+        browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
     },
@@ -40,7 +42,8 @@ var documentListUIObj = {
         browser.click("#x-menu-el-menuContextDocumentLifeCycle");
     },
     lifeCyclePowerPromoteSelect: function(){
-        browser.waitForExist("//a[text()='Power Promote']");
+          browser.waitForVisible("//a[text()='Power Promote']", maxWaitTimeInMs);
+        //browser.waitForExist("//a[text()='Power Promote']");
         browser.click("//a[text()='Power Promote']");
     },
     lifeCyclePublishSelect: function(){

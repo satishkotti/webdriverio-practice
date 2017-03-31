@@ -40,7 +40,7 @@ console.log('specs: '+specList);
 exports.config = {
 
     debug: false,
-    maxInstances: 10,
+    maxInstances: 1,
     
     //
     // ==================
@@ -70,8 +70,28 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    capabilities: [{
-        browserName: 'chrome'
+   capabilities: [{
+        browserName: 'chrome',
+		 chromeOptions: {
+            "args": [
+                "start-maximized",
+                "no-proxy-server",
+                "no-default-browser-check",
+                "no-first-run",
+                "disable-boot-animation",
+                "disable-default-apps",
+                "disable-extensions",
+                "no-experiments",
+                "no-service-autorun"
+                ],
+			"prefs":{
+				"credentials_enable_service": false,
+				"profile":{
+					password_manager_enabled: false
+				}
+			}
+		}
+
     }],
     //
     // ===================

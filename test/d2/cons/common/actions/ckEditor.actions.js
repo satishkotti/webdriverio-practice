@@ -6,11 +6,21 @@ var ckEditorObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.mModuleckEditorMenuClick(sectionIndex);
     },
+    mModuleSubMenuClick: function(menuOptionName, sectionIndex)
+    {
+        contentTabUI.switchTomModuleMenuFrame();
+        var selectedOption = contentTabUI.mModuleSubMenuOptionClick(menuOptionName,sectionIndex);
+        expect(selectedOption).to.equal(menuOptionName);
+    },
     mModuleCodeMenuClick: function(sectionIndex)
     {
         contentTabUI.switchTomModuleMenuFrame();
         var selectedOption = contentTabUI.mModuleCodeMenuClick(sectionIndex);
         expect(selectedOption).to.equal('Code');
+    },
+    sectionTextmModuleSelectModuleClick: function(mModuleOptionName){
+        contentTabUI.mModuleckEditorMenuClick(1);
+        ckEditorObj.mModuleSubMenuClick(mModuleOptionName, 1);
     },
     sectionTextCodeMenuClick: function(){
         contentTabUI.mModuleckEditorMenuClick(1);
@@ -31,6 +41,10 @@ var ckEditorObj = {
     relatedLinksCodeMenuClick: function(){
        contentTabUI.mModuleckEditorMenuClick(5);
         ckEditorObj.mModuleCodeMenuClick(5);
-    }    
+    },
+    sectionTextModuleMenuClick: function(){
+        contentTabUI.ModuleckEditorMenuClick(1);
+
+    }   
 }
 module.exports = ckEditorObj;

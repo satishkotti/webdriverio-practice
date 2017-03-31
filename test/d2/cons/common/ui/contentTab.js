@@ -44,6 +44,8 @@ var contentTabUIObj = {
         browser.pause(5000);
     },
     checkIn: function(){
+        browser.waitForVisible(checkInButonSelector);
+        browser.scroll(0,0);
         browser.click(checkInButonSelector);
         browser.pause(5000);
         browser.frameParent();
@@ -74,14 +76,25 @@ var contentTabUIObj = {
         browser.click("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+sectionIndex+"]");
         browser.pause(5000);
     },
+    mModuleSubMenuOptionClick: function(optionToSelectName, sectionIndex){
+        browser.waitForVisible("(//span[text()='"+optionToSelectName+"'])["+sectionIndex+"]", maxWaitTimeInMs);
+        browser.moveToObject("(//span[text()='"+optionToSelectName+"'])["+sectionIndex+"]");
+        browser.leftClick("(//span[text()='"+optionToSelectName+"'])["+sectionIndex+"]");
+        browser.pause(5000);
+        return browser.getText("(//span[text()='"+optionToSelectName+"'])["+sectionIndex+"]")
+    },
     mModuleCodeMenuClick: function(sectionIndex){
         browser.waitForVisible("(//span[text()='Code'])["+sectionIndex+"]", maxWaitTimeInMs);
         browser.moveToObject("(//span[text()='Code'])["+sectionIndex+"]");
         browser.leftClick("(//span[text()='Code'])["+sectionIndex+"]");
         browser.pause(5000);
         return browser.getText("(//span[text()='Code'])["+sectionIndex+"]")
+    },
+     ModuleckEditorMenuClick: function(sectionIndex){
+        browser.moveToObject("(//a[@title='Insert Module'])["+sectionIndex+"]");
+        browser.click("(//a[@title='Insert Module'])["+sectionIndex+"]");
+        browser.pause(5000);
     }
-    
 }
 
 module.exports = contentTabUIObj;
