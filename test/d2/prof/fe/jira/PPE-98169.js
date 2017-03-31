@@ -8,13 +8,8 @@ var workspaceMenu = require('./../../common/actions/workspace.menu.actions');
 var documentListTab = require('./../../common/actions/documentListTab.actions');
 var propertiesTab = require('./../../common/actions/propertiesTab.actions');
 
-
-describe('News Team - Customization Template PPE-98169', function () {
+describe.skip('News Team - Customization Template PPE-98169', function () {
     before(function () {
-        browser.setViewportSize({
-        width: 1920,
-        height: 1080
-        });   
         Login.login({
         url: functions.getEnvTestUrl(),
         username: functions.getQANewsUser().username,

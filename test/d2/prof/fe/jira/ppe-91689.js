@@ -7,7 +7,7 @@ var propertiesTab = require('./../../common/actions/propertiesTab.actions');
 var otfTab = require('./../../common/actions/otfTab.actions');
 
 
-describe('OTF Widget Verifications - PPE-91689', function () {
+describe('OTF Widget Verifications with one output version - PPE-91689', function () {
     before(function () {
         Login.login({
         url: functions.getEnvTestUrl(),
