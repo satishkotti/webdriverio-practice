@@ -63,7 +63,7 @@ var props = Object.create(page, {
         return props.GetElement;
     }}},
 
-    lookup: { value: {get: (labelName, dctmIdOrUrl) => {
+    lookup: { value:(labelName, dctmIdOrUrl) => {
         locator = input.replace('***', labelName);
         props.UntilExist();
         props.UntilVisible();
@@ -78,7 +78,7 @@ var props = Object.create(page, {
         }, 30000, 'DCTM Id or Url is not added', 250);
         props.UntilVisible();
 
-    }}},
+    }},
 
     element: { value: (eleLocator) => 
         { 

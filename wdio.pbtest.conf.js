@@ -29,7 +29,8 @@ exports.config = merge(wdioConf.config, {
 
        var appConfigFile = require('./test/pb2/config/test.config');
         var appConfig = appConfigFile.config;
-        global.appUrl = 'http://genesys.' + appConfig.testEnv.dev + '.webmd.com';
+        global.testEnv = appConfig.testEnv.dev;
+        global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
 

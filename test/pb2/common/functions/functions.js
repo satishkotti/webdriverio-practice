@@ -5,8 +5,11 @@ var props = require('./../actions/assetprops.actions');
 var search = require('./../actions/search.actions');
 var menu = require('./../actions/menus.actions');
 var queue = require('./../actions/queue.actions');
+var moduleConfigs = require('./../actions/moduleconfigs.actions');
 var usersDetails = require('./../../config/users');
+var ats = require('./../actions/ats.actions');
 var user = usersDetails.users;
+var parseXml = require('./../../../common/xml/parseXml');
 
 //Launch App and login
 module.exports.LaunchAppAndLogin = (user) =>
@@ -55,7 +58,7 @@ module.exports.Create = (assetType, assetDetails) =>
     {
         case 'Page': iwc.AddToNode(assetType); return props.PopulatePageProps(assetDetails); break;
         case 'Template': iwc.AddToNode(assetType); return props.PopulateTemplateProps(assetDetails); break;
-        case 'Shared Module': return props.PopulateSMProps(assetDetails); break;
+        case 'Shared Module': menu.SelectCreateMenuItem('Shared Modules'); return props.PopulateSMProps(assetDetails); break;
     }
 }
 
@@ -268,6 +271,63 @@ module.exports.SelectNodeAction = ([actionName, publishNode,templateStatus,pageS
      act.SelectNodeAction([actionName, publishNode,templateStatus,pageStatus]);
 }
 
-module.exports.ArrayFromJSONObj=(result)=>{
-    return act.ArrayFromJSONObj(result);
+//Navigate to ATS Status Checker Page
+module.exports.NavigatetoATSStatusCheckerPageOf = (chronID, stage) =>
+{
+     return ats.Navigate(chronID, stage); //Returns the URL of the page which existed before navigating to the ATS Status Checker page
+}
+module.exports.ClickButtonInATSPage = (buttonText) =>
+{
+     ats.ClickOn(buttonText);
+}
+
+module.exports.ConfigureModule = (moduleType, moduleprops) =>
+{
+    switch(moduleType)
+    {
+        case 'Multiple Video Launch': moduleConfigs.ConfigureMultipleVideoLaunchModule(moduleprops);
+    }
+
+}
+
+module.exports.WaitForATSFile = (fileType) =>
+{
+    ats.WaitFor(fileType);
+}
+
+module.exports.GetXML = (chronId, stage) =>
+{
+    var xmlUrl;
+    switch(global.testEnv)
+    {
+        case 'qa02':
+        case 'Qa02':
+        case 'QA02':
+        if(stage != 'live' || stage != 'Live')
+        {
+            xmlUrl = "http://ats." + stage + ".perf.webmd.com/ATSFile.aspx?ID=" + chronId;
+        }
+        else
+        {
+            xmlUrl = "http://ats.perf.webmd.com/ATSFile.aspx?ID=" + chronId;
+        }
+        break;
+        default:
+        if(stage != 'live' || stage != 'Live')
+        {
+            xmlUrl = "http://ats." + stage + "." + global.testEnv + ".webmd.com/ATSFile.aspx?ID=" + chronId;
+        }
+        else
+        {
+            xmlUrl = "http://ats." + global.testEnv + ".webmd.com/ATSFile.aspx?ID=" + chronId;
+        }
+        break;
+        
+    }
+    return Promise.resolve(parseXml.getXmlFromUrl(xmlUrl, null))
+            .then(function (result) {
+                return act.ArrayFromJSONObj(result);
+            }).catch(err => {
+                console.log(err);
+            });
 }

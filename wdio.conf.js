@@ -33,11 +33,6 @@ exports.config = {
     capabilities: [{
         maxInstances: 1,
         browserName: 'chrome',
-        chromeOptions:
-        {
-            //args: ['window-size=1920,1080']
-            args:['start-maximized', 'disable-infobars']
-        }
     }],
     //
     // ===================
