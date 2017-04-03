@@ -8,7 +8,7 @@ var workspaceMenu = require('./../../common/actions/workspace.menu.actions');
 var documentListTab = require('./../../common/actions/documentListTab.actions');
 var propertiesTab = require('./../../common/actions/propertiesTab.actions');
 
-describe.skip('News Team - Customization Template PPE-98169', function () {
+describe('News Team - Customization Template PPE-98169', function () {
     before(function () {
         Login.login({
         url: functions.getEnvTestUrl(),
@@ -60,7 +60,6 @@ describe.skip('News Team - Customization Template PPE-98169', function () {
                     global.d2ProfDataSettings.inputData.ArticleTemplate, 
                     objectName, 
                     global.d2ProfDataSettings.inputData.ContentType);
-        documentListTab.selectAsset(objectName);
         var cidName = propertiesTab.getChronicleIdAndName();
         var objName = cidName.objectName;
         var title = cidName.title;
