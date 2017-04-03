@@ -48,7 +48,6 @@ var documentListUIObj = {
     },
     lifeCyclePublishSelect: function(){
         browser.waitForExist("//a[text()='Publish']");
-        browser.moveToObject("//a[text()='Publish']");
         browser.click("//a[text()='Publish']");
     },
     powerPromoteConfirmDialogueOkSelect: function(){

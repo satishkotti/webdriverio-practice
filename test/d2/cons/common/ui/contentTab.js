@@ -72,7 +72,7 @@ var contentTabUIObj = {
     mModuleckEditorMenuClick: function(sectionIndex){
         browser.moveToObject("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+sectionIndex+"]");
         browser.click("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])["+sectionIndex+"]");
-        browser.pause(5000);
+        browser.pause(2000);
     },
     mModuleSubMenuOptionClick: function(optionToSelectName, sectionIndex){
         browser.waitForVisible("(//span[text()='"+optionToSelectName+"'])["+sectionIndex+"]", maxWaitTimeInMs);

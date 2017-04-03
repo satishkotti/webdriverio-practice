@@ -24,6 +24,7 @@ module.exports = {
         propertiesTabUI.publicationSet(publication);
         propertiesTabUI.copyrightSet(copyright);
         propertiesTabUI.primaryTopicIdSet(primaryTopicId);
+        propertiesTabUI.originalPublishDateSet();
         
         propertiesTabUI.save();
 
