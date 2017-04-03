@@ -1,27 +1,21 @@
 var otfTab = require('./../../common/actions/otfTab.actions');
-var contenttab = require('./contentTab');
-var propertiestab = require('./propertiesTab');
 var maxWaitTimeInMs = 60000;
 var otfTabSelector="//li[@tag_id='OnTheFly-widgetTab']";
 var otfWidget="//div[@tag_id='OnTheFly-widget']";
 
 module.exports = {
-   otfTabSelect: function(){
+    otfTabSelect: function(){
         if(!browser.isExisting(otfTabSelector))
         {
             browser.click("//div[@id='tab-container-2']//div[@unselectable='on']//div[@role='presentation']//ul[@role='tablist']//div[@qtip='Add widget']//span[@id='addTool-button']");
             browser.waitForVisible("//center[@title='OnTheFly']", maxWaitTimeInMs);
-            browser.pause(2000);
-            browser.moveToObject("//center[@title='OnTheFly']");
-            console.log("Testing "+ browser.getText("//center[@title='OnTheFly']"));
-            browser.leftClick("//center[@title='OnTheFly']");
+            browser.click("//center[@title='OnTheFly']");
         }else{
             browser.waitForExist(otfTabSelector, maxWaitTimeInMs);
             browser.click(otfTabSelector);
             browser.waitForExist(otfWidget, maxWaitTimeInMs);
         }
-        browser.waitForExist(otfWidget, maxWaitTimeInMs);
-        expect(browser.getText("(.//span[text()='OnTheFly'])[1]")).to.equal("OnTheFly");
+
     }, 
     otfWidgetSelector: function(){
         return otfWidget;
@@ -135,37 +129,6 @@ module.exports = {
     },
     isPrimarySecondOV: function(){
         return browser.getValue("//table[@st-table='displayedCollection']/tbody/tr[4]/td[6]/span/span/input");
-    },
-    searchObject:function(objname,locale){
-        browser.selectByValue("//span[contains(.,'Locale')]//select",locale);
-        browser.setValue("//input[@ng-model='searchtxt']",objname);
-        browser.leftClick("//button[@ng-click='search()']");
-       browser.waitForVisible("//span[text()='"+objname+"']",maxWaitTimeInMs);
-       browser.leftClick("//span[text()='"+objname+"']");
-       browser.frameParent();   
-       propertiestab.propertiesTabSelect();
-       var cid=propertiestab.chronicleIdGet();
-       expect(cid).to.equal(objname);
-       contenttab.selectContenTab();
-       browser.pause(3000);
-       contenttab.switchToExternalWidget4Frame();
-       browser.waitForVisible("//center[contains(.,'"+objname+"')]",maxWaitTimeInMs);
-       expect(browser.getText("//center[contains(.,'"+objname+"')]")).to.contain(objname);
-       browser.frameParent();
-    },
-    searchForAnAssetThroughOTF:function(searchdata,objectname,locale){
-       browser.selectByValue("//span[contains(.,'Locale')]//select",locale);
-       browser.setValue("//input[@ng-model='searchtxt']",searchdata);
-       browser.leftClick("//button[@ng-click='search()']");
-       browser.waitForVisible("//span[text()='"+searchdata+"']",maxWaitTimeInMs);
-    //    //browser.leftClick("//span[text()='"+objname+"']");
-    //    browser.frameParent(); 
-    //    propertiestab.propertiesTabSelect();
-    //    propertiestab.edit();
-    //    propertiestab.titleSet("_Updated");
-    //    propertiestab.save();        
-       
     }
 }
-
 
