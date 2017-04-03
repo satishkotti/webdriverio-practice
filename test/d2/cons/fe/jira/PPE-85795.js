@@ -47,37 +47,7 @@ describe('Interactive Article - BulletList Module', function () {
         contentTab.checkOut();
     });
 
-/*
-        Login.login({
-            url: functions.getEnvTestUrl(),
-            username: functions.getQAPublicationUser().username,
-            password: functions.getQAPublicationUser().password
-        });
-    /*   browser.refresh();
-       browser.pause(20000);
-       /* mModuleBulletOption.RepositoryRefresh();
-        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
-         workspaceMenu.createContent(
-                    global.d2ConDataSettings.inputData.ArticleProfileName,
-                    global.d2ConDataSettings.inputData.ArticleTemplate, 
-                    global.d2ConDataSettings.inputData.ArticleObjectName, 
-                    global.d2ConDataSettings.inputData.ArticleDescription);
-            browser.pause(20000);
-        //documentListTab.selectAsset("QATestAssetBKVpL");
-        documentListTab.selectAsset(global.d2ConDataSettings.inputData.ArticleObjectName);
-        contentTab.checkOut();
-         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
-        workspaceMenu.createContent(
-            global.d2ConDataSettings.inputData.ArticleProfileName,
-            global.d2ConDataSettings.inputData.ArticleTemplate,
-            global.d2ConDataSettings.inputData.ArticleObjectName,
-            global.d2ConDataSettings.inputData.ArticleDescription);
-
-        documentListTab.selectAsset(global.d2ConDataSettings.inputData.ArticleObjectName);
-contentTab.checkOut();
-    });*/
-
-    it.skip('should Verify the bullet list options in the module menu,Bullet List module & verify user is able access bullet list with data in the Rich text editor', function () {
+    it('should Verify the bullet list options in the module menu,Bullet List module & verify user is able access bullet list with data in the Rich text editor', function () {
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");
 
@@ -87,7 +57,7 @@ contentTab.checkOut();
         );
         contentTab.checkIn();
     });
-    it.skip('should Verify that user is able to insert multiple list within content - PPE-102331', function () {
+    it('should Verify that user is able to insert multiple list within content - PPE-102331', function () {
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");
 
@@ -97,7 +67,7 @@ contentTab.checkOut();
         );
         contentTab.checkIn();
     });
-    it.skip('should Verify user is able to edit the bulletlist module - PPE-102759', function () {
+    it('should Verify user is able to edit the bulletlist module - PPE-102759', function () {
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");
 
