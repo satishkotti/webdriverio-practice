@@ -6,7 +6,7 @@ var mModuleCodeObj = {
         codeUI.codeAndTypeSetValue(codeText, codeType);
         mModuleCodeObj.verifyLabels();
         mModuleCodeObj.verifyCodeAndType(codeText, codeType);
-        codeUI.insertQuote();
+        codeUI.insertCode();
     },
     addCodeAndTypeCancel: function (codeText, codeType) {
         codeUI.codeAndTypeSetValue(codeText, codeType);

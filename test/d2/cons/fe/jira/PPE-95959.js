@@ -72,8 +72,8 @@ describe('Interactive Article - JavaScript Module', function () {
 
         ckEditorMenu.sectionTextCodeMenuClick();
         mModuleCodeOption.addCodeAndTypeInsert(jsCodeValue,
-            global.d2ConDataSettings.inputData.FacebookCodeType);
-        browser.pause(2000);
+        global.d2ConDataSettings.inputData.FacebookCodeType);
+     
         contentTab.checkIn();
 
         var cidName = propertiesTab.getChronicleIdAndName();
