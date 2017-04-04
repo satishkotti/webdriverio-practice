@@ -33,18 +33,18 @@ describe('Interactive Article - JavaScript Module', function () {
             global.d2ConDataSettings.inputData.ArticleDescription);
 
         documentListTab.selectAsset(global.d2ConDataSettings.inputData.ArticleObjectName);
-        //contentTab.checkOut();
+        contentTab.checkOut();
 
         jsCodeValue = 'Test code field';
     });
 
-    it.skip('should select Section Text then Select Code and Cancel', function () {
+    it('should select Section Text then Select Code and Cancel', function () {
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextCodeMenuClick();
         mModuleCodeOption.addCodeAndTypeCancel('Test', global.d2ConDataSettings.inputData.FacebookCodeType);
     });
 
-    it.skip('Should Verify default option for codetype -  PPE-102788', function () {
+    it('Should Verify default option for codetype -  PPE-102788', function () {
         contentTab.sectionTextSetValue("more sample test data");
         ckEditorMenu.sectionTextCodeMenuClick();
         mModuleCodeOption.VerifyAvlblyCodeType(jsCodeValue, "");                        
@@ -52,7 +52,7 @@ describe('Interactive Article - JavaScript Module', function () {
             global.d2ConDataSettings.inputData.FacebookCodeType);
     });
 
-    it.skip('Should Verify the availability of Look up values in Code Type -  PPE-102786', function () {
+    it('Should Verify the availability of Look up values in Code Type -  PPE-102786', function () {
 
         contentTab.sectionTextSetValue("more sample test data");
         ckEditorMenu.sectionTextCodeMenuClick();
@@ -67,7 +67,7 @@ describe('Interactive Article - JavaScript Module', function () {
             global.d2ConDataSettings.inputData.FacebookCodeType);
     });
 
-    it.skip('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
+    it('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
         contentTab.sectionTextSetValue("more sample test data");
 
         ckEditorMenu.sectionTextCodeMenuClick();
@@ -97,7 +97,7 @@ describe('Interactive Article - JavaScript Module', function () {
                 });
 
                 expect(jsEmbedAssets.length).to.equal(1);
-                expect(jsEmbedAssets[0].parent.$.jstype).to.equal('Youtube');
+                expect(jsEmbedAssets[0].parent.$.jstype).to.equal('facebook');
                 expect(jsEmbedAssets[0].parent.$.class).to.equal('wbmdembededmodule cke_widget_inline');
 
 
