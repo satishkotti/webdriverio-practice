@@ -57,7 +57,6 @@ var contentTabUIObj = {
         browser.pause(5000);
     },
     sectionTextSetValue: function(sectionTextVal){
-        //browser.scroll(sectionTextSelector);
         browser.setValue(sectionTextSelector, sectionTextVal);
     },
     highlightsSetValue: function(highlightsValue){

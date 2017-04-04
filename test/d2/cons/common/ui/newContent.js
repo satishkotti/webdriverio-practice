@@ -30,7 +30,8 @@ var newContentObj = module.exports = {
         browser.setValue('#object_name-input', objName);
         browser.waitForVisible("#title-input");
         browser.setValue('#title-input', descName);
+        browser.waitForVisible('//*[@id="next-button"]');
         browser.click('//*[@id="next-button"]');
-        browser.waitForText('//span[@title="'+descName+'"]',40000);
+        browser.waitForVisible('//span[@title="'+descName+'"]',maxWaitTimeInMs);
     }
 }

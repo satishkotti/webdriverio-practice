@@ -94,6 +94,7 @@ module.exports = {
         browser.click("//span[@text()='Article']")
     },
     propertiesTabSelect: function(){
+        browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
         browser.click(propertiesTabSelector);
         browser.waitForVisible("#i_chronicle_id", maxWaitTimeInMs);
     },

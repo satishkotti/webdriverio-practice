@@ -6,17 +6,24 @@ var ckEditorObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.mModuleckEditorMenuClick(sectionIndex);
     },
+    mModuleSubMenuClick: function(menuOptionName, sectionIndex)
+    {
+        contentTabUI.switchTomModuleMenuFrame();
+        var selectedOption = contentTabUI.mModuleSubMenuOptionClick(menuOptionName,sectionIndex);
+        expect(selectedOption).to.equal(menuOptionName);
+    },
     mModuleCodeMenuClick: function(sectionIndex)
     {
         contentTabUI.switchTomModuleMenuFrame();
         var selectedOption = contentTabUI.mModuleCodeMenuClick(sectionIndex);
         expect(selectedOption).to.equal('Code');
     },
-  /*  ModuleMenuClick: function(sectionIndex)
-    {
-        contentTabUI.switchTomModuleMenuFrame();
-        contentTabUI.ModuleckEditorMenuClick(sectionIndex);
-    },*/
+
+    sectionTextmModuleSelectModuleClick: function(mModuleOptionName){
+        contentTabUI.mModuleckEditorMenuClick(1);
+        ckEditorObj.mModuleSubMenuClick(mModuleOptionName, 1);
+    },
+
     sectionTextCodeMenuClick: function(){
         contentTabUI.mModuleckEditorMenuClick(1);
         ckEditorObj.mModuleCodeMenuClick(1);

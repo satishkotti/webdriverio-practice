@@ -14,9 +14,7 @@ var documentListUIObj = {
     selectItemByName: function (assetName) {
 
         browser.pause(1000);
-   
         browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
-
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
     },
