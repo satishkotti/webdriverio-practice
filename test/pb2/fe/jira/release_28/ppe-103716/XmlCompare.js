@@ -8,21 +8,31 @@ describe('Compare xml test', () => {
     var xml1 = {}; var xml2 = {};
     var videosCount = 0;
     before(() => {
-        return Promise.resolve(parseXml.getXmlFromUrl(firsturl, null))
+        // return Promise.resolve(parseXml.getXmlFromUrl(firsturl, null))
+        //     .then(function (result) {
+        //         xml1 = test.ArrayFromJSONObj(result);
+        //         return parseXml.getXmlFromUrl(nexturl, null);
+        //     }).then(function (resultobj) {
+        //         xml2 = test.ArrayFromJSONObj(resultobj);
+        //         for (var property in xml1) {
+        //             if (property.toString().startsWith('VideoTitleOverride_')) {
+        //                 videosCount = videosCount + 1;
+        //             }
+        //         }
+        //     }).catch(err => {
+        //         console.log(err);
+        //     });
+
+
+        return Promise.resolve(test.GetXML('091e9c5e815ba3ec', 'live'))
             .then(function (result) {
-                xml1 = test.ArrayFromJSONObj(result);
-                return parseXml.getXmlFromUrl(nexturl, null);
+                xml1 = test.ArrayFromJSONObjforMultiVideoLunch(result);
+                return test.GetXML('091e9c5e815bdf80', 'live');
             }).then(function (resultobj) {
-                xml2 = test.ArrayFromJSONObj(resultobj);
-                for (var property in xml1) {
-                    if (property.toString().startsWith('VideoTitleOverride_')) {
-                        videosCount = videosCount + 1;
-                    }
-                }
+                xml2 = test.ArrayFromJSONObjforMultiVideoLunch(resultobj);
             }).catch(err => {
                 console.log(err);
             });
-
     });
 
     //assertions
