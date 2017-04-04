@@ -34,6 +34,8 @@ var contentTabUIObj = {
     selectContenTab: function(){
         browser.click(contentTabSelector);
         browser.pause(1000);
+        browser.doubleClick(contentTabSelector);
+        browser.pause(5000);
     },
     checkOut: function(){
         browser.waitForVisible(checkoutButtonSelector);
@@ -42,6 +44,8 @@ var contentTabUIObj = {
         browser.pause(5000);
         browser.frameParent();
         browser.pause(5000);
+        browser.doubleClick(contentTabSelector);
+        browser.pause(5000);
     },
     checkIn: function(){
         browser.waitForVisible(checkInButonSelector);
@@ -49,6 +53,7 @@ var contentTabUIObj = {
         browser.click(checkInButonSelector);
         browser.pause(5000);
         browser.frameParent();
+        browser.doubleClick(contentTabSelector);
         browser.pause(5000);
     },
     sectionTextSetValue: function(sectionTextVal){
@@ -95,6 +100,8 @@ var contentTabUIObj = {
         browser.click("(//a[@title='Insert Module'])["+sectionIndex+"]");
         browser.pause(5000);
     }
+
+
 }
 
 module.exports = contentTabUIObj;

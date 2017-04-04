@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 30000;
+var maxWaitTimeInMs = 50000;
 
 var ppModalLabel = "Power Promote Confirmation Message";
 var ppModalMsg = " Are you sure you want to power promote this document?"
@@ -12,8 +12,11 @@ var documentListUIObj = {
         browser.waitForExist("div.x-grid3-hd-inner.x-grid3-hd-object_name.x-component");
     },
     selectItemByName: function (assetName) {
-        
+
+        browser.pause(1000);
+   
         browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
+
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
     },
@@ -40,15 +43,18 @@ var documentListUIObj = {
     {
         browser.waitForExist("#x-menu-el-menuContextDocumentLifeCycle");
         browser.click("#x-menu-el-menuContextDocumentLifeCycle");
+        browser.pause(1000);
     },
     lifeCyclePowerPromoteSelect: function(){
           browser.waitForVisible("//a[text()='Power Promote']", maxWaitTimeInMs);
         //browser.waitForExist("//a[text()='Power Promote']");
         browser.click("//a[text()='Power Promote']");
+        browser.pause(1000);
     },
     lifeCyclePublishSelect: function(){
         browser.waitForExist("//a[text()='Publish']");
         browser.click("//a[text()='Publish']");
+        browser.pause(1000);
     },
     powerPromoteConfirmDialogueOkSelect: function(){
         browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
