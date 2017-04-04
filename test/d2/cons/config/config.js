@@ -3,6 +3,7 @@ var JSONPath = require('JSONPath');
 
 module.exports.GenerateRandomString = function GenerateRandomString(X) {
     return randomstring.generate(X);
+
 }
 module.exports.testSettings = {
     "dev01": {
@@ -84,6 +85,45 @@ module.exports.testSettings = {
             "url": "http://ats.preview.qa01.webmd.com/SCSFile.aspx?ID="
         }
     },
+    "qa01": {
+        "siteMgmtDb": {
+            "user": "appsa",
+            "password": "",
+            "server": "",
+            "database": "Pagebuilder_SiteManagement"
+        },
+        "dctmApiConfig": {
+            "dctmUsername": "QAPublication",
+            "dctmPassword": "QA-Doc#1",
+            "dctmDocbase": "webmddoc01",
+            "url": "http://dmrest.qa01.webmd.com/pbws"
+        },
+        "d2cons": {
+            "url": "http://d2.qa01.webmd.com/D2/#d2",
+            "users": [{
+                    "id": "1",
+                    "username": "QAPublication",
+                    "password": "QA-Doc#1",
+                    "type": "user"
+                },
+                {
+                    "id": "2",
+                    "username": "QAPublication09",
+                    "password": "QA-Doc#1",
+                    "type": "super user"
+                },
+                {
+                    "id": "3",
+                    "username": "QAPublication1",
+                    "password": "QA-Doc#1",
+                    "type": "user"
+                }
+            ]
+        },
+    "ats": {
+            "url": "http://ats.preview.qa01.webmd.com/SCSFile.aspx?ID="
+        }
+    },
     "data": {
         "expectedResults": {
             "bulletlist": "Bulleted List",
@@ -103,8 +143,39 @@ module.exports.testSettings = {
             "bulletEmptyValidation": "Please add at least 1 bullet to the bullet list!",
             "HomePageTitle": "D2"
         },
+        "pullQuote": {
+                "menuOptionText": "Pull Quote",
+                "text": "QA Pull Quote Text",
+                "attribution": "QA Pull Quote Attribution",
+                "alignLeft": "Left",
+                "contentClassification":"ZZ - Dummy Content Classification",
+                "publication":"No URL dummy publication",
+                "copyright": "2015 WebMD",
+                "primaryTopicId": "Cold and Flu",
+                "expectedClass": "wbmdembededmodule cke_widget_inline"
+            },
+    	"featureTemplate": {
+            "articleFeatureTemplate": 'Article / Feature Template',
+            "imageSearchText":"heart",
+            "featureModuleTitle":"QA Title",
+            "featureAssetTitle":"QA Asset Title",
+            "featureAssetDescription":"QA Asset Description",
+            "alignLeft": "Left",
+            "contentClassification":"ZZ - Dummy Content Classification",
+            "publication":"No URL dummy publication",
+            "copyright": "2015 WebMD",
+            "primaryTopicId": "Cold and Flu",
+            "expectedClass": "wbmdembededmodule cke_widget_inline",
+            "moduleTitleLabel": "Module Title",
+            "assetTitleLabel": "Asset Title",
+            "assetDescriptionLabel": "Asset Description",
+            "chronicleIdLabel": "Chronicle Id",
+            "alignLabel": "Align",
+            "thumbnailLabel": "Thumbnail",
+            "suppressSocialLabel": "Suppress Social Share"
+            },
         "inputData": {
-            "rotpath": "webmd::2/consumer_assets::3/editorial::4/articles::5/other::6/test::7",
+            "rotpath": "webmd::2/consumer_assets::3/editorial::4/articles::5/other::6",
             "rootnode": "webmddoc01",
             "webmdcpyrights": '2015 WebMD',
             "objectTitle": "QAArticleNews",
@@ -124,7 +195,7 @@ module.exports.testSettings = {
             "middlealignent": "Middle",
             "bulletlistalignment": "Right,Left,Middle",
             "CodeTypes": "Facebook, Youtube, Twitter, Pinterest, Reddit, Imgur, Snapchat, Tumblr, Instagram",
-            "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other/test",
+            "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
             "ArticleTemplate": 'Article /  News Template',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),

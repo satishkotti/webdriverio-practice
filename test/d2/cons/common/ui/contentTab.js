@@ -34,6 +34,8 @@ var contentTabUIObj = {
     selectContenTab: function(){
         browser.click(contentTabSelector);
         browser.pause(1000);
+        browser.doubleClick(contentTabSelector);
+        browser.pause(5000);
     },
     checkOut: function(){
         browser.waitForVisible(checkoutButtonSelector);
@@ -42,11 +44,16 @@ var contentTabUIObj = {
         browser.pause(5000);
         browser.frameParent();
         browser.pause(5000);
+        browser.doubleClick(contentTabSelector);
+        browser.pause(5000);
     },
     checkIn: function(){
+        browser.waitForVisible(checkInButonSelector);
+        browser.scroll(0,0);
         browser.click(checkInButonSelector);
         browser.pause(5000);
         browser.frameParent();
+        browser.doubleClick(contentTabSelector);
         browser.pause(5000);
     },
     sectionTextSetValue: function(sectionTextVal){
@@ -81,13 +88,27 @@ var contentTabUIObj = {
         browser.pause(5000);
         return browser.getText("(//span[text()='"+optionToSelectName+"'])["+sectionIndex+"]")
     },
+    mModuleSubMenuOptionClick: function(optionToSelectName, sectionIndex){
+        browser.waitForVisible("(//span[text()='"+optionToSelectName+"'])["+sectionIndex+"]", maxWaitTimeInMs);
+        browser.moveToObject("(//span[text()='"+optionToSelectName+"'])["+sectionIndex+"]");
+        browser.leftClick("(//span[text()='"+optionToSelectName+"'])["+sectionIndex+"]");
+        browser.pause(5000);
+        return browser.getText("(//span[text()='"+optionToSelectName+"'])["+sectionIndex+"]")
+    },
     mModuleCodeMenuClick: function(sectionIndex){
         browser.waitForVisible("(//span[text()='Code'])["+sectionIndex+"]", maxWaitTimeInMs);
         browser.moveToObject("(//span[text()='Code'])["+sectionIndex+"]");
         browser.leftClick("(//span[text()='Code'])["+sectionIndex+"]");
         browser.pause(5000);
         return browser.getText("(//span[text()='Code'])["+sectionIndex+"]")
+    },
+     ModuleckEditorMenuClick: function(sectionIndex){
+        browser.moveToObject("(//a[@title='Insert Module'])["+sectionIndex+"]");
+        browser.click("(//a[@title='Insert Module'])["+sectionIndex+"]");
+        browser.pause(5000);
     }
+
+
 }
 
 module.exports = contentTabUIObj;

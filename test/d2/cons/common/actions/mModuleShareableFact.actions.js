@@ -46,6 +46,7 @@ var mModuleShareableFactObj = {
     {
        var title= mModuleShareableFactUI.defaulttitleGet().toLowerCase();
         expect(title).to.equal(titleText.toLowerCase());
+
         mModuleShareableFactUI.cancel();
     }
 }
