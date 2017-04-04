@@ -15,7 +15,7 @@ describe('XML validations for Multiple Video Launch Module', () => {
     describe.only('Creation Scenario', () => {
         var xml1 = {}; //pb1 xml
         var xml2 = {}; //pb2 xml
-
+        var videosCount=0;
         before(() => {
             var chronid = test.Create('Shared Module', testAssetProps);
             test.ConfigureModule('Multiple Video Launch', testAssetProps);
@@ -30,12 +30,14 @@ describe('XML validations for Multiple Video Launch Module', () => {
                     return test.GetXML(chronid, 'live');
                 }).then(function (resultobj) {
                     xml2 = test.ArrayFromJSONObjforMultiVideoLunch(resultobj);
+                    for (var property in xml1) {
+                    if (property.toString().startsWith('VideoTitleOverride_')) {
+                        videosCount = videosCount + 1;
+                    }
+                }
                 }).catch(err => {
                     console.log(err);
-                });
-            // xml1 = test.GetXML('091e9c5e815ba3ec', 'live');
-            // xml2 = test.GetXML(chronid, 'live');
-            //Parse the XML
+                });          
         });
 
         //assertions
@@ -97,8 +99,57 @@ describe('XML validations for Multiple Video Launch Module', () => {
         it('wbmd_pb_module_xsl object_type of both xmls should be same', () => {
             expect(xml1['wbmd_pb_module_xsl_object_type']).to.equal(xml2['wbmd_pb_module_xsl_object_type']);
         });
+        
+        it('wbmd_pb_owner_page_id path object_type of both xmls should be same', () => {
+            expect(xml1['wbmd_pb_owner_page_id_path']).to.equal(xml2['wbmd_pb_owner_page_id_path']);
+        });
+        it('wbmd_pb_owner_page_id object_type object_type of both xmls should be same', () => {
+            expect(xml1['wbmd_pb_owner_page_id_object_type']).to.equal(xml2['wbmd_pb_owner_page_id_object_type']);
+        });
+        it('dnn_id object_type of both xmls should be same', () => {
+            expect(xml1['dnn_id']).to.equal(xml2['dnn_id']);
+        });
+        it('class object_type of both xmls should be same', () => {
+            expect(xml1['class']).to.equal(xml2['class']);
+        });
 
-    });
+        it('VideoBrand object_type of both xmls should be same', () => {
+            expect(xml1['VideoBrand']).to.equal(xml2['VideoBrand']);
+        });
+
+        it('VideoLinkView object_type of both xmls should be same', () => {
+            expect(xml1['VideoLinkView']).to.equal(xml2['VideoLinkView']);
+        });
+        it('ModuleDescription object_type of both xmls should be same', () => {
+            expect(xml1['ModuleDescription']).to.equal(xml2['ModuleDescription']);
+        });
+
+        it('ModuleTitle object_type of both xmls should be same', () => {
+            expect(xml1['ModuleTitle']).to.equal(xml2['ModuleTitle']);
+        });
+
+        it('VideoTitleOverride object_type of both xmls should be same', () => {
+            while (videosCount > 0) {
+                expect(xml1['VideoTitleOverride_' + videosCount]).to.equal(xml2['VideoTitleOverride_' + videosCount]);
+                videosCount = videosCount - 1;
+            }
+        });
+
+        it('VideoDescriptionOverride object_type of both xmls should be same', () => {
+            while (videosCount > 0) {
+                expect(xml1['VideoDescriptionOverride_' + videosCount]).to.equal(xml2['VideoDescriptionOverride_' + videosCount]);
+                videosCount = videosCount - 1;
+            }
+        });
+        it('videosource_chronic_id object_type of both xmls should be same', () => {
+            while (videosCount > 0) {
+                expect(xml1['videosource_chronic_id_' + videosCount]).to.equal(xml2['videosource_chronic_id_' + videosCount]);
+                videosCount = videosCount - 1;
+            }
+
+        });
+
+        });
 
     describe('Update Scenario', () => {
 
