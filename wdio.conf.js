@@ -82,7 +82,8 @@ exports.config = {
                 "disable-default-apps",
                 "disable-extensions",
                 "no-experiments",
-                "no-service-autorun"
+                "no-service-autorun",
+                "disable-infobars"
                 ],
 			"prefs":{
 				"credentials_enable_service": false,

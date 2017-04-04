@@ -3,20 +3,24 @@ var maxWaitTimeInMs = 20000;
 var mModuleCodeUIObj = {
     
     getCodeLabel: function () {
+        mModuleCodeUIObj.verfiyElementExists("div[data-test='codemodule-codelabel']");
         return browser.getText("div[data-test='codemodule-codelabel']");
     },
     getCodeTypeLabel: function () {
+        mModuleCodeUIObj.verfiyElementExists("div[data-test='codemodule-codetypelabel']");
         return browser.getText("div[data-test='codemodule-codetypelabel']");
     },
     getCodeValue: function () {
+        mModuleCodeUIObj.verfiyElementExists("textarea[data-test='codemodule-code']");
         return browser.getValue("textarea[data-test='codemodule-code']");
     },
     getCodeTypeValue: function () {
+        mModuleCodeUIObj.verfiyElementExists("select[data-test='codemodule-codetype']");
         return browser.element("select[data-test='codemodule-codetype']").getValue();
     },
       
       getcode_socialvalue: function () {
-        
+        mModuleCodeUIObj.verfiyElementExists("#wbmd_lookup_type-input");
          var inputlookuptypeinput= $('#wbmd_lookup_type-input');
          return inputlookuptypeinput.getValue();
     },

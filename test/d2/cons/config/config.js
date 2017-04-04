@@ -59,7 +59,7 @@ module.exports.testSettings = {
             "url": "http://dmrest.dev04.webmd.com/pbws"
         },
         "d2cons": {
-            "url": "http://d2.qa01.webmd.com/D2/#d2",
+            "url": "http://d2.dev04.webmd.com/D2/#d2",
             "users": [{
                     "id": "1",
                     "username": "QAPublication",
@@ -81,7 +81,7 @@ module.exports.testSettings = {
             ]
         },
     "ats": {
-            "url": "http://ats.preview.qa01.webmd.com/SCSFile.aspx?ID="
+            "url": "http://ats.preview.dev04.webmd.com/SCSFile.aspx?ID="
         }
     },
     "qa01": {

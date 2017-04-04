@@ -23,8 +23,6 @@ describe('Interactive Article - JavaScript Module', function () {
             password: functions.getQAPublicationUser().password
         });
 
-        browser.pause(10000);
-
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
         workspaceMenu.createContent(
             global.d2ConDataSettings.inputData.ArticleProfileName,
@@ -57,11 +55,9 @@ describe('Interactive Article - JavaScript Module', function () {
         contentTab.sectionTextSetValue("more sample test data");
         ckEditorMenu.sectionTextCodeMenuClick();
 
-        var CodeTypes = global.d2ConDataSettings.inputData.CodeTypes;              
-        var j = 1;            
+        var CodeTypes = global.d2ConDataSettings.inputData.CodeTypes;
         CodeTypes.split(',').forEach(function (x) {               
-            mModuleCodeOption.VerifyAvlblyCodeType(jsCodeValue, x);                        
-            j++;          
+            mModuleCodeOption.VerifyAvlblyCodeType(jsCodeValue, x); 
         });
         mModuleCodeOption.addCodeAndTypeCancel(jsCodeValue,
             global.d2ConDataSettings.inputData.FacebookCodeType);
@@ -100,26 +96,30 @@ describe('Interactive Article - JavaScript Module', function () {
                 expect(jsEmbedAssets[0].parent.$.jstype).to.equal('facebook');
                 expect(jsEmbedAssets[0].parent.$.class).to.equal('wbmdembededmodule cke_widget_inline');
 
-
                 var jsBlobVal = JSONPath({
                     json: result,
                     path: "$..section_text.embeded_module.jsblob"
                 });
                 expect(jsEmbedAssets.length).to.equal(1);
                 expect(jsBlobVal[0]).to.equal(expectedJsCode);
+
+console.log('verified SCS rendition');
+
             })
         });
     });
 
-    it('should verify Stored under webmd/web_publisher_list/lookups/interactive_articles -  PPE-PPE-103419', function () {
-        browser.pause(10000);
+    it('should verify Stored under webmd/web_publisher_list/lookups/interactive_articles - PPE-103419', function () {
+
+        repositoryBrowserTab.selectRepositoryBrowserTab();
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.LookupFolderPath);
-        var CodeTypes = global.d2ConDataSettings.inputData.CodeTypes;              
-        var j = 1;            
+        var CodeTypes = global.d2ConDataSettings.inputData.CodeTypes;                     
         CodeTypes.split(',').forEach(function (x) {
+
+console.log('PPE-103419 Code Type:'+ x);
+
             documentListTab.selectAsset(x);   
-            mModuleCodeOption.VerifyAvlblycode_social("code_social");                        
-            j++;          
+            mModuleCodeOption.VerifyAvlblycode_social("code_social");
         });
     });
 });
