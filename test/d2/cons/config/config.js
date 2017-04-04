@@ -56,7 +56,7 @@ module.exports.testSettings = {
             "dctmUsername": "QAPublication",
             "dctmPassword": "QA-Doc#1",
             "dctmDocbase": "webmddoc01",
-            "url": "http://dmrest.qa01.webmd.com/pbws"
+            "url": "http://dmrest.dev04.webmd.com/pbws"
         },
         "d2cons": {
             "url": "http://d2.qa01.webmd.com/D2/#d2",
@@ -81,7 +81,7 @@ module.exports.testSettings = {
             ]
         },
     "ats": {
-            "url": "http://ats.staging.qa01.webmd.com/SCSFile.aspx?ID="
+            "url": "http://ats.preview.qa01.webmd.com/SCSFile.aspx?ID="
         }
     },
     "data": {

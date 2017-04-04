@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 30000;
+var maxWaitTimeInMs = 50000;
 
 var ppModalLabel = "Power Promote Confirmation Message";
 var ppModalMsg = " Are you sure you want to power promote this document?"
@@ -24,6 +24,7 @@ var documentListUIObj = {
         documentListUIObj.lifeCyclePowerPromoteSelect();
         documentListUIObj.powerPromoteConfirmDialogueOkSelect();
         documentListUIObj.powerPromoteResultsDialogueOkSelect(assetName);
+        browser.pause(1000);
 
     },
     publishToStaging: function(assetName){
@@ -31,6 +32,7 @@ var documentListUIObj = {
         documentListUIObj.contextualMenuLifeCycleSelect();
         documentListUIObj.lifeCyclePublishSelect();
         documentListUIObj.publishToDialogueOkSelect('Staging');
+        browser.pause(1000);
     },
     contextualMenuActivate: function(assetName){
         browser.rightClick("//span[@title='" + assetName + "']");

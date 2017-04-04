@@ -27,19 +27,15 @@ describe('Interactive Article - BulletList Module', function () {
         browser.pause(2000);
         mModuleBulletOption.RepositoryRefresh();
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
-       
-        
-     });
 
-     after(function () {
-        login.logoutCloseWindow();
+
     });
 
-     beforeEach(function () {
-       AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
+    beforeEach(function () {
+        AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
-           global.d2ConDataSettings.inputData.ArticleProfileName,
+            global.d2ConDataSettings.inputData.ArticleProfileName,
             global.d2ConDataSettings.inputData.ArticleTemplate,
             AssetTitle,
             AssetName)
@@ -83,7 +79,7 @@ describe('Interactive Article - BulletList Module', function () {
         ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");
         mModuleBulletOption.bulletlistEmptyValidation();
         mModuleBulletOption.bulletlistInsertEmptyValidation();
-        contentTab.checkIn(); 
+        contentTab.checkIn();
 
 
     });
@@ -108,7 +104,7 @@ describe('Interactive Article - BulletList Module', function () {
         contentTab.checkIn();
     });
 
-     it.skip('should Verify the lifecycle and XML-renditions', function () {
+    it('should Verify the lifecycle and XML-renditions', function () {
         contentTab.sectionTextSetValue("Sample Test Data");
         ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");
 
@@ -116,42 +112,37 @@ describe('Interactive Article - BulletList Module', function () {
             global.d2ConDataSettings.inputData.bulletlistmoduleDescription,
             global.d2ConDataSettings.inputData.leftalignent, "BulletTitle", "D2"
         );
-         contentTab.checkIn();
-         var cidName = propertiesTab.getChronicleIdAndName();
+        contentTab.checkIn();
+        var cidName = propertiesTab.getChronicleIdAndName();
         var objName = cidName.objectName;
         chronicleId = cidName.chronicleId;
         propertiesTab.setRequiredProperties(objName, 'News', objName, objName, objName, objName, 'WebMD Medical News', '2015 WebMD', 'ADD-ADHD (Adult)');
-        documentListTab.assetPowerPromotePublishToStaging(global.d2ConDataSettings.inputData.ArticleObjectName);
+        documentListTab.assetPowerPromotePublishToStaging(AssetTitle);
 
         return Promise.resolve(
             parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
-
-                var jsEmbedAssets = JSONPath({
+                var bulletlistAsset = JSONPath({
                     json: result,
-                    path: "$..section_text.embeded_module[?(@.class =='wbmdembededmodule cke_widget_inline')]",
+                    path: "$..section_text.embeded_module[?(@.type =='bulletedlist')]",
                     resultType: 'all'
                 });
 
-               expect(jsEmbedAssets[0].parent.$.align).to.equal(global.d2ConDataSettings.inputData.leftalignent);
-                expect(jsEmbedAssets[0].parent.$.class).to.equal('wbmdembededmodule cke_widget_inline');
-                expect(jsEmbedAssets[0].parent.$.module_title).to.equal(global.d2ConDataSettings.inputData.bulletlistheadline);
-                 expect(jsEmbedAssets[0].parent.$.module_description).to.equal(global.d2ConDataSettings.inputData.bulletlistmoduleDescription);
-                 expect(jsEmbedAssets[0].parent.$.style).to.equal("float:left;");
+                expect(bulletlistAsset[0].parent.$.align).to.equal('left');
+                expect(bulletlistAsset[0].parent.$.class).to.equal('wbmdembededmodule cke_widget_inline');
+                expect(bulletlistAsset[0].parent.$.module_title).to.equal(global.d2ConDataSettings.inputData.bulletlistheadline);
+                expect(bulletlistAsset[0].parent.$.module_description).to.equal(global.d2ConDataSettings.inputData.bulletlistmoduleDescription);
+                expect(bulletlistAsset[0].parent.$.style).to.equal("float:left;");
+
+
                 var bulletlistTitle = JSONPath({
                     json: result,
-                      path: "$..section_text.bulletlist.bulletitem[?(@.btitle)]",
+                    path: "$..section_text.embeded_module.bulletlist.bulletitem",
                     resultType: 'all'
                 });
-                expect(bulletlistTitle.parent.$.btitle).to.equal("BulletTitle");
+                expect(bulletlistTitle[0].value.btitle).to.equal("BulletTitle");
+                expect(bulletlistTitle[0].value.description.p).to.equal("D2");
             }));
-            var bulletlistDescription = JSONPath({
-                    json: result,
-                      path: "$..section_text.bulletlist.bulletitem.description",
-                    resultType: 'all'
-                });
-                expect(bulletlistDescription.parent.$.p).to.equal("D2");
-            
 
     });
-    
+
 });

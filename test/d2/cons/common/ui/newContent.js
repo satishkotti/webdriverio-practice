@@ -32,5 +32,6 @@ var newContentObj = module.exports = {
         browser.setValue('#title-input', descName);
         browser.click('//*[@id="next-button"]');
         browser.waitForText('//span[@title="'+descName+'"]',40000);
+        browser.pause(2000);
     }
 }

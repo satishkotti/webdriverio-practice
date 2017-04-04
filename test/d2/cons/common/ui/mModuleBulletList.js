@@ -73,7 +73,7 @@ var mModuleBulletUIObj = {
         return browser.getText("div[data-test='bulletedlist-bulletslabel']");
     },
 
-    setInsertBulletDescription: function (textValue) {
+    setInsertBulletDescription: function () {
         mModuleBulletUIObj.switchToBulletDescFrame();
         browser.click("//span[contains(@class,'bold_icon')]");
         mModuleBulletUIObj.switchToRichTextEditorFrame();
@@ -153,18 +153,18 @@ var mModuleBulletUIObj = {
     alignValueSelectedSet: function () {
         return browser.getValue("textarea[data-test='codemodule-code']");
     },
-    insertBulletDescriptionValueSet: function (bulletDescTextValue) {
+    insertBulletDescriptionValueSet: function () {
         //Add logic to switch frames
         mModuleBulletUIObj.verfiyElementExists("button[data-test='bulletedlist-bulletinsertbutton']");
         browser.click("button[data-test='bulletedlist-bulletinsertbutton']");
         browser.pause(1000);
     },
-    insert: function (codeText, codeType) {
+    insert: function () {
         mModuleBulletUIObj.verfiyElementExists("button[data-test='bulletedlist-insertbutton']");
         browser.click("button[data-test='bulletedlist-insertbutton']");
         browser.pause(1000);
     },
-    save: function (codeText, codeType) {
+    save: function () {
         mModuleBulletUIObj.verfiyElementExists("button[data-test='bulletedlist-bulletsavebutton']");
         browser.click("button[data-test='bulletedlist-bulletsavebutton']");
         browser.pause(1000);
@@ -175,7 +175,7 @@ var mModuleBulletUIObj = {
         browser.frameParent();
         browser.pause(1000);
     },
-    cancel: function (codeText, codeType) {
+    cancel: function () {
         mModuleBulletUIObj.verfiyElementExists("button[data-test='bulletedlist-cancelbutton']");
         browser.click("button[data-test='bulletedlist-cancelbutton']");
         browser.frameParent();
