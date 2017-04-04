@@ -206,55 +206,58 @@ module.exports.SelectNodeAction = ([actionName, publishNode, templateStatus, pag
             break;
     }
 }
-module.exports.ArrayFromJSONObj = (result) => {
+module.exports.ArrayFromJSONObjforMultiVideoLunch = (result) => {
     var obj = {};
-    var rowNumber = 0;
-    //Module settings
-    obj["title"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.title;
-    obj["object_name"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.object_name;
-    obj["object_type"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.object_type;
-    obj["wbmd_pb_module_category"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.wbmd_pb_module_category;
-    obj["wbmd_pb_dyn_module_category"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.wbmd_pb_dyn_module_category;
-    obj["wbmd_pb_module_label1"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.md_pb_module_label1_group.wbmd_pb_module_label1;
-    obj["wbmd_pb_module_label2"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.md_pb_module_label2_group.wbmd_pb_module_label2;
-    obj["wbmd_pb_module_sp_program"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.wbmd_pb_module_sp_program;
-    obj["wbmd_pb_cache_duration"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.wbmd_pb_cache_duration;
-    obj["wbmd_c_channel_ids_group"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.wbmd_c_channel_ids_group;
-    obj["wbmd_program_group"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.wbmd_program_group;
-    obj["wbmd_pb_asset_css_path"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.wbmd_pb_asset_css.$.path;
-    obj["wbmd_pb_asset_css_object_type"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.wbmd_pb_asset_css.$.object_type;
-    obj["wbmd_pb_module_xsl_path"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.wbmd_pb_module_xsl.$.path;
-    obj["wbmd_pb_module_xsl_object_type"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.wbmd_pb_module_xsl.$.object_type;
 
-    // result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.wbmd_pb_moduledataschema.forEach(function (element) {
+    var rowNumber = 0;
+    var moduleSettings = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings;
+    //Module settings
+    obj["title"] = moduleSettings.hasOwnProperty('title') ? moduleSettings.title : 'title missed on xml';
+    obj["object_name"] = moduleSettings.hasOwnProperty('object_name') ? moduleSettings.object_name : 'object_name missed on xml';
+    obj["object_type"] = moduleSettings.hasOwnProperty('object_type') ? moduleSettings.object_type : 'object_type missed on xml';
+    obj["wbmd_pb_module_category"] = moduleSettings.hasOwnProperty('wbmd_pb_module_category') ? moduleSettings.wbmd_pb_module_category : 'wbmd_pb_module_category missed on xml';
+    obj["wbmd_pb_dyn_module_category"] = moduleSettings.hasOwnProperty('wbmd_pb_dyn_module_category') ? moduleSettings.wbmd_pb_dyn_module_category : 'wbmd_pb_dyn_module_category missed on xml';
+    obj["wbmd_pb_module_label1"] = (moduleSettings.hasOwnProperty('md_pb_module_label1_group')&& moduleSettings.md_pb_module_label1_group.wbmd_pb_module_label1!=undefined) ? moduleSettings.md_pb_module_label1_group.wbmd_pb_module_label1 : 'md_pb_module_label1_group.wbmd_pb_module_label1 missed on xml';
+    obj["wbmd_pb_module_label2"] = (moduleSettings.hasOwnProperty('md_pb_module_label2_group')&& moduleSettings.md_pb_module_label1_group.wbmd_pb_module_label1!=undefined) ? moduleSettings.md_pb_module_label2_group.wbmd_pb_module_label2 : 'md_pb_module_label2_group.wbmd_pb_module_label2 missed on xml';
+    obj["wbmd_pb_module_sp_program"] = moduleSettings.hasOwnProperty('wbmd_pb_module_sp_program') ? moduleSettings.wbmd_pb_module_sp_program : 'wbmd_pb_module_sp_program missed on xml';
+    obj["wbmd_pb_cache_duration"] = moduleSettings.hasOwnProperty('wbmd_pb_cache_duration') ? moduleSettings.wbmd_pb_cache_duration : 'wbmd_pb_cache_duration missed on xml';
+    obj["wbmd_c_channel_ids_group"] = moduleSettings.hasOwnProperty('wbmd_c_channel_ids_group') ? moduleSettings.wbmd_c_channel_ids_group : 'wbmd_c_channel_ids_group missed on xml';
+    obj["wbmd_program_group"] = moduleSettings.hasOwnProperty('wbmd_program_group') ? moduleSettings.wbmd_program_group : 'wbmd_program_group missed on xml';
+    obj["wbmd_pb_asset_css_path"] = moduleSettings.hasOwnProperty('wbmd_pb_asset_css') ? moduleSettings.wbmd_pb_asset_css.$.path : 'wbmd_pb_asset_css.$.path missed on xml';
+    obj["wbmd_pb_asset_css_object_type"] = moduleSettings.hasOwnProperty('wbmd_pb_asset_css') ? moduleSettings.wbmd_pb_asset_css.$.object_type : 'wbmd_pb_asset_css.$.object_type missed on xml';
+    obj["wbmd_pb_module_xsl_path"] = moduleSettings.hasOwnProperty('wbmd_pb_module_xsl') ? moduleSettings.wbmd_pb_module_xsl.$.path : 'wbmd_pb_module_xsl.$.path missed on xml';
+    obj["wbmd_pb_module_xsl_object_type"] = moduleSettings.hasOwnProperty('wbmd_pb_module_xsl') ? moduleSettings.wbmd_pb_module_xsl.$.object_type : 'wbmd_pb_module_xsl_object_type missed on xml';
+
+    // moduleSettings.wbmd_pb_moduledataschema.forEach(function (element) {
     //     rowNumber = rowNumber + 1;
     //     obj["wbmd_pb_moduledataschema_path_" + rowNumber] = element.$.path;
     //     obj["wbmd_pb_moduledataschema_object_type_" + rowNumber] = element.$.object_type;
     // }, this);
 
-    obj["wbmd_pb_owner_page_id_path"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.wbmd_pb_owner_page_id.$.path;
-    obj["wbmd_pb_owner_page_id_object_type"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.wbmd_pb_owner_page_id.$.object_type;
-    obj["dnn_id"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.dnn_id;
-    obj["class"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings.class;
+    obj["wbmd_pb_owner_page_id_path"] = moduleSettings.hasOwnProperty('wbmd_pb_owner_page_id') ? moduleSettings.wbmd_pb_owner_page_id.$.path : 'wbmd_pb_owner_page_id.$.path missed on xml';
+    obj["wbmd_pb_owner_page_id_object_type"] = moduleSettings.hasOwnProperty('wbmd_pb_owner_page_id') ? moduleSettings.wbmd_pb_owner_page_id.$.object_type : 'wbmd_pb_owner_page_id_object_type missed on xml';
+    obj["dnn_id"] = moduleSettings.hasOwnProperty('dnn_id') ? moduleSettings.dnn_id : 'dnn_id missed on xml';
+    obj["class"] = moduleSettings.hasOwnProperty('class') ? moduleSettings.class : 'class missed on xml';
 
     //moduledata 
-    obj["VideoBrand"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_data.VideoBrand;
-    obj["VideoLinkView"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_data.VideoLinkView;
-    obj["ModuleDescription"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_data.ModuleDescription;
-    obj["ModuleTitle"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_data.ModuleTitle;
+    var moduleData=result.webmd_rendition.content.wbmd_asset.webmd_module.module_data;
+    obj["VideoBrand"] = moduleData.hasOwnProperty('VideoBrand') ? moduleData.VideoBrand: 'VideoBrand missed on xml';
+    obj["VideoLinkView"] = moduleData.hasOwnProperty('VideoLinkView') ? moduleData.VideoLinkView: 'VideoLinkView missed on xml';
+    obj["ModuleDescription"] = moduleData.hasOwnProperty('ModuleDescription') ? moduleData.ModuleDescription: 'ModuleDescription missed on xml';
+    obj["ModuleTitle"] = moduleData.hasOwnProperty('ModuleTitle') ? moduleData.ModuleTitle: 'ModuleTitle missed on xml';
 
-    if (result.webmd_rendition.content.wbmd_asset.webmd_module.module_data.Videos.length != undefined) {
+    if (moduleData.Videos.length != undefined) {
         rowNumber = rowNumber + 1;
-        result.webmd_rendition.content.wbmd_asset.webmd_module.module_data.Videos.forEach(function (element) {
-            obj["VideoTitleOverride_" + rowNumber] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_data.Videos.Video.VideoTitleOverride;
-            obj["VideoDescriptionOverride_" + rowNumber] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_data.Videos.Video.VideoDescriptionOverride;
-            obj["videosource_chronic_id_" + rowNumber] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_data.Videos.Video.VideoSource.$.chronic_id;
+        moduleData.Videos.forEach(function (element) {
+            obj["VideoTitleOverride_" + rowNumber] = moduleData.hasOwnProperty('VideoTitleOverride') ? element.VideoTitleOverride: 'VideoTitleOverride missed on xml';
+            obj["VideoDescriptionOverride_" + rowNumber] = moduleData.hasOwnProperty('VideoDescriptionOverride') ? element.VideoDescriptionOverride: 'VideoDescriptionOverride missed on xml';
+            obj["videosource_chronic_id_" + rowNumber] = moduleData.hasOwnProperty('VideoSource') ? element.VideoSource.$.chronic_id: 'VideoSource.$.chronic_id missed on xml';
         }, this);
     }
     else {
-        obj["VideoTitleOverride_1"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_data.Videos.Video.VideoTitleOverride;
-        obj["VideoDescriptionOverride_1"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_data.Videos.Video.VideoDescriptionOverride;
-        obj["videosource_chronic_id_1"] = result.webmd_rendition.content.wbmd_asset.webmd_module.module_data.Videos.Video.VideoSource.$.chronic_id;
+        obj["VideoTitleOverride_1"] = moduleData.hasOwnProperty('VideoTitleOverride') ? moduleData.Videos.Video.VideoTitleOverride: 'VideoTitleOverride missed on xml';
+        obj["VideoDescriptionOverride_1"] = moduleData.hasOwnProperty('VideoDescriptionOverride') ? moduleData.Videos.Video.VideoDescriptionOverride: 'VideoDescriptionOverride missed on xml';
+        obj["videosource_chronic_id_1"] = moduleData.hasOwnProperty('VideoSource') ? moduleData.Videos.Video.VideoSource.$.chronic_id: 'VideoSource.$.chronic_id missed on xml';
     }
     return obj;
 }

@@ -17,8 +17,8 @@ module.exports.ClickOn = function (buttonText) {
 }
 module.exports.WaitFor = (fileType) =>
 {   
-    var atsUrl = browser.getURL();
-    if(atsUrl.contains('preview') || atsUrl.contains('Preview'))
+    var atsUrl = browser.getUrl();
+    if(atsUrl.includes('preview') || atsUrl.includes('Preview'))
     {
         ats.downloadLink(fileType, 10000);
     }

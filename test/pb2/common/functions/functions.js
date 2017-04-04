@@ -303,7 +303,7 @@ module.exports.GetXML = (chronId, stage) =>
         case 'qa02':
         case 'Qa02':
         case 'QA02':
-        if(stage != 'live' || stage != 'Live')
+        if(stage.toLowerCase() != 'live')
         {
             xmlUrl = "http://ats." + stage + ".perf.webmd.com/ATSFile.aspx?ID=" + chronId;
         }
@@ -313,7 +313,7 @@ module.exports.GetXML = (chronId, stage) =>
         }
         break;
         default:
-        if(stage != 'live' || stage != 'Live')
+        if(stag.toLowerCase() != 'live')
         {
             xmlUrl = "http://ats." + stage + "." + global.testEnv + ".webmd.com/ATSFile.aspx?ID=" + chronId;
         }
@@ -326,8 +326,13 @@ module.exports.GetXML = (chronId, stage) =>
     }
     return Promise.resolve(parseXml.getXmlFromUrl(xmlUrl, null))
             .then(function (result) {
-                return act.ArrayFromJSONObj(result);
+                return result;
             }).catch(err => {
                 console.log(err);
             });
+}
+
+module.exports.ArrayFromJSONObjforMultiVideoLunch=(xml)=>
+{
+   return act.ArrayFromJSONObjforMultiVideoLunch(xml);
 }
