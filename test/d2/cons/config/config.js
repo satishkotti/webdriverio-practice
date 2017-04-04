@@ -112,7 +112,7 @@ module.exports.testSettings = {
             "rightalignent": "Right",
             "middlealignent": "Middle",
             "bulletlistalignment": "Right,Left,Middle",
-            "CodeTypes": "Youtube,Twitter,Pinterest,Reddit,Imgur,Snapchat,Tumblr,instagram",
+            "CodeTypes": "Facebook,Youtube,Twitter,Pinterest,Reddit,Imgur,Snapchat,Tumblr,Instagram",
             "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other/test",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
             "ArticleTemplate": 'Article /  News Template',

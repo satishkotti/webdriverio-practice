@@ -23,6 +23,8 @@ describe('Interactive Article - JavaScript Module', function () {
             password: functions.getQAPublicationUser().password
         });
 
+        browser.pause(10000);
+
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
         workspaceMenu.createContent(
             global.d2ConDataSettings.inputData.ArticleProfileName,
@@ -31,7 +33,7 @@ describe('Interactive Article - JavaScript Module', function () {
             global.d2ConDataSettings.inputData.ArticleDescription);
 
         documentListTab.selectAsset(global.d2ConDataSettings.inputData.ArticleObjectName);
-        contentTab.checkOut();
+        //contentTab.checkOut();
 
         jsCodeValue = 'Test code field';
     });
@@ -65,7 +67,7 @@ describe('Interactive Article - JavaScript Module', function () {
             global.d2ConDataSettings.inputData.FacebookCodeType);
     });
 
-    it('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
+    it.skip('should select Section Text then Select Code and Insert 5000 characters for JS Module & Type Facebook', function () {
         contentTab.sectionTextSetValue("more sample test data");
 
         ckEditorMenu.sectionTextCodeMenuClick();
@@ -109,9 +111,8 @@ describe('Interactive Article - JavaScript Module', function () {
         });
     });
 
-    it.skip('should verify Stored under webmd/web_publisher_list/lookups/interactive_articles -  PPE-PPE-103419', function () {
+    it('should verify Stored under webmd/web_publisher_list/lookups/interactive_articles -  PPE-PPE-103419', function () {
         browser.pause(10000);
-        mModuleCodeOption.RepositoryRefresh();
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.LookupFolderPath);
         var CodeTypes = global.d2ConDataSettings.inputData.CodeTypes;              
         var j = 1;            
