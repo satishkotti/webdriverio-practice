@@ -6,18 +6,18 @@ var mModuleCodeObj = {
         codeUI.codeAndTypeSetValue(codeText, codeType);
         mModuleCodeObj.verifyLabels();
         mModuleCodeObj.verifyCodeAndType(codeText, codeType);
-        codeUI.insertCode(codeText, codeType);
+        codeUI.insertQuote();
     },
     addCodeAndTypeCancel: function (codeText, codeType) {
         codeUI.codeAndTypeSetValue(codeText, codeType);
         mModuleCodeObj.verifyLabels();
         mModuleCodeObj.verifyCodeAndType(codeText, codeType);
-        codeUI.cancelCode(codeText, codeType);
+        codeUI.cancelCode();
     },
     updateCodeAndTypeCancel: function (codeText, codeType) {
         codeUI.codeAndTypeSetValue(codeText, codeType);
         mModuleCodeObj.verifyCodeAndType(codeText, codeType);
-        codeUI.updateCode(codeText, codeType);
+        codeUI.updateCode();
     },
     verifyLabels: function () {
         var codeLabel = codeUI.getCodeLabel();
