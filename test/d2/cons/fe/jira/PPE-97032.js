@@ -16,13 +16,13 @@ describe('Interactive Article - Feature Template', function () {
     var chronicleId;
     var jsCodeValue;
     before(function () {        
-        browser.windowHandleMaximize();
         login.login({
                 url: functions.getEnvTestUrl(),
                 username: functions.getQAPublicationUser().username,
                 password: functions.getQAPublicationUser().password
             });
         
+        browser.pause(10000);
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
         workspaceMenu.createContent(
                 global.d2ConDataSettings.inputData.ArticleProfileName,
@@ -51,9 +51,11 @@ describe('Interactive Article - Feature Template', function () {
         propertiesTab.setRequiredProperties(objName,global.d2ConDataSettings.featureTemplate.contentClassification,objName,objName,objName,objName,global.d2ConDataSettings.featureTemplate.publication,global.d2ConDataSettings.featureTemplate.copyright,global.d2ConDataSettings.featureTemplate.primaryTopicId);
         
         documentListTab.assetPowerPromotePublishToStaging(global.d2ConDataSettings.inputData.ArticleObjectName);
+
+        browser.pause(5000);
         
-        return Promise.resolve(
-            parseXml.getXmlFromUrl(functions.getAtsScsFileUrl()+chronicleId, null).then(function (result) {
+        browser.call(function(){
+            return parseXml.getXmlFromUrl(functions.getAtsScsFileUrl()+chronicleId, null).then( function (result) {
                 var jsEmbedAssets = JSONPath({json: result,  path: "$..section_text.embeded_module[?(@.type =='image')]", resultType: 'all' });
                 expect(jsEmbedAssets[0].parent.$.align).to.equal(global.d2ConDataSettings.featureTemplate.alignLeft.toLowerCase());
                 expect(jsEmbedAssets[0].parent.$.class).to.equal(global.d2ConDataSettings.featureTemplate.expectedClass);
@@ -62,7 +64,8 @@ describe('Interactive Article - Feature Template', function () {
                 expect(jsEmbedAssets[0].parent.$.asset_description).to.equal(global.d2ConDataSettings.featureTemplate.featureAssetDescription);
                 expect(jsEmbedAssets[0].parent.$.suppress_share).to.equal('true');
                 expect(jsEmbedAssets.length).to.equal(1);
-        }));
+            })
+        });
     });
  
 });

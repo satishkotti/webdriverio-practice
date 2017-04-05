@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 20000;
+var maxWaitTimeInMs = 50000;
 var sectionTextSelector= "//h2[span[contains(.,'Section Text')]]//following-sibling::div//div";
 var highlightsSelector = "//h2[span[contains(.,'Highlights')]]//following-sibling::div//div";
 var pullQuotesSelector= "//h2[span[contains(.,'Pull Quotes')]]//following-sibling::div//div";

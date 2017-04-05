@@ -13,8 +13,6 @@ var propertiesTab = require('./../../common/actions/propertiesTab.actions');
 var moduleOption = require('./../../common/actions/Module.actions');
 var randomstring = require("randomstring");
 
-
-
 describe('Interactive Article - Cleanup Module- US Feature Article', function () {
 
     var chronicleId;
@@ -37,6 +35,7 @@ describe('Interactive Article - Cleanup Module- US Feature Article', function ()
     beforeEach(function () {
 
         browser.refresh();
+        browser.pause(10000);
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
@@ -96,23 +95,25 @@ describe('Interactive Article - Cleanup Module- US Feature Article', function ()
         propertiesTab.setRequiredProperties(objName, 'News', objName, objName, objName, objName, 'WebMD Medical News', '2015 WebMD', 'ADD-ADHD (Adult)');
         documentListTab.assetPowerPromotePublishToStaging(AssetTitle);
 
-        return Promise.resolve(
-            parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
+        browser.call(function () {
+            return Promise.resolve(
+                parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
 
-                var moduleSizeAtt = JSONPath({
-                    json: result,
-                      path: "$..section_text.embeded_module[?(@.module_size)]",
-                    resultType: 'all'
-                });
-                expect(moduleSizeAtt.length).to.equal(0);
+                    var moduleSizeAtt = JSONPath({
+                        json: result,
+                          path: "$..section_text.embeded_module[?(@.module_size)]",
+                        resultType: 'all'
+                    });
+                    expect(moduleSizeAtt.length).to.equal(0);
 
-                var shareSocialAtt = JSONPath({
-                    json: result,
-                      path: "$..section_text.embeded_module[?(@.suppress_share)]",
-                    resultType: 'all'
-                });
-                expect(shareSocialAtt.length).to.equal(0);
-            }));
+                    var shareSocialAtt = JSONPath({
+                        json: result,
+                          path: "$..section_text.embeded_module[?(@.suppress_share)]",
+                        resultType: 'all'
+                    });
+                    expect(shareSocialAtt.length).to.equal(0);
+                }));
+        });
     });
 
     it(' Verify the XML attributes after inserting the Slideshow module - US ', function () {
@@ -136,23 +137,26 @@ describe('Interactive Article - Cleanup Module- US Feature Article', function ()
         propertiesTab.setRequiredProperties(objName, 'News', objName, objName, objName, objName, 'WebMD Medical News', '2015 WebMD', 'ADD-ADHD (Adult)')
         documentListTab.assetPowerPromotePublishToStaging(AssetTitle);
 
-        return Promise.resolve(
-            parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
+        browser.call(function () {
+            return Promise.resolve(
+                parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
 
-                var moduleSizeAtt = JSONPath({
-                    json: result,
-                      path: "$..section_text.embeded_module[?(@.module_size)]",
-                    resultType: 'all'
-                });
-                expect(moduleSizeAtt.length).to.equal(0);
+                    var moduleSizeAtt = JSONPath({
+                        json: result,
+                          path: "$..section_text.embeded_module[?(@.module_size)]",
+                        resultType: 'all'
+                    });
+                    expect(moduleSizeAtt.length).to.equal(0);
 
-                var shareSocialAtt = JSONPath({
-                    json: result,
-                      path: "$..section_text.embeded_module[?(@.suppress_share)]",
-                    resultType: 'all'
-                });
-                expect(shareSocialAtt.length).to.equal(0);
-            }));
+                    var shareSocialAtt = JSONPath({
+                        json: result,
+                          path: "$..section_text.embeded_module[?(@.suppress_share)]",
+                        resultType: 'all'
+                    });
+                    expect(shareSocialAtt.length).to.equal(0);
+                }));
+        });
+
     });
 
     it('Verify the XML attributes after inserting the image module - US Feature Article', function () {
@@ -176,24 +180,26 @@ describe('Interactive Article - Cleanup Module- US Feature Article', function ()
         propertiesTab.setRequiredProperties(objName, 'News', objName, objName, objName, objName, 'WebMD Medical News', '2015 WebMD', 'ADD-ADHD (Adult)');
         documentListTab.assetPowerPromotePublishToStaging(AssetTitle);
 
-        return Promise.resolve(
-            parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
+        browser.call(function () {
+            return Promise.resolve(
+                parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
 
-                var jsEmbedAssets = JSONPath({
-                    json: result,
-                    path: "$..section_text.embeded_module[?(@.class =='wbmdembededmodule cke_widget_inline')]",
-                    resultType: 'all'
-                });
+                    var jsEmbedAssets = JSONPath({
+                        json: result,
+                        path: "$..section_text.embeded_module[?(@.class =='wbmdembededmodule cke_widget_inline')]",
+                        resultType: 'all'
+                    });
 
-                expect(jsEmbedAssets[0].parent.$.suppress_share).to.equal('false');
+                    expect(jsEmbedAssets[0].parent.$.suppress_share).to.equal('false');
 
-                var moduleSizeAtt = JSONPath({
-                    json: result,
-                      path: "$..section_text.embeded_module[?(@.module_size)]",
-                    resultType: 'all'
-                });
-                expect(moduleSizeAtt.length).to.equal(0);
-            }));
+                    var moduleSizeAtt = JSONPath({
+                        json: result,
+                          path: "$..section_text.embeded_module[?(@.module_size)]",
+                        resultType: 'all'
+                    });
+                    expect(moduleSizeAtt.length).to.equal(0);
+                }));
+        });
     });
 });
 
@@ -210,7 +216,7 @@ describe('Interactive Article - Cleanup Module - US Health Reference Article', f
         });
     });
 
-   after(function (){
+    after(function () {
         browser.refresh();
         login.logoutCloseWindow();
     });
@@ -276,23 +282,26 @@ describe('Interactive Article - Cleanup Module - US Health Reference Article', f
         propertiesTab.setRequiredProperties(objName, 'News', objName, objName, objName, objName, 'WebMD Medical News', '2015 WebMD', 'ADD-ADHD (Adult)');
         documentListTab.assetPowerPromotePublishToStaging(AssetTitle);
 
-        return Promise.resolve(
-            parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
+        browser.call(function () {
+            return Promise.resolve(
+                parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
 
-                var moduleSizeAtt = JSONPath({
-                    json: result,
-                      path: "$..section_text.embeded_module[?(@.module_size)]",
-                    resultType: 'all'
-                });
-                expect(moduleSizeAtt.length).to.equal(0);
+                    var moduleSizeAtt = JSONPath({
+                        json: result,
+                          path: "$..section_text.embeded_module[?(@.module_size)]",
+                        resultType: 'all'
+                    });
+                    expect(moduleSizeAtt.length).to.equal(0);
 
-                var shareSocialAtt = JSONPath({
-                    json: result,
-                      path: "$..section_text.embeded_module[?(@.suppress_share)]",
-                    resultType: 'all'
-                });
-                expect(shareSocialAtt.length).to.equal(0);
-            }));
+                    var shareSocialAtt = JSONPath({
+                        json: result,
+                          path: "$..section_text.embeded_module[?(@.suppress_share)]",
+                        resultType: 'all'
+                    });
+                    expect(shareSocialAtt.length).to.equal(0);
+                }));
+        });
+
     });
 
     it(' Verify the XML attributes after inserting the Slideshow module - US Health Reference Article ', function () {
@@ -316,23 +325,25 @@ describe('Interactive Article - Cleanup Module - US Health Reference Article', f
         propertiesTab.setRequiredProperties(objName, 'News', objName, objName, objName, objName, 'WebMD Medical News', '2015 WebMD', 'ADD-ADHD (Adult)')
         documentListTab.assetPowerPromotePublishToStaging(AssetTitle);
 
-        return Promise.resolve(
-            parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
+        browser.call(function () {
+            return Promise.resolve(
+                parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
 
-                var moduleSizeAtt = JSONPath({
-                    json: result,
-                      path: "$..section_text.embeded_module[?(@.module_size)]",
-                    resultType: 'all'
-                });
-                expect(moduleSizeAtt.length).to.equal(0);
+                    var moduleSizeAtt = JSONPath({
+                        json: result,
+                          path: "$..section_text.embeded_module[?(@.module_size)]",
+                        resultType: 'all'
+                    });
+                    expect(moduleSizeAtt.length).to.equal(0);
 
-                var shareSocialAtt = JSONPath({
-                    json: result,
-                      path: "$..section_text.embeded_module[?(@.suppress_share)]",
-                    resultType: 'all'
-                });
-                expect(shareSocialAtt.length).to.equal(0);
-            }));
+                    var shareSocialAtt = JSONPath({
+                        json: result,
+                          path: "$..section_text.embeded_module[?(@.suppress_share)]",
+                        resultType: 'all'
+                    });
+                    expect(shareSocialAtt.length).to.equal(0);
+                }));
+        });
     });
 
     it('Verify the XML attributes after inserting the image module - US Health Reference Article', function () {
@@ -355,6 +366,7 @@ describe('Interactive Article - Cleanup Module - US Health Reference Article', f
         propertiesTab.setRequiredProperties(objName, 'News', objName, objName, objName, objName, 'WebMD Medical News', '2015 WebMD', 'ADD-ADHD (Adult)');
         documentListTab.assetPowerPromotePublishToStaging(AssetTitle);
 
+        browser.call(function () {});
         return Promise.resolve(
             parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
 
@@ -391,7 +403,7 @@ describe('Interactive Article - Cleanup Module- US News Article', function () {
     });
 
     after(function () {
-        
+
         browser.refresh();
         login.logoutCloseWindow();
     });
@@ -457,6 +469,7 @@ describe('Interactive Article - Cleanup Module- US News Article', function () {
         propertiesTab.setRequiredProperties(objName, 'News', objName, objName, objName, objName, 'WebMD Medical News', '2015 WebMD', 'ADD-ADHD (Adult)');
         documentListTab.assetPowerPromotePublishToStaging(AssetTitle);
 
+        browser.call(function () {});
         return Promise.resolve(
             parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
 
@@ -497,6 +510,7 @@ describe('Interactive Article - Cleanup Module- US News Article', function () {
         propertiesTab.setRequiredProperties(objName, 'News', objName, objName, objName, objName, 'WebMD Medical News', '2015 WebMD', 'ADD-ADHD (Adult)')
         documentListTab.assetPowerPromotePublishToStaging(AssetTitle);
 
+        browser.call(function () {});
         return Promise.resolve(
             parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
 
@@ -537,6 +551,7 @@ describe('Interactive Article - Cleanup Module- US News Article', function () {
         propertiesTab.setRequiredProperties(objName, 'News', objName, objName, objName, objName, 'WebMD Medical News', '2015 WebMD', 'ADD-ADHD (Adult)');
         documentListTab.assetPowerPromotePublishToStaging(AssetTitle);
 
+        browser.call(function () {});
         return Promise.resolve(
             parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
 

@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 20000;
+var maxWaitTimeInMs = 30000;
 
 var mModuleCodeUIObj = {
     

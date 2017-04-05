@@ -23,6 +23,7 @@ describe('Interactive Article - JavaScript Module', function () {
             password: functions.getQAPublicationUser().password
         });
 
+        browser.pause(10000);
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
         workspaceMenu.createContent(
             global.d2ConDataSettings.inputData.ArticleProfileName,

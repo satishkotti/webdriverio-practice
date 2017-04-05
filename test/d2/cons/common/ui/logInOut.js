@@ -25,6 +25,5 @@ module.exports = {
         browser.click('#menuUserLogout');
         browser.waitForVisible("#login_username-input", maxWaitTimeInMs);
         browser.close();
-        browser.pause(5000);
     }
 }

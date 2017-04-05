@@ -34,12 +34,15 @@ var documentListUIObj = {
         documentListUIObj.publishToDialogueOkSelect('Staging');
     },
     contextualMenuActivate: function(assetName){
+        browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
+        browser.moveToObject("//span[@title='" + assetName + "']",0,0);
         browser.rightClick("//span[@title='" + assetName + "']");
+        browser.pause(1000);
         browser.waitForVisible("div.x-menu-list", maxWaitTimeInMs);
     },
     contextualMenuLifeCycleSelect: function()
     {
-        browser.waitForExist("#x-menu-el-menuContextDocumentLifeCycle");
+        browser.waitForVisible("#x-menu-el-menuContextDocumentLifeCycle");
         browser.click("#x-menu-el-menuContextDocumentLifeCycle");
         browser.pause(1000);
     },
