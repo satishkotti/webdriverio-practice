@@ -7,6 +7,7 @@ var repositoryBrowserTab = require('./../../common/actions/repositoryBrowserTab.
 var workspaceMenu = require('./../../common/actions/workspace.menu.actions');
 var documentListTab = require('./../../common/actions/documentListTab.actions');
 var propertiesTab = require('./../../common/actions/propertiesTab.actions');
+var ContentTab = require('./../../common/actions/contentTab.actions');
 var  slideObjectname= global.d2ProfDataSettings.inputData.SlideArticleObjectName;
 
 describe('Slide Presentation PPE-96831', function () {
@@ -26,7 +27,7 @@ describe('Slide Presentation PPE-96831', function () {
                     slideObjectname, 
                     global.d2ProfDataSettings.inputData.SlideContentType);
         documentListTab.selectAsset(slideObjectname);
-        
+
     });
 
     it('Verify the messages when mandatory fields are left blank for Slide Article template', function () {
@@ -41,6 +42,25 @@ describe('Slide Presentation PPE-96831', function () {
         propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
                     global.d2ProfDataSettings.inputData.ContentDeveloper);
         expect(slideObjectname).to.equal(title);
+    });
+
+    it('Verify Checkout and checkin functionality on Slide Article Template', function(){
+        var cidName = propertiesTab.getChronicleIdAndName();
+        var objName = cidName.objectName;
+        ContentTab.checkOut();
+        documentListTab.selectAsset(slideObjectname);
+        var IsLocked = documentListTab.verifyLock(objName);
+        expect(IsLocked).to.be.true;
+        var IsInitialVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.InitialVersion);
+        expect(IsInitialVersionVerified).to.be.true;
+        ContentTab.checkIn();
+        var IsCheckInVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.CheckedInVersion);
+        expect(IsCheckInVersionVerified).to.be.true;
+    });
+
+    it('Verify Cancel Checkout functionality on Slide Article template', function(){
+        ContentTab.checkOut();
+        ContentTab.cancel();
     });
     
 });

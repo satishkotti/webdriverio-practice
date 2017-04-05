@@ -3,15 +3,18 @@ var contentTabUI = require('./../ui/contentTab');
 var contentTabObj = {
     checkOut: function(){
         contentTabUI.selectContenTab();
-        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.switchToExternalWidget4Frame();
         contentTabUI.checkOut();
     },
     checkIn: function(){
         contentTabUI.selectContenTab();
-        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.switchToExternalWidget4Frame();
         contentTabUI.checkIn();
     },
-    cancel: function(){},
+    cancel: function(){
+        contentTabUI.switchToExternalWidget4Frame();
+        contentTabUI.cancelCheckOut();
+    },
     edit: function(){},
     spell: function(){},
     find: function(){},

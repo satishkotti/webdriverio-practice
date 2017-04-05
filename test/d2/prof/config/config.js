@@ -92,6 +92,8 @@ module.exports.testSettings = {
             "SlideArticleTemplate": "Article Slide Presentation",
             "SlideArticleObjectName": "QATestSlide" + exports.GenerateRandomString(5),
             "SlideContentType": "Slide/Lecture Presentation",
+            "InitialVersion": "1.0, CURRENT, WIP",
+            "CheckedInVersion": "1.1, CURRENT, WIP",
 
             "ContentType":"News",
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
