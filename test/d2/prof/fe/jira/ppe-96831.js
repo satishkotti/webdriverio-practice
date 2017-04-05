@@ -7,7 +7,8 @@ var repositoryBrowserTab = require('./../../common/actions/repositoryBrowserTab.
 var workspaceMenu = require('./../../common/actions/workspace.menu.actions');
 var documentListTab = require('./../../common/actions/documentListTab.actions');
 var propertiesTab = require('./../../common/actions/propertiesTab.actions');
-var  slideObjectname= global.d2ProfDataSettings.inputData.SlideArticleObjectName;
+var contentTab = require('./../../common/actions/contentTab.actions');
+var slideObjectname= global.d2ProfDataSettings.inputData.SlideArticleObjectName;
 
 describe('Slide Presentation PPE-96831', function () {
     before(function () {
@@ -29,12 +30,12 @@ describe('Slide Presentation PPE-96831', function () {
         
     });
 
-    it('Verify the messages when mandatory fields are left blank for Slide Article template', function () {
+    it.skip('Verify the messages when mandatory fields are left blank for Slide Article template', function () {
         var AlertMessage = propertiesTab.verifyMandatoryFieldsforProperties();
         expect(AlertMessage).to.be.true;
     });
 
-    it('Verify Slide Article Template creation with only mandatory fields', function () {
+    it.skip('Verify Slide Article Template creation with only mandatory fields', function () {
         var cidName = propertiesTab.getChronicleIdAndName();
         var objName = cidName.objectName;
         var title = cidName.title;
@@ -42,7 +43,38 @@ describe('Slide Presentation PPE-96831', function () {
                     global.d2ProfDataSettings.inputData.ContentDeveloper);
         expect(slideObjectname).to.equal(title);
     });
-    
+
+     it.skip('Verify Power Promote functionality on Slide Article template', function () {
+        var cidName = propertiesTab.getChronicleIdAndName();
+        var objName = cidName.objectName;
+        var title = cidName.title;
+        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
+                    global.d2ProfDataSettings.inputData.ContentDeveloper);
+        contentTab.checkOut();
+        contentTab.checkIn();
+        documentListTab.powerPromoteAsset(objName);
+    });
+     it.skip('Verify Promote functionality on Slide Article template', function () {
+        var cidName = propertiesTab.getChronicleIdAndName();
+        var objName = cidName.objectName;
+        var title = cidName.title;
+        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
+                    global.d2ProfDataSettings.inputData.ContentDeveloper);
+        contentTab.checkOut();
+        contentTab.checkIn();
+        documentListTab.promoteAsset(objName);
+    });
+     it('Verify Expire functionality on Slide Article template', function () {
+        var cidName = propertiesTab.getChronicleIdAndName();
+        var objName = cidName.objectName;
+        var title = cidName.title;
+        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
+                    global.d2ProfDataSettings.inputData.ContentDeveloper);
+        contentTab.checkOut();
+        contentTab.checkIn();
+        documentListTab.powerPromoteAsset(objName);
+        documentListTab.expireAsset(objName);
+    });
 });
 
 
