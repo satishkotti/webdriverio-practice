@@ -160,7 +160,48 @@ describe('Compare xml test', () => {
         }
 
     });
-
+        it('VideoLink chronic_id check if exists or not in  pb1 xml', () => {
+            while (videosCount > 0) {
+                expect(xml2['PopupLink_chronic_id_' + videosCount]).to.be.true;
+                videosCount = videosCount - 1;
+            }
+        });
+         it('VideoLink chronic_id check if exists or not in  pb2 xml', () => {
+            while (videosCount > 0) {
+                expect(xml2['VideoLink_chronic_id_' + videosCount]).to.be.true;
+                videosCount = videosCount - 1;
+            }
+        });
+        it('PopupLink chronic_id check if exists or not in pb1 xml', () => {
+            while (videosCount > 0) {
+                expect(xml1['PopupLink_chronic_id_' + videosCount]).to.be.true;
+                videosCount = videosCount - 1;
+            }
+        });
+         it('PopupLink chronic_id check if exists or not in  pb2 xml', () => {
+            while (videosCount > 0) {
+                expect(xml2['PopupLink_chronic_id_' + videosCount]).to.be.true;
+                videosCount = videosCount - 1;
+            }
+        });
+        it('Verify Module Settings chronic_id exits or not in pb1 xml', () => {
+            expect(xml1['chronic_id']).to.be.true;
+        });
+        it('Verify Module Settings chronic_id exits or not in pb2 xml', () => {
+            expect(xml2['chronic_id']).to.be.true;
+        });
+        it('Verify Module Settings wbmd_pb_asset_css chronic_id exits or not in pb1 xml', () => {
+            expect(xml1['wbmd_pb_asset_css_chronic_id']).to.be.true;
+        });
+        it('Verify Module Settings wbmd_pb_asset_css chronic_id exits or not in pb2 xml', () => {
+            expect(xml2['wbmd_pb_asset_css_chronic_id']).to.be.true;
+        });
+        it('Verify Module Settings wbmd_pb_module_xsl chronic_id exits or not in pb1 xml', () => {
+            expect(xml1['wbmd_pb_module_xsl_chronic_id']).to.be.true;
+        });
+        it('Verify Module Settings wbmd_pb_module_xsl chronic_id exits or not in pb2 xml', () => {
+            expect(xml2['wbmd_pb_module_xsl_chronic_id']).to.be.true;
+        });
 
 
 });

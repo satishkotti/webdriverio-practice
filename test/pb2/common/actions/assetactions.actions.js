@@ -249,15 +249,43 @@ module.exports.ArrayFromJSONObjforMultiVideoLunch = (result) => {
     if (moduleData.Videos.length != undefined) {
         rowNumber = rowNumber + 1;
         moduleData.Videos.forEach(function (element) {
-            obj["VideoTitleOverride_" + rowNumber] = moduleData.hasOwnProperty('VideoTitleOverride') ? element.VideoTitleOverride: 'VideoTitleOverride missed on xml';
-            obj["VideoDescriptionOverride_" + rowNumber] = moduleData.hasOwnProperty('VideoDescriptionOverride') ? element.VideoDescriptionOverride: 'VideoDescriptionOverride missed on xml';
-            obj["videosource_chronic_id_" + rowNumber] = moduleData.hasOwnProperty('VideoSource') ? element.VideoSource.$.chronic_id: 'VideoSource.$.chronic_id missed on xml';
-        }, this);
+            obj["VideoTitleOverride_" + rowNumber] = element.hasOwnProperty('VideoTitleOverride') ? element.VideoTitleOverride: 'VideoTitleOverride missed on xml';
+            obj["VideoDescriptionOverride_" + rowNumber] = element.hasOwnProperty('VideoDescriptionOverride') ? element.VideoDescriptionOverride: 'VideoDescriptionOverride missed on xml';
+            obj["videosource_chronic_id_" + rowNumber] = element.hasOwnProperty('VideoSource') ? element.VideoSource.$.chronic_id: 'VideoSource.$.chronic_id missed on xml';
+            obj["VideoLink_chronic_id_" + rowNumber] = element.hasOwnProperty('VideoLink') && element.VideoLink.$.chronic_id!=undefined ? true: false;
+            obj["PopupLink_chronic_id_" + rowNumber] = element.hasOwnProperty('PopupLink') && element.PopupLink.$.chronic_id!=undefined ? true: false;
+        
+    }, this);
     }
     else {
-        obj["VideoTitleOverride_1"] = moduleData.hasOwnProperty('VideoTitleOverride') ? moduleData.Videos.Video.VideoTitleOverride: 'VideoTitleOverride missed on xml';
-        obj["VideoDescriptionOverride_1"] = moduleData.hasOwnProperty('VideoDescriptionOverride') ? moduleData.Videos.Video.VideoDescriptionOverride: 'VideoDescriptionOverride missed on xml';
-        obj["videosource_chronic_id_1"] = moduleData.hasOwnProperty('VideoSource') ? moduleData.Videos.Video.VideoSource.$.chronic_id: 'VideoSource.$.chronic_id missed on xml';
+        obj["VideoTitleOverride_1"] = moduleData.Videos.Video.hasOwnProperty('VideoTitleOverride') ? moduleData.Videos.Video.VideoTitleOverride: 'VideoTitleOverride missed on xml';
+        obj["VideoDescriptionOverride_1"] = moduleData.Videos.Video.hasOwnProperty('VideoDescriptionOverride') ? moduleData.Videos.Video.VideoDescriptionOverride: 'VideoDescriptionOverride missed on xml';
+        obj["videosource_chronic_id_1"] = moduleData.Videos.Video.hasOwnProperty('VideoSource') ? moduleData.Videos.Video.VideoSource.$.chronic_id: 'VideoSource.$.chronic_id missed on xml';
+        obj["VideoLink_chronic_id_" + rowNumber] = moduleData.Videos.Video.hasOwnProperty('VideoLink') && moduleData.Videos.Video.VideoLink.$.chronic_id!=undefined ? true: false;
+        obj["PopupLink_chronic_id_" + rowNumber] = moduleData.Videos.Video.hasOwnProperty('PopupLink') && moduleData.Videos.Video.PopupLink.$.chronic_id!=undefined ? true: false;
+          
+}
+
+    //chronic_id exits checking on different attributes
+    obj['chronic_id']=moduleSettings.hasOwnProperty('chronic_id');
+    obj['wbmd_pb_asset_css_chronic_id']=false;
+    if(moduleSettings.hasOwnProperty('wbmd_pb_asset_css'))
+    {
+       // var keys=Object.keys(moduleSettings.wbmd_pb_asset_css.$);
+        if('chronic_id' in moduleSettings.wbmd_pb_asset_css.$)
+        {
+            obj['wbmd_pb_asset_css_chronic_id']=true;
+        }
     }
+    obj['wbmd_pb_module_xsl_chronic_id']=false;
+    if(moduleSettings.hasOwnProperty('wbmd_pb_module_xsl'))
+    {
+        //var keys=Object.keys(moduleSettings.wbmd_pb_module_xsl.$);
+        if(moduleSettings.wbmd_pb_module_xsl.$.chronic_id!=undefined)
+        {
+            obj['wbmd_pb_module_xsl_chronic_id']=true;
+        }
+    }
+
     return obj;
 }
