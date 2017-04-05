@@ -1,4 +1,5 @@
 var maxWaitTimeInMs = 20000;
+var aboveTitleSelector = "//h2[span[contains(.,'Above Title')]]//following-sibling::div//div[@role='textbox']";
 var sectionTextSelector= "//h2[span[contains(.,'Section Text')]]//following-sibling::div//div";
 var highlightsSelector = "//h2[span[contains(.,'Highlights')]]//following-sibling::div//div";
 var pullQuotesSelector= "//h2[span[contains(.,'Pull Quotes')]]//following-sibling::div//div";
@@ -7,7 +8,7 @@ var relatedLinksTextSelector= "//h2[span[contains(.,'Related Links Text')]]//fol
 var checkoutButtonSelector= "//button[contains(string(),'Check-out')]";
 var checkInButonSelector= "//button[contains(string(),'Check-in')]";
 var contentTabSelector= "//span[text()='Content']";
-var contentPaneFrameSelector= "iframe[id*='oam_id==ExternalWidget-2!!oam_target_type==ExternalWidget']";
+var contentPaneFrameSelector= "iframe[id*='oam_id==ExternalWidget-4!!oam_target_type==ExternalWidget']";
 var externalWidget3Selector= "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
 var externalWidget4Selector= "iframe[id*='oam_id==ExternalWidget-4!!oam_target_type==ExternalWidget']";
 
@@ -24,7 +25,7 @@ var contentTabUIObj = {
     },
     switchToExternalWidget4Frame: function(){
         browser.frame();
-        var contentWidgetIFrameElement = browser.element(externalWidget3Selector);
+        var contentWidgetIFrameElement = browser.element(externalWidget4Selector);
         browser.frame(contentWidgetIFrameElement.value);
     },
     switchTomModuleMenuFrame: function(){
@@ -61,6 +62,10 @@ var contentTabUIObj = {
         browser.pause(5000);
         browser.frameParent();
         browser.pause(5000);
+    },
+    aboveTitleSetValue: function(aboveTitleVal){
+        browser.scroll(aboveTitleSelector);
+        browser.setValue(aboveTitleSelector, aboveTitleVal);
     },
     sectionTextSetValue: function(sectionTextVal){
         //browser.scroll(sectionTextSelector);

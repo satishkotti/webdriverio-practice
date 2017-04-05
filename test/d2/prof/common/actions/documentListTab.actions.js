@@ -23,8 +23,14 @@ var documentListObj = {
 //Add logic for pagination if asset not found.
 //Add: assert asset selected is highlighted        
     },
+     promoteAsset: function(assetName){
+        documentListUI.promoteAsset(assetName);
+    },
     powerPromoteAsset: function(assetName){
         documentListUI.powerPromote(assetName);
+    },
+    expireAsset: function(assetName){
+    documentListUI.expireAsset(assetName);
     },
     publishAssetToStaging: function(assetName){
         documentListUI.publishToStaging(assetName);
