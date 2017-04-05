@@ -8,15 +8,16 @@ describe('XML validations for Multiple Video Launch Module', () => {
 
     before(() => {
         //Launch App
-        test.LaunchAppAndLogin();
+        //test.LaunchAppAndLogin();
     });
 
     //Create Scenario
     describe.only('Creation Scenario', () => {
         var xml1 = {}; //pb1 xml
         var xml2 = {}; //pb2 xml
-        var videosCount=0;
+        var videosCount = 0;
         before(() => {
+
             var chronid = test.Create('Shared Module', testAssetProps);
             test.ConfigureModule('Multiple Video Launch', testAssetProps);
             test.SaveOrPublishTheAsset('Publish to Live', 'Testing to compare renditions of PB1 & PB2');
@@ -24,20 +25,14 @@ describe('XML validations for Multiple Video Launch Module', () => {
             test.ClickButtonInATSPage('ATS Reprocess');
             test.WaitForATSFile('ATS Output File');
 
-            return Promise.resolve(test.GetXML('091e9c5e815ba3ec', 'live'))
-                .then(function (result) {
-                    xml1 = test.ArrayFromJSONObjforMultiVideoLunch(result);
-                    return test.GetXML(chronid, 'live');
-                }).then(function (resultobj) {
-                    xml2 = test.ArrayFromJSONObjforMultiVideoLunch(resultobj);
-                    for (var property in xml1) {
-                    if (property.toString().startsWith('VideoTitleOverride_')) {
-                        videosCount = videosCount + 1;
-                    }
-                }
-                }).catch(err => {
-                    console.log(err);
-                });          
+            xml1 = test.GetXMLValues('multiple video launch module', test.GetXML('091e9c5e815ba3ec', 'live'));
+            xml2 = test.GetXMLValues('multiple video launch module', test.GetXML(chronid, 'live'));
+
+            for (var property in xml1) {
+                if (property.toString().startsWith('VideoTitleOverride_')) {
+                    videosCount = videosCount + 1;
+                };
+            }
         });
 
         //assertions
@@ -99,7 +94,7 @@ describe('XML validations for Multiple Video Launch Module', () => {
         it('wbmd_pb_module_xsl object_type of both xmls should be same', () => {
             expect(xml1['wbmd_pb_module_xsl_object_type']).to.equal(xml2['wbmd_pb_module_xsl_object_type']);
         });
-        
+
         it('wbmd_pb_owner_page_id path object_type of both xmls should be same', () => {
             expect(xml1['wbmd_pb_owner_page_id_path']).to.equal(xml2['wbmd_pb_owner_page_id_path']);
         });
@@ -148,49 +143,6 @@ describe('XML validations for Multiple Video Launch Module', () => {
             }
 
         });
-        it('VideoLink chronic_id check if exists or not in  pb1 xml', () => {
-            while (videosCount > 0) {
-                expect(xml1['VideoLink_chronic_id_' + videosCount]).to.true;
-                videosCount = videosCount - 1;
-            }
-        });
-         it('VideoLink chronic_id check if exists or not in  pb2 xml', () => {
-            while (videosCount > 0) {
-                expect(xml2['VideoLink_chronic_id_' + videosCount]).to.true;
-                videosCount = videosCount - 1;
-            }
-        });
-        it('PopupLink chronic_id check if exists or not in pb1 xml', () => {
-            while (videosCount > 0) {
-                expect(xml1['PopupLink_chronic_id_' + videosCount]).to.true;
-                videosCount = videosCount - 1;
-            }
-        });
-         it('PopupLink chronic_id check if exists or not in  pb2 xml', () => {
-            while (videosCount > 0) {
-                expect(xml2['PopupLink_chronic_id_' + videosCount]).to.true;
-                videosCount = videosCount - 1;
-            }
-        });
-        it('Verify Module Settings chronic_id exits or not in pb1 xml', () => {
-            expect(xml1['chronic_id']).to.true;
-        });
-        it('Verify Module Settings chronic_id exits or not in pb2 xml', () => {
-            expect(xml2['chronic_id']).to.be.true;
-        });
-        it('Verify Module Settings wbmd_pb_asset_css chronic_id exits or not in pb1 xml', () => {
-            expect(xml1['wbmd_pb_asset_css_chronic_id']).to.be.true;
-        });
-        it('Verify Module Settings wbmd_pb_asset_css chronic_id exits or not in pb2 xml', () => {
-            expect(xml2['wbmd_pb_asset_css_chronic_id']).to.be.true;
-        });
-        it('Verify Module Settings wbmd_pb_module_xsl chronic_id exits or not in pb1 xml', () => {
-            expect(xml1['wbmd_pb_module_xsl_chronic_id']).to.be.true;
-        });
-        it('Verify Module Settings wbmd_pb_module_xsl chronic_id exits or not in pb2 xml', () => {
-            expect(xml2['wbmd_pb_module_xsl_chronic_id']).to.be.true;
-        });
-        
 
     });
 

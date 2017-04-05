@@ -5,6 +5,7 @@ var props = require('./../actions/assetprops.actions');
 var search = require('./../actions/search.actions');
 var menu = require('./../actions/menus.actions');
 var queue = require('./../actions/queue.actions');
+var assetxml = require('./../actions/assetxmlreaders.actions');
 var moduleConfigs = require('./../actions/moduleconfigs.actions');
 var usersDetails = require('./../../config/users');
 var ats = require('./../actions/ats.actions');
@@ -290,49 +291,50 @@ module.exports.ConfigureModule = (moduleType, moduleprops) =>
 
 }
 
-module.exports.WaitForATSFile = (fileType) =>
-{
+module.exports.WaitForATSFile = (fileType) => {
     ats.WaitFor(fileType);
 }
 
-module.exports.GetXML = (chronId, stage) =>
-{
+module.exports.GetXML = (chronId, stage) => {
     var xmlUrl;
-    switch(global.testEnv)
-    {
+    switch (global.testEnv) {
         case 'qa02':
         case 'Qa02':
         case 'QA02':
-        if(stage.toLowerCase() != 'live')
-        {
-            xmlUrl = "http://ats." + stage + ".perf.webmd.com/ATSFile.aspx?ID=" + chronId;
-        }
-        else
-        {
-            xmlUrl = "http://ats.perf.webmd.com/ATSFile.aspx?ID=" + chronId;
-        }
-        break;
+            if (stage.toLowerCase() != 'live') {
+                xmlUrl = "http://ats." + stage + ".perf.webmd.com/ATSFile.aspx?ID=" + chronId;
+            }
+            else {
+                xmlUrl = "http://ats.perf.webmd.com/ATSFile.aspx?ID=" + chronId;
+            }
+            break;
         default:
-        if(stag.toLowerCase() != 'live')
-        {
-            xmlUrl = "http://ats." + stage + "." + global.testEnv + ".webmd.com/ATSFile.aspx?ID=" + chronId;
-        }
-        else
-        {
-            xmlUrl = "http://ats." + global.testEnv + ".webmd.com/ATSFile.aspx?ID=" + chronId;
-        }
-        break;
-        
+            if (stag.toLowerCase() != 'live') {
+                xmlUrl = "http://ats." + stage + "." + global.testEnv + ".webmd.com/ATSFile.aspx?ID=" + chronId;
+            }
+            else {
+                xmlUrl = "http://ats." + global.testEnv + ".webmd.com/ATSFile.aspx?ID=" + chronId;
+            }
+            break;
+
     }
-    return Promise.resolve(parseXml.getXmlFromUrl(xmlUrl, null))
+    var xml;
+    browser.call(() => {
+        return Promise.resolve(parseXml.getXmlFromUrl(xmlUrl, null))
             .then(function (result) {
-                return result;
+                xml = result;
             }).catch(err => {
                 console.log(err);
-            });
+        });
+    });
+    return xml;
 }
 
-module.exports.ArrayFromJSONObjforMultiVideoLunch=(xml)=>
+module.exports.GetXMLValues = (assetType, xml)=>
 {
-   return act.ArrayFromJSONObjforMultiVideoLunch(xml);
+    switch(assetType.toLowerCase())
+    {
+        case 'multiple video launch module': return assetxml.MultipleVideoLaunchXMLValues(xml); break;
+    }
+   
 }
