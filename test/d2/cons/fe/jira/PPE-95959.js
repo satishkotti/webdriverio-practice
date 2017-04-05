@@ -104,7 +104,7 @@ describe('Interactive Article - JavaScript Module', function () {
                 expect(jsEmbedAssets.length).to.equal(1);
                 expect(jsBlobVal[0]).to.equal(expectedJsCode);
 
-console.log('verified SCS rendition');
+
 
             })
         });
@@ -112,12 +112,12 @@ console.log('verified SCS rendition');
 
     it('should verify Stored under webmd/web_publisher_list/lookups/interactive_articles - PPE-103419', function () {
 
-        repositoryBrowserTab.selectRepositoryBrowserTab();
+       // repositoryBrowserTab.selectRepositoryBrowserTab();
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.LookupFolderPath);
         var CodeTypes = global.d2ConDataSettings.inputData.CodeTypes;                     
         CodeTypes.split(',').forEach(function (x) {
 
-console.log('PPE-103419 Code Type:'+ x);
+
 
             documentListTab.selectAsset(x);   
             mModuleCodeOption.VerifyAvlblycode_social("code_social");
