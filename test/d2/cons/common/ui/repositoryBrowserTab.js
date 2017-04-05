@@ -13,12 +13,12 @@ module.exports = {
 //console.log('repo browser' + folderSelector);
 
         if (isExistmore == true) {          
-            browser.timeoutsImplicitWait(6000);    
+            browser.waitForVisible('//span[contains(.,"More")]');    
             browser.element('//span[contains(.,"More")]').click();
             browser.pause(2000);
         }
 
-        browser.waitForExist(folderSelector, maxWaitTimeInMs);
+        browser.waitForText(folderSelector, maxWaitTimeInMs);
         browser.click(folderSelector); 
         
         browser.execute(
@@ -35,11 +35,11 @@ module.exports = {
             });
     },
     RepositoryRefresh: function () {
-
+        
         browser.waitForVisible('//span[contains(.,"Repository browser")]//*[@id="menuDownArrow-button"]');
         browser.click('//span[contains(.,"Repository browser")]//*[@id="menuDownArrow-button"]');
         browser.waitForVisible("//*[@id='refreshWidget-menuItem']");
         browser.click("//*[@id='refreshWidget-menuItem']");
-        browser.pause(5000);
+        browser.pause(2000);
     }
 }

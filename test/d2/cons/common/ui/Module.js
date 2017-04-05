@@ -1,6 +1,6 @@
 var Helper = require('./../functions/functions');
 
-var maxWaitTimeInMs = 20000;
+var maxWaitTimeInMs = 30000;
 var ModuleUIObj = {
 
     SwitchToModuleFrame: function () {
