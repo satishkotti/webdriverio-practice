@@ -5,7 +5,7 @@ var wdioConf = require('./wdio.conf.js');
 exports.config = merge(wdioConf.config, {
 
     debug: true,
-    specs: ['./test/d2/**.js'],
+    specs: ['./test/pb2/**.js'],
     capabilities: [{
         maxInstances: 1,
         browserName: 'chrome',
@@ -27,9 +27,12 @@ exports.config = merge(wdioConf.config, {
         should = chai.should();
         _ = require('lodash');
 
-       var config = require('./test/d2/cons/config/config');
-        global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
-        global.d2ConDataSettings = config.EnvSettings.getEnvData(testEnv);
+        var appConfigFile = require('./test/pb2/config/test.config');
+        var appConfig = appConfigFile.config;
+        global.testEnv = appConfig.testEnv.qa;
+        global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
+        global.username = appConfig.appAccess.users.default.username;
+        global.password = appConfig.appAccess.users.default.password;
 
     },
 

@@ -10,9 +10,9 @@
             "port": 5859,
             "name": "WBDIO - Run Tests",
             "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
-            //"windows": {
-                //"runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio.cmd"
-            //},
+            "windows": {
+                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio.cmd"
+            },
             "cwd": "${workspaceRoot}",
             "console": "integratedTerminal",
             // This args config runs only the file that's open and displayed
