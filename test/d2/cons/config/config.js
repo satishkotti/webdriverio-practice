@@ -123,6 +123,45 @@ module.exports.testSettings = {
             "url": "http://ats.preview.qa01.webmd.com/SCSFile.aspx?ID="
         }
     },
+    "qa00": {
+        "siteMgmtDb": {
+            "user": "appsa",
+            "password": "",
+            "server": "",
+            "database": "Pagebuilder_SiteManagement"
+        },
+        "dctmApiConfig": {
+            "dctmUsername": "QAPublication",
+            "dctmPassword": "QA-Doc#1",
+            "dctmDocbase": "webmddoc01",
+            "url": "http://dmrest.qa00.webmd.com/pbws"
+        },
+        "d2cons": {
+            "url": "http://d2.qa00.webmd.com/D2/#d2",
+            "users": [{
+                    "id": "1",
+                    "username": "QAPublication",
+                    "password": "QA-Doc#1",
+                    "type": "user"
+                },
+                {
+                    "id": "2",
+                    "username": "QAPublication09",
+                    "password": "QA-Doc#1",
+                    "type": "super user"
+                },
+                {
+                    "id": "3",
+                    "username": "QAPublication1",
+                    "password": "QA-Doc#1",
+                    "type": "user"
+                }
+            ]
+        },
+    "ats": {
+            "url": "http://ats.preview.qa00.webmd.com/SCSFile.aspx?ID="
+        }
+    },
     "data": {
         "expectedResults": {
             "bulletlist": "Bulleted List",
@@ -192,6 +231,8 @@ module.exports.testSettings = {
             "LookupFolderPath": "webmddoc01/webmd/web_publisher_list/lookups/interactive_articles",
             "ShareableTitle":"Shareable Title Test",
             "ShareableDescription": "Shareable Description Test",
+            "FeatureTemplate": 'Article / Feature Template',
+            "HealthRefTemplate": 'Article / Health Reference Template',
             "ShareableAlign":"Left",
             "ShareableSupressSocialShare":"true",
             "SectionTextData":"sample test data"+ exports.GenerateRandomString(2)
