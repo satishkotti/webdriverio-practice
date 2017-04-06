@@ -10,10 +10,27 @@ exports.config = merge(wdioConf.config, {
         maxInstances: 1,
         browserName: 'chrome',
         chromeOptions:
-        {
             //args: ['window-size=1920,1080']
-            args:['start-maximized', 'disable-infobars']
-        }
+         {
+            "args": [
+                "start-maximized",
+                "no-proxy-server",
+                "no-default-browser-check",
+                "no-first-run",
+                "disable-boot-animation",
+                "disable-default-apps",
+                "disable-extensions",
+                "no-experiments",
+                "no-service-autorun",
+                "disable-infobars"
+                ],
+			"prefs":{
+				"credentials_enable_service": false,
+				"profile":{
+					password_manager_enabled: false
+				}
+			}
+		}
     }],
 
      before: function() {

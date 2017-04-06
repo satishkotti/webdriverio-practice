@@ -76,16 +76,35 @@ exports.config = merge(wdioConf.config, {
                 './test/pb2/**/PPE-102343.js',
                 './test/pb2/**/PPE-102344.js',
                 './test/pb2/**/PPE-102345.js',
+            ],
+            sharedmodulesXmlValidations: [
+                './test/pb2/**/PPE-103716.js'
             ]
         },
     capabilities: [{
-        maxInstances: 4,
+        maxInstances: 1,
         browserName: 'chrome',
         chromeOptions:
-        {
-            //args: ['window-size=1920,1080']
-            args:['start-maximized', 'disable-infobars']
-        }
+         {
+            "args": [
+                "start-maximized",
+                "no-proxy-server",
+                "no-default-browser-check",
+                "no-first-run",
+                "disable-boot-animation",
+                "disable-default-apps",
+                "disable-extensions",
+                "no-experiments",
+                "no-service-autorun",
+                "disable-infobars"
+                ],
+			"prefs":{
+				"credentials_enable_service": false,
+				"profile":{
+					password_manager_enabled: false
+				}
+			}
+		}
     }],
 
      before: function() {
@@ -101,7 +120,8 @@ exports.config = merge(wdioConf.config, {
 
         var appConfigFile = require('./test/pb2/config/release28.config');
         var appConfig = appConfigFile.config;
-        global.appUrl = 'http://genesys.' + appConfig.testEnv.dev + '.webmd.com';
+        global.testEnv = appConfig.testEnv.qa;
+        global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
 
