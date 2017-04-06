@@ -26,6 +26,9 @@ var documentListObj = {
      promoteAsset: function(assetName){
         documentListUI.promoteAsset(assetName);
     },
+    demoteAsset: function(assetName){
+        documentListUI.demoteAsset(assetName);
+    },
     powerPromoteAsset: function(assetName){
         documentListUI.powerPromote(assetName);
     },
