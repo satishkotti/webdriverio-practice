@@ -11,6 +11,7 @@ var contentTabSelector= "//span[text()='Content']";
 var contentPaneFrameSelector= "iframe[id*='oam_id==ExternalWidget-4!!oam_target_type==ExternalWidget']";
 var externalWidget3Selector= "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
 var externalWidget4Selector= "iframe[id*='oam_id==ExternalWidget-4!!oam_target_type==ExternalWidget']";
+var cancelButonSelector= "//button[contains(string(),'Cancel')]";
 
 var contentTabUIObj = {
     
@@ -51,6 +52,14 @@ var contentTabUIObj = {
         browser.waitForVisible(checkoutButtonSelector);
         browser.scroll(checkoutButtonSelector);
         browser.click(checkoutButtonSelector);
+        browser.pause(5000);
+        browser.frameParent();
+        browser.pause(5000);
+    },
+    cancelCheckOut: function(){
+        browser.waitForVisible(cancelButonSelector);
+        browser.scroll(cancelButonSelector);
+        browser.click(cancelButonSelector);
         browser.pause(5000);
         browser.frameParent();
         browser.pause(5000);

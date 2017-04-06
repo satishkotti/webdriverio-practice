@@ -11,6 +11,9 @@ var contentTab = require('./../../common/actions/contentTab.actions');
 var slideObjectname= global.d2ProfDataSettings.inputData.SlideArticleObjectName;
 
 describe('Slide Presentation PPE-96831', function () {
+
+     var cidName;
+     var objName;
     before(function () {
         browser.setViewportSize({
         width: 1920,
@@ -27,7 +30,6 @@ describe('Slide Presentation PPE-96831', function () {
                     slideObjectname, 
                     global.d2ProfDataSettings.inputData.SlideContentType);
         documentListTab.selectAsset(slideObjectname);
-        
     });
 
     it.skip('Verify the messages when mandatory fields are left blank for Slide Article template', function () {
@@ -36,35 +38,54 @@ describe('Slide Presentation PPE-96831', function () {
     });
 
     it.skip('Verify Slide Article Template creation with only mandatory fields', function () {
-        var cidName = propertiesTab.getChronicleIdAndName();
-        var objName = cidName.objectName;
+        cidName = propertiesTab.getChronicleIdAndName();
+        objName = cidName.objectName;
         var title = cidName.title;
         propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
                     global.d2ProfDataSettings.inputData.ContentDeveloper);
         expect(slideObjectname).to.equal(title);
     });
 
-     it.skip('Verify Power Promote functionality on Slide Article template', function () {
-        var cidName = propertiesTab.getChronicleIdAndName();
-        var objName = cidName.objectName;
-        var title = cidName.title;
+    it.skip('Verify Checkout and checkin functionality on Slide Article Template', function(){
+        contentTab.checkOut();
+        documentListTab.selectAsset(slideObjectname);
+        var IsLocked = documentListTab.verifyLock(objName);
+        expect(IsLocked).to.be.true;
+        var IsInitialVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.InitialVersion);
+        expect(IsInitialVersionVerified).to.be.true;
+        contentTab.checkIn();
+        var IsCheckInVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.CheckedInVersion);
+        expect(IsCheckInVersionVerified).to.be.true;
+    });
+
+     it('Verify Promote functionality on Slide Article template', function () {
         propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
                     global.d2ProfDataSettings.inputData.ContentDeveloper);
-        contentTab.checkOut();
-        contentTab.checkIn();
-        documentListTab.powerPromoteAsset(objName);
+        documentListTab.promoteAsset(objName);
     });
-     it.skip('Verify Promote functionality on Slide Article template', function () {
-        var cidName = propertiesTab.getChronicleIdAndName();
-        var objName = cidName.objectName;
-        var title = cidName.title;
+
+     it.skip('Verify Demote functionality on Slide Article template', function () {
         propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
                     global.d2ProfDataSettings.inputData.ContentDeveloper);
         contentTab.checkOut();
         contentTab.checkIn();
         documentListTab.promoteAsset(objName);
     });
-     it('Verify Expire functionality on Slide Article template', function () {
+
+    it('Verify Cancel Checkout functionality on Slide Article template', function(){
+        contentTab.checkOut();
+        contentTab.cancel();
+    });
+
+     it.skip('Verify Power Promote functionality on Slide Article template', function () {
+        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
+                    global.d2ProfDataSettings.inputData.ContentDeveloper);
+        contentTab.checkOut();
+        contentTab.checkIn();
+        documentListTab.powerPromoteAsset(objName);
+    });
+
+     it.skip('Verify Expire functionality on Slide Article template', function () {
         var cidName = propertiesTab.getChronicleIdAndName();
         var objName = cidName.objectName;
         var title = cidName.title;
@@ -76,5 +97,3 @@ describe('Slide Presentation PPE-96831', function () {
         documentListTab.expireAsset(objName);
     });
 });
-
-

@@ -8,6 +8,7 @@ var stagingStateLbl = "Staging";
 var successStagingSysMsg = "Object has been set to Staging.";
 var expiredStateLbl = "Expired";
 var successExpireSysMsg = "Request to Expire Now Service has been sent.";
+var vertionTabSelector = "//span[text()='Versions']";
 
 var documentListUIObj = {
 
@@ -21,6 +22,7 @@ var documentListUIObj = {
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
     },
+
      contextualMenuActivate: function(assetName)
      {
         browser.rightClick("//span[@title='" + assetName + "']");
@@ -75,7 +77,7 @@ var documentListUIObj = {
         expect(assetName).to.equal(objName);
         expect(state).to.equal(stagingStateLbl);
         expect(sysMsg).to.equal(successStagingSysMsg);
-        browser.click("button[ng-click='$confirm()']");
+        browser.click("//div[@class='modal-footer']//button[contains(text(),'OK')]");
     },
 promoteAsset: function (assetName) 
     {
@@ -106,6 +108,20 @@ lifeCycleExpireSelect: function()
         documentListUIObj.lifeCycleExpireSelect();
         documentListUIObj.expireResultsDialogueOkSelect(assetName);
 },
+
+    selectVersionTab: function(version){
+        browser.click(vertionTabSelector);
+        browser.pause(1000);
+        var verfityVersionSelector = "//div[@widget_type='DetailsVersionsWidget']//span[@title='"+version+"']";
+        var IsVersionVerified = browser.isExisting(verfityVersionSelector);
+        return IsVersionVerified;
+    },
+
+    verifyLock: function(objName){
+        var LockSelector = "//div[starts-with(@id,'DoclistWidget')]//span[@title="+objName+"]//preceding-sibling::span[starts-with(@class,'DocListLockByYou')]";
+        var IsLocked = browser.isExisting(LockSelector);
+        return IsLocked;
+    }
 }
 
 module.exports = documentListUIObj;
