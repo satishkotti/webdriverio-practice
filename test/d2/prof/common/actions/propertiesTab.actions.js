@@ -48,5 +48,13 @@ module.exports = {
          propertiesTabUI.articleTabSelect();
          var articleresult=propertiesTabUI.verifyArticleTabProperties(labelPropertiesArray);
          return articleresult;
+     },
+
+     verifyMandatoryFieldsforProperties:function(){
+         propertiesTabUI.propertiesTabSelect();
+         propertiesTabUI.edit();
+         propertiesTabUI.save();
+         var AlertMessage = propertiesTabUI.verifyMandatoryFieldsforProperties();
+         return AlertMessage;
      }
 }

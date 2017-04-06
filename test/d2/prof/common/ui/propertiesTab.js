@@ -82,7 +82,10 @@ module.exports = {
         browser.waitForVisible("#wbmd_legacy_id", maxWaitTimeInMs);
     },
     edit: function(){
-        browser.click("//div[@tag_id='Properties-widget']//button[text()='Edit']");
+        if (browser.isVisible("//div[@tag_id='Properties-widget']//button[text()='Edit']"))
+        {
+            browser.click("//div[@tag_id='Properties-widget']//button[text()='Edit']");
+        }
     },
     save: function(){
          browser.click("//div[@tag_id='Properties-widget']//button[text()='Save']");
@@ -128,6 +131,22 @@ module.exports = {
         return articleTabpropertieslabels( browser, labelPropertiesArray);
         }
         return isExist;
-    }
+    },
+
+    verifyMandatoryFieldsforProperties: function(){
+        
+        var IsExistLead = browser.isExisting("//span[contains(., 'Lead Specialty')]");
+        var IsExistContent = browser.isExisting("//span[contains(., 'Content Developer')]");
+        var IsExistwarningClass = browser.isExisting("//div[contains(@class,'ext-mb-warning')]");
+        browser.click("//div[@class='x-window-br']//button[contains(.,'OK')]");
+        if(IsExistLead == true && IsExistwarningClass == true && IsExistContent == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    },
 }
 
