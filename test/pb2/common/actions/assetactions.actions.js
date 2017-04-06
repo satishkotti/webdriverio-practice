@@ -33,8 +33,8 @@ module.exports.ClickShowExpired = () => {
 }
 
 module.exports.SavePublish = (action, comment) => {
-    switch (action) {
-        case 'Publish to Staging':
+    switch (action.toLowerCase()) {
+        case 'publish to staging':
             acts.buttonMenu.get('Save/Publish', 'Publish to Staging');
             page.textarea.get('Enter a comment below to publish to staging').waitForVisible();
             page.textarea.get('Enter a comment below to publish to staging').setValue(comment);
@@ -48,7 +48,7 @@ module.exports.SavePublish = (action, comment) => {
             acts.button.get('More Actions').waitForVisible();
             page.element('(//section[contains(@class, "pb-module-bottom-pad")])[2]').waitForVisible();
             break;
-        case 'Publish to Live':
+        case 'publish to live':
             acts.buttonMenu.get('Save/Publish', 'Publish to Live');
             page.textarea.get('Enter a comment below to publish to live').waitForVisible();
             page.textarea.get('Enter a comment below to publish to live').setValue(comment);
@@ -62,7 +62,7 @@ module.exports.SavePublish = (action, comment) => {
             acts.button.get('More Actions').waitForVisible();
             page.element('(//section[contains(@class, "pb-module-bottom-pad")])[2]').waitForVisible();
             break;
-        case 'Schedule Publish':
+        case 'schedule publish':
             acts.buttonMenu.get('Save/Publish', 'Publish to Live');
             page.textarea.get('Enter a comment below to publish to live').waitForVisible();
             page.textarea.get('Enter a comment below to publish to live').setValue(comment);

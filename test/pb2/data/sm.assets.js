@@ -62,7 +62,78 @@ var smdata = Object.create(page, {
 
                 }
         }
+    },
+    sponsorboxesModule: {
+        get: () => {
+            var assetName = "QASM-SPBX-" + randomstring.generate(5);
+            var smProps = {};
+            return smProps =
+                {
+                    "moduleName": assetName,
+                    "moduleDispName": assetName,
+                    "moduleType": "SponsorBoxes",
+                    "category": null,
+                    "selectXSL": null,
+                    "selectCSS": null,
+                    "dynamicModuleCategory": null,
+                    "moduleLabel1": null,
+                    "moduleLabel2": null,
+                    "linkedModule": null,
+                    "sponsorProgram": null,
+                    "description": assetName + "-desc",
+                    "tier": 2,
+                    "brand": "WebMD Daily",
+                    "moduleTitle": "QA Title",
+                    "moduleDesc": "QA Description",
+                    "logo": "091e9c5e803fecd4",
+                    "overridetext": "Sponsor Logo Override Text",
+                    "link": "091e9c5e80661dc9",
+                    "headertext": "Header Text",
+                    "headerlink": "091e9c5e801651b2",
+                    "addbodycopies": 1,
+                    "bodycopy":
+                    [
+                        {
+                            "bodycopyheadertext": 'Body Copy Text',
+                            "bodycopylink": '091e9c5e809b44d7',
+                        }
+
+                    ],
+                    "bodyimagelogo": "091e9c5e8046dba9",
+                    "bodyimageoverridetext": "Body Image Override Text",
+                    "bodyimagLink": "091e9c5e8000f8de",
+                    "bodyimagleft": 1,
+                    "bodyimagright": 0,
+                    "addbodylinks": 1,
+                    "bodylinks":
+                    [
+                        {
+                            "bulletson": "false",
+                            "bodylinkstext": "Body Links Text",
+                            "bodylinkslink": "091e9c5e80bac80c"
+                        }
+
+                    ],
+                    "addlowerlinks": 1,
+                    "lowerlinks":
+                    [
+                        {
+                            "bulletson": "false",
+                            "lowerlinksnewpage": "new page",
+                            "lowerlinksrollover": "roll over",
+                            "lowerlinkstext": "Lower Links Text1",
+                            "lowerlinkslink": "091e9c5e80174f67",
+
+                        }
+
+                    ],
+
+                    "importcontent": null
+
+                }
+        }
     }
 });
+
 
 module.exports = smdata;

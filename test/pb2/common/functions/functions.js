@@ -284,9 +284,10 @@ module.exports.ClickButtonInATSPage = (buttonText) =>
 
 module.exports.ConfigureModule = (moduleType, moduleprops) =>
 {
-    switch(moduleType)
+    switch(moduleType.toLowerCase())
     {
-        case 'Multiple Video Launch': moduleConfigs.ConfigureMultipleVideoLaunchModule(moduleprops);
+        case 'multiple video launch': moduleConfigs.ConfigureMultipleVideoLaunchModule(moduleprops); break;
+        case 'sponsor box module': moduleConfigs.ConfigureSponsorBoxModule(moduleprops); break;
     }
 
 }
@@ -335,6 +336,7 @@ module.exports.GetXMLValues = (assetType, xml)=>
     switch(assetType.toLowerCase())
     {
         case 'multiple video launch module': return assetxml.MultipleVideoLaunchXMLValues(xml); break;
+        case 'sponsor box module': break;
     }
    
 }
