@@ -309,7 +309,7 @@ module.exports.GetXML = (chronId, stage) => {
             }
             break;
         default:
-            if (stag.toLowerCase() != 'live') {
+            if (stage.toLowerCase() != 'live') {
                 xmlUrl = "http://ats." + stage + "." + global.testEnv + ".webmd.com/ATSFile.aspx?ID=" + chronId;
             }
             else {
@@ -335,6 +335,7 @@ module.exports.GetXMLValues = (assetType, xml)=>
     switch(assetType.toLowerCase())
     {
         case 'multiple video launch module': return assetxml.MultipleVideoLaunchXMLValues(xml); break;
+        case 'sponsor module':return assetxml.SponsorModuleLaunchXMLValues(xml); break;;
     }
    
 }
