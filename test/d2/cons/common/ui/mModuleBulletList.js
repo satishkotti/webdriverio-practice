@@ -12,7 +12,6 @@ var mModuleBulletUIObj = {
     },
     setModuleHeadline: function (textValue) {
         mModuleBulletUIObj.verfiyElementExists("input[data-test='bulletedlist-moduleheadline']");
-        //$("input[data-test='bulletedlist-moduleheadline']").clearElement().setValue(textValue);
         browser.setValue("input[data-test='bulletedlist-moduleheadline']", textValue);
     },
     getModuleDescriptionLabel: function () {
@@ -22,7 +21,6 @@ var mModuleBulletUIObj = {
         browser.getValue("input[data-test='bulletedlist-moduledescription']");
     },
     setModuleDescription: function (textValue) {
-        //$("input[data-test='bulletedlist-moduledescription']").clearElement().setValue(textValue);
         browser.setValue("input[data-test='bulletedlist-moduledescription']", textValue);
     },
     getAlignLabel: function () {
@@ -42,9 +40,7 @@ var mModuleBulletUIObj = {
         return browser.getValue("input[data-test='bulletedlist-bullettitle']");
     },
     setInsertBulletTitle: function (textValue) {
-        // $("input[data-test='bulletedlist-bullettitle']").clearElement().setValue(textValue);
         mModuleBulletUIObj.verfiyElementExists("input[data-test='bulletedlist-bullettitle']");
-        // browser.pause(2000);
         browser.setValue("input[data-test='bulletedlist-bullettitle']", textValue);
     },
     getBullets: function () {
@@ -189,14 +185,6 @@ var mModuleBulletUIObj = {
             browser.frame();
             browser.waitForExist(selectorVal, maxWaitTimeInMs);
         }
-    },
-
-    RepositoryRefresh: function () {
-
-        browser.leftClick('//span[contains(.,"Repository browser")]//*[@id="menuDownArrow-button"]');
-        browser.waitForVisible("//*[@id='refreshWidget-menuItem']");
-        browser.leftClick("//*[@id='refreshWidget-menuItem']");
     }
 }
-
 module.exports = mModuleBulletUIObj;

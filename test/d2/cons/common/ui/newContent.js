@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 20000;
+var maxWaitTimeInMs = 50000;
 
 var newContentObj = module.exports = {
 
@@ -30,8 +30,8 @@ var newContentObj = module.exports = {
         browser.setValue('#object_name-input', objName);
         browser.waitForVisible("#title-input");
         browser.setValue('#title-input', descName);
+        browser.waitForVisible('//*[@id="next-button"]');
         browser.click('//*[@id="next-button"]');
-        browser.waitForText('//span[@title="'+descName+'"]',40000);
-        browser.pause(2000);
+        browser.waitForVisible('//span[@title="'+descName+'"]',maxWaitTimeInMs);
     }
 }

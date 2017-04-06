@@ -60,7 +60,7 @@ module.exports.testSettings = {
             "url": "http://dmrest.dev04.webmd.com/pbws"
         },
         "d2cons": {
-            "url": "http://d2.qa01.webmd.com/D2/#d2",
+            "url": "http://d2.dev04.webmd.com/D2/#d2",
             "users": [{
                     "id": "1",
                     "username": "QAPublication",
@@ -82,7 +82,7 @@ module.exports.testSettings = {
             ]
         },
     "ats": {
-            "url": "http://ats.preview.qa01.webmd.com/SCSFile.aspx?ID="
+            "url": "http://ats.preview.dev04.webmd.com/SCSFile.aspx?ID="
         }
     },
     "qa01": {
@@ -194,13 +194,14 @@ module.exports.testSettings = {
             "rightalignent": "Right",
             "middlealignent": "Middle",
             "bulletlistalignment": "Right,Left,Middle",
-            "CodeTypes": "Facebook, Youtube, Twitter, Pinterest, Reddit, Imgur, Snapchat, Tumblr, Instagram",
+            "CodeTypes": "Facebook,Youtube,Twitter,Pinterest,Reddit,Imgur,Snapchat,Tumblr,Instagram",
             "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
             "ArticleTemplate": 'Article /  News Template',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
             "FacebookCodeType": "Facebook",
+            "LookupFolderPath": "webmddoc01/webmd/web_publisher_list/lookups/interactive_articles",
             "ShareableTitle":"Shareable Title Test",
             "ShareableDescription": "Shareable Description Test",
             "ShareableAlign":"Left",

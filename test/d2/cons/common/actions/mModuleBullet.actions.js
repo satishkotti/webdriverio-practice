@@ -120,7 +120,6 @@ var mModuleBulletListObj = {
         var insertBulletTitle = mModuleBulletListUI.getInsertBulletTitleLabel();
         var insertBulletDesc = mModuleBulletListUI.getInsertBulletDescriptionLabel();
 
-
         expect(moduleHeadline).to.equal('Module Headline');
         expect(moduleDescription).to.equal('Module Description');
         expect(align).to.equal('Align');
@@ -137,37 +136,12 @@ var mModuleBulletListObj = {
         var bullettitle = mModuleBulletListUI.getInsertBulletTitle();
         var bulletdesc = mModuleBulletListUI.getInsertBulletDescription();
 
-
         expect(moduleheadline).to.equal(headline);
         expect(moduledescription).to.equal(description);
         expect(align.toLowercase()).to.equal(align);
         expect(bullettitle).to.equal(title);
         expect(bulletdesc).to.equal("D2");
-
-
-
-        //  bulletsAdded.forEach( function (bullet)
-        // {
-        //     //find bullet from list if not found then throw error
-        //     var itemIndex = bullets.indexOf(bullet.title);
-        //     if(itemIndex < 0)
-        //         assert.fail(0,1,'Fail to find bullet title:' + bullet.title);
-
-        //     expect(bullets[itemIndex].description).to.equal(bullet.description)
-
-        // });
-        //expect(bullets[itemIndex].description).to.equal(bullet.description)
-    },
-    RepositoryRefresh: function () {
-
-        mModuleBulletListUI.RepositoryRefresh();
     }
-
-
-
-
-
-
 }
 
 module.exports = mModuleBulletListObj;

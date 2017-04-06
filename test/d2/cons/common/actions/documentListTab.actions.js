@@ -29,7 +29,8 @@ var documentListObj = {
     publishAssetToStaging: function(assetName){
         documentListUI.publishToStaging(assetName);
     },
-    assetPowerPromotePublishToStaging:function(assetName){
+    assetPowerPromotePublishToStaging: function(assetName){
+        documentListObj.selectDocumentListTab();
         documentListObj.selectAsset(assetName);
         documentListObj.powerPromoteAsset(assetName);
         documentListObj.publishAssetToStaging(assetName);

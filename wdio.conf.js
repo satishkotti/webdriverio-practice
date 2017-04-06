@@ -13,7 +13,7 @@ module.exports.getSpecs = function()
             break;
             case "d2cons":
                 var config = require('./test/d2/cons/config/config');
-                specList = [ './test/d2/cons/**/PPE-85795.js' ];
+                specList = [ './test/d2/cons/**/*.js' ];
             break;
             case "d2prof":
                 var config = require('./test/d2/prof/config/config');
@@ -39,7 +39,7 @@ console.log('specs: '+specList);
 
 exports.config = {
 
-    debug: true,
+    debug: false,
     maxInstances: 1,
     
     //
@@ -55,6 +55,7 @@ exports.config = {
     // Patterns to exclude.
     exclude: [
          './test/d2/cons/config/**/*.*',
+         './test/d2/cons/common/**/*.*',
     ],
     //
     // ============
@@ -69,8 +70,29 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    capabilities: [{
-        browserName: 'chrome'
+   capabilities: [{
+        browserName: 'chrome',
+		 chromeOptions: {
+            "args": [
+                "start-maximized",
+                "no-proxy-server",
+                "no-default-browser-check",
+                "no-first-run",
+                "disable-boot-animation",
+                "disable-default-apps",
+                "disable-extensions",
+                "no-experiments",
+                "no-service-autorun",
+                "disable-infobars"
+                ],
+			"prefs":{
+				"credentials_enable_service": false,
+				"profile":{
+					password_manager_enabled: false
+				}
+			}
+		}
+
     }],
     //
     // ===================
@@ -79,7 +101,7 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: silent | verbose | command | data | result | error
-    logLevel: 'command',
+    logLevel: 'error',
     //log
     // Enables colors for log output.
     coloredLogs: true,

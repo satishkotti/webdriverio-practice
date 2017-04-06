@@ -25,13 +25,14 @@
     "mocha": "^3.0.2",
     "mssql": "3.3.0",
     "q": "1.4.1",
+    "randomstring": "^1.1.5",
     "request": "2.80.0",
     "selenium-standalone": "^5.9.0",
     "supertest": "3.0.0",
+    "wdio-allure-reporter": "^0.1.2",
     "wdio-mocha-framework": "^0.4.0",
     "webdriverio": "^4.4.0",
-    "xml2js": "^0.4.17",
-    "randomstring":"^1.1.5"
+    "xml2js": "^0.4.17"
   },
   "directories": {
     "test": "test"
