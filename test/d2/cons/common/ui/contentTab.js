@@ -10,7 +10,9 @@ var contentTabSelector = "//span[text()='Content']";
 var contentPaneFrameSelector = "iframe[id*='oam_id==ExternalWidget-2!!oam_target_type==ExternalWidget']";
 
 var contentTabUIObj = {
-
+    switchToMainFrame: function(){
+        browser.frame();
+    },
     switchToExternalWidgetFrame: function () {
         browser.frame();
         var contentWidgetIFrameElement = browser.element(contentPaneFrameSelector);
@@ -50,6 +52,24 @@ var contentTabUIObj = {
         browser.pause(5000);
         browser.frameParent();
         browser.pause(5000);
+    },
+    cancelCheckoutConfirmYes: function(){
+        browser.click("//button[contains(string(),'Cancel')]");
+        contentTabUIObj.cancelCheckoutPopupYes();
+    },
+    cancelCheckoutConfirmNo: function(){
+        browser.click("//button[contains(string(),'Cancel')]");
+        contentTabUIObj.cancelCheckoutPopupNo();
+    },
+    cancelCheckoutPopupYes:function(){
+        browser.frameParent();
+        browser.waitForVisible("//div[@class='modal-content']//button[contains(.,'Yes')]", maxWaitTimeInMs);
+        browser.click("//div[@class='modal-content']//button[contains(.,'Yes')]");
+    },
+    cancelCheckoutPopupNo:function(){
+        browser.frameParent();
+        browser.waitForVisible("//div[@class='modal-content']//button[contains(.,'No')]", maxWaitTimeInMs);
+        browser.click("//div[@class='modal-content']//button[contains(.,'No')]");
     },
     clearSectionTextValue: function () {
         try 

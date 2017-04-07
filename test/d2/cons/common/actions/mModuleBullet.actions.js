@@ -14,12 +14,9 @@ var mModuleBulletListObj = {
         mModuleBulletListUI.setModuleHeadline(headline);
         mModuleBulletListUI.setModuleDescription(description);
         mModuleBulletListUI.setAlign(align);
-
         mModuleBulletListUI.setInsertBulletTitle(title);
         mModuleBulletListUI.setInsertBulletDescription(description);
-
         mModuleBulletListObj.verifyLabels();
-
         mModuleBulletListUI.insertBulletDescriptionValueSet();
         mModuleBulletListUI.insert();
         mModuleBulletListUI.insertModuleValidation(headline);
@@ -37,7 +34,6 @@ var mModuleBulletListObj = {
         mModuleBulletListUI.insertBulletDescriptionValueSet();
         mModuleBulletListUI.insert();
         mModuleBulletListUI.insertModuleValidation(headline)
-
     },
 
     bulletlistEdit: function (headline, description, align, title, updatedbulletTitle) {
@@ -50,10 +46,7 @@ var mModuleBulletListObj = {
         mModuleBulletListUI.bulletEdit(updatedbulletTitle);
         mModuleBulletListUI.insert();
         mModuleBulletListUI.insertModuleValidation(headline);
-
     },
-
-
     bulletlistAlign: function (headline, description, align, title, bulletdescription) {
         mModuleBulletListUI.setModuleHeadline(headline);
         mModuleBulletListUI.setModuleDescription(description);

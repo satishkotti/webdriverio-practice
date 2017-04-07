@@ -13,7 +13,11 @@ var contentTabObj = {
         contentTabUI.checkIn();
         contentTabUI.CollapseContentTab();
     },
-    cancel: function(){},
+    cancel: function(){
+        contentTabUI.selectContenTab();
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.cancelCheckoutConfirmYes();
+    },
     edit: function(){},
     spell: function(){},
     find: function(){},
