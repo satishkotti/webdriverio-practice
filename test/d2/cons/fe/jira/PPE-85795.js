@@ -17,7 +17,7 @@ describe('Interactive Article - BulletList Module', function () {
     var chronicleId;
     var AssetTitle;
     var AssetName;
-
+    
     describe('BulletList Module UI', function () {
         before(function () {
             login.loginWithNewWindow({
@@ -96,19 +96,9 @@ describe('Interactive Article - BulletList Module', function () {
                 global.d2ConDataSettings.inputData.bulletlistmoduleDescription,
                 "Middle", "BulletTitle", "D2"
             );
+            contentTab.checkIn();
         });
-    });
-
-    describe('BulletList Module scs rendition', function () {
-        before(function () {
-            login.loginWithNewWindow({
-                url: functions.getEnvTestUrl(),
-                username: functions.getQAPublicationUser().username,
-                password: functions.getQAPublicationUser().password
-            });
-            browser.pause(2000);
-
-            repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+        it('should Verify the lifecycle and XML-renditions',function(){
             AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
             AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
             workspaceMenu.createContent(
@@ -118,8 +108,6 @@ describe('Interactive Article - BulletList Module', function () {
                 AssetName)
             documentListTab.selectAsset(AssetTitle);
             contentTab.checkOut();
-        });
-        it('should Verify the lifecycle and XML-renditions', function () {
             contentTab.sectionTextSetValue("Sample Test Data");
             ckEditorMenu.sectionTextmModuleSelectModuleClick("Bulleted List");
             mModuleBulletOption.addHeadlineDescrAlignBullet(global.d2ConDataSettings.inputData.bulletlistheadline,
@@ -158,5 +146,8 @@ describe('Interactive Article - BulletList Module', function () {
                     }));
             });
         });
+
     });
+
+   
 });

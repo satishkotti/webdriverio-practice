@@ -94,7 +94,7 @@ var contentTabUIObj = {
         browser.waitForVisible("(//span[text()='" + optionToSelectName + "'])[" + sectionIndex + "]", maxWaitTimeInMs);
         browser.moveToObject("(//span[text()='" + optionToSelectName + "'])[" + sectionIndex + "]");
         browser.leftClick("(//span[text()='" + optionToSelectName + "'])[" + sectionIndex + "]");
-        browser.pause(5000);
+        browser.pause(2000);
         return browser.getText("(//span[text()='" + optionToSelectName + "'])[" + sectionIndex + "]")
     },
     mModuleCodeMenuClick: function (sectionIndex) {
