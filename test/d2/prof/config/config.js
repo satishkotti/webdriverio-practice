@@ -79,8 +79,10 @@ module.exports.testSettings = {
             "HomePageTitle": "D2"
         },
         "inputData": {
+             "locale":"US",
             "AssetName":"QATestAssethNrnC",
             "testFolderPath": "webmd/professional_assets/medscape/news/qa_test",
+             "changeFolderPath": "webmd/professional_assets/medscape/news/heartwire/news/200412",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
             "ArticleTemplate": 'News Article',
@@ -122,7 +124,9 @@ module.exports.testSettings = {
             "outputVersion":"Output Version",
             "text":"text",
             "transcript":"Transcript",
-            "active":"Active"
+            "active":"Active",
+            "searchdata": "860272",
+            "objName":"QATestAssethNrnC",
         }
     }
 }
