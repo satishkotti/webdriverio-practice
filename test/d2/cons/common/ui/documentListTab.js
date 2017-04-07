@@ -25,6 +25,7 @@ var documentListUIObj = {
         documentListUIObj.lifeCyclePowerPromoteSelect();
         documentListUIObj.powerPromoteConfirmDialogueOkSelect();
         documentListUIObj.powerPromoteResultsDialogueOkSelect(assetName);
+        browser.pause(1000);
 
     },
     publishToStaging: function(assetName){
@@ -32,6 +33,7 @@ var documentListUIObj = {
         documentListUIObj.contextualMenuLifeCycleSelect();
         documentListUIObj.lifeCyclePublishSelect();
         documentListUIObj.publishToDialogueOkSelect('Staging');
+        browser.pause(1000);
     },
     contextualMenuActivate: function(assetName){
         browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);

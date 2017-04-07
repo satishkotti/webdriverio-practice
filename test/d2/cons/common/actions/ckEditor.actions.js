@@ -18,12 +18,10 @@ var ckEditorObj = {
         var selectedOption = contentTabUI.mModuleCodeMenuClick(sectionIndex);
         expect(selectedOption).to.equal('Code');
     },
-
     sectionTextmModuleSelectModuleClick: function(mModuleOptionName){
         contentTabUI.mModuleckEditorMenuClick(1);
         ckEditorObj.mModuleSubMenuClick(mModuleOptionName, 1);
     },
-
     sectionTextCodeMenuClick: function(){
         contentTabUI.mModuleckEditorMenuClick(1);
         ckEditorObj.mModuleCodeMenuClick(1);

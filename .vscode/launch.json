@@ -19,7 +19,8 @@
             // This args config runs only the file that's open and displayed
             // (e.g., a file in test/spec/):
             "args":[
-                "--spec", "${relativeFile}",
+
+                "--spec", "${workspaceRoot}/test/d2/cons/fe/jira/PPE-85795.js",
                 "--testEnv=dev04",
                 "--testApp=d2cons"
                 // To run a specific file, you can also do:

@@ -3,6 +3,7 @@ var contentTabUI = require('./../ui/contentTab');
 var contentTabObj = {
     checkOut: function(){
         contentTabUI.selectContenTab();
+        contentTabUI.ExpandContentTab();
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.checkOut();
     },
@@ -10,17 +11,29 @@ var contentTabObj = {
         contentTabUI.selectContenTab();
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.checkIn();
+        contentTabUI.CollapseContentTab();
     },
-    cancel: function(){},
+    cancel: function(){
+        contentTabUI.selectContenTab();
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.cancelCheckoutConfirmYes();
+    },
     edit: function(){},
     spell: function(){},
     find: function(){},
     info: function(){},
     preview: function(){},
     previewATS: function(){},
+    clearSectionTextValue : function(data){
+         contentTabUI.switchToExternalWidgetFrame();
+         contentTabUI.clearSectionTextValue();
+    },
     sectionTextSetValue: function(data){
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.sectionTextSetValue(data);
+    },
+    contenttabframeswitching: function(){
+        contentTabUI.switchToExternalWidgetFrame();
     },
     highlightsSetValue: function(data){
         contentTabUI.switchToExternalWidgetFrame();
@@ -40,9 +53,6 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.relatedLinksSetValue(data);
         contentTabObj.mModuleckEditorMenuClick(5);
-    }  
-
-     
+    }
 }
-
 module.exports = contentTabObj;

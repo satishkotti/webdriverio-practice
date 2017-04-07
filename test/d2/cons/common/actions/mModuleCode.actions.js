@@ -68,6 +68,7 @@ var mModuleCodeObj = {
 
         codeUI.RepositoryRefresh();
     }
+    
 }
 
 module.exports = mModuleCodeObj;

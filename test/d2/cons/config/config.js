@@ -1,8 +1,9 @@
 var randomstring = require("randomstring");
 var JSONPath = require('JSONPath');
 
-module.exports.GenerateRandomString = function GenerateRandomString(numberOfChars) {
-    return randomstring.generate(numberOfChars);
+module.exports.GenerateRandomString = function GenerateRandomString(X) {
+    return randomstring.generate(X);
+
 }
 module.exports.testSettings = {
     "dev01": {
@@ -178,6 +179,7 @@ module.exports.testSettings = {
             "moduleTitle": "QA",
             "bulletTitleValidation": "Please enter a title for the bullet!",
             "bulletDescriptionValidation": "Please enter a description for the bullet!",
+            "bulletEmptyValidation": "Please add at least 1 bullet to the bullet list!",
             "HomePageTitle": "D2"
         },
         "pullQuote": {
@@ -217,6 +219,16 @@ module.exports.testSettings = {
             "webmdcpyrights": '2015 WebMD',
             "objectTitle": "QAArticleNews",
             "articleContentFields": "Section Text,Highlights,Pull Quotes,Citations,Related Links Text",
+            "bulletlistheadline": "Module Headline",
+            "bulletlistmoduleDescription": "Module Description",
+            "align": "Align",
+            "alignLeftOption": "Left",
+            "alignMiddleOption": "Middle",
+            "alignRightOption": "Right",
+            "bullet": "Bullets",
+            "bulletTitle": "Title",
+            "insertBulletTitle": "Insert Bullet Title",
+            "insertBulletDescription": "Insert Bullet Description",
             "leftalignent": "Left",
             "rightalignent": "Right",
             "middlealignent": "Middle",
@@ -236,6 +248,7 @@ module.exports.testSettings = {
             "ShareableAlign":"Left",
             "ShareableSupressSocialShare":"true",
             "SectionTextData":"sample test data"+ exports.GenerateRandomString(2)
+
         }
     }
 }

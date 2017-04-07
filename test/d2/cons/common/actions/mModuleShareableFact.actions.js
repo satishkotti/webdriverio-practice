@@ -42,11 +42,11 @@ var mModuleShareableFactObj = {
         expect(alignLabel).to.equal('Align');
         expect(socialShareLabel).to.equal('Suppress Social Share');
     },
-    verifyTitleDescriptionAlignSocialSS: function (titleText, descriptionText, alignSelected, isSocialShareSupressChecked) {
-        mModuleShareableFactUI.descriptionSet(descriptionText);
-        mModuleShareableFactUI.alignSet(alignSelected);
-        mModuleShareableFactUI.supressSocialShareChkBoxSet(isSocialShareSupressChecked);
-        mModuleShareableFactObj.verifyLabels();
+    verifyTitleDescriptionAlignSocialSS: function (titleText) 
+    {
+       var title= mModuleShareableFactUI.defaulttitleGet().toLowerCase();
+        expect(title).to.equal(titleText.toLowerCase());
+
         mModuleShareableFactUI.cancel();
     }
 }

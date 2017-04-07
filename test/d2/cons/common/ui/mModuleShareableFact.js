@@ -14,6 +14,14 @@ var mModuleShareableFactUIObj = {
         mModuleShareableFactUIObj.verfiyElementExists("input[data-test='sharefact-title']");
         browser.setValue("input[data-test='sharefact-title']",textValue);
     },
+
+
+     defaulttitleGet: function () {
+         mModuleShareableFactUIObj.verfiyElementExists("input[data-test='sharefact-title']");
+         return browser.element("input[data-test='sharefact-title']").getValue();
+         
+    },
+
     descriptionLabelGet: function () {
         mModuleShareableFactUIObj.verfiyElementExists("div[data-test='sharefact-descriptionlabel']");
         return browser.getText("div[data-test='sharefact-descriptionlabel']");

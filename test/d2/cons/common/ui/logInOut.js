@@ -11,7 +11,7 @@ module.exports = {
         },
     loginWithNewWindow:function(url, username, password, repository, domain){
             browser.newWindow(url,'NewWindow');
-            browser.windowHandleMaximize('NewWindow'); 
+            //browser.windowHandleMaximize('NewWindow'); 
             browser.waitForVisible("#login_username-input", maxWaitTimeInMs);
             browser.element('#login_username-input').setValue(username);
             browser.element('#login_password-input').setValue(password);
