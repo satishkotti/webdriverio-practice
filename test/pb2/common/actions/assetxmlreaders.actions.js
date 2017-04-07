@@ -15,10 +15,10 @@ module.exports.MultipleVideoLaunchXMLValues = (result) => {
     obj["wbmd_pb_cache_duration"] = moduleSettings.hasOwnProperty('wbmd_pb_cache_duration') ? moduleSettings.wbmd_pb_cache_duration : 'wbmd_pb_cache_duration missed on xml';
     obj["wbmd_c_channel_ids_group"] = moduleSettings.hasOwnProperty('wbmd_c_channel_ids_group') ? moduleSettings.wbmd_c_channel_ids_group : 'wbmd_c_channel_ids_group missed on xml';
     obj["wbmd_program_group"] = moduleSettings.hasOwnProperty('wbmd_program_group') ? moduleSettings.wbmd_program_group : 'wbmd_program_group missed on xml';
-    obj["wbmd_pb_asset_css_path"] = moduleSettings.hasOwnProperty('wbmd_pb_asset_css') ? moduleSettings.wbmd_pb_asset_css.$.path : 'wbmd_pb_asset_css.$.path missed on xml';
-    obj["wbmd_pb_asset_css_object_type"] = moduleSettings.hasOwnProperty('wbmd_pb_asset_css') ? moduleSettings.wbmd_pb_asset_css.$.object_type : 'wbmd_pb_asset_css.$.object_type missed on xml';
-    obj["wbmd_pb_module_xsl_path"] = moduleSettings.hasOwnProperty('wbmd_pb_module_xsl') ? moduleSettings.wbmd_pb_module_xsl.$.path : 'wbmd_pb_module_xsl.$.path missed on xml';
-    obj["wbmd_pb_module_xsl_object_type"] = moduleSettings.hasOwnProperty('wbmd_pb_module_xsl') ? moduleSettings.wbmd_pb_module_xsl.$.object_type : 'wbmd_pb_module_xsl_object_type missed on xml';
+    obj["wbmd_pb_asset_css_path"] = moduleSettings.hasOwnProperty('wbmd_pb_asset_css') && moduleSettings.wbmd_pb_asset_css ? moduleSettings.wbmd_pb_asset_css.$.path : 'wbmd_pb_asset_css.$.path missed on xml';
+    obj["wbmd_pb_asset_css_object_type"] = moduleSettings.hasOwnProperty('wbmd_pb_asset_css') && moduleSettings.wbmd_pb_asset_css ? moduleSettings.wbmd_pb_asset_css.$.object_type : 'wbmd_pb_asset_css.$.object_type missed on xml';
+    obj["wbmd_pb_module_xsl_path"] = moduleSettings.hasOwnProperty('wbmd_pb_module_xsl')&& moduleSettings.wbmd_pb_module_xsl ? moduleSettings.wbmd_pb_module_xsl.$.path : 'wbmd_pb_module_xsl.$.path missed on xml';
+    obj["wbmd_pb_module_xsl_object_type"] = moduleSettings.hasOwnProperty('wbmd_pb_module_xsl') && moduleSettings.wbmd_pb_module_xsl ? moduleSettings.wbmd_pb_module_xsl.$.object_type : 'wbmd_pb_module_xsl_object_type missed on xml';
 
     // moduleSettings.wbmd_pb_moduledataschema.forEach(function (element) {
     //     rowNumber = rowNumber + 1;
@@ -26,8 +26,8 @@ module.exports.MultipleVideoLaunchXMLValues = (result) => {
     //     obj["wbmd_pb_moduledataschema_object_type_" + rowNumber] = element.$.object_type;
     // }, this);
 
-    obj["wbmd_pb_owner_page_id_path"] = moduleSettings.hasOwnProperty('wbmd_pb_owner_page_id') ? moduleSettings.wbmd_pb_owner_page_id.$.path : 'wbmd_pb_owner_page_id.$.path missed on xml';
-    obj["wbmd_pb_owner_page_id_object_type"] = moduleSettings.hasOwnProperty('wbmd_pb_owner_page_id') ? moduleSettings.wbmd_pb_owner_page_id.$.object_type : 'wbmd_pb_owner_page_id_object_type missed on xml';
+    obj["wbmd_pb_owner_page_id_path"] = moduleSettings.hasOwnProperty('wbmd_pb_owner_page_id') &&moduleSettings.wbmd_pb_owner_page_id ? moduleSettings.wbmd_pb_owner_page_id.$.path : 'wbmd_pb_owner_page_id.$.path missed on xml';
+    obj["wbmd_pb_owner_page_id_object_type"] = moduleSettings.hasOwnProperty('wbmd_pb_owner_page_id') &&moduleSettings.wbmd_pb_owner_page_id ? moduleSettings.wbmd_pb_owner_page_id.$.object_type : 'wbmd_pb_owner_page_id_object_type missed on xml';
     obj["dnn_id"] = moduleSettings.hasOwnProperty('dnn_id') ? moduleSettings.dnn_id : 'dnn_id missed on xml';
     obj["class"] = moduleSettings.hasOwnProperty('class') ? moduleSettings.class : 'class missed on xml';
 
@@ -43,18 +43,18 @@ module.exports.MultipleVideoLaunchXMLValues = (result) => {
             rowNumber = rowNumber + 1;
             obj["VideoTitleOverride_" + rowNumber] = element.hasOwnProperty('VideoTitleOverride') ? element.VideoTitleOverride : 'VideoTitleOverride missed on xml';
             obj["VideoDescriptionOverride_" + rowNumber] = element.hasOwnProperty('VideoDescriptionOverride') ? element.VideoDescriptionOverride : 'VideoDescriptionOverride missed on xml';
-            obj["videosource_chronic_id_" + rowNumber] = element.hasOwnProperty('VideoSource') ? element.VideoSource.$.chronic_id : 'VideoSource.$.chronic_id missed on xml';
-            obj["VideoLink_chronic_id_" + rowNumber] = element.hasOwnProperty('VideoLink') && element.VideoLink.$.chronic_id != undefined ? true : false;
-            obj["PopupLink_chronic_id_" + rowNumber] = element.hasOwnProperty('PopupLink') && element.PopupLink.$.chronic_id != undefined ? true : false;
+            obj["videosource_chronic_id_" + rowNumber] = element.hasOwnProperty('VideoSource') && element.VideoSource ? element.VideoSource.$.chronic_id : 'VideoSource.$.chronic_id missed on xml';
+            obj["VideoLink_chronic_id_" + rowNumber] = element.hasOwnProperty('VideoLink') && element.VideoLink && element.VideoLink.$.chronic_id != undefined ? true : false;
+            obj["PopupLink_chronic_id_" + rowNumber] = element.hasOwnProperty('PopupLink') && element.PopupLink && element.PopupLink.$.chronic_id != undefined ? true : false;
 
         }, this);
     }
     else {
         obj["VideoTitleOverride_1"] = moduleData.Videos.Video.hasOwnProperty('VideoTitleOverride') ? moduleData.Videos.Video.VideoTitleOverride : 'VideoTitleOverride missed on xml';
         obj["VideoDescriptionOverride_1"] = moduleData.Videos.Video.hasOwnProperty('VideoDescriptionOverride') ? moduleData.Videos.Video.VideoDescriptionOverride : 'VideoDescriptionOverride missed on xml';
-        obj["videosource_chronic_id_1"] = moduleData.Videos.Video.hasOwnProperty('VideoSource') ? moduleData.Videos.Video.VideoSource.$.chronic_id : 'VideoSource.$.chronic_id missed on xml';
-        obj["VideoLink_chronic_id_1"] = moduleData.Videos.Video.hasOwnProperty('VideoLink') && moduleData.Videos.Video.VideoLink.$.chronic_id != undefined ? true : false;
-        obj["PopupLink_chronic_id_1"] = moduleData.Videos.Video.hasOwnProperty('PopupLink') && moduleData.Videos.Video.PopupLink.$.chronic_id != undefined ? true : false;
+        obj["videosource_chronic_id_1"] = moduleData.Videos.Video.hasOwnProperty('VideoSource') &&  moduleData.Videos.Video.VideoSource ? moduleData.Videos.Video.VideoSource.$.chronic_id : 'VideoSource.$.chronic_id missed on xml';
+        obj["VideoLink_chronic_id_1"] = moduleData.Videos.Video.hasOwnProperty('VideoLink') && moduleData.Videos.Video.VideoLink && moduleData.Videos.Video.VideoLink.$.chronic_id != undefined ? true : false;
+        obj["PopupLink_chronic_id_1"] = moduleData.Videos.Video.hasOwnProperty('PopupLink') && moduleData.Videos.Video.PopupLink && moduleData.Videos.Video.PopupLink.$.chronic_id != undefined ? true : false;
 
     }
 
