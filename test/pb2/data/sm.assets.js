@@ -90,46 +90,41 @@ var smdata = Object.create(page, {
                     "link": "091e9c5e80661dc9",
                     "headertext": "Header Text",
                     "headerlink": "091e9c5e801651b2",
-                    "addbodycopies": 1,
                     "bodycopy":
                     [
                         {
-                            "bodycopyheadertext": 'Body Copy Text',
-                            "bodycopylink": '091e9c5e809b44d7',
+                            "headertext": 'Body Copy Text',
+                            "link": '091e9c5e809b44d7',
                         }
 
                     ],
                     "bodyimagelogo": "091e9c5e8046dba9",
                     "bodyimageoverridetext": "Body Image Override Text",
-                    "bodyimagLink": "091e9c5e8000f8de",
-                    "bodyimagleft": 1,
-                    "bodyimagright": 0,
-                    "addbodylinks": 1,
+                    "bodyimageLink": "091e9c5e8000f8de",
+                    "bodyimageleft": 1,
+                    "bodyimageright": 0,
                     "bodylinks":
                     [
                         {
-                            "bulletson": "false",
-                            "bodylinkstext": "Body Links Text",
-                            "bodylinkslink": "091e9c5e80bac80c"
+                            "bulletson": 0,
+                            "text": "Body Links Text",
+                            "link": "091e9c5e80bac80c"
                         }
 
                     ],
-                    "addlowerlinks": 1,
                     "lowerlinks":
                     [
                         {
-                            "bulletson": "false",
-                            "lowerlinksnewpage": "new page",
-                            "lowerlinksrollover": "roll over",
-                            "lowerlinkstext": "Lower Links Text1",
-                            "lowerlinkslink": "091e9c5e80174f67",
+                            "bulletson": 0,
+                            "newpage": 0,
+                            "rollover": 0,
+                            "text": "Lower Links Text1",
+                            "link": "091e9c5e80174f67",
 
                         }
 
                     ],
-
                     "importcontent": null
-
                 }
         }
     }

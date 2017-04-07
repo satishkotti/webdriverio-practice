@@ -34,45 +34,45 @@ module.exports.ConfigureSponsorBoxModule = (assetProps) =>
      if ( assetProps.headertext != null ) { props.input2.get('Header','Header Text', 1).setValue(assetProps.headertext); }
      if ( assetProps.headerlink != null ) { props.lookup2('Header','Link', 1, assetProps.headerlink); }
      
-     if(assetProps.addbodycopies > "1")
+     if(assetProps.bodycopy.length > 1)
      {
         //for more than one link.
      }
      else
      {
-         if ( assetProps.bodycopy[0].bodycopyheadertext != null ) { props.input2.get('Body Copy', 'Header Text', 1).setValue(assetProps.bodycopy[0].bodycopyheadertext); }
-         if ( assetProps.bodycopy[0].bodycopylink != null ) { props.lookup2('Body Copy', 'Link', 1, assetProps.bodycopy[0].bodycopylink); }
+         if ( assetProps.bodycopy[0].bodycopyheadertext != null ) { props.input2.get('Body Copy', 'Header Text', 1).setValue(assetProps.bodycopy[0].headertext); }
+         if ( assetProps.bodycopy[0].bodycopylink != null ) { props.lookup2('Body Copy', 'Link', 1, assetProps.bodycopy[0].link); }
      }
 
     
     if ( assetProps.bodyimagelogo != null ) { props.lookup2('Body Image', 'Logo', 1, assetProps.bodyimagelogo); }
     if ( assetProps.bodyimageoverridetext != null ) { props.input2.get('Body Image', 'Override text', 1).setValue(assetProps.bodyimageoverridetext); }
-    if ( assetProps.bodyimagLink != null ) { props.lookup2('Body Image', 'Link', 1, assetProps.bodyimagLink); }
-    if ( assetProps.bodyimagleft != 0 ) { props.checkbox2.get('Body Image', 'Left', 1).click(); }
-    if ( assetProps.bodyimagright != 0 ) { props.checkbox2.get('Body Image', 'Right', 1).click(); }
+    if ( assetProps.bodyimageLink != null ) { props.lookup2('Body Image', 'Link', 1, assetProps.bodyimagLink); }
+    if ( assetProps.bodyimageleft != 0 ) { props.checkbox2.get('Body Image', 'Left', 1).click(); }
+    if ( assetProps.bodyimageright != 0 ) { props.checkbox2.get('Body Image', 'Right', 1).click(); }
 
-     if(assetProps.bodylinks > "1")
+     if(assetProps.bodylinks.length > 1)
      {
         //for more than one link.
      }
      else
      {
-         if ( assetProps.bodylinks[0].bulletson != null ) { props.checkbox2.get('Body Links', 'Bullets On', 1).setValue(assetProps.bodylinks[0].bulletson); }
-         if ( assetProps.bodylinks[0].bodylinkstext != null ) { props.input2.get('Body Links', 'Text', 1).setValue(assetProps.bodylinks[0].bodylinkstext); }
-         if ( assetProps.bodylinks[0].bodylinkslink != null ) { props.lookup2('Body Links', 'Link', 1, assetProps.bodylinks[0].bodylinkslink); }
+         if ( assetProps.bodylinks[0].bulletson != 0 ) { props.checkbox2.get('Body Links', 'Bullets On', 1).click(); }
+         if ( assetProps.bodylinks[0].text != null ) { props.input2.get('Body Links', 'Text', 1).setValue(assetProps.bodylinks[0].text); }
+         if ( assetProps.bodylinks[0].link != null ) { props.lookup2('Body Links', 'Link', 1, assetProps.bodylinks[0].link); }
      }
      
-     if(assetProps.addlowerlinks > "1")
+     if(assetProps.lowerlinks.length > 1)
      {
         //for more than one link.
      }
      else
      {
-         if ( assetProps.lowerlinks[0].lowerlinksbulletson != null ) { props.checkbox2.get('Lower Links', 'Bullets On', 1).click(assetProps.lowerlinks[0].lowerlinksbulletson); }
-         if ( assetProps.lowerlinks[0].lowerlinksnewpage != null ) { props.checkbox2.get('Lower Links', 'New Page', 1).click(assetProps.lowerlinks[0].lowerlinksnewpage); }
-         if ( assetProps.lowerlinks[0].lowerlinksrollover != null ) { props.checkbox2.get('Lower Links', 'Rollover', 1).click(assetProps.lowerlinks[0].lowerlinksrollover); }
-         if ( assetProps.lowerlinks[0].lowerlinkstext != null ) { props.input2.get('Lower Links', 'Text', 1).setValue(assetProps.lowerlinks[0].lowerlinkstext); }
-         if ( assetProps.lowerlinks[0].lowerlinkslink != null ) { props.lookup2('Lower Links', 'Link', 1, assetProps.lowerlinks[0].lowerlinkslink); }
+         if ( assetProps.lowerlinks[0].bulletson != 0 ) { props.checkbox2.get('Lower Links', 'Bullets On', 1).click(); }
+         if ( assetProps.lowerlinks[0].newpage != 0 ) { props.checkbox2.get('Lower Links', 'New Page', 1).click(); }
+         if ( assetProps.lowerlinks[0].rollover != 0 ) { props.checkbox2.get('Lower Links', 'Rollover', 1).click(); }
+         if ( assetProps.lowerlinks[0].text != null ) { props.input2.get('Lower Links', 'Text', 1).setValue(assetProps.lowerlinks[0].text); }
+         if ( assetProps.lowerlinks[0].link != null ) { props.lookup2('Lower Links', 'Link', 1, assetProps.lowerlinks[0].link); }
      }
       if ( assetProps.importcontent != null ) { props.lookup2('Article', 'Import Content', 1, assetProps.importcontent); }
 }
