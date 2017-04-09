@@ -83,12 +83,16 @@ module.exports.testSettings = {
             "testFolderPath": "webmd/professional_assets/medscape/news/qa_test",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
+            "ProfileOtherName": "US / Other Templates",
             "ArticleTemplate": 'News Article',
+            "PointerTemplate": "Professional Pointer",
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "NewsArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "ContentType":"News",
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
             "LeadSpecialty": "Cardiology",
+            "InitialVersion": "1.0, CURRENT, WIP",
+            "CheckedInVersion": "1.1, CURRENT, WIP",
             "ContentDeveloper": "Medscape",
             "newsPropertiesLabels":"object_name-input,title-input,wbmd_legacy_id,wbmd_wdw_ttl-input,wbmd_bus_ref-input,wbmd_lead_concept-input,"+
                                     "wbmd_keywords-input,wbmd_content_fcs,wbmd_desc_meta-input,wbmd_img_thmb-input,wbmd_rel_links_type-input,wbmd_rel_link_lbl-input,wbmd_suppress_search-input,"+

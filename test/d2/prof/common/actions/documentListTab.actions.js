@@ -23,8 +23,17 @@ var documentListObj = {
 //Add logic for pagination if asset not found.
 //Add: assert asset selected is highlighted        
     },
+     promoteAsset: function(assetName){
+        documentListUI.promoteAsset(assetName);
+    },
+    demoteAsset: function(assetName){
+        documentListUI.demoteAsset(assetName);
+    },
     powerPromoteAsset: function(assetName){
         documentListUI.powerPromote(assetName);
+    },
+    expireAsset: function(assetName){
+    documentListUI.expireAsset(assetName);
     },
     publishAssetToStaging: function(assetName){
         documentListUI.publishToStaging(assetName);
@@ -33,6 +42,15 @@ var documentListObj = {
         documentListObj.selectAsset(assetName);
         documentListObj.powerPromoteAsset(assetName);
         documentListObj.publishAssetToStaging(assetName);
+    },
+    verifyVersions: function(version){
+        var IsVersionVerified = documentListUI.selectVersionTab(version);
+        return IsVersionVerified;
+    },
+    verifyLock: function(objName){
+        var IsLocked = documentListUI.verifyLock(objName);
+        return IsLocked;
     }
+
 }
 module.exports = documentListObj;
