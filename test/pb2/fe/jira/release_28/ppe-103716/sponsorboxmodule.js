@@ -1,6 +1,6 @@
 var test = require('./../../../../common/functions/functions');
 var smTestData = require('./../../../../data/sm.assets');
-var pb1xml = require('./../../../../data/sm-pb1-xmls/sponsorboxes_allfields.xml');
+//var pb1xml = require('./../../../../data/sm-pb1-xmls/sponsorboxes_allfields.xml');
 
 describe('XML validations for Multiple Video Launch Module', () => {
 
@@ -27,7 +27,9 @@ describe('XML validations for Multiple Video Launch Module', () => {
             test.WaitForATSFile('ATS Output File');
 
             //var xml = test.GetXML('091e9c5e815a195e', 'live')
-            xml1 = test.GetXMLValues('sponsor box module', pb1xml);
+           // xml1 = test.GetXMLValues('sponsor box module', pb1xml);
+           xml1 = test.GetXMLValues('sponsor box module', test.GetXML('\\test\\pb2\\data\\SampleData\\SponsorboxModule\\PB1_allfields.xml', 'live','FILE'));
+
             for (var property in xml1) {
             if (property.toString().startsWith('body_copy_body_copy_text_')) {
                 body_copiesCount = body_copiesCount + 1;
@@ -122,80 +124,80 @@ describe('XML validations for Multiple Video Launch Module', () => {
 
     //sponsor logo tag
     it('sponsor_logo override_text of both xml should be same', () => {
-        expect(xml['sponsor_logo_override_text']).to.equal(xml2['sponsor_logo_override_text']);
+        expect(xml1['sponsor_logo_override_text']).to.equal(xml2['sponsor_logo_override_text']);
     });
     it('sponsor_logo link_view of both xml should be same', () => {
-        expect(xml['sponsor_logo_link_view']).to.equal(xml2['sponsor_logo_link_view']);
+        expect(xml1['sponsor_logo_link_view']).to.equal(xml2['sponsor_logo_link_view']);
     });
     it('sponsor_logo logo_source directive of both xml should be same', () => {
-        expect(xml['sponsor_logo_source_directive']).to.equal(xml2['sponsor_logo_source_directive']);
+        expect(xml1['sponsor_logo_source_directive']).to.equal(xml2['sponsor_logo_source_directive']);
     });
     it('sponsor_logo_source object_type of both xml should be same', () => {
-        expect(xml['sponsor_logo_source_object_type']).to.equal(xml2['sponsor_logo_source_object_type']);
+        expect(xml1['sponsor_logo_source_object_type']).to.equal(xml2['sponsor_logo_source_object_type']);
     });
     it('sponsor_logo_source wbmd_lookup_type of both xml should be same', () => {
-        expect(xml['sponsor_logo_source_wbmd_lookup_type']).to.equal(xml2['sponsor_logo_source_wbmd_lookup_type']);
+        expect(xml1['sponsor_logo_source_wbmd_lookup_type']).to.equal(xml2['sponsor_logo_source_wbmd_lookup_type']);
     });
     it('sponsor_logo_source wbmd_storage_value of both xml should be same', () => {
-        expect(xml['sponsor_logo_source_wbmd_storage_value']).to.equal(xml2['sponsor_logo_source_wbmd_storage_value']);
+        expect(xml1['sponsor_logo_source_wbmd_storage_value']).to.equal(xml2['sponsor_logo_source_wbmd_storage_value']);
     });
     it('sponsor_logo_source path of both xml should be same', () => {
-        expect(xml['sponsor_logo_source_path']).to.equal(xml2['sponsor_logo_source_path']);
+        expect(xml1['sponsor_logo_source_path']).to.equal(xml2['sponsor_logo_source_path']);
     });
     it('sponsor_logo_source alt of both xml should be same', () => {
-        expect(xml['sponsor_logo_source_alt']).to.equal(xml2['sponsor_logo_source_alt']);
+        expect(xml1['sponsor_logo_source_alt']).to.equal(xml2['sponsor_logo_source_alt']);
     });
     it('sponsor_logo_link directive of both xml should be same', () => {
-        expect(xml['sponsor_logo_link_directive']).to.equal(xml2['sponsor_logo_link_directive']);
+        expect(xml1['sponsor_logo_link_directive']).to.equal(xml2['sponsor_logo_link_directive']);
     });
     it('sponsor_logo_link object_type of both xml should be same', () => {
-        expect(xml['sponsor_logo_link_object_type']).to.equal(xml2['sponsor_logo_link_object_type']);
+        expect(xml1['sponsor_logo_link_object_type']).to.equal(xml2['sponsor_logo_link_object_type']);
     });
     it('sponsor_logo_link wbmd_lookup_type of both xml should be same', () => {
-        expect(xml['sponsor_logo_link_wbmd_lookup_type']).to.equal(xml2['sponsor_logo_link_wbmd_lookup_type']);
+        expect(xml1['sponsor_logo_link_wbmd_lookup_type']).to.equal(xml2['sponsor_logo_link_wbmd_lookup_type']);
     });
     it('sponsor_logo_link wbmd_storage_value of both xml should be same', () => {
-        expect(xml['sponsor_logo_link_wbmd_storage_value']).to.equal(xml2['sponsor_logo_link_wbmd_storage_value']);
+        expect(xml1['sponsor_logo_link_wbmd_storage_value']).to.equal(xml2['sponsor_logo_link_wbmd_storage_value']);
     });
 
     it('Verify sponsor_logo_source chronic_id exits in pb1 xml', () => {
-        expect(xml['sponsor_logo_source_chronic_id']).to.be.true;
+        expect(xml1['sponsor_logo_source_chronic_id']).to.be.true;
     });
     it('Verify sponsor_logo_source chronic_id exits in pb2 xml', () => {
-        expect(xm2['sponsor_logo_source_chronic_id']).to.be.true;
+        expect(xml2['sponsor_logo_source_chronic_id']).to.be.true;
     });
 
     it('Verify sponsor_logo_link chronic_id exits in pb1 xml', () => {
-        expect(xml['sponsor_logo_link_chronic_id']).to.be.true;
+        expect(xml1['sponsor_logo_link_chronic_id']).to.be.true;
     });
     it('Verify sponsor_logo_link chronic_id exits in pb2 xml', () => {
-        expect(xm2['sponsor_logo_link_chronic_id']).to.be.true;
+        expect(xml2['sponsor_logo_link_chronic_id']).to.be.true;
     });
 
     //header info tags
     it('header_text of both xml should be same', () => {
-        expect(xml['header_text']).to.equal(xml2['header_text']);
+        expect(xml1['header_text']).to.equal(xml2['header_text']);
     });
     it('header_link_view of both xml should be same', () => {
-        expect(xml['header_link_view']).to.equal(xml2['header_link_view']);
+        expect(xml1['header_link_view']).to.equal(xml2['header_link_view']);
     });
     it('header_link directive of both xml should be same', () => {
-        expect(xml['header_link_directive']).to.equal(xml2['header_link_directive']);
+        expect(xml1['header_link_directive']).to.equal(xml2['header_link_directive']);
     });
     it('header_link object_type of both xml should be same', () => {
-        expect(xml['header_link_object_type']).to.equal(xml2['header_link_object_type']);
+        expect(xml1['header_link_object_type']).to.equal(xml2['header_link_object_type']);
     });
     it('header_link wbmd_lookup_type of both xml should be same', () => {
-        expect(xml['header_link_wbmd_lookup_type']).to.equal(xml2['header_link_wbmd_lookup_type']);
+        expect(xml1['header_link_wbmd_lookup_type']).to.equal(xml2['header_link_wbmd_lookup_type']);
     });
     it('header_link wbmd_storage_value of both xml should be same', () => {
-        expect(xml['header_link_wbmd_storage_value']).to.equal(xml2['header_link_wbmd_storage_value']);
+        expect(xml1['header_link_wbmd_storage_value']).to.equal(xml2['header_link_wbmd_storage_value']);
     });
     it('Verify header_link chronic_id exits in pb1 xml', () => {
-        expect(xml['sponsor_logo_link_chronic_id']).to.be.true;
+        expect(xml1['sponsor_logo_link_chronic_id']).to.be.true;
     });
     it('Verify header_link chronic_id exits in pb2 xml', () => {
-        expect(xm2['sponsor_logo_link_chronic_id']).to.be.true;
+        expect(xml2['sponsor_logo_link_chronic_id']).to.be.true;
     });
 
     //body_copies info
@@ -226,80 +228,80 @@ describe('XML validations for Multiple Video Launch Module', () => {
 
     //body_image info
     it('body_image override_text of both xml should be same', () => {
-        expect(xml['body_image_override_text']).to.equal(xml2['body_image_override_text']);
+        expect(xml1['body_image_override_text']).to.equal(xml2['body_image_override_text']);
     });
     it('body_image_link_view of both xml should be same', () => {
-        expect(xml['body_image_link_view']).to.equal(xml2['body_image_link_view']);
+        expect(xml1['body_image_link_view']).to.equal(xml2['body_image_link_view']);
     });
     it('body_image_align of both xml should be same', () => {
-        expect(xml['body_image_align']).to.equal(xml2['body_image_align']);
+        expect(xml1['body_image_align']).to.equal(xml2['body_image_align']);
     });
     it('body_image_source directive of both xml should be same', () => {
-        expect(xml['body_image_source_directive']).to.equal(xml2['body_image_source_directive']);
+        expect(xml1['body_image_source_directive']).to.equal(xml2['body_image_source_directive']);
     });
     it('body_image_source object_type of both xml should be same', () => {
-        expect(xml['body_image_source_object_type']).to.equal(xml2['body_image_source_object_type']);
+        expect(xml1['body_image_source_object_type']).to.equal(xml2['body_image_source_object_type']);
     });
     it('body_image_source wbmd_lookup_type of both xml should be same', () => {
-        expect(xml['body_image_source_wbmd_lookup_type']).to.equal(xml2['body_image_source_wbmd_lookup_type']);
+        expect(xml1['body_image_source_wbmd_lookup_type']).to.equal(xml2['body_image_source_wbmd_lookup_type']);
     });
     it('body_image_source wbmd_storage_value of both xml should be same', () => {
-        expect(xml['body_image_source_wbmd_storage_value']).to.equal(xml2['body_image_source_wbmd_storage_value']);
+        expect(xml1['body_image_source_wbmd_storage_value']).to.equal(xml2['body_image_source_wbmd_storage_value']);
     });
     it('body_image_source path of both xml should be same', () => {
-        expect(xml['body_image_source_path']).to.equal(xml2['body_image_source_path']);
+        expect(xml1['body_image_source_path']).to.equal(xml2['body_image_source_path']);
     });
     it('body_image_source alt of both xml should be same', () => {
-        expect(xml['body_image_source_alt']).to.equal(xml2['body_image_source_alt']);
+        expect(xml1['body_image_source_alt']).to.equal(xml2['body_image_source_alt']);
     });
     it('body_image_link directive of both xml should be same', () => {
-        expect(xml['body_image_link_directive']).to.equal(xml2['body_image_link_directive']);
+        expect(xml1['body_image_link_directive']).to.equal(xml2['body_image_link_directive']);
     });
     it('body_image_link object_type of both xml should be same', () => {
-        expect(xml['body_image_link_object_type']).to.equal(xml2['body_image_link_object_type']);
+        expect(xml1['body_image_link_object_type']).to.equal(xml2['body_image_link_object_type']);
     });
     it('Verify body_image_source chronic_id exits in pb1 xml', () => {
-        expect(xml['body_image_source_chronic_id']).to.be.true;
+        expect(xml1['body_image_source_chronic_id']).to.be.true;
     });
     it('Verify body_image_source chronic_id exits in pb2 xml', () => {
-        expect(xm2['body_image_source_chronic_id']).to.be.true;
+        expect(xml2['body_image_source_chronic_id']).to.be.true;
     });
     it('Verify body_image_link chronic_id exits in pb1 xml', () => {
-        expect(xml['body_image_link_chronic_id']).to.be.true;
+        expect(xml1['body_image_link_chronic_id']).to.be.true;
     });
     it('Verify body_image_link chronic_id exits in pb2 xml', () => {
-        expect(xm2['body_image_link_chronic_id']).to.be.true;
+        expect(xml2['body_image_link_chronic_id']).to.be.true;
     });
 
     //body_links info tags
     it('body_bullet of both xml should be same', () => {
-        expect(xml['body_bullet']).to.equal(xml2['body_bullet']);
+        expect(xml1['body_bullet']).to.equal(xml2['body_bullet']);
     });
     it('body_link body_link_text of both xml should be same', () => {
-        expect(xml['body_link_body_link_text']).to.equal(xml2['body_link_body_link_text']);
+        expect(xml1['body_link_body_link_text']).to.equal(xml2['body_link_body_link_text']);
     });
     it('body_link body_link_link_view of both xml should be same', () => {
-        expect(xml['body_link_body_link_link_view']).to.equal(xml2['body_link_body_link_link_view']);
+        expect(xml1['body_link_body_link_link_view']).to.equal(xml2['body_link_body_link_link_view']);
     });
     it('body_link_link directive of both xml should be same', () => {
-        expect(xml['body_link_link_directive']).to.equal(xml2['body_link_link_directive']);
+        expect(xml1['body_link_link_directive']).to.equal(xml2['body_link_link_directive']);
     });
     it('body_link_link object_type of both xml should be same', () => {
-        expect(xml['body_link_link_object_type']).to.equal(xml2['body_link_link_object_type']);
+        expect(xml1['body_link_link_object_type']).to.equal(xml2['body_link_link_object_type']);
     });
     it('Verify body_link_link chronic_id exits in pb1 xml', () => {
-        expect(xml['body_link_link_chronic_id']).to.be.true;
+        expect(xml1['body_link_link_chronic_id']).to.be.true;
     });
     it('Verify body_link_link chronic_id exits in pb2 xml', () => {
-        expect(xm2['body_link_link_chronic_id']).to.be.true;
+        expect(xml1['body_link_link_chronic_id']).to.be.true;
     });
 
     //lower_links info
     it('link_display of both xml should be same', () => {
-        expect(xml['link_display']).to.equal(xml2['link_display']);
+        expect(xml1['link_display']).to.equal(xml2['link_display']);
     });
     it('link_display both xml should be same', () => {
-        expect(xml['link_bullet']).to.equal(xml2['link_bullet']);
+        expect(xml1['link_bullet']).to.equal(xml2['link_bullet']);
     });
 
     it('lower_link lower_link_text of both xmls should be same', () => {
@@ -331,13 +333,13 @@ describe('XML validations for Multiple Video Launch Module', () => {
 
     it('Verify lower_link_link chronic_id exits in pb1 xml', () => {
         while (lower_linksCount > 0) {
-            expect(xml['lower_link_link_chronic_id_' + lower_linksCount]).to.be.true;
+            expect(xml1['lower_link_link_chronic_id_' + lower_linksCount]).to.be.true;
             lower_linksCount = lower_linksCount - 1;
         }
     });
     it('Verify lower_link_link chronic_id exits in pb2 xml', () => {
         while (lower_linksCount > 0) {
-            expect(xm2['lower_link_link_chronic_id_' + lower_linksCount]).to.be.true;
+            expect(xml2['lower_link_link_chronic_id_' + lower_linksCount]).to.be.true;
             lower_linksCount = lower_linksCount - 1;
         }
     });

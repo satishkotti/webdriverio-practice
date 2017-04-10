@@ -161,6 +161,7 @@ var props = Object.create(page, {
             props.UntilExist();
             props.UntilVisible();
             try{
+                //props.Scroll();
                 props.GetElement.click();
             }
             catch(err)

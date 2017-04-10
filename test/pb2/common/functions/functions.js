@@ -288,6 +288,7 @@ module.exports.ConfigureModule = (moduleType, moduleprops) =>
     {
         case 'multiple video launch': moduleConfigs.ConfigureMultipleVideoLaunchModule(moduleprops); break;
         case 'sponsor box module': moduleConfigs.ConfigureSponsorBoxModule(moduleprops); break;
+        case 'navigation module': moduleConfigs.ConfigureNavigationModule(moduleprops); break;
     }
 
 }
@@ -296,8 +297,13 @@ module.exports.WaitForATSFile = (fileType) => {
     ats.WaitFor(fileType);
 }
 
-module.exports.GetXML = (chronId, stage) => {
+module.exports.GetXML = (chronId, stage,inputType) => {
     var xmlUrl;
+    if(inputType=='FILE')
+    {
+      xmlUrl=chronId;
+    }
+    else
     switch (global.testEnv) {
         case 'qa02':
         case 'Qa02':
@@ -321,7 +327,7 @@ module.exports.GetXML = (chronId, stage) => {
     }
     var xml;
     browser.call(() => {
-        return Promise.resolve(parseXml.getXmlFromUrl(xmlUrl, null))
+        return Promise.resolve(parseXml.getXmlFromUrl(xmlUrl, null,inputType))
             .then(function (result) {
                 xml = result;
             }).catch(err => {
@@ -337,6 +343,7 @@ module.exports.GetXMLValues = (assetType, xml)=>
     {
         case 'multiple video launch module': return assetxml.MultipleVideoLaunchXMLValues(xml); break;
         case 'sponsor box module': return assetxml.SponsorModuleLaunchXMLValues(xml); break;
+        case 'navigation module': return assetxml.NavigationModuleLaunchXMLValues(xml); break;
     }
    
 }

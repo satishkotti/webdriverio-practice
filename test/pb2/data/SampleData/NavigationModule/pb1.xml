@@ -1,0 +1,71 @@
+<webmd_rendition>
+<content>
+<wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e815a1964">
+<webmd_module>
+<module_settings>
+<chronic_id>091e9c5e815a1964</chronic_id>
+<r_object_id>091e9c5e815a1964</r_object_id>
+<title>0403QANavigationAllFields</title>
+<object_name>
+module_0403QANavigationAllFields_091e9c5e815a1964.xml
+</object_name>
+<object_type>wbmd_pb_sharedmodule</object_type>
+<wbmd_pb_module_category>091e9c5e8009b213</wbmd_pb_module_category>
+<wbmd_pb_dyn_module_category/>
+<md_pb_module_label1_group>
+<wbmd_pb_module_label1/>
+</md_pb_module_label1_group>
+<md_pb_module_label2_group>
+<wbmd_pb_module_label2 object_type="wbmd_lookup" wbmd_lookup_type="wbmd_module_label2" i_chronicle_id="091e9c5e812144fd" wbmd_disp_nm="1 Column" wbmd_storage_val="1_column"/>
+</md_pb_module_label2_group>
+<wbmd_pb_module_sp_program/>
+<wbmd_pb_module_tier>0</wbmd_pb_module_tier>
+<wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
+<r_modify_date>04/03/2017 04:11:45</r_modify_date>
+<wbmd_c_channel_ids_group/>
+<wbmd_program_group/>
+<wbmd_pb_asset_css path="/webmd/PageBuilder_Assets/CSS/Navigation/Masthead - Harmony/Standard Masthead_091e9c5e80edf24d.css" object_type="wbmd_pb_css" chronic_id="091e9c5e80edf24d"/>
+<wbmd_pb_module_xsl path="/webmd/PageBuilder_Assets/XSL/Navigation/Masthead - Harmony_091e9c5e80edf24c.xsl" object_type="wbmd_pb_xsl" chronic_id="091e9c5e80edf24c"/>
+<wbmd_pb_moduledataschema path="/webmd/PageBuilder_Assets/schemas/module_schemas/Navigation_Module.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005121"/>
+<wbmd_pb_moduledataschema path="/webmd_uk/PageBuilder_Assets/schemas/module_schemas/Navigation_Module.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005121"/>
+<wbmd_pb_owner_page_id path="/webmd/PageBuilder_Assets/Shared_Modules/Navigation/0403QANavigationAllFields_091e9c5e815a1963/smc_0403QANavigationAllFields_091e9c5e815a1963.xml" object_type="wbmd_pb_page" chronic_id="091e9c5e815a1963"/>
+<dnn_id>0</dnn_id>
+<class>Navigation</class>
+</module_settings>
+<module_data>
+<module_title_text>Module Title Text</module_title_text>
+<groups>
+<group>
+<group_name>Group1Text</group_name>
+<group_link_view>Page Refresh(Default)</group_link_view>
+<group_link chronic_id="091e9c5e80174f67" object_type="wbmd_cons_article"/>
+<link_items>
+<link_item>
+<link_text>Group 1 Link Items Text 1</link_text>
+<article_link_view>Page Refresh(Default)</article_link_view>
+<link chronic_id="091e9c5e800b5eb7" directive="friendlyurl" object_type="wbmd_cons_article"/>
+</link_item>
+</link_items>
+</group>
+<group>
+<group_name>Group2Text</group_name>
+<group_link_view>Page Refresh(Default)</group_link_view>
+<group_link chronic_id="091e9c5e805b06ed" object_type="wbmd_cons_article"/>
+<link_items>
+<link_item>
+<link_text>Group 2 Link Items Text 1</link_text>
+<article_link_view>Page Refresh(Default)</article_link_view>
+<link chronic_id="091e9c5e80126129" directive="friendlyurl" object_type="wbmd_cons_article"/>
+</link_item>
+</link_items>
+</group>
+</groups>
+</module_data>
+</webmd_module>
+</wbmd_asset>
+</content>
+<friendlyurls/>
+<referenced_objects>...</referenced_objects>
+<container_hierarchy/>
+<expanded_objects/>
+</webmd_rendition>

@@ -47,7 +47,7 @@ module.exports.ConfigureSponsorBoxModule = (assetProps) =>
     
     if ( assetProps.bodyimagelogo != null ) { props.lookup2('Body Image', 'Logo', 1, assetProps.bodyimagelogo); }
     if ( assetProps.bodyimageoverridetext != null ) { props.input2.get('Body Image', 'Override text', 1).setValue(assetProps.bodyimageoverridetext); }
-    if ( assetProps.bodyimageLink != null ) { props.lookup2('Body Image', 'Link', 1, assetProps.bodyimagLink); }
+    if ( assetProps.bodyimageLink != null ) { props.lookup2('Body Image', 'Link', 1, assetProps.bodyimageLink); }
     if ( assetProps.bodyimageleft != 0 ) { props.checkbox2.get('Body Image', 'Left', 1).click(); }
     if ( assetProps.bodyimageright != 0 ) { props.checkbox2.get('Body Image', 'Right', 1).click(); }
 
@@ -75,4 +75,29 @@ module.exports.ConfigureSponsorBoxModule = (assetProps) =>
          if ( assetProps.lowerlinks[0].link != null ) { props.lookup2('Lower Links', 'Link', 1, assetProps.lowerlinks[0].link); }
      }
       if ( assetProps.importcontent != null ) { props.lookup2('Article', 'Import Content', 1, assetProps.importcontent); }
+}
+
+module.exports.ConfigureNavigationModule = (assetProps) =>
+{
+     if ( assetProps.text != null ) { props.input.get('Text').setValue(assetProps.text); }
+         
+     if(assetProps.addslides > "2")
+     {
+       
+     }
+     else
+     {
+         props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
+         if ( assetProps.groupheadersection[0].groups[0].grouptext != null ) { props.input2.get('Group Header Section','Text', 1).setValue(assetProps.groupheadersection[0].groups[0].grouptext); }
+         if ( assetProps.groupheadersection[0].groups[0].grouplink != null ) { props.lookup2('Group Header Section','Link', 1, assetProps.groupheadersection[0].groups[0].grouplink); }
+         if ( assetProps.groupheadersection[0].groups[0].groupitemlinks[0].grouplinkitemtext != null ) { props.input2.get('Group Link Items', 'Text', 1).setValue(assetProps.groupheadersection[0].groups[0].groupitemlinks[0].grouplinkitemtext); }
+         if ( assetProps.groupheadersection[0].groups[0].groupitemlinks[0].grouplinkitemlink != null ) { props.lookup2('Group Link Items', 'Link', 1, assetProps.groupheadersection[0].groups[0].groupitemlinks[0].grouplinkitemlink); }
+         props.element('(//span[contains(@class,"pb-accordian-toggle")])[2]').click();
+         if ( assetProps.groupheadersection[0].groups[1].grouptext != null ) { props.input2.get('Group Header Section', 'Text', 3).setValue(assetProps.groupheadersection[0].groups[1].grouptext); }
+         if ( assetProps.groupheadersection[0].groups[1].grouplink != null ) { props.lookup2('Group Header Section', 'Link', 3, assetProps.groupheadersection[0].groups[1].grouplink); }
+         if ( assetProps.groupheadersection[0].groups[1].groupitemlinks[0].grouplinkitemtext != null ) { props.input2.get('Group Link Items', 'Text', 2).setValue(assetProps.groupheadersection[0].groups[1].groupitemlinks[0].grouplinkitemtext); }
+         if ( assetProps.groupheadersection[0].groups[1].groupitemlinks[0].grouplinkitemlink != null ) { props.lookup2('Group Link Items', 'Link', 2, assetProps.groupheadersection[0].groups[1].groupitemlinks[0].grouplinkitemlink); }
+     }
+
+      
 }

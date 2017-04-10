@@ -137,7 +137,7 @@ module.exports.SponsorModuleLaunchXMLValues = (result) => {
     obj['header_link_chronic_id'] = header.hasOwnProperty('header_link') && header.header_link && header.header_link.$.chronic_id != undefined ? true : false;
 
     //body_copies info
-    var bodyCopies = moduleData.body_copies;
+     var bodyCopies = moduleData.body_copies;
     rowNumber = 0;
     if (bodyCopies.body_copy.length != undefined) {
         lowerLinks.lower_link.forEach(function (element) {
@@ -202,5 +202,106 @@ module.exports.SponsorModuleLaunchXMLValues = (result) => {
         obj['lower_link_link_chronic_id_1'] = lowerLinks.lower_link.hasOwnProperty('lower_link_link') && lowerLinks.lower_link.lower_link_link && lowerLinks.lower_link.lower_link_link.$.chronic_id != undefined ? true : false;
     }
 
+    return obj;
+}
+
+module.exports.NavigationModuleLaunchXMLValues = (result) =>
+{
+    var obj = {};
+    var rowNumber = 0;
+    var moduleSettings = result.webmd_rendition.content.wbmd_asset.webmd_module.module_settings;
+    
+    //Module settings
+    obj["title"] = moduleSettings.hasOwnProperty('title') ? moduleSettings.title : 'title missed on xml';
+    obj["object_name"] = moduleSettings.hasOwnProperty('object_name') ? moduleSettings.object_name : 'object_name missed on xml';
+    obj["object_type"] = moduleSettings.hasOwnProperty('object_type') ? moduleSettings.object_type : 'object_type missed on xml';
+    obj["wbmd_pb_module_category"] = moduleSettings.hasOwnProperty('wbmd_pb_module_category') ? moduleSettings.wbmd_pb_module_category : 'wbmd_pb_module_category missed on xml';
+    obj["wbmd_pb_dyn_module_category"] = moduleSettings.hasOwnProperty('wbmd_pb_dyn_module_category') ? moduleSettings.wbmd_pb_dyn_module_category : 'wbmd_pb_dyn_module_category missed on xml';
+    obj["wbmd_pb_module_label1"] = (moduleSettings.hasOwnProperty('md_pb_module_label1_group') && moduleSettings.md_pb_module_label1_group.wbmd_pb_module_label1 != undefined) ? moduleSettings.md_pb_module_label1_group.wbmd_pb_module_label1 : 'md_pb_module_label1_group.wbmd_pb_module_label1 missed on xml';
+    obj["wbmd_pb_module_label2"] = (moduleSettings.hasOwnProperty('md_pb_module_label2_group') && moduleSettings.md_pb_module_label1_group.wbmd_pb_module_label1 != undefined) ? moduleSettings.md_pb_module_label2_group.wbmd_pb_module_label2 : 'md_pb_module_label2_group.wbmd_pb_module_label2 missed on xml';
+    obj["wbmd_pb_module_sp_program"] = moduleSettings.hasOwnProperty('wbmd_pb_module_sp_program') ? moduleSettings.wbmd_pb_module_sp_program : 'wbmd_pb_module_sp_program missed on xml';
+    obj["wbmd_pb_cache_duration"] = moduleSettings.hasOwnProperty('wbmd_pb_cache_duration') ? moduleSettings.wbmd_pb_cache_duration : 'wbmd_pb_cache_duration missed on xml';
+    obj["wbmd_c_channel_ids_group"] = moduleSettings.hasOwnProperty('wbmd_c_channel_ids_group') ? moduleSettings.wbmd_c_channel_ids_group : 'wbmd_c_channel_ids_group missed on xml';
+    obj["wbmd_program_group"] = moduleSettings.hasOwnProperty('wbmd_program_group') ? moduleSettings.wbmd_program_group : 'wbmd_program_group missed on xml';
+    obj["wbmd_pb_asset_css_path"] = moduleSettings.hasOwnProperty('wbmd_pb_asset_css') && moduleSettings.wbmd_pb_asset_css ? moduleSettings.wbmd_pb_asset_css.$.path : 'wbmd_pb_asset_css.$.path missed on xml';
+    obj["wbmd_pb_asset_css_object_type"] = moduleSettings.hasOwnProperty('wbmd_pb_asset_css')&& moduleSettings.wbmd_pb_asset_css ? moduleSettings.wbmd_pb_asset_css.$.object_type : 'wbmd_pb_asset_css.$.object_type missed on xml';
+    obj["wbmd_pb_module_xsl_path"] = moduleSettings.hasOwnProperty('wbmd_pb_module_xsl') &&moduleSettings.wbmd_pb_module_xsl? moduleSettings.wbmd_pb_module_xsl.$.path : 'wbmd_pb_module_xsl.$.path missed on xml';
+    obj["wbmd_pb_module_xsl_object_type"] = moduleSettings.hasOwnProperty('wbmd_pb_module_xsl') && moduleSettings.wbmd_pb_module_xsl? moduleSettings.wbmd_pb_module_xsl.$.object_type : 'wbmd_pb_module_xsl_object_type missed on xml';
+    obj["wbmd_pb_owner_page_id_path"] = moduleSettings.hasOwnProperty('wbmd_pb_owner_page_id') && moduleSettings.wbmd_pb_owner_page_id ? moduleSettings.wbmd_pb_owner_page_id.$.path : 'wbmd_pb_owner_page_id.$.path missed on xml';
+    obj["wbmd_pb_owner_page_id_object_type"] = moduleSettings.hasOwnProperty('wbmd_pb_owner_page_id') && moduleSettings.wbmd_pb_owner_page_id ? moduleSettings.wbmd_pb_owner_page_id.$.object_type : 'wbmd_pb_owner_page_id_object_type missed on xml';
+    obj["dnn_id"] = moduleSettings.hasOwnProperty('dnn_id') ? moduleSettings.dnn_id : 'dnn_id missed on xml';
+    obj["class"] = moduleSettings.hasOwnProperty('class') ? moduleSettings.class : 'class missed on xml';
+    obj['chronic_id'] = moduleSettings.hasOwnProperty('chronic_id');
+
+
+    //module data from xml
+    var moduleData = result.webmd_rendition.content.wbmd_asset.webmd_module.module_data;
+    obj['module_title_text']=moduleData.hasOwnProperty('module_title_text') && moduleData.module_title_text ? moduleData.module_title_text :'module_title_text missed on xml';
+
+    var groups=moduleData.groups;
+    var linkItemCount=0;
+   if(groups.group.length!=undefined)
+   {
+        groups.group.forEach(function(element) {
+            rowNumber=rowNumber+1;
+            obj['group_name_'+rowNumber]=element.hasOwnProperty('group_name') && element.module_title_text ? element.group_name :'group_name missed on xml';
+            obj['group_link_view_'+rowNumber]=element.hasOwnProperty('group_link_view') && element.module_title_text ? element.group_link_view :'group_link_view missed on xml';
+            obj['group_link_chronic_id_'+rowNumber]=element.hasOwnProperty('group_link') && element.group_link.$.chronic_id ? true :false;
+            obj['group_link_object_type_'+rowNumber]=element.hasOwnProperty('group_link') && element.group_link ? element.group_link.$.object_type :'group_link object_type missed on xml';
+    
+            var linkItems=element.link_items.link_item;
+            if(linkItems.length!=undefined)
+            {
+                linkItems.forEach(function(linkelement) {
+                    linkItemCount=linkItemCount+1;
+                    obj['link_item_link_text_'+rowNumber+'_'+linkItemCount]=linkelement.hasOwnProperty('link_text') && linkelement.link_text ? linkelement.link_text:'link_text missed on xml';
+                    obj['link_item_article_link_view_'+rowNumber+'_'+linkItemCount]=linkelement.hasOwnProperty('article_link_view') && linkelement.article_link_view ? linkelement.article_link_view :'article_link_view missed on xml';
+                    obj['link_item_link_chronic_id_'+rowNumber+'_'+linkItemCount]=linkelement.hasOwnProperty('link') && linkelement.link  ? true :false;
+                    obj['link_item_link_object_type_'+rowNumber+'_'+linkItemCount]=linkelement.hasOwnProperty('link') && linkelement.link  ? linkelement.link.$.object_type :'link object_type missed on xml'; 
+                    obj['link_item_link_directive_'+rowNumber+'_'+linkItemCount]=linkelement.hasOwnProperty('link') && linkelement.link  ? linkelement.link.$.directive :'link directive missed on xml'; 
+                }, this);
+            }
+            else
+            {
+                    obj['link_item_link_text_'+rowNumber+'_1']=linkItems.hasOwnProperty('link_text') && linkItems.link_text ? linkItems.link_text:'link_text missed on xml';
+                    obj['link_item_article_link_view_'+rowNumber+'_1']=linkItems.hasOwnProperty('article_link_view') && linkItems.article_link_view ? linkItems.article_link_view :'article_link_view missed on xml';
+                    obj['link_item_link_chronic_id_'+rowNumber+'_1']=linkItems.hasOwnProperty('link') && linkItems.link  ? true :false;
+                    obj['link_item_link_object_type_'+rowNumber+'_1']=linkItems.hasOwnProperty('link') && linkItems.link  ? linkItems.link.$.object_type :'link object_type missed on xml'; 
+                    obj['link_item_link_directive_'+rowNumber+'_1']=linkItems.hasOwnProperty('link') && linkItems.link  ? linkItems.link.$.directive :'link directive missed on xml'; 
+
+            }
+        }, this);
+            
+   }
+   else
+   {
+            rowNumber=1;
+            obj['group_name_1']=groups.group.hasOwnProperty('group_name') && groups.group.module_title_text ? groups.group.group_name :'group_name missed on xml';
+            obj['group_link_view_1']=groups.group.hasOwnProperty('group_link_view') && groups.group.module_title_text ? groups.group.group_link_view :'group_link_view missed on xml';
+            obj['group_link_chronic_id_1']=groups.group.hasOwnProperty('group_link') && groups.group.group_link.$.chronic_id ? true :false;
+            obj['group_link_object_type_1']=groups.group.hasOwnProperty('group_link') && groups.group.group_link ? groups.group.group_link.$.object_type :'group_link object_type missed on xml';
+            
+            var linkItems=element.link_items.link_item;
+            if(linkItems.length!=undefined)
+            {
+                linkItems.forEach(function(linkelement) {
+                    linkItemCount=linkItemCount+1;
+                    obj['link_item_link_text_'+rowNumber+'_'+linkItemCount]=linkelement.hasOwnProperty('link_text') && linkelement.link_text ? linkelement.link_text:'link_text missed on xml';
+                    obj['link_item_article_link_view_'+rowNumber+'_'+linkItemCount]=linkelement.hasOwnProperty('article_link_view') && linkelement.article_link_view ? linkelement.article_link_view :'article_link_view missed on xml';
+                    obj['link_item_link_chronic_id_'+rowNumber+'_'+linkItemCount]=linkelement.hasOwnProperty('link') && linkelement.link  ? true :false;
+                    obj['link_item_link_object_type_'+rowNumber+'_'+linkItemCount]=linkelement.hasOwnProperty('link') && linkelement.link  ? linkelement.link.$.object_type :'link object_type missed on xml'; 
+                    obj['link_item_link_directive_'+rowNumber+'_'+linkItemCount]=linkelement.hasOwnProperty('link') && linkelement.link  ? linkelement.link.$.directive :'link directive missed on xml'; 
+                }, this);
+            }
+            else
+            {
+                    obj['link_item_link_text_'+rowNumber+'_1']=linkItems.hasOwnProperty('link_text') && linkItems.link_text ? linkItems.link_text:'link_text missed on xml';
+                    obj['link_item_article_link_view_'+rowNumber+'_1']=linkItems.hasOwnProperty('article_link_view') && linkItems.article_link_view ? linkItems.article_link_view :'article_link_view missed on xml';
+                    obj['link_item_link_chronic_id_'+rowNumber+'_1']=linkItems.hasOwnProperty('link') && linkItems.link  ? true :false;
+                    obj['link_item_link_object_type_'+rowNumber+'_1']=linkItems.hasOwnProperty('link') && linkItems.link  ? linkItems.link.$.object_type :'link object_type missed on xml'; 
+                    obj['link_item_link_directive_1_'+rowNumber+'_1']=linkItems.hasOwnProperty('link') && linkItems.link  ? linkItems.link.$.directive :'link directive missed on xml'; 
+
+            }
+   }
     return obj;
 }

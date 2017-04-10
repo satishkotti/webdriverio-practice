@@ -127,6 +127,68 @@ var smdata = Object.create(page, {
                     "importcontent": null
                 }
         }
+    },
+    NavigationModule: {
+        get: () => {
+            var assetName = "QASM-NM-" + randomstring.generate(5);
+            var smProps = {};
+            return smProps =
+                {
+                    "moduleName": assetName,
+                    "moduleDispName": assetName,
+                    "moduleType": "Navigation",
+                    "category": null,
+                    "selectXSL": null,
+                    "selectCSS": null,
+                    "dynamicModuleCategory": null,
+                    "moduleLabel1": null,
+                    "moduleLabel2": null,
+                    "linkedModule": null,
+                    "sponsorProgram": null,
+                    "description": assetName + "-desc",
+                    "tier": 2,
+                    "text": "Module Title Text",
+                     "groupheadersection":
+                     [
+                         {
+
+                          "groups":
+                             [
+                                 {
+                                     "grouptext": "Group1Text",
+                                     "grouplink": "091e9c5e80174f67",
+                                     "groupitemlinks":
+                                        [
+                                                {
+                                                 "grouplinkitemtext": "Group 1 Link Items Text 1",
+                                                 "grouplinkitemlink": "091e9c5e800b5eb7"
+                                       
+                                                }
+
+                                        ]
+                           
+                                  },
+                                  {
+                                        "grouptext": "Group2Text",
+                                        "grouplink": "091e9c5e805b06ed",
+                                        "groupitemlinks":
+                                        [
+                                                {
+                                                    "grouplinkitemtext": "Group 2 Link Items Text 1",
+                                                    "grouplinkitemlink": "091e9c5e80126129"
+                                       
+                                                }
+
+                                        ]
+                           
+                                  }
+                         ]
+
+                     }]
+
+                  
+                }
+        }
     }
 });
 
