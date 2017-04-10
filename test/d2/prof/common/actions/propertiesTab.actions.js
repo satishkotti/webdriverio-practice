@@ -1,4 +1,5 @@
 var propertiesTabUI = require('./../ui/propertiesTab');
+var pointerPropertiestabUI = require('./../ui/pointer');
 
 module.exports = {
     
@@ -35,6 +36,17 @@ module.exports = {
         var result=propertiesTabUI.verifyProperties(labelPropertiesArray);
         return result;
      },
+      verifyPointerProperties:function(){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        pointerPropertiestabUI.clearProperties();
+        propertiesTabUI.save();
+        var validationmessage = pointerPropertiestabUI.validationmandatoryfields();
+        expect(validationmessage).to.be.true;
+        propertiesTabUI.cancelEdit();
+     },
+
+     
      getPropertiesValues:function(){
         return propertiesTabUI.articleTOCDisplayFormatGet() ;
      },

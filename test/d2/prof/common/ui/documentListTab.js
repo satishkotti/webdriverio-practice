@@ -116,12 +116,17 @@ lifeCycleExpireSelect: function()
         var IsVersionVerified = browser.isExisting(verfityVersionSelector);
         return IsVersionVerified;
     },
+      selectRelationTab: function(version){
+        browser.click("//span[text()='Relations']");
+        browser.pause(1000);
+    },
 
     verifyLock: function(objName){
         var LockSelector = "//div[starts-with(@id,'DoclistWidget')]//span[@title='"+objName+"']//preceding-sibling::span[starts-with(@class,'DocListLockByYou')]";
         var IsLocked = browser.isExisting(LockSelector);
         return IsLocked;
     },
+    
 
     lifeCycleDemoteSelect: function()
     {

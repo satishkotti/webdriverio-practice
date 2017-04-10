@@ -1,4 +1,5 @@
 var documentListUI = require('./../ui/documentListTab');
+var pointerRelation =require('./../ui/pointer');
 
 var documentListObj = {
     selectDocumentListTab: function(){
@@ -43,6 +44,10 @@ var documentListObj = {
         documentListObj.powerPromoteAsset(assetName);
         documentListObj.publishAssetToStaging(assetName);
     },
+    verifyPointerRelation: function(){
+        documentListUI.selectRelationTab();
+         pointerRelation.pointerRelation();
+     },
     verifyVersions: function(version){
         var IsVersionVerified = documentListUI.selectVersionTab(version);
         return IsVersionVerified;
