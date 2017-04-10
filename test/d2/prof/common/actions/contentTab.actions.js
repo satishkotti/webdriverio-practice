@@ -3,15 +3,18 @@ var contentTabUI = require('./../ui/contentTab');
 var contentTabObj = {
     checkOut: function(){
         contentTabUI.selectContenTab();
-        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.switchToExternalWidget4Frame();
         contentTabUI.checkOut();
     },
     checkIn: function(){
         contentTabUI.selectContenTab();
-        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.switchToExternalWidget4Frame();
         contentTabUI.checkIn();
     },
-    cancel: function(){},
+    cancel: function(){
+        contentTabUI.switchToExternalWidget4Frame();
+        contentTabUI.cancelCheckOut();
+    },
     edit: function(){},
     spell: function(){},
     find: function(){},
@@ -40,7 +43,20 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.relatedLinksSetValue(data);
         contentTabObj.mModuleckEditorMenuClick(5);
-    }    
+    },
+     abovetitleSetValue: function(data){
+        //contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.abovetitleSetValue(data);
+    },
+    updateContent:function(data)    {
+        contentTabObj.checkOut();
+        contentTabObj.abovetitleSetValue(data);
+        contentTabUI.checkIn();
+    },
+     contentHeaderGet:function()
+    {
+        return contentTabUI.contentHeaderGet();
+    }
 }
 
 module.exports = contentTabObj;
