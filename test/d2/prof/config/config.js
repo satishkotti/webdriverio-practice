@@ -81,7 +81,7 @@ module.exports.testSettings = {
         "inputData": {
             "AssetName":"QATestAssethNrnC",
             "testFolderPath": "webmd/professional_assets/medscape/news/heartwire/news/200005",
-            "SlideFolderPath": "webmd/professional_assets/medscape/articles/article/2015",
+            "SlideFolderPath": "webmd/professional_assets/medscape/articles/article/2015/MyTestFolder",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
             "ArticleTemplate": 'News Article',
@@ -94,7 +94,7 @@ module.exports.testSettings = {
             "SlideContentType": "Slide/Lecture Presentation",
             "InitialVersion": "1.0, CURRENT, WIP",
             "CheckedInVersion": "1.1, CURRENT, WIP",
-
+            "DeleteAllversions":"Delete all versions",    
             "ContentType":"News",
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
             "LeadSpecialty": "Cardiology",

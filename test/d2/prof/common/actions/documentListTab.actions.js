@@ -50,7 +50,25 @@ var documentListObj = {
     verifyLock: function(objName){
         var IsLocked = documentListUI.verifyLock(objName);
         return IsLocked;
-    }
+    },
+    deleteArticle:function(assetName,DeleteVersionType){
+         documentListUI.deleteArticle(assetName,DeleteVersionType);
+     },
+     searchArticle:function(data)
+     {
+         documentListUI.searchArticle(data);
+     },
+    copyArticle:function(data){
+        documentListUI.copyArticle(data);
+    },
+    searchCopyArticle:function(data)
+     {
+         documentListUI.searchCopyArticle(data);
+     },
+     verifySlideRelations: function(){
+         documentListUI.verifySlideRelations();
+     }
+
 
 }
 module.exports = documentListObj;

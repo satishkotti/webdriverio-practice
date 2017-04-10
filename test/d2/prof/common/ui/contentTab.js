@@ -58,7 +58,7 @@ var contentTabUIObj = {
     },
     cancelCheckOut: function(){
         browser.waitForVisible(cancelButonSelector);
-        browser.scroll(cancelButonSelector);
+        //browser.scroll(cancelButonSelector);
         browser.click(cancelButonSelector);
         browser.pause(5000);
         browser.frameParent();

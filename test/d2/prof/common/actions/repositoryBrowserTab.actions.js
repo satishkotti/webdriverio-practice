@@ -14,5 +14,8 @@ module.exports = {
                     folerPathArr.shift();
                 }
             } while(folerPathArr && folerPathArr.length > 0)
+    },
+    refreshRepositoryBrowserTab: function(){
+        repositoryBrowserPage.refreshRepositoryBrowserTab();
     }
 }

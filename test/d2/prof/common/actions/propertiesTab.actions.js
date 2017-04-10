@@ -53,8 +53,14 @@ module.exports = {
      verifyMandatoryFieldsforProperties:function(){
          propertiesTabUI.propertiesTabSelect();
          propertiesTabUI.edit();
+         propertiesTabUI.clearManadatoryFields();
          propertiesTabUI.save();
          var AlertMessage = propertiesTabUI.verifyMandatoryFieldsforProperties();
          return AlertMessage;
+     },
+
+     cancelEdit: function(){
+         propertiesTabUI.cancelEdit();
      }
+
 }

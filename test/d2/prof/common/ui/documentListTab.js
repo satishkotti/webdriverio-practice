@@ -11,6 +11,9 @@ var successExpireSysMsg = "Request to Expire Now Service has been sent.";
 var vertionTabSelector = "//span[text()='Versions']";
 var demoteStateLbl = "WIP";
 var successDemoteSysMsg = "Object has been set to WIP.";
+var searchresult=true;
+var deleteresult=true;
+var copywaitingtime=true;
 
 var documentListUIObj = {
 
@@ -21,6 +24,7 @@ var documentListUIObj = {
     },
     selectItemByName: function (assetName) 
     {
+        browser.waitForVisible("//span[@title='" + assetName + "']",maxWaitTimeInMs);
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
     },
@@ -146,6 +150,81 @@ lifeCycleExpireSelect: function()
         documentListUIObj.lifeCycleDemoteSelect();
         documentListUIObj.demoteResultsDialogueOkSelect(assetName);
     },
+    deleteArticle:function(assetName,DeleteVersionType){
+        browser.rightClick("//span[@title='" + assetName + "']");
+        browser.waitForVisible("#menuContextDestroy", maxWaitTimeInMs);
+        browser.click("#menuContextDestroy");
+        browser.waitForVisible("//label[contains(.,'" + DeleteVersionType + "')]",maxWaitTimeInMs);
+        browser.click("//label[contains(.,'" + DeleteVersionType + "')]");
+        browser.waitForVisible("//button[text()='OK']",maxWaitTimeInMs);
+        browser.click("//button[text()='OK']");
+        //browser.pause(maxWaitTimeInMs);
+         while (deleteresult) {
+        deleteresult=documentListUIObj.deleteloading();
+        console.log(deleteresult);
+        }
+    },
+    copyArticle:function(assetName){
+        browser.frameParent();
+        browser.rightClick("//span[@title='" + assetName + "']");
+        browser.waitForVisible("#menuContextCopy", maxWaitTimeInMs);
+        browser.click("#menuContextCopy");
+        browser.rightClick("//span[@title='" + assetName + "']");
+        browser.waitForVisible("#menuContextPaste", maxWaitTimeInMs);
+        browser.click("#menuContextPaste");
+        while (copywaitingtime) {
+        copywaitingtime=documentListUIObj.copyloading();
+        }
+        var results=browser.elements("//span[@title='" + assetName + "']");
+    },
+    searchTextSetValue:function(searcValue){
+        browser.setValue("#searchText-input-input",searcValue);
+    },
+    loadSearchData:function(){
+        return browser.isVisible('//div[@class="ext-el-mask-msg x3-loading-medium"]');
+    },
+    deleteloading:function()
+    {
+        return browser.isVisible('//div[@class=" x3-loading-medium x-component x-abs-layout-container"]');
+    },
+    copyloading:function(){
+        return browser.isVisible('//div[@class="x3-loading-medium"]');
+    },
+    searchArticle:function(assetName){
+        documentListUIObj.searchTextSetValue(assetName);
+        browser.click("//div[@id='searchText-input']//following-sibling::span//img[2]");
+        while (searchresult) {
+        searchresult=documentListUIObj.loadSearchData();
+        }
+        browser.pause(2000);
+        var isexists=browser.isExisting("//div[text()='No items found']");
+        expect(isexists).to.equal(true);
+    },
+    searchCopyArticle:function(assetName){
+        documentListUIObj.searchTextSetValue(assetName);
+        browser.click("//div[@id='searchText-input']//following-sibling::span//img[2]");
+        while (searchresult) {
+        searchresult=documentListUIObj.loadSearchData();
+        }
+        browser.pause(2000);
+        var results=browser.elements("//span[@title='" + assetName + "']");
+        browser.pause(5000);
+        console.log(results);
+        console.log(results.value);
+    },
+
+    verifySlideRelations: function(){
+        browser.click("//span[text()='Relations']");
+        browser.pause(1000);
+        browser.isExisting("//td[contains(.,'wcm_category')]//following-sibling::td[contains(.,'Article')]");
+        browser.isExisting("//td[contains(.,'wcm_doc_template')]//following-sibling::td[contains(.,'prof_article_slide_presentation') and contains(.,'xml')]");
+        browser.isExisting("//td[contains(.,'wcm_layout_template')]//following-sibling::td[contains(.,'article_slide_html') and contains(.,'xsl')]");
+        browser.isExisting("//td[contains(.,'wcm_layout_template')]//following-sibling::td[contains(.,'article_slide_nlm') and contains(.,'xsl')]");
+        browser.isExisting("//td[contains(.,'wcm_layout_template')]//following-sibling::td[contains(.,'article_slide_publish') and contains(.,'xsl')]");
+        browser.isExisting("//td[contains(.,'wcm_rules_template')]//following-sibling::td[contains(.,'Rule_Professional_for_slide_presentation') and contains(.,'xml')]");
+        browser.isExisting("//td[contains(.,'wcm_rules_editor')]//following-sibling::td[contains(.,'prof_article_slide_presentation') and contains(.,'xml')]");
+    }
+
 
 }
 

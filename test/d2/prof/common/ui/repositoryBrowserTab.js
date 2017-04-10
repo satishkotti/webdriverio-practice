@@ -32,6 +32,13 @@ module.exports = {
         //         var divElm = document.getElementsByClassName("x-tree3")[0];
         //         divElm.scrollTop = (divElm.scrollHeight * 2);
         //     });
+    },
+    refreshRepositoryBrowserTab: function(){
+        var repositoryBrowserTabSelecter = "//em[@class='x-tab-left']//span[contains(text(),'Repository browser')]//following-sibling::span[@id='menuDownArrow-button']";
+        browser.click(repositoryBrowserTabSelecter);
+        browser.waitForVisible("//span[@id='refreshWidget-menuItem']", maxWaitTimeInMs);
+        browser.click("//span[@id='refreshWidget-menuItem']");
+
     }
 }
 
