@@ -248,6 +248,12 @@ body.menu-open {
 			display: none;
 		}
 	}
+	.mobile_no .wbmd-toolbar-menu {
+		.attribution,
+		.client-logo {
+			display: none !important;
+		}
+	}
 	.wbmd-toolbar-menu {
 		.tools {
 			width: 100%;
