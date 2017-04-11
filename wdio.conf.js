@@ -39,7 +39,7 @@ console.log('specs: '+specList);
 
 exports.config = {
 
-    debug: true,
+    debug: false,
     maxInstances: 10,
     
     //
@@ -93,7 +93,8 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-    waitforTimeout: 999999,
+    //waitforTimeout: 999999,
+    waitforTimeout: 50000,
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as property. Make sure you have

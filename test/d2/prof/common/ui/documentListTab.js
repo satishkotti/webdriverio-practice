@@ -3,6 +3,8 @@ var maxWaitTimeInMs = 30000;
 var ppModalLabel = "Power Promote Confirmation Message";
 var ppModalMsg = " Are you sure you want to power promote this document?"
 var activeStateLbl = "Active";
+var approveStateLbl='Approved';
+var schpublishmsg='Object has been Approved and will become Active on';
 var successPublishSysMsg = "Object has been made Active.";
 var stagingStateLbl = "Staging";
 var successStagingSysMsg = "Object has been set to Staging.";
@@ -151,7 +153,7 @@ lifeCycleExpireSelect: function()
         documentListUIObj.demoteResultsDialogueOkSelect(assetName);
     },
     deleteArticle:function(assetName,DeleteVersionType){
-        browser.rightClick("//span[@title='" + assetName + "']");
+        browser.rightClick("//span[@class='DocListLockByNone']//following-sibling::span[text()='"+assetName+"']");
         browser.waitForVisible("#menuContextDestroy", maxWaitTimeInMs);
         browser.click("#menuContextDestroy");
         browser.waitForVisible("//label[contains(.,'" + DeleteVersionType + "')]",maxWaitTimeInMs);
@@ -199,6 +201,13 @@ lifeCycleExpireSelect: function()
         browser.pause(2000);
         var isexists=browser.isExisting("//div[text()='No items found']");
         expect(isexists).to.equal(true);
+        
+        browser.click("//div[@id='searchText-input']//following-sibling::span//img[1]");
+        searchresult=true;
+        while (searchresult) {
+        searchresult=documentListUIObj.loadSearchData();
+        }
+        browser.pause(2000);
     },
     searchCopyArticle:function(assetName){
         documentListUIObj.searchTextSetValue(assetName);
@@ -223,7 +232,29 @@ lifeCycleExpireSelect: function()
         browser.isExisting("//td[contains(.,'wcm_layout_template')]//following-sibling::td[contains(.,'article_slide_publish') and contains(.,'xsl')]");
         browser.isExisting("//td[contains(.,'wcm_rules_template')]//following-sibling::td[contains(.,'Rule_Professional_for_slide_presentation') and contains(.,'xml')]");
         browser.isExisting("//td[contains(.,'wcm_rules_editor')]//following-sibling::td[contains(.,'prof_article_slide_presentation') and contains(.,'xml')]");
-    }
+    },
+
+    schedulePublishResultsDialogueOkSelect: function(assetName){
+        browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
+        var objName = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(2)");
+        var state = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(3)");
+        var sysMsg = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(4)");
+        //expect(assetName).to.equal(objName);
+        expect(state).to.equal(approveStateLbl);
+        expect(sysMsg).to.contains(schpublishmsg);
+        browser.click("button[ng-click='$confirm()']");        
+    },
+    
+    schedulePublishAsset: function (assetName) 
+    {
+        documentListUIObj.contextualMenuActivate(assetName);
+        documentListUIObj.contextualMenuLifeCycleSelect();
+        documentListUIObj.lifeCyclePowerPromoteSelect();
+        documentListUIObj.powerPromoteConfirmDialogueOkSelect();
+        documentListUIObj.schedulePublishResultsDialogueOkSelect(assetName);
+    },
+
+    
 
 
 }

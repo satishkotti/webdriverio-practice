@@ -1,3 +1,4 @@
+var maxWaitTimeInMs = 30000;
 var propertiesTabUI = require('./../ui/propertiesTab');
 
 module.exports = {
@@ -61,6 +62,19 @@ module.exports = {
 
      cancelEdit: function(){
          propertiesTabUI.cancelEdit();
-     }
+     },
+
+     setRequiredPropertiesforPublish: function(systempubdate,expdate){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        browser.pause(2000);
+        propertiesTabUI.publishingTabSelect();
+        browser.waitForVisible("#wbmd_eff_date-input",maxWaitTimeInMs);
+        propertiesTabUI.systemPublishingDateSet(systempubdate);
+        browser.click("//label[text()='Expire On']");
+        propertiesTabUI.expirationDateSet(expdate);
+        propertiesTabUI.save();
+    },
+
 
 }

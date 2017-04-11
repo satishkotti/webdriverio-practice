@@ -67,7 +67,10 @@ var documentListObj = {
      },
      verifySlideRelations: function(){
          documentListUI.verifySlideRelations();
-     }
+     },
+     schedulePublishAsset: function(assetName){
+        documentListUI.schedulePublishAsset(assetName);
+    },
 
 
 }

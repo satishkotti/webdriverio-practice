@@ -15,6 +15,7 @@ module.exports.testSettings = {
         },
         "d2prof": {
             "url": "http://dmd201d-prf-08.portal.webmd.com:8080/D2/#d2",
+            "environment":"dev04",
             "users": [
                 {
                     "id": "1",
@@ -49,6 +50,7 @@ module.exports.testSettings = {
         },
         "d2prof": {
             "url": "http://d2.qa01.webmdprofessional.com/D2/#d2",
+            "environment":"qa01",
             "users": [
                 {
                     "id": "1",
@@ -81,7 +83,7 @@ module.exports.testSettings = {
         "inputData": {
             "AssetName":"QATestAssethNrnC",
             "testFolderPath": "webmd/professional_assets/medscape/news/heartwire/news/200005",
-            "SlideFolderPath": "webmd/professional_assets/medscape/articles/article/2015/MyTestFolder",
+            "SlideFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
             "ArticleTemplate": 'News Article',

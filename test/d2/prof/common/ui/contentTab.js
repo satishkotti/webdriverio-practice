@@ -11,6 +11,7 @@ var contentTabSelector= "//span[text()='Content']";
 var contentPaneFrameSelector= "iframe[id*='oam_id==ExternalWidget-4!!oam_target_type==ExternalWidget']";
 var externalWidget3Selector= "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
 var externalWidget4Selector= "iframe[id*='oam_id==ExternalWidget-4!!oam_target_type==ExternalWidget']";
+var contentHeader="//div[@class='container']//center[@class='ng-binding']";
 var cancelButonSelector= "//button[contains(string(),'Cancel')]";
 
 var contentTabUIObj = {
@@ -26,8 +27,15 @@ var contentTabUIObj = {
     },
     switchToExternalWidget4Frame: function(){
         browser.frame();
-        var contentWidgetIFrameElement = browser.element(externalWidget4Selector);
-        browser.frame(contentWidgetIFrameElement.value);
+        var contentWidgetIFrameElement;
+        if(global.envSettings.d2prof.environment=="dev04")
+            contentWidgetIFrameElement = browser.element(externalWidget4Selector);
+        else if(global.envSettings.d2prof.environment=="qa01")
+            contentWidgetIFrameElement = browser.element(externalWidget3Selector);
+        else
+            contentWidgetIFrameElement = browser.element(externalWidget4Selector);
+
+        browser.frame(contentWidgetIFrameElement.value);
     },
     switchTomModuleMenuFrame: function(){
         //var contentWidgetIFrameElement = browser.element("iframe[id*='cke_279_frame']");
@@ -119,7 +127,16 @@ var contentTabUIObj = {
         browser.moveToObject("(//a[@title='Insert Module'])["+sectionIndex+"]");
         browser.click("(//a[@title='Insert Module'])["+sectionIndex+"]");
         browser.pause(5000);
-    }
+    },
+    contentHeaderGet:function()
+    {
+        contentTabUIObj.switchToExternalWidget4Frame();
+        browser.waitForVisible(contentHeader,maxWaitTimeInMs);
+        var result=browser.getText(contentHeader);
+        browser.frameParent();
+        return result;
+
+    },
 }
 
 module.exports = contentTabUIObj;

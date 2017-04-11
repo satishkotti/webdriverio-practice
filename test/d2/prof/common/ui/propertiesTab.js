@@ -61,13 +61,13 @@ module.exports = {
         browser.click("//span[text()='Publication']")
     },
     contributorsTabSelect: function(){
-        browser.click("//span[@text()='Contributors']")
+        browser.click("//span[text()='Contributors']")
     },
     publishingTabSelect: function(){
-        browser.click("//span[@text()='Publishing']")
+        browser.click("//span[text()='Publishing']")
     },
     otherTabSelect: function(){
-        browser.click("//span[@text()='Other']")
+        browser.click("//span[text()='Other']")
     },
     propertiesTabSelect: function(){
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
@@ -163,6 +163,14 @@ module.exports = {
         {
             return false;
         }
+    },
+    
+    systemPublishingDateSet:function(textValue){
+         browser.setValue("#wbmd_eff_date-input",textValue);
+    },
+
+    expirationDateSet:function(textValue){
+         return browser.setValue("#wbmd_exp_date-input",textValue);
     },
 }
 
