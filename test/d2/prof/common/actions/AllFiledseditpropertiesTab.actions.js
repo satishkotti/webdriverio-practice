@@ -32,24 +32,24 @@ module.exports = {
         propertiesTabUI.SuperTitleSet(superTitle);
         propertiesTabUI.SubTitleSet(subTitle);
         propertiesTabUI.ContentTypeSet(contentType);
-        propertiesTabUI.LeadSpecialtySet(leadspecialty);
-        propertiesTabUI.AssistanceType("#wbmd_spclty_high");
-        propertiesTabUI.AssistanceValue("#wbmd_spclty_high",HighAssistanceValue);
-        propertiesTabUI.AssistanceType("#wbmd_spclty_low");
-        propertiesTabUI.AssistanceValue("#wbmd_spclty_low",LowAssistanceValue);
-        propertiesTabUI.AssistanceType("#wbmd_spclty_featured");
-        propertiesTabUI.AssistanceValue("#wbmd_spclty_featured",FeaturedAssistanceValue);
+        propertiesTabUI.LeadSpecialtySet("Cardiology");
+        propertiesTabUI.AssistanceType("wbmd_spclty_high");
+        propertiesTabUI.AssistanceValue(HighAssistanceValue);
+        propertiesTabUI.AssistanceType("wbmd_spclty_low");
+        propertiesTabUI.AssistanceValue(LowAssistanceValue);
+        propertiesTabUI.AssistanceType("wbmd_spclty_featured");
+        propertiesTabUI.AssistanceValue(FeaturedAssistanceValue);
         propertiesTabUI.LeadConceptSet(LeadConceptValue);
-        propertiesTabUI.AssistanceType("#wbmd_concept");
-        propertiesTabUI.AssistanceValue("#wbmd_concept",wbmdcncptAssistanceValue);
+        propertiesTabUI.AssistanceType("wbmd_concept");
+        propertiesTabUI.AssistanceValue(wbmdcncptAssistanceValue);
         propertiesTabUI.KeywordsSet(wbmdKeywords);
-        propertiesTabUI.AssistanceType("#wbmd_content_fcs");
-        propertiesTabUI.AssistanceValue("#wbmd_concept",wbmdcncptfcsAssistanceVal);
+        propertiesTabUI.AssistanceType("wbmd_content_fcs");
+        propertiesTabUI.AssistanceValue(wbmdcncptfcsAssistanceVal);
         propertiesTabUI.WbmddescuserSet(WbmduserDescr);
         propertiesTabUI.WbmddescmetaSet(WbmdMetaDescr);
         propertiesTabUI.ImgthmbSet(ImgthumbVal);
-        propertiesTabUI.AssistanceType("#wbmd_rel_links");
-        propertiesTabUI.AssistanceValue("#wbmd_rel_links",RellinkAssistanceVal);
+        propertiesTabUI.AssistanceType("wbmd_rel_links");
+        propertiesTabUI.AssistanceValue(RellinkAssistanceVal);
         propertiesTabUI.ArticleLink();
         propertiesTabUI.AddArticleLink(ArticleLinkVal);
         propertiesTabUI.WbmdrellinksinputSet(RelatedLinkType);
@@ -64,6 +64,45 @@ module.exports = {
         propertiesTabUI.AddAdExclusion(AdExclusionvalue);
         propertiesTabUI.WbmdlanguageSet(Wbmdlng);
         propertiesTabUI.WbmdProdtypeSet(ProdType);
+        
+        propertiesTabUI.articleTabSelect();
+        propertiesTabUI.PrimaryOutputSet(Poutputval);
+        propertiesTabUI.AssistanceType("wbmd_icons");
+        propertiesTabUI.AssistanceValue(wbmdiconsVal);
+        propertiesTabUI.articleTOCDisplayFormatSet(AtoDispformat);
+        propertiesTabUI.QuestionnaireSet(Questionnaireval);
+        propertiesTabUI.ActivitySet(Activityval);
+        propertiesTabUI.ProdnameSet(Prdnameval);
+        propertiesTabUI.SupresschkboxSet("#wbmd_cme_lnk",SupressFeaturebealtchkval);
+        propertiesTabUI.AssistanceType("wbmd_bkt_gen_coll_id");
+        propertiesTabUI.AssistanceValue(BucketCollectionsValue);
+        propertiesTabUI.PrimCollSet(Primcollval);
+        propertiesTabUI.ProjctidSet(Projctidval);
+        propertiesTabUI.AssistanceType("wbmd_supprtr");
+        propertiesTabUI.AssistanceValue(wbmdSupprtrVal);
+        propertiesTabUI.AdTagOverridSet(AdTagoverrideval);
+        propertiesTabUI.SupresschkboxSet("#wbmd_supp_ads",SupressAdval);
+        propertiesTabUI.SupresschkboxSet("#wbmd_supp_rec_ads",SupressrecAdval);
+        propertiesTabUI.SupresschkboxSet("#wbmd_disp_cite",Supresdispciteval);
+        propertiesTabUI.OHCPDiscssSet(OHCPval);
+        propertiesTabUI.MDDiscussionBoardSet(MDDiscssnBoardval);
+        propertiesTabUI.NurseDiscussionBoardSet(NurseDiscussionBoardVal);
+        propertiesTabUI.RevwDTSet();
+        propertiesTabUI.PubDTGet();
+        propertiesTabUI.AssistanceType("wbmd_tgt_cntry");
+        propertiesTabUI.AssistanceValue(wbmdtgtCntryVal);
+        propertiesTabUI.SupresschkboxSet("#wbmd_supp_print",SupressuppPrintval);
+        propertiesTabUI.SupresschkboxSet("#wbmd_supp_mobile",SupressuppMblval);
+        propertiesTabUI.ExternalIDSet(ExtrnlIdVal);
+        propertiesTabUI.SupresschkboxSet("#wbmd_supp_prog_lnk",SupressuppProgval);
+        
+        
+    
+        
+        
+        
+        
+        
         propertiesTabUI.save();
     },
      verifyNewsProperties:function(labelPropertiesArray){

@@ -54,9 +54,10 @@ module.exports = {
     AssistanceType: function(AssistanceType){
          browser.click("//div[@id='"+ AssistanceType +"']//div[@id='assistance']");
     },
-    AssistanceValue: function(AssistanceType,InputAssistanceValue){
-         browser.waitForVisible("//div[@id='"+ AssistanceType +"']//div[@id='"+ InputAssistanceValue +"']", maxWaitTimeInMs);
-         browser.doubleClick("//div[@id='"+ AssistanceType +"']//div[@id='"+ InputAssistanceValue +"']");
+    AssistanceValue: function(InputAssistanceValue){
+         //browser.waitForVisible("//div[@id='AssistanceListDialog']//div[@id='"+ InputAssistanceValue +"']", maxWaitTimeInMs);
+         browser.waitForExist("//div[@id='AssistanceListDialog']//div[@id='"+ InputAssistanceValue +"']");
+         browser.doubleClick("//div[@id='AssistanceListDialog']//div[@id='"+ InputAssistanceValue +"']");
          browser.click("//*[@id='ok-button']//button[text()='OK']");
     },
 
@@ -98,11 +99,13 @@ module.exports = {
     
    
     ArticleLink: function(){
-         browser.click("//div[@id=='wbmd_rel_links_asset']//div[@id='add']");
+         browser.click("//div[@id='wbmd_rel_links_asset']//div[@id='add']");
     },
     AddArticleLink: function(textValue){
-         browser.setValue("//div[@id='x3-message-box']//input[@type='text']",textValue);
-         browser.click("//*[@id='x3-message-box']//button[text()='OK']");
+         
+         browser.addValue("#x3-message-box > div.x-window-bwrap > div.x-window-ml >div.x-window-mr >div.x-window-mc >div.x-window-body >div.ext-mb-content >div.x-form-field-wrap >input.x-form-field",textValue);
+         browser.click("//div[@id='x3-message-box']//button[text()='OK']");
+
     },
     WbmdrellinksinputSet: function(textValue){
         browser.setValue("#wbmd_rel_links_type-input", textValue);
@@ -118,20 +121,20 @@ module.exports = {
         browser.getValue("#wbmd_rel_link_lbl-input", textValue);
     },
     SupresschkboxSet: function(supresschkboxtype,textValue){
-        browser.waitForVisible(" "+supresschkboxtype+" > input.x-form-checkbox", maxWaitTimeInMs);
-        var isSSSChecked = browser.element(" "+supresschkboxtype+" > input.x-form-checkbox").isSelected();
+        browser.waitForVisible(""+supresschkboxtype+" > input.x-form-checkbox", maxWaitTimeInMs);
+        var isSSSChecked = browser.element(""+supresschkboxtype+" > input.x-form-checkbox").isSelected();
         if(!isSSSChecked && isSSSChecked.toString() === textValue)
             return;
         
-        browser.element(" "+supresschkboxtype+" > input.x-form-checkbox']").click();
+        browser.element(""+supresschkboxtype+" > input.x-form-checkbox").click();
     },
     
     AdExclusion: function(){
-         browser.click("//div[@id=='wbmd_ad_excl']//div[@id='add']");
+         browser.click("//div[@id='wbmd_ad_excl']//div[@id='add']");
     },
     AddAdExclusion: function(textValue){
          
-         browser.setValue("//div[@id='x3-message-box']//input[@type='text']",textValue);
+           browser.addValue("#x3-message-box > div.x-window-bwrap > div.x-window-ml >div.x-window-mr >div.x-window-mc >div.x-window-body >div.ext-mb-content >div.x-form-field-wrap >input.x-form-field",textValue);
          browser.click("//div[@id='x3-message-box']//button[text()='OK']");
     },
     WbmdlanguageSet: function(textValue){
@@ -157,20 +160,114 @@ module.exports = {
     contentDeveloperGet: function(){
         return browser.getValue("#wbmd_cont_dev-input");
     },
+
+    PrimaryOutputSet: function(textValue){
+        browser.setValue("#wbmd_outpt_prim-input", textValue);
+    },
+    PrimaryOutputGet: function(){
+        return browser.getValue("#wbmd_outpt_prim-input");
+    },
     articleTOCDisplayFormatSet:function(textValue){
          return browser.setValue("#wbmd_toc_display-input",textValue);
     },
     articleTOCDisplayFormatGet:function(){
          return browser.getValue("#wbmd_toc_display-input");
     },
+    QuestionnaireSet:function(textValue){
+         return browser.setValue("#wbmd_qna_id-input",textValue);
+    },
+    QuestionnaireGet:function(){
+         return browser.getValue("#wbmd_qna_id-input");
+    },
+    ActivitySet:function(textValue){
+         return browser.setValue("#wbmd_activity-input",textValue);
+    },
+    ActivityGet:function(){
+         return browser.getValue("#wbmd_activity-input");
+    },
 
-    systemPublishingDateSet:function(textValue){
+    ActivitySet:function(textValue){
+         return browser.setValue("#wbmd_prod_name-input",textValue);
+    },
+    ActivityGet:function(){
+         return browser.getValue("#wbmd_prod_name-input");
+    },
+    
+
+    ProdnameSet:function(textValue){
          browser.setValue("#wbmd_exp_date-input",textValue);
     },
-    systemPublishingDateGet:function(){
+    ProdnameGet:function(){
          return browser.getValue("#wbmd_exp_date-input");
     },
 
+    PrimCollSet:function(textValue){
+         browser.setValue("#wbmd_prim_coll-input",textValue);
+    },
+    PrimCollGet:function(){
+         return browser.getValue("#wbmd_prim_coll-input");
+    },
+    ProjctidSet:function(textValue){
+         browser.setValue("#wbmd_proj_id-input",textValue);
+    },
+    ProjctidGet:function(){
+         return browser.getValue("#wbmd_proj_id-input");
+    },
+
+    SupprtrSet:function(textValue){
+         browser.setValue("#wbmd_supprtr",textValue);
+    },
+    SupprtrGet:function(){
+         return browser.getValue("#wbmd_supprtr");
+    },
+    
+    
+    OHCPDiscssSet:function(textValue){
+         browser.setValue("#wbmd_discuss_brd_ohcp-input",textValue);
+    },
+    OHCPDiscssGet:function(){
+         return browser.getValue("#wbmd_discuss_brd_ohcp-input");
+    },
+
+    MDDiscussionBoardSet:function(textValue){
+         browser.setValue("#wbmd_discuss_brd_md-input",textValue);
+    },
+    MDDiscussionBoardGet:function(){
+         return browser.getValue("#wbmd_discuss_brd_md-input");
+    },
+    
+    NurseDiscussionBoardSet:function(textValue){
+         browser.setValue("#wbmd_discuss_brd_nrs-input",textValue);
+    },
+    NurseDiscussionBoardGet:function(){
+         return browser.getValue("#wbmd_discuss_brd_nrs-input");
+    },
+
+    RevwDTSet:function(textValue){
+        browser.click("//div[@id='wbmd_revw_dt-input']/img")
+        browser.pause(1000);  
+        browser.click("//button[contains(.,'Today')]")
+        browser.pause(1000);
+    },
+    PubDTSet:function(){
+        browser.click("//div[@id='wbmd_pub_dt-input']/img")
+        browser.pause(1000);  
+        browser.click("//button[contains(.,'Today')]")
+        browser.pause(1000);
+    },
+
+    ExternalIDSet:function(textValue){
+         browser.setValue("#wbmd_ext_id-input",textValue);
+    },
+    ExternalIDGet:function(){
+         return browser.getValue("#wbmd_ext_id-input");
+    },
+
+
+    
+    
+    
+    
 
     expirationDateSet:function(textValue){
          return browser.setValue("#wbmd_toc_display-input",textValue);

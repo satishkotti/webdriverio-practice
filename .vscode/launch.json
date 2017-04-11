@@ -20,7 +20,7 @@
                 "--timeout",
                 "999999",
                 "--colors",
-                "${workspaceRoot}/test/pb2/fe/baseline/myTest.js"
+                "${workspaceRoot}/test/d2/prof/fe/jira/PPE-96821.js"
             ],
             "internalConsoleOptions": "openOnSessionStart"
         },
