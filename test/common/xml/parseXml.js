@@ -1,12 +1,12 @@
 var xml2js = require('xml2js');
 var request = require('request');
 var Promise = require('bluebird');
-var fs=require('fs');
+var fs = require('fs');
 var path = require('path');
 
-function ParseXml() {}
+function ParseXml() { }
 
-ParseXml.prototype.getXmlFromUrl = function getXmlFromUrl(url, options,inputType) {
+ParseXml.prototype.getXmlFromUrl = function getXmlFromUrl(url, options, inputType) {
     return new Promise(function (resolve, reject) {
         if (options !== 'undefined') {
             options = {
@@ -16,31 +16,29 @@ ParseXml.prototype.getXmlFromUrl = function getXmlFromUrl(url, options,inputType
             };
         }
         try {
-            if(inputType=='FILE')
-            {
-                var rootPath = path.resolve('.')+url;
+            if (inputType == 'FILE') {
+                var rootPath = path.resolve('.') + url;
                 // First read the file
-                fs.readFile(rootPath,"utf8", function read(err, data) {
+                fs.readFile(rootPath, "utf8", function read(err, data) {
                     if (err) {
                         throw err;
                     }
-                    var content=data;
-                     var parser = new xml2js.Parser({explicitArray: false});
-                            parser.parseString(content, function (err, result) {                               
-                            if (!err && result !== '') {
-                                resolve(result);
-                            } else {
-                                reject(err);
-                            }
-                        });
-                    });  
+                    var content = data;
+                    var parser = new xml2js.Parser({ explicitArray: false });
+                    parser.parseString(content, function (err, result) {
+                        if (!err && result !== '') {
+                            resolve(result);
+                        } else {
+                            reject(err);
+                        }
+                    });
+                });
             }
-            else
-            {
+            else {
                 request.get(url, options, function (err, response, body) {
                     if (!err && response.statusCode == 200) {
-                        var parser = new xml2js.Parser({explicitArray: false});
-                            parser.parseString(body, function (err, result) {
+                        var parser = new xml2js.Parser({ explicitArray: false });
+                        parser.parseString(body, function (err, result) {
                             if (!err && result !== '') {
                                 resolve(result);
                             } else {
@@ -50,7 +48,7 @@ ParseXml.prototype.getXmlFromUrl = function getXmlFromUrl(url, options,inputType
                     } else
                         reject(err);
                 })
-            }        
+            }
         } catch (error) {
             console.log('getXmlFromUrl' + error);
             reject(error);
