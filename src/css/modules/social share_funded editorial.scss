@@ -20,24 +20,23 @@
 	display: none;
 }
 
-	.plugin-socialshare {
+.plugin-socialshare {
 
-		float: left;
+	float: left;
 
-	 	a.plugin-socialshare-link {
-			margin: 0 10px 0 0;
-			width: 35px;
-			height: 35px;
-		}
-		a.plugin-socialshare-link:before {
-			font-size: 35px;
-		}
+ 	a.plugin-socialshare-link {
+		margin: 0 10px 0 0;
+		width: 35px;
+		height: 35px;
 	}
-
-	div.rsbtn {
-		float: left;
-		margin-top: 3px;
+	a.plugin-socialshare-link:before {
+		font-size: 35px;
 	}
+}
+
+div.rsbtn {
+	float: left;
+	margin-top: 3px;
 }
 .ua_type_mobile .social-share-tools .plugin-socialshare-email,
 .wbmd-toolbar-menu .rsbtn,
