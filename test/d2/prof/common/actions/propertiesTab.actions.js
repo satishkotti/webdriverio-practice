@@ -45,6 +45,12 @@ module.exports = {
         expect(validationmessage).to.be.true;
         propertiesTabUI.cancelEdit();
      },
+      updatePointerProperties:function(){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        pointerPropertiestabUI.pointerTitleupdate();
+        propertiesTabUI.save();
+     },
 
      
      getPropertiesValues:function(){

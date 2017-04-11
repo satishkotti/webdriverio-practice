@@ -55,7 +55,10 @@ var documentListObj = {
     verifyLock: function(objName){
         var IsLocked = documentListUI.verifyLock(objName);
         return IsLocked;
-    }
+    },
+    deleteArticle:function(assetName,DeleteVersionType){
+         documentListUI.deleteArticle(assetName,DeleteVersionType);
+     },
 
 }
 module.exports = documentListObj;

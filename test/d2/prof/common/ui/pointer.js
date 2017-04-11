@@ -23,6 +23,10 @@ var pointerObj = module.exports = {
          browser.isExisting("//td[contains(.,'wcm_category')]//following-sibling::td[contains(.,'Other')]");
          browser.isExisting("//td[contains(.,'wcm_doc_template')]//following-sibling::td[contains(.,'professional_pointer') and contains(.,'xml')]");
          browser.isExisting("//td[contains(.,'wcm_layout_template')]//following-sibling::td[contains(.,'pointer_html') and contains(.,'xsl')]");
+     },
+
+       pointerTitleupdate: function(){
+         browser.setValue("#title-input","QAUpdated");
      }
 
 

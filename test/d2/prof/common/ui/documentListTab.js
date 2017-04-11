@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 30000;
+var maxWaitTimeInMs = 50000;
 
 var ppModalLabel = "Power Promote Confirmation Message";
 var ppModalMsg = " Are you sure you want to power promote this document?"
@@ -11,6 +11,10 @@ var successExpireSysMsg = "Request to Expire Now Service has been sent.";
 var vertionTabSelector = "//span[text()='Versions']";
 var demoteStateLbl = "WIP";
 var successDemoteSysMsg = "Object has been set to WIP.";
+var searchresult=true;
+var deleteresult=true;
+
+
 
 var documentListUIObj = {
 
@@ -20,7 +24,8 @@ var documentListUIObj = {
         browser.waitForExist("div.x-grid3-hd-inner.x-grid3-hd-object_name.x-component");
     },
     selectItemByName: function (assetName) 
-    {
+    {   
+        browser.pause(2000);
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
     },
@@ -151,6 +156,25 @@ lifeCycleExpireSelect: function()
         documentListUIObj.lifeCycleDemoteSelect();
         documentListUIObj.demoteResultsDialogueOkSelect(assetName);
     },
+   deleteArticle:function(assetName,DeleteVersionType){
+        browser.rightClick("//span[@title='" + assetName + "']");
+        browser.waitForVisible("#menuContextDestroy", maxWaitTimeInMs);
+        browser.click("#menuContextDestroy");
+        browser.waitForVisible("//label[contains(.,'" + DeleteVersionType + "')]",maxWaitTimeInMs);
+        browser.click("//label[contains(.,'" + DeleteVersionType + "')]");
+        browser.waitForVisible("//button[text()='OK']",maxWaitTimeInMs);
+        browser.click("//button[text()='OK']");
+        //browser.pause(maxWaitTimeInMs);
+         while (deleteresult) {
+        deleteresult=documentListUIObj.deleteloading();
+       // console.log(deleteresult);
+        }
+        
+   },
+   deleteloading:function()
+    {
+        return browser.isVisible('//div[@class=" x3-loading-medium x-component x-abs-layout-container"]');
+    },
 
 }
 
