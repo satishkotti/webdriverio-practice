@@ -258,7 +258,70 @@ module.exports = {
     ExternalIDGet:function(){
          return browser.getValue("#wbmd_ext_id-input");
     },
+    
+    PublicationSet:function(textValue){
+         browser.setValue("#wbmd_publ-input",textValue);
+    },
+    PublicationGet:function(){
+         return browser.getValue("#wbmd_publ-input");
+    },
+    
+    PublicationSectionSet:function(textValue){
+         browser.setValue("#wbmd_pub_sec_id-input",textValue);
+    },
+    PublicationSectionGet:function(){
+         return browser.getValue("#wbmd_pub_sec_id-input");
+    },
 
+       
+    PublicationSubSectionSet:function(textValue){
+         browser.setValue("#wbmd_pub_subsec_id-input",textValue);
+    },
+    PublicationSubSectionGet:function(){
+         return browser.getValue("#wbmd_pub_subsec_id-input");
+    },
+
+    PMIDSet:function(textValue){
+         browser.setValue("#wbmd_pmid-input",textValue);
+    },
+    PMIDGet:function(){
+         return browser.getValue("#wbmd_pmid-input");
+    },
+    
+    PublicationDateSet:function(){
+        browser.click("//div[@id='wbmd_orig_pub_dt']/img")
+        browser.pause(1000);  
+        browser.click("//button[contains(.,'Now')]")
+        browser.pause(1000);
+    },
+
+    PublicationVolumeSet:function(textValue){
+         browser.setValue("#wbmd_pub_vol-input",textValue);
+    },
+    PublicationVolumeGet:function(){
+         return browser.getValue("#wbmd_pub_vol-input");
+    },
+    PublicationIssueSet:function(textValue){
+         browser.setValue("#wbmd_pub_issue-input",textValue);
+    },
+    PublicationIssueGet:function(){
+         return browser.getValue("#wbmd_pub_issue-input");
+    },
+    
+    PublicationPagesSet:function(textValue){
+         browser.setValue("#wbmd_pub_pgs-input",textValue);
+    },
+    PublicationPagesGet:function(){
+         return browser.getValue("#wbmd_pub_pgs-input");
+    },
+
+    
+    BucketGeneratorBylineSet:function(textValue){
+         browser.setValue("#wbmd_bkt_gen_byline-input",textValue);
+    },
+    BucketGeneratorBylineGet:function(){
+         return browser.getValue("#wbmd_bkt_gen_byline-input");
+    },
 
     
     
@@ -278,10 +341,10 @@ module.exports = {
         browser.click("//div[@id='PropertiesDialog']//a//span[contains(text(),'Article')]")
     },
     publicationTabSelect: function(){
-        browser.click("//span[text()='Publication']")
+        browser.click("//div[@id='PropertiesDialog']//a//span[contains(text(),'Publication')]")
     },
     contributorsTabSelect: function(){
-        browser.click("//span[@text()='Contributors']")
+        browser.click("//div[@id='PropertiesDialog']//a//span[contains(text(),'Contributors')]")
     },
     publishingTabSelect: function(){
         browser.click("//span[@text()='Publishing']")
