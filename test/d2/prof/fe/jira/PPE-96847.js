@@ -10,13 +10,14 @@ var randomstring = require("randomstring");
 var pointerContent = require('./../../common/actions/pointer.actions');
 //var moment =require('moment-timezone');
 
-
-
-describe('Professional Pointer :PPE-96847', function () {
-
+describe('Professional Pointer - PPE-96847', function () {
     var AssetTitle;
     var AssetName;
+
     before(function () {
+
+console.log('Start first descript');
+
         Login.login({
             url: functions.getEnvTestUrl(),
             username: functions.getQAPublicationUser().username,
@@ -31,13 +32,16 @@ describe('Professional Pointer :PPE-96847', function () {
             AssetTitle
         );
         documentListTab.selectAsset(AssetTitle);
+
+console.log('End first descript');
+
     });
 
-    it.skip('Verify Pointer creation with only mandatory fields- PPE-106397', function () {
+    it('Verify Pointer creation with only mandatory fields- PPE-106397', function () {
         documentListTab.selectAsset(AssetTitle);
 
     });
-    it('Verify the messages when mandatory fields are left blank for Pointer-PPE-106396', function () {
+   /* it('Verify the messages when mandatory fields are left blank for Pointer-PPE-106396', function () {
         documentListTab.selectAsset(AssetTitle);
         propertiesTab.verifyPointerProperties();
 
@@ -103,19 +107,19 @@ describe('Professional Pointer :PPE-96847', function () {
          //contentTab.checkOut();
          propertiesTab.updatePointerProperties();
     });
-
+*/
 });
 
-describe.skip('Professional Pointer :PPE-96847', function () {
-
+describe('Professional Pointer PPE-96847', function () {
     var AssetTitle;
     var AssetName;
     before(function () {
-        Login.login({
-            url: functions.getEnvTestUrl(),
-            username: functions.getQAPublicationUser().username,
-            password: functions.getQAPublicationUser().password
-        });
+
+console.log('Start Second descript');
+
+      //Removed relogin since using same session as above.
+
+        browser.pause(5000);
         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
         AssetName = global.d2ProfDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         AssetTitle = global.d2ProfDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
@@ -125,8 +129,17 @@ describe.skip('Professional Pointer :PPE-96847', function () {
             AssetTitle
         );
         documentListTab.selectAsset(AssetTitle);
+
+console.log('End Second descript');
     });
-    it('Verify Schedule Publish functionality on Pointer  PPE-106406',function(){
+
+    
+    it('Verify Pointer creation with only mandatory fields- PPE-106397', function () {
+        documentListTab.selectAsset(AssetTitle);
+
+    });
+
+    /*it('Verify Schedule Publish functionality on Pointer  PPE-106406',function(){
         browser.pause(5000);
         console.log("Last Test Case"+ AssetName);
         documentListTab.selectAsset(AssetName);
@@ -156,5 +169,5 @@ describe.skip('Professional Pointer :PPE-96847', function () {
         documentListTab.selectAsset(AssetName);
         expect(contentTab.contentHeaderGet()).to.contains("Expire");
     });
-
-    });
+*/
+});
