@@ -27,7 +27,11 @@ var pointerObj = module.exports = {
 
        pointerTitleupdate: function(){
          browser.setValue("#title-input","QAUpdated");
-     }
+     },
+
+      pointerContentHeaderValidation: function(){
+          browser.isExisting("//h1[contains(.,'Pointer Info')]");
+      }
 
 
 

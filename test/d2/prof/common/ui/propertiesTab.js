@@ -54,6 +54,12 @@ module.exports = {
     articleTOCDisplayFormatGet:function(){
          return browser.getValue("#wbmd_toc_display-input");
     },   
+    systemPublishingDateSet:function(textValue){
+         browser.setValue("#wbmd_eff_date-input",textValue);
+    },
+    expirationDateSet:function(textValue){
+         return browser.setValue("#wbmd_exp_date-input",textValue);
+    },
     articleTabSelect: function(){
         browser.click("//div[@id='PropertiesDialog']//a//span[contains(text(),'Article')]")
     },
@@ -64,7 +70,7 @@ module.exports = {
         browser.click("//span[@text()='Contributors']")
     },
     publishingTabSelect: function(){
-        browser.click("//span[@text()='Publishing']")
+        browser.click("//span//span[contains(.,'Publishing')]")
     },
     otherTabSelect: function(){
         browser.click("//span[@text()='Other']")

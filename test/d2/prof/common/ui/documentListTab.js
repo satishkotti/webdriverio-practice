@@ -3,6 +3,8 @@ var maxWaitTimeInMs = 50000;
 var ppModalLabel = "Power Promote Confirmation Message";
 var ppModalMsg = " Are you sure you want to power promote this document?"
 var activeStateLbl = "Active";
+var approveStateLbl='Approved';
+var schpublishmsg='Object has been Approved and will become Active on';
 var successPublishSysMsg = "Object has been made Active.";
 var stagingStateLbl = "Staging";
 var successStagingSysMsg = "Object has been set to Staging.";
@@ -13,7 +15,7 @@ var demoteStateLbl = "WIP";
 var successDemoteSysMsg = "Object has been set to WIP.";
 var searchresult=true;
 var deleteresult=true;
-
+var copywaitingtime=true;
 
 
 var documentListUIObj = {
@@ -70,6 +72,14 @@ var documentListUIObj = {
         documentListUIObj.powerPromoteConfirmDialogueOkSelect();
         documentListUIObj.powerPromoteResultsDialogueOkSelect(assetName);
     },
+    schedulePublishAsset: function (assetName) 
+    {
+        documentListUIObj.contextualMenuActivate(assetName);
+        documentListUIObj.contextualMenuLifeCycleSelect();
+        documentListUIObj.lifeCyclePowerPromoteSelect();
+        documentListUIObj.powerPromoteConfirmDialogueOkSelect();
+        documentListUIObj.schedulePublishResultsDialogueOkSelect(assetName);
+    },
   lifeCyclePromoteSelect: function()
   {
         browser.waitForVisible("//a[text()='Promote']", maxWaitTimeInMs);
@@ -86,6 +96,16 @@ var documentListUIObj = {
         expect(sysMsg).to.equal(successStagingSysMsg);
         browser.click("//div[@class='modal-footer']//button[contains(text(),'OK')]");
     },
+    schedulePublishResultsDialogueOkSelect: function(assetName){
+        browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
+        var objName = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(2)");
+        var state = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(3)");
+        var sysMsg = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(4)");
+        //expect(assetName).to.equal(objName);
+        expect(state).to.equal(approveStateLbl);
+        expect(sysMsg).to.contains(schpublishmsg);
+        browser.click("button[ng-click='$confirm()']");        
+    },
 promoteAsset: function (assetName) 
     {
         documentListUIObj.contextualMenuActivate(assetName);

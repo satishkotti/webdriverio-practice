@@ -10,7 +10,8 @@ var checkInButonSelector= "//button[contains(string(),'Check-in')]";
 var contentTabSelector= "//span[text()='Content']";
 var contentPaneFrameSelector= "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
 var externalWidget3Selector= "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
-var externalWidget4Selector= "iframe[id*='oam_id==ExternalWidget-4!!oam_target_type==ExternalWidget']";
+var externalWidget4Selector= "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
+var contentHeader="//div[@class='container']//center[@class='ng-binding']";
 var cancelButonSelector= "//button[contains(string(),'Cancel')]";
 
 var contentTabUIObj = {
@@ -76,6 +77,16 @@ var contentTabUIObj = {
         browser.scroll(aboveTitleSelector);
         browser.setValue(aboveTitleSelector, aboveTitleVal);
     },
+
+    contentHeaderGet:function()
+    {
+        contentTabUIObj.switchToExternalWidget4Frame();
+        browser.waitForVisible(contentHeader,maxWaitTimeInMs);
+        var result=browser.getText(contentHeader);
+        browser.frameParent();
+        return result;
+
+    },
     sectionTextSetValue: function(sectionTextVal){
         //browser.scroll(sectionTextSelector);
         browser.setValue(sectionTextSelector, sectionTextVal);

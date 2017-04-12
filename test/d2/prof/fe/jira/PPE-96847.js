@@ -8,8 +8,8 @@ var propertiesTab = require('./../../common/actions/propertiesTab.actions');
 var findTab = require('./../../common/actions/findTab.actions');
 var randomstring = require("randomstring");
 var pointerContent = require('./../../common/actions/pointer.actions');
+var moment =require('moment-timezone');
 
-//var otfTab = require('./../../common/actions/otfTab.actions');
 
 
 describe('Professional Pointer :PPE-96847', function () {
@@ -37,18 +37,18 @@ describe('Professional Pointer :PPE-96847', function () {
         documentListTab.selectAsset(AssetTitle);
 
     });
-    it('Verify the messages when mandatory fields are left blank for Pointer-PPE-106396', function () {
+    it.skip('Verify the messages when mandatory fields are left blank for Pointer-PPE-106396', function () {
         documentListTab.selectAsset(AssetTitle);
         propertiesTab.verifyPointerProperties();
 
     });
-    it('Verify the relation for the pointer asset- PPE-106456', function () {
+    it.skip('Verify the relation for the pointer asset- PPE-106456', function () {
         documentListTab.selectAsset(AssetTitle);
         documentListTab.verifyPointerRelation();
 
     });
 
-    it('Verify Checkout and checkin functionality on Pointer Template-PPE-106405,Verify Pointer creation with all fields-PPE-106405', function () {
+    it.skip('Verify Checkout and checkin functionality on Pointer Template-PPE-106405,Verify Pointer creation with all fields-PPE-106405', function () {
         contentTab.checkOut();
         pointerContent.contentFieldsPointer(AssetName)
         documentListTab.selectAsset(AssetTitle);
@@ -61,28 +61,28 @@ describe('Professional Pointer :PPE-96847', function () {
         expect(IsCheckInVersionVerified).to.be.true;
     });
 
-    it('Verify Promote functionality on Pointer Template-PPE-106400', function () {
+    it.skip('Verify Promote functionality on Pointer Template-PPE-106400', function () {
         documentListTab.promoteAsset(AssetName);
     });
 
-    it('Verify Demote functionality on Pointer Template PPE-106403 ', function () {
+    it.skip('Verify Demote functionality on Pointer Template PPE-106403 ', function () {
         documentListTab.demoteAsset(AssetName);
     });
 
-    it('Verify Cancel Checkout functionality on Pointer Template PPE-106399 ', function () {
+    it.skip('Verify Cancel Checkout functionality on Pointer Template PPE-106399 ', function () {
         contentTab.checkOut();
         contentTab.cancel();
     });
 
-    it('Verify Power Promote functionality on Pointer Template PPE-106401', function () {
+    it.skip('Verify Power Promote functionality on Pointer Template PPE-106401', function () {
         documentListTab.powerPromoteAsset(AssetName);
     });
 
-    it('Verify Expire functionality on Pointer Template PPE-106402', function () {
+    it.skip('Verify Expire functionality on Pointer Template PPE-106402', function () {
         documentListTab.expireAsset(AssetName);
     });
 
-    it('Verify Delete functionality on Pointer PPE-106404 ', function () {
+    it.skip('Verify Delete functionality on Pointer PPE-106404 ', function () {
          documentListTab.selectAsset(AssetTitle);
          contentTab.checkOut();
          contentTab.checkIn();
@@ -97,5 +97,62 @@ describe('Professional Pointer :PPE-96847', function () {
          //contentTab.checkOut();
          propertiesTab.updatePointerProperties();
     });
+    it.skip('Verify editing of an existing Pointer PPE-106409', function () {
+        documentListTab.selectAsset(AssetTitle);
+        pointerContent.contentHeaderValidationPointer();
+    });
 
 });
+
+describe.skip('Professional Pointer :PPE-96847', function () {
+
+    var AssetTitle;
+    var AssetName;
+    before(function () {
+        Login.login({
+            url: functions.getEnvTestUrl(),
+            username: functions.getQAPublicationUser().username,
+            password: functions.getQAPublicationUser().password
+        });
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        AssetName = global.d2ProfDataSettings.inputData.ArticleDescription + randomstring.generate(2);
+        AssetTitle = global.d2ProfDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
+        workspaceMenu.createPointer(global.d2ProfDataSettings.inputData.ProfileOtherName,
+            global.d2ProfDataSettings.inputData.PointerTemplate,
+            AssetName,
+            AssetTitle
+        );
+        documentListTab.selectAsset(AssetTitle);
+    });
+    it('Should be able to publish the article at scheduled time',function(){
+        browser.pause(5000);
+        console.log("Last Test Case"+ AssetName);
+        documentListTab.selectAsset(AssetName);
+        var schpublishtime  = moment.tz('America/New_York').format('YYYY-MM-DD HH:mm:ss');
+        schpublishtime = moment(schpublishtime);
+        schpublishtime=moment(schpublishtime, "DD MMM YYYY HH:mm:ss")
+        .add(00, 'seconds')
+        .add(05, 'minutes').format('DD MMM YYYY HH:mm:ss');
+        expdate=moment(schpublishtime, "DD MMM YYYY HH:mm:ss")
+        .add(00, 'seconds')
+        .add(06, 'minutes').format('DD MMM YYYY HH:mm:ss'); 
+        propertiesTab.setRequiredPropertiesforPublish(schpublishtime,expdate);
+        documentListTab.schedulePublishAsset(AssetName);
+        browser.pause(3000);
+        var status=contentTab.contentHeaderGet();
+        expect(status).to.contains("Approved");
+        browser.pause(300000);
+        browser.refresh();
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        documentListTab.selectAsset(AssetName);
+        expect(contentTab.contentHeaderGet()).to.contains("Active");
+    });
+  it('Should verify the article scheduled expire status',function(){
+        browser.pause(540000);
+        browser.refresh();
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        documentListTab.selectAsset(AssetName);
+        expect(contentTab.contentHeaderGet()).to.contains("Expire");
+    });
+
+    });

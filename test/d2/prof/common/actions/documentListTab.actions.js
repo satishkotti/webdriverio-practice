@@ -33,6 +33,9 @@ var documentListObj = {
     powerPromoteAsset: function(assetName){
         documentListUI.powerPromote(assetName);
     },
+    schedulePublishAsset: function(assetName){
+        documentListUI.schedulePublishAsset(assetName);
+    },
     expireAsset: function(assetName){
     documentListUI.expireAsset(assetName);
     },

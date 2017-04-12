@@ -7,6 +7,13 @@ module.exports = {
         contentTabUI.switchToExternalWidget4Frame();
         pointerUI.pointerContentProperties(objectName);
         
+    },
+    contentHeaderValidationPointer: function(){
+        contentTabUI.selectContenTab();
+        contentTabUI.switchToExternalWidget4Frame();
+        pointerUI.pointerContentHeaderValidation();
+
     }
+
 
 }
