@@ -5,7 +5,7 @@ var wdioConf = require('./wdio.conf.js');
 exports.config = merge(wdioConf.config, {
 
     debug: false,
-    specs: ['./test/pb2/**/PPE-103161.js',],
+    specs: ['./test/pb2/**/PPE-103204.js',],
     capabilities: [{
         maxInstances: 1,
         browserName: 'chrome',
@@ -145,7 +145,7 @@ exports.config = merge(wdioConf.config, {
 
         var appConfigFile = require('./test/pb2/config/release28.config');
         var appConfig = appConfigFile.config;
-        global.testEnv = appConfig.testEnv.qa;
+        global.testEnv = appConfig.testEnv.preprod;
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
