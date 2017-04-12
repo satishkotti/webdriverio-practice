@@ -23,47 +23,51 @@ module.exports = {
     LeadConceptValue,wbmdcncptAssistanceValue,wbmdKeywords,wbmdcncptfcsAssistanceVal,WbmduserDescr,
     WbmdMetaDescr,ImgthumbVal,RellinkAssistanceVal,ArticleLinkVal,RelatedLinkType,RelatedLinkLable,
     SupressSearchchkVal,SupressLinkchkVal,SupressSharechkVal,SupressCommentchkVal,SupressFeaturebealtchkval,
-    contentDeveloper,AdExclusionvalue,Wbmdlng,ProdType){
+    contentDeveloper,AdExclusionvalue,Wbmdlng,ProdType,
+    Poutputval,wbmdiconsVal,AtoDispformat,Questionnaireval,Activityval,Prdnameval,SupressFeaturebealtchkval,BucketCollectionsValue,Primcollval,
+    Projctidval,wbmdSupprtrVal,AdTagoverrideval,SupressAdval,SupressrecAdval,Supresdispciteval,OHCPval,MDDiscssnBoardval,NurseDiscussionBoardVal,
+    wbmdtgtCntryVal,SupressuppPrintval,SupressuppMblval,ExtrnlIdVal,SupressuppProgval
+    ){
         
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
-        propertiesTabUI.TitleSet(Title);
-        propertiesTabUI.WindowTitleOverrideSet(WindowTitle);
-        propertiesTabUI.SuperTitleSet(superTitle);
-        propertiesTabUI.SubTitleSet(subTitle);
-        propertiesTabUI.ContentTypeSet(contentType);
-        propertiesTabUI.LeadSpecialtySet("Cardiology");
-        propertiesTabUI.AssistanceType("wbmd_spclty_high");
-        propertiesTabUI.AssistanceValue(HighAssistanceValue);
-        propertiesTabUI.AssistanceType("wbmd_spclty_low");
-        propertiesTabUI.AssistanceValue(LowAssistanceValue);
-        propertiesTabUI.AssistanceType("wbmd_spclty_featured");
-        propertiesTabUI.AssistanceValue(FeaturedAssistanceValue);
-        propertiesTabUI.LeadConceptSet(LeadConceptValue);
-        propertiesTabUI.AssistanceType("wbmd_concept");
-        propertiesTabUI.AssistanceValue(wbmdcncptAssistanceValue);
-        propertiesTabUI.KeywordsSet(wbmdKeywords);
-        propertiesTabUI.AssistanceType("wbmd_content_fcs");
-        propertiesTabUI.AssistanceValue(wbmdcncptfcsAssistanceVal);
-        propertiesTabUI.WbmddescuserSet(WbmduserDescr);
-        propertiesTabUI.WbmddescmetaSet(WbmdMetaDescr);
-        propertiesTabUI.ImgthmbSet(ImgthumbVal);
-        propertiesTabUI.AssistanceType("wbmd_rel_links");
-        propertiesTabUI.AssistanceValue(RellinkAssistanceVal);
-        propertiesTabUI.ArticleLink();
-        propertiesTabUI.AddArticleLink(ArticleLinkVal);
-        propertiesTabUI.WbmdrellinksinputSet(RelatedLinkType);
-        propertiesTabUI.WbmdrellinklblinputSet(RelatedLinkLable);
-        propertiesTabUI.SupresschkboxSet("#wbmd_suppress_search",SupressSearchchkVal);
-        propertiesTabUI.SupresschkboxSet("#wbmd_suppress_link",SupressLinkchkVal);
-        propertiesTabUI.SupresschkboxSet("#wbmd_suppress_share",SupressSharechkVal);
-        propertiesTabUI.SupresschkboxSet("#wbmd_suppress_comment",SupressCommentchkVal);
-        propertiesTabUI.SupresschkboxSet("#wbmd_suppress_feature_belt",SupressFeaturebealtchkval);
-        propertiesTabUI.contentDeveloperSet(contentDeveloper);
-        propertiesTabUI.AdExclusion();
-        propertiesTabUI.AddAdExclusion(AdExclusionvalue);
-        propertiesTabUI.WbmdlanguageSet(Wbmdlng);
-        propertiesTabUI.WbmdProdtypeSet(ProdType);
+        // propertiesTabUI.TitleSet(Title);
+        // propertiesTabUI.WindowTitleOverrideSet(WindowTitle);
+        // propertiesTabUI.SuperTitleSet(superTitle);
+        // propertiesTabUI.SubTitleSet(subTitle);
+        // propertiesTabUI.ContentTypeSet(contentType);
+        // propertiesTabUI.LeadSpecialtySet("Cardiology");
+        // propertiesTabUI.AssistanceType("wbmd_spclty_high");
+        // propertiesTabUI.AssistanceValue(HighAssistanceValue);
+        // propertiesTabUI.AssistanceType("wbmd_spclty_low");
+        // propertiesTabUI.AssistanceValue(LowAssistanceValue);
+        // propertiesTabUI.AssistanceType("wbmd_spclty_featured");
+        // propertiesTabUI.AssistanceValue(FeaturedAssistanceValue);
+        // propertiesTabUI.LeadConceptSet(LeadConceptValue);
+        // propertiesTabUI.AssistanceType("wbmd_concept");
+        // propertiesTabUI.AssistanceValue(wbmdcncptAssistanceValue);
+        // propertiesTabUI.KeywordsSet(wbmdKeywords);
+        // propertiesTabUI.AssistanceType("wbmd_content_fcs");
+        // propertiesTabUI.AssistanceValue(wbmdcncptfcsAssistanceVal);
+        // propertiesTabUI.WbmddescuserSet(WbmduserDescr);
+        // propertiesTabUI.WbmddescmetaSet(WbmdMetaDescr);
+        // propertiesTabUI.ImgthmbSet(ImgthumbVal);
+        // propertiesTabUI.AssistanceType("wbmd_rel_links");
+        // propertiesTabUI.AssistanceValue(RellinkAssistanceVal);
+        // propertiesTabUI.ArticleLink();
+        // propertiesTabUI.AddArticleLink(ArticleLinkVal);
+        // propertiesTabUI.WbmdrellinksinputSet(RelatedLinkType);
+        // propertiesTabUI.WbmdrellinklblinputSet(RelatedLinkLable);
+        // propertiesTabUI.SupresschkboxSet("#wbmd_suppress_search",SupressSearchchkVal);
+        // propertiesTabUI.SupresschkboxSet("#wbmd_suppress_link",SupressLinkchkVal);
+        // propertiesTabUI.SupresschkboxSet("#wbmd_suppress_share",SupressSharechkVal);
+        // propertiesTabUI.SupresschkboxSet("#wbmd_suppress_comment",SupressCommentchkVal);
+        // propertiesTabUI.SupresschkboxSet("#wbmd_suppress_feature_belt",SupressFeaturebealtchkval);
+        // propertiesTabUI.contentDeveloperSet(contentDeveloper);
+        // propertiesTabUI.AdExclusion();
+        // propertiesTabUI.AddAdExclusion(AdExclusionvalue);
+        // propertiesTabUI.WbmdlanguageSet(Wbmdlng);
+        // propertiesTabUI.WbmdProdtypeSet(ProdType);
         
         propertiesTabUI.articleTabSelect();
         propertiesTabUI.PrimaryOutputSet(Poutputval);

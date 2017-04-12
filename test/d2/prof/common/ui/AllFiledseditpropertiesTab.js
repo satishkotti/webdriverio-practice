@@ -56,6 +56,7 @@ module.exports = {
     },
     AssistanceValue: function(InputAssistanceValue){
          //browser.waitForVisible("//div[@id='AssistanceListDialog']//div[@id='"+ InputAssistanceValue +"']", maxWaitTimeInMs);
+         
          browser.waitForExist("//div[@id='AssistanceListDialog']//div[@id='"+ InputAssistanceValue +"']");
          browser.doubleClick("//div[@id='AssistanceListDialog']//div[@id='"+ InputAssistanceValue +"']");
          browser.click("//*[@id='ok-button']//button[text()='OK']");
@@ -185,20 +186,11 @@ module.exports = {
     ActivityGet:function(){
          return browser.getValue("#wbmd_activity-input");
     },
-
-    ActivitySet:function(textValue){
-         return browser.setValue("#wbmd_prod_name-input",textValue);
-    },
-    ActivityGet:function(){
-         return browser.getValue("#wbmd_prod_name-input");
-    },
-    
-
     ProdnameSet:function(textValue){
-         browser.setValue("#wbmd_exp_date-input",textValue);
+         browser.setValue("#wbmd_prod_name-input",textValue);
     },
     ProdnameGet:function(){
-         return browser.getValue("#wbmd_exp_date-input");
+         return browser.getValue("#wbmd_prod_name-input");
     },
 
     PrimCollSet:function(textValue){
@@ -220,8 +212,12 @@ module.exports = {
     SupprtrGet:function(){
          return browser.getValue("#wbmd_supprtr");
     },
-    
-    
+    AdTagOverridSet:function(textValue){
+         browser.setValue("#wbmd_ad_override-input",textValue);
+    },
+    AdTagOverridGet:function(){
+         return browser.getValue("#wbmd_ad_override-input");
+    },
     OHCPDiscssSet:function(textValue){
          browser.setValue("#wbmd_discuss_brd_ohcp-input",textValue);
     },
@@ -244,15 +240,15 @@ module.exports = {
     },
 
     RevwDTSet:function(textValue){
-        browser.click("//div[@id='wbmd_revw_dt-input']/img")
+        browser.click("//div[@id='wbmd_revw_dt']/img")
         browser.pause(1000);  
-        browser.click("//button[contains(.,'Today')]")
+        browser.click("//button[contains(.,'Now')]")
         browser.pause(1000);
     },
     PubDTSet:function(){
-        browser.click("//div[@id='wbmd_pub_dt-input']/img")
+        browser.click("//div[@id='wbmd_pub_dt']/img")
         browser.pause(1000);  
-        browser.click("//button[contains(.,'Today')]")
+        browser.click("//button[contains(.,'Now')]")
         browser.pause(1000);
     },
 
