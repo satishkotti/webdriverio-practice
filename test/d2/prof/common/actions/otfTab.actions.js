@@ -10,8 +10,13 @@ var otfTabActionObj = {
         contentTabUI.switchToExternalWidget3Frame();
     },
     verfiyIfElementExists: function(selectorVal) {
-        var isExisting =  browser.isExisting(selectorVal);
-        return isExisting;
+        browser.waitForVisible("//select[@ng-model='currentLocale']",maxWaitTimeInMs);
+        var objectNameValue = otfTabUI.titleValue();
+        expect(objectNameValue).to.equal(selectorVal);
+        browser.click('#single-button');
+        var isexits=browser.isExisting("//li[@ng-repeat='createItem in searchResponse.createItems']/a[text()='Generic Article']");
+        expect(isexits).to.equal(false);
+        browser.frameParent();
     },
     verifyOTFHeader: function() {
         var objectTypeHeader = otfTabUI.objectTypeHeader();

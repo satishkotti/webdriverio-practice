@@ -27,7 +27,14 @@ var contentTabUIObj = {
     },
     switchToExternalWidget4Frame: function(){
         //browser.frame();
-        var contentWidgetIFrameElement = browser.element(externalWidget4Selector);
+        var contentWidgetIFrameElement;
+        if(global.envSettings.d2prof.environment=="dev04")
+            contentWidgetIFrameElement = browser.element(externalWidget4Selector);
+        else if(global.envSettings.d2prof.environment=="qa01")
+            contentWidgetIFrameElement = browser.element(externalWidget4Selector);
+        else
+            contentWidgetIFrameElement = browser.element(externalWidget4Selector);
+
         browser.frame(contentWidgetIFrameElement.value);
     },
     switchTomModuleMenuFrame: function(){
@@ -67,7 +74,7 @@ var contentTabUIObj = {
     },
     cancelCheckOut: function(){
         browser.waitForVisible(cancelButonSelector);
-        browser.scroll(cancelButonSelector);
+        browser.moveToObject(cancelButonSelector);
         browser.click(cancelButonSelector);
         browser.pause(2000);
         browser.frameParent();
