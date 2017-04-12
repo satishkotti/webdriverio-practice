@@ -1,5 +1,6 @@
 var pointerUI = require('./../ui/pointer');
 var contentTabUI = require('./../ui/contentTab');
+var propertiesTabUI = require('./../ui/propertiesTab');
 
 module.exports = {
     contentFieldsPointer: function(objectName){
@@ -13,6 +14,10 @@ module.exports = {
         contentTabUI.switchToExternalWidget4Frame();
         pointerUI.pointerContentHeaderValidation();
 
+    },
+    propertiesFieldsValidation: function(){
+        propertiesTabUI.otherTabSelect();
+        propertiesTabUI.propertiesOtherTabElements();
     }
 
 

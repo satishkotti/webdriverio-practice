@@ -8,7 +8,7 @@ var propertiesTab = require('./../../common/actions/propertiesTab.actions');
 var findTab = require('./../../common/actions/findTab.actions');
 var randomstring = require("randomstring");
 var pointerContent = require('./../../common/actions/pointer.actions');
-var moment =require('moment-timezone');
+//var moment =require('moment-timezone');
 
 
 
@@ -33,11 +33,11 @@ describe('Professional Pointer :PPE-96847', function () {
         documentListTab.selectAsset(AssetTitle);
     });
 
-    it('Verify Pointer creation with only mandatory fields- PPE-106397', function () {
+    it.skip('Verify Pointer creation with only mandatory fields- PPE-106397', function () {
         documentListTab.selectAsset(AssetTitle);
 
     });
-    it.skip('Verify the messages when mandatory fields are left blank for Pointer-PPE-106396', function () {
+    it('Verify the messages when mandatory fields are left blank for Pointer-PPE-106396', function () {
         documentListTab.selectAsset(AssetTitle);
         propertiesTab.verifyPointerProperties();
 
@@ -89,6 +89,12 @@ describe('Professional Pointer :PPE-96847', function () {
         documentListTab.deleteArticle(AssetName, global.d2ProfDataSettings.inputData.DeleteAllversions);
         findTab.searchTextDeleteValidation(AssetName);
     });
+    
+    it('Verify the data dictionary validations on Pointer  PPE-106408 ', function () {
+        documentListTab.selectAsset(AssetTitle);
+        pointerContent.propertiesFieldsValidation();
+        pointerContent.contentHeaderValidationPointer();
+    });
      it.skip('Verify editing of an existing Pointer PPE-106409', function () {
          findTab.searchText(global.d2ProfDataSettings.inputData.pointerExistingAsset);
          documentListTab.selectAsset(global.d2ProfDataSettings.inputData.pointerExistingAsset);
@@ -96,10 +102,6 @@ describe('Professional Pointer :PPE-96847', function () {
          //contentTab.cancel();
          //contentTab.checkOut();
          propertiesTab.updatePointerProperties();
-    });
-    it.skip('Verify editing of an existing Pointer PPE-106409', function () {
-        documentListTab.selectAsset(AssetTitle);
-        pointerContent.contentHeaderValidationPointer();
     });
 
 });
@@ -124,7 +126,7 @@ describe.skip('Professional Pointer :PPE-96847', function () {
         );
         documentListTab.selectAsset(AssetTitle);
     });
-    it('Should be able to publish the article at scheduled time',function(){
+    it('Verify Schedule Publish functionality on Pointer  PPE-106406',function(){
         browser.pause(5000);
         console.log("Last Test Case"+ AssetName);
         documentListTab.selectAsset(AssetName);
@@ -147,7 +149,7 @@ describe.skip('Professional Pointer :PPE-96847', function () {
         documentListTab.selectAsset(AssetName);
         expect(contentTab.contentHeaderGet()).to.contains("Active");
     });
-  it('Should verify the article scheduled expire status',function(){
+  it('Verify Schedule Expire functionality on Pointer PPE-106407',function(){
         browser.pause(540000);
         browser.refresh();
         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);

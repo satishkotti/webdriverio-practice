@@ -73,7 +73,7 @@ module.exports = {
         browser.click("//span//span[contains(.,'Publishing')]")
     },
     otherTabSelect: function(){
-        browser.click("//span[@text()='Other']")
+        browser.click("//span//span[contains(.,'Other')]")
     },
     propertiesTabSelect: function(){
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
@@ -87,6 +87,25 @@ module.exports = {
         browser.click(basicTabSelector);
         browser.waitForVisible("#wbmd_legacy_id", maxWaitTimeInMs);
     },
+    propertiesOtherTabElements: function(){
+        browser.isExisting("//label[@for='language_code']");
+        browser.isExisting("//label[@for='r_current_state']");
+        browser.isExisting("//label[@for='authors']");
+        browser.isExisting("//label[@for='a_content_type']");
+        browser.isExisting("//label[@for='r_full_content_size']");
+        browser.isExisting("//label[@for='r_modify_date']");
+        browser.isExisting("//label[@for='r_modifier']");
+        browser.isExisting("//label[@for='r_creation_date']");
+        browser.isExisting("//label[@for='r_creator_name']");
+        browser.isExisting("//label[@for='r_lock_date']");
+        browser.isExisting("//label[@for='r_lock_owner']");
+        browser.isExisting("//label[@for='a_last_review_date']");
+        browser.isExisting("//label[@for='r_access_date']");
+        browser.isExisting("//label[@for='owner_name']");
+        browser.isExisting("//label[@for='r_object_type']");
+        browser.isExisting("//label[@for='r_version_label']");
+    },
+
     edit: function(){
         browser.click("//div[@tag_id='Properties-widget']//button[text()='Edit']");
     },
