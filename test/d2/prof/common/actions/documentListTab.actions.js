@@ -23,6 +23,9 @@ var documentListObj = {
 //Add logic for pagination if asset not found.
 //Add: assert asset selected is highlighted        
     },
+     selectItemByNamePagination: function (assetName) {
+         documentListUI.selectItemByNamePagination(assetName);
+     },
     promoteAsset: function(assetName){
         documentListUI.promoteAsset(assetName);
     },
@@ -60,9 +63,9 @@ var documentListObj = {
      deleteArticle:function(assetName,DeleteVersionType){
          documentListUI.deleteArticle(assetName,DeleteVersionType);
      },
-     searchArticle:function(data)
+     searchArticle:function(data,title)
      {
-         documentListUI.searchArticle(data);
+         documentListUI.searchArticle(data,title);
      },
     copyArticle:function(data){
         documentListUI.copyArticle(data);
@@ -70,6 +73,9 @@ var documentListObj = {
      searchCopyArticle:function(data)
      {
          documentListUI.searchCopyArticle(data);
+     },
+     verifyGenericRelations: function(){
+         documentListUI.verifyGenericRelations();
      }
 }
 module.exports = documentListObj;

@@ -15,6 +15,7 @@ module.exports.testSettings = {
         },
         "d2prof": {
             "url": "http://dmd201d-prf-08.portal.webmd.com:8080/D2/#d2",
+            "environment":"dev04",
             "users": [
                 {
                     "id": "1",
@@ -49,6 +50,7 @@ module.exports.testSettings = {
         },
         "d2prof": {
             "url": "http://d2.qa01.webmdprofessional.com/D2/#d2",
+            "environment":"qa01",
             "users": [
                 {
                     "id": "1",
@@ -79,8 +81,8 @@ module.exports.testSettings = {
             "HomePageTitle": "D2"
         },
         "inputData": {
-            "AssetName":"QATestAssetOzgTU",
-            "testFolderPath": "webmd/professional_assets/medscape/news/qa_test",
+            "AssetName":"QAGeneric3RFdq",// "QAGenericFVXzP",
+            "testFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
             "ArticleTemplate": 'News Article',
@@ -88,7 +90,7 @@ module.exports.testSettings = {
             "GenericContType":"Article",
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "NewsArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
-            "GenericArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
+            "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
             "ContentType":"News",
             "InitialVersion": "1.0, CURRENT, WIP",
             "CheckedInVersion": "1.1, CURRENT, WIP",

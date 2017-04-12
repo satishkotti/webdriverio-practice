@@ -8,19 +8,19 @@ var repositoryBrowserTab = require('./../../common/actions/repositoryBrowserTab.
 var workspaceMenu = require('./../../common/actions/workspace.menu.actions');
 var documentListTab = require('./../../common/actions/documentListTab.actions');
 var propertiesTab = require('./../../common/actions/propertiesTab.actions');
+var otfTab = require('./../../common/actions/otfTab.actions');
 var moment = require('moment-timezone');
 
 var  genericObjectName= global.d2ProfDataSettings.inputData.GenericArticleObjectName;
  var cidName,objName,title,cid
-
-
+ 
 describe('Professional - ProfArticle (Generic) PPE-96821', function () {
     before(function () {
         Login.login({
         url: functions.getEnvTestUrl(),
         username: functions.getQAPublicationUser().username,
         password: functions.getQAPublicationUser().password
-        });
+    });
         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
         workspaceMenu.createContent(global.d2ProfDataSettings.inputData.ProfileName,
         global.d2ProfDataSettings.inputData.GenericTemplate, 
@@ -41,10 +41,13 @@ describe('Professional - ProfArticle (Generic) PPE-96821', function () {
         propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
         global.d2ProfDataSettings.inputData.ContentDeveloper);
        // contentTab.updateContent("Sample Text");
+        var IsInitialVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.InitialVersion);
+        expect(IsInitialVersionVerified).to.be.true;
         expect(genericObjectName).to.equal(title);
+        documentListTab.verifyGenericRelations();
     });
 
-    it('Verify Checkout and checkin functionality on Slide Article Template', function(){
+    it('Verify Checkout and checkin functionality on Generic Article Template', function(){
         contentTab.checkOut();
         documentListTab.selectAsset(genericObjectName);
         var IsLocked = documentListTab.verifyLock(objName);
@@ -61,7 +64,7 @@ describe('Professional - ProfArticle (Generic) PPE-96821', function () {
         documentListTab.promoteAsset(objName);
     });
 
-    it('Verify Demote functionality on Slide Generic template', function () {
+    it('Verify Demote functionality on Generic Generic template', function () {
         browser.pause(3000);
         documentListTab.demoteAsset(objName);
     });
@@ -72,6 +75,13 @@ describe('Professional - ProfArticle (Generic) PPE-96821', function () {
         browser.pause(3000);
         contentTab.cancel();
     });
+
+    it('Should be able to check availability of Generic article in OTF as a parent', function () {
+        browser.pause(3000);        
+        otfTab.selectOTFTab();
+        otfTab.selectExternalWidget();
+        otfTab.verfiyIfElementExists(genericObjectName);
+    });
 
     it('Verify Power Promote functionality on Generic Article template', function () {
         browser.pause(2000);
@@ -90,34 +100,53 @@ describe('Professional - ProfArticle (Generic) PPE-96821', function () {
     });
 
     it('Should be able to delete the article',function(){
+        browser.pause(5000);
         documentListTab.selectAsset(title);
-        browser.pause(3000);
         documentListTab.deleteArticle(cid,global.d2ProfDataSettings.inputData.DeleteAllversions);
-        documentListTab.searchArticle(cid);
+        documentListTab.searchArticle(cid,title);
     });
 
     it('Should be able to publish the article at scheduled time',function(){
         browser.pause(5000);
         console.log("Last Test Case"+ title);
         documentListTab.selectAsset(title);
-        var localTime  = moment.utc(moment.utc().format('YYYY-MM-DD HH:mm:ss')).toDate();
-        localTime = moment(localTime);
-        localTime=moment(localTime, "DD MMM YYYY HH:mm:ss")
+        var schpublishtime  = moment.tz('America/New_York').format('YYYY-MM-DD HH:mm:ss');
+        schpublishtime = moment(schpublishtime);
+        schpublishtime=moment(schpublishtime, "DD MMM YYYY HH:mm:ss")
         .add(00, 'seconds')
-        .add(05, 'minutes').format('DD MMM YYYY HH:mm:ss'); 
-        expdate=moment(localTime, "DD MMM YYYY HH:mm:ss")
+        .add(05, 'minutes').format('DD MMM YYYY HH:mm:ss');
+        expdate=moment(schpublishtime, "DD MMM YYYY HH:mm:ss")
         .add(00, 'seconds')
-        .add(10, 'minutes').format('DD MMM YYYY HH:mm:ss'); 
-        propertiesTab.setRequiredPropertiesforPublish(localTime,expdate);
+        .add(06, 'minutes').format('DD MMM YYYY HH:mm:ss'); 
+        propertiesTab.setRequiredPropertiesforPublish(schpublishtime,expdate);
         documentListTab.schedulePublishAsset(title);
         browser.pause(3000);
         var status=contentTab.contentHeaderGet();
         expect(status).to.contains("Approved");
         browser.pause(300000);
-        expect(contentTab.contentHeaderGet()).to.contains("WIP");
+        browser.refresh();
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        documentListTab.selectAsset(title);
+        expect(contentTab.contentHeaderGet()).to.contains("Active");
+    });   
+
+    it('Should be able to update the existing article',function(){
+        documentListTab.selectItemByNamePagination(d2ProfDataSettings.inputData.AssetName);
+        cidName = propertiesTab.getChronicleIdAndName();
+        objName = cidName.objectName;
+        title = cidName.title;
+        cid=cidName.chronicleId;
+        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
+        global.d2ProfDataSettings.inputData.ContentDeveloper);
+        contentTab.updateContent("Sample Text");
+        expect(d2ProfDataSettings.inputData.AssetName).to.equal(title);
     });
-    it('Should verify the article scheduled expire status',function(){
-        browser.pause(300000);
+
+    it.skip('Should verify the article scheduled expire status',function(){
+        browser.pause(540000);
+        browser.refresh();
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        documentListTab.selectAsset(title);
         expect(contentTab.contentHeaderGet()).to.contains("Expire");
     });
 
