@@ -126,7 +126,18 @@ module.exports.testSettings = {
             "transcript":"Transcript",
             "active":"Active",
             "searchdata": "860272",
-            "objName":"QATestAssethNrnC",
+            "objName":"QATestAssethNrnC"
+        },
+        "profOutputData": {
+            "ProfileName":"US / Other Templates",
+            "ArticleTemplate": 'Professional Output Versions',
+            "outputType": "Slides/Video", 
+            "introText": "ProfOutput Intro",
+            "contentText": "ProfOutput Content",
+            "publishVersion": "1.1, CURRENT, WIP, Staging, Approved, Live, Active",
+            "defaultDateText": "MM/DD/YYYY HH:MM:SS",
+            "wipVersion": "1.0, CURRENT, WIP",
+            "objType": "wbmd_prof_output"
         }
     }
 }

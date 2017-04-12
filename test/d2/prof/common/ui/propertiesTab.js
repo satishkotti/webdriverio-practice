@@ -1,6 +1,9 @@
 var maxWaitTimeInMs = 30000;
 var propertiesTabSelector= "//span[text()='Properties']";
 var basicTabSelector="//span[text()='Basic Information']";
+var outputTypeTabSelector="//span[text()='Output Type']";
+var profOutputPublishingTabSelector="//span[text()='Publishing']";
+var profOutputOtherTabSelector="//span[text()='Other']";
 var isExist="";
 module.exports = {
     chronicleIdGet: function(){
@@ -17,6 +20,9 @@ module.exports = {
     },
     titileGet: function(){
         return browser.getValue("#title-input");
+    },
+    outputTypeGet: function(){
+        return browser.getValue("#wbmd_outpt_type-input");
     },
     shortTitleSet: function(textValue){
         browser.setValue("input#wbmd_wdw_ttl-input", textValue);
@@ -53,7 +59,19 @@ module.exports = {
     },
     articleTOCDisplayFormatGet:function(){
          return browser.getValue("#wbmd_toc_display-input");
-    },   
+    },  
+    sysPublishingDateGet: function(){
+        return browser.getValue("#wbmd_eff_date-input");
+    }, 
+    expirationDateGet: function(){
+        return browser.getValue("#wbmd_exp_date-input");
+    }, 
+    versionLabelGet: function(){
+        return browser.getText("#r_version_label");
+    }, 
+    objectTypeGet: function(){
+        return browser.getText("#r_object_type");
+    }, 
     articleTabSelect: function(){
         browser.click("//div[@id='PropertiesDialog']//a//span[contains(text(),'Article')]")
     },
@@ -80,6 +98,28 @@ module.exports = {
         browser.waitForVisible(basicTabSelector, maxWaitTimeInMs);
         browser.click(basicTabSelector);
         browser.waitForVisible("#wbmd_legacy_id", maxWaitTimeInMs);
+    },
+    propertiesOutputTypeTabSelect: function(){
+        browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
+        browser.click(propertiesTabSelector);
+        browser.waitForVisible(outputTypeTabSelector, maxWaitTimeInMs);
+        browser.click(outputTypeTabSelector);
+        browser.waitForVisible("#object_name-input", maxWaitTimeInMs);
+    },
+    getProfOutputPublishingTab: function(){
+        browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
+        browser.click(propertiesTabSelector);
+        browser.pause(5000);
+        browser.waitForVisible(profOutputPublishingTabSelector, maxWaitTimeInMs);
+        browser.click(profOutputPublishingTabSelector);
+        browser.waitForVisible("#wbmd_eff_date-input", maxWaitTimeInMs);
+    },
+    getProfOutputOtherTab: function(){
+        browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
+        browser.click(propertiesTabSelector);
+        browser.waitForVisible(profOutputOtherTabSelector, maxWaitTimeInMs);
+        browser.click(profOutputOtherTabSelector);
+        browser.waitForVisible("#r_version_label", maxWaitTimeInMs);
     },
     edit: function(){
         browser.click("//div[@tag_id='Properties-widget']//button[text()='Edit']");
