@@ -5,7 +5,33 @@ var wdioConf = require('./wdio.conf.js');
 exports.config = merge(wdioConf.config, {
 
     debug: false,
-    //specs: ['./test/pb2/**/PPE-103161.js',],
+    specs: ['./test/pb2/**/PPE-103161.js',],
+    capabilities: [{
+        maxInstances: 1,
+        browserName: 'chrome',
+        chromeOptions:
+            //args: ['window-size=1920,1080']
+         {
+            "args": [
+                "start-maximized",
+                "no-proxy-server",
+                "no-default-browser-check",
+                "no-first-run",
+                "disable-boot-animation",
+                "disable-default-apps",
+                "disable-extensions",
+                "no-experiments",
+                "no-service-autorun",
+                "disable-infobars"
+                ],
+			"prefs":{
+				"credentials_enable_service": false,
+				"profile":{
+					password_manager_enabled: false
+				}
+			}
+		}
+    }],
     suites: {
             templates: [
                 './test/pb2/**/PPE-103161.js',
@@ -46,7 +72,6 @@ exports.config = merge(wdioConf.config, {
                 './test/pb2/**/PPE-103207.js',
                 './test/pb2/**/PPE-103208.js',
                 './test/pb2/**/PPE-103552.js',
-                './test/pb2/**/PPE-103449.js',
             ],
             sharedModules: [
                 './test/pb2/**/PPE-103209.js',

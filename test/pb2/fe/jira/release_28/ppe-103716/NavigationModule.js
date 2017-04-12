@@ -10,6 +10,7 @@ describe('XML validations for Multiple Video Launch Module', () => {
     before(() => {
         //Launch App
         test.LaunchAppAndLogin();
+        test.SwitchAssetTabs('')
     });
 
     //Create Scenario
