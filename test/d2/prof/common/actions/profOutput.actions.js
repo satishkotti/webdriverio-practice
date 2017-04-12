@@ -7,7 +7,7 @@ var externalWidget4Selector= "iframe[id*='oam_id==ExternalWidget-4!!oam_target_t
 var profOutputObj = {
     checkOut: function(){
         contentTabUI.selectContenTab();
-        var contentWidgetIFrameElement = browser.element(externalWidget3Selector);
+        var contentWidgetIFrameElement = browser.element(externalWidget4Selector);
         browser.frame(contentWidgetIFrameElement.value);
         contentTabUI.checkOut();
     },
@@ -15,7 +15,7 @@ var profOutputObj = {
         contentTabUI.checkIn();
     },
     setProfOutputData: function (introText, contentText) {
-        var contentWidgetIFrameElement = browser.element(externalWidget3Selector);
+        var contentWidgetIFrameElement = browser.element(externalWidget4Selector);
         browser.frame(contentWidgetIFrameElement.value);
         profOutputUI.setProfOutputIntroText(introText);
         profOutputUI.setProfOutputContentText(contentText);
