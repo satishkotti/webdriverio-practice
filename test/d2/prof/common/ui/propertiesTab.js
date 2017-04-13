@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 30000;
+var maxWaitTimeInMs = 60000;
 var propertiesTabSelector= "//span[text()='Properties']";
 var basicTabSelector="//span[text()='Basic Information']";
 var isExist="";

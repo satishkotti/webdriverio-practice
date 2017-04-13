@@ -27,6 +27,8 @@ module.exports = {
         propertiesTabUI.superTitleSet(superTitle);
         propertiesTabUI.leadSpecialtySet(leadSpecialty);
         propertiesTabUI.contentDeveloperSet(contentDeveloper);
+        propertiesTabUI.articleTabSelect();
+        propertiesTabUI.articleTOCDisplayFormatSet("");
         propertiesTabUI.save();
     },
      verifyNewsProperties:function(labelPropertiesArray){
