@@ -1,28 +1,28 @@
 var Promise = require('bluebird');
 var JSONPath = require('JSONPath');
-var parseXml = require('./../../common/components/parseXml');
-var functions = require('./../../common/functions/functions');
-var Login = require('./../../common/actions/login.actions');
-var contentTab = require('./../../common/actions/contentTab.actions');
-var repositoryBrowserTab = require('./../../common/actions/repositoryBrowserTab.actions');
-var workspaceMenu = require('./../../common/actions/workspace.menu.actions');
-var documentListTab = require('./../../common/actions/documentListTab.actions');
-var propertiesTab = require('./../../common/actions/propertiesTab.actions');
-var otfTab = require('./../../common/actions/otfTab.actions');
+var parseXml = require('./../../../common/components/parseXml');
+var functions = require('./../../../common/functions/functions');
+var Login = require('./../../../common/actions/login.actions');
+var contentTab = require('./../../../common/actions/contentTab.actions');
+var repositoryBrowserTab = require('./../../../common/actions/repositoryBrowserTab.actions');
+var workspaceMenu = require('./../../../common/actions/workspace.menu.actions');
+var documentListTab = require('./../../../common/actions/documentListTab.actions');
+var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
+var otfTab = require('./../../../common/actions/otfTab.actions');
 var moment = require('moment-timezone');
 
-var  genericObjectName= global.d2ProfDataSettings.inputData.GenericArticleObjectName;
+var  genericObjectName= global.d2ProfDataSettings.PTData.GenericArticleObjectName;
  var cidName,objName,title,cid
  
 describe('Professional - ProfArticle (Generic) PPE-96821', function () {
     before(function () {
         Login.login({
         url: functions.getEnvTestUrl(),
-        username: functions.getQAPublicationUser().username,
-        password: functions.getQAPublicationUser().password
+        username: functions.getQAAdminEmedUser().username,
+        password: functions.getQAAdminEmedUser().password
     });
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
-        workspaceMenu.createContent(global.d2ProfDataSettings.inputData.ProfileName,
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.PTData.testFolderPath);
+        workspaceMenu.createContent(global.d2ProfDataSettings.PTData.ProfileName,
         global.d2ProfDataSettings.inputData.GenericTemplate, 
         genericObjectName, 
         global.d2ProfDataSettings.inputData.GenericContType);
@@ -38,8 +38,8 @@ describe('Professional - ProfArticle (Generic) PPE-96821', function () {
         objName = cidName.objectName;
         title = cidName.title;
         cid=cidName.chronicleId;
-        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
-        global.d2ProfDataSettings.inputData.ContentDeveloper);
+        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.PTData.LeadSpecialty,
+        global.d2ProfDataSettings.PTData.ContentDeveloper);
        // contentTab.updateContent("Sample Text");
         var IsInitialVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.InitialVersion);
         expect(IsInitialVersionVerified).to.be.true;
@@ -125,27 +125,27 @@ describe('Professional - ProfArticle (Generic) PPE-96821', function () {
         expect(status).to.contains("Approved");
         browser.pause(300000);
         browser.refresh();
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.PTData.testFolderPath);
         documentListTab.selectAsset(title);
         expect(contentTab.contentHeaderGet()).to.contains("Active");
     });   
 
     it('Should be able to update the existing article',function(){
-        documentListTab.selectItemByNamePagination(d2ProfDataSettings.inputData.AssetName);
+        documentListTab.selectItemByNamePagination(d2ProfDataSettings.PTData.AssetName);
         cidName = propertiesTab.getChronicleIdAndName();
         objName = cidName.objectName;
         title = cidName.title;
         cid=cidName.chronicleId;
-        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
-        global.d2ProfDataSettings.inputData.ContentDeveloper);
+        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.PTData.LeadSpecialty,
+        global.d2ProfDataSettings.PTData.ContentDeveloper);
         contentTab.updateContent("Sample Text");
-        expect(d2ProfDataSettings.inputData.AssetName).to.equal(title);
+        expect(d2ProfDataSettings.PTData.AssetName).to.equal(title);
     });
 
     it.skip('Should verify the article scheduled expire status',function(){
         browser.pause(540000);
         browser.refresh();
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.PTData.testFolderPath);
         documentListTab.selectAsset(title);
         expect(contentTab.contentHeaderGet()).to.contains("Expire");
     });

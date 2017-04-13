@@ -31,7 +31,7 @@ module.exports.testSettings = {
                 },
                 {
                     "id": "3",
-                    "username": "QAPublication1",
+                    "username": "QAAdminEmed",
                     "password": "QA-Doc#1",
                     "type": "user"
                 }
@@ -66,7 +66,7 @@ module.exports.testSettings = {
                 },
                 {
                     "id": "3",
-                    "username": "QAPublication1",
+                    "username": "QAAdminEmed",
                     "password": "QA-Doc#1",
                     "type": "user"
                 }
@@ -81,13 +81,13 @@ module.exports.testSettings = {
             "HomePageTitle": "D2"
         },
         "inputData": {
-            "AssetName":"QAGeneric3RFdq",// "QAGenericFVXzP",
+            "AssetName":"QAGenerich5H9I",// "QAGenericFVXzP",
             "testFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
             "ArticleTemplate": 'News Article',
             "GenericTemplate":"Article Generic",
-            "GenericContType":"Article",
+            "GenericContType":"News",
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "NewsArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
@@ -113,9 +113,6 @@ module.exports.testSettings = {
                         "wbmd_prim_coll-input,wbmd_site-input,wbmd_site_only-input,wbmd_locale,wbmd_proj_id-input,wbmd_supprtr,wbmd_ad_override-input,wbmd_supp_ads-input,wbmd_supp_rec_ads-input,"+
                         "wbmd_disp_cite-input,wbmd_discuss_brd_ohcp-input,wbmd_discuss_brd_md-input,wbmd_discuss_brd_nrs-input,wbmd_revw_dt-input,wbmd_pub_dt-input,wbmd_tgt_cntry,wbmd_supp_print-input,"+
                         "wbmd_supp_mobile-input,wbmd_gated-input,wbmd_ext_id-input,wbmd_supp_prog_lnk-input"               
-
-            
-             
         },
         "otfData": {
             "objectType":"Object Type",
@@ -132,7 +129,40 @@ module.exports.testSettings = {
             "text":"text",
             "transcript":"Transcript",
             "active":"Active"
+        },
+        "DEData":{
+            "AssetName":"QAGenericF8H6M",
+            "testFolderPath": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
+            "ProfileName":"DE / Article Templates",
+            "LeadSpecialty": "Psychiatrie",
+            "ContentDeveloper": "Partner",
+            "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+        },
+        "FRData":{
+            "AssetName":"QAGenericCr91r",
+            "testFolderPath": "webmd_fr/professional_assets/medscape/articles/news/articles/2013/test",
+            "ProfileName":"FR / Article Templates",
+            "LeadSpecialty": "Cardiologie",
+            "ContentDeveloper": "Partner",
+            "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+        },
+        "PTData":{
+            "AssetName":"QAPTTestGeneric",
+            "testFolderPath": "webmd_pt/professional_assets/medscape/articles/news/articles/2015/test",
+            "ProfileName":"PT / Article Templates",
+            "LeadSpecialty": "Cardiologia",
+            "ContentDeveloper": "N/A",
+            "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+        },
+        "SPData":{
+            "AssetName":"QASPTestGeneric",
+            "testFolderPath": "webmd_sp/professional_assets/medscape/articles/news/articles/SP/test",
+            "ProfileName":"SP / Article Templates",
+            "LeadSpecialty": "Dermatología",
+            "ContentDeveloper": "N/A",
+            "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
         }
+
     }
 }
 

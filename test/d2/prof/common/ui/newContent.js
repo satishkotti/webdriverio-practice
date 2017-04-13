@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 20000;
+var maxWaitTimeInMs = 120000;
 
 var newContentObj = module.exports = {
 
@@ -33,6 +33,6 @@ var newContentObj = module.exports = {
         browser.click('//div[@title="'+descName+'"]');
         browser.waitForVisible('//*[@id="next-button"]');
         browser.click('//*[@id="next-button"]');
-        browser.waitForVisible('//span[@title="'+objName+'"]',40000);
+        browser.waitForVisible('//span[@title="'+objName+'"]',maxWaitTimeInMs);
     }
 }
