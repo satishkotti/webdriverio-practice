@@ -20,10 +20,10 @@ describe('Professional Pointer - PPE-96847', function () {
             username: functions.getQAPublicationUser().username,
             password: functions.getQAPublicationUser().password
         });
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath_de);
         AssetName = global.d2ProfDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         AssetTitle = global.d2ProfDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
-        workspaceMenu.createPointer(global.d2ProfDataSettings.inputData.ProfileOtherName,
+        workspaceMenu.createPointer(global.d2ProfDataSettings.inputData.ProfileOtherName_de,
             global.d2ProfDataSettings.inputData.PointerTemplate,
             AssetName,
             AssetTitle
@@ -114,10 +114,10 @@ describe.skip('Professional Pointer PPE-96847', function () {
       //Removed relogin since using same session as above.
 
         browser.pause(5000);
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath_de);
         AssetName = global.d2ProfDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         AssetTitle = global.d2ProfDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
-        workspaceMenu.createPointer(global.d2ProfDataSettings.inputData.ProfileOtherName,
+        workspaceMenu.createPointer(global.d2ProfDataSettings.inputData.ProfileOtherName_de,
             global.d2ProfDataSettings.inputData.PointerTemplate,
             AssetName,
             AssetTitle

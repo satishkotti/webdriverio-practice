@@ -52,7 +52,7 @@ module.exports.testSettings = {
             "users": [
                 {
                     "id": "1",
-                    "username": "QAPublication",
+                    "username": "QAAdminEmed",
                     "password": "QA-Doc#1",
                     "type": "user"
                 },
@@ -80,10 +80,18 @@ module.exports.testSettings = {
         },
         "inputData": {
             "AssetName":"QATestAssethNrnC",
-            "testFolderPath": "webmd/professional_assets/medscape/news/qa_test",
+            "testFolderPath": "webmd/professional_assets/medscape/news/qatest",
+            "testFolderPath_de": "webmd_de/professional_assets/medscape/articles/news",
+            "testFolderPath_fr": "webmd_fr/professional_assets/medscape/articles/news",
+            "testFolderPath_sp": "webmd_sp/professional_assets/medscape/articles/news",
+            "testFolderPath_pt": "webmd_pt/professional_assets/medscape/articles/news",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
             "ProfileOtherName": "US / Other Templates",
+            "ProfileOtherName_de": "DE / Other Templates",
+            "ProfileOtherName_fr": "FR / Other Templates",
+            "ProfileOtherName_sp": "SP / Other Templates",
+            "ProfileOtherName_pt": "PT / Other Templates",
             "ArticleTemplate": 'News Article',
             "PointerTemplate": "Professional Pointer",
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),

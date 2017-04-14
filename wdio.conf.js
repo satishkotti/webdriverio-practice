@@ -193,7 +193,7 @@ exports.config = {
     // variables like `browser`. It is the perfect place to define custom commands.
     before: function() {
 
-        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'dev04';
+        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'qa01';
         var testApp = (process.env.npm_config_testApp) ? process.env.npm_config_testApp : 'd2prof' ;
         
         var chai = require('chai');

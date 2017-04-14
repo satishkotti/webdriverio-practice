@@ -8,9 +8,9 @@ var relatedLinksTextSelector= "//h2[span[contains(.,'Related Links Text')]]//fol
 var checkoutButtonSelector= "//button[contains(string(),'Check-out')]";
 var checkInButonSelector= "//button[contains(string(),'Check-in')]";
 var contentTabSelector= "//span[text()='Content']";
-var contentPaneFrameSelector= "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
+var contentPaneFrameSelector= "iframe[id*='oam_id==ExternalWidget-4!!oam_target_type==ExternalWidget']";
 var externalWidget3Selector= "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
-var externalWidget4Selector= "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
+var externalWidget4Selector= "iframe[id*='oam_id==ExternalWidget-4!!oam_target_type==ExternalWidget']";
 var contentHeader="//div[@class='container']//center[@class='ng-binding']";
 var cancelButonSelector= "//button[contains(string(),'Cancel')]";
 

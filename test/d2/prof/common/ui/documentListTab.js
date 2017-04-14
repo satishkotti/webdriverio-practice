@@ -182,8 +182,10 @@ lifeCycleExpireSelect: function()
         browser.click("#menuContextDestroy");
         browser.waitForVisible("//label[contains(.,'" + DeleteVersionType + "')]",maxWaitTimeInMs);
         browser.click("//label[contains(.,'" + DeleteVersionType + "')]");
+            browser.pause(2000);
         browser.waitForVisible("//button[text()='OK']",maxWaitTimeInMs);
-        browser.click("//button[text()='OK']");
+        //browser.click("//button[text()='OK']");
+        browser.leftClick("//button[contains(.,'OK') and @type='submit']");
         //browser.pause(maxWaitTimeInMs);
          while (deleteresult) {
         deleteresult=documentListUIObj.deleteloading();
