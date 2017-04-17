@@ -54,9 +54,9 @@ var documentListObj = {
     deleteArticle:function(assetName,DeleteVersionType){
          documentListUI.deleteArticle(assetName,DeleteVersionType);
      },
-     searchArticle:function(data)
+     searchArticle:function(data, title)
      {
-         documentListUI.searchArticle(data);
+         documentListUI.searchArticle(data, title);
      },
     copyArticle:function(data){
         documentListUI.copyArticle(data);
@@ -71,6 +71,9 @@ var documentListObj = {
      schedulePublishAsset: function(assetName){
         documentListUI.schedulePublishAsset(assetName);
     },
+    selectItemByNamePagination: function (assetName) {
+         documentListUI.selectItemByNamePagination(assetName);
+     },
 
 
 }

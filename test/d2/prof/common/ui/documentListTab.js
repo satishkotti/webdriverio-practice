@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 30000;
+var maxWaitTimeInMs = 120000;
 
 var ppModalLabel = "Power Promote Confirmation Message";
 var ppModalMsg = " Are you sure you want to power promote this document?"
@@ -44,12 +44,14 @@ var documentListUIObj = {
      lifeCyclePowerPromoteSelect: function(){
         browser.waitForVisible("//a[text()='Power Promote']", maxWaitTimeInMs);
         browser.click("//a[text()='Power Promote']");
+        browser.pause(3000);
     },
     powerPromoteConfirmDialogueOkSelect: function(){
         browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
         var ppModalLabel = browser.getText("div.modal-body > label");
         expect(ppModalLabel).to.equal(ppModalLabel);
         browser.click("button[ng-click='$confirm()']");
+        browser.pause(3000);
     },
     powerPromoteResultsDialogueOkSelect: function(assetName){
 
@@ -68,6 +70,7 @@ var documentListUIObj = {
         documentListUIObj.contextualMenuActivate(assetName);
         documentListUIObj.contextualMenuLifeCycleSelect();
         documentListUIObj.lifeCyclePowerPromoteSelect();
+        
         documentListUIObj.powerPromoteConfirmDialogueOkSelect();
         documentListUIObj.powerPromoteResultsDialogueOkSelect(assetName);
     },
@@ -176,7 +179,8 @@ lifeCycleExpireSelect: function()
         browser.click("#menuContextPaste");
         while (copywaitingtime) {
         copywaitingtime=documentListUIObj.copyloading();
-        }
+    }
+    browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
         var results=browser.elements("//span[@title='" + assetName + "']");
     },
     searchTextSetValue:function(searcValue){
@@ -192,13 +196,13 @@ lifeCycleExpireSelect: function()
     copyloading:function(){
         return browser.isVisible('//div[@class="x3-loading-medium"]');
     },
-    searchArticle:function(assetName){
+    searchArticle:function(assetName, title){
         documentListUIObj.searchTextSetValue(assetName);
         browser.click("//div[@id='searchText-input']//following-sibling::span//img[2]");
         while (searchresult) {
         searchresult=documentListUIObj.loadSearchData();
         }
-        browser.pause(2000);
+        browser.pause(4000);
         var isexists=browser.isExisting("//div[text()='No items found']");
         expect(isexists).to.equal(true);
         
@@ -207,6 +211,7 @@ lifeCycleExpireSelect: function()
         while (searchresult) {
         searchresult=documentListUIObj.loadSearchData();
         }
+        browser.waitForVisible("//span[@title='" + title + "']");
         browser.pause(2000);
     },
     searchCopyArticle:function(assetName){
@@ -215,7 +220,8 @@ lifeCycleExpireSelect: function()
         while (searchresult) {
         searchresult=documentListUIObj.loadSearchData();
         }
-        browser.pause(2000);
+        //browser.pause(2000);
+        browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
         var results=browser.elements("//span[@title='" + assetName + "']");
         browser.pause(5000);
         console.log(results);
@@ -254,7 +260,16 @@ lifeCycleExpireSelect: function()
         documentListUIObj.schedulePublishResultsDialogueOkSelect(assetName);
     },
 
-    
+    selectItemByNamePagination: function (assetName) {
+        var isExisting=browser.isExisting("//span[@title='" + assetName + "']");
+        while (!isExisting) {
+                browser.click("(//table[@id='pagingNext-button']/tbody/tr[2]/td[2]/em/button)[1]");
+                browser.pause(2000);
+                isExisting=browser.isExisting("//span[@title='" + assetName + "']");
+        }
+        browser.click("//span[@title='" + assetName + "']");
+        browser.pause(1000);
+    },
 
 
 }

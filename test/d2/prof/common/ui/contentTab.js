@@ -1,5 +1,6 @@
 var maxWaitTimeInMs = 20000;
 var aboveTitleSelector = "//h2[span[contains(.,'Above Title')]]//following-sibling::div//div[@role='textbox']";
+var abovetitle="//h2[span[contains(.,'Above Title')]]//following-sibling::div//div[text()='Enter text here']";
 var sectionTextSelector= "//h2[span[contains(.,'Section Text')]]//following-sibling::div//div";
 var highlightsSelector = "//h2[span[contains(.,'Highlights')]]//following-sibling::div//div";
 var pullQuotesSelector= "//h2[span[contains(.,'Pull Quotes')]]//following-sibling::div//div";
@@ -29,13 +30,15 @@ var contentTabUIObj = {
         browser.frame();
         var contentWidgetIFrameElement;
         if(global.envSettings.d2prof.environment=="dev04")
-            contentWidgetIFrameElement = browser.element(externalWidget4Selector);
-        else if(global.envSettings.d2prof.environment=="qa01")
             contentWidgetIFrameElement = browser.element(externalWidget3Selector);
-        else
+        else if(global.envSettings.d2prof.environment=="qa01")
             contentWidgetIFrameElement = browser.element(externalWidget4Selector);
+        else
+            contentWidgetIFrameElement = browser.element(externalWidget3Selector);
 
         browser.frame(contentWidgetIFrameElement.value);
+        // var contentWidgetIFrameElement = browser.element(externalWidget4Selector);
+        // browser.frame(contentWidgetIFrameElement.value);
     },
     switchTomModuleMenuFrame: function(){
         //var contentWidgetIFrameElement = browser.element("iframe[id*='cke_279_frame']");
@@ -135,7 +138,13 @@ var contentTabUIObj = {
         var result=browser.getText(contentHeader);
         browser.frameParent();
         return result;
+    },
 
+    abovetitleSetValue:function(abovetitlevalue){
+        contentTabUIObj.switchToExternalWidget4Frame();
+        browser.waitForVisible(aboveTitleSelector,maxWaitTimeInMs);
+        browser.scroll(aboveTitleSelector);
+        browser.setValue(aboveTitleSelector,abovetitlevalue);
     },
 }
 

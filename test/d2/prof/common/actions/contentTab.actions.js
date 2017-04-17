@@ -47,7 +47,18 @@ var contentTabObj = {
     contentHeaderGet:function()
     {
         return contentTabUI.contentHeaderGet();
-    }    
+    },
+    abovetitleSetValue: function(data){
+        //contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.abovetitleSetValue(data);
+    },
+    updateContent:function(data)    {
+        contentTabObj.checkOut();
+        contentTabObj.abovetitleSetValue(data);
+        contentTabUI.checkIn();
+    },
+
+
 }
 
 module.exports = contentTabObj;

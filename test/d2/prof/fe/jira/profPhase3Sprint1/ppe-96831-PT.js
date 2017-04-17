@@ -1,16 +1,16 @@
 var Promise = require('bluebird');
 var JSONPath = require('JSONPath');
-var parseXml = require('./../../common/components/parseXml');
-var functions = require('./../../common/functions/functions');
-var Login = require('./../../common/actions/login.actions');
-var repositoryBrowserTab = require('./../../common/actions/repositoryBrowserTab.actions');
-var workspaceMenu = require('./../../common/actions/workspace.menu.actions');
-var documentListTab = require('./../../common/actions/documentListTab.actions');
-var propertiesTab = require('./../../common/actions/propertiesTab.actions');
-var contentTab = require('./../../common/actions/contentTab.actions');
-var otfTab = require('./../../common/actions/otfTab.actions');
+var parseXml = require('./../../../common/components/parseXml');
+var functions = require('./../../../common/functions/functions');
+var Login = require('./../../../common/actions/login.actions');
+var repositoryBrowserTab = require('./../../../common/actions/repositoryBrowserTab.actions');
+var workspaceMenu = require('./../../../common/actions/workspace.menu.actions');
+var documentListTab = require('./../../../common/actions/documentListTab.actions');
+var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
+var contentTab = require('./../../../common/actions/contentTab.actions');
+var otfTab = require('./../../../common/actions/otfTab.actions');
 var moment = require('moment-timezone');
-var slideObjectname= global.d2ProfDataSettings.inputData.SlideArticleObjectName;
+var slideObjectname= global.d2ProfDataSettings.PTData.SlideArticleObjectName;
 
 describe('Slide Presentation PPE-96831', function () {
 
@@ -25,11 +25,11 @@ describe('Slide Presentation PPE-96831', function () {
         });   
         Login.login({
         url: functions.getEnvTestUrl(),
-        username: functions.getQAPublicationUser().username,
-        password: functions.getQAPublicationUser().password
+        username: functions.getQAAdminEmedUser().username,
+        password: functions.getQAAdminEmedUser().password
     });
-         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.SlideFolderPath);
-        workspaceMenu.createContent(global.d2ProfDataSettings.inputData.ProfileName,
+         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.PTData.SlideFolderPath);
+        workspaceMenu.createContent(global.d2ProfDataSettings.PTData.ProfileName,
                     global.d2ProfDataSettings.inputData.SlideArticleTemplate, 
                     slideObjectname, 
                     global.d2ProfDataSettings.inputData.SlideContentType);
@@ -47,8 +47,8 @@ describe('Slide Presentation PPE-96831', function () {
         objName = cidName.objectName;
         title = cidName.title;
         cid=cidName.chronicleId;
-        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
-                    global.d2ProfDataSettings.inputData.ContentDeveloper);
+        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.PTData.LeadSpecialty,
+                    global.d2ProfDataSettings.PTData.ContentDeveloper);
         documentListTab.selectAsset(slideObjectname);
         var IsInitialVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.InitialVersion);
         expect(IsInitialVersionVerified).to.be.true;
@@ -114,37 +114,49 @@ describe('Slide Presentation PPE-96831', function () {
         documentListTab.selectAsset(title);
         browser.pause(3000);
         documentListTab.deleteArticle(cid,global.d2ProfDataSettings.inputData.DeleteAllversions);
-        documentListTab.searchArticle(  );
+        documentListTab.searchArticle(cid,title);
     });
 
     it('Should be able to publish the article at scheduled time',function(){
         browser.pause(5000);
         console.log("Last Test Case"+ title);
         documentListTab.selectAsset(title);
-        var localTime  = moment.tz('America/New_York').format('YYYY-MM-DD HH:mm:ss');
-        localTime = moment(localTime);
-        localTime=moment(localTime, "DD MMM YYYY HH:mm:ss")
+        var schpublishtime  = moment.tz('America/New_York').format('YYYY-MM-DD HH:mm:ss');
+        schpublishtime = moment(schpublishtime);
+        schpublishtime=moment(schpublishtime, "DD MMM YYYY HH:mm:ss")
         .add(00, 'seconds')
         .add(05, 'minutes').format('DD MMM YYYY HH:mm:ss');
-        expdate=moment(localTime, "DD MMM YYYY HH:mm:ss")
+        expdate=moment(schpublishtime, "DD MMM YYYY HH:mm:ss")
         .add(00, 'seconds')
         .add(06, 'minutes').format('DD MMM YYYY HH:mm:ss'); 
-        propertiesTab.setRequiredPropertiesforPublish(localTime,expdate);
+        propertiesTab.setRequiredPropertiesforPublish(schpublishtime,expdate);
         documentListTab.schedulePublishAsset(title);
         browser.pause(3000);
         var status=contentTab.contentHeaderGet();
         expect(status).to.contains("Approved");
         browser.pause(300000);
         browser.refresh();
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.PTData.SlideFolderPath);
         documentListTab.selectAsset(title);
         expect(contentTab.contentHeaderGet()).to.contains("Active");
     });
 
-    it('Should verify the article scheduled expire status',function(){
+    it.skip('Should be able to update the existing article',function(){
+        documentListTab.selectItemByNamePagination(d2ProfDataSettings.PTData.AssetName);
+        cidName = propertiesTab.getChronicleIdAndName();
+        objName = cidName.objectName;
+        title = cidName.title;
+        cid=cidName.chronicleId;
+        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.PTData.LeadSpecialty,
+        global.d2ProfDataSettings.PTData.ContentDeveloper);
+        contentTab.updateContent("Sample Text");
+        expect(d2ProfDataSettings.PTData.AssetName).to.equal(title);
+   });
+
+    it.skip('Should verify the article scheduled expire status',function(){
         browser.pause(540000);
         browser.refresh();
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.PTData.SlideFolderPath);
         documentListTab.selectAsset(title);
         expect(contentTab.contentHeaderGet()).to.contains("Expire");
     });

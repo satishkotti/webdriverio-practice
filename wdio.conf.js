@@ -17,7 +17,7 @@ module.exports.getSpecs = function()
             break;
             case "d2prof":
                 var config = require('./test/d2/prof/config/config');
-                specList = [ './test/d2/prof/fe/jira/ppe-96831.js' ];
+                specList = [ './test/d2/prof/fe/jira/profPhase3Sprint1/ppe-96831-PT.js' ];
             break;
             case "rt":
                 var config = require('./test/rt/config/config');
@@ -39,8 +39,8 @@ console.log('specs: '+specList);
 
 exports.config = {
 
-    debug: false,
-    maxInstances: 10,
+    debug: true,
+    maxInstances: 1,
     
     //
     // ==================

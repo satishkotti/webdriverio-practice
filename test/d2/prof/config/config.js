@@ -31,7 +31,7 @@ module.exports.testSettings = {
                 },
                 {
                     "id": "3",
-                    "username": "QAPublication1",
+                    "username": "QAAdminEmed",
                     "password": "QA-Doc#1",
                     "type": "user"
                 }
@@ -66,7 +66,7 @@ module.exports.testSettings = {
                 },
                 {
                     "id": "3",
-                    "username": "QAPublication1",
+                    "username": "QAAdminEmed",
                     "password": "QA-Doc#1",
                     "type": "user"
                 }
@@ -81,9 +81,9 @@ module.exports.testSettings = {
             "HomePageTitle": "D2"
         },
         "inputData": {
-            "AssetName":"QATestAssethNrnC",
+            "AssetName": "QATestSlideArticle", //"QATestAssethNrnC",
             "testFolderPath": "webmd/professional_assets/medscape/news/heartwire/news/200005",
-            "SlideFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
+             "SlideFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
             "ArticleTemplate": 'News Article',
@@ -93,7 +93,7 @@ module.exports.testSettings = {
             
             "SlideArticleTemplate": "Article Slide Presentation",
             "SlideArticleObjectName": "QATestSlide" + exports.GenerateRandomString(5),
-            "SlideContentType": "Slide/Lecture Presentation",
+            "SlideContentType": "News",
             "InitialVersion": "1.0, CURRENT, WIP",
             "CheckedInVersion": "1.1, CURRENT, WIP",
             "DeleteAllversions":"Delete all versions",    
@@ -134,7 +134,40 @@ module.exports.testSettings = {
             "text":"text",
             "transcript":"Transcript",
             "active":"Active"
-        }
+        },
+
+        "DEData":{
+            "AssetName":"QADETestSlideArticle",
+            "SlideFolderPath": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
+            "ProfileName":"DE / Article Templates",
+            "LeadSpecialty": "Psychiatrie",
+            "ContentDeveloper": "Partner",
+            "SlideArticleObjectName": "QADETestSlide" + exports.GenerateRandomString(5),
+        },
+        "FRData":{
+            "AssetName":"QAFRTestSlideArticle",
+            "SlideFolderPath": "webmd_fr/professional_assets/medscape/articles/news/articles/2013/test",
+            "ProfileName":"FR / Article Templates",
+            "LeadSpecialty": "Cardiologie",
+            "ContentDeveloper": "Partner",
+            "SlideArticleObjectName": "QAFRTestSlide" + exports.GenerateRandomString(5),
+        },
+        "PTData":{
+            "AssetName":"QAPTTestSlideArticle",
+            "SlideFolderPath": "webmd_pt/professional_assets/medscape/articles/news/articles/2015/test",
+            "ProfileName":"PT / Article Templates",
+            "LeadSpecialty": "Cardiologia",
+            "ContentDeveloper": "qa_company_cd",
+            "SlideArticleObjectName": "QAPTTestSlide" + exports.GenerateRandomString(5),
+        },
+        "SPData":{
+            "AssetName":"QASPTestSlideArticle",
+            "SlideFolderPath": "webmd_sp/professional_assets/medscape/articles/news/articles/SP/test",
+            "ProfileName":"SP / Article Templates",
+            "LeadSpecialty": "Dermatología",
+            "ContentDeveloper": "qa_company_cd",
+            "SlideArticleObjectName": "QASPTestSlide" + exports.GenerateRandomString(5),
+        }
     }
 }
 
