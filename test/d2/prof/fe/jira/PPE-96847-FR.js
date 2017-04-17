@@ -20,6 +20,7 @@ describe('Professional Pointer - PPE-96847', function () {
             username: functions.getQAPublicationUser().username,
             password: functions.getQAPublicationUser().password
         });
+        repositoryBrowserTab.repositorybrowserRefresh();
         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath_fr);
         AssetName = global.d2ProfDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         AssetTitle = global.d2ProfDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
@@ -114,6 +115,7 @@ describe.skip('Professional Pointer PPE-96847', function () {
       //Removed relogin since using same session as above.
 
         browser.pause(5000);
+        repositoryBrowserTab.repositorybrowserRefresh();
         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath_fr);
         AssetName = global.d2ProfDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         AssetTitle = global.d2ProfDataSettings.inputData.ArticleObjectName + randomstring.generate(2);

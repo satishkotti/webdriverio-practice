@@ -19,6 +19,11 @@ module.exports = {
         browser.waitForVisible(folderSelector, maxWaitTimeInMs);
         browser.click(folderSelector); 
         browser.pause(2000);
+    },
+    repositorybrowserRefresh: function (){
+        browser.leftClick("//span[contains(.,'Repository browser')]//following-sibling::span[@id='menuDownArrow-button' and @role=not('button')]");
+        browser.leftClick("//span[@id='refreshWidget-menuItem']");
+        browser.pause(2000);
     }
 }
 
