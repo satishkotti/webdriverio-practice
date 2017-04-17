@@ -81,12 +81,15 @@ module.exports.testSettings = {
             "HomePageTitle": "D2"
         },
         "inputData": {
-            "AssetName":"QAGenerich5H9I",// "QAGenericFVXzP",
+            "AssetName":"QAGenericOmN8I",
             "testFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
+            "OthersProfileName":"US / Other Templates",
+            "OtherTypes":"Professional Media",
             "ArticleTemplate": 'News Article',
             "GenericTemplate":"Article Generic",
+            "ProfMediaTemplate":"Article Generic",
             "GenericContType":"News",
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "NewsArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
@@ -131,7 +134,7 @@ module.exports.testSettings = {
             "active":"Active"
         },
         "DEData":{
-            "AssetName":"QAGenericF8H6M",
+            "AssetName":"QAGenericcJ3l0",
             "testFolderPath": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
             "ProfileName":"DE / Article Templates",
             "LeadSpecialty": "Psychiatrie",
@@ -147,7 +150,7 @@ module.exports.testSettings = {
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
         },
         "PTData":{
-            "AssetName":"QAPTTestGeneric",
+            "AssetName":"QAGenericbKotU",
             "testFolderPath": "webmd_pt/professional_assets/medscape/articles/news/articles/2015/test",
             "ProfileName":"PT / Article Templates",
             "LeadSpecialty": "Cardiologia",
@@ -155,7 +158,8 @@ module.exports.testSettings = {
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
         },
         "SPData":{
-            "AssetName":"QASPTestGeneric",
+            "AssetName":"QAGenericj4Rxk",
+            "GenericContType":"Alertas",
             "testFolderPath": "webmd_sp/professional_assets/medscape/articles/news/articles/SP/test",
             "ProfileName":"SP / Article Templates",
             "LeadSpecialty": "Dermatología",

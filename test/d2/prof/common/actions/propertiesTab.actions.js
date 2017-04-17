@@ -18,6 +18,14 @@ module.exports = {
             title:propertiesTabUI.titileGet()
         };
     },
+    getObjectNameMediaTab: function(){
+        propertiesTabUI.ProfMediaPropertiesTabSelect();
+        return {
+            chronicleId: propertiesTabUI.chronicleIdGet(),
+            objectName: propertiesTabUI.objectNameGet(),
+            title:propertiesTabUI.titileGet()
+        };
+    },
     setRequiredProperties: function(shortTitle,subTitle,superTitle,leadSpecialty,contentDeveloper){
         
         propertiesTabUI.propertiesTabSelect();
