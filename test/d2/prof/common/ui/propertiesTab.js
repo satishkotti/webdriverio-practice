@@ -86,6 +86,11 @@ module.exports = {
         browser.click(propertiesTabSelector);
         browser.waitForVisible("#wbmd_legacy_id", maxWaitTimeInMs);
     },
+    ProfMediaPropertiesTabSelect: function(){
+        browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
+        browser.click(propertiesTabSelector);
+        browser.waitForVisible("#object_name-input", maxWaitTimeInMs);
+    },
     propertiesBasicTabSelect: function(){
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
         browser.click(propertiesTabSelector);
@@ -147,6 +152,15 @@ module.exports = {
         var IsExistwarningClass = browser.isExisting("//div[contains(@class,'ext-mb-warning')]");
         browser.click("//div[@class='x-window-br']//button[contains(.,'OK')]");
         if(IsExistLead == true && IsExistwarningClass == true && IsExistContent == true)
+            return true;
+        else
+            return false;
+    },
+    verifyProfMediaMandatoryFields: function(){
+        var IsExistMedia = browser.isExisting("//span[contains(., 'Media Format')]");
+        var IsExistwarningClass = browser.isExisting("//div[contains(@class,'ext-mb-warning')]");
+        browser.click("//div[@class='x-window-br']//button[contains(.,'OK')]");
+        if(IsExistMedia == true && IsExistwarningClass == true )
             return true;
         else
             return false;

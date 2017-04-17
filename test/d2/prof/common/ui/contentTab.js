@@ -1,6 +1,6 @@
 var maxWaitTimeInMs = 60000;
 var sectionTextSelector= "//h2[span[contains(.,'Section Text')]]//following-sibling::div//div";
-var abovetitle="//h2[span[contains(.,'Above Title')]]//following-sibling::div//div[@role='textbox']";
+var aboveTitleSelector = "//h2[span[contains(.,'Above Title')]]//following-sibling::div//div[@role='textbox']";
 var highlightsSelector = "//h2[span[contains(.,'Highlights')]]//following-sibling::div//div";
 var pullQuotesSelector= "//h2[span[contains(.,'Pull Quotes')]]//following-sibling::div//div";
 var citationsSelector= "//h2[span[contains(.,'Citations')]]//following-sibling::div//div";
@@ -98,9 +98,8 @@ var contentTabUIObj = {
     },
     abovetitleSetValue:function(abovetitlevalue){
         contentTabUIObj.switchToExternalWidget4Frame();
-        browser.waitForVisible(abovetitle,maxWaitTimeInMs);
-        browser.scroll(abovetitle);
-        browser.setValue(abovetitle,abovetitlevalue);
+        browser.waitForVisible(aboveTitleSelector,maxWaitTimeInMs);
+        browser.setValue(aboveTitleSelector,abovetitlevalue);
     },
     contentHeaderGet:function()
     {

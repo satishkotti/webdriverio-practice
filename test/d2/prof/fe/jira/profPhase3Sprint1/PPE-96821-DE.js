@@ -47,7 +47,7 @@ describe('Professional - ProfArticle (Generic) PPE-96821', function () {
         documentListTab.verifyGenericRelations();
     });
 
-    it('Verify Checkout and checkin functionality on Generic Article Template', function(){
+    it('Should be able to Checkout and checkin functionality on Generic Article Template', function(){
         contentTab.checkOut();
         documentListTab.selectAsset(genericObjectName);
         var IsLocked = documentListTab.verifyLock(objName);
@@ -60,16 +60,16 @@ describe('Professional - ProfArticle (Generic) PPE-96821', function () {
         expect(IsCheckInVersionVerified).to.be.true;
     });
 
-    it('Verify Promote functionality on Generic Article template', function () {
+    it('Should be able to promote the Generic Article', function () {
         documentListTab.promoteAsset(objName);
     });
 
-    it('Verify Demote functionality on Generic Generic template', function () {
+    it('Should be able to demote the generic article', function () {
         browser.pause(3000);
         documentListTab.demoteAsset(objName);
     });
 
-    it('Verify Cancel Checkout functionality on Generic Article template', function(){
+    it('Should be able to cancel checkout the generic article', function(){
         browser.pause(3000);
         contentTab.checkOut();
         browser.pause(3000);
@@ -79,16 +79,17 @@ describe('Professional - ProfArticle (Generic) PPE-96821', function () {
     it.skip('Should be able to check availability of Generic article in OTF as a parent', function () {
         browser.pause(3000);        
         otfTab.selectOTFTab();
+ documentListTab.selectAsset(title); 
         otfTab.selectExternalWidget();
         otfTab.verfiyIfElementExists(genericObjectName);
     });
 
-    it('Verify Power Promote functionality on Generic Article template', function () {
+    it('Should be able to power promote the generic article', function () {
         browser.pause(2000);
         documentListTab.powerPromoteAsset(objName);
     });
 
-    it('Verify Expire functionality on Generic Article template', function () {
+    it('Should be able to expire the generic article', function () {
          browser.pause(2000);
         documentListTab.expireAsset(objName);
     });
@@ -100,13 +101,13 @@ describe('Professional - ProfArticle (Generic) PPE-96821', function () {
     });
 
     it('Should be able to delete the article',function(){
-        browser.pause(5000);
+        browser.pause(2000);
         documentListTab.selectAsset(title);
         documentListTab.deleteArticle(cid,global.d2ProfDataSettings.inputData.DeleteAllversions);
         documentListTab.searchArticle(cid,title);
     });
 
-    it('Should be able to publish the article at scheduled time',function(){
+    it.skip('Should be able to publish the article at scheduled time',function(){
         browser.pause(5000);
         console.log("Last Test Case"+ title);
         documentListTab.selectAsset(title);
