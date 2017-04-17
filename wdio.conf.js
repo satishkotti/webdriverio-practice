@@ -17,7 +17,7 @@ module.exports.getSpecs = function()
             break;
             case "d2prof":
                 var config = require('./test/d2/prof/config/config');
-                specList = [ './test/d2/prof/**/*.js' ];
+                specList = [ './test/d2/prof/**/PPE-98897-DE.js' ];
             break;
             case "rt":
                 var config = require('./test/rt/config/config');
