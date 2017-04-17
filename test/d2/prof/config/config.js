@@ -30,7 +30,7 @@ module.exports.testSettings = {
                 },
                 {
                     "id": "3",
-                    "username": "QAPublication1",
+                    "username": "QAAdminEmed",
                     "password": "QA-Doc#1",
                     "type": "user"
                 }
@@ -52,7 +52,7 @@ module.exports.testSettings = {
             "users": [
                 {
                     "id": "1",
-                    "username": "QAPublication",
+                    "username": "QAAdminEmed",
                     "password": "QA-Doc#1",
                     "type": "user"
                 },
@@ -64,7 +64,7 @@ module.exports.testSettings = {
                 },
                 {
                     "id": "3",
-                    "username": "QAPublication1",
+                    "username": "QAAdminEmed",
                     "password": "QA-Doc#1",
                     "type": "user"
                 }
@@ -79,18 +79,30 @@ module.exports.testSettings = {
             "HomePageTitle": "D2"
         },
         "inputData": {
-             "locale":"US",
             "AssetName":"QATestAssethNrnC",
-            "testFolderPath": "webmd/professional_assets/medscape/news/qa_test",
-             "changeFolderPath": "webmd/professional_assets/medscape/news/heartwire/news/200412",
+            "testFolderPath": "webmd/professional_assets/medscape/news",
+            "testFolderPath_de": "webmd_de/professional_assets/medscape/articles/news",
+            "testFolderPath_fr": "webmd_fr/professional_assets/medscape/articles/news",
+            "testFolderPath_sp": "webmd_sp/professional_assets/medscape/articles/news",
+            "testFolderPath_pt": "webmd_pt/professional_assets/medscape/articles/news",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
+            "ProfileOtherName": "US / Other Templates",
+            "ProfileOtherName_de": "DE / Other Templates",
+            "ProfileOtherName_fr": "FR / Other Templates",
+            "ProfileOtherName_sp": "SP / Other Templates",
+            "ProfileOtherName_pt": "PT / Other Templates",
             "ArticleTemplate": 'News Article',
+            "PointerTemplate": "Professional Pointer",
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "NewsArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "ContentType":"News",
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
             "LeadSpecialty": "Cardiology",
+            "InitialVersion": "1.0, CURRENT, WIP",
+            "CheckedInVersion": "1.1, CURRENT, WIP",
+            "DeleteAllversions":"Delete all versions", 
+            "pointerExistingAsset":"pertussis-disease3",
             "ContentDeveloper": "Medscape",
             "newsPropertiesLabels":"object_name-input,title-input,wbmd_legacy_id,wbmd_wdw_ttl-input,wbmd_bus_ref-input,wbmd_lead_concept-input,"+
                                     "wbmd_keywords-input,wbmd_content_fcs,wbmd_desc_meta-input,wbmd_img_thmb-input,wbmd_rel_links_type-input,wbmd_rel_link_lbl-input,wbmd_suppress_search-input,"+
@@ -124,9 +136,7 @@ module.exports.testSettings = {
             "outputVersion":"Output Version",
             "text":"text",
             "transcript":"Transcript",
-            "active":"Active",
-            "searchdata": "860272",
-            "objName":"QATestAssethNrnC",
+            "active":"Active"
         }
     }
 }
