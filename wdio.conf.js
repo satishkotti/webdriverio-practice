@@ -40,7 +40,7 @@ console.log('specs: '+specList);
 exports.config = {
 
     debug: false,
-    maxInstances: 10,
+    maxInstances: 1,
     
     //
     // ==================
@@ -91,7 +91,7 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-    waitforTimeout: 120000,
+    waitforTimeout: 60000,
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as property. Make sure you have
@@ -137,7 +137,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 300000,
+        timeout: 60000
     },
 
     //
@@ -227,23 +227,5 @@ exports.config = {
     // possible to defer the end of the process using a promise.
     onComplete: function() {
         // do something
-    },
-    suites: {
-        pb2Sanity: [
-            './test/pb2/sanity/favorite.js',
-            './test/pb2/sanity/page.js',
-            './test/pb2/sanity/template.js'
-            ],
-        pb2Ui: [
-            './test/pb2/ui/login.js',
-            './test/pb2/ui/navmap.js',
-            './test/pb2/ui/ppe-81340.js'
-            ],
-        rtSanity: [ 
-            './test/rt/sanity/dynamicUrl.js',
-            './test/rt/sanity/homePage.js'
-            ],
-        rtUi:[
-            ],
     }
 };

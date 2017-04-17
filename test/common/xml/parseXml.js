@@ -64,7 +64,7 @@ ParseXml.prototype.getXmlFromUrl = function getXmlFromUrl(url, options,inputType
                     } else
                         reject(err);
                 })
-            }        
+            }     
         } catch (error) {
             console.log('getXmlFromUrl' + error);
             reject(error);
