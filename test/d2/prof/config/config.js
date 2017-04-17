@@ -80,27 +80,31 @@ module.exports.testSettings = {
         },
         "inputData": {
             "AssetName":"QATestAssethNrnC",
-
-            "testFolderPath": "webmd/professional_assets/medscape/news/qa_test",
-
-            "SlideFolderPath": "webmd/professional_assets/medscape/articles/article/2015",
-
+            "testFolderPath": "webmd/professional_assets/medscape/news/qatest",
+            "testFolderPath_de": "webmd_de/professional_assets/medscape/articles/news",
+            "testFolderPath_fr": "webmd_fr/professional_assets/medscape/articles/news",
+            "testFolderPath_sp": "webmd_sp/professional_assets/medscape/articles/news",
+            "testFolderPath_pt": "webmd_pt/professional_assets/medscape/articles/news",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
+            "ProfileOtherName": "US / Other Templates",
+            "ProfileOtherName_de": "DE / Other Templates",
+            "ProfileOtherName_fr": "FR / Other Templates",
+            "ProfileOtherName_sp": "SP / Other Templates",
+            "ProfileOtherName_pt": "PT / Other Templates",
+            "ProfileMeta": "Meta Object",
             "ArticleTemplate": 'News Article',
+            "PointerTemplate": "Professional Pointer",
+            "MediaTemplate": "Professional Media",
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "NewsArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
-
-            
-            "SlideArticleTemplate": "Article Slide Presentation",
-            "SlideArticleObjectName": "QATestSlide" + exports.GenerateRandomString(5),
-            "SlideContentType": "Slide/Lecture Presentation",
-            "InitialVersion": "1.0, CURRENT, WIP",
-            "CheckedInVersion": "1.1, CURRENT, WIP",
-
             "ContentType":"News",
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
             "LeadSpecialty": "Cardiology",
+            "InitialVersion": "1.0, CURRENT, WIP",
+            "CheckedInVersion": "1.1, CURRENT, WIP",
+            "DeleteAllversions":"Delete all versions", 
+            "pointerExistingAsset":"pertussis-disease3",
             "ContentDeveloper": "Medscape",
             "newsPropertiesLabels":"object_name-input,title-input,wbmd_legacy_id,wbmd_wdw_ttl-input,wbmd_bus_ref-input,wbmd_lead_concept-input,"+
                                     "wbmd_keywords-input,wbmd_content_fcs,wbmd_desc_meta-input,wbmd_img_thmb-input,wbmd_rel_links_type-input,wbmd_rel_link_lbl-input,wbmd_suppress_search-input,"+

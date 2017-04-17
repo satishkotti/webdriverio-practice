@@ -1,4 +1,5 @@
 var documentListUI = require('./../ui/documentListTab');
+var pointerRelation =require('./../ui/pointer');
 
 var documentListObj = {
     selectDocumentListTab: function(){
@@ -32,6 +33,9 @@ var documentListObj = {
     powerPromoteAsset: function(assetName){
         documentListUI.powerPromote(assetName);
     },
+    schedulePublishAsset: function(assetName){
+        documentListUI.schedulePublishAsset(assetName);
+    },
     expireAsset: function(assetName){
     documentListUI.expireAsset(assetName);
     },
@@ -43,6 +47,10 @@ var documentListObj = {
         documentListObj.powerPromoteAsset(assetName);
         documentListObj.publishAssetToStaging(assetName);
     },
+    verifyPointerRelation: function(){
+        documentListUI.selectRelationTab();
+         pointerRelation.pointerRelation();
+     },
     verifyVersions: function(version){
         var IsVersionVerified = documentListUI.selectVersionTab(version);
         return IsVersionVerified;
@@ -50,7 +58,10 @@ var documentListObj = {
     verifyLock: function(objName){
         var IsLocked = documentListUI.verifyLock(objName);
         return IsLocked;
-    }
+    },
+    deleteArticle:function(assetName,DeleteVersionType){
+         documentListUI.deleteArticle(assetName,DeleteVersionType);
+     },
 
 }
 module.exports = documentListObj;
