@@ -59,7 +59,7 @@ var contentTabUIObj = {
     
     InputTextSetValue:function(Inputmodule,textvalue){
         
-        
+        contentTabUIObj.switchToExternalWidget3Frame();
         var InputTextSelector="//h2[span[contains(.,'"+Inputmodule+"')]]//following-sibling::div//input";
         browser.waitForVisible(InputTextSelector,maxWaitTimeInMs);
         browser.scroll(InputTextSelector);
@@ -68,11 +68,13 @@ var contentTabUIObj = {
 
     ImageClick:function(Imagemodule){
         
-        
-        var ImageSelector="//h2[span[contains(.,'"+Imagemodule+"')]]//following-sibling::div//div//div//div";
+         
+        contentTabUIObj.switchToExternalWidget3Frame();
+        var ImageSelector= "//h2[span[contains(.,'"+Imagemodule+"')]]//following-sibling::div//div//div//div[@class='column']//button[@ng-click='repoImageSelector()']";
         browser.waitForVisible(ImageSelector,maxWaitTimeInMs);
-        browser.scroll(ImageSelector);
-        browser.click(ImageSelector);
+        browser.moveToObject(ImageSelector);
+        browser.leftClick(ImageSelector);
+        browser.pause(10000);
     },
 
     setImageType: function (moduleType) {
@@ -90,10 +92,11 @@ var contentTabUIObj = {
         browser.pause(5000);
     },
     clickImageSearchResult: function () {
-        browser.click("//div[@class='modal-body']//tr[2]//td[2]");
+        
+        browser.click("div.ng-scope > table >tbody > tr:nth-child(1) >td:nth-child(2) >img ");
         browser.pause(5000);
     },
-    selectModule: function () {
+    selectImage: function () {
         browser.click("//div[@class='modal-footer']//button[contains(string(),'Select')]");
         browser.pause(1000);
     }
