@@ -5,6 +5,9 @@ module.exports = {
         repositoryBrowserPage.selectRepositoryBrowserTab();
     },
     openFolder: function(folderPath){
+
+        repositoryBrowserPage.ExpandContentTab();
+        repositoryBrowserPage.CollapseContentTab();
         repositoryBrowserPage.RepositoryRefresh();
         var folerPathArr = folderPath.split('/');
         var folderLevel = 2;

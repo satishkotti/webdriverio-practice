@@ -1,5 +1,6 @@
 var otfTabUI = require('./../ui/otfTab');
 var contentTabUI = require('./../ui/contentTab');
+var propertiesTabUI = require('./../ui/propertiesTab');
 var maxWaitTimeInMs = 30000;
 
 var otfTabActionObj = {
@@ -104,6 +105,26 @@ var otfTabActionObj = {
          //unable to validate the primary input radio button
          var isPrimarySecondOV = otfTabUI.isPrimarySecondOV();
          console.log("isPrimarySecondOV:"+isPrimarySecondOV);
+    },
+    searchobject:function(objName,locale){
+        otfTabUI.searchObject(objName,locale);
+    },
+    searchForAnAssetThroughOTF:function(searchdata,objName,locale){
+    otfTabUI.searchForAnAssetThroughOTF(searchdata,objName,locale);
+    var objectNameValue = otfTabUI.titleValue();
+    expect(objectNameValue).to.equal(objName);
+    browser.frameParent();
+    propertiesTabUI.propertiesTabSelect();
+    propertiesTabUI.edit();
+    propertiesTabUI.titleSet("_updated");
+    propertiesTabUI.leadSpecialtySet(global.d2ProfDataSettings.inputData.LeadSpecialty);
+    propertiesTabUI.contentDeveloperSet(global.d2ProfDataSettings.inputData.ContentDeveloper);
+    propertiesTabUI.save();
+    contentTabUI.switchToExternalWidget3Frame();
+    otfTabUI.searchForAnAssetThroughOTF(searchdata,"_updated",locale);
+    var objectNameValue = otfTabUI.titleValue();
+    expect(objectNameValue).to.equal("_updated");
+    browser.frameParent();
     }
 }
 
