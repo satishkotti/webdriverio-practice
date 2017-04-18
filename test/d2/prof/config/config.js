@@ -64,7 +64,7 @@ module.exports.testSettings = {
                 },
                 {
                     "id": "3",
-                    "username": "QAPublication1",
+                    "username": "QAAdminEmed",
                     "password": "QA-Doc#1",
                     "type": "user"
                 }
@@ -130,6 +130,14 @@ module.exports.testSettings = {
         },
         "profOutputData": {
             "ProfileName":"US / Other Templates",
+            "DEProfileName":"DE / Other Templates",
+            "FRProfileName":"FR / Other Templates",
+            "PTProfileName":"PT / Other Templates",
+            "SPProfileName":"SP / Other Templates",
+            "DEFolderPath": "webmd_de/professional_assets/medscape/articles/news",
+            "FRFolderPath": "webmd_fr/professional_assets/medscape/articles/news",
+            "PTFolderPath": "webmd_pt/professional_assets/medscape/articles/news",
+            "SPFolderPath": "webmd_sp/professional_assets/medscape/articles/news",
             "ArticleTemplate": 'Professional Output Versions',
             "outputType": "Audio", 
             "introText": "ProfOutput Intro",

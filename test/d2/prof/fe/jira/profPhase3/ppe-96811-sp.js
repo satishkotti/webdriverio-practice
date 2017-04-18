@@ -6,22 +6,22 @@ var documentListTab = require('./../../../common/actions/documentListTab.actions
 var profOutputAction = require('./../../../common/actions/profOutput.actions');
 
 
-describe('Professional Output Verifications - PPE-96811 - US', function () {
+describe('Professional Output Verifications - PPE-96811 - SP', function () {
     before(function () {
         
         Login.login({
         url: functions.getEnvTestUrl(),
-        username: functions.getQAPublicationUser().username,
-        password: functions.getQAPublicationUser().password
+        username: functions.getQAAdminEmedUser().username,
+        password: functions.getQAAdminEmedUser().password
         });
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.profOutputData.SPFolderPath);
     });
 
     var objName;
     var  profOutputObjectname = global.d2ProfDataSettings.inputData.ArticleObjectName;
 
     it('Should verify the navigation and profOutput article creation functionality - PPE-106131', function () {
-        workspaceMenu.createOutputProfContent(global.d2ProfDataSettings.profOutputData.ProfileName,
+        workspaceMenu.createOutputProfContent(global.d2ProfDataSettings.profOutputData.SPProfileName,
                     global.d2ProfDataSettings.profOutputData.ArticleTemplate, 
                     profOutputObjectname, 
                     global.d2ProfDataSettings.profOutputData.outputType);
