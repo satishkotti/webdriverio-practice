@@ -24,7 +24,9 @@ var documentListUIObj = {
         browser.waitForExist("div.x-grid3-hd-inner.x-grid3-hd-object_name.x-component");
     },
     selectItemByName: function (assetName) {
-        browser.waitForVisible("//span[@title='" + assetName + "']",maxWaitTimeInMs);
+
+        browser.pause(1000);
+        browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
     },
@@ -38,19 +40,29 @@ var documentListUIObj = {
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
     },
-    contextualMenuActivate: function(assetName)
-     {
+     contextualMenuActivate: function(assetName){
+        browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
+        browser.moveToObject("//span[@title='" + assetName + "']",0,0);
         browser.rightClick("//span[@title='" + assetName + "']");
+        browser.pause(1000);
         browser.waitForVisible("div.x-menu-list", maxWaitTimeInMs);
     },
     contextualMenuLifeCycleSelect: function()
     {
-        browser.waitForExist("//a[@id='menuContextDocumentLifeCycle']");
-        browser.click("//a[@id='menuContextDocumentLifeCycle']");
+        browser.waitForVisible("#x-menu-el-menuContextDocumentLifeCycle");
+        browser.click("#x-menu-el-menuContextDocumentLifeCycle");
+        browser.pause(1000);
     },
-     lifeCyclePowerPromoteSelect: function(){
-        browser.waitForVisible("//a[text()='Power Promote']", maxWaitTimeInMs);
+    lifeCyclePowerPromoteSelect: function(){
+          browser.waitForVisible("//a[text()='Power Promote']", maxWaitTimeInMs);
+        //browser.waitForExist("//a[text()='Power Promote']");
         browser.click("//a[text()='Power Promote']");
+        browser.pause(1000);
+    },
+    lifeCyclePublishSelect: function(){
+        browser.waitForExist("//a[text()='Publish']");
+        browser.click("//a[text()='Publish']");
+        browser.pause(1000);
     },
     powerPromoteConfirmDialogueOkSelect: function(){
         browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
@@ -61,6 +73,8 @@ var documentListUIObj = {
     powerPromoteResultsDialogueOkSelect: function(assetName){
 
         browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
+
+
         var objName = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(2)");
         var state = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(3)");
         var sysMsg = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(4)");
@@ -68,6 +82,12 @@ var documentListUIObj = {
         expect(state).to.equal(activeStateLbl);
         expect(sysMsg).to.equal(successPublishSysMsg);
         browser.click("button[ng-click='$confirm()']");
+    },
+    publishToStaging: function(assetName){
+        documentListUIObj.contextualMenuActivate(assetName);
+        documentListUIObj.contextualMenuLifeCycleSelect();
+        documentListUIObj.lifeCyclePublishSelect();
+        documentListUIObj.publishToDialogueOkSelect('Staging');
     },
     schedulePublishResultsDialogueOkSelect: function(assetName){
         browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
@@ -258,7 +278,15 @@ lifeCycleExpireSelect: function()
         browser.isExisting("//td[contains(.,'wcm_layout_template')]//following-sibling::td[contains(.,'article_publish') and contains(.,'xsl')]");
         browser.isExisting("//td[contains(.,'wcm_rules_template')]//following-sibling::td[contains(.,'Rule_Professional_for_Article') and contains(.,'xml')]");
         browser.isExisting("//td[contains(.,'wcm_rules_editor')]//following-sibling::td[contains(.,'professional_article_generic') and contains(.,'xml')]");
+    },
+    publishToDialogueOkSelect:function(lifeCycle){
+        if(lifeCycle === ''){
+            lifeCycle = 'Staging'
+        }
+        var selectorExp = "input[value='"+lifeCycle+"']";
+        browser.waitForExist(selectorExp);
+        browser.click(selectorExp);
+        browser.click("div.modal-content > div.modal-footer > button.btn.btn-primary");
     }
 }
-
 module.exports = documentListUIObj;

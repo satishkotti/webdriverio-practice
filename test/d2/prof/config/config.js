@@ -169,8 +169,26 @@ module.exports.testSettings = {
             "LeadSpecialty": "Dermatología",
             "ContentDeveloper": "N/A",
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+        },
+        "profOutputData": {
+            "ProfileName":"US / Other Templates",
+            "DEProfileName":"DE / Other Templates",
+            "FRProfileName":"FR / Other Templates",
+            "PTProfileName":"PT / Other Templates",
+            "SPProfileName":"SP / Other Templates",
+            "DEFolderPath": "webmd_de/professional_assets/medscape/articles/news",
+            "FRFolderPath": "webmd_fr/professional_assets/medscape/articles/news",
+            "PTFolderPath": "webmd_pt/professional_assets/medscape/articles/news",
+            "SPFolderPath": "webmd_sp/professional_assets/medscape/articles/news",
+            "ArticleTemplate": 'Professional Output Versions',
+            "outputType": "Audio", 
+            "introText": "ProfOutput Intro",
+            "contentText": "ProfOutput Content",
+            "publishVersion": "1.1, CURRENT, WIP, Staging, Approved, Live, Active",
+            "defaultDateText": "MM/DD/YYYY HH:MM:SS",
+            "wipVersion": "1.0, CURRENT, WIP",
+            "objType": "wbmd_prof_output"
         }
-
     }
 }
 

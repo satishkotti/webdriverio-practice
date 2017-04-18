@@ -26,6 +26,28 @@ module.exports = {
             title:propertiesTabUI.titileGet()
         };
     },
+    getObjectOutputTypeTab: function(){
+        propertiesTabUI.propertiesOutputTypeTabSelect();
+        return {    
+            objectName: propertiesTabUI.objectNameGet(),
+            title:propertiesTabUI.titileGet(),
+            outputType: propertiesTabUI.outputTypeGet()
+        };
+    },
+    getProfOutputPublishingTab: function(){
+        propertiesTabUI.getProfOutputPublishingTab();
+        return {    
+            sysPublishingDate: propertiesTabUI.sysPublishingDateGet(),
+            expirationDate:propertiesTabUI.expirationDateGet()
+        };
+    },
+    getProfOutputOtherTab: function(){
+        propertiesTabUI.getProfOutputOtherTab();
+        return {    
+            versionLabel: propertiesTabUI.versionLabelGet(),
+            objectType:propertiesTabUI.objectTypeGet()
+        };
+    },
     setRequiredProperties: function(shortTitle,subTitle,superTitle,leadSpecialty,contentDeveloper){
         
         propertiesTabUI.propertiesTabSelect();
