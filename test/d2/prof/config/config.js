@@ -131,7 +131,7 @@ module.exports.testSettings = {
         "profOutputData": {
             "ProfileName":"US / Other Templates",
             "ArticleTemplate": 'Professional Output Versions',
-            "outputType": "Slides/Video", 
+            "outputType": "Audio", 
             "introText": "ProfOutput Intro",
             "contentText": "ProfOutput Content",
             "publishVersion": "1.1, CURRENT, WIP, Staging, Approved, Live, Active",

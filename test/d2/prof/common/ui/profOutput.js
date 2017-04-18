@@ -12,9 +12,9 @@ var profOutputUIObj = {
     profOutputRelation: function(){
          browser.isExisting("//td[contains(.,'wcm_category')]//following-sibling::td[contains(.,'Other')]");
          browser.isExisting("//td[contains(.,'wcm_doc_template')]//following-sibling::td[contains(.,'professional_output_versions') and contains(.,'xml')]");
+         browser.isExisting("//td[contains(.,'wcm_rules_template')]//following-sibling::td[contains(.,'Rule_Professional_for_output_versions') and contains(.,'xml')]");
          browser.isExisting("//td[contains(.,'wcm_layout_template')]//following-sibling::td[contains(.,'output_version_html') and contains(.,'xsl')]");
          browser.isExisting("//td[contains(.,'wcm_rules_editor')]//following-sibling::td[contains(.,'professional_output_versions') and contains(.,'xml')]");
-         browser.isExisting("//td[contains(.,'wcm_rules_template')]//following-sibling::td[contains(.,'Rule_Professional_for_output_versions') and contains(.,'xml')]");
      },
      selectRelationTab: function(version){
         browser.click("//li[@tag_id='Relations-widgetTab']");
