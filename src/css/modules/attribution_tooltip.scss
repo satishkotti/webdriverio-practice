@@ -30,7 +30,14 @@
 @media only screen and (max-width: 767px) {
 	/* STYLES GO HERE */
 	.attrib_right_fmt {
-		display: none;
+		&:not(.no-loe) {
+			display: none;
+		}
+		&.no-loe {
+			text-align: center;
+			border-top: 1px solid #dbdbdb;
+			margin: 0;
+		}
 	}
 }
 /* Smartphones (landscape) ----------- */
