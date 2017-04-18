@@ -79,7 +79,10 @@
 			<xsl:text disable-output-escaping="yes">
 				<![CDATA[require(['tooltips/1/tooltips'], function(tooltip) {
 					var platform = (webmd.useragent.ua.type === 'mobile') ? "mobile" : "core";
-					var $attribLink = $(".attrib_right_fmt a");
+					var $attrib = $(".attrib_right_fmt");
+					var $attribLink = $attrib.find('a');
+					var $loe = $(".ed_disclaimer");
+					
 					if ($attribLink.length) {
 						$attribLink.attr("href", $attribLink.attr("href").replace(/\s/g, ''));
 						$attribLink.webmdTooltip({
@@ -99,6 +102,10 @@
 								}
 							}
 						});
+					}
+					
+					if ((platform === 'mobile') && (!$loe.length)) {
+						$('.breadcrumb').after($attrib.clone(true).addClass('no-loe'));
 					}
 				});]]>
 			</xsl:text>
