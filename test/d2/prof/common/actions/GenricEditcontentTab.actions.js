@@ -3,6 +3,7 @@ var contentTabUI = require('./../ui/GenricEditcontentTab');
 var contentTabObj = {
     
    SetallContentValues: function(data){
+        contentTabUI.switchToExternalWidget3Frame();
         contentTabUI.TitleandTextSetValue("Above Title","AboveTitletext");
         contentTabUI.ImageClick("Title Background Image");
         contentTabObj.selectImageSearch("Heart");
@@ -11,8 +12,8 @@ var contentTabObj = {
         contentTabUI.TitleandTextSetValue("Copyright Holder","CopyrightHoldertext");
         contentTabUI.TitleandTextSetValue("Copyright Statement","CopyrightStatementtext");
         contentTabUI.TitleandTextSetValue("Disclaimer","Disclaimertext");
-        contentTabUI.ImageClick("Grant Attribution");
-        contentTabObj.selectImageSearch("Heart");
+        // contentTabUI.ImageClick("Grant Attribution");
+        // contentTabObj.selectImageSearch("Heart");
         contentTabUI.TitleandTextSetValue("Content Above Contributors","ContentAboveContributorstext");
         contentTabUI.TitleandTextSetValue("Contributor Byline","Contributor Byline text");
         contentTabUI.TitleandTextSetValue("Bulk Contributor Info","Bulk Contributor Info text");
@@ -29,15 +30,14 @@ var contentTabObj = {
         contentTabUI.TitleandTextSetValue("Label","Label text");
         contentTabUI.TitleandTextSetValue("Caption","Caption text");
         contentTabUI.InputTextSetValue("Alt Text","Alt Text");
-        contentTabUI.ImageClick("Full Size Image");
-        contentTabObj.selectImageSearch("Heart");
+       // contentTabUI.ImageClick("Full Size Image");
+        // contentTabObj.selectImageSearch("qa");
         contentTabUI.TitleandTextSetValue("Table","Table text");
-        contentTabUI.TitleandTextSetValue("Reference","Reference text");
+        //contentTabUI.TitleandTextSetValue("Reference","Reference text");
         contentTabUI.TitleandTextSetValue("Back Matter Front Page","Back Matter Front Page  text");
         contentTabUI.TitleandTextSetValue("Glossary","Glossary text");
         contentTabUI.TitleandTextSetValue("Acknowledgements","Acknowledgements text");
-        contentTabUI.TitleandTextSetValue("Back Matter Disclaimer","Back Matter Disclaimer text");
-        contentTabUI.TitleandTextSetValue("Back Matter Disclaimer","Back Matter Disclaimer text");
+        //contentTabUI.TitleandTextSetValue("Back Matter Disclaimer","Back Matter Disclaimer text");
         contentTabUI.TitleandTextSetValue("Funding Info","Funding Info text");
         contentTabUI.TitleandTextSetValue("Reprint Address","Reprint Address text");
 
