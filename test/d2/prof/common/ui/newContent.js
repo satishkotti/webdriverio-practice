@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 20000;
+var maxWaitTimeInMs = 120000;
 
 var newContentObj = module.exports = {
 
@@ -14,6 +14,10 @@ var newContentObj = module.exports = {
     },
     createVideoTextCollection: function(){ 
 
+    },
+    createMediaObject: function(creationProflieName, mediaTemplateName,objectName, objectTitle){ 
+        newContentObj.setProfile(creationProflieName, mediaTemplateName);
+        newContentObj.setMediaObjectName(objectName, objectTitle);
     },
     setProfile: function(profileName, template){
         
@@ -33,6 +37,15 @@ var newContentObj = module.exports = {
         browser.click('//div[@title="'+descName+'"]');
         browser.waitForVisible('//*[@id="next-button"]');
         browser.click('//*[@id="next-button"]');
-        browser.waitForVisible('//span[@title="'+objName+'"]',40000);
+        browser.waitForVisible('//span[@title="'+objName+'"]',maxWaitTimeInMs);
+    },
+    setMediaObjectName: function(objName, objTitle){
+        browser.waitForVisible("#object_name-input")
+        browser.setValue('#object_name-input',objName)
+        browser.waitForVisible("#title-input");
+        browser.setValue('#title-input', objTitle);
+        browser.waitForVisible('//*[@id="next-button"]');
+        browser.click('//*[@id="next-button"]');
+        browser.waitForVisible('//span[@title="'+objTitle+'"]',maxWaitTimeInMs);
     }
 }

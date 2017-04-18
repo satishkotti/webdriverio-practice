@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 30000;
+var maxWaitTimeInMs = 60000;
 var propertiesTabSelector= "//span[text()='Properties']";
 var basicTabSelector="//span[text()='Basic Information']";
 var isExist="";
@@ -53,7 +53,19 @@ module.exports = {
     },
     articleTOCDisplayFormatGet:function(){
          return browser.getValue("#wbmd_toc_display-input");
-    },   
+    },
+    systemPublishingDateSet:function(textValue){
+         browser.setValue("#wbmd_eff_date-input",textValue);
+    },
+    systemPublishingDateGet:function(){
+         return browser.getValue("#wbmd_eff_date-input");
+    },
+    expirationDateSet:function(textValue){
+         return browser.setValue("#wbmd_exp_date-input",textValue);
+    },
+    expirationDateGet:function(){
+         return browser.getValue("#wbmd_exp_date-input");
+    },
     articleTabSelect: function(){
         browser.click("//div[@id='PropertiesDialog']//a//span[contains(text(),'Article')]")
     },
@@ -61,10 +73,10 @@ module.exports = {
         browser.click("//span[text()='Publication']")
     },
     contributorsTabSelect: function(){
-        browser.click("//span[@text()='Contributors']")
+        browser.click("//span[text()='Contributors']")
     },
     publishingTabSelect: function(){
-        browser.click("//span[@text()='Publishing']")
+        browser.click("//span[text()='Publishing']")
     },
     otherTabSelect: function(){
         browser.click("//span[@text()='Other']")
@@ -73,6 +85,11 @@ module.exports = {
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
         browser.click(propertiesTabSelector);
         browser.waitForVisible("#wbmd_legacy_id", maxWaitTimeInMs);
+    },
+    ProfMediaPropertiesTabSelect: function(){
+        browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
+        browser.click(propertiesTabSelector);
+        browser.waitForVisible("#object_name-input", maxWaitTimeInMs);
     },
     propertiesBasicTabSelect: function(){
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
@@ -128,6 +145,25 @@ module.exports = {
         return articleTabpropertieslabels( browser, labelPropertiesArray);
         }
         return isExist;
+    },
+    verifyMandatoryFieldsforProperties: function(){
+        var IsExistLead = browser.isExisting("//span[contains(., 'Lead Specialty')]");
+        var IsExistContent = browser.isExisting("//span[contains(., 'Content Developer')]");
+        var IsExistwarningClass = browser.isExisting("//div[contains(@class,'ext-mb-warning')]");
+        browser.click("//div[@class='x-window-br']//button[contains(.,'OK')]");
+        if(IsExistLead == true && IsExistwarningClass == true && IsExistContent == true)
+            return true;
+        else
+            return false;
+    },
+    verifyProfMediaMandatoryFields: function(){
+        var IsExistMedia = browser.isExisting("//span[contains(., 'Media Format')]");
+        var IsExistwarningClass = browser.isExisting("//div[contains(@class,'ext-mb-warning')]");
+        browser.click("//div[@class='x-window-br']//button[contains(.,'OK')]");
+        if(IsExistMedia == true && IsExistwarningClass == true )
+            return true;
+        else
+            return false;
     }
 }
 

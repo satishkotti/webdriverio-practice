@@ -2,7 +2,8 @@ var maxWaitTimeInMs = 60000;
 
 module.exports = {
     selectRepositoryBrowserTab: function () {
-
+        browser.click("//span[text()='Repository browser']")
+        browser.waitForExist("div.x-tree3-el");
     },
     openFolder: function (nodeName, folderLevel) {
         var folderSelector = "//div[@aria-level='" + folderLevel + "']//span[text()='" + nodeName + "']";
