@@ -33,6 +33,43 @@ var documentListObj = {
         documentListObj.selectAsset(assetName);
         documentListObj.powerPromoteAsset(assetName);
         documentListObj.publishAssetToStaging(assetName);
-    }
+    },
+    verifyVersions: function(version){
+        var IsVersionVerified = documentListUI.selectVersionTab(version);
+        return IsVersionVerified;
+    },
+    verifyPubSectionRelations: function(){
+         documentListUI.verifyPubSectionRelations();
+     },
+     verifyLock: function(objName){
+        var IsLocked = documentListUI.verifyLock(objName);
+        return IsLocked;
+    },
+    promoteAsset: function(assetName){
+        documentListUI.promoteAsset(assetName);
+    },
+    demoteAsset: function(assetName){
+        documentListUI.demoteAsset(assetName);
+    },
+    powerPromoteAsset: function(assetName){
+        documentListUI.powerPromote(assetName);
+    },
+    expireAsset: function(assetName){
+    documentListUI.expireAsset(assetName);
+    },
+    copyArticle:function(data){
+        documentListUI.copyArticle(data);
+    },
+    searchCopyArticle:function(data)
+     {
+         documentListUI.searchCopyArticle(data);
+     },
+     deleteArticle:function(assetName,DeleteVersionType){
+         documentListUI.deleteArticle(assetName,DeleteVersionType);
+     },
+     searchArticle:function(data, title)
+     {
+         documentListUI.searchArticle(data, title);
+     },
 }
 module.exports = documentListObj;

@@ -128,6 +128,28 @@ module.exports = {
         return articleTabpropertieslabels( browser, labelPropertiesArray);
         }
         return isExist;
-    }
+    },
+    clearManadatoryFieldsForPublishSection: function(){
+        browser.clearElement("#object_name-input");
+        browser.clearElement("#title-input");
+    },
+    verifyMandatoryFieldsforPubSectionProp: function(){
+        var IsExistTitle = browser.isExisting("//span[contains(., 'Title')]");
+        var IsExistName = browser.isExisting("//span[contains(., 'Name')]");
+        var IsExistwarningClass = browser.isExisting("//div[contains(@class,'ext-mb-warning')]");
+        browser.click("//div[@class='x-window-br']//button[contains(.,'OK')]");
+        if(IsExistTitle == true && IsExistName == true && IsExistwarningClass == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    },
+    setRequiredPropertiesForPubSection: function(Name, Title){
+        browser.setValue("#object_name-input", Name);
+        browser.setValue("#title-input", Title);
+    },
 }
 

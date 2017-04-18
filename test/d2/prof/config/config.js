@@ -81,17 +81,22 @@ module.exports.testSettings = {
         "inputData": {
              "locale":"US",
             "AssetName":"QATestAssethNrnC",
-            "testFolderPath": "webmd/professional_assets/medscape/news/qa_test",
+            "testFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
              "changeFolderPath": "webmd/professional_assets/medscape/news/heartwire/news/200412",
             "ArticleProfileName": 'News Article Templates',
+            "PublicationProfileName": 'US / Publication Templates',
+            "PublicationSectionTemplate":'Professional Publication Section',
             "ProfileName":"US / Article Templates",
             "ArticleTemplate": 'News Article',
-            "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
+            "ObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "NewsArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "ContentType":"News",
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
             "LeadSpecialty": "Cardiology",
             "ContentDeveloper": "Medscape",
+            "InitialVersion": "1.0, CURRENT, WIP",
+            "CheckedInVersion": "1.1, CURRENT, WIP",
+            "DeleteAllversions":"Delete all versions", 
             "newsPropertiesLabels":"object_name-input,title-input,wbmd_legacy_id,wbmd_wdw_ttl-input,wbmd_bus_ref-input,wbmd_lead_concept-input,"+
                                     "wbmd_keywords-input,wbmd_content_fcs,wbmd_desc_meta-input,wbmd_img_thmb-input,wbmd_rel_links_type-input,wbmd_rel_link_lbl-input,wbmd_suppress_search-input,"+
                                     "wbmd_suppress_link-input,wbmd_suppress_comment-input,wbmd_cont_dev-input,wbmd_toc_display-input,wbmd_bkt_gen_coll_id,wbmd_prim_coll-input,wbmd_supp_ads-input,"+
@@ -127,7 +132,40 @@ module.exports.testSettings = {
             "active":"Active",
             "searchdata": "860272",
             "objName":"QATestAssethNrnC",
-        }
+        },
+        "DEData":{
+            "AssetName":"QADETestPubSection",
+            "testFolderPath": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
+            "PublicationProfileName":"DE / Publication Templates",
+            "LeadSpecialty": "Psychiatrie",
+            "ContentDeveloper": "Partner",
+            "ObjectName": "QADETestPubSection" + exports.GenerateRandomString(5),
+        },
+        "FRData":{
+            "AssetName":"QAFRTestPubSection",
+            "testFolderPath": "webmd_fr/professional_assets/medscape/articles/news/articles/2013/test",
+            "PublicationProfileName":"FR / Publication Templates",
+            "LeadSpecialty": "Cardiologie",
+            "ContentDeveloper": "Partner",
+            "ObjectName": "QAFRTestPubSection" + exports.GenerateRandomString(5),
+        },
+        "PTData":{
+            "AssetName":"QAPTTestPubSection",
+            "testFolderPath": "webmd_pt/professional_assets/medscape/articles/news/articles/2015/test",
+            "PublicationProfileName":"PT / Publication Templates",
+            "LeadSpecialty": "Cardiologia",
+            "ContentDeveloper": "qa_company_cd",
+            "ObjectName": "QAPTTestPubSection" + exports.GenerateRandomString(5),
+        },
+        "SPData":{
+            "AssetName":"QASPTestPubSection",
+            "testFolderPath": "webmd_sp/professional_assets/medscape/articles/news/articles/SP/test",
+            "PublicationProfileName":"SP / Publication Templates",
+            "LeadSpecialty": "Dermatología",
+            "ContentDeveloper": "qa_company_cd",
+            "ObjectName": "QASPTestPubSection" + exports.GenerateRandomString(5),
+        }
+
     }
 }
 

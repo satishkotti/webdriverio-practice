@@ -48,5 +48,22 @@ module.exports = {
          propertiesTabUI.articleTabSelect();
          var articleresult=propertiesTabUI.verifyArticleTabProperties(labelPropertiesArray);
          return articleresult;
-     }
+     },
+     verifyMandatoryFieldsforPubSectionProp:function(){
+         propertiesTabUI.propertiesTabSelect();
+         propertiesTabUI.edit();
+         propertiesTabUI.clearManadatoryFieldsForPublishSection();
+         propertiesTabUI.save();
+         var AlertMessage = propertiesTabUI.verifyMandatoryFieldsforPubSectionProp();
+         return AlertMessage;
+     },
+     cancelEdit: function(){
+         propertiesTabUI.cancelEdit();
+     },
+     setRequiredPropertiesForPubSection: function(Name, Title){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.setRequiredPropertiesForPubSection(Name, Title);
+        propertiesTabUI.save();
+    },
 }
