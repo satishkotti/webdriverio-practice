@@ -6,12 +6,12 @@
 	margin-left: -3px;
 }
 .social-share-tools .plugin-socialshare a.plugin-socialshare-link {
-	margin: 0 10px 0 0;
-	width: 35px;
-	height: 35px;
+	height: 32px;
+	width: 32px;
+	margin: 0 12px 0 0;
 }
 .social-share-tools .plugin-socialshare a.plugin-socialshare-link:before {
-	font-size: 35px;
+	font-size: 32px;
 }
 .social-share-tools .plugin-socialshare a.plugin-socialshare-email {
 	margin-left: 20px;
@@ -20,30 +20,28 @@
 	display: none;
 }
 
-.readspeaker {
-	float: left;
-	padding-top: 2px;
-	display: none;
+.plugin-socialshare {
 
-	a.readspeaker-button {
-		color: #222222 !important;
-		text-decoration:none;
-		font-size: 2.6rem;
+	float: left;
+
+ 	a.plugin-socialshare-link {
+		margin: 0 10px 0 0;
+		width: 35px;
+		height: 35px;
 	}
-	a.readspeaker-button:hover{
-		text-decoration:none;
+	a.plugin-socialshare-link:before {
+		font-size: 35px;
 	}
-/*	.readspeaker_button1 a:after {
-		content: "\e609";
-		font-family: "icons";
-		padding-left: 5px;
-		position: relative;
-		top: 2px;
-		font-size: 2.6rem;
-	}*/
-	.readspeaker-controls {
-		margin: 5px;
-	}
+}
+
+div.rsbtn {
+	float: left;
+	margin-top: 3px;
+}
+.ua_type_mobile .social-share-tools .plugin-socialshare-email,
+.wbmd-toolbar-menu .rsbtn,
+#fed-sharebar-btm .rsbtn {
+	display: none;
 }
 
 // Media Queries
