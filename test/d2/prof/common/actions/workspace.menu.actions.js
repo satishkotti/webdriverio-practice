@@ -13,5 +13,9 @@ module.exports = {
        newContentModal.createNewOutputProfArticle(creationProflieName, articleTemplateName, objectName, descriptionName);
 
 //Add: assert new article is created and added to documentList Tab.
-    }
+    },
+    createMedia: function(creationProflieName, mediaTemplateName,objectName, objectTitle){
+       workspaceMenuUI.selectNewContent();
+       newContentModal.createMediaObject(creationProflieName, mediaTemplateName,objectName, objectTitle);
+     }
 }

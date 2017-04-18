@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 20000;
+var maxWaitTimeInMs = 40000;
 
 var NewMenuOptionSelector = '#menuFileNew';
 var ContentMenuOptionSelector = '#menuFileNewDocument';
