@@ -18,6 +18,18 @@ module.exports = {
     titileGet: function(){
         return browser.getValue("#title-input");
     },
+    mediaNameSet: function(textValue){
+        browser.setValue("input#object_name-input", textValue);
+    },
+    mediaNameGet: function(){
+        return browser.getValue("input#object_name-input");
+    },
+    mediaFormatSet: function(textValue){
+        browser.setValue("input#wbmd_media_type-input", textValue);
+    },
+    mediaFormatGet: function(){
+        return browser.getValue("input#wbmd_media_type-input");
+    },
     shortTitleSet: function(textValue){
         browser.setValue("input#wbmd_wdw_ttl-input", textValue);
     },
@@ -87,6 +99,11 @@ module.exports = {
         browser.click(basicTabSelector);
         browser.waitForVisible("#wbmd_legacy_id", maxWaitTimeInMs);
     },
+     ProfMediaPropertiesTabSelect: function(){
+        browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
+        browser.click(propertiesTabSelector);
+        browser.waitForVisible("#object_name-input", maxWaitTimeInMs);
+    },
     propertiesOtherTabElements: function(){
         browser.isExisting("//label[@for='language_code']");
         browser.isExisting("//label[@for='r_current_state']");
@@ -153,6 +170,15 @@ module.exports = {
         return articleTabpropertieslabels( browser, labelPropertiesArray);
         }
         return isExist;
+    },
+    verifyProfMediaMandatoryFields: function(){
+        var IsExistMedia = browser.isExisting("//span[contains(., 'Media Format')]");
+        var IsExistwarningClass = browser.isExisting("//div[contains(@class,'ext-mb-warning')]");
+        browser.click("//div[@class='x-window-br']//button[contains(.,'OK')]");
+        if(IsExistMedia == true && IsExistwarningClass == true )
+            return true;
+        else
+            return false;
     }
 }
 

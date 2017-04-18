@@ -20,6 +20,20 @@ module.exports = {
             title:propertiesTabUI.titileGet()
         };
     },
+    getMediaObjectName: function(){
+        propertiesTabUI.ProfMediaPropertiesTabSelect();
+        return {
+            mediaName: propertiesTabUI.mediaNameGet(),
+            title:propertiesTabUI.titileGet()
+        };
+    },
+    setRequiredPropertiesForProfMedia: function(mediaFormat){
+        
+        propertiesTabUI.ProfMediaPropertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.mediaFormatSet(mediaFormat);
+        propertiesTabUI.save();
+    },
     setRequiredProperties: function(shortTitle,subTitle,superTitle,leadSpecialty,contentDeveloper){
         
         propertiesTabUI.propertiesTabSelect();

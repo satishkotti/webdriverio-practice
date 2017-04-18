@@ -24,6 +24,18 @@ var documentListObj = {
 //Add logic for pagination if asset not found.
 //Add: assert asset selected is highlighted        
     },
+     selectItemByNamePagination: function (assetName) {
+         documentListUI.selectItemByNamePagination(assetName);
+     },
+    checkoutObject: function(objName){
+        documentListUI.checkoutObject(objName);
+    },
+     checkinObject: function(objName){
+        documentListUI.checkinObject(objName);
+    },
+    cancelCheckOutObject: function(objName){
+        documentListUI.cancelCheckOutObject(objName);
+    },
      promoteAsset: function(assetName){
         documentListUI.promoteAsset(assetName);
     },
@@ -61,6 +73,10 @@ var documentListObj = {
     },
     deleteArticle:function(assetName,DeleteVersionType){
          documentListUI.deleteArticle(assetName,DeleteVersionType);
+     },
+     searchArticle:function(data,title)
+     {
+         documentListUI.searchArticle(data,title);
      },
 
 }

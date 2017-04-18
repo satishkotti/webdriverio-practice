@@ -30,7 +30,7 @@ module.exports.testSettings = {
                 },
                 {
                     "id": "3",
-                    "username": "QAPublication1",
+                    "username": "QAAdminEmed",
                     "password": "QA-Doc#1",
                     "type": "user"
                 }
@@ -64,7 +64,7 @@ module.exports.testSettings = {
                 },
                 {
                     "id": "3",
-                    "username": "QAPublication1",
+                    "username": "QAAdminEmed",
                     "password": "QA-Doc#1",
                     "type": "user"
                 }
@@ -80,11 +80,12 @@ module.exports.testSettings = {
         },
         "inputData": {
             "AssetName":"QATestAssethNrnC",
-            "testFolderPath": "webmd/professional_assets/medscape/news/qatest",
-            "testFolderPath_de": "webmd_de/professional_assets/medscape/articles/news",
-            "testFolderPath_fr": "webmd_fr/professional_assets/medscape/articles/news",
-            "testFolderPath_sp": "webmd_sp/professional_assets/medscape/articles/news",
-            "testFolderPath_pt": "webmd_pt/professional_assets/medscape/articles/news",
+            "MediaName":"QAProfMediaTest",
+            "testFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
+            "testFolderPath_de": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
+            "testFolderPath_fr": "webmd_fr/professional_assets/medscape/articles/news/articles/2013/test",
+            "testFolderPath_sp": "webmd_sp/professional_assets/medscape/articles/news/articles/SP/test",
+            "testFolderPath_pt": "webmd_pt/professional_assets/medscape/articles/news/articles/2015/test",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
             "ProfileOtherName": "US / Other Templates",
@@ -99,6 +100,7 @@ module.exports.testSettings = {
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "NewsArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "ContentType":"News",
+            "MediaFormat":"MP3",
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
             "LeadSpecialty": "Cardiology",
             "InitialVersion": "1.0, CURRENT, WIP",
@@ -139,6 +141,22 @@ module.exports.testSettings = {
             "text":"text",
             "transcript":"Transcript",
             "active":"Active"
+        },
+        "DEData":{
+            "MediaName":"QATestProfMediaTest",
+            "testFolderPath": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
+        },
+        "FRData":{
+            "MediaName":"QATestProfMediaTest",
+            "testFolderPath": "webmd_fr/professional_assets/medscape/articles/news/articles/2013/test",
+        },
+        "PTData":{
+            "MediaName":"QATestProfMediaTest",
+            "testFolderPath": "webmd_pt/professional_assets/medscape/articles/news/articles/2015/test",
+        },
+        "SPData":{
+            "MediaName":"QATestProfMediaTest",
+            "testFolderPath": "webmd_sp/professional_assets/medscape/articles/news/articles/SP/test",
         }
     }
 }

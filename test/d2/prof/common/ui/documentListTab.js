@@ -106,6 +106,31 @@ var documentListUIObj = {
         expect(sysMsg).to.contains(schpublishmsg);
         browser.click("button[ng-click='$confirm()']");        
     },
+    checkoutObject: function (objName) 
+    {
+        documentListUIObj.contextualMenuActivate(objName);
+       browser.waitForVisible("//a[text()='Check Out']",maxWaitTimeInMs);
+       browser.click("//a[text()='Check Out']");
+       browser.pause(2000);
+        
+    },
+     checkinObject: function (objName) 
+    {
+        documentListUIObj.contextualMenuActivate(objName);
+       browser.waitForVisible("#menuContextCheckin",maxWaitTimeInMs);
+       browser.click("#menuContextCheckin");
+       browser.waitForVisible("//*[@id='buttonOk']/tbody/tr[2]/td[2]/em/button",maxWaitTimeInMs);
+       browser.click("//*[@id='buttonOk']/tbody/tr[2]/td[2]/em/button");
+       browser.pause(4000);
+    },
+    cancelCheckOutObject: function (objName) 
+    {
+       documentListUIObj.contextualMenuActivate(objName);
+       browser.waitForVisible("#menuContextCancelCheckout",maxWaitTimeInMs);
+       browser.click("#menuContextCancelCheckout");
+       browser.pause(3000);
+        
+    },
 promoteAsset: function (assetName) 
     {
         documentListUIObj.contextualMenuActivate(assetName);
@@ -148,6 +173,7 @@ lifeCycleExpireSelect: function()
 
     verifyLock: function(objName){
         var LockSelector = "//div[starts-with(@id,'DoclistWidget')]//span[@title='"+objName+"']//preceding-sibling::span[starts-with(@class,'DocListLockByYou')]";
+        browser.waitForVisible(LockSelector,maxWaitTimeInMs);
         var IsLocked = browser.isExisting(LockSelector);
         return IsLocked;
     },
@@ -197,7 +223,40 @@ lifeCycleExpireSelect: function()
     {
         return browser.isVisible('//div[@class=" x3-loading-medium x-component x-abs-layout-container"]');
     },
+    searchTextSetValue:function(searcValue){
+        browser.setValue("#searchText-input-input",searcValue);
+    },
+    loadSearchData:function(){
+        return browser.isVisible('//div[@class="ext-el-mask-msg x3-loading-medium"]');
+    },
+    searchArticle:function(assetName,title){
+        documentListUIObj.searchTextSetValue(assetName);
+        browser.click("//div[@id='searchText-input']//following-sibling::span//img[2]");
+        while (searchresult) {
+        searchresult=documentListUIObj.loadSearchData();
+        }
+        browser.pause(4000);
+        var isexists=browser.isExisting("//div[text()='No items found']");
+        expect(isexists).to.equal(true);
 
+        browser.click("//div[@id='searchText-input']//following-sibling::span//img[1]");
+        searchresult=true;
+        while (searchresult) {
+        searchresult=documentListUIObj.loadSearchData();
+    }
+     browser.waitForVisible("//span[@title='" + title + "']");
+        browser.pause(2000);
+    },
+    selectItemByNamePagination: function (assetName) {
+        var isExisting=browser.isExisting("//span[@title='" + assetName + "']");
+        while (!isExisting) {
+                browser.click("(//table[@id='pagingNext-button']/tbody/tr[2]/td[2]/em/button)[1]");
+                browser.pause(2000);
+                isExisting=browser.isExisting("//span[@title='" + assetName + "']");
+        }
+        browser.click("//span[@title='" + assetName + "']");
+        browser.pause(1000);
+    },
 }
 
 module.exports = documentListUIObj;
