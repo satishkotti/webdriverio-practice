@@ -137,7 +137,7 @@ module.exports.testSettings = {
         },
 
         "DEData":{
-            "AssetName":"QADETestSlideArticle",
+            "AssetName":"QATestDESlideArticle",
             "SlideFolderPath": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
             "ProfileName":"DE / Article Templates",
             "LeadSpecialty": "Psychiatrie",
@@ -145,7 +145,7 @@ module.exports.testSettings = {
             "SlideArticleObjectName": "QADETestSlide" + exports.GenerateRandomString(5),
         },
         "FRData":{
-            "AssetName":"QAFRTestSlideArticle",
+            "AssetName":"QATestFRSlideArticle",
             "SlideFolderPath": "webmd_fr/professional_assets/medscape/articles/news/articles/2013/test",
             "ProfileName":"FR / Article Templates",
             "LeadSpecialty": "Cardiologie",
@@ -153,20 +153,21 @@ module.exports.testSettings = {
             "SlideArticleObjectName": "QAFRTestSlide" + exports.GenerateRandomString(5),
         },
         "PTData":{
-            "AssetName":"QAPTTestSlideArticle",
+            "AssetName":"QATestPTSlideArticle",
             "SlideFolderPath": "webmd_pt/professional_assets/medscape/articles/news/articles/2015/test",
             "ProfileName":"PT / Article Templates",
             "LeadSpecialty": "Cardiologia",
-            "ContentDeveloper": "qa_company_cd",
+            "ContentDeveloper": "N/A",
             "SlideArticleObjectName": "QAPTTestSlide" + exports.GenerateRandomString(5),
         },
         "SPData":{
-            "AssetName":"QASPTestSlideArticle",
+            "AssetName":"TestSlideArticle",
             "SlideFolderPath": "webmd_sp/professional_assets/medscape/articles/news/articles/SP/test",
             "ProfileName":"SP / Article Templates",
             "LeadSpecialty": "Dermatología",
-            "ContentDeveloper": "qa_company_cd",
+            "ContentDeveloper": "N/A",
             "SlideArticleObjectName": "QASPTestSlide" + exports.GenerateRandomString(5),
+            "SlideContentType":"Alertas",
         }
     }
 }

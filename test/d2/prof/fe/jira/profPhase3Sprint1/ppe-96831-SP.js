@@ -32,7 +32,7 @@ describe('Slide Presentation PPE-96831', function () {
         workspaceMenu.createContent(global.d2ProfDataSettings.SPData.ProfileName,
                     global.d2ProfDataSettings.inputData.SlideArticleTemplate, 
                     slideObjectname, 
-                    global.d2ProfDataSettings.inputData.SlideContentType);
+                    global.d2ProfDataSettings.SPData.SlideContentType);
         documentListTab.selectAsset(slideObjectname);
     });
 
@@ -141,7 +141,7 @@ describe('Slide Presentation PPE-96831', function () {
         expect(contentTab.contentHeaderGet()).to.contains("Active");
     });
 
-    it.skip('Should be able to update the existing article',function(){
+    it('Should be able to update the existing article',function(){
         documentListTab.selectItemByNamePagination(d2ProfDataSettings.SPData.AssetName);
         cidName = propertiesTab.getChronicleIdAndName();
         objName = cidName.objectName;

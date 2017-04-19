@@ -141,8 +141,8 @@ describe('Slide Presentation PPE-96831', function () {
         expect(contentTab.contentHeaderGet()).to.contains("Active");
     });
 
-    it.skip('Should be able to update the existing article',function(){
-        documentListTab.selectItemByNamePagination(d2ProfDataSettings.inputData.AssetName);
+    it('Should be able to update the existing article',function(){
+        documentListTab.selectItemByNamePagination(d2ProfDataSettings.DEData.AssetName);
         cidName = propertiesTab.getChronicleIdAndName();
         objName = cidName.objectName;
         title = cidName.title;
