@@ -18,6 +18,7 @@ module.exports = {
     titileGet: function(){
         return browser.getValue("#title-input");
     },
+    //Start  Professional Media Properties Editing
     mediaNameSet: function(textValue){
         browser.setValue("input#object_name-input", textValue);
     },
@@ -30,6 +31,136 @@ module.exports = {
     mediaFormatGet: function(){
         return browser.getValue("input#wbmd_media_type-input");
     },
+
+     mediaLocationSet: function(textValue){
+        browser.setValue("input#wbmd_media_dl_url-input", textValue);
+    },
+    mediaLocationtGet: function(){
+        return browser.getValue("input#wbmd_media_dl_url-input");
+    },
+
+     videoRSSSet: function(textValue){
+        browser.setValue("input#wbmd_vid_rss_media_loc-input", textValue);
+    },
+    videoRSSGet: function(){
+        return browser.getValue("input#wbmd_vid_rss_media_loc-input");
+    },
+
+     audioRSSSet: function(textValue){
+        browser.setValue("input#wbmd_aud_rss_media_loc-input", textValue);
+    },
+    audioRSSGet: function(){
+        return browser.getValue("input#wbmd_aud_rss_media_loc-input");
+    },
+
+     autoPlaySet: function(){
+        browser.click("input#wbmd_autoplay");
+    },
+    autoPlayGet: function(){
+        return browser.getValue("input#wbmd_autoplay");
+    },
+
+     startimgLocSet: function(textValue){
+        browser.setValue("input#wbmd_start_img_loc-input", textValue);
+    },
+    startimgLocGet: function(){
+        return browser.getValue("input#wbmd_start_img_loc-input");
+    },
+
+     endImgLocSet: function(textValue){
+        browser.setValue("input#wbmd_end_img_loc-input", textValue);
+    },
+    endImgLocGet: function(){
+        return browser.getValue("input#wbmd_end_img_loc-input");
+    },
+
+     configLocSet: function(textValue){
+        browser.setValue("input#wbmd_config_loc-input", textValue);
+    },
+    configLocGet: function(){
+        return browser.getValue("input#wbmd_config_loc-input");
+    },
+
+     swfLocSet: function(textValue){
+        browser.setValue("input#wbmd_swf_loc-input", textValue);
+    },
+    swfLocGet: function(){
+        return browser.getValue("input#wbmd_swf_loc-input");
+    },
+
+    durationSet: function(textValue){
+        browser.setValue("input#wbmd_media_duration-input", textValue);
+    },
+    durationGet: function(){
+        return browser.getValue("input#wbmd_media_duration-input");
+    },
+
+    audioDownloadBytesSet: function(textValue){
+        browser.setValue("input#wbmd_file_size-input", textValue);
+    },
+    audioDownloadBytesGet: function(){
+        return browser.getValue("input#wbmd_file_size-input");
+    },
+
+    videoDownloadBytesSet: function(textValue){
+        browser.setValue("input#wbmd_vid_file_size-input", textValue);
+    },
+    videoDownloadBytesGet: function(){
+        return browser.getValue("input#wbmd_vid_file_size-input");
+    },
+
+    widthSet: function(textValue){
+        browser.setValue("input#wbmd_media_width-input", textValue);
+    },
+    widthGet: function(){
+        return browser.getValue("input#wbmd_media_width-input");
+    },
+
+    heightSet: function(textValue){
+        browser.setValue("input#wbmd_media_height-input", textValue);
+    },
+    heightGet: function(){
+        return browser.getValue("input#wbmd_media_height-input");
+    },
+
+    baseFolderSet: function(textValue){
+        browser.setValue("input#wbmd_media_base-input", textValue);
+    },
+    baseFolderGet: function(){
+        return browser.getValue("input#wbmd_media_base-input");
+    },
+    userDescriptionSet: function(textValue){
+        browser.setValue("input#wbmd_desc_user-input", textValue);
+    },
+    userDescriptionGet: function(){
+        return browser.getValue("input#wbmd_desc_user-input");
+    },
+    webmdKeyWordsSet: function(textValue){
+        browser.setValue("input#wbmd_keywords-input", textValue);
+    },
+    webmdKeyWordsGet: function(){
+        return browser.getValue("input#wbmd_keywords-input");
+    },
+    windowTitleSet: function(textValue){
+        browser.setValue("input#wbmd_wdw_ttl-input", textValue);
+    },
+    windowTitleGet: function(){
+        return browser.getValue("input#wbmd_wdw_ttl-input");
+    },
+    publicationSet: function(textValue){
+        browser.setValue("input#wbmd_publ-input", textValue);
+    },
+    publicationGet: function(){
+        return browser.getValue("input#wbmd_publ-input");
+    },
+    externalIDSet: function(textValue){
+        browser.setValue("input#wbmd_ext_id-input", textValue);
+    },
+    externalIDGet: function(){
+        return browser.getValue("input#wbmd_ext_id-input");
+    },
+
+    // End Professional Media Properties Editing
     shortTitleSet: function(textValue){
         browser.setValue("input#wbmd_wdw_ttl-input", textValue);
     },

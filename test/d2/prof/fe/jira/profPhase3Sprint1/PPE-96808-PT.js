@@ -18,6 +18,7 @@ var cidName,objName,title,cid
 title=global.d2ProfDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
 var  ArticleObjectName1= global.d2ProfDataSettings.inputData.ArticleObjectName+ randomstring.generate(2);
 var  title1= ArticleObjectName1+ randomstring.generate(2);
+var inputdata=randomstring.generate(5);
  
 describe('Professional - ProfMedia Meta Template - PPE-96821', function () {
     before(function () {
@@ -45,6 +46,15 @@ describe('Professional - ProfMedia Meta Template - PPE-96821', function () {
         propertiesTab.setRequiredPropertiesForProfMedia(global.d2ProfDataSettings.inputData.MediaFormat);
         var IsInitialVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.InitialVersion);
         expect(IsInitialVersionVerified).to.be.true;
+        expect(ArticleObjectName).to.equal(objName);
+    });
+
+    it('Should be able to save the article when all fields are entered the values', function () {
+        mediaobjdts = propertiesTab.getMediaObjectName();
+        objName = mediaobjdts.mediaName;
+        title = mediaobjdts.title;
+        propertiesTab.setAllPropertiesForProfMedia(global.d2ProfDataSettings.inputData.MediaFormat,inputdata,inputdata,inputdata,inputdata,inputdata,inputdata,
+        inputdata,inputdata,333,444,111,222,inputdata,inputdata,inputdata,inputdata,inputdata);
         expect(ArticleObjectName).to.equal(objName);
     });
     
@@ -83,16 +93,16 @@ describe('Professional - ProfMedia Meta Template - PPE-96821', function () {
     it('Should be able to delete the article',function(){
         browser.pause(5000);
         documentListTab.deleteArticle(objName,global.d2ProfDataSettings.inputData.DeleteAllversions);
-        documentListTab.searchArticle(objName,d2ProfDataSettings.inputData.MediaName);
+        documentListTab.searchArticle(objName,d2ProfDataSettings.PTData.MediaName);
     });
     
      it('Should be able to update the existing article',function(){
-        documentListTab.selectItemByNamePagination(d2ProfDataSettings.inputData.MediaName);
+        documentListTab.selectItemByNamePagination(d2ProfDataSettings.PTData.MediaName);
         mediaobjdts = propertiesTab.getMediaObjectName();
         objName = mediaobjdts.mediaName;
         title = mediaobjdts.title;
         propertiesTab.setRequiredPropertiesForProfMedia(global.d2ProfDataSettings.inputData.MediaFormat);
-        expect(ArticleObjectName).to.equal(objName);
+        expect(d2ProfDataSettings.PTData.MediaName).to.equal(objName);
     });
 
     it.skip('Should be able to publish the article at scheduled time',function(){

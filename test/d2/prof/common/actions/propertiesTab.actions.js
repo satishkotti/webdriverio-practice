@@ -34,6 +34,35 @@ module.exports = {
         propertiesTabUI.mediaFormatSet(mediaFormat);
         propertiesTabUI.save();
     },
+    setAllPropertiesForProfMedia: function(mediaFormat,mediaLocation,videorss,audiorss,startimg,endimage,configfile,swfloc,duration,
+    audiodownload,videodownload,width,height,basefolder,userdesc,keywords,windowtitle,externalid){
+        
+        propertiesTabUI.ProfMediaPropertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.mediaFormatSet(mediaFormat);
+        propertiesTabUI.mediaLocationSet(mediaLocation);
+        propertiesTabUI.videoRSSSet(videorss);
+        propertiesTabUI.audioRSSSet(audiorss);
+        browser.click("//div[@id='wbmd_autoplay']//input");
+        propertiesTabUI.startimgLocSet(startimg);
+        propertiesTabUI.endImgLocSet(endimage);
+        propertiesTabUI.configLocSet(configfile);
+        propertiesTabUI.swfLocSet(swfloc);
+        propertiesTabUI.durationSet(duration);
+        propertiesTabUI.audioDownloadBytesSet(audiodownload);
+        propertiesTabUI.videoDownloadBytesSet(videodownload);
+        propertiesTabUI.widthSet(width);
+        propertiesTabUI.heightSet(height);
+        propertiesTabUI.baseFolderSet(basefolder);
+        propertiesTabUI.userDescriptionSet(userdesc);
+        propertiesTabUI.webmdKeyWordsSet(keywords);
+        propertiesTabUI.windowTitleSet(windowtitle);
+        propertiesTabUI.externalIDSet(externalid);
+        browser.click("//input[@id='wbmd_orig_pub_dt-input']//following-sibling::img");
+        browser.waitForVisible("//button[text()='Today']",maxWaitTimeInMs);
+        browser.click("//button[text()='Today']");
+        propertiesTabUI.save();
+    },
     setRequiredProperties: function(shortTitle,subTitle,superTitle,leadSpecialty,contentDeveloper){
         
         propertiesTabUI.propertiesTabSelect();

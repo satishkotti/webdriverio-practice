@@ -18,6 +18,7 @@ var cidName,objName,title,cid
 title=global.d2ProfDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
 var  ArticleObjectName1= global.d2ProfDataSettings.inputData.ArticleObjectName+ randomstring.generate(2);
 var  title1= ArticleObjectName1+ randomstring.generate(2);
+var inputdata=randomstring.generate(5);
  
 describe('Professional - ProfMedia Meta Template - PPE-96821', function () {
     before(function () {
@@ -45,6 +46,15 @@ describe('Professional - ProfMedia Meta Template - PPE-96821', function () {
         propertiesTab.setRequiredPropertiesForProfMedia(global.d2ProfDataSettings.inputData.MediaFormat);
         var IsInitialVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.InitialVersion);
         expect(IsInitialVersionVerified).to.be.true;
+        expect(ArticleObjectName).to.equal(objName);
+    });
+
+    it('Should be able to save the article when all fields are entered the values', function () {
+        mediaobjdts = propertiesTab.getMediaObjectName();
+        objName = mediaobjdts.mediaName;
+        title = mediaobjdts.title;
+        propertiesTab.setAllPropertiesForProfMedia(global.d2ProfDataSettings.inputData.MediaFormat,inputdata,inputdata,inputdata,inputdata,inputdata,inputdata,
+        inputdata,inputdata,333,444,111,222,inputdata,inputdata,inputdata,inputdata,inputdata);
         expect(ArticleObjectName).to.equal(objName);
     });
     
