@@ -17,8 +17,8 @@ describe('Professional Pointer - PPE-96847', function () {
     before(function () {
         Login.login({
             url: functions.getEnvTestUrl(),
-            username: functions.getQAPublicationUser().username,
-            password: functions.getQAPublicationUser().password
+          username: functions.getQAAdminEmedUser().username,
+          password: functions.getQAAdminEmedUser().password
         });
         browser.pause(2000);
         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);

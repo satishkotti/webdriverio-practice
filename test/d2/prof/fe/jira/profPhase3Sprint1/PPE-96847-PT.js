@@ -21,7 +21,6 @@ describe('Professional Pointer - PPE-96847', function () {
            password: functions.getQAAdminEmedUser().password
         });
         browser.pause(2000);
-        repositoryBrowserTab.repositorybrowserRefresh();
         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath_pt);
         AssetName = global.d2ProfDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         AssetTitle = global.d2ProfDataSettings.inputData.ArticleObjectName + randomstring.generate(2);

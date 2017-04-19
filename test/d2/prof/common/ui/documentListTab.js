@@ -162,9 +162,6 @@ lifeCycleExpireSelect: function()
         expect(IssysMsgExist).to.be.true;
         browser.click("//div[@class='modal-dialog prompt validate']//div//button");
     },
-
-
-
     expireAsset: function (assetName)
     {
             documentListUIObj.contextualMenuActivate(assetName);

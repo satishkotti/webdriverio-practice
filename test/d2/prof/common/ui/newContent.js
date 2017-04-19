@@ -67,7 +67,7 @@ var newContentObj = module.exports = {
         browser.click('//div[@title="'+descName+'"]');
         browser.waitForVisible('//*[@id="next-button"]');
         browser.click('//*[@id="next-button"]');
-        browser.waitForVisible('//span[@title="'+objName+'"]',40000);
+        browser.waitForVisible('//span[@title="'+objName+'"]',maxWaitTimeInMs);
     },
     setPointerObjectName: function(objName, objTitle){
         browser.waitForVisible("#object_name-input")
@@ -76,6 +76,6 @@ var newContentObj = module.exports = {
         browser.setValue('#title-input', objTitle);
         browser.waitForVisible('//*[@id="next-button"]');
         browser.click('//*[@id="next-button"]');
-        browser.waitForVisible('//span[@title="'+objTitle+'"]',40000);
+        browser.waitForVisible('//span[@title="'+objTitle+'"]',maxWaitTimeInMs);
     }
 }
