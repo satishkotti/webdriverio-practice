@@ -23,7 +23,12 @@ var documentListObj = {
 //Add logic for pagination if asset not found.
 //Add: assert asset selected is highlighted        
     },
-     promoteAsset: function(assetName){
+
+     selectItemByNamePagination: function (assetName) {
+         documentListUI.selectItemByNamePagination(assetName);
+     },
+    promoteAsset: function(assetName){
+
         documentListUI.promoteAsset(assetName);
     },
     demoteAsset: function(assetName){
@@ -32,8 +37,16 @@ var documentListObj = {
     powerPromoteAsset: function(assetName){
         documentListUI.powerPromote(assetName);
     },
+
+    schedulePublishAsset: function(assetName){
+        documentListUI.schedulePublishAsset(assetName);
+    },
     expireAsset: function(assetName){
-    documentListUI.expireAsset(assetName);
+        documentListUI.expireAsset(assetName);
+    },
+    scheduleExpireAsset: function(assetName){
+        documentListUI.scheduleExpireAsset(assetName);
+
     },
     publishAssetToStaging: function(assetName){
         documentListUI.publishToStaging(assetName);
@@ -51,16 +64,19 @@ var documentListObj = {
         var IsLocked = documentListUI.verifyLock(objName);
         return IsLocked;
     },
-    deleteArticle:function(assetName,DeleteVersionType){
+
+     deleteArticle:function(assetName,DeleteVersionType){
          documentListUI.deleteArticle(assetName,DeleteVersionType);
      },
-     searchArticle:function(data, title)
+     searchArticle:function(data,title)
      {
-         documentListUI.searchArticle(data, title);
+         documentListUI.searchArticle(data,title);
+
      },
     copyArticle:function(data){
         documentListUI.copyArticle(data);
     },
+
     searchCopyArticle:function(data)
      {
          documentListUI.searchCopyArticle(data);
@@ -74,7 +90,6 @@ var documentListObj = {
     selectItemByNamePagination: function (assetName) {
          documentListUI.selectItemByNamePagination(assetName);
      },
-
 
 }
 module.exports = documentListObj;

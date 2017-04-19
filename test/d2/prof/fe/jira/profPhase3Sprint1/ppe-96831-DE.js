@@ -10,7 +10,7 @@ var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
 var contentTab = require('./../../../common/actions/contentTab.actions');
 var otfTab = require('./../../../common/actions/otfTab.actions');
 var moment = require('moment-timezone');
-var slideObjectname= global.d2ProfDataSettings.DEData.SlideArticleObjectName;
+var slideObjectname= global.d2ProfDataSettings.SDEData.SlideArticleObjectName;
 
 describe('Slide Presentation PPE-96831', function () {
 
@@ -28,8 +28,8 @@ describe('Slide Presentation PPE-96831', function () {
         username: functions.getQAAdminEmedUser().username,
         password: functions.getQAAdminEmedUser().password
     });
-         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.DEData.SlideFolderPath);
-        workspaceMenu.createContent(global.d2ProfDataSettings.DEData.ProfileName,
+         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.SDEData.SlideFolderPath);
+        workspaceMenu.createContent(global.d2ProfDataSettings.SDEData.ProfileName,
                     global.d2ProfDataSettings.inputData.SlideArticleTemplate, 
                     slideObjectname, 
                     global.d2ProfDataSettings.inputData.SlideContentType);
@@ -47,8 +47,8 @@ describe('Slide Presentation PPE-96831', function () {
         objName = cidName.objectName;
         title = cidName.title;
         cid=cidName.chronicleId;
-        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.DEData.LeadSpecialty,
-                    global.d2ProfDataSettings.DEData.ContentDeveloper);
+        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.SDEData.LeadSpecialty,
+                    global.d2ProfDataSettings.SDEData.ContentDeveloper);
         documentListTab.selectAsset(slideObjectname);
         var IsInitialVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.InitialVersion);
         expect(IsInitialVersionVerified).to.be.true;
@@ -136,27 +136,27 @@ describe('Slide Presentation PPE-96831', function () {
         expect(status).to.contains("Approved");
         browser.pause(300000);
         browser.refresh();
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.DEData.SlideFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.SDEData.SlideFolderPath);
         documentListTab.selectAsset(title);
         expect(contentTab.contentHeaderGet()).to.contains("Active");
     });
 
     it('Should be able to update the existing article',function(){
-        documentListTab.selectItemByNamePagination(d2ProfDataSettings.DEData.AssetName);
+        documentListTab.selectItemByNamePagination(d2ProfDataSettings.SDEData.AssetName);
         cidName = propertiesTab.getChronicleIdAndName();
         objName = cidName.objectName;
         title = cidName.title;
         cid=cidName.chronicleId;
-        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.DEData.LeadSpecialty,
-        global.d2ProfDataSettings.DEData.ContentDeveloper);
+        propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.SDEData.LeadSpecialty,
+        global.d2ProfDataSettings.SDEData.ContentDeveloper);
         contentTab.updateContent("Sample Text");
-        expect(d2ProfDataSettings.DEData.AssetName).to.equal(title);
+        expect(d2ProfDataSettings.SDEData.AssetName).to.equal(title);
    });
 
     it.skip('Should verify the article scheduled expire status',function(){
         browser.pause(540000);
         browser.refresh();
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.DEData.SlideFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.SDEData.SlideFolderPath);
         documentListTab.selectAsset(title);
         expect(contentTab.contentHeaderGet()).to.contains("Expire");
     });

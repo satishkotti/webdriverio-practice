@@ -23,6 +23,7 @@
     "gulp-webdriver": "1.0.3",
     "lodash": "^4.17.2",
     "mocha": "^3.0.2",
+    "moment-timezone": "^0.5.13",
     "mssql": "3.3.0",
     "q": "1.4.1",
     "randomstring": "^1.1.5",

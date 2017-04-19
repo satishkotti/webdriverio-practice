@@ -81,12 +81,22 @@ module.exports.testSettings = {
             "HomePageTitle": "D2"
         },
         "inputData": {
-            "AssetName": "QATestSlideArticle", //"QATestAssethNrnC",
+
+            "SlideAssetName": "QATestSlideArticle", //"QATestAssethNrnC",
             "testFolderPath": "webmd/professional_assets/medscape/news/heartwire/news/200005",
-             "SlideFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
+            "SlideFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
+            "locale":"US",
+            "AssetName":"QATestAssethNrnC",
+            "testFolderPath": "webmd/professional_assets/medscape/news/qa_test",
+             "changeFolderPath": "webmd/professional_assets/medscape/news/heartwire/news/200412",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
+            "OthersProfileName":"US / Other Templates",
+            "OtherTypes":"Professional Media",
             "ArticleTemplate": 'News Article',
+            "GenericTemplate":"Article Generic",
+            "ProfMediaTemplate":"Article Generic",
+            "GenericContType":"News",
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "NewsArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
 
@@ -97,10 +107,16 @@ module.exports.testSettings = {
             "InitialVersion": "1.0, CURRENT, WIP",
             "CheckedInVersion": "1.1, CURRENT, WIP",
             "DeleteAllversions":"Delete all versions",    
+            "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+
             "ContentType":"News",
+            "InitialVersion": "1.0, CURRENT, WIP",
+            "CheckedInVersion": "1.1, CURRENT, WIP",
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
             "LeadSpecialty": "Cardiology",
             "ContentDeveloper": "Medscape",
+            "Deleteselectedversion":"Delete selected version only",
+            "DeleteAllversions":"Delete all versions",
             "newsPropertiesLabels":"object_name-input,title-input,wbmd_legacy_id,wbmd_wdw_ttl-input,wbmd_bus_ref-input,wbmd_lead_concept-input,"+
                                     "wbmd_keywords-input,wbmd_content_fcs,wbmd_desc_meta-input,wbmd_img_thmb-input,wbmd_rel_links_type-input,wbmd_rel_link_lbl-input,wbmd_suppress_search-input,"+
                                     "wbmd_suppress_link-input,wbmd_suppress_comment-input,wbmd_cont_dev-input,wbmd_toc_display-input,wbmd_bkt_gen_coll_id,wbmd_prim_coll-input,wbmd_supp_ads-input,"+
@@ -115,9 +131,6 @@ module.exports.testSettings = {
                         "wbmd_prim_coll-input,wbmd_site-input,wbmd_site_only-input,wbmd_locale,wbmd_proj_id-input,wbmd_supprtr,wbmd_ad_override-input,wbmd_supp_ads-input,wbmd_supp_rec_ads-input,"+
                         "wbmd_disp_cite-input,wbmd_discuss_brd_ohcp-input,wbmd_discuss_brd_md-input,wbmd_discuss_brd_nrs-input,wbmd_revw_dt-input,wbmd_pub_dt-input,wbmd_tgt_cntry,wbmd_supp_print-input,"+
                         "wbmd_supp_mobile-input,wbmd_gated-input,wbmd_ext_id-input,wbmd_supp_prog_lnk-input"               
-
-            
-             
         },
         "otfData": {
             "objectType":"Object Type",
@@ -132,11 +145,13 @@ module.exports.testSettings = {
             "wip":"WIP",
             "outputVersion":"Output Version",
             "text":"text",
-            "transcript":"Transcript",
-            "active":"Active"
+
+             "active":"Active",
+	        "searchdata": "860272",
+            "objName":"QATestAssethNrnC"
         },
 
-        "DEData":{
+        "SDEData":{
             "AssetName":"QATestDESlideArticle",
             "SlideFolderPath": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
             "ProfileName":"DE / Article Templates",
@@ -144,7 +159,7 @@ module.exports.testSettings = {
             "ContentDeveloper": "Partner",
             "SlideArticleObjectName": "QADETestSlide" + exports.GenerateRandomString(5),
         },
-        "FRData":{
+        "SFRData":{
             "AssetName":"QATestFRSlideArticle",
             "SlideFolderPath": "webmd_fr/professional_assets/medscape/articles/news/articles/2013/test",
             "ProfileName":"FR / Article Templates",
@@ -152,7 +167,7 @@ module.exports.testSettings = {
             "ContentDeveloper": "Partner",
             "SlideArticleObjectName": "QAFRTestSlide" + exports.GenerateRandomString(5),
         },
-        "PTData":{
+        "SPTData":{
             "AssetName":"QATestPTSlideArticle",
             "SlideFolderPath": "webmd_pt/professional_assets/medscape/articles/news/articles/2015/test",
             "ProfileName":"PT / Article Templates",
@@ -160,7 +175,7 @@ module.exports.testSettings = {
             "ContentDeveloper": "N/A",
             "SlideArticleObjectName": "QAPTTestSlide" + exports.GenerateRandomString(5),
         },
-        "SPData":{
+        "SSPData":{
             "AssetName":"TestSlideArticle",
             "SlideFolderPath": "webmd_sp/professional_assets/medscape/articles/news/articles/SP/test",
             "ProfileName":"SP / Article Templates",
@@ -168,7 +183,63 @@ module.exports.testSettings = {
             "ContentDeveloper": "N/A",
             "SlideArticleObjectName": "QASPTestSlide" + exports.GenerateRandomString(5),
             "SlideContentType":"Alertas",
-        }
+        },
+
+           
+      
+        "DEData":{
+            "AssetName":"QAGenericcJ3l0",
+            "testFolderPath": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
+            "ProfileName":"DE / Article Templates",
+            "LeadSpecialty": "Psychiatrie",
+            "ContentDeveloper": "Partner",
+            "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+        },
+        "FRData":{
+            "AssetName":"QAGenericCr91r",
+            "testFolderPath": "webmd_fr/professional_assets/medscape/articles/news/articles/2013/test",
+            "ProfileName":"FR / Article Templates",
+            "LeadSpecialty": "Cardiologie",
+            "ContentDeveloper": "Partner",
+            "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+        },
+        "PTData":{
+            "AssetName":"QAGenericbKotU",
+            "testFolderPath": "webmd_pt/professional_assets/medscape/articles/news/articles/2015/test",
+            "ProfileName":"PT / Article Templates",
+            "LeadSpecialty": "Cardiologia",
+            "ContentDeveloper": "N/A",
+            "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+        },
+        "SPData":{
+            "AssetName":"QAGenericj4Rxk",
+            "GenericContType":"Alertas",
+            "testFolderPath": "webmd_sp/professional_assets/medscape/articles/news/articles/SP/test",
+            "ProfileName":"SP / Article Templates",
+            "LeadSpecialty": "Dermatología",
+            "ContentDeveloper": "N/A",
+            "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+        },
+        "profOutputData": {
+            "ProfileName":"US / Other Templates",
+            "DEProfileName":"DE / Other Templates",
+            "FRProfileName":"FR / Other Templates",
+            "PTProfileName":"PT / Other Templates",
+            "SPProfileName":"SP / Other Templates",
+            "DEFolderPath": "webmd_de/professional_assets/medscape/articles/news",
+            "FRFolderPath": "webmd_fr/professional_assets/medscape/articles/news",
+            "PTFolderPath": "webmd_pt/professional_assets/medscape/articles/news",
+            "SPFolderPath": "webmd_sp/professional_assets/medscape/articles/news",
+            "ArticleTemplate": 'Professional Output Versions',
+            "outputType": "Audio", 
+            "introText": "ProfOutput Intro",
+            "contentText": "ProfOutput Content",
+            "publishVersion": "1.1, CURRENT, WIP, Staging, Approved, Live, Active",
+            "defaultDateText": "MM/DD/YYYY HH:MM:SS",
+            "wipVersion": "1.0, CURRENT, WIP",
+            "objType": "wbmd_prof_output"
+        }
+
     }
 }
 
