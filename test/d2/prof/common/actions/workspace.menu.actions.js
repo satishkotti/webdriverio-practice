@@ -17,5 +17,10 @@ module.exports = {
     createMedia: function(creationProflieName, mediaTemplateName,objectName, objectTitle){
        workspaceMenuUI.selectNewContent();
        newContentModal.createMediaObject(creationProflieName, mediaTemplateName,objectName, objectTitle);
-     }
+     },
+    createPublicationSubsection: function(creationProflieName, articleTemplateName, objectName){
+        workspaceMenuUI.selectNewContent();
+        newContentModal.createPublicationSubsection(creationProflieName, articleTemplateName, objectName);
+
+    }
 }

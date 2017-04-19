@@ -12,5 +12,9 @@ module.exports = {
      createMediaObject: function(creationProflieName, mediaTemplateName,objectName, objectTitle){
        
        newContentUI.createMediaObject(creationProflieName, mediaTemplateName,objectName, objectTitle);
+    },
+    createPublicationSubsection: function(creationProflieName, articleTemplateName, objectName){
+       
+       newContentUI.createPublicationSubsection(creationProflieName, articleTemplateName, objectName);
     }
 }

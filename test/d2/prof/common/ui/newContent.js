@@ -64,5 +64,18 @@ var newContentObj = module.exports = {
         browser.waitForVisible('//*[@id="next-button"]');
         browser.click('//*[@id="next-button"]');
         browser.waitForVisible('//span[@title="'+objName+'"]',40000);
+    },
+        setPublicationSubsectionTitle: function(objName){
+        browser.waitForVisible("#title-input");
+        browser.setValue('#title-input', objName);
+        browser.waitForVisible('//*[@id="next-button"]');
+        browser.click('//*[@id="next-button"]');
+        browser.waitForVisible('//span[@title="'+objName+'"]',maxWaitTimeInMs);
+    },
+
+    createPublicationSubsection: function(creationProflieName, articleTemplateName, objectName){
+
+        newContentObj.setProfile(creationProflieName, articleTemplateName);
+        newContentObj.setPublicationSubsectionTitle(objectName);
     }
 }
