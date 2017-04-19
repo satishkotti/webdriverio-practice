@@ -1,13 +1,13 @@
-var functions = require('./../../common/functions/functions');
-var Login = require('./../../common/actions/login.actions');
-var repositoryBrowserTab = require('./../../common/actions/repositoryBrowserTab.actions');
-var workspaceMenu = require('./../../common/actions/workspace.menu.actions');
-var documentListTab = require('./../../common/actions/documentListTab.actions');
-var contentTab = require('./../../common/actions/contentTab.actions');
-var propertiesTab = require('./../../common/actions/propertiesTab.actions');
-var findTab = require('./../../common/actions/findTab.actions');
+var functions = require('./../../../common/functions/functions');
+var Login = require('./../../../common/actions/login.actions');
+var repositoryBrowserTab = require('./../../../common/actions/repositoryBrowserTab.actions');
+var workspaceMenu = require('./../../../common/actions/workspace.menu.actions');
+var documentListTab = require('./../../../common/actions/documentListTab.actions');
+var contentTab = require('./../../../common/actions/contentTab.actions');
+var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
+var findTab = require('./../../../common/actions/findTab.actions');
 var randomstring = require("randomstring");
-var pointerContent = require('./../../common/actions/pointer.actions');
+var pointerContent = require('./../../../common/actions/pointer.actions');
 var moment =require('moment-timezone');
 
 describe('Professional Pointer - PPE-96847', function () {
@@ -17,10 +17,10 @@ describe('Professional Pointer - PPE-96847', function () {
     before(function () {
         Login.login({
             url: functions.getEnvTestUrl(),
-            username: functions.getQAPublicationUser().username,
-            password: functions.getQAPublicationUser().password
+           username: functions.getQAAdminEmedUser().username,
+          password: functions.getQAAdminEmedUser().password
         });
-        repositoryBrowserTab.repositorybrowserRefresh();
+        browser.pause(2000);
         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath_de);
         AssetName = global.d2ProfDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         AssetTitle = global.d2ProfDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
@@ -83,6 +83,13 @@ describe('Professional Pointer - PPE-96847', function () {
         documentListTab.expireAsset(AssetName);
     });
 
+    
+    it('Verify the data dictionary validations on Pointer  PPE-106408 ', function () {
+        documentListTab.selectAsset(AssetTitle);
+        pointerContent.propertiesFieldsValidation();
+        pointerContent.contentHeaderValidationPointer();
+    });
+    
     it('Verify Delete functionality on Pointer PPE-106404 ', function () {
          documentListTab.selectAsset(AssetName);
          contentTab.checkOut();
@@ -90,18 +97,13 @@ describe('Professional Pointer - PPE-96847', function () {
         documentListTab.deleteArticle(AssetName, global.d2ProfDataSettings.inputData.DeleteAllversions);
         findTab.searchTextDeleteValidation(AssetName);
     });
-    
-    it.skip('Verify the data dictionary validations on Pointer  PPE-106408 ', function () {
-        documentListTab.selectAsset(AssetTitle);
-        pointerContent.propertiesFieldsValidation();
-        pointerContent.contentHeaderValidationPointer();
-    });
      it.skip('Verify editing of an existing Pointer PPE-106409', function () {
-         findTab.searchText(global.d2ProfDataSettings.inputData.pointerExistingAsset);
+        findTab.searchText(global.d2ProfDataSettings.inputData.pointerExistingAsset);
          documentListTab.selectAsset(global.d2ProfDataSettings.inputData.pointerExistingAsset);
-         //contentTab.checkOut();
-         //contentTab.cancel();
-         //contentTab.checkOut();
+         contentTab.checkOut();
+         contentTab.cancel();
+         contentTab.checkOut();
+         contentTab.checkIn();
          propertiesTab.updatePointerProperties();
     });
 

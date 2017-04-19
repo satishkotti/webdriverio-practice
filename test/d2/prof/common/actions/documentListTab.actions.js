@@ -24,7 +24,11 @@ var documentListObj = {
 //Add logic for pagination if asset not found.
 //Add: assert asset selected is highlighted        
     },
-     promoteAsset: function(assetName){
+
+     selectItemByNamePagination: function (assetName) {
+         documentListUI.selectItemByNamePagination(assetName);
+     },
+    promoteAsset: function(assetName){
         documentListUI.promoteAsset(assetName);
     },
     demoteAsset: function(assetName){
@@ -39,6 +43,9 @@ var documentListObj = {
     expireAsset: function(assetName){
     documentListUI.expireAsset(assetName);
     },
+    scheduleExpireAsset: function(assetName){
+        documentListUI.scheduleExpireAsset(assetName);
+    },
     publishAssetToStaging: function(assetName){
         documentListUI.publishToStaging(assetName);
     },
@@ -51,6 +58,7 @@ var documentListObj = {
         documentListUI.selectRelationTab();
          pointerRelation.pointerRelation();
      },
+
     verifyVersions: function(version){
         var IsVersionVerified = documentListUI.selectVersionTab(version);
         return IsVersionVerified;
@@ -63,5 +71,22 @@ var documentListObj = {
          documentListUI.deleteArticle(assetName,DeleteVersionType);
      },
 
+     deleteArticle:function(assetName,DeleteVersionType){
+         documentListUI.deleteArticle(assetName,DeleteVersionType);
+     },
+     searchArticle:function(data,title)
+     {
+         documentListUI.searchArticle(data,title);
+     },
+    copyArticle:function(data){
+        documentListUI.copyArticle(data);
+    },
+     searchCopyArticle:function(data)
+     {
+         documentListUI.searchCopyArticle(data);
+     },
+     verifyGenericRelations: function(){
+         documentListUI.verifyGenericRelations();
+     }
 }
 module.exports = documentListObj;
