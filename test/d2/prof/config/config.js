@@ -30,7 +30,7 @@ module.exports.testSettings = {
                 },
                 {
                     "id": "3",
-                    "username": "QAPublication1",
+                    "username": "QAAdminEmed",
                     "password": "QA-Doc#1",
                     "type": "user"
                 }
@@ -64,7 +64,7 @@ module.exports.testSettings = {
                 },
                 {
                     "id": "3",
-                    "username": "QAPublication1",
+                    "username": "QAAdminEmed",
                     "password": "QA-Doc#1",
                     "type": "user"
                 }
@@ -154,7 +154,7 @@ module.exports.testSettings = {
             "testFolderPath": "webmd_pt/professional_assets/medscape/articles/news/articles/2015/test",
             "PublicationProfileName":"PT / Publication Templates",
             "LeadSpecialty": "Cardiologia",
-            "ContentDeveloper": "qa_company_cd",
+            "ContentDeveloper": "N/A",
             "ObjectName": "QAPTTestPubSection" + exports.GenerateRandomString(5),
         },
         "SPData":{
@@ -162,7 +162,7 @@ module.exports.testSettings = {
             "testFolderPath": "webmd_sp/professional_assets/medscape/articles/news/articles/SP/test",
             "PublicationProfileName":"SP / Publication Templates",
             "LeadSpecialty": "Dermatología",
-            "ContentDeveloper": "qa_company_cd",
+            "ContentDeveloper": "N/A",
             "ObjectName": "QASPTestPubSection" + exports.GenerateRandomString(5),
         }
 

@@ -20,8 +20,8 @@ var newContentObj = module.exports = {
         browser.waitForVisible("#creationProfileChooser-input");
         browser.click('#creationProfileChooser-input');
         browser.leftClick('//div[@title="'+profileName+'"]');
-        browser.waitForVisible("//label[contains(text(), 'US Publication Types:')]//following::img", maxWaitTimeInMs)
-        browser.leftClick("//label[contains(text(), 'US Publication Types:')]//following::img");
+        browser.waitForVisible("//div[starts-with(@id,'combo')]");
+        browser.leftClick("//div[starts-with(@id,'combo')]");
         browser.click('//div[@title="'+template+'"]');
         browser.click('//*[@id="next-button"]');
     },

@@ -11,6 +11,7 @@ var contentPaneFrameSelector= "iframe[id*='oam_id==ExternalWidget-2!!oam_target_
 var externalWidget3Selector= "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
 var externalWidget4Selector= "iframe[id*='oam_id==ExternalWidget-4!!oam_target_type==ExternalWidget']";
 var cancelButonSelector= "//button[contains(string(),'Cancel')]";
+var PubSectionTitleSelector = "//h2[span[contains(.,'Title')]]//following-sibling::div//div[@role='textbox']";
 
 var contentTabUIObj = {
     
@@ -114,7 +115,14 @@ var contentTabUIObj = {
         browser.moveToObject("(//a[@title='Insert Module'])["+sectionIndex+"]");
         browser.click("(//a[@title='Insert Module'])["+sectionIndex+"]");
         browser.pause(5000);
-    }
+    },
+    
+    abovetitleSetValue:function(abovetitlevalue){
+        contentTabUIObj.switchToExternalWidget4Frame();
+        browser.waitForVisible(PubSectionTitleSelector,maxWaitTimeInMs);
+        browser.setValue(PubSectionTitleSelector,abovetitlevalue);
+    },
+    
 }
 
 module.exports = contentTabUIObj;

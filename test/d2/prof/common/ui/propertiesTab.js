@@ -130,7 +130,9 @@ module.exports = {
         return isExist;
     },
     clearManadatoryFieldsForPublishSection: function(){
-        browser.clearElement("#object_name-input");
+        //browser.waitForVisible("#object_name-input", maxWaitTimeInMs);
+        //browser.clearElement("#object_name-input");
+        browser.waitForVisible("#title-input", maxWaitTimeInMs);
         browser.clearElement("#title-input");
     },
     verifyMandatoryFieldsforPubSectionProp: function(){
@@ -148,7 +150,7 @@ module.exports = {
         }
     },
     setRequiredPropertiesForPubSection: function(Name, Title){
-        browser.setValue("#object_name-input", Name);
+        //browser.setValue("#object_name-input", Name);
         browser.setValue("#title-input", Title);
     },
 }

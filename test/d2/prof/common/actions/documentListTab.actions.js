@@ -71,5 +71,8 @@ var documentListObj = {
      {
          documentListUI.searchArticle(data, title);
      },
+     selectItemByNamePagination: function (assetName) {
+         documentListUI.selectItemByNamePagination(assetName);
+     },
 }
 module.exports = documentListObj;

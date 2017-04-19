@@ -228,6 +228,16 @@ var documentListUIObj = {
         browser.waitForVisible("//span[@title='" + title + "']");
         browser.pause(2000);
     },
+    selectItemByNamePagination: function (assetName) {
+        var isExisting=browser.isExisting("//span[@title='" + assetName + "']");
+        while (!isExisting) {
+                browser.click("(//table[@id='pagingNext-button']/tbody/tr[2]/td[2]/em/button)[1]");
+                browser.pause(2000);
+                isExisting=browser.isExisting("//span[@title='" + assetName + "']");
+        }
+        browser.click("//span[@title='" + assetName + "']");
+        browser.pause(1000);
+    },
 }
 
 module.exports = documentListUIObj;

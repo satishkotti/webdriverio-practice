@@ -12,7 +12,7 @@ var otfTab = require('./../../../common/actions/otfTab.actions');
 var moment = require('moment-timezone');
 var Objectname= global.d2ProfDataSettings.inputData.ObjectName;
 
-describe('Slide Presentation PPE-96831', function () {
+describe('Publication Section PPE-96852', function () {
 
      var cidName;
      var objName;
@@ -107,48 +107,15 @@ describe('Slide Presentation PPE-96831', function () {
         documentListTab.searchArticle(cid,title);
     });
 
-//     it('Should be able to publish the article at scheduled time',function(){
-//         browser.pause(5000);
-//         console.log("Last Test Case"+ title);
-//         documentListTab.selectAsset(title);
-//         var schpublishtime  = moment.tz('America/New_York').format('YYYY-MM-DD HH:mm:ss');
-//         schpublishtime = moment(schpublishtime);
-//         schpublishtime=moment(schpublishtime, "DD MMM YYYY HH:mm:ss")
-//         .add(00, 'seconds')
-//         .add(05, 'minutes').format('DD MMM YYYY HH:mm:ss');
-//         expdate=moment(schpublishtime, "DD MMM YYYY HH:mm:ss")
-//         .add(00, 'seconds')
-//         .add(06, 'minutes').format('DD MMM YYYY HH:mm:ss'); 
-//         propertiesTab.setRequiredPropertiesforPublish(schpublishtime,expdate);
-//         documentListTab.schedulePublishAsset(title);
-//         browser.pause(3000);
-//         var status=contentTab.contentHeaderGet();
-//         expect(status).to.contains("Approved");
-//         browser.pause(300000);
-//         browser.refresh();
-//         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.SlideFolderPath);
-//         documentListTab.selectAsset(title);
-//         expect(contentTab.contentHeaderGet()).to.contains("Active");
-//     });
-
-//     it.skip('Should be able to update the existing article',function(){
-//         documentListTab.selectItemByNamePagination(d2ProfDataSettings.inputData.AssetName);
-//         cidName = propertiesTab.getChronicleIdAndName();
-//         objName = cidName.objectName;
-//         title = cidName.title;
-//         cid=cidName.chronicleId;
-//         propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
-//         global.d2ProfDataSettings.inputData.ContentDeveloper);
-//         contentTab.updateContent("Sample Text");
-//         expect(d2ProfDataSettings.inputData.AssetName).to.equal(title);
-//    });
-
-//     it.skip('Should verify the article scheduled expire status',function(){
-//         browser.pause(540000);
-//         browser.refresh();
-//         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.SlideFolderPath);
-//         documentListTab.selectAsset(title);
-//         expect(contentTab.contentHeaderGet()).to.contains("Expire");
-//     });
+    it('Should be able to update the existing article',function(){
+        documentListTab.selectItemByNamePagination(d2ProfDataSettings.inputData.AssetName);
+        cidName = propertiesTab.getChronicleIdAndName();
+        objName = cidName.objectName;
+        title = cidName.title;
+        cid=cidName.chronicleId;
+        propertiesTab.setRequiredPropertiesForPubSection(objName, title);
+        contentTab.updateContent("Sample Text");
+        expect(d2ProfDataSettings.inputData.AssetName).to.equal(title);
+   });
 
 });

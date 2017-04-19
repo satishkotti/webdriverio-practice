@@ -12,7 +12,7 @@ var otfTab = require('./../../../common/actions/otfTab.actions');
 var moment = require('moment-timezone');
 var Objectname= global.d2ProfDataSettings.DEData.ObjectName;
 
-describe('Slide Presentation PPE-96831', function () {
+describe('Publication Section PPE-96852', function () {
 
      var cidName;
      var objName;
@@ -25,8 +25,8 @@ describe('Slide Presentation PPE-96831', function () {
         });   
         Login.login({
         url: functions.getEnvTestUrl(),
-        username: functions.getQAPublicationUser().username,
-        password: functions.getQAPublicationUser().password
+        username: functions.getQAAdminEmedUser().username,
+        password: functions.getQAAdminEmedUser().password
     });
          repositoryBrowserTab.openFolder(global.d2ProfDataSettings.DEData.testFolderPath);
         workspaceMenu.createContent(global.d2ProfDataSettings.DEData.PublicationProfileName,
@@ -55,50 +55,7 @@ describe('Slide Presentation PPE-96831', function () {
         
     });
     
-    it('Should be able to Checkout and checkin functionality on Publication Section', function(){
-        contentTab.checkOut();
-        documentListTab.selectAsset(Objectname);
-        var IsLocked = documentListTab.verifyLock(objName);
-        expect(IsLocked).to.be.true;
-        var IsInitialVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.InitialVersion);
-        expect(IsInitialVersionVerified).to.be.true;
-        contentTab.checkIn();
-        var IsCheckInVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.CheckedInVersion);
-        expect(IsCheckInVersionVerified).to.be.true;
-    });
-
-     it('Should be able to Promote functionality on Publication Section', function () {
-        documentListTab.promoteAsset(objName);
-        browser.pause(3000);
-    });
-
-     it('Should be able to Demote functionality on Slide Article template', function () {
-        documentListTab.demoteAsset(objName);
-        browser.pause(3000);
-    });
-
-    it('Should be able to Cancel Checkout functionality on Slide Article template', function(){
-        contentTab.checkOut();
-        browser.pause(3000);
-        contentTab.cancel();
-    });
-
-     it('Should be able to Power Promote functionality on Slide Article template', function () {
-         browser.pause(3000);
-        documentListTab.powerPromoteAsset(objName);
-    });
-
-    it('Should be able to copy the slide article',function(){
-        browser.pause(3000);
-        documentListTab.copyArticle(title);
-        documentListTab.searchCopyArticle(title);
-    });
-
-     it('Should be able to Expire functionality on Slide Article template', function () {
-         documentListTab.selectAsset(cid);
-        documentListTab.expireAsset(cid);
-        browser.pause(3000);
-    });
+    searchArticle
 
     it('Should be able to delete the article',function(){
         documentListTab.selectAsset(title);
@@ -106,49 +63,15 @@ describe('Slide Presentation PPE-96831', function () {
         documentListTab.deleteArticle(cid,global.d2ProfDataSettings.inputData.DeleteAllversions);
         documentListTab.searchArticle(cid,title);
     });
-
-//     it('Should be able to publish the article at scheduled time',function(){
-//         browser.pause(5000);
-//         console.log("Last Test Case"+ title);
-//         documentListTab.selectAsset(title);
-//         var schpublishtime  = moment.tz('America/New_York').format('YYYY-MM-DD HH:mm:ss');
-//         schpublishtime = moment(schpublishtime);
-//         schpublishtime=moment(schpublishtime, "DD MMM YYYY HH:mm:ss")
-//         .add(00, 'seconds')
-//         .add(05, 'minutes').format('DD MMM YYYY HH:mm:ss');
-//         expdate=moment(schpublishtime, "DD MMM YYYY HH:mm:ss")
-//         .add(00, 'seconds')
-//         .add(06, 'minutes').format('DD MMM YYYY HH:mm:ss'); 
-//         propertiesTab.setRequiredPropertiesforPublish(schpublishtime,expdate);
-//         documentListTab.schedulePublishAsset(title);
-//         browser.pause(3000);
-//         var status=contentTab.contentHeaderGet();
-//         expect(status).to.contains("Approved");
-//         browser.pause(300000);
-//         browser.refresh();
-//         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.SlideFolderPath);
-//         documentListTab.selectAsset(title);
-//         expect(contentTab.contentHeaderGet()).to.contains("Active");
-//     });
-
-//     it.skip('Should be able to update the existing article',function(){
-//         documentListTab.selectItemByNamePagination(d2ProfDataSettings.inputData.AssetName);
-//         cidName = propertiesTab.getChronicleIdAndName();
-//         objName = cidName.objectName;
-//         title = cidName.title;
-//         cid=cidName.chronicleId;
-//         propertiesTab.setRequiredProperties(objName,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
-//         global.d2ProfDataSettings.inputData.ContentDeveloper);
-//         contentTab.updateContent("Sample Text");
-//         expect(d2ProfDataSettings.inputData.AssetName).to.equal(title);
-//    });
-
-//     it.skip('Should verify the article scheduled expire status',function(){
-//         browser.pause(540000);
-//         browser.refresh();
-//         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.SlideFolderPath);
-//         documentListTab.selectAsset(title);
-//         expect(contentTab.contentHeaderGet()).to.contains("Expire");
-//     });
+    it('Should be able to update the existing article',function(){
+        documentListTab.selectItemByNamePagination(d2ProfDataSettings.DEData.AssetName);
+        cidName = propertiesTab.getChronicleIdAndName();
+        objName = cidName.objectName;
+        title = cidName.title;
+        cid=cidName.chronicleId;
+        propertiesTab.setRequiredPropertiesForPubSection(objName, title);
+        contentTab.updateContent("Sample Text");
+        expect(d2ProfDataSettings.DEData.AssetName).to.equal(title);
+   });
 
 });
