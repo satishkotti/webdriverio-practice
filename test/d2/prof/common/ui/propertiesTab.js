@@ -84,20 +84,20 @@ module.exports = {
          return browser.getValue("#wbmd_exp_date-input");
     },
     articleTabSelect: function(){
-        browser.click("//div[@id='PropertiesDialog']//a//span[contains(text(),'Article')]")
+        browser.click("//div[@id='PropertiesDialog']//a//span[contains(text(),'Article')]");
     },
     publicationTabSelect: function(){
-        browser.click("//span[text()='Publication']")
+        browser.click("//span[text()='Publication']");
     },
     contributorsTabSelect: function(){
-        browser.click("//span[text()='Contributors']")
+        browser.click("//span[text()='Contributors']");
     },
     publishingTabSelect: function(){
-        browser.click("//span//span[contains(.,'Publishing')]")
+        browser.click("//span//span[contains(.,'Publishing')]");
     },
     otherTabSelect: function(){
         browser.pause(2000);
-        browser.click("//span//span[contains(.,'Other')]")
+        browser.click("//span//span[contains(.,'Other')]");
     },
     propertiesTabSelect: function(){
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);

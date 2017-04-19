@@ -70,8 +70,8 @@ var newContentObj = module.exports = {
         browser.waitForVisible('//span[@title="'+objName+'"]',maxWaitTimeInMs);
     },
     setPointerObjectName: function(objName, objTitle){
-        browser.waitForVisible("#object_name-input")
-        browser.setValue('#object_name-input',objName)
+        browser.waitForVisible("#object_name-input");
+        browser.setValue('#object_name-input',objName);
         browser.waitForVisible("#title-input");
         browser.setValue('#title-input', objTitle);
         browser.waitForVisible('//*[@id="next-button"]');

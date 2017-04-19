@@ -51,5 +51,5 @@ module.exports = {
             browser.click("//div[@id='x-menu-el-toggleViewWidget-menuItem']//span[text()='Collapse']");
             browser.pause(5000);
         }
-    },
+    }
 }
