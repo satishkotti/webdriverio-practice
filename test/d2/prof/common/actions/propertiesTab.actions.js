@@ -49,6 +49,7 @@ module.exports = {
       updatePointerProperties:function(){
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
+        browser.pause(1000);
         pointerPropertiestabUI.pointerTitleupdate();
         propertiesTabUI.save();
      },

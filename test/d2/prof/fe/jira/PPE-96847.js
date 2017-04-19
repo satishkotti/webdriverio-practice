@@ -20,6 +20,7 @@ describe('Professional Pointer - PPE-96847', function () {
             username: functions.getQAPublicationUser().username,
             password: functions.getQAPublicationUser().password
         });
+        browser.pause(2000);
         repositoryBrowserTab.repositorybrowserRefresh();
         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
         AssetName = global.d2ProfDataSettings.inputData.ArticleDescription + randomstring.generate(2);
@@ -34,22 +35,22 @@ describe('Professional Pointer - PPE-96847', function () {
 
     });
 
-    it('Verify Pointer creation with only mandatory fields- PPE-106397', function () {
+    it.skip('Verify Pointer creation with only mandatory fields- PPE-106397', function () {
         documentListTab.selectAsset(AssetTitle);
 
     });
-    it('Verify the messages when mandatory fields are left blank for Pointer-PPE-106396', function () {
+    it.skip('Verify the messages when mandatory fields are left blank for Pointer-PPE-106396', function () {
         documentListTab.selectAsset(AssetTitle);
         propertiesTab.verifyPointerProperties();
 
     });
-    it('Verify the relation for the pointer asset- PPE-106456', function () {
+    it.skip('Verify the relation for the pointer asset- PPE-106456', function () {
         documentListTab.selectAsset(AssetTitle);
         documentListTab.verifyPointerRelation();
 
     });
 
-    it('Verify Checkout and checkin functionality on Pointer Template-PPE-106405,Verify Pointer creation with all fields-PPE-106405', function () {
+    it.skip('Verify Checkout and checkin functionality on Pointer Template-PPE-106405,Verify Pointer creation with all fields-PPE-106405', function () {
         contentTab.checkOut();
         pointerContent.contentFieldsPointer(AssetName)
         documentListTab.selectAsset(AssetTitle);
@@ -62,28 +63,28 @@ describe('Professional Pointer - PPE-96847', function () {
         expect(IsCheckInVersionVerified).to.be.true;
     });
 
-    it('Verify Promote functionality on Pointer Template-PPE-106400', function () {
+    it.skip('Verify Promote functionality on Pointer Template-PPE-106400', function () {
         documentListTab.promoteAsset(AssetName);
     });
 
-    it('Verify Demote functionality on Pointer Template PPE-106403 ', function () {
+    it.skip('Verify Demote functionality on Pointer Template PPE-106403 ', function () {
         documentListTab.demoteAsset(AssetName);
     });
 
-    it('Verify Cancel Checkout functionality on Pointer Template PPE-106399 ', function () {
+    it.skip('Verify Cancel Checkout functionality on Pointer Template PPE-106399 ', function () {
         contentTab.checkOut();
         contentTab.cancel();
     });
 
-    it('Verify Power Promote functionality on Pointer Template PPE-106401', function () {
+    it.skip('Verify Power Promote functionality on Pointer Template PPE-106401', function () {
         documentListTab.powerPromoteAsset(AssetName);
     });
 
-    it('Verify Expire functionality on Pointer Template PPE-106402', function () {
+    it.skip('Verify Expire functionality on Pointer Template PPE-106402', function () {
         documentListTab.expireAsset(AssetName);
     });
 
-    it('Verify Delete functionality on Pointer PPE-106404 ', function () {
+    it.skip('Verify Delete functionality on Pointer PPE-106404 ', function () {
          documentListTab.selectAsset(AssetName);
          contentTab.checkOut();
          contentTab.checkIn();
@@ -91,17 +92,18 @@ describe('Professional Pointer - PPE-96847', function () {
         findTab.searchTextDeleteValidation(AssetName);
     });
     
-    it.skip('Verify the data dictionary validations on Pointer  PPE-106408 ', function () {
+    it('Verify the data dictionary validations on Pointer  PPE-106408 ', function () {
         documentListTab.selectAsset(AssetTitle);
         pointerContent.propertiesFieldsValidation();
         pointerContent.contentHeaderValidationPointer();
     });
-     it.skip('Verify editing of an existing Pointer PPE-106409', function () {
+     it('Verify editing of an existing Pointer PPE-106409', function () {
          findTab.searchText(global.d2ProfDataSettings.inputData.pointerExistingAsset);
          documentListTab.selectAsset(global.d2ProfDataSettings.inputData.pointerExistingAsset);
-         //contentTab.checkOut();
-         //contentTab.cancel();
-         //contentTab.checkOut();
+         contentTab.checkOut();
+         contentTab.cancel();
+         contentTab.checkOut();
+         contentTab.checkIn();
          propertiesTab.updatePointerProperties();
     });
 

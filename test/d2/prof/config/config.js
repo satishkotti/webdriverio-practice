@@ -80,7 +80,7 @@ module.exports.testSettings = {
         },
         "inputData": {
             "AssetName":"QATestAssethNrnC",
-            "testFolderPath": "webmd/professional_assets/medscape/news/qatest",
+            "testFolderPath": "webmd/professional_assets/medscape/news",
             "testFolderPath_de": "webmd_de/professional_assets/medscape/articles/news",
             "testFolderPath_fr": "webmd_fr/professional_assets/medscape/articles/news",
             "testFolderPath_sp": "webmd_sp/professional_assets/medscape/articles/news",
@@ -102,7 +102,7 @@ module.exports.testSettings = {
             "InitialVersion": "1.0, CURRENT, WIP",
             "CheckedInVersion": "1.1, CURRENT, WIP",
             "DeleteAllversions":"Delete all versions", 
-            "pointerExistingAsset":"pertussis-disease3",
+            "pointerExistingAsset":"ca-evolving-anticoagulation",
             "ContentDeveloper": "Medscape",
             "newsPropertiesLabels":"object_name-input,title-input,wbmd_legacy_id,wbmd_wdw_ttl-input,wbmd_bus_ref-input,wbmd_lead_concept-input,"+
                                     "wbmd_keywords-input,wbmd_content_fcs,wbmd_desc_meta-input,wbmd_img_thmb-input,wbmd_rel_links_type-input,wbmd_rel_link_lbl-input,wbmd_suppress_search-input,"+
