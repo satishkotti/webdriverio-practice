@@ -1,10 +1,10 @@
-var functions = require('./../../common/functions/functions');
-var Login = require('./../../common/actions/login.actions');
-var repositoryBrowserTab = require('./../../common/actions/repositoryBrowserTab.actions');
-var workspaceMenu = require('./../../common/actions/workspace.menu.actions');
-var documentListTab = require('./../../common/actions/documentListTab.actions');
-var propertiesTab = require('./../../common/actions/propertiesTab.actions');
-var otfTab = require('./../../common/actions/otfTab.actions');
+var functions = require('./../../../common/functions/functions');
+var Login = require('./../../../common/actions/login.actions');
+var repositoryBrowserTab = require('./../../../common/actions/repositoryBrowserTab.actions');
+var workspaceMenu = require('./../../../common/actions/workspace.menu.actions');
+var documentListTab = require('./../../../common/actions/documentListTab.actions');
+var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
+var otfTab = require('./../../../common/actions/otfTab.actions');
 var randomstring = require("randomstring");
 
 
