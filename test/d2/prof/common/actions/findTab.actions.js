@@ -15,5 +15,7 @@ module.exports = {
         findTabUI.switchToExternalWidget0Frame();
         findTabUI.Searchtext(AssetName);
         browser.frameParent();
+        browser.pause(5000);
+
     }
 }

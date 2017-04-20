@@ -84,7 +84,8 @@ exports.config = {
                 "disable-default-apps",
                 "disable-extensions",
                 "no-experiments",
-                "no-service-autorun"
+                "no-service-autorun",
+                "disable-infobars"
                 ],
 			"prefs":{
 				"credentials_enable_service": false,
@@ -116,6 +117,7 @@ exports.config = {
     //
     // Default timeout for all waitForXXX commands.
     waitforTimeout: 999999999,
+
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as property. Make sure you have
@@ -162,6 +164,7 @@ exports.config = {
     mochaOpts: {
         ui: 'bdd',
         timeout: 999999999
+
     },
 
     //

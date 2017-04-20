@@ -43,11 +43,21 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.relatedLinksSetValue(data);
         contentTabObj.mModuleckEditorMenuClick(5);
-    }  ,
-      contentHeaderGet:function()
-    {
-        return contentTabUI.contentHeaderGet();
-    }  
+    },
+     abovetitleSetValue: function(data){
+        //contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.abovetitleSetValue(data);
+    },
+    updateContent:function(data)    {
+        contentTabObj.checkOut();
+        contentTabObj.abovetitleSetValue(data);
+        contentTabUI.checkIn();
+    },
+     contentHeaderGet:function()
+    {
+        return contentTabUI.contentHeaderGet();
+    }
+
 }
 
 module.exports = contentTabObj;
