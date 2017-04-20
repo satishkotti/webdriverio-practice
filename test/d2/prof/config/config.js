@@ -49,7 +49,7 @@ module.exports.testSettings = {
             "url": "http://dmd201d-prf-08.portal.webmd.com:8080/D2/#d2"
         },
         "d2prof": {
-            "url": "http://d2.qa01.webmdprofessional.com/D2/#d2",
+            "url": "http://dmd211q-prf-08.portal.webmd.com:8080/D2/#d2",
             "environment":"qa01",
             "users": [
                 {
@@ -110,6 +110,7 @@ module.exports.testSettings = {
             "NewsArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
             "ContentType":"News",
+            "ContentType_SP":"Alertas",
             "InitialVersion": "1.0, CURRENT, WIP",
             "CheckedInVersion": "1.1, CURRENT, WIP",
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
