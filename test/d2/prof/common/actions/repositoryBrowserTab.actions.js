@@ -20,5 +20,8 @@ module.exports = {
                     folderLevel = folderLevel + 1;
                 }
             } while(folerPathArr && folerPathArr.length > 0)
+    },
+    refreshRepositoryBrowserTab: function(){
+        repositoryBrowserPage.refreshRepositoryBrowserTab();
     }
 }

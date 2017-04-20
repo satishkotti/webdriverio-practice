@@ -81,6 +81,9 @@ module.exports.testSettings = {
             "HomePageTitle": "D2"
         },
         "inputData": {
+            "SlideAssetName": "QATestSlideArticle", //"QATestAssethNrnC",
+            "SlideFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
+            "locale":"US",
             "AssetName":"QATestAssethNrnC",
             "testFolderPath": "webmd/professional_assets/medscape/news",
             "testFolderPath_de": "webmd_de/professional_assets/medscape/articles/news",
@@ -108,7 +111,16 @@ module.exports.testSettings = {
             "GenericContType":"News",
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "NewsArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
+
+            
+            "SlideArticleTemplate": "Article Slide Presentation",
+            "SlideArticleObjectName": "QATestSlide" + exports.GenerateRandomString(5),
+            "SlideContentType": "News",
+            "InitialVersion": "1.0, CURRENT, WIP",
+            "CheckedInVersion": "1.1, CURRENT, WIP",
+            "DeleteAllversions":"Delete all versions",    
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+
             "ContentType":"News",
             "ContentType_SP":"Alertas",
             "InitialVersion": "1.0, CURRENT, WIP",
@@ -150,11 +162,48 @@ module.exports.testSettings = {
             "wip":"WIP",
             "outputVersion":"Output Version",
             "text":"text",
-            "transcript":"Transcript",
-            "active":"Active",
-	    "searchdata": "860272",
+
+             "active":"Active",
+	        "searchdata": "860272",
             "objName":"QATestAssethNrnC"
         },
+
+        "SDEData":{
+            "AssetName":"QATestDESlideArticle",
+            "SlideFolderPath": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
+            "ProfileName":"DE / Article Templates",
+            "LeadSpecialty": "Psychiatrie",
+            "ContentDeveloper": "Partner",
+            "SlideArticleObjectName": "QADETestSlide" + exports.GenerateRandomString(5),
+        },
+        "SFRData":{
+            "AssetName":"QATestFRSlideArticle",
+            "SlideFolderPath": "webmd_fr/professional_assets/medscape/articles/news/articles/2013/test",
+            "ProfileName":"FR / Article Templates",
+            "LeadSpecialty": "Cardiologie",
+            "ContentDeveloper": "Partner",
+            "SlideArticleObjectName": "QAFRTestSlide" + exports.GenerateRandomString(5),
+        },
+        "SPTData":{
+            "AssetName":"QATestPTSlideArticle",
+            "SlideFolderPath": "webmd_pt/professional_assets/medscape/articles/news/articles/2015/test",
+            "ProfileName":"PT / Article Templates",
+            "LeadSpecialty": "Cardiologia",
+            "ContentDeveloper": "N/A",
+            "SlideArticleObjectName": "QAPTTestSlide" + exports.GenerateRandomString(5),
+        },
+        "SSPData":{
+            "AssetName":"TestSlideArticle",
+            "SlideFolderPath": "webmd_sp/professional_assets/medscape/articles/news/articles/SP/test",
+            "ProfileName":"SP / Article Templates",
+            "LeadSpecialty": "Dermatología",
+            "ContentDeveloper": "N/A",
+            "SlideArticleObjectName": "QASPTestSlide" + exports.GenerateRandomString(5),
+            "SlideContentType":"Alertas",
+        },
+
+           
+      
         "DEData":{
             "AssetName":"QAGenericcJ3l0",
             "testFolderPath": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
@@ -207,6 +256,7 @@ module.exports.testSettings = {
             "wipVersion": "1.0, CURRENT, WIP",
             "objType": "wbmd_prof_output"
         }
+
     }
 }
 

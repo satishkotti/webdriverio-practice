@@ -30,5 +30,7 @@ module.exports = {
     },  
     getQAAdminEmedUser: function(){
         return global.envSettings.d2prof.users[2];
+
     }
+
 }

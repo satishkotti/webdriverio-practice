@@ -28,6 +28,7 @@ var documentListObj = {
          documentListUI.selectItemByNamePagination(assetName);
      },
     promoteAsset: function(assetName){
+
         documentListUI.promoteAsset(assetName);
     },
     demoteAsset: function(assetName){
@@ -36,6 +37,7 @@ var documentListObj = {
     powerPromoteAsset: function(assetName){
         documentListUI.powerPromote(assetName);
     },
+
     schedulePublishAsset: function(assetName){
         documentListUI.schedulePublishAsset(assetName);
     },
@@ -44,6 +46,7 @@ var documentListObj = {
     },
     scheduleExpireAsset: function(assetName){
         documentListUI.scheduleExpireAsset(assetName);
+
     },
     publishAssetToStaging: function(assetName){
         documentListUI.publishToStaging(assetName);
@@ -68,22 +71,28 @@ var documentListObj = {
     deleteArticle:function(assetName,DeleteVersionType){
          documentListUI.deleteArticle(assetName,DeleteVersionType);
      },
-     deleteArticle:function(assetName,DeleteVersionType){
-         documentListUI.deleteArticle(assetName,DeleteVersionType);
-     },
      searchArticle:function(data,title)
      {
          documentListUI.searchArticle(data,title);
+
      },
     copyArticle:function(data){
         documentListUI.copyArticle(data);
     },
-     searchCopyArticle:function(data)
+
+    searchCopyArticle:function(data)
      {
          documentListUI.searchCopyArticle(data);
      },
-     verifyGenericRelations: function(){
-         documentListUI.verifyGenericRelations();
-     }
+     verifySlideRelations: function(){
+         documentListUI.verifySlideRelations();
+     },
+     schedulePublishAsset: function(assetName){
+        documentListUI.schedulePublishAsset(assetName);
+    },
+    selectItemByNamePagination: function (assetName) {
+         documentListUI.selectItemByNamePagination(assetName);
+     },
+
 }
 module.exports = documentListObj;
