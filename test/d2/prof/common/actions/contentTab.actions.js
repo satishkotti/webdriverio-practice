@@ -45,7 +45,13 @@ var contentTabObj = {
         contentTabObj.mModuleckEditorMenuClick(5);
 
     },
-     abovetitleSetValue: function(data){
+
+    contentHeaderGet:function()
+    {
+        return contentTabUI.contentHeaderGet();
+    },
+    abovetitleSetValue: function(data){
+
         //contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.abovetitleSetValue(data);
     },
@@ -54,10 +60,12 @@ var contentTabObj = {
         contentTabObj.abovetitleSetValue(data);
         contentTabUI.checkIn();
     },
+
      contentHeaderGet:function()
     {
         return contentTabUI.contentHeaderGet();
     }
+
 }
 
 module.exports = contentTabObj;

@@ -1,5 +1,6 @@
-var maxWaitTimeInMs = 60000;
+var maxWaitTimeInMs = 20000;
 var aboveTitleSelector = "//h2[span[contains(.,'Above Title')]]//following-sibling::div//div[@role='textbox']";
+var abovetitle="//h2[span[contains(.,'Above Title')]]//following-sibling::div//div[text()='Enter text here']";
 var sectionTextSelector= "//h2[span[contains(.,'Section Text')]]//following-sibling::div//div";
 var aboveTitleSelector = "//h2[span[contains(.,'Above Title')]]//following-sibling::div//div[@role='textbox']";
 var highlightsSelector = "//h2[span[contains(.,'Highlights')]]//following-sibling::div//div";
@@ -29,10 +30,20 @@ var contentTabUIObj = {
         browser.frame(contentWidgetIFrameElement.value);
     },
     switchToExternalWidget4Frame: function(){
-        var contentWidgetIFrameElement = browser.element(externalWidget4Selector);
-        if(contentWidgetIFrameElement.value==null)
-            contentWidgetIFrameElement = browser.element(externalWidget3Selector);
-        browser.frame(contentWidgetIFrameElement.value);
+
+        browser.frame();
+        var contentWidgetIFrameElement;
+        if(global.envSettings.d2prof.environment=="dev04")
+            contentWidgetIFrameElement = browser.element(externalWidget3Selector);
+        else if(global.envSettings.d2prof.environment=="qa01")
+            contentWidgetIFrameElement = browser.element(externalWidget4Selector);
+        else
+            contentWidgetIFrameElement = browser.element(externalWidget3Selector);
+
+        browser.frame(contentWidgetIFrameElement.value);
+        // var contentWidgetIFrameElement = browser.element(externalWidget4Selector);
+        // browser.frame(contentWidgetIFrameElement.value);
+
     },
     switchTomModuleMenuFrame: function(){
         //var contentWidgetIFrameElement = browser.element("iframe[id*='cke_279_frame']");
@@ -63,7 +74,9 @@ var contentTabUIObj = {
     },
     cancelCheckOut: function(){
         browser.waitForVisible(cancelButonSelector);
-        browser.scroll(cancelButonSelector);
+
+        //browser.scroll(cancelButonSelector);
+
         browser.click(cancelButonSelector);
         browser.pause(5000);
         browser.frameParent();
@@ -98,6 +111,7 @@ var contentTabUIObj = {
         browser.pause(2000);
         browser.frameParent();
         browser.pause(2000);
+
     },
     sectionTextSetValue: function(sectionTextVal){
         //browser.scroll(sectionTextSelector);
@@ -156,7 +170,22 @@ var contentTabUIObj = {
         browser.moveToObject("(//a[@title='Insert Module'])["+sectionIndex+"]");
         browser.click("(//a[@title='Insert Module'])["+sectionIndex+"]");
         browser.pause(5000);
-    }
+    },
+    contentHeaderGet:function()
+    {
+        contentTabUIObj.switchToExternalWidget4Frame();
+        browser.waitForVisible(contentHeader,maxWaitTimeInMs);
+        var result=browser.getText(contentHeader);
+        browser.frameParent();
+        return result;
+    },
+
+    abovetitleSetValue:function(abovetitlevalue){
+        contentTabUIObj.switchToExternalWidget4Frame();
+        browser.waitForVisible(aboveTitleSelector,maxWaitTimeInMs);
+        browser.scroll(aboveTitleSelector);
+        browser.setValue(aboveTitleSelector,abovetitlevalue);
+    },
 }
 
 module.exports = contentTabUIObj;
