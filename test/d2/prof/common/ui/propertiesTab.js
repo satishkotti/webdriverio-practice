@@ -1,7 +1,11 @@
-var maxWaitTimeInMs = 30000;
+var maxWaitTimeInMs = 60000;
 var propertiesTabSelector= "//span[text()='Properties']";
 var basicTabSelector="//span[text()='Basic Information']";
+var outputTypeTabSelector="//span[text()='Output Type']";
+var profOutputPublishingTabSelector="//span[text()='Publishing']";
+var profOutputOtherTabSelector="//span[text()='Other']";
 var isExist="";
+
 module.exports = {
     chronicleIdGet: function(){
         return browser.getText("#wbmd_legacy_id");
@@ -17,6 +21,9 @@ module.exports = {
     },
     titileGet: function(){
         return browser.getValue("#title-input");
+    },
+    outputTypeGet: function(){
+        return browser.getValue("#wbmd_outpt_type-input");
     },
     shortTitleSet: function(textValue){
         browser.setValue("input#wbmd_wdw_ttl-input", textValue);
@@ -53,32 +60,53 @@ module.exports = {
     },
     articleTOCDisplayFormatGet:function(){
          return browser.getValue("#wbmd_toc_display-input");
-    },   
+    },
     systemPublishingDateSet:function(textValue){
-         browser.setValue("#wbmd_eff_date-input",textValue);
-    },
+         browser.setValue("#wbmd_eff_date-input",textValue);
+    },
+    sysPublishingDateGet: function(){
+        return browser.getValue("#wbmd_eff_date-input");
+    },
+    versionLabelGet: function(){
+        return browser.getText("#r_version_label");
+    }, 
+    objectTypeGet: function(){
+        return browser.getText("#r_object_type");
+    },  
+    systemPublishingDateGet:function(){
+         return browser.getValue("#wbmd_eff_date-input");
+    },
     expirationDateSet:function(textValue){
-         return browser.setValue("#wbmd_exp_date-input",textValue);
-    },
+         return browser.setValue("#wbmd_exp_date-input",textValue);
+    },
+    expirationDateGet:function(){
+         return browser.getValue("#wbmd_exp_date-input");
+    },
     articleTabSelect: function(){
-        browser.click("//div[@id='PropertiesDialog']//a//span[contains(text(),'Article')]")
+        browser.click("//div[@id='PropertiesDialog']//a//span[contains(text(),'Article')]");
     },
     publicationTabSelect: function(){
-        browser.click("//span[text()='Publication']")
+        browser.click("//span[text()='Publication']");
     },
     contributorsTabSelect: function(){
-        browser.click("//span[@text()='Contributors']")
+        browser.click("//span[text()='Contributors']");
     },
     publishingTabSelect: function(){
-        browser.click("//span//span[contains(.,'Publishing')]")
+        browser.click("//span//span[contains(.,'Publishing')]");
     },
     otherTabSelect: function(){
-        browser.click("//span//span[contains(.,'Other')]")
+        browser.pause(2000);
+        browser.click("//span//span[contains(.,'Other')]");
     },
     propertiesTabSelect: function(){
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
         browser.click(propertiesTabSelector);
        browser.waitForVisible("#title-input", maxWaitTimeInMs);
+    },
+    ProfMediaPropertiesTabSelect: function(){
+        browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
+        browser.click(propertiesTabSelector);
+        browser.waitForVisible("#object_name-input", maxWaitTimeInMs);
     },
     propertiesBasicTabSelect: function(){
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
@@ -105,7 +133,28 @@ module.exports = {
         browser.isExisting("//label[@for='r_object_type']");
         browser.isExisting("//label[@for='r_version_label']");
     },
-
+    propertiesOutputTypeTabSelect: function(){
+        browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
+        browser.click(propertiesTabSelector);
+        browser.waitForVisible(outputTypeTabSelector, maxWaitTimeInMs);
+        browser.click(outputTypeTabSelector);
+        browser.waitForVisible("#object_name-input", maxWaitTimeInMs);
+    },
+    getProfOutputPublishingTab: function(){
+        browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
+        browser.click(propertiesTabSelector);
+        browser.pause(5000);
+        browser.waitForVisible(profOutputPublishingTabSelector, maxWaitTimeInMs);
+        browser.click(profOutputPublishingTabSelector);
+        browser.waitForVisible("#wbmd_eff_date-input", maxWaitTimeInMs);
+    },
+    getProfOutputOtherTab: function(){
+        browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
+        browser.click(propertiesTabSelector);
+        browser.waitForVisible(profOutputOtherTabSelector, maxWaitTimeInMs);
+        browser.click(profOutputOtherTabSelector);
+        browser.waitForVisible("#r_version_label", maxWaitTimeInMs);
+    },
     edit: function(){
         browser.click("//div[@tag_id='Properties-widget']//button[text()='Edit']");
     },
@@ -153,6 +202,25 @@ module.exports = {
         return articleTabpropertieslabels( browser, labelPropertiesArray);
         }
         return isExist;
+    },
+    verifyMandatoryFieldsforProperties: function(){
+        var IsExistLead = browser.isExisting("//span[contains(., 'Lead Specialty')]");
+        var IsExistContent = browser.isExisting("//span[contains(., 'Content Developer')]");
+        var IsExistwarningClass = browser.isExisting("//div[contains(@class,'ext-mb-warning')]");
+        browser.click("//div[@class='x-window-br']//button[contains(.,'OK')]");
+        if(IsExistLead == true && IsExistwarningClass == true && IsExistContent == true)
+            return true;
+        else
+            return false;
+    },
+    verifyProfMediaMandatoryFields: function(){
+        var IsExistMedia = browser.isExisting("//span[contains(., 'Media Format')]");
+        var IsExistwarningClass = browser.isExisting("//div[contains(@class,'ext-mb-warning')]");
+        browser.click("//div[@class='x-window-br']//button[contains(.,'OK')]");
+        if(IsExistMedia == true && IsExistwarningClass == true )
+            return true;
+        else
+            return false;
     }
 }
 

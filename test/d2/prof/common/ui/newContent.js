@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 20000;
+var maxWaitTimeInMs = 120000;
 
 var newContentObj = module.exports = {
 
@@ -6,6 +6,11 @@ var newContentObj = module.exports = {
 
         newContentObj.setProfile(creationProflieName, articleTemplateName);
         newContentObj.setObjectName(objectName, descriptionName);
+    },
+    createNewOutputProfArticle: function(creationProflieName, articleTemplateName, objectName, descriptionName){
+
+        newContentObj.setProfile(creationProflieName, articleTemplateName);
+        newContentObj.setOutputProfObjectData(objectName, descriptionName);
     },
     createNewCollection: function(){ 
     },
@@ -18,6 +23,10 @@ var newContentObj = module.exports = {
     createPointerObject: function(creationProflieName, pointerTemplateName,objectName, objectTitle){ 
         newContentObj.setProfile(creationProflieName, pointerTemplateName);
         newContentObj.setPointerObjectName(objectName, objectTitle);
+    },
+    createMediaObject: function(creationProflieName, mediaTemplateName,objectName, objectTitle){ 
+        newContentObj.setProfile(creationProflieName, mediaTemplateName);
+        newContentObj.setMediaObjectName(objectName, objectTitle);
     },
     setProfile: function(profileName, template){
         
@@ -37,15 +46,36 @@ var newContentObj = module.exports = {
         browser.click('//div[@title="'+descName+'"]');
         browser.waitForVisible('//*[@id="next-button"]');
         browser.click('//*[@id="next-button"]');
-        browser.waitForVisible('//span[@title="'+objName+'"]',40000);
+        browser.waitForVisible('//span[@title="'+objName+'"]',maxWaitTimeInMs);
     },
-    setPointerObjectName: function(objName, objTitle){
+    setMediaObjectName: function(objName, objTitle){
         browser.waitForVisible("#object_name-input")
         browser.setValue('#object_name-input',objName)
         browser.waitForVisible("#title-input");
         browser.setValue('#title-input', objTitle);
         browser.waitForVisible('//*[@id="next-button"]');
         browser.click('//*[@id="next-button"]');
-        browser.waitForVisible('//span[@title="'+objTitle+'"]',40000);
+        browser.waitForVisible('//span[@title="'+objTitle+'"]',maxWaitTimeInMs);
+    },
+    setOutputProfObjectData: function(objName, descName){
+        browser.waitForVisible("#object_name-input");
+        browser.setValue('#object_name-input', objName);
+        browser.waitForVisible("#title-input");
+        browser.setValue('#title-input', objName);
+        browser.click('#wbmd_outpt_type-input');
+        browser.waitForVisible('//div[@title="'+descName+'"]',maxWaitTimeInMs);
+        browser.click('//div[@title="'+descName+'"]');
+        browser.waitForVisible('//*[@id="next-button"]');
+        browser.click('//*[@id="next-button"]');
+        browser.waitForVisible('//span[@title="'+objName+'"]',maxWaitTimeInMs);
+    },
+    setPointerObjectName: function(objName, objTitle){
+        browser.waitForVisible("#object_name-input");
+        browser.setValue('#object_name-input',objName);
+        browser.waitForVisible("#title-input");
+        browser.setValue('#title-input', objTitle);
+        browser.waitForVisible('//*[@id="next-button"]');
+        browser.click('//*[@id="next-button"]');
+        browser.waitForVisible('//span[@title="'+objTitle+'"]',maxWaitTimeInMs);
     }
 }

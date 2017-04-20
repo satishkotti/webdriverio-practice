@@ -18,10 +18,9 @@ describe('OTF - Default Text Output Version - PPE-98897', function () {
         password: functions.getQAAdminEmedUser().password
         });
         browser.pause(2000);
-        repositoryBrowserTab.repositorybrowserRefresh();
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath_de);
         AssetTitle = global.d2ProfDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
-        workspaceMenu.createContent(global.d2ProfDataSettings.inputData.ProfileName,
+        workspaceMenu.createContent(global.d2ProfDataSettings.inputData.ProfileName_de,
                     global.d2ProfDataSettings.inputData.ArticleTemplate, 
                     AssetTitle, 
                     global.d2ProfDataSettings.inputData.ContentType

@@ -20,6 +20,36 @@ module.exports = {
             title:propertiesTabUI.titileGet()
         };
     },
+    getObjectNameMediaTab: function(){
+        propertiesTabUI.ProfMediaPropertiesTabSelect();
+        return {
+            chronicleId: propertiesTabUI.chronicleIdGet(),
+            objectName: propertiesTabUI.objectNameGet(),
+            title:propertiesTabUI.titileGet()
+        };
+    },
+    getObjectOutputTypeTab: function(){
+        propertiesTabUI.propertiesOutputTypeTabSelect();
+        return {    
+            objectName: propertiesTabUI.objectNameGet(),
+            title:propertiesTabUI.titileGet(),
+            outputType: propertiesTabUI.outputTypeGet()
+        };
+    },
+    getProfOutputPublishingTab: function(){
+        propertiesTabUI.getProfOutputPublishingTab();
+        return {    
+            sysPublishingDate: propertiesTabUI.sysPublishingDateGet(),
+            expirationDate:propertiesTabUI.expirationDateGet()
+        };
+    },
+    getProfOutputOtherTab: function(){
+        propertiesTabUI.getProfOutputOtherTab();
+        return {    
+            versionLabel: propertiesTabUI.versionLabelGet(),
+            objectType:propertiesTabUI.objectTypeGet()
+        };
+    },
     setRequiredProperties: function(shortTitle,subTitle,superTitle,leadSpecialty,contentDeveloper){
         
         propertiesTabUI.propertiesTabSelect();
@@ -29,6 +59,8 @@ module.exports = {
         propertiesTabUI.superTitleSet(superTitle);
         propertiesTabUI.leadSpecialtySet(leadSpecialty);
         propertiesTabUI.contentDeveloperSet(contentDeveloper);
+        propertiesTabUI.articleTabSelect();
+        propertiesTabUI.articleTOCDisplayFormatSet("");
         propertiesTabUI.save();
     },
      verifyNewsProperties:function(labelPropertiesArray){
@@ -49,6 +81,7 @@ module.exports = {
       updatePointerProperties:function(){
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
+        browser.pause(1000);
         pointerPropertiestabUI.pointerTitleupdate();
         propertiesTabUI.save();
      },
@@ -90,4 +123,34 @@ module.exports = {
         propertiesTabUI.expirationDateSet(expdate);
         propertiesTabUI.save();
     },
+     verifyMandatoryFieldsforProperties:function(){
+         propertiesTabUI.propertiesTabSelect();
+         propertiesTabUI.edit();
+         propertiesTabUI.save();
+         var AlertMessage = propertiesTabUI.verifyMandatoryFieldsforProperties();
+         propertiesTabUI.cancelEdit();
+         return AlertMessage;
+     },
+     setRequiredPropertiesforPublish: function(systempubdate,expdate){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        browser.pause(2000);
+        propertiesTabUI.publishingTabSelect();
+        browser.waitForVisible("#wbmd_eff_date-input",maxWaitTimeInMs);
+        propertiesTabUI.systemPublishingDateSet(systempubdate);
+        browser.click("//label[text()='Expire On']");
+        propertiesTabUI.expirationDateSet(expdate);
+        propertiesTabUI.save();
+    },
+    setRequiredPropertiesforExpire: function(expdate){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        browser.pause(2000);
+        propertiesTabUI.publishingTabSelect();
+
+        browser.waitForVisible("#wbmd_exp_date-input",maxWaitTimeInMs);
+        browser.click("//label[text()='Expire On']");
+        propertiesTabUI.expirationDateSet(expdate);
+        propertiesTabUI.save();
+    },
 }

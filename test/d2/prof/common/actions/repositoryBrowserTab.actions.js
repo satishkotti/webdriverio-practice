@@ -6,6 +6,9 @@ module.exports = {
     },
     openFolder: function(folderPath){
 
+        repositoryBrowserPage.ExpandContentTab();
+        repositoryBrowserPage.CollapseContentTab();
+        repositoryBrowserPage.RepositoryRefresh();
         var folerPathArr = folderPath.split('/');
         var folderLevel = 2;
          do {
@@ -17,8 +20,5 @@ module.exports = {
                     folderLevel = folderLevel + 1;
                 }
             } while(folerPathArr && folerPathArr.length > 0)
-    },
-    repositorybrowserRefresh: function(){
-        repositoryBrowserPage.repositorybrowserRefresh();
     }
 }

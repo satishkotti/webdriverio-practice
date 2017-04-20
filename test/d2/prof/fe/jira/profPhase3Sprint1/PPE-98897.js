@@ -1,10 +1,10 @@
-var functions = require('./../../common/functions/functions');
-var Login = require('./../../common/actions/login.actions');
-var repositoryBrowserTab = require('./../../common/actions/repositoryBrowserTab.actions');
-var workspaceMenu = require('./../../common/actions/workspace.menu.actions');
-var documentListTab = require('./../../common/actions/documentListTab.actions');
-var propertiesTab = require('./../../common/actions/propertiesTab.actions');
-var otfTab = require('./../../common/actions/otfTab.actions');
+var functions = require('./../../../common/functions/functions');
+var Login = require('./../../../common/actions/login.actions');
+var repositoryBrowserTab = require('./../../../common/actions/repositoryBrowserTab.actions');
+var workspaceMenu = require('./../../../common/actions/workspace.menu.actions');
+var documentListTab = require('./../../../common/actions/documentListTab.actions');
+var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
+var otfTab = require('./../../../common/actions/otfTab.actions');
 var randomstring = require("randomstring");
 
 
@@ -18,10 +18,9 @@ describe('OTF - Default Text Output Version - PPE-98897', function () {
         password: functions.getQAAdminEmedUser().password
         });
         browser.pause(2000);
-        repositoryBrowserTab.repositorybrowserRefresh();
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath_de);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
         AssetTitle = global.d2ProfDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
-        workspaceMenu.createContent(global.d2ProfDataSettings.inputData.ProfileName_de,
+        workspaceMenu.createContent(global.d2ProfDataSettings.inputData.ProfileName,
                     global.d2ProfDataSettings.inputData.ArticleTemplate, 
                     AssetTitle, 
                     global.d2ProfDataSettings.inputData.ContentType
