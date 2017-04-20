@@ -5,7 +5,7 @@ module.exports = {
         repositoryBrowserPage.selectRepositoryBrowserTab();
     },
     openFolder: function(folderPath){
-
+        
         var folerPathArr = folderPath.split('/');
         var folderLevel = 2;
          do {
