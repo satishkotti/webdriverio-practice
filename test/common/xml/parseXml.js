@@ -16,20 +16,6 @@ ParseXml.prototype.getXmlFromUrl = function getXmlFromUrl(url, options,inputType
             };
         }
         try {
-            request.get(url, options, function (err, response, body) {
-                if (!err && response.statusCode == 200) {
-                    var parser = new xml2js.Parser({ explicitArray: false });
-                    parser.parseString(body, function (err, result) {
-                        if (!err && result !== '') {
-                            resolve(result);
-                        }
-                        else {
-                            reject(err);
-                        }
-                    });
-                } else
-                    reject(err);
-            })
             if(inputType=='FILE')
             {
                 var rootPath = path.resolve('.')+url;

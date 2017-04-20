@@ -51,7 +51,6 @@ exports.config = merge(wdioConf.config, {
                 './test/pb2/**/PPE-103177.js',
                 './test/pb2/**/PPE-103178.js',
                 './test/pb2/**/PPE-103179.js',
-                './test/pb2/**/PPE-103180.js',
                 './test/pb2/**/PPE-103181.js',
             ],
             pages: [
@@ -77,7 +76,6 @@ exports.config = merge(wdioConf.config, {
                 './test/pb2/**/PPE-103209.js',
                 './test/pb2/**/PPE-103210.js',
                 './test/pb2/**/PPE-103211.js',
-                './test/pb2/**/PPE-103212.js',
                 './test/pb2/**/PPE-103213.js',
                 './test/pb2/**/PPE-103214.js',
                 './test/pb2/**/PPE-103215.js',
@@ -92,18 +90,14 @@ exports.config = merge(wdioConf.config, {
                 './test/pb2/**/PPE-104514.js',
             ],
             queueScreenValidations: [
-                './test/pb2/**/PPE-102335.js',
                 './test/pb2/**/PPE-102336.js',
                 './test/pb2/**/PPE-102337.js',
                 './test/pb2/**/PPE-102340.js',
                 './test/pb2/**/PPE-102341.js',
                 './test/pb2/**/PPE-102342.js',
-                './test/pb2/**/PPE-102343.js',
-                './test/pb2/**/PPE-102344.js',
-                './test/pb2/**/PPE-102345.js',
             ],
             sharedmodulesXmlValidations: [
-                './test/pb2/**/PPE-103716.js'
+                './test/pb2/**/ppe-103716/**.js'
             ]
         },
     capabilities: [{

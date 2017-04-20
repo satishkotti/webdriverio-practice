@@ -18,30 +18,9 @@ describe('PPE-77199:Verify Shared Module Cancel Check Out functionality from Che
          test.SearchFor(null, chronID, 'Global Search', null);
          test.CancelCheckout();
 
-        //enter into the Queue Page  
-        test.EnterActivityQueueStatusPage();       
-        
-        browser.waitUntil( () => 
-        {
-            assetDetails = test.GetAssetDetailsFromQueue(chronID);
-            return assetDetails.Status != 'IN PROGRESS';
-        }, 120000, "Asset not pushed to the publishing queue yet", 20000);
-
     });
    
     //assertions
-    it('Shared Module Name should be healthy-blood-sugar-levels-quiz-results', () => {
-        expect(assetDetails.Name).to.equal(testAsset);
-    });
-
-    it('Action should be Cancel Checkout Page', () => {
-        expect(assetDetails.Action).to.equal('Cancel Checkout Shared Module');
-    });
-    
-    it('Site should be the current Site under test', () => {
-        expect(assetDetails.Site).to.equal(test.GetCurrentSite());
-    });
-
     it('Version of the asset should remain the same after Cancel Checkout', () => {
         test.SearchFor('SM', testAsset, 'Global Search', null);
         test.SelectAsset(testAsset);
