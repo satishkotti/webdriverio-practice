@@ -29,83 +29,88 @@ describe('Publication Section PPE-96852', function () {
         password: functions.getQAAdminEmedUser().password
     });
          repositoryBrowserTab.openFolder(global.d2ProfDataSettings.FRData.testFolderPath);
-        // workspaceMenu.createContent(global.d2ProfDataSettings.FRData.PublicationProfileName,
-        //             global.d2ProfDataSettings.inputData.PublicationSectionTemplate, 
-        //             Objectname, '');
-        // documentListTab.selectAsset(Objectname);
+        workspaceMenu.createContent(global.d2ProfDataSettings.FRData.PublicationProfileName,
+                    global.d2ProfDataSettings.inputData.PublicationSectionTemplate, 
+                    Objectname, '');
+        documentListTab.selectAsset(Objectname);
     });
 
-    // it('Should be able to Verify the messages when mandatory fields are left blank for Publication Section object', function () {
-    //     var AlertMessage = propertiesTab.verifyMandatoryFieldsforPubSectionProp();
-    //     propertiesTab.cancelEdit();
-    //     expect(AlertMessage).to.be.true;
-    // });
+    it('Should be able to Verify the messages when mandatory fields are left blank for Publication Section object', function () {
+        var AlertMessage = propertiesTab.verifyMandatoryFieldsforPubSectionProp();
+        propertiesTab.cancelEdit();
+        expect(AlertMessage).to.be.true;
+    });
 
-    // it('Should be able to creation Publication section with only mandatory fields', function () {
-    //     cidName = propertiesTab.getChronicleIdAndName();
-    //     objName = cidName.objectName;
-    //     title = cidName.title;
-    //     cid=cidName.chronicleId;
-    //     propertiesTab.setRequiredPropertiesForPubSection(objName, title);
-    //     documentListTab.selectAsset(Objectname);
-    //     var IsInitialVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.InitialVersion);
-    //     expect(IsInitialVersionVerified).to.be.true;
-    //     expect(Objectname).to.equal(title);
-    //     documentListTab.verifyPubSectionRelations();
+    it('Should be able to creation Publication section with only mandatory fields', function () {
+        cidName = propertiesTab.getChronicleIdAndName();
+        objName = cidName.objectName;
+        title = cidName.title;
+        cid=cidName.chronicleId;
+        propertiesTab.setRequiredPropertiesForPubSection(objName, title);
+        documentListTab.selectAsset(Objectname);
+        var IsInitialVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.InitialVersion);
+        expect(IsInitialVersionVerified).to.be.true;
+        expect(Objectname).to.equal(title);
+        documentListTab.verifyPubSectionRelations();
         
-    // });
+    });
     
-    // it('Should be able to Checkout and checkin functionality on Publication Section', function(){
-    //     contentTab.checkOut();
-    //     documentListTab.selectAsset(Objectname);
-    //     var IsLocked = documentListTab.verifyLock(objName);
-    //     expect(IsLocked).to.be.true;
-    //     var IsInitialVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.InitialVersion);
-    //     expect(IsInitialVersionVerified).to.be.true;
-    //     contentTab.checkIn();
-    //     var IsCheckInVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.CheckedInVersion);
-    //     expect(IsCheckInVersionVerified).to.be.true;
-    // });
+    it('Should be able to Checkout and checkin functionality on Publication Section', function(){
+        contentTab.checkOut();
+        documentListTab.selectAsset(Objectname);
+        var IsLocked = documentListTab.verifyLock(objName);
+        expect(IsLocked).to.be.true;
+        var IsInitialVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.InitialVersion);
+        expect(IsInitialVersionVerified).to.be.true;
+        contentTab.checkIn();
+        var IsCheckInVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.CheckedInVersion);
+        expect(IsCheckInVersionVerified).to.be.true;
+    });
 
-    //  it('Should be able to Promote functionality on Publication Section', function () {
-    //     documentListTab.promoteAsset(objName);
-    //     browser.pause(3000);
-    // });
+    it('Should be able to creation Publication section with All fields', function () {
+        propertiesTab.setAllPropertiesForPubSection(title);
+        contentTab.updateContentAllFields("ar");
+    });
 
-    //  it('Should be able to Demote functionality on Slide Article template', function () {
-    //     documentListTab.demoteAsset(objName);
-    //     browser.pause(3000);
-    // });
+     it('Should be able to Promote functionality on Publication Section', function () {
+        documentListTab.promoteAsset(objName);
+        browser.pause(3000);
+    });
 
-    // it('Should be able to Cancel Checkout functionality on Slide Article template', function(){
-    //     contentTab.checkOut();
-    //     browser.pause(3000);
-    //     contentTab.cancel();
-    // });
+     it('Should be able to Demote functionality on Slide Article template', function () {
+        documentListTab.demoteAsset(objName);
+        browser.pause(3000);
+    });
 
-    //  it('Should be able to Power Promote functionality on Slide Article template', function () {
-    //      browser.pause(3000);
-    //     documentListTab.powerPromoteAsset(objName);
-    // });
+    it('Should be able to Cancel Checkout functionality on Slide Article template', function(){
+        contentTab.checkOut();
+        browser.pause(3000);
+        contentTab.cancel();
+    });
 
-    // it('Should be able to copy the slide article',function(){
-    //     browser.pause(3000);
-    //     documentListTab.copyArticle(title);
-    //     documentListTab.searchCopyArticle(title);
-    // });
+     it('Should be able to Power Promote functionality on Slide Article template', function () {
+         browser.pause(3000);
+        documentListTab.powerPromoteAsset(objName);
+    });
 
-    //  it('Should be able to Expire functionality on Slide Article template', function () {
-    //      documentListTab.selectAsset(cid);
-    //     documentListTab.expireAsset(cid);
-    //     browser.pause(3000);
-    // });
+    it('Should be able to copy the slide article',function(){
+        browser.pause(3000);
+        documentListTab.copyArticle(title);
+        documentListTab.searchCopyArticle(title);
+    });
 
-    // it('Should be able to delete the article',function(){
-    //     documentListTab.selectAsset(title);
-    //     browser.pause(3000);
-    //     documentListTab.deleteArticle(cid,global.d2ProfDataSettings.inputData.DeleteAllversions);
-    //     documentListTab.searchArticle(cid,title);
-    // });
+     it('Should be able to Expire functionality on Slide Article template', function () {
+         documentListTab.selectAsset(cid);
+        documentListTab.expireAsset(cid);
+        browser.pause(3000);
+    });
+
+    it('Should be able to delete the article',function(){
+        documentListTab.selectAsset(title);
+        browser.pause(3000);
+        documentListTab.deleteArticle(cid,global.d2ProfDataSettings.inputData.DeleteAllversions);
+        documentListTab.searchArticle(cid,title);
+    });
 
     it('Should be able to update the existing article',function(){
         documentListTab.selectItemByNamePagination(d2ProfDataSettings.FRData.AssetName);

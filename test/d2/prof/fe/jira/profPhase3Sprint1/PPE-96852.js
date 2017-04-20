@@ -54,7 +54,7 @@ describe('Publication Section PPE-96852', function () {
         documentListTab.verifyPubSectionRelations();
         
     });
-    
+
     it('Should be able to Checkout and checkin functionality on Publication Section', function(){
         contentTab.checkOut();
         documentListTab.selectAsset(Objectname);
@@ -65,6 +65,11 @@ describe('Publication Section PPE-96852', function () {
         contentTab.checkIn();
         var IsCheckInVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.CheckedInVersion);
         expect(IsCheckInVersionVerified).to.be.true;
+    });
+
+    it('Should be able to creation Publication section with All fields', function () {
+        propertiesTab.setAllPropertiesForPubSection(title);
+        contentTab.updateContentAllFields("Heart");
     });
 
      it('Should be able to Promote functionality on Publication Section', function () {

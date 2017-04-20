@@ -153,5 +153,12 @@ module.exports = {
         //browser.setValue("#object_name-input", Name);
         browser.setValue("#title-input", Title);
     },
+    setAllPropertiesForPubSection: function(Title){
+        browser.setValue("#title-input", Title);
+        browser.setValue("#wbmd_desc-input", 'PubSection Description');
+        browser.setValue("#wbmd_publ_ad_ovrd-input", 'TestPub Section Page Ad Override');
+        browser.setValue("#wbmd_publ_url_ovrd-input", 'TestPubURL');
+    },
+
 }
 

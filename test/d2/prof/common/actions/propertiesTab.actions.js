@@ -66,4 +66,10 @@ module.exports = {
         propertiesTabUI.setRequiredPropertiesForPubSection(Name, Title);
         propertiesTabUI.save();
     },
+    setAllPropertiesForPubSection: function(Title){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.setAllPropertiesForPubSection(Title);
+        propertiesTabUI.save();
+    },
 }

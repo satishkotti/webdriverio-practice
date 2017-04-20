@@ -55,6 +55,16 @@ var contentTabObj = {
         contentTabUI.abovetitleSetValue(data);
     },
 
+    updateContentAllFields:function(data)    {
+        contentTabObj.checkOut();
+        contentTabObj.AllFieldsSetValueForPubSection(data);
+        contentTabUI.checkIn();
+    },
+
+    AllFieldsSetValueForPubSection: function(data){
+        contentTabUI.switchToExternalWidget4Frame();
+        contentTabUI.AllFieldsSetValueForPubSection(data);
+    },
 }
 
 module.exports = contentTabObj;

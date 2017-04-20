@@ -67,6 +67,11 @@ describe('Publication Section PPE-96852', function () {
         expect(IsCheckInVersionVerified).to.be.true;
     });
 
+    it('Should be able to creation Publication section with All fields', function () {
+        propertiesTab.setAllPropertiesForPubSection(title);
+        contentTab.updateContentAllFields("ar");
+    });
+
      it('Should be able to Promote functionality on Publication Section', function () {
         documentListTab.promoteAsset(objName);
         browser.pause(3000);
