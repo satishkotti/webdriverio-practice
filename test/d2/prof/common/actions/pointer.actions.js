@@ -14,7 +14,6 @@ module.exports = {
         contentTabUI.switchToExternalWidget4Frame();
         pointerUI.pointerContentHeaderValidation();
         browser.frameParent();
-
     },
     propertiesFieldsValidation: function(){
         propertiesTabUI.propertiesTabSelect();

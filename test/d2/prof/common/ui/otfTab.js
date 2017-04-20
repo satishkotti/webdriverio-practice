@@ -165,7 +165,43 @@ module.exports = {
     //    propertiestab.titleSet("_Updated");
     //    propertiestab.save();        
        
+    },
+     selectOTFWidgetTab: function(){
+        browser.waitForVisible("//span//preceding-sibling::span[contains(.,'OnTheFly') and @aria-hidden=not('true')]");
+        browser.click("//span//preceding-sibling::span[contains(.,'OnTheFly') and @aria-hidden=not('true')]");
+    },
+    otfRemoveDefaultoutputversion:function(){
+        browser.waitForVisible("//td[span[contains(.,'Output Version')]]//following-sibling::td[contains(.,'Transcript')]//following-sibling::td//button[@popover-html='Unlink this item']");
+        browser.click("//td[span[contains(.,'Output Version')]]//following-sibling::td[contains(.,'Transcript')]//following-sibling::td//button[@popover-html='Unlink this item']");
+        
+    },
+      otfRemoveDefaultoutputversionPopup:function(){
+        browser.waitForVisible("//div[@class='modal-footer']//button[contains(.,'YES')]");
+        browser.click("//div[@class='modal-footer']//button[contains(.,'YES')]");
+        browser.pause(2000);
+        
+    },
+      otfDefaultoutputversionValidation:function(){
+        browser.pause(6000);
+        var textattribute = browser.isExisting("//td[span[contains(.,'Output Version')]]//following-sibling::td[contains(.,'Transcript')]//following-sibling::td//button[@popover-html='Unlink this item']");
+        return textattribute;
+        
+    },
+    otfLinkDefaultoutputversion:function(){
+        browser.waitForVisible("//td[span[contains(.,'Article')]]//following-sibling::td//button[@popover-html='Add a child link']");
+        browser.click("//td[span[contains(.,'Article')]]//following-sibling::td//button[@popover-html='Add a child link']");
+        
+    },
+     otfDefaultoutputversion:function(){
+        browser.waitForVisible("//input[@placeholder='Enter search text']");
+        browser.setValue("//input[@placeholder='Enter search text']","text");
+        browser.waitForVisible("//span[@ng-click='linkSearchClicked()']");
+        browser.click("//span[@ng-click='linkSearchClicked()']");
+        browser.waitForVisible("//td[contains(.,'text')]");
+        browser.leftClick("//td[contains(.,'text')]");
+        browser.waitForVisible("//button[contains(.,'Link')]");
+        browser.click("//button[contains(.,'Link')]")
+        browser.pause(2000);
+        
     }
 }
-
-

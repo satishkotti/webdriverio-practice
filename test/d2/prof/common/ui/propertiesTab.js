@@ -60,7 +60,6 @@ module.exports = {
     },
     articleTOCDisplayFormatGet:function(){
          return browser.getValue("#wbmd_toc_display-input");
-
     },
     systemPublishingDateSet:function(textValue){
          browser.setValue("#wbmd_eff_date-input",textValue);
@@ -134,7 +133,6 @@ module.exports = {
         browser.isExisting("//label[@for='r_object_type']");
         browser.isExisting("//label[@for='r_version_label']");
     },
-
     propertiesOutputTypeTabSelect: function(){
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
         browser.click(propertiesTabSelector);

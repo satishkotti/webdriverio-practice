@@ -8,6 +8,12 @@ module.exports = {
 
 //Add: assert new article is created and added to documentList Tab.
     },
+    createContent1: function(cabinet, props){
+       workspaceMenuUI.selectNewContent();
+       return newContentModal.createNewArticle1(cabinet, props);
+
+//Add: assert new article is created and added to documentList Tab.
+    },
 
      createPointer: function(creationProflieName, pointerTemplateName,objectName, objectTitle){
        workspaceMenuUI.selectNewContent();
@@ -22,6 +28,5 @@ module.exports = {
     createMedia: function(creationProflieName, mediaTemplateName,objectName, objectTitle){
        workspaceMenuUI.selectNewContent();
        newContentModal.createMediaObject(creationProflieName, mediaTemplateName,objectName, objectTitle);
-
      }
 }

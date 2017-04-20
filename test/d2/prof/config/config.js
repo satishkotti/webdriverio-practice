@@ -81,9 +81,7 @@ module.exports.testSettings = {
             "HomePageTitle": "D2"
         },
         "inputData": {
-
             "SlideAssetName": "QATestSlideArticle", //"QATestAssethNrnC",
-            "testFolderPath": "webmd/professional_assets/medscape/news/heartwire/news/200005",
             "SlideFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
             "locale":"US",
             "AssetName":"QATestAssethNrnC",
@@ -94,6 +92,10 @@ module.exports.testSettings = {
             "testFolderPath_pt": "webmd_pt/professional_assets/medscape/articles/news",
             "ArticleProfileName": 'News Article Templates',
             "ProfileName":"US / Article Templates",
+            "ProfileName_de":"DE / Article Templates",
+            "ProfileName_fr":"FR / Article Templates",
+            "ProfileName_pt":"PT / Article Templates",
+            "ProfileName_sp":"SP / Article Templates",
             "ProfileOtherName": "US / Other Templates",
             "ProfileOtherName_de": "DE / Other Templates",
             "ProfileOtherName_fr": "FR / Other Templates",
@@ -120,6 +122,7 @@ module.exports.testSettings = {
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
 
             "ContentType":"News",
+            "ContentType_SP":"Alertas",
             "InitialVersion": "1.0, CURRENT, WIP",
             "CheckedInVersion": "1.1, CURRENT, WIP",
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),

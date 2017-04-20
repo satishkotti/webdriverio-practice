@@ -24,7 +24,6 @@ var documentListObj = {
 //Add logic for pagination if asset not found.
 //Add: assert asset selected is highlighted        
     },
-
      selectItemByNamePagination: function (assetName) {
          documentListUI.selectItemByNamePagination(assetName);
      },
@@ -61,7 +60,6 @@ var documentListObj = {
         documentListUI.selectRelationTab();
          pointerRelation.pointerRelation();
      },
-
     verifyVersions: function(version){
         var IsVersionVerified = documentListUI.selectVersionTab(version);
         return IsVersionVerified;

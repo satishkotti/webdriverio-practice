@@ -125,8 +125,6 @@ module.exports = {
         propertiesTabUI.expirationDateSet(expdate);
         propertiesTabUI.save();
     },
-
-
      verifyMandatoryFieldsforProperties:function(){
          propertiesTabUI.propertiesTabSelect();
          propertiesTabUI.edit();
@@ -164,5 +162,4 @@ module.exports = {
         propertiesTabUI.expirationDateSet(expdate);
         propertiesTabUI.save();
     },
-
 }

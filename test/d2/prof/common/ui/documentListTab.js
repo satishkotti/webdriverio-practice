@@ -141,18 +141,6 @@ var documentListUIObj = {
         expect(sysMsg).to.equal(successStagingSysMsg);
         browser.click("//div[@class='modal-footer']//button[contains(text(),'OK')]");
     },
-
-    schedulePublishResultsDialogueOkSelect: function(assetName){
-        browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
-        var objName = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(2)");
-        var state = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(3)");
-        var sysMsg = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(4)");
-        //expect(assetName).to.equal(objName);
-        expect(state).to.equal(approveStateLbl);
-        expect(sysMsg).to.contains(schpublishmsg);
-        browser.click("button[ng-click='$confirm()']");        
-    },
-
 promoteAsset: function (assetName) 
     {
         documentListUIObj.contextualMenuActivate(assetName);
@@ -188,7 +176,6 @@ lifeCycleExpireSelect: function()
             documentListUIObj.lifeCycleExpireSelect();
             documentListUIObj.expireResultsDialogueOkSelect(assetName);
     },
-
     selectVersionTab: function(version){
         browser.click(vertionTabSelector);
         browser.pause(1000);
@@ -196,8 +183,6 @@ lifeCycleExpireSelect: function()
         var IsVersionVerified = browser.isExisting(verfityVersionSelector);
         return IsVersionVerified;
     },
-
-
       selectRelationTab: function(version){
         browser.click("//span[text()='Relations']");
         browser.pause(1000);
@@ -208,7 +193,6 @@ lifeCycleExpireSelect: function()
         var IsLocked = browser.isExisting(LockSelector);
         return IsLocked;
     },
-
     lifeCycleDemoteSelect: function()
     {
         browser.waitForVisible("//a[text()='Demote']", maxWaitTimeInMs);
@@ -232,7 +216,6 @@ lifeCycleExpireSelect: function()
         documentListUIObj.lifeCycleDemoteSelect();
         documentListUIObj.demoteResultsDialogueOkSelect(assetName);
     },
-
     deleteArticle:function(assetName,DeleteVersionType){
         browser.rightClick("//span[@class='DocListLockByNone']//following-sibling::span[text()='"+assetName+"']");
         browser.waitForVisible("#menuContextDestroy", maxWaitTimeInMs);
@@ -254,7 +237,6 @@ lifeCycleExpireSelect: function()
     {
         return browser.isVisible('//div[@class=" x3-loading-medium x-component x-abs-layout-container"]');
     },
-
     copyArticle:function(assetName){
         browser.frameParent();
         browser.rightClick("//span[@title='" + assetName + "']");
