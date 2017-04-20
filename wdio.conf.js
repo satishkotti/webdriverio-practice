@@ -17,7 +17,7 @@ module.exports.getSpecs = function()
             break;
             case "d2prof":
                 var config = require('./test/d2/prof/config/config');
-                specList = [ './test/d2/prof/**/*.js' ];
+                specList = [ './test/d2/prof/**/PPE-98897-SP.js' ];
             break;
             case "rt":
                 var config = require('./test/rt/config/config');
@@ -39,7 +39,7 @@ console.log('specs: '+specList);
 
 exports.config = {
 
-    debug: false,
+    debug: true,
     maxInstances: 1,
     
     //
@@ -194,7 +194,7 @@ exports.config = {
     // variables like `browser`. It is the perfect place to define custom commands.
     before: function() {
 
-        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'dev04';
+        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'qa01';
         var testApp = (process.env.npm_config_testApp) ? process.env.npm_config_testApp : 'd2prof' ;
         
         var chai = require('chai');

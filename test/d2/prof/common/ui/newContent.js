@@ -14,28 +14,32 @@ var newContentObj = module.exports = {
             case 'US':
                 var articleName = props.ArticleObjectName + random.generate(2);
                 newContentObj.setProfile(props.ProfileName, props.ArticleTemplate);
-                newContentObj.setObjectName(articleName, props.ContentType.Others);
+                newContentObj.setObjectName(articleName, props.ContentType);
                 return articleName;
                 break;
 
             case 'DE':
+                var articleName = props.ArticleObjectName + random.generate(2);
                 newContentObj.setProfile(props.ProfileName_de, props.ArticleTemplate);
-                newContentObj.setObjectName(props.ArticleObjectName, props.ContentType);
+                newContentObj.setObjectName(articleName, props.ContentType);
                 return articleName;
                 break;
              case 'FR':
+                var articleName = props.ArticleObjectName + random.generate(2);
                 newContentObj.setProfile(props.ProfileName_fr, props.ArticleTemplate);
-                newContentObj.setObjectName(props.ArticleObjectName, props.ContentType);
+                newContentObj.setObjectName(articleName, props.ContentType);
                 return articleName;
                 break;
             case 'PT':
+                var articleName = props.ArticleObjectName + random.generate(2);
                 newContentObj.setProfile(props.ProfileName_pt, props.ArticleTemplate);
-                newContentObj.setObjectName(props.ArticleObjectName, props.ContentType);
+                newContentObj.setObjectName(articleName, props.ContentType);
                 return articleName;
                 break;
             case 'SP':
+                var articleName = props.ArticleObjectName + random.generate(2);
                 newContentObj.setProfile(props.ProfileName_sp, props.ArticleTemplate);
-                newContentObj.setObjectName(props.ArticleObjectName, props.ContentType_SP);
+                newContentObj.setObjectName(articleName, props.ContentType_SP);
                 return articleName;
                 break;
         }

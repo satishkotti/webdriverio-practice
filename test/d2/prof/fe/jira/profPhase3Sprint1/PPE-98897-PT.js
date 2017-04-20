@@ -19,11 +19,7 @@ describe('OTF - Default Text Output Version - PPE-98897', function () {
         browser.pause(2000);
         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath_pt);
         AssetTitle = global.d2ProfDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
-        workspaceMenu.createContent(global.d2ProfDataSettings.inputData.ProfileName_pt,
-                    global.d2ProfDataSettings.inputData.ArticleTemplate, 
-                    AssetTitle, 
-                    global.d2ProfDataSettings.inputData.ContentType
-        );
+        AssetTitle =  workspaceMenu.createContent1('PT', global.d2ProfDataSettings.inputData);
 
     });
 
