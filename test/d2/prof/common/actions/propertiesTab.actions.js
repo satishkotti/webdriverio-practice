@@ -3,7 +3,7 @@ var maxWaitTimeInMs = 30000;
 module.exports = {
     
     getChronicleIdAndName: function(){
-        propertiesTabUI.propertiesTabSelect();
+            propertiesTabUI.propertiesTabSelect();
         return {
             chronicleId: propertiesTabUI.chronicleIdGet(),
             objectName: propertiesTabUI.objectNameGet(),

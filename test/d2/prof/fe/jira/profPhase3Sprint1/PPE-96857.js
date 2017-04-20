@@ -29,12 +29,48 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
         global.d2ProfDataSettings.inputData.PublicationsubsectionTemplate, 
         AssetTitle
         );
-        documentListTab.selectAsset(AssetTitle);
+           documentListTab.selectAsset(AssetTitle);
     });
     it('Verify Publication Subsection creation with only mandatory fields PPE-107726', function () {
         
         documentListTab.selectAsset(AssetTitle);
     });
 
+    it('Verify Checkout and checkin functionality on Professional Publication Sub Section PPE-107794', function(){
+         cidName = propertiesTab.getChronicleIdAndName();
+        objName = cidName.objectName;
+        title = cidName.title;
+        cid=cidName.chronicleId;
+        contentTab.checkOut();
+        var IsLocked = documentListTab.verifyLock(objName);
+        expect(IsLocked).to.be.true;
+        var IsInitialVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.InitialVersion);
+        expect(IsInitialVersionVerified).to.be.true;
+        browser.frameParent();
+        contentTab.checkIn();
+        var IsCheckInVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.CheckedInVersion);
+        expect(IsCheckInVersionVerified).to.be.true;
+    });
+
+    it('Verify Promote functionality on PublicationSubSection PPE-107802', function () {
+        documentListTab.promoteAsset(objName);
+    });
+
+    it('Verify Demote functionality on PublicationSubSection PPE-107813', function () {
+        documentListTab.demoteAsset(objName);
+    });
+
+    it('Verify Cancel Checkout functionality on PublicationSubSection Implementation PPE-107797', function(){
+        contentTab.checkOut();
+        contentTab.cancel();
+    });
+
+    it('Verify Power Promote functionality on PublicationSubSection PPE-107805', function () {
+        documentListTab.powerPromoteAsset(objName);
+    });
+
+    it('Verify Expire functionality on PublicationSubSection PPE-107808', function () {
+        documentListTab.expireAsset(objName);
+    });
 });
 

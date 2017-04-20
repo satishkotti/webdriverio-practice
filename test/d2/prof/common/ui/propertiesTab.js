@@ -100,7 +100,7 @@ module.exports = {
     propertiesTabSelect: function(){
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
         browser.click(propertiesTabSelector);
-        browser.waitForVisible("#wbmd_legacy_id", maxWaitTimeInMs);
+        browser.waitForVisible("#title-input", maxWaitTimeInMs);
     },
     ProfMediaPropertiesTabSelect: function(){
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
