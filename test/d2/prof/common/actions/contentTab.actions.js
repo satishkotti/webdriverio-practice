@@ -43,6 +43,7 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.relatedLinksSetValue(data);
         contentTabObj.mModuleckEditorMenuClick(5);
+
     },
 
     contentHeaderGet:function()

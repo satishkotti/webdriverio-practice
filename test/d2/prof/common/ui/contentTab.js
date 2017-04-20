@@ -74,7 +74,9 @@ var contentTabUIObj = {
     },
     cancelCheckOut: function(){
         browser.waitForVisible(cancelButonSelector);
+
         //browser.scroll(cancelButonSelector);
+
         browser.click(cancelButonSelector);
         browser.pause(5000);
         browser.frameParent();
@@ -88,11 +90,20 @@ var contentTabUIObj = {
         browser.frameParent();
         browser.pause(5000);
     },
-
     aboveTitleSetValue: function(aboveTitleVal){
         browser.scroll(aboveTitleSelector);
         browser.setValue(aboveTitleSelector, aboveTitleVal);
     },
+
+    contentHeaderGet:function()
+    {
+        contentTabUIObj.switchToExternalWidget4Frame();
+        browser.waitForVisible(contentHeader,maxWaitTimeInMs);
+        var result=browser.getText(contentHeader);
+        browser.frameParent();
+        return result;
+
+    },
     cancelCheckOut: function(){
         browser.waitForVisible(cancelButonSelector);
         browser.moveToObject(cancelButonSelector);

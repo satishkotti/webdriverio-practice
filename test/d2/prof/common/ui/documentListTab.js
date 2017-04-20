@@ -141,6 +141,18 @@ var documentListUIObj = {
         expect(sysMsg).to.equal(successStagingSysMsg);
         browser.click("//div[@class='modal-footer']//button[contains(text(),'OK')]");
     },
+
+    schedulePublishResultsDialogueOkSelect: function(assetName){
+        browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
+        var objName = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(2)");
+        var state = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(3)");
+        var sysMsg = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(4)");
+        //expect(assetName).to.equal(objName);
+        expect(state).to.equal(approveStateLbl);
+        expect(sysMsg).to.contains(schpublishmsg);
+        browser.click("button[ng-click='$confirm()']");        
+    },
+
 promoteAsset: function (assetName) 
     {
         documentListUIObj.contextualMenuActivate(assetName);
@@ -185,8 +197,14 @@ lifeCycleExpireSelect: function()
         return IsVersionVerified;
     },
 
+
+      selectRelationTab: function(version){
+        browser.click("//span[text()='Relations']");
+        browser.pause(1000);
+    },
+
     verifyLock: function(objName){
-        var LockSelector = "//div[starts-with(@id,'DoclistWidget')]//span[@title="+objName+"]//preceding-sibling::span[starts-with(@class,'DocListLockByYou')]";
+        var LockSelector = "//div[starts-with(@id,'DoclistWidget')]//span[@title='"+objName+"']//preceding-sibling::span[starts-with(@class,'DocListLockByYou')]";
         var IsLocked = browser.isExisting(LockSelector);
         return IsLocked;
     },
@@ -214,20 +232,29 @@ lifeCycleExpireSelect: function()
         documentListUIObj.lifeCycleDemoteSelect();
         documentListUIObj.demoteResultsDialogueOkSelect(assetName);
     },
+
     deleteArticle:function(assetName,DeleteVersionType){
         browser.rightClick("//span[@class='DocListLockByNone']//following-sibling::span[text()='"+assetName+"']");
         browser.waitForVisible("#menuContextDestroy", maxWaitTimeInMs);
         browser.click("#menuContextDestroy");
         browser.waitForVisible("//label[contains(.,'" + DeleteVersionType + "')]",maxWaitTimeInMs);
         browser.click("//label[contains(.,'" + DeleteVersionType + "')]");
+        browser.pause(2000);
         browser.waitForVisible("//button[text()='OK']",maxWaitTimeInMs);
-        browser.click("//button[text()='OK']");
+        //browser.click("//button[text()='OK']");
+        browser.leftClick("//button[contains(.,'OK') and @type='submit']");
         //browser.pause(maxWaitTimeInMs);
          while (deleteresult) {
         deleteresult=documentListUIObj.deleteloading();
-
+       // console.log(deleteresult);
         }
+        
+   },
+   deleteloading:function()
+    {
+        return browser.isVisible('//div[@class=" x3-loading-medium x-component x-abs-layout-container"]');
     },
+
     copyArticle:function(assetName){
         browser.frameParent();
         browser.rightClick("//span[@title='" + assetName + "']");
