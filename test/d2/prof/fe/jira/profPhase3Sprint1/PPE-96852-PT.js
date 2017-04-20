@@ -68,8 +68,9 @@ describe('Publication Section PPE-96852', function () {
     });
 
     it('Should be able to creation Publication section with All fields', function () {
+        
         propertiesTab.setAllPropertiesForPubSection(title);
-        contentTab.updateContentAllFields("ar");
+        contentTab.updateContentAllFields("Logo");
     });
 
      it('Should be able to Promote functionality on Publication Section', function () {
