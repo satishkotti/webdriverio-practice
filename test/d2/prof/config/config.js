@@ -49,7 +49,7 @@ module.exports.testSettings = {
             "url": "http://dmd201d-prf-08.portal.webmd.com:8080/D2/#d2"
         },
         "d2prof": {
-            "url": "http://dmd211q-prf-08.portal.webmd.com:8080/D2/#d2",
+            "url": "http://d2.qa01.webmdprofessional.com/D2/#d2",
             "environment":"qa01",
             "users": [
                 {
