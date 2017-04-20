@@ -17,9 +17,7 @@ module.exports.getSpecs = function()
             break;
             case "d2prof":
                 var config = require('./test/d2/prof/config/config');
-
                 specList = [ './test/d2/prof/**/*.js' ];
-
             break;
             case "rt":
                 var config = require('./test/rt/config/config');
@@ -41,9 +39,7 @@ console.log('specs: '+specList);
 
 exports.config = {
 
-
     debug: false,
-
     maxInstances: 1,
     
     //
@@ -118,10 +114,7 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-
-
-    waitforTimeout: 120000,
-
+    waitforTimeout: 9999999,
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as property. Make sure you have
@@ -167,7 +160,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 120000
+        timeout: 9999999
     },
 
     //
