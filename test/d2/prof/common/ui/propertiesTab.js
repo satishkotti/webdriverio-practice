@@ -346,15 +346,36 @@ module.exports = {
         }
         return isExist;
     },
+    clearManadatoryFields: function(){
+        browser.clearElement("#title-input");
+        browser.setValue("#wbmd_bus_ref-input","");
+        browser.click("//a[@class='x-tab-right']//span[contains(text(),'Article')]");
+        browser.click("//div[@id='Transcript']");   
+        browser.click("//div[@id='wbmd_outpt_vers']//td//div[@id='remove']");
+        browser.setValue("#wbmd_site-input","");
+        browser.setValue("#wbmd_site_only-input","");
+    },
+
     verifyMandatoryFieldsforProperties: function(){
+        var IsExistTitle = browser.isExisting("//span[contains(., 'Title')]");
+        var IsExistContentType = browser.isExisting("//span[contains(., 'Content Type')]");
         var IsExistLead = browser.isExisting("//span[contains(., 'Lead Specialty')]");
         var IsExistContent = browser.isExisting("//span[contains(., 'Content Developer')]");
+        var IsExistOutputVersions = browser.isExisting("//span[contains(., 'Output Versions')]");
+        var IsExistPrimaryOutput = browser.isExisting("//span[contains(., 'Primary Output')]");
+        var IsExistSiteOn = browser.isExisting("//span[contains(., 'Site On')]");
+        var IsExistSiteRestrictions = browser.isExisting("//span[contains(., 'Site Restrictions')]");
         var IsExistwarningClass = browser.isExisting("//div[contains(@class,'ext-mb-warning')]");
         browser.click("//div[@class='x-window-br']//button[contains(.,'OK')]");
-        if(IsExistLead == true && IsExistwarningClass == true && IsExistContent == true)
+        if(IsExistTitle == true && IsExistContentType == true && IsExistLead == true && IsExistwarningClass == true && IsExistContent == true 
+        && IsExistOutputVersions == true && IsExistPrimaryOutput == true && IsExistSiteOn == true && IsExistSiteRestrictions == true)
+        {
             return true;
+        }
         else
+        {
             return false;
+        }
     },
 
     verifyProfMediaMandatoryFields: function(){

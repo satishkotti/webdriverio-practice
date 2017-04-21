@@ -20,7 +20,8 @@ module.exports = {
                 }
             } while(folerPathArr && folerPathArr.length > 0)
     },
-    repositorybrowserRefresh: function(){
-        repositoryBrowserPage.repositorybrowserRefresh();
+
+    refreshRepositoryBrowserTab: function(){
+        repositoryBrowserPage.refreshRepositoryBrowserTab();
     }
 }

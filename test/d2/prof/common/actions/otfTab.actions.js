@@ -125,7 +125,29 @@ var otfTabActionObj = {
     var objectNameValue = otfTabUI.titleValue();
     expect(objectNameValue).to.equal("_updated");
     browser.frameParent();
-    }
+    },
+
+    selectOTFWidgetTab: function(){
+        otfTabUI.selectOTFWidgetTab();
+        
+
+    },
+    otfDefaultOutputversion: function(){
+        contentTabUI.switchToExternalWidget3Frame();
+        otfTabUI.otfRemoveDefaultoutputversion();
+         browser.frameParent();
+         otfTabUI.otfRemoveDefaultoutputversionPopup();
+         contentTabUI.switchToExternalWidget3Frame();
+         var textattribute = otfTabUI.otfDefaultoutputversionValidation();
+         expect(textattribute).to.be.false;
+         otfTabUI.otfLinkDefaultoutputversion();
+         browser.frameParent();
+         otfTabUI.otfDefaultoutputversion();
+          contentTabUI.switchToExternalWidget3Frame();
+         var textattribute = otfTabUI.otfDefaultoutputversionValidation();
+         expect(textattribute).to.be.true;
+
+    },
 }
 
 module.exports = otfTabActionObj;

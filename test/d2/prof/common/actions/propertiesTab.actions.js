@@ -1,3 +1,4 @@
+var maxWaitTimeInMs = 30000;
 var propertiesTabUI = require('./../ui/propertiesTab');
 var pointerPropertiestabUI = require('./../ui/pointer');
 var maxWaitTimeInMs = 30000;
@@ -136,7 +137,7 @@ module.exports = {
          var articleresult=propertiesTabUI.verifyArticleTabProperties(labelPropertiesArray);
          return articleresult;
      },
-       setRequiredPropertiesforPublish: function(systempubdate,expdate){
+    setRequiredPropertiesforPublish: function(systempubdate,expdate){
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
         browser.pause(2000);
@@ -161,21 +162,12 @@ module.exports = {
      verifyMandatoryFieldsforProperties:function(){
          propertiesTabUI.propertiesTabSelect();
          propertiesTabUI.edit();
+         propertiesTabUI.clearManadatoryFields();
          propertiesTabUI.save();
          var AlertMessage = propertiesTabUI.verifyMandatoryFieldsforProperties();
-         propertiesTabUI.cancelEdit();
          return AlertMessage;
      },
-     setRequiredPropertiesforPublish: function(systempubdate,expdate){
-        propertiesTabUI.propertiesTabSelect();
-        propertiesTabUI.edit();
-        browser.pause(2000);
-        propertiesTabUI.publishingTabSelect();
-        browser.waitForVisible("#wbmd_eff_date-input",maxWaitTimeInMs);
-        propertiesTabUI.systemPublishingDateSet(systempubdate);
-        browser.click("//label[text()='Expire On']");
-        propertiesTabUI.expirationDateSet(expdate);
-        propertiesTabUI.save();
-    },
-    
+     cancelEdit: function(){
+         propertiesTabUI.cancelEdit();
+     },
 }

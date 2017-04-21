@@ -18,7 +18,6 @@ module.exports.getSpecs = function()
             case "d2prof":
                 var config = require('./test/d2/prof/config/config');
                 specList = [ './test/d2/prof/**/PPE-96808.js' ];
-
             break;
             case "rt":
                 var config = require('./test/rt/config/config');
@@ -39,11 +38,8 @@ console.log('specs: '+specList);
 };
 
 exports.config = {
-
-    debug: true,
-    maxInstances: 10,
-
-    
+    debug: false,
+    maxInstances: 1,
     //
     // ==================
     // Specify Test Files

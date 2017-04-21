@@ -53,6 +53,7 @@ var documentListObj = {
     },
     scheduleExpireAsset: function(assetName){
         documentListUI.scheduleExpireAsset(assetName);
+
     },
     publishAssetToStaging: function(assetName){
         documentListUI.publishToStaging(assetName);
@@ -80,16 +81,28 @@ var documentListObj = {
      searchArticle:function(data,title)
      {
          documentListUI.searchArticle(data,title);
+
      },
     copyArticle:function(data){
         documentListUI.copyArticle(data);
     },
-     searchCopyArticle:function(data)
+
+    searchCopyArticle:function(data)
      {
          documentListUI.searchCopyArticle(data);
      },
      verifyGenericRelations: function(){
          documentListUI.verifyGenericRelations();
-     }
+     },
+     verifySlideRelations: function(){
+         documentListUI.verifySlideRelations();
+     },
+     schedulePublishAsset: function(assetName){
+        documentListUI.schedulePublishAsset(assetName);
+    },
+    selectItemByNamePagination: function (assetName) {
+         documentListUI.selectItemByNamePagination(assetName);
+     },
+
 }
 module.exports = documentListObj;
