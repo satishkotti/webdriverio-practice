@@ -1,4 +1,5 @@
 var documentListUI = require('./../ui/documentListTab');
+var pubSubSecRelation =require('./../ui/PubSubSec');
 
 var documentListObj = {
     selectDocumentListTab: function(){
@@ -76,6 +77,11 @@ var documentListObj = {
      },
      verifyGenericRelations: function(){
          documentListUI.verifyGenericRelations();
-     }
+     },
+     verifyPubSubSecRelation: function(){
+        documentListUI.selectRelationTab();
+         pubSubSecRelation.pubSubSecRelation();
+     },
+
 }
 module.exports = documentListObj;

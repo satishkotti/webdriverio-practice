@@ -94,6 +94,9 @@ module.exports = {
     publishingTabSelect: function(){
         browser.click("//span[text()='Publishing']")
     },
+    publishingSubsectionTabSelect: function(){
+        browser.click("//span//span[contains(.,'Pub Subsection')]")
+    },
     otherTabSelect: function(){
         browser.click("//span[@text()='Other']")
     },
@@ -202,6 +205,15 @@ module.exports = {
             return true;
         else
             return false;
+    },
+     description: function(textValue){
+        browser.setValue("#wbmd_desc-input", textValue);
+    },
+    indexPageAdOverrid: function(textValue){
+        browser.setValue("#wbmd_publ_ad_ovrd-input", textValue);
+    },
+    articlesPubURL: function(textValue){
+        browser.setValue("#wbmd_publ_url_ovrd-input", textValue);
     }
 }
 

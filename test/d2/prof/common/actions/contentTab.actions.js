@@ -56,6 +56,15 @@ var contentTabObj = {
      contentHeaderGet:function()
     {
         return contentTabUI.contentHeaderGet();
+    },
+    updatePubSubsectionContent:function(data)    {
+        contentTabObj.checkOut();
+        contentTabObj.titleSetValue(data);
+        contentTabUI.checkIn();
+    },
+     titleSetValue: function(data){
+        //contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.titleSetValue(data);
     }
 }
 

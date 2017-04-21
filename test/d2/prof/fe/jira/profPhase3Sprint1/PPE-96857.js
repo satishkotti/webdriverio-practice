@@ -15,6 +15,7 @@ var randomstring = require("randomstring");
  
 describe('Professional - PublicationSubSection PPE-96857', function () {
     var AssetTitle;
+    var cid;
 
     before(function () {
         Login.login({
@@ -34,6 +35,22 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
     it('Verify Publication Subsection creation with only mandatory fields PPE-107726', function () {
         
         documentListTab.selectAsset(AssetTitle);
+
+    });
+     it('Verify the messages when mandatory fields are left blank fr Pointer-PPE-106396', function () {
+        documentListTab.selectAsset(AssetTitle);
+        propertiesTab.verifyPubSubSecProperties();
+
+    });
+    it('Verify the relation for the Publication Subsection asset- PPE-108362', function () {
+        documentListTab.selectAsset(AssetTitle);
+        documentListTab.verifyPubSubSecRelation();
+
+    });
+     it.skip('Verify PublicationSubSection creation with all fields- PPE-107822', function () {
+        documentListTab.selectAsset(AssetTitle);
+        propertiesTab.SetPubsubsectionALLProperties(AssetTitle);
+
     });
 
     it('Verify Checkout and checkin functionality on Professional Publication Sub Section PPE-107794', function(){
@@ -50,6 +67,17 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
         contentTab.checkIn();
         var IsCheckInVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.CheckedInVersion);
         expect(IsCheckInVersionVerified).to.be.true;
+    });
+
+    it('Should be able to update the existing article',function(){
+        documentListTab.selectItemByNamePagination(objName);
+        cidName = propertiesTab.getChronicleIdAndName();
+        objName = cidName.objectName;
+        title = cidName.title;
+        cid=cidName.chronicleId;
+        propertiesTab.setPubsubsectionProperties(title,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
+        global.d2ProfDataSettings.inputData.ContentDeveloper);
+        contentTab.updatePubSubsectionContent("Sample Text");
     });
 
     it('Verify Promote functionality on PublicationSubSection PPE-107802', function () {
@@ -72,5 +100,13 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
     it('Verify Expire functionality on PublicationSubSection PPE-107808', function () {
         documentListTab.expireAsset(objName);
     });
+
+    it.skip('Should be able to delete the article',function(){
+        browser.pause(5000);
+        documentListTab.selectAsset(title);
+        documentListTab.deleteArticle(cid,global.d2ProfDataSettings.inputData.DeleteAllversions);
+        documentListTab.searchArticle(cid,title);
+    });
+    
 });
 

@@ -207,7 +207,8 @@ lifeCycleExpireSelect: function()
         browser.click("#menuContextDestroy");
         browser.waitForVisible("//label[contains(.,'" + DeleteVersionType + "')]",maxWaitTimeInMs);
         browser.click("//label[contains(.,'" + DeleteVersionType + "')]");
-        browser.click("//button[text()='OK']");
+       // browser.click("//button[text()='OK']");
+        browser.leftClick("//button[contains(.,'OK') and @type='submit']");
         //browser.pause(maxWaitTimeInMs);
          while (deleteresult) {
         deleteresult=documentListUIObj.deleteloading();
@@ -244,7 +245,7 @@ lifeCycleExpireSelect: function()
         while (searchresult) {
         searchresult=documentListUIObj.loadSearchData();
         }
-        browser.pause(4000);
+        browser.pause(10000);
         var isexists=browser.isExisting("//div[text()='No items found']");
         expect(isexists).to.equal(true);
 
@@ -287,6 +288,10 @@ lifeCycleExpireSelect: function()
         browser.waitForExist(selectorExp);
         browser.click(selectorExp);
         browser.click("div.modal-content > div.modal-footer > button.btn.btn-primary");
+    },
+     selectRelationTab: function(version){
+        browser.click("//span[text()='Relations']");
+        browser.pause(1000);
     }
 }
 module.exports = documentListUIObj;

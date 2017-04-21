@@ -13,6 +13,8 @@ var externalWidget3Selector= "iframe[id*='oam_id==ExternalWidget-3!!oam_target_t
 var externalWidget4Selector= "iframe[id*='oam_id==ExternalWidget-4!!oam_target_type==ExternalWidget']";
 var contentHeader="//div[@class='container']//center[@class='ng-binding']";
 var cancelButonSelector= "//button[contains(string(),'Cancel')]";
+var titleSelector = "//h2[span[contains(.,'Title')]]//following-sibling::div//div[@role='textbox']";
+var introductionTextSelector = "//h2[span[contains(.,'Introduction Text')]]//following-sibling::div//div[@role='textbox']";
 
 var contentTabUIObj = {
     
@@ -133,6 +135,11 @@ var contentTabUIObj = {
         browser.moveToObject("(//a[@title='Insert Module'])["+sectionIndex+"]");
         browser.click("(//a[@title='Insert Module'])["+sectionIndex+"]");
         browser.pause(5000);
+    },
+    titleSetValue:function(titlevalue){
+        contentTabUIObj.switchToExternalWidget4Frame();
+        browser.waitForVisible(titleSelector,maxWaitTimeInMs);
+        browser.setValue(titleSelector,titlevalue);
     }
 }
 
