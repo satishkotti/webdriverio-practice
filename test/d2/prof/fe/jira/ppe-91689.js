@@ -72,4 +72,3 @@ describe('OTF Widget Verifications with one output version - PPE-91689', functio
     });
 });
 
-

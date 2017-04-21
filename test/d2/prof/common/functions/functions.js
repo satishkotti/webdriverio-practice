@@ -16,6 +16,9 @@ module.exports = {
     getQANewsUser: function(){
         return global.envSettings.d2prof.users[1];
     },
+    getQAAdminEmedUser: function(){
+        return global.envSettings.d2prof.users[2];
+    },
     getAtsScsFileUrl: function() {
         return global.envSettings.ats.url;
     },
@@ -27,5 +30,9 @@ module.exports = {
             browser.frame();
             browser.waitForExist(selectorVal, maxWaitTimeInMs);
         }
-    }
+    },  
+    getQAAdminEmedUser: function(){
+        return global.envSettings.d2prof.users[2];
+
+    }
 }

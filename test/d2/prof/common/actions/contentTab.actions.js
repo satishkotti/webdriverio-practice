@@ -44,12 +44,6 @@ var contentTabObj = {
         contentTabUI.relatedLinksSetValue(data);
         contentTabObj.mModuleckEditorMenuClick(5);
     },
-    updateContent:function(data)    {
-        contentTabObj.checkOut();
-        contentTabObj.abovetitleSetValue(data);
-        contentTabUI.checkIn();
-    },
-
      abovetitleSetValue: function(data){
         contentTabUI.switchToExternalWidget4Frame();
         contentTabUI.abovetitleSetValue(data);
@@ -65,6 +59,17 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidget4Frame();
         contentTabUI.AllFieldsSetValueForPubSection(data);
     },
+    updateContent:function(data)    {
+        contentTabObj.checkOut();
+        contentTabObj.abovetitleSetValue(data);
+        contentTabUI.checkIn();
+    },
+
+     contentHeaderGet:function()
+    {
+        return contentTabUI.contentHeaderGet();
+    },
+
 }
 
 module.exports = contentTabObj;

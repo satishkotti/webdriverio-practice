@@ -28,8 +28,8 @@ describe('Publication Section PPE-96852', function () {
         username: functions.getQAPublicationUser().username,
         password: functions.getQAPublicationUser().password
     });
-         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
-        workspaceMenu.createContent(global.d2ProfDataSettings.inputData.PublicationProfileName,
+         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPathPubSection);
+        workspaceMenu.createContentPubSection(global.d2ProfDataSettings.inputData.PublicationProfileName,
                     global.d2ProfDataSettings.inputData.PublicationSectionTemplate, 
                     Objectname, '');
         documentListTab.selectAsset(Objectname);
@@ -119,7 +119,8 @@ describe('Publication Section PPE-96852', function () {
         title = cidName.title;
         cid=cidName.chronicleId;
         propertiesTab.setRequiredPropertiesForPubSection(objName, title);
-        contentTab.updateContent("Sample Text");
+        //contentTab.updateContent("Sample Text");
+        contentTab.updateContentAllFields("Heart");
         expect(d2ProfDataSettings.inputData.AssetName).to.equal(title);
    });
 

@@ -10,7 +10,7 @@ var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
 var contentTab = require('./../../../common/actions/contentTab.actions');
 var otfTab = require('./../../../common/actions/otfTab.actions');
 var moment = require('moment-timezone');
-var Objectname= global.d2ProfDataSettings.FRData.ObjectName;
+var Objectname= global.d2ProfDataSettings.PSFRData.ObjectName;
 
 describe('Publication Section PPE-96852', function () {
 
@@ -28,8 +28,8 @@ describe('Publication Section PPE-96852', function () {
         username: functions.getQAAdminEmedUser().username,
         password: functions.getQAAdminEmedUser().password
     });
-         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.FRData.testFolderPath);
-        workspaceMenu.createContent(global.d2ProfDataSettings.FRData.PublicationProfileName,
+         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.PSFRData.testFolderPathPubSection);
+        workspaceMenu.createContentPubSection(global.d2ProfDataSettings.PSFRData.PublicationProfileName,
                     global.d2ProfDataSettings.inputData.PublicationSectionTemplate, 
                     Objectname, '');
         documentListTab.selectAsset(Objectname);
@@ -113,14 +113,15 @@ describe('Publication Section PPE-96852', function () {
     });
 
     it('Should be able to update the existing article',function(){
-        documentListTab.selectItemByNamePagination(d2ProfDataSettings.FRData.AssetName);
+        documentListTab.selectItemByNamePagination(d2ProfDataSettings.PSFRData.AssetName);
         cidName = propertiesTab.getChronicleIdAndName();
         objName = cidName.objectName;
         title = cidName.title;
         cid=cidName.chronicleId;
         propertiesTab.setRequiredPropertiesForPubSection(objName, title);
-        contentTab.updateContent("Sample Text");
-        expect(d2ProfDataSettings.FRData.AssetName).to.equal(title);
+        //contentTab.updateContent("Sample Text");
+        contentTab.updateContentAllFields("Logo");
+        expect(d2ProfDataSettings.PSFRData.AssetName).to.equal(title);
    });
 
 });

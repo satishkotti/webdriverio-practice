@@ -1,4 +1,5 @@
 var documentListUI = require('./../ui/documentListTab');
+var pointerRelation =require('./../ui/pointer');
 
 var documentListObj = {
     selectDocumentListTab: function(){
@@ -23,8 +24,29 @@ var documentListObj = {
 //Add logic for pagination if asset not found.
 //Add: assert asset selected is highlighted        
     },
+     selectItemByNamePagination: function (assetName) {
+         documentListUI.selectItemByNamePagination(assetName);
+     },
+    promoteAsset: function(assetName){
+
+        documentListUI.promoteAsset(assetName);
+    },
+    demoteAsset: function(assetName){
+        documentListUI.demoteAsset(assetName);
+    },
     powerPromoteAsset: function(assetName){
         documentListUI.powerPromote(assetName);
+    },
+
+    schedulePublishAsset: function(assetName){
+        documentListUI.schedulePublishAsset(assetName);
+    },
+    expireAsset: function(assetName){
+    documentListUI.expireAsset(assetName);
+    },
+    scheduleExpireAsset: function(assetName){
+        documentListUI.scheduleExpireAsset(assetName);
+
     },
     publishAssetToStaging: function(assetName){
         documentListUI.publishToStaging(assetName);
@@ -34,17 +56,19 @@ var documentListObj = {
         documentListObj.powerPromoteAsset(assetName);
         documentListObj.publishAssetToStaging(assetName);
     },
+    verifyPointerRelation: function(){
+        documentListUI.selectRelationTab();
+         pointerRelation.pointerRelation();
+     },
     verifyVersions: function(version){
         var IsVersionVerified = documentListUI.selectVersionTab(version);
         return IsVersionVerified;
     },
+
     verifyPubSectionRelations: function(){
          documentListUI.verifyPubSectionRelations();
      },
-     verifyLock: function(objName){
-        var IsLocked = documentListUI.verifyLock(objName);
-        return IsLocked;
-    },
+    
     promoteAsset: function(assetName){
         documentListUI.promoteAsset(assetName);
     },
@@ -57,13 +81,28 @@ var documentListObj = {
     expireAsset: function(assetName){
     documentListUI.expireAsset(assetName);
     },
+
+    verifyLock: function(objName){
+        var IsLocked = documentListUI.verifyLock(objName);
+        return IsLocked;
+    },
+    deleteArticle:function(assetName,DeleteVersionType){
+         documentListUI.deleteArticle(assetName,DeleteVersionType);
+     },
+     searchArticle:function(data,title)
+     {
+         documentListUI.searchArticle(data,title);
+
+     },
     copyArticle:function(data){
         documentListUI.copyArticle(data);
     },
+
     searchCopyArticle:function(data)
      {
          documentListUI.searchCopyArticle(data);
      },
+
      deleteArticle:function(assetName,DeleteVersionType){
          documentListUI.deleteArticle(assetName,DeleteVersionType);
      },
@@ -71,7 +110,14 @@ var documentListObj = {
      {
          documentListUI.searchArticle(data, title);
      },
-     selectItemByNamePagination: function (assetName) {
+
+     verifySlideRelations: function(){
+         documentListUI.verifySlideRelations();
+     },
+     schedulePublishAsset: function(assetName){
+        documentListUI.schedulePublishAsset(assetName);
+    },
+    selectItemByNamePagination: function (assetName) {
          documentListUI.selectItemByNamePagination(assetName);
      },
 }

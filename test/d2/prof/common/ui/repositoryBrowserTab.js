@@ -2,7 +2,8 @@ var maxWaitTimeInMs = 60000;
 
 module.exports = {
     selectRepositoryBrowserTab: function () {
-
+        browser.click("//span[text()='Repository browser']")
+        browser.waitForExist("div.x-tree3-el");
     },
     openFolder: function (nodeName, folderLevel) {
         var folderSelector = "//div[@aria-level='" + folderLevel + "']//span[text()='" + nodeName + "']";
@@ -20,6 +21,7 @@ module.exports = {
         browser.moveToObject(folderSelector, 0, 0);
         browser.click(folderSelector); 
         browser.pause(2000);
+
         browser.execute(
             function () {
                 var divElm = document.getElementsByClassName("x-tree3")[0];
@@ -36,6 +38,7 @@ module.exports = {
     ExpandContentTab: function () {
         browser.waitForVisible('//span[contains(.,"Repository browser")]//*[@id="menuDownArrow-button"]');
         browser.click('//span[contains(.,"Repository browser")]//*[@id="menuDownArrow-button"]');
+
 
         if (browser.isExisting("//div[@id='x-menu-el-toggleViewWidget-menuItem']//span[text()='Expand']")) {
             browser.click("//div[@id='x-menu-el-toggleViewWidget-menuItem']//span[text()='Expand']");
