@@ -3,7 +3,7 @@ var random = require('randomstring');
 
 var newContentObj = module.exports = {
 
-    createNewArticle: function(creationProflieName, articleTemplateName, objectName, descriptionName){
+    createNewArticle: function (creationProflieName, articleTemplateName, objectName, descriptionName) {
 
         newContentObj.setProfile(creationProflieName, articleTemplateName);
         newContentObj.setObjectName(objectName, descriptionName);
@@ -47,17 +47,17 @@ var newContentObj = module.exports = {
         newContentObj.setProfile(props.creationProflieName, articleTemplateName);
         newContentObj.setObjectName(objectName, descriptionName);
     },
-    createNewOutputProfArticle: function(creationProflieName, articleTemplateName, objectName, descriptionName){
+    createNewOutputProfArticle: function (creationProflieName, articleTemplateName, objectName, descriptionName) {
 
         newContentObj.setProfile(creationProflieName, articleTemplateName);
         newContentObj.setOutputProfObjectData(objectName, descriptionName);
     },
-    createNewCollection: function(){ 
+    createNewCollection: function () {
     },
-    createShortTextCollection: function(){ 
+    createShortTextCollection: function () {
 
     },
-    createVideoTextCollection: function(){ 
+    createVideoTextCollection: function () {
 
     },
     createPointerObject: function (creationProflieName, pointerTemplateName, objectName, objectTitle) {
@@ -72,18 +72,18 @@ var newContentObj = module.exports = {
 
         browser.waitForVisible("#creationProfileChooser-input");
         browser.click('#creationProfileChooser-input');
-        browser.leftClick('//div[@title="'+profileName+'"]');
+        browser.leftClick('//div[@title="' + profileName + '"]');
         browser.waitForVisible("//div[starts-with(@id,'combo')]");
         browser.leftClick("//div[starts-with(@id,'combo')]");
-        browser.click('//div[@title="'+template+'"]');
+        browser.click('//div[@title="' + template + '"]');
         browser.click('//*[@id="next-button"]');
     },
-    setObjectName: function(objName, descName){
+    setObjectName: function (objName, descName) {
         browser.waitForVisible("#title-input");
         browser.setValue('#title-input', objName);
         browser.click('//div[@id="wbmd_bus_ref"]//img');
-        browser.waitForVisible('//div[@title="'+descName+'"]',maxWaitTimeInMs);
-        browser.click('//div[@title="'+descName+'"]');
+        browser.waitForVisible('//div[@title="' + descName + '"]', maxWaitTimeInMs);
+        browser.click('//div[@title="' + descName + '"]');
         browser.waitForVisible('//*[@id="next-button"]');
         browser.click('//*[@id="next-button"]');
         browser.waitForVisible('//span[@title="' + objName + '"]', maxWaitTimeInMs);
@@ -97,14 +97,14 @@ var newContentObj = module.exports = {
         browser.click('//*[@id="next-button"]');
         browser.waitForVisible('//span[@title="' + objTitle + '"]', maxWaitTimeInMs);
     },
-    setOutputProfObjectData: function(objName, descName){
+    setOutputProfObjectData: function (objName, descName) {
         browser.waitForVisible("#object_name-input");
         browser.setValue('#object_name-input', objName);
         browser.waitForVisible("#title-input");
         browser.setValue('#title-input', objName);
         browser.click('#wbmd_outpt_type-input');
-        browser.waitForVisible('//div[@title="'+descName+'"]',maxWaitTimeInMs);
-        browser.click('//div[@title="'+descName+'"]');
+        browser.waitForVisible('//div[@title="' + descName + '"]', maxWaitTimeInMs);
+        browser.click('//div[@title="' + descName + '"]');
         browser.waitForVisible('//*[@id="next-button"]');
         browser.click('//*[@id="next-button"]');
         browser.waitForVisible('//span[@title="' + objName + '"]', maxWaitTimeInMs);

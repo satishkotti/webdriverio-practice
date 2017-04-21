@@ -162,7 +162,7 @@ module.exports.testSettings = {
             "wip":"WIP",
             "outputVersion":"Output Version",
             "text":"text",
-            "transcript":"Transcript",
+
              "active":"Active",
 	        "searchdata": "860272",
             "objName":"QATestAssethNrnC"

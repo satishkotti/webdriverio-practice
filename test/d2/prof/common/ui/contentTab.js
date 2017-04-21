@@ -33,14 +33,14 @@ var contentTabUIObj = {
 
         browser.frame();
         var contentWidgetIFrameElement;
-        if(global.envSettings.d2prof.environment=="dev04")
-            contentWidgetIFrameElement = browser.element(externalWidget3Selector);
-        else if(global.envSettings.d2prof.environment=="qa01")
-            contentWidgetIFrameElement = browser.element(externalWidget4Selector);
-        else
-            contentWidgetIFrameElement = browser.element(externalWidget3Selector);
+        if(global.envSettings.d2prof.environment=="dev04")
+            contentWidgetIFrameElement = browser.element(externalWidget3Selector);
+        else if(global.envSettings.d2prof.environment=="qa01")
+            contentWidgetIFrameElement = browser.element(externalWidget4Selector);
+        else
+            contentWidgetIFrameElement = browser.element(externalWidget3Selector);
 
-        browser.frame(contentWidgetIFrameElement.value);
+        browser.frame(contentWidgetIFrameElement.value);
         // var contentWidgetIFrameElement = browser.element(externalWidget4Selector);
         // browser.frame(contentWidgetIFrameElement.value);
 
@@ -96,14 +96,14 @@ var contentTabUIObj = {
     },
 
     contentHeaderGet:function()
-    {
-        contentTabUIObj.switchToExternalWidget4Frame();
-        browser.waitForVisible(contentHeader,maxWaitTimeInMs);
-        var result=browser.getText(contentHeader);
-        browser.frameParent();
-        return result;
+    {
+        contentTabUIObj.switchToExternalWidget4Frame();
+        browser.waitForVisible(contentHeader,maxWaitTimeInMs);
+        var result=browser.getText(contentHeader);
+        browser.frameParent();
+        return result;
 
-    },
+    },
     cancelCheckOut: function(){
         browser.waitForVisible(cancelButonSelector);
         browser.moveToObject(cancelButonSelector);

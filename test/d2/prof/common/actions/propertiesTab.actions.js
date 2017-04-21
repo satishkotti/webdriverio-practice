@@ -103,28 +103,28 @@ module.exports = {
          return articleresult;
      },
 
-       setRequiredPropertiesforPublish: function(systempubdate,expdate){
-        propertiesTabUI.propertiesTabSelect();
-        propertiesTabUI.edit();
-        browser.pause(2000);
-        propertiesTabUI.publishingTabSelect();
-        browser.waitForVisible("#wbmd_eff_date-input",maxWaitTimeInMs);
-        propertiesTabUI.systemPublishingDateSet(systempubdate);
-        browser.click("//label[text()='Expire On']");
-        propertiesTabUI.expirationDateSet(expdate);
-        propertiesTabUI.save();
-    },
-    setRequiredPropertiesforExpire: function(expdate){
-        propertiesTabUI.propertiesTabSelect();
-        propertiesTabUI.edit();
-        browser.pause(2000);
-        propertiesTabUI.publishingTabSelect();
+       setRequiredPropertiesforPublish: function(systempubdate,expdate){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        browser.pause(2000);
+        propertiesTabUI.publishingTabSelect();
+        browser.waitForVisible("#wbmd_eff_date-input",maxWaitTimeInMs);
+        propertiesTabUI.systemPublishingDateSet(systempubdate);
+        browser.click("//label[text()='Expire On']");
+        propertiesTabUI.expirationDateSet(expdate);
+        propertiesTabUI.save();
+    },
+    setRequiredPropertiesforExpire: function(expdate){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        browser.pause(2000);
+        propertiesTabUI.publishingTabSelect();
 
-        browser.waitForVisible("#wbmd_exp_date-input",maxWaitTimeInMs);
-        browser.click("//label[text()='Expire On']");
-        propertiesTabUI.expirationDateSet(expdate);
-        propertiesTabUI.save();
-    },
+        browser.waitForVisible("#wbmd_exp_date-input",maxWaitTimeInMs);
+        browser.click("//label[text()='Expire On']");
+        propertiesTabUI.expirationDateSet(expdate);
+        propertiesTabUI.save();
+    },
      verifyMandatoryFieldsforProperties:function(){
          propertiesTabUI.propertiesTabSelect();
          propertiesTabUI.edit();
