@@ -105,7 +105,7 @@
 					}
 					
 					if ((platform === 'mobile') && (!$loe.length)) {
-						$('.breadcrumb').after($attrib.clone(true).addClass('no-loe'));
+						$('.breadcrumb').after($attrib.addClass('no-loe'));
 					}
 				});]]>
 			</xsl:text>
