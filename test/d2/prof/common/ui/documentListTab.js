@@ -96,7 +96,7 @@ var documentListUIObj = {
         documentListUIObj.contextualMenuActivate(assetName);
         documentListUIObj.contextualMenuLifeCycleSelect();
         documentListUIObj.lifeCyclePublishSelect();
-        documentListUIObj.publishToDialogueOkSelect('Staging');
+        documentListUIObj.publishToDialogueOkSelect('Staging',assetName);
     },
     schedulePublishResultsDialogueOkSelect: function(assetName){
         browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
@@ -305,7 +305,7 @@ lifeCycleExpireSelect: function()
         browser.isExisting("//td[contains(.,'wcm_rules_template')]//following-sibling::td[contains(.,'Rule_Professional_for_Article') and contains(.,'xml')]");
         browser.isExisting("//td[contains(.,'wcm_rules_editor')]//following-sibling::td[contains(.,'professional_article_generic') and contains(.,'xml')]");
     },
-    publishToDialogueOkSelect:function(lifeCycle){
+    publishToDialogueOkSelect:function(lifeCycle,assetName){
         if(lifeCycle === ''){
             lifeCycle = 'Staging'
         }

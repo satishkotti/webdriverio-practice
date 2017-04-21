@@ -70,6 +70,9 @@ module.exports = {
     versionLabelGet: function(){
         return browser.getText("#r_version_label");
     }, 
+    expirationDateGet: function(){
+        return browser.getValue("#wbmd_exp_date-input");
+    },
     objectTypeGet: function(){
         return browser.getText("#r_object_type");
     },  
