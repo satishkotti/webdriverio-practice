@@ -61,9 +61,35 @@ var otfTabActionObj = {
          console.log("isPrimaryOV:"+isPrimaryOV);        
     },
     verifyCreateOutputVersion: function(newsObjectname) {
+
         otfTabUI.verifyCreateOutputVersion(newsObjectname);
     },
-    verifyNewOutputVersionData: function(newsObjectname) {
+    verifyOutputVersionOutputtypeIMP: function(OutputType) {
+        otfTabActionObj.selectExternalWidget();
+        otfTabUI.CreateOutputVersionIMPClick();
+        OutputType.split(',').forEach(function (x) {               
+            otfTabUI.verifyCreateOutputVersionIMP(x);
+        });
+        otfTabUI.CancelCreateOutputVersion();
+        
+    },
+     verifyParentObjectIMP: function(objName) {
+       
+       otfTabUI.CreateOutputVersionIMPClick();
+        var Parentobjname = otfTabUI.getParentObjectValue();
+       
+        
+        expect(Parentobjname).to.equal(objName);
+        otfTabUI.CancelCreateOutputVersion();
+        
+    },
+    CreateOutputVersionIMP: function(OutputType) {
+        
+        otfTabUI.CreateOutputVersionIMPClick();
+        otfTabUI.verifyCreateOutputVersionIMP(OutputType);
+        otfTabUI.CreateCreateOutputVersion();
+    },
+    verifyNewOutputVersionData: function(objName) {
         browser.pause(20000);
         var otfTabSelector = otfTabUI.otfTabSelector();
         browser.click(otfTabSelector);
@@ -74,9 +100,9 @@ var otfTabActionObj = {
         var objectTypeValueNewOV= otfTabUI.objectTypeValueNewOV();
         expect(objectTypeValueNewOV).to.equal(global.d2ProfDataSettings.otfData.outputVersion);
         var objectNameValueNewOV = otfTabUI.objectNameValueNewOV();
-        expect(objectNameValueNewOV).to.equal("OutputVersion-"+newsObjectname);
+        expect(objectNameValueNewOV).to.equal(objName);
         var titleValueNewOV= otfTabUI.titleValueNewOV();
-        expect(titleValueNewOV).to.equal("OutputVersion-Title-"+newsObjectname);
+        expect(titleValueNewOV).to.equal(objName);
         var statusValueNewOV = otfTabUI.statusValueNewOV();
         expect(statusValueNewOV).to.equal(global.d2ProfDataSettings.otfData.active);
          //unable to validate the primary input radio button
@@ -86,7 +112,7 @@ var otfTabActionObj = {
     verifyMultipleOutputVersionCreation: function(newsObjectname) {
         otfTabUI.verifyMultipleOutputVersionCreation(newsObjectname);
     },
-    verifySecondOutputVersionData: function(newsObjectname) {
+    verifySecondOutputVersionData: function(objName) {
         browser.pause(10000);
         var otfTabSelector = otfTabUI.otfTabSelector();
         browser.click(otfTabSelector);
@@ -97,9 +123,9 @@ var otfTabActionObj = {
         var objectTypeValueSecondOV= otfTabUI.objectTypeValueSecondOV();
         expect(objectTypeValueSecondOV).to.equal(global.d2ProfDataSettings.otfData.outputVersion);
         var objectNameValueSecondOV = otfTabUI.objectNameValueSecondOV();
-        expect(objectNameValueSecondOV).to.equal("OutputVersion-2-"+newsObjectname);
+        expect(objectNameValueSecondOV).to.equal(objName);
         var titleValueSecondOV= otfTabUI.titleValueSecondOV();
-        expect(titleValueSecondOV).to.equal("OutputVersion-Title-2-"+newsObjectname);
+        expect(titleValueSecondOV).to.equal(objName);
         var statusValueSecondOV = otfTabUI.statusValueSecondOV();
         expect(statusValueSecondOV).to.equal(global.d2ProfDataSettings.otfData.active);
          //unable to validate the primary input radio button
