@@ -48,7 +48,7 @@ var profOutputObj = {
         browser.pause(30000);
         var cidName = propertiesTab.getProfOutputPublishingTab();
         var sysPublishingDate = cidName.sysPublishingDate;
-        expect(versionLabel).to.not.equal(global.d2ProfDataSettings.profOutputData.defaultDateText);
+        expect(sysPublishingDate).to.not.equal(global.d2ProfDataSettings.profOutputData.defaultDateText);
         var cidName = propertiesTab.getProfOutputOtherTab();
         var versionLabel = cidName.versionLabel;
         expect(versionLabel).to.equal(global.d2ProfDataSettings.profOutputData.publishVersion);        
