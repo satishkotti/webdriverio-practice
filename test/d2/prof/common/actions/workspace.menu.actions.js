@@ -8,6 +8,10 @@ module.exports = {
 
 //Add: assert new article is created and added to documentList Tab.
     },
+    createContentPubSection : function(creationProflieName, articleTemplateName, objectName, descriptionName){
+        workspaceMenuUI.selectNewContent();
+       newContentModal.createNewPubSectionArticle(creationProflieName, articleTemplateName, objectName, descriptionName);
+    },
     createContent1: function(cabinet, props){
        workspaceMenuUI.selectNewContent();
        return newContentModal.createNewArticle1(cabinet, props);

@@ -349,6 +349,28 @@ module.exports = {
         }
         return isExist;
     },
+
+    clearManadatoryFieldsForPublishSection: function(){
+        //browser.waitForVisible("#object_name-input", maxWaitTimeInMs);
+        //browser.clearElement("#object_name-input");
+        browser.waitForVisible("#title-input", maxWaitTimeInMs);
+        browser.clearElement("#title-input");
+    },
+    verifyMandatoryFieldsforPubSectionProp: function(){
+        var IsExistTitle = browser.isExisting("//span[contains(., 'Title')]");
+        var IsExistName = browser.isExisting("//span[contains(., 'Name')]");
+        var IsExistwarningClass = browser.isExisting("//div[contains(@class,'ext-mb-warning')]");
+        browser.click("//div[@class='x-window-br']//button[contains(.,'OK')]");
+        if(IsExistTitle == true && IsExistName == true && IsExistwarningClass == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    },
+
     clearManadatoryFields: function(){
         browser.clearElement("#title-input");
         browser.setValue("#wbmd_bus_ref-input","");
@@ -379,6 +401,25 @@ module.exports = {
         {
             return false;
         }
+    },
+
+    setRequiredPropertiesForPubSection: function(Name, Title){
+        //browser.setValue("#object_name-input", Name);
+        browser.setValue("#title-input", Title);
+    },
+    setAllPropertiesForPubSection: function(Title){
+        browser.setValue("#title-input", Title);
+        browser.setValue("#wbmd_desc-input", 'PubSection Description');
+        browser.setValue("#wbmd_publ_ad_ovrd-input", 'TestPub Section Page Ad Override');
+        browser.setValue("#wbmd_publ_url_ovrd-input", 'TestPubURL');
+    },
+    
+    systemPublishingDateSet:function(textValue){
+         browser.setValue("#wbmd_eff_date-input",textValue);
+    },
+
+    expirationDateSet:function(textValue){
+         return browser.setValue("#wbmd_exp_date-input",textValue);
     },
 
     verifyProfMediaMandatoryFields: function(){

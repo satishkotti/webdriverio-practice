@@ -84,7 +84,8 @@ module.exports.testSettings = {
             "SlideAssetName": "QATestSlideArticle", //"QATestAssethNrnC",
             "SlideFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
             "locale":"US",
-            "AssetName":"QATestAssethNrnC",
+            "testFolderPathPubSection": "webmd/professional_assets/medscape/articles/article/2015/QATest",
+                 "AssetName":"QATestAssethNrnC",
             "MediaName":"QAProfMediaTest",
             "testFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
             "testFolderPath_de": "webmd_de/professional_assets/medscape/articles/news",
@@ -92,6 +93,8 @@ module.exports.testSettings = {
             "testFolderPath_sp": "webmd_sp/professional_assets/medscape/articles/news",
             "testFolderPath_pt": "webmd_pt/professional_assets/medscape/articles/news",
             "ArticleProfileName": 'News Article Templates',
+            "PublicationProfileName": 'US / Publication Templates',
+            "PublicationSectionTemplate":'Professional Publication Section',
             "ProfileName":"US / Article Templates",
             "ProfileName_de":"DE / Article Templates",
             "ProfileName_fr":"FR / Article Templates",
@@ -107,6 +110,7 @@ module.exports.testSettings = {
             "PointerTemplate": "Professional Pointer",
             "MediaTemplate": "Professional Media",
             "ArticleTemplate": 'News Article',
+            "ObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "PointerTemplate": "Professional Pointer",
              "changeFolderPath": "webmd/professional_assets/medscape/news/heartwire/news/200412",
             "OthersProfileName":"US / Other Templates",
@@ -122,17 +126,14 @@ module.exports.testSettings = {
             "SlideArticleTemplate": "Article Slide Presentation",
             "SlideArticleObjectName": "QATestSlide" + exports.GenerateRandomString(5),
             "SlideContentType": "News",
-            "InitialVersion": "1.0, CURRENT, WIP",
-            "CheckedInVersion": "1.1, CURRENT, WIP",
-            "DeleteAllversions":"Delete all versions",    
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
             "ContentType_SP":"Alertas",
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
             "LeadSpecialty": "Cardiology",
             "pointerExistingAsset":"pertussis-disease3",
             "ContentDeveloper": "Medscape",
+            "DeleteAllversions":"Delete all versions", 
             "Deleteselectedversion":"Delete selected version only",
-            "DeleteAllversions":"Delete all versions",
             "newsPropertiesLabels":"object_name-input,title-input,wbmd_legacy_id,wbmd_wdw_ttl-input,wbmd_bus_ref-input,wbmd_lead_concept-input,"+
                                     "wbmd_keywords-input,wbmd_content_fcs,wbmd_desc_meta-input,wbmd_img_thmb-input,wbmd_rel_links_type-input,wbmd_rel_link_lbl-input,wbmd_suppress_search-input,"+
                                     "wbmd_suppress_link-input,wbmd_suppress_comment-input,wbmd_cont_dev-input,wbmd_toc_display-input,wbmd_bkt_gen_coll_id,wbmd_prim_coll-input,wbmd_supp_ads-input,"+
@@ -149,7 +150,9 @@ module.exports.testSettings = {
                         "wbmd_supp_mobile-input,wbmd_gated-input,wbmd_ext_id-input,wbmd_supp_prog_lnk-input",
             "active":"Active",
 	        "searchdata": "860272",
-            "objName":"QATestAssethNrnC"              
+            "objName":"QATestAssethNrnC",   
+            "InitialVersion":"1.0, CURRENT, WIP",
+            "CheckedInVersion":"1.1, CURRENT, WIP",    
         },
         "otfData": {
             "objectType":"Object Type",
@@ -165,8 +168,42 @@ module.exports.testSettings = {
             "outputVersion":"Output Version",
             "text":"text",
             "transcript":"Transcript",
-            "active":"Active"
+            "active":"Active",
+            "searchdata": "860272",
+            "objName":"QATestAssethNrnC",
         },
+        "PSDEData":{
+            "AssetName":"QADETestPubSection",
+            "testFolderPathPubSection": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
+            "PublicationProfileName":"DE / Publication Templates",
+            "LeadSpecialty": "Psychiatrie",
+            "ContentDeveloper": "Partner",
+            "ObjectName": "QADETestPubSection" + exports.GenerateRandomString(5),
+        },
+        "PSFRData":{
+            "AssetName":"QAFRTestPubSection",
+            "testFolderPathPubSection": "webmd_fr/professional_assets/medscape/articles/news/articles/2013/test",
+            "PublicationProfileName":"FR / Publication Templates",
+            "LeadSpecialty": "Cardiologie",
+            "ContentDeveloper": "Partner",
+            "ObjectName": "QAFRTestPubSection" + exports.GenerateRandomString(5),
+        },
+        "PSPTData":{
+            "AssetName":"QAPTTestPubSection",
+            "testFolderPathPubSection": "webmd_pt/professional_assets/medscape/articles/news/articles/2015/test",
+            "PublicationProfileName":"PT / Publication Templates",
+            "LeadSpecialty": "Cardiologia",
+            "ContentDeveloper": "N/A",
+            "ObjectName": "QAPTTestPubSection" + exports.GenerateRandomString(5),
+        },
+        "PSSPData":{
+            "AssetName":"QASPTestPubSection",
+            "testFolderPathPubSection": "webmd_sp/professional_assets/medscape/articles/news/articles/SP/test",
+            "PublicationProfileName":"SP / Publication Templates",
+            "LeadSpecialty": "Dermatología",
+            "ContentDeveloper": "N/A",
+            "ObjectName": "QASPTestPubSection" + exports.GenerateRandomString(5),
+        },
         "SDEData":{
             "AssetName":"QATestDESlideArticle",
             "SlideFolderPath": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
@@ -256,7 +293,6 @@ module.exports.testSettings = {
             "wipVersion": "1.0, CURRENT, WIP",
             "objType": "wbmd_prof_output"
         }
-
     }
 }
 

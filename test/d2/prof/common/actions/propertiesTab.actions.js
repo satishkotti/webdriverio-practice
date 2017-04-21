@@ -137,6 +137,29 @@ module.exports = {
          var articleresult=propertiesTabUI.verifyArticleTabProperties(labelPropertiesArray);
          return articleresult;
      },
+
+     verifyMandatoryFieldsforPubSectionProp:function(){
+         propertiesTabUI.propertiesTabSelect();
+         propertiesTabUI.edit();
+         propertiesTabUI.clearManadatoryFieldsForPublishSection();
+         propertiesTabUI.save();
+         var AlertMessage = propertiesTabUI.verifyMandatoryFieldsforPubSectionProp();
+         return AlertMessage;
+     },
+     
+     setRequiredPropertiesForPubSection: function(Name, Title){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.setRequiredPropertiesForPubSection(Name, Title);
+        propertiesTabUI.save();
+    },
+    setAllPropertiesForPubSection: function(Title){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.setAllPropertiesForPubSection(Title);
+        propertiesTabUI.save();
+    },
+
     setRequiredPropertiesforPublish: function(systempubdate,expdate){
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
@@ -170,4 +193,26 @@ module.exports = {
      cancelEdit: function(){
          propertiesTabUI.cancelEdit();
      },
+     setRequiredPropertiesforPublish: function(systempubdate,expdate){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        browser.pause(2000);
+        propertiesTabUI.publishingTabSelect();
+        browser.waitForVisible("#wbmd_eff_date-input",maxWaitTimeInMs);
+        propertiesTabUI.systemPublishingDateSet(systempubdate);
+        browser.click("//label[text()='Expire On']");
+        propertiesTabUI.expirationDateSet(expdate);
+        propertiesTabUI.save();
+    },
+
+    setRequiredPropertiesforExpire: function(expdate){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        browser.pause(2000);
+        propertiesTabUI.publishingTabSelect();
+
+        browser.waitForVisible("#wbmd_exp_date-input",maxWaitTimeInMs);
+        browser.click("//label[text()='Expire On']");
+        propertiesTabUI.expirationDateSet(expdate);
+    },        
 }

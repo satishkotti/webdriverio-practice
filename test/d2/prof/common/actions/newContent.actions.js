@@ -5,6 +5,9 @@ module.exports = {
 
     newContentUI.createNewArticle(creationProflieName, articleTemplateName, objectName, descriptionName);
   },
+  createNewPubSectionArticle: function(creationProflieName, articleTemplateName, objectName, descriptionName){
+    newContentUI.createNewPubSectionArticle(creationProflieName, articleTemplateName, objectName, descriptionName);
+  },
   createNewArticle1: function (cabinet, props)
   { 
     return newContentUI.createNewArticle1(cabinet, props)

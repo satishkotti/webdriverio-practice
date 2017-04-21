@@ -71,6 +71,24 @@ var documentListObj = {
         var IsVersionVerified = documentListUI.selectVersionTab(version);
         return IsVersionVerified;
     },
+
+    verifyPubSectionRelations: function(){
+         documentListUI.verifyPubSectionRelations();
+     },
+    
+    promoteAsset: function(assetName){
+        documentListUI.promoteAsset(assetName);
+    },
+    demoteAsset: function(assetName){
+        documentListUI.demoteAsset(assetName);
+    },
+    powerPromoteAsset: function(assetName){
+        documentListUI.powerPromote(assetName);
+    },
+    expireAsset: function(assetName){
+    documentListUI.expireAsset(assetName);
+    },
+
     verifyLock: function(objName){
         var IsLocked = documentListUI.verifyLock(objName);
         return IsLocked;
@@ -91,6 +109,13 @@ var documentListObj = {
      {
          documentListUI.searchCopyArticle(data);
      },
+     deleteArticle:function(assetName,DeleteVersionType){
+         documentListUI.deleteArticle(assetName,DeleteVersionType);
+     },
+     searchArticle:function(data, title)
+     {
+         documentListUI.searchArticle(data, title);
+     },
      verifyGenericRelations: function(){
          documentListUI.verifyGenericRelations();
      },
@@ -103,6 +128,5 @@ var documentListObj = {
     selectItemByNamePagination: function (assetName) {
          documentListUI.selectItemByNamePagination(assetName);
      },
-
 }
 module.exports = documentListObj;
