@@ -30,20 +30,10 @@ var contentTabUIObj = {
         browser.frame(contentWidgetIFrameElement.value);
     },
     switchToExternalWidget4Frame: function(){
-
-        browser.frame();
-        var contentWidgetIFrameElement;
-        if(global.envSettings.d2prof.environment=="dev04")
-            contentWidgetIFrameElement = browser.element(externalWidget3Selector);
-        else if(global.envSettings.d2prof.environment=="qa01")
-            contentWidgetIFrameElement = browser.element(externalWidget4Selector);
-        else
-            contentWidgetIFrameElement = browser.element(externalWidget3Selector);
-
-        browser.frame(contentWidgetIFrameElement.value);
-        // var contentWidgetIFrameElement = browser.element(externalWidget4Selector);
-        // browser.frame(contentWidgetIFrameElement.value);
-
+        var contentWidgetIFrameElement = browser.element(externalWidget4Selector);
+        if(contentWidgetIFrameElement.value==null)
+            contentWidgetIFrameElement = browser.element(externalWidget3Selector);
+        browser.frame(contentWidgetIFrameElement.value);
     },
     switchTomModuleMenuFrame: function(){
         //var contentWidgetIFrameElement = browser.element("iframe[id*='cke_279_frame']");

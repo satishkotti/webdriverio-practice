@@ -5,7 +5,6 @@ module.exports = {
         repositoryBrowserPage.selectRepositoryBrowserTab();
     },
     openFolder: function(folderPath){
-
         repositoryBrowserPage.ExpandContentTab();
         repositoryBrowserPage.CollapseContentTab();
         repositoryBrowserPage.RepositoryRefresh();
@@ -21,6 +20,7 @@ module.exports = {
                 }
             } while(folerPathArr && folerPathArr.length > 0)
     },
+
     refreshRepositoryBrowserTab: function(){
         repositoryBrowserPage.refreshRepositoryBrowserTab();
     }

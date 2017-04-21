@@ -85,7 +85,8 @@ module.exports.testSettings = {
             "SlideFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
             "locale":"US",
             "AssetName":"QATestAssethNrnC",
-            "testFolderPath": "webmd/professional_assets/medscape/news",
+            "MediaName":"QAProfMediaTest",
+            "testFolderPath": "webmd/professional_assets/medscape/articles/article/2015/QATest",
             "testFolderPath_de": "webmd_de/professional_assets/medscape/articles/news",
             "testFolderPath_fr": "webmd_fr/professional_assets/medscape/articles/news",
             "testFolderPath_sp": "webmd_sp/professional_assets/medscape/articles/news",
@@ -101,6 +102,10 @@ module.exports.testSettings = {
             "ProfileOtherName_fr": "FR / Other Templates",
             "ProfileOtherName_sp": "SP / Other Templates",
             "ProfileOtherName_pt": "PT / Other Templates",
+            "ProfileMeta": "Meta Object",
+            "ArticleTemplate": 'News Article',
+            "PointerTemplate": "Professional Pointer",
+            "MediaTemplate": "Professional Media",
             "ArticleTemplate": 'News Article',
             "PointerTemplate": "Professional Pointer",
              "changeFolderPath": "webmd/professional_assets/medscape/news/heartwire/news/200412",
@@ -111,8 +116,9 @@ module.exports.testSettings = {
             "GenericContType":"News",
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "NewsArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
-
-            
+            "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+            "ContentType":"News",
+            "MediaFormat":"MP3",
             "SlideArticleTemplate": "Article Slide Presentation",
             "SlideArticleObjectName": "QATestSlide" + exports.GenerateRandomString(5),
             "SlideContentType": "News",
@@ -120,17 +126,10 @@ module.exports.testSettings = {
             "CheckedInVersion": "1.1, CURRENT, WIP",
             "DeleteAllversions":"Delete all versions",    
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
-
-            "ContentType":"News",
             "ContentType_SP":"Alertas",
-            "InitialVersion": "1.0, CURRENT, WIP",
-            "CheckedInVersion": "1.1, CURRENT, WIP",
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
             "LeadSpecialty": "Cardiology",
-            "InitialVersion": "1.0, CURRENT, WIP",
-            "CheckedInVersion": "1.1, CURRENT, WIP",
-            "DeleteAllversions":"Delete all versions", 
-            "pointerExistingAsset":"ca-evolving-anticoagulation",
+            "pointerExistingAsset":"pertussis-disease3",
             "ContentDeveloper": "Medscape",
             "Deleteselectedversion":"Delete selected version only",
             "DeleteAllversions":"Delete all versions",
@@ -147,7 +146,10 @@ module.exports.testSettings = {
             "articleTab":"wbmd_outpt_vers,wbmd_outpt_prim-input,wbmd_icons,wbmd_toc_display-input,wbmd_qna_id-input,wbmd_activity-input,wbmd_prod_name-input,wbmd_cme_lnk-input,wbmd_bkt_gen_coll_id,"+
                         "wbmd_prim_coll-input,wbmd_site-input,wbmd_site_only-input,wbmd_locale,wbmd_proj_id-input,wbmd_supprtr,wbmd_ad_override-input,wbmd_supp_ads-input,wbmd_supp_rec_ads-input,"+
                         "wbmd_disp_cite-input,wbmd_discuss_brd_ohcp-input,wbmd_discuss_brd_md-input,wbmd_discuss_brd_nrs-input,wbmd_revw_dt-input,wbmd_pub_dt-input,wbmd_tgt_cntry,wbmd_supp_print-input,"+
-                        "wbmd_supp_mobile-input,wbmd_gated-input,wbmd_ext_id-input,wbmd_supp_prog_lnk-input"               
+                        "wbmd_supp_mobile-input,wbmd_gated-input,wbmd_ext_id-input,wbmd_supp_prog_lnk-input",
+            "active":"Active",
+	        "searchdata": "860272",
+            "objName":"QATestAssethNrnC"              
         },
         "otfData": {
             "objectType":"Object Type",
@@ -162,12 +164,9 @@ module.exports.testSettings = {
             "wip":"WIP",
             "outputVersion":"Output Version",
             "text":"text",
-
-             "active":"Active",
-	        "searchdata": "860272",
-            "objName":"QATestAssethNrnC"
+            "transcript":"Transcript",
+            "active":"Active"
         },
-
         "SDEData":{
             "AssetName":"QATestDESlideArticle",
             "SlideFolderPath": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
@@ -201,9 +200,6 @@ module.exports.testSettings = {
             "SlideArticleObjectName": "QASPTestSlide" + exports.GenerateRandomString(5),
             "SlideContentType":"Alertas",
         },
-
-           
-      
         "DEData":{
             "AssetName":"QAGenericcJ3l0",
             "testFolderPath": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
@@ -211,6 +207,7 @@ module.exports.testSettings = {
             "LeadSpecialty": "Psychiatrie",
             "ContentDeveloper": "Partner",
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+            "MediaName":"QATestProfMediaTest",
         },
         "FRData":{
             "AssetName":"QAGenericCr91r",
@@ -219,6 +216,7 @@ module.exports.testSettings = {
             "LeadSpecialty": "Cardiologie",
             "ContentDeveloper": "Partner",
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+            "MediaName":"QATestProfMediaTest",
         },
         "PTData":{
             "AssetName":"QAGenericbKotU",
@@ -227,6 +225,7 @@ module.exports.testSettings = {
             "LeadSpecialty": "Cardiologia",
             "ContentDeveloper": "N/A",
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+            "MediaName":"QATestProfMediaTest",
         },
         "SPData":{
             "AssetName":"QAGenericj4Rxk",
@@ -236,6 +235,7 @@ module.exports.testSettings = {
             "LeadSpecialty": "Dermatología",
             "ContentDeveloper": "N/A",
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+             "MediaName":"QATestProfMediaTest",
         },
         "profOutputData": {
             "ProfileName":"US / Other Templates",

@@ -44,7 +44,6 @@ var contentTabObj = {
         contentTabUI.relatedLinksSetValue(data);
         contentTabObj.mModuleckEditorMenuClick(5);
     },
-
     contentHeaderGet:function()
     {
         return contentTabUI.contentHeaderGet();
@@ -60,10 +59,6 @@ var contentTabObj = {
         contentTabUI.checkIn();
     },
 
-     contentHeaderGet:function()
-    {
-        return contentTabUI.contentHeaderGet();
-    }
 
 }
 
