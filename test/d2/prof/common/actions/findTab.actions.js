@@ -16,5 +16,6 @@ module.exports = {
         findTabUI.Searchtext(AssetName);
         browser.frameParent();
         browser.pause(5000);
+
     }
 }

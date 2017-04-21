@@ -54,9 +54,13 @@ var contentTabObj = {
         contentTabObj.AllFieldsSetValueForPubSection(data);
         contentTabUI.checkIn();
     },
+    contentHeaderGet:function()
+    {
+        return contentTabUI.contentHeaderGet();
+    },
 
     AllFieldsSetValueForPubSection: function(data){
-        contentTabUI.switchToExternalWidget4Frame();
+        //contentTabUI.switchToExternalWidget4Frame();
         contentTabUI.AllFieldsSetValueForPubSection(data);
     },
     updateContent:function(data)    {
@@ -64,12 +68,10 @@ var contentTabObj = {
         contentTabObj.abovetitleSetValue(data);
         contentTabUI.checkIn();
     },
-
-     contentHeaderGet:function()
+    contentHeaderGet:function()
     {
         return contentTabUI.contentHeaderGet();
     },
-
 }
 
 module.exports = contentTabObj;

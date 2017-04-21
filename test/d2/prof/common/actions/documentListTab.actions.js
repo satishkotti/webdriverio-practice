@@ -27,8 +27,16 @@ var documentListObj = {
      selectItemByNamePagination: function (assetName) {
          documentListUI.selectItemByNamePagination(assetName);
      },
+    checkoutObject: function(objName){
+        documentListUI.checkoutObject(objName);
+    },
+     checkinObject: function(objName){
+        documentListUI.checkinObject(objName);
+    },
+    cancelCheckOutObject: function(objName){
+        documentListUI.cancelCheckOutObject(objName);
+    },
     promoteAsset: function(assetName){
-
         documentListUI.promoteAsset(assetName);
     },
     demoteAsset: function(assetName){
@@ -37,7 +45,6 @@ var documentListObj = {
     powerPromoteAsset: function(assetName){
         documentListUI.powerPromote(assetName);
     },
-
     schedulePublishAsset: function(assetName){
         documentListUI.schedulePublishAsset(assetName);
     },
@@ -102,7 +109,6 @@ var documentListObj = {
      {
          documentListUI.searchCopyArticle(data);
      },
-
      deleteArticle:function(assetName,DeleteVersionType){
          documentListUI.deleteArticle(assetName,DeleteVersionType);
      },
@@ -110,7 +116,9 @@ var documentListObj = {
      {
          documentListUI.searchArticle(data, title);
      },
-
+     verifyGenericRelations: function(){
+         documentListUI.verifyGenericRelations();
+     },
      verifySlideRelations: function(){
          documentListUI.verifySlideRelations();
      },
