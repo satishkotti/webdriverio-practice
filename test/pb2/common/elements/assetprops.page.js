@@ -18,7 +18,7 @@ var props = Object.create(page, {
     UntilExist: { value: () => { browser.waitForExist(locator, 30000); } },
     UntilVisible: { value: () => { browser.waitForVisible(locator, 30000); } },
     UntilEnabled: { value: () => { browser.waitForEnabled(locator, 30000); } },
-    Scroll: {value: () => { browser.scroll(locator); } },
+    Scroll: {value: () => { browser.element(locator).scroll(); } },
     GetElement: { get: () => { return browser.element(locator); } },
 
     input: {
@@ -167,11 +167,14 @@ var props = Object.create(page, {
             catch(err)
             {
                 
-                props.Scroll();
-                var topBarSize = browser.getElementSize('.pb-topbar-nav', 'height');
-                var buttonSize = browser.getElementSize(locator, 'height');
-                var y = topBarSize + buttonSize;
-                browser.element(locator).scroll(0, y + 50);
+                //props.Scroll();
+                //var topBarSize = browser.getElementSize('.pb-topbar-nav', 'height');
+                //var buttonSize = browser.getElementSize(locator, 'height');
+                //var y = topBarSize + buttonSize;
+                browser.execute(() => {
+                    $('i.fa.fa-search').get(0).scrollIntoView();
+                });
+                //browser.element(locator).scroll(0,350);
                 props.GetElement.click();
             }
             locator = locator.replace('fa-search', 'fa-trash');

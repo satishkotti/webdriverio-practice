@@ -2,7 +2,7 @@ var test = require('./../../../../common/functions/functions');
 var smTestData = require('./../../../../data/sm.assets');
 //var pb1xml = require('./../../../../data/sm-pb1-xmls/sponsorboxes_allfields.xml');
 
-describe('XML validations for Multiple Video Launch Module', () => {
+describe('XML validations for Navigation Module', () => {
 
     var testAssetProps = smTestData.NavigationModule;
     var testAssetName = testAssetProps.moduleName;
@@ -10,7 +10,6 @@ describe('XML validations for Multiple Video Launch Module', () => {
     before(() => {
         //Launch App
         test.LaunchAppAndLogin();
-        test.SwitchAssetTabs('')
     });
 
     //Create Scenario

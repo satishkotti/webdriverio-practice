@@ -55,12 +55,12 @@ module.exports.SavePublish = (action, comment) => {
             acts.button.get('Okay').click();
             browser.waitUntil(() => {
                 return browser.getCssProperty('.pb-notification-container', 'top').value == '106px';
-            }, 30000, 'Publish is taking longer than expected', 500);
+            }, 40000, 'Publish is taking longer than expected', 500);
             browser.waitUntil(() => {
                 return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
             }, 30000, 'Publish is taking longer than expected', 500);
             acts.button.get('More Actions').waitForVisible();
-            page.element('(//section[contains(@class, "pb-module-bottom-pad")])[2]').waitForVisible();
+           // page.element('(//section[contains(@class, "pb-module-bottom-pad")])[2]').waitForVisible();
             break;
         case 'schedule publish':
             acts.buttonMenu.get('Save/Publish', 'Publish to Live');
@@ -111,8 +111,8 @@ module.exports.ClickEditButton = () => {
 module.exports.ClickCheckoutAndEditButton = () => {
     acts.splbutton.get('Checkout & Edit').click();
     acts.splbutton.get('Save/Publish').waitForVisible();
-    page.element('.pb-layout-view').waitForVisible();
-    browser.pause(3000);
+   // page.element('.pb-layout-view').waitForVisible();
+    browser.pause(4000);
 }
 
 module.exports.SavePublishFromMoreActions = (action, comment) => {
@@ -170,6 +170,10 @@ module.exports.SelectMoreActionsMenuItem = (menuItem) => {
             browser.waitUntil(() => {
                 return browser.getCssProperty('.pb-notification-container', 'top').value == '-20px';
             }, 30000, 'Expire is not pushed to queue yet', 500);
+            break;
+        case 'Asset History':
+            browser.waitForVisible('(//tr[contains(@class, "k-alt ng-scope")])[1]');
+            browser.click('(//tr[contains(@class, "k-alt ng-scope")])[1]');
             break;
     }
 }
