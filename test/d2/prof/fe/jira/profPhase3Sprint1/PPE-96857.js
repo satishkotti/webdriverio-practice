@@ -35,12 +35,11 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
     });
 
     it('Verify Publication Subsection creation with only mandatory fields PPE-107726', function () {
-        
         documentListTab.selectAsset(AssetTitle);
-
     });
-     it('Verify Checkout and checkin functionality on Professional Publication Sub Section PPE-107794', function(){
-         cidName = propertiesTab.getChronicleIdAndName();
+
+    it('Verify Checkout and checkin functionality on Professional Publication Sub Section PPE-107794', function(){
+        cidName = propertiesTab.getChronicleIdAndName();
         objName = cidName.objectName;
         title = cidName.title;
         cid=cidName.chronicleId;
@@ -55,25 +54,32 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
         expect(IsCheckInVersionVerified).to.be.true;
     });
 
-   it('Verify the data dictionary validations on PublicationSubSection-PPE-107829 ', function () {
+ it('Verify PublicationSubSection creation with all fields- PPE-107822', function () {
+        browser.pause(100);
         documentListTab.selectAsset(AssetTitle);
-        pubSubSecTab.propertiesFieldsValidation();
+         browser.pause(100);
+        propertiesTab.SetPubsubsectionALLProperties(AssetTitle);
+         browser.pause(100);
+        contentTab.SetPubsubsectionContentAllProperties(AssetTitle);
     });
-    it('Verify the messages when mandatory fields are left blank fr Pointer-PPE-106396', function () {
-        documentListTab.selectAsset(AssetTitle);
-        pubSubSecTab.verifyPubSubSecProperties();
 
-    });
     it('Verify the relation for the Publication Subsection asset- PPE-108362', function () {
+        browser.pause(100);
         documentListTab.selectAsset(AssetTitle);
         pubSubSecTab.verifyPubSubSecRelation();
 
     });
-     it('Verify PublicationSubSection creation with all fields- PPE-107822', function () {
-        documentListTab.selectAsset(AssetTitle);
-        propertiesTab.SetPubsubsectionALLProperties(AssetTitle);
-        contentTab.SetPubsubsectionContentAllProperties(AssetTitle);
 
+     it('Verify the messages when mandatory fields are left blank fr Pointer-PPE-106396', function () {
+        browser.pause(100);
+        documentListTab.selectAsset(AssetTitle);
+        pubSubSecTab.verifyPubSubSecProperties();
+    });
+
+     it('Verify the data dictionary validations on PublicationSubSection-PPE-107829 ', function () {
+        browser.pause(100);
+        documentListTab.selectAsset(AssetTitle);
+        pubSubSecTab.propertiesFieldsValidation();
     });
 
     it('Verify editing of an existing PublicationSubSection-PPE-107830',function(){
@@ -85,8 +91,6 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
         propertiesTab.setPubsubsectionProperties(title,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
         global.d2ProfDataSettings.inputData.ContentDeveloper);
         contentTab.updatePubSubsectionContent("Sample Text");
-        //repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
-       // documentListTab.searchArticle("10745",AssetTitle);
     });
 
     it('Verify Promote functionality on PublicationSubSection PPE-107802', function () {
@@ -106,7 +110,7 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
         documentListTab.powerPromoteAsset(objName);
     });
 
- it('Verify Schedule Publish functionality on PublicationSubSection-PPE-107825',function(){
+ it.skip('Verify Schedule Publish functionality on PublicationSubSection-PPE-107825',function(){
         browser.pause(5000);
         console.log("Last Test Case"+ AssetTitle);
         documentListTab.selectAsset(AssetTitle);
@@ -118,7 +122,7 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
         expdate=moment(schpublishtime, "DD MMM YYYY HH:mm:ss")
         .add(00, 'seconds')
         .add(06, 'minutes').format('DD MMM YYYY HH:mm:ss'); 
-       propertiesTab.SetPubsubsectionALLProperties(AssetTitle);
+        propertiesTab.setRequiredPropertiesforPublish(schpublishtime,expdate);
         documentListTab.schedulePublishAsset(AssetTitle);
         browser.pause(3000);
         var status=contentTab.contentHeaderGet();
@@ -141,13 +145,13 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
         documentListTab.selectAsset(title);
         expect(contentTab.contentHeaderGet()).to.contains("Expire");
     });
-    
-    
-    it('Verify Delete functionality on PublicationSubSection-PPE-107819',function(){
+     
+    it.skip('Verify Delete functionality on PublicationSubSection-PPE-107819',function(){
         browser.pause(5000);
         documentListTab.selectAsset(title);
         documentListTab.deleteArticle(cid,global.d2ProfDataSettings.inputData.DeleteAllversions);
-        documentListTab.searchArticle(AssetTitle,AssetTitle);
+        documentListTab.deleteArticle(AssetName, global.d2ProfDataSettings.inputData.DeleteAllversions);
+        findTab.searchTextDeleteValidation(title);
     });
 
 });

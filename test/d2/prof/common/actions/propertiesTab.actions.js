@@ -120,7 +120,7 @@ module.exports = {
         propertiesTabUI.save();
     },
     SetPubsubsectionALLProperties: function(AssetTitle){
-        
+         browser.pause(1000);
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
        propertiesTabUI.titleSet(AssetTitle);
