@@ -239,13 +239,13 @@ lifeCycleExpireSelect: function()
     copyloading:function(){
         return browser.isVisible('//div[@class="x3-loading-medium"]');
     },
-    searchArticle:function(assetName,title){
+       searchArticle:function(assetName,title){
         documentListUIObj.searchTextSetValue(assetName);
         browser.click("//div[@id='searchText-input']//following-sibling::span//img[2]");
         while (searchresult) {
         searchresult=documentListUIObj.loadSearchData();
         }
-        browser.pause(10000);
+        browser.pause(4000);
         var isexists=browser.isExisting("//div[text()='No items found']");
         expect(isexists).to.equal(true);
 
@@ -253,9 +253,9 @@ lifeCycleExpireSelect: function()
         searchresult=true;
         while (searchresult) {
         searchresult=documentListUIObj.loadSearchData();
+
     }
-     browser.waitForVisible("//span[@title='" + title + "']");
-        browser.pause(2000);
+
     },
     searchCopyArticle:function(assetName){
         documentListUIObj.searchTextSetValue(assetName);

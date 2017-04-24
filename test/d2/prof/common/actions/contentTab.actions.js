@@ -65,7 +65,15 @@ var contentTabObj = {
      titleSetValue: function(data){
         //contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.titleSetValue(data);
-    }
+    },
+
+    SetPubsubsectionContentAllProperties: function(AssetTitle){
+        contentTabObj.checkOut();
+        contentTabUI.titleSetValue(AssetTitle);
+        contentTabUI.pubSectionImageSetValue(AssetTitle);
+        contentTabUI.introductionText(AssetTitle);
+         contentTabUI.checkIn();
+    },
 }
 
 module.exports = contentTabObj;

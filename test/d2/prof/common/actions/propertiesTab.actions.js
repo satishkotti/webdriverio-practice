@@ -117,17 +117,11 @@ module.exports = {
         propertiesTabUI.publishingSubsectionTabSelect();
         propertiesTabUI.edit();
        propertiesTabUI.titleSet(subTitle);
-       // propertiesTabUI.subTitleSet(subTitle);
-        //propertiesTabUI.superTitleSet(superTitle);
-        //propertiesTabUI.leadSpecialtySet(leadSpecialty);
-        //propertiesTabUI.contentDeveloperSet(contentDeveloper);
-        //propertiesTabUI.articleTabSelect();
-        //propertiesTabUI.articleTOCDisplayFormatSet("");
         propertiesTabUI.save();
     },
     SetPubsubsectionALLProperties: function(AssetTitle){
         
-         propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
        propertiesTabUI.titleSet(AssetTitle);
        propertiesTabUI.description(AssetTitle);
@@ -135,14 +129,5 @@ module.exports = {
        propertiesTabUI.articlesPubURL(AssetTitle);
         propertiesTabUI.save();
     },
-    verifyPubSubSecProperties:function(){
-        propertiesTabUI.propertiesTabSelect();
-        propertiesTabUI.edit();
-        pubSubSecPropertiestabUI.clearProperties();
-        propertiesTabUI.save();
-        var validationmessage = pubSubSecPropertiestabUI.validationmandatoryfields();
-        expect(validationmessage).to.be.true;
-        propertiesTabUI.cancelEdit();
-     },
     
 }
