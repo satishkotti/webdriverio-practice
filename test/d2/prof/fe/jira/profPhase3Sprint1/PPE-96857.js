@@ -146,7 +146,7 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
         expect(contentTab.contentHeaderGet()).to.contains("Expire");
     });
      
-    it.skip('Verify Delete functionality on PublicationSubSection-PPE-107819',function(){
+    it('Verify Delete functionality on PublicationSubSection-PPE-107819',function(){
         browser.pause(5000);
         documentListTab.selectAsset(title);
         documentListTab.deleteArticle(cid,global.d2ProfDataSettings.inputData.DeleteAllversions);
