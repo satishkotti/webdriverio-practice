@@ -89,6 +89,7 @@ var otfTabActionObj = {
         otfTabUI.verifyCreateOutputVersionIMP(OutputType);
         otfTabUI.CreateCreateOutputVersion();
     },
+    
     verifyNewOutputVersionData: function(objName) {
         browser.pause(20000);
         var otfTabSelector = otfTabUI.otfTabSelector();
@@ -172,6 +173,22 @@ var otfTabActionObj = {
           contentTabUI.switchToExternalWidget3Frame();
          var textattribute = otfTabUI.otfDefaultoutputversionValidation();
          expect(textattribute).to.be.true;
+
+    },
+    DeleteOutputVersion: function(){
+        browser.pause(20000);
+        var otfTabSelector = otfTabUI.otfTabSelector();
+        browser.click(otfTabSelector);
+        var otfWidgetSelector = otfTabUI.otfWidgetSelector();
+        browser.waitForExist(otfWidgetSelector, 30000);
+        otfTabActionObj.selectExternalWidget();
+        browser.waitForVisible("//table[@st-table='displayedCollection']/tbody/tr[3]/td[2]/span[@ng-style='getRowStyle(item.level)']", maxWaitTimeInMs);
+        var titleValueNewOV= otfTabUI.titleValueNewOV();
+        otfTabUI.otfRemoveCreatedoutputversion(titleValueNewOV);
+         browser.frameParent();
+         otfTabUI.otfRemoveDefaultoutputversionPopup();
+        otfTabUI.ValidateUnlinkOutputVersion(titleValueNewOV);
+
 
     },
 }

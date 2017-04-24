@@ -260,10 +260,15 @@ module.exports = {
 
         browser.click("//div[@class='modal-footer']//button[text()='Create']");
         browser.pause(4000);
-    }
-
-
-
+    },
+    otfRemoveCreatedoutputversion:function(Title){
+        browser.waitForVisible("//td[span[contains(.,'Output Version')]]//following-sibling::td[contains(.,'"+Title+"')]//following-sibling::td//button[@popover-html='Unlink this item']");
+        browser.click("//td[span[contains(.,'Output Version')]]//following-sibling::td[contains(.,'"+Title+"')]//following-sibling::td//button[@popover-html='Unlink this item']");
+    },
+    ValidateUnlinkOutputVersion: function(Title){
+        var IsExistUnlink = browser.isExisting("//td[contains(text(),'"+Title+"')]//following::td[4]");
+        expect(IsExistUnlink).to.be.false;
+    },
 }
 
 

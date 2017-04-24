@@ -39,13 +39,15 @@ describe('OTF Profoutput-Implementation- PPE-98280', function () {
     });
     
     it('Should Verify the  create  OutPut version Parent Object/Object Types', function () {
-
-              otfTab.verifyParentObjectIMP(objName);
-              otfTab.verifyOutputVersionOutputtypeIMP(global.d2ProfDataSettings.otfData.OutputTypes);
-        
-        
-        
-        
+        otfTab.verifyParentObjectIMP(objName);
+        otfTab.verifyOutputVersionOutputtypeIMP(global.d2ProfDataSettings.otfData.OutputTypes);
+    });
+    
+    it('Should Verify the remove/unlink validations on output version in OTF', function(){
+        otfTab.selectOTFTab();
+        otfTab.selectExternalWidget();
+        otfTab.CreateOutputVersionIMP(global.d2ProfDataSettings.otfData.OutputTypeaudio);
+        otfTab.DeleteOutputVersion();
     });
 
     it('Should Verify the ability to create an OutPut version object through OTF widget - PPE-104635', function () {
@@ -56,10 +58,7 @@ describe('OTF Profoutput-Implementation- PPE-98280', function () {
         browser.pause(5000);
         otfTab.CreateOutputVersionIMP(global.d2ProfDataSettings.otfData.OutputTypeaudio);
         otfTab.verifySecondOutputVersionData(objName+"-"+global.d2ProfDataSettings.otfData.OutputTypeaudio+"_"+"2");
-        
     });
-    
-  
 });
 
 
