@@ -665,3 +665,92 @@ module.exports.configureEditStandardPromoModule = (assetProps) => {
     }
 
 }
+
+module.exports.ConfigureTwoColumnHeaderModule = (assetProps) => {
+    if (assetProps.TitleText) { props.input.get("Title Text").setValue(assetProps.TitleText); }
+    if (assetProps.SubtitleText) { props.input.get("Subtitle Text").setValue(assetProps.SubtitleText); }
+    if (assetProps.HeaderURL) { props.lookup2("Header", "Header URL", 1, assetProps.HeaderURL); }
+
+    if (assetProps.AttributionText) { props.input2.get("Attribution", "Text", 1).setValue(assetProps.AttributionText); }
+
+    if (assetProps.Images.length > 1) {
+
+    }
+    else {
+        try {
+            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
+        }
+        catch (err) {
+            browser.execute(() => {
+                var height = $(window).scrollTop() + 500;
+                // console.log(height);
+                window.scrollTo(100, height);
+            });
+            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
+
+        }
+        if (assetProps.Images[0].Image) { props.lookup2("Images", "Image", 1, assetProps.Images[0].Image); }
+
+    }
+
+}
+module.exports.ConfigureEditColumnHeaderModule = (assetProps) => {
+
+    if (assetProps.TitleText) { props.input.get("Title Text").setValue(assetProps.TitleText); }
+    if (assetProps.SubtitleText) { props.input.get("Subtitle Text").setValue(assetProps.SubtitleText); }
+    try {
+        $('//label[contains(.,"Header URL:")]//i[@class="fa fa-trash"]').click();
+    }
+    catch (err) {
+        $('//label[contains(.,"Header URL:")]//i[@class="fa fa-trash"]').scroll(0, 300);
+        $('//label[contains(.,"Header URL:")]//i[@class="fa fa-trash"]').click();
+    }
+    if (assetProps.HeaderURL) { props.lookup2("Header", "Header URL", 1, assetProps.HeaderURL); }
+
+    if (assetProps.AttributionText) { props.input2.get("Attribution", "Text", 1).setValue(assetProps.AttributionText); }
+    try {
+        $('//label[contains(.,"Link:")]//i[@class="fa fa-trash"]').click();
+    }
+    catch (err) {
+        $('//label[contains(.,"Link:")]//i[@class="fa fa-trash"]').scroll(0, 600);
+        $('//label[contains(.,"Link:")]//i[@class="fa fa-trash"]').click();
+    }
+    $('//label[contains(.,"Image:")]//i[@class="fa fa-trash"]').click();
+
+    $('//label[contains(.,"Add Links:")]//i[@class="fa fa-plus"]').click();
+
+    if (assetProps.Images.length > 1) {
+        try {
+            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
+        }
+        catch (err) {
+            browser.execute(() => {
+                var height = $(window).scrollTop() + 500;
+                // console.log(height);
+                window.scrollTo(100, height);
+            });
+            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
+
+        }
+        if (assetProps.Images[0].Image) { props.lookup2("Images", "Image", 1, assetProps.Images[0].Image); }
+        if (assetProps.Images[1].Link) { props.lookup2("Images", "Link", 2, assetProps.Images[1].Link); }
+        if (assetProps.Images[1].Image) { props.lookup2("Images", "Image", 2, assetProps.Images[1].Image); }
+
+    }
+    else {
+        try {
+            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
+        }
+        catch (err) {
+            browser.execute(() => {
+                var height = $(window).scrollTop() + 500;
+                // console.log(height);
+                window.scrollTo(100, height);
+            });
+            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
+
+        }
+        if (assetProps.Images[0].Image) { props.lookup2("Images", "Image", 1, assetProps.Images[0].Image); }
+
+    }
+}

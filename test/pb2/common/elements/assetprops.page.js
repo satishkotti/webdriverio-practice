@@ -176,8 +176,14 @@ var props = Object.create(page, {
                 browser.execute(() => {
                     $('i.fa.fa-search').get(0).scrollIntoView();
                 });
-                //browser.element(locator).scroll(0,350);
-                props.GetElement.click();
+                try {
+                    props.GetElement.click();
+                }
+                catch (err) {
+                    browser.element(locator).scroll(0, 300);
+                     props.GetElement.click();
+                }
+
             }
             locator = locator.replace('fa-search', 'fa-trash');
             browser.waitUntil(() => {

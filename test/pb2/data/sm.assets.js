@@ -601,8 +601,68 @@ var smdata = Object.create(page, {
 
                 }
         }
-    }
+    },
+    TwoColumnHeaderModule: {
+        get: () => {
+            var assetName = "QASM-TCHM-" + randomstring.generate(5);
 
+            var smProps = {};
+            return smProps =
+                {
+                    "moduleName": assetName,
+                    "moduleDispName": assetName,
+                    "moduleType": "TwoColumnHeaderModule",
+                    "category": null,
+                    "selectXSL": null,
+                    "selectCSS": null,
+                    "dynamicModuleCategory": null,
+                    "moduleLabel1": null,
+                    "moduleLabel2": null,
+                    "linkedModule": null,
+                    "sponsorProgram": null,
+                    "description": assetName + "-desc",
+                    "tier": 2,
+                    "TitleText": "Title Text test",
+                    "SubtitleText": "Subtitle Text test",
+                    "HeaderURL": "091e9c5e801651b2",
+                    "AttributionText": "Attribution Text",
+                    "Images":
+                    [
+                        {
+                            "Link": "091e9c5e80661dc9",
+                            "Image": "091e9c5e803fecd4",
+
+                        }
+                    ]
+
+                }
+        }
+    },
+    EditTwoColumnHeaderModule: {
+        get: () => {
+
+            var smProps = {};
+            return smProps =
+                {
+                    "TitleText": "Title Text test update",
+                    "SubtitleText": "Subtitle Text test update",
+                    "HeaderURL": "091e9c5e801651b2",
+                    "AttributionText": "Attribution Text update",
+                    "Images":
+                    [
+                        {
+                            "Link": "091e9c5e80661dc9",
+                            "Image": "091e9c5e803fecd4"
+                        },
+                        {
+                            "Link": "091e9c5e80661dc9",
+                            "Image": "091e9c5e803fecd4"
+                        }
+                    ]
+
+                }
+        }
+    }
 
 });
 

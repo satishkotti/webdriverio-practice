@@ -264,7 +264,9 @@ module.exports.ConfigureModule = (moduleType, moduleprops) => {
         case 'edithtmlmodule': moduleConfigs.EditconfigureHtmlModule(moduleprops); break;
         case 'standardpromomodule': moduleConfigs.configureStandardPromomodule(moduleprops); break;
         case 'editstandardpromomodule': moduleConfigs.configureEditStandardPromoModule(moduleprops); break;
-    }
+        case 'twocolumnheadermodule':moduleConfigs.ConfigureTwoColumnHeaderModule(moduleprops);break;
+        case 'edittwocolumnheadermodule':moduleConfigs.ConfigureEditColumnHeaderModule(moduleprops);break;
+}
 
 }
 
@@ -321,7 +323,7 @@ module.exports.GetXMLValues = (assetType, xml) => {
         case 'editnavigation module': return assetxml.EditNavigationModuleLaunchXMLValues(xml); break;
         case 'html module': return assetxml.HTMlModuleXMLValues(xml); break;
         case 'standardpromomodule': return assetxml.StandardPromomodule(xml); break;
-
+        case 'twocolumnheadermodule':return assetxml.twocolumnheadermodule(xml);break;
     }
 
 }
