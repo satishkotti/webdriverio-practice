@@ -4,25 +4,39 @@
 .social-share-tools {
 	float: left;
 	margin-left: -3px;
+}
+.social-share-tools .plugin-socialshare a.plugin-socialshare-link {
+	height: 32px;
+	width: 32px;
+	margin: 0 12px 0 0;
+}
+.social-share-tools .plugin-socialshare a.plugin-socialshare-link:before {
+	font-size: 32px;
+}
+.social-share-tools .plugin-socialshare a.plugin-socialshare-email {
+	margin-left: 20px;
+}
+.ua_type_mobile .social-share-tools .plugin-socialshare-email {
+	display: none;
+}
 
-	.plugin-socialshare {
+.plugin-socialshare {
 
-		float: left;
+	float: left;
 
-	 	a.plugin-socialshare-link {
-			margin: 0 12px 0 0;
-			width: 32px;
-			height: 32px;
-		}
-		a.plugin-socialshare-link:before {
-			font-size: 32px;
-		}
+ 	a.plugin-socialshare-link {
+		margin: 0 10px 0 0;
+		width: 35px;
+		height: 35px;
 	}
-
-	div.rsbtn {
-		float: left;
-		margin-top: 3px;
+	a.plugin-socialshare-link:before {
+		font-size: 35px;
 	}
+}
+
+div.rsbtn {
+	float: left;
+	margin-top: 3px;
 }
 .ua_type_mobile .social-share-tools .plugin-socialshare-email,
 .wbmd-toolbar-menu .rsbtn,
