@@ -78,35 +78,37 @@
 			</xsl:attribute>
 			<xsl:text disable-output-escaping="yes">
 				<![CDATA[require(['tooltips/1/tooltips'], function(tooltip) {
-					var platform = (webmd.useragent.ua.type === 'mobile') ? "mobile" : "core",
-						$attrib = $(".attrib_right_fmt"),
-						$attribLink = $attrib.find('a'),
-						$loe = $(".ed_disclaimer");
-					
-					if ($attribLink.length) {
-						$attribLink.attr("href", $attribLink.attr("href").replace(/\s/g, ''));
-						$attribLink.webmdTooltip({
-							ajax:true,
-							content:{
-								button:true
-							},
-							trigger:"click",
-							position:{
-								corner:{
-									target:"bottom"
+					$(function() {
+						var platform = (webmd.useragent.ua.type === 'mobile') ? "mobile" : "core",
+							$attrib = $(".attrib_right_fmt"),
+							$attribLink = $attrib.find('a'),
+							$loe = $(".ed_disclaimer");
+						
+						if ($attribLink.length) {
+							$attribLink.attr("href", $attribLink.attr("href").replace(/\s/g, ''));
+							$attribLink.webmdTooltip({
+								ajax:true,
+								content:{
+									button:true
+								},
+								trigger:"click",
+								position:{
+									corner:{
+										target:"bottom"
+									}
+								},
+								api: {
+									onShow: function(){
+										wmdPageLink('attribution');
+									}
 								}
-							},
-							api: {
-								onShow: function(){
-									wmdPageLink('attribution');
-								}
-							}
-						});
-					}
-					
-					if ((platform === 'mobile') && (!$loe.length)) {
-						$('.breadcrumb').after($attrib.addClass('no-loe'));
-					}
+							});
+						}
+						
+						if ((platform === 'mobile') && (!$loe.length) && ($('html').hasClass('responsive'))) {
+							$('.breadcrumb').after($attrib.addClass('no-loe'));
+						}
+					});
 				});]]>
 			</xsl:text>
 		</xsl:element>
