@@ -185,10 +185,15 @@ var otfTabActionObj = {
         browser.waitForVisible("//table[@st-table='displayedCollection']/tbody/tr[3]/td[2]/span[@ng-style='getRowStyle(item.level)']", maxWaitTimeInMs);
         var titleValueNewOV= otfTabUI.titleValueNewOV();
         otfTabUI.otfRemoveCreatedoutputversion(titleValueNewOV);
-         browser.frameParent();
-         otfTabUI.otfRemoveDefaultoutputversionPopup();
+        browser.frameParent();
+        otfTabUI.otfRemoveDefaultoutputversionPopup();
         otfTabUI.ValidateUnlinkOutputVersion(titleValueNewOV);
 
+
+    },
+    otfSelectOutputVersion: function(objectname) {
+        otfTabUI.otfSelectOutputVersion(objectname);
+        //otfTabUI.selectItemByNamePagination(objectname);
 
     },
 }

@@ -5,6 +5,7 @@ var workspaceMenu = require('./../../../common/actions/workspace.menu.actions');
 var documentListTab = require('./../../../common/actions/documentListTab.actions');
 var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
 var otfTab = require('./../../../common/actions/otfTab.actions');
+var contentTab = require('./../../../common/actions/contentTab.actions');
 
 
 describe('OTF Profoutput-Implementation- PPE-98280', function () {
@@ -42,15 +43,8 @@ describe('OTF Profoutput-Implementation- PPE-98280', function () {
         otfTab.verifyParentObjectIMP(objName);
         otfTab.verifyOutputVersionOutputtypeIMP(global.d2ProfDataSettings.otfData.OutputTypes);
     });
-    
-    it('Should Verify the remove/unlink validations on output version in OTF', function(){
-        otfTab.selectOTFTab();
-        otfTab.selectExternalWidget();
-        otfTab.CreateOutputVersionIMP(global.d2ProfDataSettings.otfData.OutputTypeaudio);
-        otfTab.DeleteOutputVersion();
-    });
 
-    it('Should Verify the ability to create an OutPut version object through OTF widget - PPE-104635', function () {
+    it.skip('Should Verify the ability to create an OutPut version object through OTF widget - PPE-104635', function () {
         otfTab.selectOTFTab();
         otfTab.selectExternalWidget();
         otfTab.CreateOutputVersionIMP(global.d2ProfDataSettings.otfData.OutputTypeaudio);
@@ -59,6 +53,27 @@ describe('OTF Profoutput-Implementation- PPE-98280', function () {
         otfTab.CreateOutputVersionIMP(global.d2ProfDataSettings.otfData.OutputTypeaudio);
         otfTab.verifySecondOutputVersionData(objName+"-"+global.d2ProfDataSettings.otfData.OutputTypeaudio+"_"+"2");
     });
+
+    it.skip('Should Verify the remove/unlink validations on output version in OTF', function(){
+        otfTab.selectOTFTab();
+        otfTab.selectExternalWidget();
+        otfTab.CreateOutputVersionIMP(global.d2ProfDataSettings.otfData.OutputTypeaudio);
+        otfTab.DeleteOutputVersion();
+    });
+
+    it('Should Verify the folder placement of created Output Version object', function(){
+        otfTab.selectOTFTab();
+        otfTab.selectExternalWidget();
+        otfTab.CreateOutputVersionIMP(global.d2ProfDataSettings.otfData.OutputTypeaudio);
+        otfTab.verifyNewOutputVersionData(objName+"-"+global.d2ProfDataSettings.otfData.OutputTypeaudio);
+        browser.pause(2000);
+        browser.frameParent();
+        repositoryBrowserTab.openFolder('webmd/professional_assets/medscape/media/output_version');
+        otfTab.otfSelectOutputVersion(objName+"-"+global.d2ProfDataSettings.otfData.OutputTypeaudio); 
+        browser.frameParent();
+        //contentTab.checkOut();
+    });
+    
 });
 
 

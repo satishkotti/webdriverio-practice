@@ -269,6 +269,18 @@ module.exports = {
         var IsExistUnlink = browser.isExisting("//td[contains(text(),'"+Title+"')]//following::td[4]");
         expect(IsExistUnlink).to.be.false;
     },
+    otfSelectOutputVersion: function(newsObjectname){
+        browser.waitForVisible("//span[string()='"+newsObjectname+"']", maxWaitTimeInMs);
+        browser.click("//span[string()='"+newsObjectname+"']");
+        browser.pause(4000);
+    },
+    otfSelectOutputVersion: function(assetName){
+        browser.waitForVisible('#x3-doclist-filter-input', maxWaitTimeInMs);
+        browser.setValue('#x3-doclist-filter-input', assetName);
+        browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
+        browser.click("//span[@title='" + assetName + "']");
+        browser.pause(1000);
+    },
 }
 
 
