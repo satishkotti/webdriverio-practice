@@ -1,12 +1,13 @@
 var maxWaitTimeInMs = 30000;
 var propertiesTabUI = require('./../ui/propertiesTab');
+var pubSubSecPropertiestabUI = require('./../ui/PubSubSec');
 var pointerPropertiestabUI = require('./../ui/pointer');
-var maxWaitTimeInMs = 30000;
+
 
 module.exports = {
     
     getChronicleIdAndName: function(){
-        propertiesTabUI.propertiesTabSelect();
+            propertiesTabUI.propertiesTabSelect();
         return {
             chronicleId: propertiesTabUI.chronicleIdGet(),
             objectName: propertiesTabUI.objectNameGet(),
@@ -214,5 +215,23 @@ module.exports = {
         browser.waitForVisible("#wbmd_exp_date-input",maxWaitTimeInMs);
         browser.click("//label[text()='Expire On']");
         propertiesTabUI.expirationDateSet(expdate);
-    },        
+        propertiesTabUI.save();
+    },
+    setPubsubsectionProperties: function(shortTitle,subTitle,superTitle,leadSpecialty,contentDeveloper){
+        
+        propertiesTabUI.publishingSubsectionTabSelect();
+        propertiesTabUI.edit();
+       propertiesTabUI.titleSet(subTitle);
+        propertiesTabUI.save();
+    },
+    SetPubsubsectionALLProperties: function(AssetTitle){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+       propertiesTabUI.titleSet(AssetTitle);
+       propertiesTabUI.description(AssetTitle);
+       propertiesTabUI.indexPageAdOverrid(AssetTitle);
+       propertiesTabUI.articlesPubURL(AssetTitle);
+        propertiesTabUI.save();
+    },
+    
 }

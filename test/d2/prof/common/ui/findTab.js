@@ -21,4 +21,11 @@ module.exports = {
         });
        expect(browser.isVisible(locator)).to.be.true;
     },
+     pubSubSecDeleteValidation: function () {
+        var locator = "//div[@class='toast-message' and contains(.,'Unable to find a matching document!')]";
+        browser.waitUntil( () => {
+            return browser.isExisting(locator) == true
+        });
+       expect(browser.isVisible(locator)).to.be.true;
+    }
 }

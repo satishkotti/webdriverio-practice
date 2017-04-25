@@ -273,6 +273,7 @@ promoteAsset: function (assetName)
     },
 
     deleteArticle:function(assetName,DeleteVersionType){
+        browser.pause(1000);
         browser.rightClick("//span[@class='DocListLockByNone']//following-sibling::span[text()='"+assetName+"']");
         browser.rightClick("//span[@title='" + assetName + "']");
         browser.waitForVisible("#menuContextDestroy", maxWaitTimeInMs);
@@ -317,7 +318,6 @@ promoteAsset: function (assetName)
     copyloading:function(){
         return browser.isVisible('//div[@class="x3-loading-medium"]');
     },
-
     searchArticle:function(assetName,title){
         documentListUIObj.searchTextSetValue(assetName);
         browser.click("//div[@id='searchText-input']//following-sibling::span//img[2]");
@@ -334,6 +334,18 @@ promoteAsset: function (assetName)
         searchresult=documentListUIObj.loadSearchData();
 
     }
+
+    },
+    searchCopyArticle:function(assetName){
+        documentListUIObj.searchTextSetValue(assetName);
+        browser.click("//div[@id='searchText-input']//following-sibling::span//img[2]");
+        while (searchresult) {
+        searchresult=documentListUIObj.loadSearchData();
+        }
+        browser.pause(2000);
+        browser.waitForVisible("//span[@title='" + assetName + "']");
+        var results=browser.elements("//span[@title='" + assetName + "']");
+        browser.pause(3000);
 
     },
     
@@ -358,7 +370,6 @@ promoteAsset: function (assetName)
         browser.click(selectorExp);
         browser.click("div.modal-content > div.modal-footer > button.btn.btn-primary");
     },
-    
     searchCopyArticle:function(assetName){
         documentListUIObj.searchTextSetValue(assetName);
         browser.click("//div[@id='searchText-input']//following-sibling::span//img[2]");
@@ -412,7 +423,6 @@ promoteAsset: function (assetName)
         }
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
-    },
-
+    }
 }
 module.exports = documentListUIObj;

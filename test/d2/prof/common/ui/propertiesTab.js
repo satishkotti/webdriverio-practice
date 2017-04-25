@@ -237,10 +237,13 @@ module.exports = {
         browser.click("//span[text()='Contributors']");
     },
     publishingTabSelect: function(){
-        browser.click("//span//span[contains(.,'Publishing')]")
+        browser.click("//span//span[contains(.,'Publishing')]");
+    },
+    publishingSubsectionTabSelect: function(){
+        browser.click("//span//span[contains(.,'Pub Subsection')]");
     },
     otherTabSelect: function(){
-        browser.click("//span//span[contains(.,'Other')]")
+        browser.click("//span//span[contains(.,'Other')]");
     },
    
     propertiesTabSelect: function(){
@@ -249,6 +252,7 @@ module.exports = {
        browser.waitForVisible("#title-input", maxWaitTimeInMs);
 
     },
+
     ProfMediaPropertiesTabSelect: function(){
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
         browser.click(propertiesTabSelector);
@@ -302,7 +306,9 @@ module.exports = {
         browser.waitForVisible("#r_version_label", maxWaitTimeInMs);
     },
     edit: function(){
+        browser.pause(2000);
         browser.click("//div[@tag_id='Properties-widget']//button[text()='Edit']");
+        browser.pause(2000);
     },
     save: function(){
          browser.click("//div[@tag_id='Properties-widget']//button[text()='Save']");
@@ -430,6 +436,33 @@ module.exports = {
             return true;
         else
             return false;
-    }
+    },
+     description: function(textValue){
+        browser.setValue("#wbmd_desc-input", textValue);
+    },
+    indexPageAdOverrid: function(textValue){
+        browser.setValue("#wbmd_publ_ad_ovrd-input", textValue);
+    },
+    articlesPubURL: function(textValue){
+        browser.setValue("#wbmd_publ_url_ovrd-input", textValue);
+    },
+    propertiesOtherTabElements: function(){
+        browser.isExisting("//label[@for='language_code']");
+        browser.isExisting("//label[@for='r_current_state']");
+        browser.isExisting("//label[@for='authors']");
+        browser.isExisting("//label[@for='a_content_type']");
+        browser.isExisting("//label[@for='r_full_content_size']");
+        browser.isExisting("//label[@for='r_modify_date']");
+        browser.isExisting("//label[@for='r_modifier']");
+        browser.isExisting("//label[@for='r_creation_date']");
+        browser.isExisting("//label[@for='r_creator_name']");
+        browser.isExisting("//label[@for='r_lock_date']");
+        browser.isExisting("//label[@for='r_lock_owner']");
+        browser.isExisting("//label[@for='a_last_review_date']");
+        browser.isExisting("//label[@for='r_access_date']");
+        browser.isExisting("//label[@for='owner_name']");
+        browser.isExisting("//label[@for='r_object_type']");
+        browser.isExisting("//label[@for='r_version_label']");
+    },
 }
 

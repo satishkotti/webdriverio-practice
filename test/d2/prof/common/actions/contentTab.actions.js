@@ -72,6 +72,23 @@ var contentTabObj = {
     {
         return contentTabUI.contentHeaderGet();
     },
+    updatePubSubsectionContent:function(data)    {
+        contentTabObj.checkOut();
+        contentTabObj.titleSetValue(data);
+        contentTabUI.checkIn();
+    },
+     titleSetValue: function(data){
+        //contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.titleSetValue(data);
+    },
+
+    SetPubsubsectionContentAllProperties: function(AssetTitle,imageTitle){
+        contentTabObj.checkOut();
+        contentTabUI.titleSetValue(AssetTitle);
+        contentTabUI.pubSectionImageSetValue(imageTitle);
+        contentTabUI.introductionText(AssetTitle);
+         contentTabUI.checkIn();
+    },
 }
 
 module.exports = contentTabObj;

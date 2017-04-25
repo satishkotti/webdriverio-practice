@@ -1,5 +1,7 @@
 var documentListUI = require('./../ui/documentListTab');
+var pubSubSecRelation =require('./../ui/PubSubSec');
 var pointerRelation =require('./../ui/pointer');
+
 
 var documentListObj = {
     selectDocumentListTab: function(){
@@ -118,6 +120,10 @@ var documentListObj = {
      },
      verifyGenericRelations: function(){
          documentListUI.verifyGenericRelations();
+     },
+     verifyPubSubSecRelation: function(){
+        documentListUI.selectRelationTab();
+         pubSubSecRelation.pubSubSecRelation();
      },
      verifySlideRelations: function(){
          documentListUI.verifySlideRelations();
