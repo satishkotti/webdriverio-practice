@@ -145,7 +145,7 @@ var contentTabUIObj = {
        browser.leftClick("//button[contains(.,'Set Image')]");
        browser.frameParent();
        browser.waitForVisible("//input[@placeholder='Search by keyword']",maxWaitTimeInMs);
-       browser.setValue("//input[@placeholder='Search by keyword']","Heart");
+       browser.setValue("//input[@placeholder='Search by keyword']",titlevalue);
        browser.click("//span[@class='glyphicon glyphicon-search']");
        browser.waitForVisible("//table[@class='repo-table table-hover-dialog']/tbody/tr[1]/td[2]/a");
        browser.click("//table[@class='repo-table table-hover-dialog']/tbody/tr[1]/td[2]/a");

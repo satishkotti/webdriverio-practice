@@ -22,13 +22,13 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
     before(function () {
         Login.login({
         url: functions.getEnvTestUrl(),
-        username: functions.getQAPublicationUser().username,
-        password: functions.getQAPublicationUser().password
+        username: functions.getQAAdminEmedUser().username,
+        password: functions.getQAAdminEmedUser().password
     });
         browser.pause(2000);
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.DEData.testFolderPath);
         AssetTitle = global.d2ProfDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
-        workspaceMenu.createPublicationSubsection(global.d2ProfDataSettings.inputData.publicationProfileName,
+        workspaceMenu.createPublicationSubsection(global.d2ProfDataSettings.DEData.publicationProfileName,
         global.d2ProfDataSettings.inputData.PublicationsubsectionTemplate, 
         AssetTitle
         );
@@ -58,7 +58,7 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
  it('Verify PublicationSubSection creation with all fields- PPE-107822', function () {
         documentListTab.selectAsset(AssetTitle);
         propertiesTab.SetPubsubsectionALLProperties(AssetTitle);
-        contentTab.SetPubsubsectionContentAllProperties(AssetTitle,"Heart");
+        contentTab.SetPubsubsectionContentAllProperties(AssetTitle,"Reuters");
     });
 
     it('Verify the relation for the Publication Subsection asset- PPE-108362', function () {
@@ -83,8 +83,8 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
         objName = cidName.objectName;
         title = cidName.title;
         cid=cidName.chronicleId;
-        propertiesTab.setPubsubsectionProperties(title,objName,objName,global.d2ProfDataSettings.inputData.LeadSpecialty,
-        global.d2ProfDataSettings.inputData.ContentDeveloper);
+        propertiesTab.setPubsubsectionProperties(title,objName,objName,global.d2ProfDataSettings.DEData.LeadSpecialty,
+        global.d2ProfDataSettings.DEData.ContentDeveloper);
         contentTab.updatePubSubsectionContent("Sample Text");
     });
 
@@ -124,7 +124,7 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
         expect(status).to.contains("Approved");
         browser.pause(300000);
         browser.refresh();
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.DEData.testFolderPath);
         documentListTab.selectAsset(AssetTitle);
         expect(contentTab.contentHeaderGet()).to.contains("Active");
     });   
@@ -136,7 +136,7 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
     it.skip('Verify Schedule Expire functionality on PublicationSubSection-PPE-107827',function(){
         browser.pause(54000);
         browser.refresh();
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.DEData.testFolderPath);
         documentListTab.selectAsset(title);
         expect(contentTab.contentHeaderGet()).to.contains("Expire");
     });

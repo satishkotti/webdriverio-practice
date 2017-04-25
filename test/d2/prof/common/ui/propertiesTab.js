@@ -140,7 +140,9 @@ module.exports = {
         browser.waitForVisible("#r_version_label", maxWaitTimeInMs);
     },
     edit: function(){
+        browser.pause(2000);
         browser.click("//div[@tag_id='Properties-widget']//button[text()='Edit']");
+        browser.pause(2000);
     },
     save: function(){
          browser.click("//div[@tag_id='Properties-widget']//button[text()='Save']");

@@ -202,6 +202,7 @@ lifeCycleExpireSelect: function()
         documentListUIObj.demoteResultsDialogueOkSelect(assetName);
     },
     deleteArticle:function(assetName,DeleteVersionType){
+        browser.pause(1000);
         browser.rightClick("//span[@class='DocListLockByNone']//following-sibling::span[text()='"+assetName+"']");
         browser.waitForVisible("#menuContextDestroy", maxWaitTimeInMs);
         browser.click("#menuContextDestroy");

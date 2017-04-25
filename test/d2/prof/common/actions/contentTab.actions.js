@@ -67,10 +67,10 @@ var contentTabObj = {
         contentTabUI.titleSetValue(data);
     },
 
-    SetPubsubsectionContentAllProperties: function(AssetTitle){
+    SetPubsubsectionContentAllProperties: function(AssetTitle,imageTitle){
         contentTabObj.checkOut();
         contentTabUI.titleSetValue(AssetTitle);
-        contentTabUI.pubSectionImageSetValue(AssetTitle);
+        contentTabUI.pubSectionImageSetValue(imageTitle);
         contentTabUI.introductionText(AssetTitle);
          contentTabUI.checkIn();
     },
