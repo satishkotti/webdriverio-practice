@@ -260,8 +260,10 @@ module.exports.ConfigureModule = (moduleType, moduleprops) => {
         case 'editsponsorboxmodule': moduleConfigs.Configureeditsponsorboxmodule(moduleprops); break;
         case 'editverticalpromomodule': moduleConfigs.ConfigureEditverticalpromomodule(moduleprops); break;
         case 'editeditorialmodule': moduleConfigs.configureediteditorialmodule(moduleprops); break;
-        case 'html module':moduleConfigs.configureHtmlModule(moduleprops);break;
-        case 'edithtmlmodule':moduleConfigs.EditconfigureHtmlModule(moduleprops);break;
+        case 'html module': moduleConfigs.configureHtmlModule(moduleprops); break;
+        case 'edithtmlmodule': moduleConfigs.EditconfigureHtmlModule(moduleprops); break;
+        case 'standardpromomodule': moduleConfigs.configureStandardPromomodule(moduleprops); break;
+        case 'editstandardpromomodule': moduleConfigs.configureEditStandardPromoModule(moduleprops); break;
     }
 
 }
@@ -317,7 +319,8 @@ module.exports.GetXMLValues = (assetType, xml) => {
         case 'editorial module': return assetxml.ConfigureEditorialModule(xml); break;
         case 'vertical promo module': return assetxml.ConfigureVerticalPromoModule(xml); break;
         case 'editnavigation module': return assetxml.EditNavigationModuleLaunchXMLValues(xml); break;
-        case 'html module' : return assetxml.HTMlModuleXMLValues(xml); break;
+        case 'html module': return assetxml.HTMlModuleXMLValues(xml); break;
+        case 'standardpromomodule': return assetxml.StandardPromomodule(xml); break;
 
     }
 

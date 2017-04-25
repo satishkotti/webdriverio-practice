@@ -551,3 +551,117 @@ module.exports.configureHtmlModule = (assetProps) => {
 module.exports.EditconfigureHtmlModule = (assetProps) => {
     if (assetProps.ModuleHTML) { props.textarea.get('Module HTML').setValue(assetProps.ModuleHTMLEdit); }
 }
+module.exports.configureStandardPromomodule = (assetProps) => {
+    if (assetProps.ModuleTitle) { props.input.get("Module Title").setValue(assetProps.ModuleTitle); }
+    if (assetProps.Link) { props.lookup2("Module Title", "Link", 1, assetProps.Link); }
+    if (assetProps.logo) { props.lookup2("Logo", "Image", 1, assetProps.logo); }
+    if (assetProps.LogoTitle) { props.input.get("Logo Title").setValue(assetProps.LogoTitle); }
+    if (assetProps.logolink) { props.lookup2("Logo", "Link", 1, assetProps.logolink); }
+
+
+    if (assetProps.Slides.length > 1) {
+
+    }
+    else {
+        try {
+            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
+        }
+        catch (err) {
+            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').scroll(0, 500);
+            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
+        }
+        if (assetProps.Slides[0].Image) { props.lookup2("Slides", "Image", 1, assetProps.Slides[0].Image); }
+        if (assetProps.Slides[0].SlideHeaderText) { props.input2.get("Slides", "Slide Header Text", 1).setValue(assetProps.Slides[0].SlideHeaderText); }
+        if (assetProps.Slides[0].SlideHeaderLink) { props.lookup2("Slides", "Slide Header Link", 1, assetProps.Slides[0].SlideHeaderLink); }
+        if (assetProps.Slides[0].SlideTitle) { props.input2.get("Slides", "Slide Title", 1).setValue(assetProps.Slides[0].SlideTitle); }
+        if (assetProps.Slides[0].SlideEmphasizedText) { props.input2.get("Slides", "Slide Emphasized Text", 1).setValue(assetProps.Slides[0].SlideEmphasizedText); }
+        if (assetProps.Slides[0].SlideSubText) { props.input2.get("Slides", "Slide Sub Text", 1).setValue(assetProps.Slides[0].SlideSubText); }
+
+    }
+
+}
+
+module.exports.configureEditStandardPromoModule = (assetProps) => {
+    $('//fieldset[legend[string()="Module Title"]]//i[@class="fa fa-trash"]').click();
+    if (assetProps.ModuleTitle) { props.input.get("Module Title").setValue(assetProps.ModuleTitle); }
+    if (assetProps.Link) { props.lookup2("Module Title", "Link", 1, assetProps.Link); }
+    $('(//fieldset[legend[string()="Logo"]]//i[@class="fa fa-trash"])[1]').click();
+    $('(//fieldset[legend[string()="Logo"]]//i[@class="fa fa-trash"])[1]').click();
+    if (assetProps.logo) { props.lookup2("Logo", "Image", 1, assetProps.logo); }
+    if (assetProps.LogoTitle) { props.input.get("Logo Title").setValue(assetProps.LogoTitle); }
+    if (assetProps.logolink) { props.lookup2("Logo", "Link", 1, assetProps.logolink); }
+
+    try {
+        $('//label[contains(.,"Add Slides:")]//i[@class="fa fa-plus"]').click();
+        browser.execute(() => {
+            var height = $(window).scrollTop() + 200;
+            // console.log(height);
+            window.scrollTo(100, height);
+        });
+    }
+    catch (err) {
+        browser.execute(() => {
+            var height = $(window).scrollTop() + 500;
+            // console.log(height);
+            window.scrollTo(100, height);
+        });
+        $('//label[contains(.,"Add Slides:")]//i[@class="fa fa-plus"]').click();
+    }
+    if (assetProps.Slides.length > 1) {
+        try {
+            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
+        }
+        catch (err) {
+            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').scroll(0, 500);
+            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
+        }
+        $('(//fieldset[legend[string()="Slides"]]//i[@class="fa fa-trash"])[1]').click();
+        $('(//fieldset[legend[string()="Slides"]]//i[@class="fa fa-trash"])[1]').click();
+
+        if (assetProps.Slides[0].Image) { props.lookup2("Slides", "Image", 1, assetProps.Slides[0].Image); }
+        if (assetProps.Slides[0].SlideHeaderText) { props.input2.get("Slides", "Slide Header Text", 1).setValue(assetProps.Slides[0].SlideHeaderText); }
+        if (assetProps.Slides[0].SlideHeaderLink) { props.lookup2("Slides", "Slide Header Link", 1, assetProps.Slides[0].SlideHeaderLink); }
+        if (assetProps.Slides[0].SlideTitle) { props.input2.get("Slides", "Slide Title", 1).setValue(assetProps.Slides[0].SlideTitle); }
+        if (assetProps.Slides[0].SlideEmphasizedText) { props.input2.get("Slides", "Slide Emphasized Text", 1).setValue(assetProps.Slides[0].SlideEmphasizedText); }
+        if (assetProps.Slides[0].SlideSubText) { props.input2.get("Slides", "Slide Sub Text", 1).setValue(assetProps.Slides[0].SlideSubText); }
+
+        var count = browser.elements('//span[contains(@class,"pb-accordian-toggle")]').value.length;
+        try {
+            props.element('(//span[contains(@class,"pb-accordian-toggle")])[' + count + ']').click();
+        }
+        catch (err) {
+            browser.execute(() => {
+                var height = $(window).scrollTop() + 500;
+                // console.log(height);
+                window.scrollTo(100, height);
+            });
+            //   props.element('(//span[contains(@class,"pb-accordian-toggle")])[' + count + ']').scroll(0, 500);
+            props.element('(//span[contains(@class,"pb-accordian-toggle")])[' + count + ']').click();
+        }
+
+        if (assetProps.Slides[1].Image) { props.lookup2("Slides", "Image", count, assetProps.Slides[1].Image); }
+        if (assetProps.Slides[1].SlideHeaderText) { props.input2.get("Slides", "Slide Header Text", count).setValue(assetProps.Slides[1].SlideHeaderText); }
+        if (assetProps.Slides[1].SlideHeaderLink) { props.lookup2("Slides", "Slide Header Link", count, assetProps.Slides[1].SlideHeaderLink); }
+        if (assetProps.Slides[1].SlideTitle) { props.input2.get("Slides", "Slide Title", count).setValue(assetProps.Slides[1].SlideTitle); }
+        if (assetProps.Slides[1].SlideEmphasizedText) { props.input2.get("Slides", "Slide Emphasized Text", count).setValue(assetProps.Slides[1].SlideEmphasizedText); }
+        if (assetProps.Slides[1].SlideSubText) { props.input2.get("Slides", "Slide Sub Text", count).setValue(assetProps.Slides[1].SlideSubText); }
+
+    }
+    else {
+        try {
+            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
+        }
+        catch (err) {
+            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').scroll(0, 500);
+            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
+        }
+        if (assetProps.Slides[0].Image) { props.lookup2("Slides", "Image", 1, assetProps.Slides[0].Image); }
+        if (assetProps.Slides[0].SlideHeaderText) { props.input2.get("Slides", "Slide Header Text", 1).setValue(assetProps.Slides[0].SlideHeaderText); }
+        if (assetProps.Slides[0].SlideHeaderLink) { props.lookup2("Slides", "Slide Header Link", 1, assetProps.Slides[0].SlideHeaderLink); }
+        if (assetProps.Slides[0].SlideTitle) { props.input2.get("Slides", "Slide Title", 1).setValue(assetProps.Slides[0].SlideTitle); }
+        if (assetProps.Slides[0].SlideEmphasizedText) { props.input2.get("Slides", "Slide Emphasized Text", 1).setValue(assetProps.Slides[0].SlideEmphasizedText); }
+        if (assetProps.Slides[0].SlideSubText) { props.input2.get("Slides", "Slide Sub Text", 1).setValue(assetProps.Slides[0].SlideSubText); }
+
+    }
+
+}

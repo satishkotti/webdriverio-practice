@@ -524,6 +524,83 @@ var smdata = Object.create(page, {
 
                 }
         }
+    },
+    StandardPromoModule: {
+        get: () => {
+            var assetName = "QASM-SPM-" + randomstring.generate(5);
+
+            var smProps = {};
+            return smProps =
+                {
+                    "moduleName": assetName,
+                    "moduleDispName": assetName,
+                    "moduleType": "StandardPromo",
+                    "category": null,
+                    "selectXSL": null,
+                    "selectCSS": null,
+                    "dynamicModuleCategory": null,
+                    "moduleLabel1": null,
+                    "moduleLabel2": null,
+                    "linkedModule": null,
+                    "sponsorProgram": null,
+                    "description": assetName + "-desc",
+                    "tier": 2,
+                    "ModuleTitle": "Module Title test",
+                    "Link": "091e9c5e80661dc9",
+                    "logo": "091e9c5e803fecd4",
+                    "LogoTitle": "Logo Title Text",
+                    "logolink": "091e9c5e80661dc9",
+                    "Slides":
+                    [
+                        {
+                            "Image": "091e9c5e803fecd4",
+                            "SlideHeaderText": "Slide Header Text",
+                            "SlideHeaderLink": "091e9c5e801651b2",
+                            "SlideTitle": "Slide Title",
+                            "SlideEmphasizedText": "Slide Emphasized Text",
+                            "SlideSubText": "Slide Sub Text"
+                        }
+                    ]
+
+                }
+        }
+    },
+    EditStandardPromoModule:
+    {
+        get: () => {
+            var assetName = "QASM-SPM-" + randomstring.generate(5);
+
+            var smProps = {};
+            return smProps =
+                {
+                    "ModuleTitle": "Module Title test update",
+                    "Link": "091e9c5e80661dc9",
+                    "logo": "091e9c5e803fecd4",
+                    "LogoTitle": "Logo Title Text update",
+                    "logolink": "091e9c5e80661dc9",
+                    "Slides":
+                    [
+                        {
+                            "Image": "091e9c5e803fecd4",
+                            "SlideHeaderText": "Slide Header Text update",
+                            "SlideHeaderLink": "091e9c5e801651b2",
+                            "SlideTitle": "Slide Title update",
+                            "SlideEmphasizedText": "Slide Emphasized Text update",
+                            "SlideSubText": "Slide Sub Text update"
+                        },
+                        {
+                            "Image": "091e9c5e803fecd4",
+                            "SlideHeaderText": "Slide Header Text added",
+                            "SlideHeaderLink": "091e9c5e801651b2",
+                            "SlideTitle": "Slide Title added",
+                            "SlideEmphasizedText": "Slide Emphasized Text added",
+                            "SlideSubText": "Slide Sub Text added"
+                        }
+
+                    ]
+
+                }
+        }
     }
 
 

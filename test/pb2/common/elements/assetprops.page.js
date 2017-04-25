@@ -18,16 +18,19 @@ var props = Object.create(page, {
     UntilExist: { value: () => { browser.waitForExist(locator, 30000); } },
     UntilVisible: { value: () => { browser.waitForVisible(locator, 30000); } },
     UntilEnabled: { value: () => { browser.waitForEnabled(locator, 30000); } },
-    Scroll: {value: () => { browser.element(locator).scroll(); } },
+    Scroll: { value: () => { browser.element(locator).scroll(); } },
     GetElement: { get: () => { return browser.element(locator); } },
 
     input: {
         value: {
             get: (labelName) => {
                 switch (labelName) {
-                    case 'WebMD Nickname': locator = input.replace('***:', labelName); return props.GetElement; break;
-                    default: locator = input.replace('***', labelName); return props.GetElement; break;
+                    case 'WebMD Nickname': locator = input.replace('***:', labelName); break;
+                    default: locator = input.replace('***', labelName); break;
                 }
+                props.UntilExist();
+                props.UntilVisible();
+                return props.GetElement;
             }
         }
     },
@@ -160,13 +163,12 @@ var props = Object.create(page, {
             locator = locator + '//following-sibling::button//i[contains(@class, "fa-search")]';
             props.UntilExist();
             props.UntilVisible();
-            try{
+            try {
                 //props.Scroll();
                 props.GetElement.click();
             }
-            catch(err)
-            {
-                
+            catch (err) {
+
                 //props.Scroll();
                 //var topBarSize = browser.getElementSize('.pb-topbar-nav', 'height');
                 //var buttonSize = browser.getElementSize(locator, 'height');
