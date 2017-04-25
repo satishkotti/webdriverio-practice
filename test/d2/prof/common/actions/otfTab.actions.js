@@ -171,13 +171,7 @@ var otfTabActionObj = {
     },
      otfCreateMediaValidation: function(objName) {
         otfTabUI.otfCreateMediaValidation(objName);
-    },
-
-    otfMediaPropertiesValidation: function(){
-        propertiesTabUI.propertiesTabSelect();
-        
     }
-
 
 
 }

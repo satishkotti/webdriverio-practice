@@ -217,16 +217,17 @@ module.exports = {
      verifymediaIsDisabled: function(){
         browser.click("//button[@id='single-button']");
         browser.isExisting("//span[string()='Media Object' and contains(@style,'color : lightgrey')]");
+        browser.click("//button[@id='single-button']");
     },
     otfCreateMedia: function(newsObjectname){
         browser.click("//button[@id='single-button']");
         browser.click("//a[contains(.,'Media Object')]"); 
         browser.frameParent();
         browser.waitForExist("//strong[contains(.,'Create a Media Object')]",maxWaitTimeInMs);
-        browser.click("//select[@ng-change='parentChange()']");
-        browser.isExisting("//option[string()='"+newsObjectname+"-Audio']");
-        browser.isExisting("//option[string()='"+newsObjectname+"-Audio_2']");
-        browser.click("//option[string()='"+newsObjectname+"-Audio']");
+        //browser.click("//select[@ng-change='parentChange()']");
+       // browser.isExisting("//option[string()='"+newsObjectname+"-Audio']");
+        //browser.isExisting("//option[string()='"+newsObjectname+"-Audio_2']");
+        //browser.click("//option[string()='"+newsObjectname+"-Audio']");
        // browser.setValue("//div[contains(.,'Object Name')]/following-sibling::div/input",'QAtestobjName');
         browser.setValue("//div[contains(.,'Title')]/following-sibling::div/input",'QAtestobjName');
         browser.click("//div[contains(.,'Media Format')]/following-sibling::div/select");
@@ -265,12 +266,20 @@ module.exports = {
         expect(parentobject).to.be.true;
         browser.click("//select[@ng-change='parentChange()']");
         browser.click("//option[string()='"+newsObjectname+"-Audio_2']");
-        browser.pause(2000);
+
+        browser.setValue("//div[contains(.,'Object Name')]/following-sibling::div/input",'$#@');
+        browser.click("//button[contains(.,'Create')]");
+        browser.moveToObject("//div[@class='toast-message' and contains(.,'Object Name validation failed! Do not use any spaces or special characters like the following characters')]");
+        var objectName = browser.isExisting("//div[@class='toast-message' and contains(.,'Object Name validation failed! Do not use any spaces or special characters like the following characters')]");
+        expect(objectName).to.be.true;
+        browser.setValue("//div[contains(.,'Object Name')]/following-sibling::div/input",newsObjectname+"-media_2");
+
         browser.click("//button[contains(.,'Create')]");
         browser.moveToObject("//div[@class='toast-message' and contains(.,'Title is required to have a value!')]");
         var title= browser.isExisting("//div[@class='toast-message' and contains(.,'Title is required to have a value!')]");
         expect(title).to.be.true;
         browser.setValue("//div[contains(.,'Title')]/following-sibling::div/input",'QAtestobjName');
+        
         browser.click("//button[contains(.,'Create')]");
         browser.moveToObject("//div[@class='toast-message' and contains(.,'Media Format is required to have a value!')]");
         var mediaFormat= browser.isExisting("//div[@class='toast-message' and contains(.,'Media Format is required to have a value!')]");
