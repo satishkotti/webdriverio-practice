@@ -45,15 +45,30 @@ var contentTabObj = {
         contentTabObj.mModuleckEditorMenuClick(5);
     },
      abovetitleSetValue: function(data){
-        //contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.switchToExternalWidget4Frame();
         contentTabUI.abovetitleSetValue(data);
+    },
+
+    updateContentAllFields:function(data)    {
+        contentTabObj.checkOut();
+        contentTabObj.AllFieldsSetValueForPubSection(data);
+        contentTabUI.checkIn();
+    },
+    contentHeaderGet:function()
+    {
+        return contentTabUI.contentHeaderGet();
+    },
+
+    AllFieldsSetValueForPubSection: function(data){
+        //contentTabUI.switchToExternalWidget4Frame();
+        contentTabUI.AllFieldsSetValueForPubSection(data);
     },
     updateContent:function(data)    {
         contentTabObj.checkOut();
         contentTabObj.abovetitleSetValue(data);
         contentTabUI.checkIn();
     },
-     contentHeaderGet:function()
+    contentHeaderGet:function()
     {
         return contentTabUI.contentHeaderGet();
     },

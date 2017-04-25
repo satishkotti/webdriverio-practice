@@ -22,5 +22,6 @@ module.exports = {
         findTabUI.Searchtext(AssetName);
         browser.frameParent();
         findTabUI.pubSubSecDeleteValidation
-    },
+    }
+
 }

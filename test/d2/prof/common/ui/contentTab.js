@@ -1,6 +1,8 @@
-var maxWaitTimeInMs = 60000;
-var sectionTextSelector= "//h2[span[contains(.,'Section Text')]]//following-sibling::div//div";
+var maxWaitTimeInMs = 20000;
+var Helper = require('./../functions/functions');
 var aboveTitleSelector = "//h2[span[contains(.,'Above Title')]]//following-sibling::div//div[@role='textbox']";
+var abovetitle="//h2[span[contains(.,'Above Title')]]//following-sibling::div//div[text()='Enter text here']";
+var sectionTextSelector= "//h2[span[contains(.,'Section Text')]]//following-sibling::div//div";
 var highlightsSelector = "//h2[span[contains(.,'Highlights')]]//following-sibling::div//div";
 var pullQuotesSelector= "//h2[span[contains(.,'Pull Quotes')]]//following-sibling::div//div";
 var citationsSelector= "//h2[span[contains(.,'Citations')]]//following-sibling::div//div";
@@ -11,10 +13,14 @@ var contentTabSelector= "//span[text()='Content']";
 var contentPaneFrameSelector= "iframe[id*='oam_id==ExternalWidget-4!!oam_target_type==ExternalWidget']";
 var externalWidget3Selector= "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
 var externalWidget4Selector= "iframe[id*='oam_id==ExternalWidget-4!!oam_target_type==ExternalWidget']";
-var contentHeader="//div[@class='container']//center[@class='ng-binding']";
 var cancelButonSelector= "//button[contains(string(),'Cancel')]";
 var titleSelector = "//h2[span[contains(.,'Title')]]//following-sibling::div//div[@role='textbox']";
 var introductionTextSelector = "//h2[span[contains(.,'Introduction Text')]]//following-sibling::div//div[@role='textbox']";
+var PubSectionTitleSelector = "//h2[span[contains(.,'Title')]]//following-sibling::div//div[@role='textbox']";
+var PubSectionIntroductionTextSelector = "//h2[span[contains(.,'Introduction Text')]]//following-sibling::div//div[@role='textbox']";
+var SetImageButtonSelector = "//button[contains(string(),'Set Image')]";
+var contentHeader="//div[@class='container']//center[@class='ng-binding']";
+
 
 var contentTabUIObj = {
     
@@ -62,6 +68,16 @@ var contentTabUIObj = {
         browser.frameParent();
         browser.pause(5000);
     },
+    cancelCheckOut: function(){
+        browser.waitForVisible(cancelButonSelector);
+
+        //browser.scroll(cancelButonSelector);
+
+        browser.click(cancelButonSelector);
+        browser.pause(5000);
+        browser.frameParent();
+        browser.pause(5000);
+    },
     checkIn: function(){
         browser.waitForVisible(checkInButonSelector);
         browser.scroll(0,0);
@@ -70,6 +86,22 @@ var contentTabUIObj = {
         browser.frameParent();
         browser.pause(5000);
     },
+
+    aboveTitleSetValue: function(aboveTitleVal){
+        browser.scroll(aboveTitleSelector);
+        browser.setValue(aboveTitleSelector, aboveTitleVal);
+    },
+
+    contentHeaderGet:function()
+    {
+        contentTabUIObj.switchToExternalWidget4Frame();
+        browser.waitForVisible(contentHeader,maxWaitTimeInMs);
+        var result=browser.getText(contentHeader);
+        browser.frameParent();
+        return result;
+
+    },
+
     cancelCheckOut: function(){
         browser.waitForVisible(cancelButonSelector);
         browser.moveToObject(cancelButonSelector);
@@ -159,6 +191,58 @@ var contentTabUIObj = {
         browser.setValue(introductionTextSelector,introductionText);
     },
 
+    AllFieldsSetValueForPubSection: function(data){
+        contentTabUIObj.switchToExternalWidget4Frame();
+        browser.waitForVisible(PubSectionTitleSelector, maxWaitTimeInMs);
+        browser.setValue(PubSectionTitleSelector,'Sample Text');
+        contentTabUIObj.SetImageButtonClick("Pub Section Image");
+        contentTabUIObj.selectImageSearchForPubSection(data);
+        browser.setValue(PubSectionIntroductionTextSelector,'Sample Text');
+    },
+    setImageType: function (moduleType) {
+        Helper.verfiyElementExists("select[ng-model='viewType']", maxWaitTimeInMs);
+        browser.click("select[ng-model='viewType']");
+        browser.click("//option[contains(.,'" + moduleType + "')]");
+        browser.pause(1000);
+
+    },
+    setImageSearchValue: function (text) {
+        Helper.verfiyElementExists("input[placeholder='Search by keyword']", maxWaitTimeInMs);
+
+        browser.setValue("input[placeholder='Search by keyword']", text);
+        browser.click("span[class='input-group-addon']");
+        browser.pause(5000);
+    },
+    clickImageSearchResult: function () {
+        Helper.verfiyElementExists("div.ng-scope > table >tbody > tr:nth-child(1) >td:nth-child(1) >img", 90000);
+        browser.click("div.ng-scope > table >tbody > tr:nth-child(1) >td:nth-child(1) >img");
+        browser.pause(5000);
+    },
+    selectImage: function () {
+        browser.click("//div[@class='modal-footer']//button[contains(string(),'Select')]");
+        browser.pause(1000);
+        contentTabUIObj.switchToExternalWidget4Frame();
+    },
+    SetImageButtonClick:function(Imagemodule){
+        var ImageSelector= "//h2[span[contains(.,'"+Imagemodule+"')]]//following-sibling::div//div//div//div[@class='column']//button[@ng-click='repoImageSelector()']";
+        browser.waitForVisible(ImageSelector,maxWaitTimeInMs);
+        browser.moveToObject(ImageSelector);
+        browser.leftClick(ImageSelector);
+        browser.pause(10000);
+    },
+    selectImageSearchForPubSection: function (searchimagetype) {
+        contentTabUIObj.setImageType("Image");
+        contentTabUIObj.setImageSearchValue(searchimagetype);
+        contentTabUIObj.clickImageSearchResult();
+        contentTabUIObj.selectImage();
+    },
+
+    abovetitleSetValue:function(abovetitlevalue){
+        contentTabUIObj.switchToExternalWidget4Frame();
+        browser.waitForVisible(aboveTitleSelector,maxWaitTimeInMs);
+        browser.scroll(aboveTitleSelector);
+        browser.setValue(aboveTitleSelector,abovetitlevalue);
+    }
 }
 
 module.exports = contentTabUIObj;
