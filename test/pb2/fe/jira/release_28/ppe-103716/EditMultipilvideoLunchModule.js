@@ -59,7 +59,6 @@ describe('XML validations for Multiple Video Launch Module', () => {
 
             });
 
-
             //assertions
             it('Verify data after Reinstate the existing section in multiple video launch module', () => {
                 expect(xml1['VideoBrand']).to.equal(xml3['VideoBrand']);
