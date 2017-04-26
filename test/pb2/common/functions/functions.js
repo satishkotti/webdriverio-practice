@@ -252,6 +252,7 @@ module.exports.ClickButtonInATSPage = (buttonText) => {
 module.exports.ConfigureModule = (moduleType, moduleprops) => {
     switch (moduleType.toLowerCase()) {
         case 'multiple video launch': moduleConfigs.ConfigureMultipleVideoLaunchModule(moduleprops); break;
+        case 'update multiple video launch module': moduleConfigs.ConfigureUpdateMultipleVideoLaunchModule(moduleprops); break;
         case 'sponsor box module': moduleConfigs.ConfigureSponsorBoxModule(moduleprops); break;
         case 'navigation module': moduleConfigs.ConfigureNavigationModule(moduleprops); break;
         case 'editorial module': moduleConfigs.ConfigureEditorialModule(moduleprops); break;
@@ -316,6 +317,7 @@ module.exports.GetXML = (chronId, stage, inputType) => {
 module.exports.GetXMLValues = (assetType, xml) => {
     switch (assetType.toLowerCase()) {
         case 'multiple video launch module': return assetxml.MultipleVideoLaunchXMLValues(xml); break;
+        case 'update multiple video launch module': return assetxml.EditMultipulVideoLaunchXMLValues(xml); break;
         case 'sponsor box module': return assetxml.SponsorModuleLaunchXMLValues(xml); break;
         case 'navigation module': return assetxml.NavigationModuleLaunchXMLValues(xml); break;
         case 'editorial module': return assetxml.ConfigureEditorialModule(xml); break;

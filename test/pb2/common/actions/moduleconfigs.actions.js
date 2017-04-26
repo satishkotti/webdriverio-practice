@@ -26,6 +26,24 @@ module.exports.ConfigureMultipleVideoLaunchModule = (assetProps) => {
     }
 }
 
+module.exports.ConfigureUpdateMultipleVideoLaunchModule = (assetProps) => {
+
+    if (assetProps.brand != "None") { props.dropdown('Brand', assetProps.brand); }
+    if (assetProps.moduleTitle != null) { props.input.get('Module Title').setValue(assetProps.moduleTitle); }
+    if (assetProps.moduleDesc != null) { props.input.get('Module Description').setValue(assetProps.moduleDesc); }
+    if (assetProps.videos.length > 2) {
+        //for more than one link.
+    }
+    else {
+      //  $('//label[contains(.," Add Links")]//i[@class="fa fa-plus"]').click();
+        $('(//i[@class="fa fa-trash"])[2]').click();
+        if (assetProps.videos[0].videoObject != null) { props.lookup('Video Object', assetProps.videos[0].videoObject); }
+        if (assetProps.videos[0].videoTitleOverride != null) { props.input.get('Video Title Override').setValue(assetProps.videos[0].videoTitleOverride); }
+        if (assetProps.videos[0].videoDescOverride != null) { props.input.get('Video Description Override').setValue(assetProps.videos[0].videoDescOverride); }
+    }
+}
+
+
 module.exports.ConfigureSponsorBoxModule = (assetProps) => {
     if (assetProps.logo != null) { props.lookup2('Sponsor Logo', 'Logo', 1, assetProps.logo); }
     if (assetProps.overridetext != null) { props.input2.get('Sponsor Logo', 'Override Text', 1).setValue(assetProps.overridetext); }

@@ -722,3 +722,23 @@ module.exports.twocolumnheadermodule = (result) => {
     return obj;
 
 }
+
+module.exports.EditMultipulVideoLaunchXMLValues = (result) => {
+    var obj = {};
+    var rowNumber = 0;
+
+    
+    var moduleData = result.webmd_rendition.content.wbmd_asset.webmd_module.module_data;
+    obj["VideoBrand"] = moduleData.hasOwnProperty('VideoBrand') ? moduleData.VideoBrand : 'VideoBrand missed on xml';
+    obj["VideoLinkView"] = moduleData.hasOwnProperty('VideoLinkView') ? moduleData.VideoLinkView : 'VideoLinkView missed on xml';
+    obj["ModuleDescription"] = moduleData.hasOwnProperty('ModuleDescription') ? moduleData.ModuleDescription : 'ModuleDescription missed on xml';
+    obj["ModuleTitle"] = moduleData.hasOwnProperty('ModuleTitle') ? moduleData.ModuleTitle : 'ModuleTitle missed on xml';
+    obj["VideoTitleOverride"] = moduleData.Videos.Video.hasOwnProperty('VideoTitleOverride') ? moduleData.Videos.Video.VideoTitleOverride : 'VideoTitleOverride missed on xml';
+    obj["VideoDescriptionOverride"] = moduleData.Videos.Video.hasOwnProperty('VideoDescriptionOverride') ? moduleData.Videos.Video.VideoDescriptionOverride : 'VideoDescriptionOverride missed on xml';
+    obj["videosource_chronic_id"] = moduleData.Videos.Video.hasOwnProperty('VideoSource') &&  moduleData.Videos.Video.VideoSource ? moduleData.Videos.Video.VideoSource.$.chronic_id : 'VideoSource.$.chronic_id missed on xml';
+    obj["VideoLink_chronic_id"] = moduleData.Videos.Video.hasOwnProperty('VideoLink') && moduleData.Videos.Video.VideoLink && moduleData.Videos.Video.VideoLink.$.chronic_id != undefined ? moduleData.Videos.Video.VideoLink.$.chronic_id : "";
+    obj["PopupLink_chronic_id"] = moduleData.Videos.Video.hasOwnProperty('PopupLink') && moduleData.Videos.Video.PopupLink && moduleData.Videos.Video.PopupLink.$.chronic_id != undefined ? true : false;
+
+    return obj;
+    
+    }

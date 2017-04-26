@@ -63,6 +63,29 @@ var smdata = Object.create(page, {
                 }
         }
     },
+     updatemultiplevideolaunchModule: {
+        get: () => {
+           
+            var smProps = {};
+            return smProps =
+                {
+                  
+                    "brand": "WebMD",
+                    "moduleTitle": "QA Title - update",
+                    "moduleDesc": "QA Description - update",
+                    "videos":
+                    [
+                        {
+                            "videoObject": '091e9c5e80167396',
+                            "videoTitleOverride": 'QA Video Title Override - update',
+                            "videoDescOverride": 'QA Video Description Override - update'
+                        }
+                         
+                    ]
+
+                }
+        }
+    },
     sponsorboxesModule: {
         get: () => {
             var assetName = "QASM-SPBX-" + randomstring.generate(5);
