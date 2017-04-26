@@ -224,19 +224,15 @@ module.exports = {
 
     verifyCreateOutputVersionIMP: function (outputtype) {
         
-         browser.waitForExist("//div//span[@ng-if='possibleParents.length == 1']",maxWaitTimeInMs);
+         browser.waitForExist("//div//span[@ng-if='possibleParents.length == 1']", maxWaitTimeInMs);
         var outputType = browser.element("//div[@ng-repeat='attr in createItem.inputAttributes']//div[2]//select[@ng-model='attr.value']");
         outputType.selectByVisibleText(outputtype);
-
-
-      
-
     },
 
        
      
      CreateOutputVersionIMPClick: function(OutputType){
-        browser.waitForExist("//button[@id='single-button']",maxWaitTimeInMs);
+        browser.waitForExist("//button[@id='single-button']", maxWaitTimeInMs);
         browser.click("//button[@id='single-button']");
         browser.click("//li[@ng-repeat='createItem in searchResponse.createItems']/a");
         browser.frameParent();

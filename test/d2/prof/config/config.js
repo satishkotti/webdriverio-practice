@@ -261,7 +261,29 @@ module.exports.testSettings = {
             "defaultDateText": "MM/DD/YYYY HH:MM:SS",
             "wipVersion": "1.0, CURRENT, WIP",
             "objType": "wbmd_prof_output"
-        }
+        },
+
+        "ODEData":{
+            "testFolderPath": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
+            "ProfileName":"DE / Article Templates",
+            "NewsArticleObjectName": "QADETestAsset" + exports.GenerateRandomString(5),
+        },
+        "OFRData":{
+            "testFolderPath": "webmd_fr/professional_assets/medscape/articles/news/articles/2013/test",
+            "ProfileName":"FR / Article Templates",
+            "NewsArticleObjectName": "QAFRTestAsset" + exports.GenerateRandomString(5),
+        },
+        "OPTData":{
+            "testFolderPath": "webmd_pt/professional_assets/medscape/articles/news/articles/2015/test",
+            "ProfileName":"PT / Article Templates",
+            "NewsArticleObjectName": "QAPTTestAsset" + exports.GenerateRandomString(5),
+        },
+        "OSPData":{
+            "testFolderPath": "webmd_sp/professional_assets/medscape/articles/news/articles/SP/test",
+            "ProfileName":"SP / Article Templates",
+            "NewsArticleObjectName": "QASPTestAsset" + exports.GenerateRandomString(5),
+            "ContentType":"Alertas",
+        },
 
     }
 }

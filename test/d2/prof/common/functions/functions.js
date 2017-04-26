@@ -28,9 +28,5 @@ module.exports = {
             browser.waitForExist(selectorVal, maxWaitTimeInMs);
         }
     },  
-    getQAAdminEmedUser: function(){
-        return global.envSettings.d2prof.users[2];
-
-    }
-
+  
 }

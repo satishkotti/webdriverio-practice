@@ -196,6 +196,13 @@ var otfTabActionObj = {
         //otfTabUI.selectItemByNamePagination(objectname);
 
     },
+    DeleteSecondOutputVersion: function(Title){
+        browser.pause(20000);
+       
+        otfTabUI.otfRemoveCreatedoutputversion(Title);
+        browser.frameParent();
+        otfTabUI.otfRemoveDefaultoutputversionPopup();
+    },
 }
 
 module.exports = otfTabActionObj;

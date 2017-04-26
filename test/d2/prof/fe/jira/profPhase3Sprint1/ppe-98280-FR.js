@@ -14,18 +14,18 @@ describe('OTF Profoutput-Implementation- PPE-98280', function () {
         
         Login.login({
         url: functions.getEnvTestUrl(),
-        username: functions.getQAPublicationUser().username,
-        password: functions.getQAPublicationUser().password
+        username: functions.getQAAdminEmedUser().username,
+        password: functions.getQAAdminEmedUser().password
         });
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.OFRData.testFolderPath);
     });
 
     var objName;
-    var  newsObjectname= global.d2ProfDataSettings.inputData.NewsArticleObjectName;
+    var  newsObjectname= global.d2ProfDataSettings.OFRData.NewsArticleObjectName;
     
 
     it('Should verify the navigation and article creation functionality', function () {
-        workspaceMenu.createContent(global.d2ProfDataSettings.inputData.ProfileName,
+        workspaceMenu.createContent(global.d2ProfDataSettings.OFRData.ProfileName,
                     global.d2ProfDataSettings.inputData.ArticleTemplate, 
                     newsObjectname, 
                     global.d2ProfDataSettings.inputData.ContentType);
@@ -58,6 +58,10 @@ describe('OTF Profoutput-Implementation- PPE-98280', function () {
     });
 
     it('Should Verify the folder placement of created Output Version object', function(){
+        otfTab.selectOTFTab();
+        otfTab.selectExternalWidget();
+        otfTab.CreateOutputVersionIMP(global.d2ProfDataSettings.otfData.OutputTypeaudio);
+        otfTab.verifyNewOutputVersionData(objName+"-"+global.d2ProfDataSettings.otfData.OutputTypeaudio);
         browser.pause(2000);
         browser.frameParent();
         repositoryBrowserTab.openFolder('webmd/professional_assets/medscape/media/output_version');
