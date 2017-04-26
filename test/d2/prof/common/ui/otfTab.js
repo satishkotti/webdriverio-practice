@@ -203,5 +203,15 @@ module.exports = {
         browser.click("//button[contains(.,'Link')]")
         browser.pause(2000);
         
+    },
+    otfCreateOutputVersion: function(){
+        browser.click("//button[@id='single-button']");
+        browser.click("//li[@ng-repeat='createItem in searchResponse.createItems']/a");
+        browser.frameParent();
+        browser.waitForExist("//span[contains(.,'Output Type')]",maxWaitTimeInMs);
+        browser.click("//select[@ng-model='attr.value']")
+        browser.click("//option[string()='Audio']")
+        browser.click("//button[text()='Create']");
+        browser.pause(20000);
     }
 }

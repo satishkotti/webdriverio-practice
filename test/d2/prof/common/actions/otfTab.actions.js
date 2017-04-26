@@ -134,6 +134,8 @@ var otfTabActionObj = {
     },
     otfDefaultOutputversion: function(){
         contentTabUI.switchToExternalWidget3Frame();
+        otfTabUI.otfCreateOutputVersion();
+        contentTabUI.switchToExternalWidget3Frame();
         otfTabUI.otfRemoveDefaultoutputversion();
          browser.frameParent();
          otfTabUI.otfRemoveDefaultoutputversionPopup();
@@ -147,7 +149,7 @@ var otfTabActionObj = {
          var textattribute = otfTabUI.otfDefaultoutputversionValidation();
          expect(textattribute).to.be.true;
 
-    },
+    }
 }
 
 module.exports = otfTabActionObj;
