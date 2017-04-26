@@ -423,6 +423,15 @@ promoteAsset: function (assetName)
         }
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
-    }
+    },
+    verifyProfpublicationRelations: function(){
+        browser.click("//span[text()='Relations']");
+        browser.pause(1000);
+        browser.isExisting("//td[contains(.,'wcm_category')]//following-sibling::td[contains(.,'Publication')]");
+        browser.isExisting("//td[contains(.,'wcm_doc_template')]//following-sibling::td[contains(.,'professional_publication') and contains(.,'xml')]");
+        browser.isExisting("//td[contains(.,'wcm_layout_template')]//following-sibling::td[contains(.,'publication') and contains(.,'xsl')]");
+        browser.isExisting("//td[contains(.,'wcm_rules_template')]//following-sibling::td[contains(.,'Rule_Professional_for_Publication') and contains(.,'xml')]");
+       
+    },
 }
 module.exports = documentListUIObj;

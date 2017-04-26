@@ -162,6 +162,19 @@ var newContentObj = module.exports = {
 
         newContentObj.setProfile(creationProflieName, articleTemplateName);
         newContentObj.setPublicationSubsectionTitle(objectName);
-    }
+    },
+    createProfPublication: function(creationProflieName, publicationType, objectTitle,publicationName){ 
+        newContentObj.setProfile(creationProflieName, publicationType);
+        newContentObj.setProfPublicationName(objectTitle, publicationName);
+    },
+    setProfPublicationName: function(objectTitle, publicationName){        
+        browser.waitForVisible("#title-input");
+        browser.setValue('#title-input', objectTitle);
+        browser.waitForVisible("#wbmd_publ_name-input")
+        browser.setValue('#wbmd_publ_name-input',publicationName)
+        browser.waitForVisible('//*[@id="next-button"]');
+        browser.click('//*[@id="next-button"]');
+        browser.waitForVisible('//span[@title="'+objectTitle+'"]',maxWaitTimeInMs);
+    },
 
 }

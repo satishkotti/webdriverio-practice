@@ -148,6 +148,14 @@ var otfTabActionObj = {
          expect(textattribute).to.be.true;
 
     },
+    verfiyPublicationStructure: function(selectorVal) {
+        browser.waitForVisible("//select[@ng-model='currentLocale']",maxWaitTimeInMs);
+        var objectNameValue = otfTabUI.titleValue();
+        expect(objectNameValue).to.equal(selectorVal);
+        var isExistPublicationStructure=browser.isExisting("//table[@st-table='displayedCollection']/tbody/tr[td//text()='Publication']//following-sibling::tr[td//text()='Publication Section']//following-sibling::tr[td//text()='Publication Subsection']");
+        expect(isExistPublicationStructure).to.equal(true);
+        browser.frameParent();
+    },
 }
 
 module.exports = otfTabActionObj;

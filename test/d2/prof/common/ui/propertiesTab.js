@@ -464,5 +464,34 @@ module.exports = {
         browser.isExisting("//label[@for='r_object_type']");
         browser.isExisting("//label[@for='r_version_label']");
     },
+    clearManadatoryFieldsForProfPublication: function(){
+        browser.waitForVisible("#title-input", maxWaitTimeInMs);
+        browser.clearElement("#title-input");
+        browser.clearElement("#wbmd_publ_name-input");
+        browser.clearElement("#wbmd_publ_reln-input");
+        browser.clearElement("#wbmd_site_only-input");
+    },
+    verifyMandatoryFieldsforPorfPublicationProp: function(){
+        var IsExistTitle = browser.isExisting("//span[contains(., 'Title')]");
+        var IsExistName = browser.isExisting("//span[contains(., 'Publication Name')]");
+        var IsExistPubRel = browser.isExisting("//span[contains(., 'Publication Relationships')]");
+        var IsExistSiteRel = browser.isExisting("//span[contains(., 'Site Restrictions')]");
+        var IsExistwarningClass = browser.isExisting("//div[contains(@class,'ext-mb-warning')]");
+        browser.click("//div[@class='x-window-br']//button[contains(.,'OK')]");
+        if(IsExistTitle == true && IsExistName == true && IsExistwarningClass == true&& IsExistSiteRel == true && IsExistPubRel == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    },
+    publicationNameSet: function(textValue){
+        browser.setValue("input#wbmd_publ_name-input", textValue);
+    },
+    publicationNameGet: function(){
+        return browser.getValue("input#wbmd_publ_name-input");
+    },
 }
 

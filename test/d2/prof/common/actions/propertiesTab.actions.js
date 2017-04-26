@@ -233,5 +233,31 @@ module.exports = {
        propertiesTabUI.articlesPubURL(AssetTitle);
         propertiesTabUI.save();
     },
+    verifyMandatoryFieldsforProfpublicationProp:function(){
+         propertiesTabUI.propertiesTabSelect();
+         propertiesTabUI.edit();
+         propertiesTabUI.clearManadatoryFieldsForProfPublication();
+         propertiesTabUI.save();
+         var AlertMessage = propertiesTabUI.verifyMandatoryFieldsforPorfPublicationProp();
+         return AlertMessage;
+     },
+     setRequiredPropertiesForProfPublication: function(publicationName, Title,PublRelation,SiteRelation){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.clearManadatoryFieldsForProfPublication();
+        propertiesTabUI.titleSet(Title);
+        propertiesTabUI.publicationNameSet(publicationName);
+        browser.setValue("#wbmd_publ_reln-input",PublRelation);
+        browser.setValue("#wbmd_site_only-input",SiteRelation);
+        propertiesTabUI.save();
+    },
+    getObjectNamePublicationTab: function(){
+        propertiesTabUI.ProfMediaPropertiesTabSelect();
+        return {
+            name: propertiesTabUI.objectNameGet(),
+            publicationName: propertiesTabUI.publicationNameGet(),
+            title:propertiesTabUI.titileGet()
+        };
+    },
     
 }
