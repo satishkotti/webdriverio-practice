@@ -148,8 +148,35 @@ var otfTabActionObj = {
           contentTabUI.switchToExternalWidget3Frame();
          var textattribute = otfTabUI.otfDefaultoutputversionValidation();
          expect(textattribute).to.be.true;
+    },
+    otfCreateOutputVersion: function() {
+        otfTabUI.otfCreateOutputVersion();
+    },
+    verifymediaIsDisabled: function(){
+        otfTabUI.verifymediaIsDisabled();
+    },
+    otfCreateMedia: function(objectname) {
+        otfTabUI.otfCreateMedia(objectname);
+    },
+       otfMediaState: function(objectname) {
+        contentTabUI.switchToExternalWidget3Frame();
+        otfTabUI.otfMediaState(objectname);
+        browser.frameParent();
+    },
+       otfSelectMedia: function(objectname) {
+        contentTabUI.switchToExternalWidget3Frame();
+        otfTabUI.otfSelectMedia(objectname);
+        browser.frameParent();
+       // otfTabUI.otfSelectMedia(objectname);
 
-    }
+    },
+     otfCreateMediaValidation: function(objName) {
+        otfTabUI.otfCreateMediaValidation(objName);
+    },
+     otfMediaFolder: function(){
+        otfTabUI.otfMediaFolder();
+    },
+
 }
 
 module.exports = otfTabActionObj;

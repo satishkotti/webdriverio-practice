@@ -136,6 +136,8 @@ module.exports.testSettings = {
             "ContentDeveloper": "Medscape",
             "DeleteAllversions":"Delete all versions", 
             "Deleteselectedversion":"Delete selected version only",
+            "DeleteAllversions":"Delete all versions",
+            "mediaFolderPath":"webmd/professional_assets/medscape/media/output_version/media",
             "newsPropertiesLabels":"object_name-input,title-input,wbmd_legacy_id,wbmd_wdw_ttl-input,wbmd_bus_ref-input,wbmd_lead_concept-input,"+
                                     "wbmd_keywords-input,wbmd_content_fcs,wbmd_desc_meta-input,wbmd_img_thmb-input,wbmd_rel_links_type-input,wbmd_rel_link_lbl-input,wbmd_suppress_search-input,"+
                                     "wbmd_suppress_link-input,wbmd_suppress_comment-input,wbmd_cont_dev-input,wbmd_toc_display-input,wbmd_bkt_gen_coll_id,wbmd_prim_coll-input,wbmd_supp_ads-input,"+
@@ -247,6 +249,7 @@ module.exports.testSettings = {
             "LeadSpecialty": "Psychiatrie",
             "ContentDeveloper": "Partner",
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+            "mediaFolderPath":"webmd_de/professional_assets/medscape/media/output_version/media",
             "MediaName":"QATestProfMediaTest",
         },
         "FRData":{
@@ -257,6 +260,7 @@ module.exports.testSettings = {
             "LeadSpecialty": "Cardiologie",
             "ContentDeveloper": "Partner",
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+            "mediaFolderPath":"webmd_fr/professional_assets/medscape/media/output_version/media",
             "MediaName":"QATestProfMediaTest",
         },
         "PTData":{
@@ -267,6 +271,7 @@ module.exports.testSettings = {
             "LeadSpecialty": "Cardiologia",
             "ContentDeveloper": "N/A",
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+            "mediaFolderPath":"webmd_pt/professional_assets/medscape/media/output_version/media",
             "MediaName":"QATestProfMediaTest",
         },
         "SPData":{
@@ -278,6 +283,7 @@ module.exports.testSettings = {
             "LeadSpecialty": "Dermatología",
             "ContentDeveloper": "N/A",
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
+            "mediaFolderPath":"webmd_sp/professional_assets/medscape/media/output_version/media",
              "MediaName":"QATestProfMediaTest",
         },
         "profOutputData": {
