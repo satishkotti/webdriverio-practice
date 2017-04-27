@@ -162,7 +162,10 @@ module.exports = {
         }
     },
     save: function(){
+        if (browser.isVisible("//div[@tag_id='Properties-widget']//button[text()='Save']"))
+        {
          browser.click("//div[@tag_id='Properties-widget']//button[text()='Save']");
+        }
          browser.pause(5000);
     },
     cancelEdit: function(){

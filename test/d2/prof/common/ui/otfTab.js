@@ -277,6 +277,34 @@ module.exports = {
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
     },
+    otfCreateMedia: function(newsObjectname){
+        browser.click("//button[@id='single-button']");
+        browser.click("//a[contains(.,'Media Object')]"); 
+        browser.frameParent();
+        browser.waitForExist("//strong[contains(.,'Create a Media Object')]",maxWaitTimeInMs);
+        //browser.click("//select[@ng-change='parentChange()']");
+       // browser.isExisting("//option[string()='"+newsObjectname+"-Audio']");
+        //browser.isExisting("//option[string()='"+newsObjectname+"-Audio_2']");
+        //browser.click("//option[string()='"+newsObjectname+"-Audio']");
+       // browser.setValue("//div[contains(.,'Object Name')]/following-sibling::div/input",'QAtestobjName');
+        browser.setValue("//div[contains(.,'Title')]/following-sibling::div/input",'QAtestobjName');
+        browser.click("//div[contains(.,'Media Format')]/following-sibling::div/select");
+        browser.click("//option[contains(.,'MP3')]");
+
+        browser.setValue("//div[contains(.,'Video RSS Media Location')]/following-sibling::div/input",'QAtestobjName');
+        browser.setValue("//div[contains(.,'Audio RSS Media Location')]/following-sibling::div/input",'QAtestobjName');
+        
+        browser.setValue("//div[contains(.,'Start Image Location')]/following-sibling::div/input",'QAtestobjName');
+        browser.setValue("//div[contains(.,'End Image Location')]/following-sibling::div/input",'QAtestobjName');
+        browser.setValue("//div[contains(.,'Config File Location')]/following-sibling::div/input",'QAtestobjName');
+        browser.setValue("//div[contains(.,'SWF Location')]/following-sibling::div/input",'QAtestobjName');
+        browser.setValue("//div[contains(.,'Audio Download Bytes')]/following-sibling::div/input",'222.5');
+        browser.setValue("//div[contains(.,'Video Download Bytes')]/following-sibling::div/input",'222.5');
+        browser.setValue("//div[contains(.,'Width')]/following-sibling::div/input",'222');
+        browser.setValue("//div[contains(.,'Height')]/following-sibling::div/input",'222');
+        browser.click("//button[contains(.,'Create')]");
+        browser.pause(20000);
+    },
 }
 
 

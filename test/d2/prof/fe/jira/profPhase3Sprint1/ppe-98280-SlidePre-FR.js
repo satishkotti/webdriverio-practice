@@ -17,16 +17,16 @@ describe('OTF Profoutput-Implementation- PPE-98280', function () {
         username: functions.getQAAdminEmedUser().username,
         password: functions.getQAAdminEmedUser().password
         });
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.OPTData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.OFRData.testFolderPath);
     });
 
     var objName;
-    var  newsObjectname= global.d2ProfDataSettings.OPTData.NewsArticleObjectName;
+    var  newsObjectname= global.d2ProfDataSettings.OFRData.NewsArticleObjectName;
     
 
     it('Should verify the navigation and article creation functionality', function () {
-        workspaceMenu.createContent(global.d2ProfDataSettings.OPTData.ProfileName,
-                    global.d2ProfDataSettings.inputData.ArticleTemplate, 
+        workspaceMenu.createContent(global.d2ProfDataSettings.OFRData.ProfileName,
+                    global.d2ProfDataSettings.inputData.SlideArticleTemplate, 
                     newsObjectname, 
                     global.d2ProfDataSettings.inputData.ContentType);
         documentListTab.selectAsset(newsObjectname);

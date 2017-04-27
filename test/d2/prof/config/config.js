@@ -120,7 +120,7 @@ module.exports.testSettings = {
             "CheckedInVersion": "1.1, CURRENT, WIP",
             "DeleteAllversions":"Delete all versions",    
             "GenericArticleObjectName": "QAGeneric" + exports.GenerateRandomString(5),
-
+            
             "ContentType":"News",
             "ContentType_SP":"Alertas",
             "InitialVersion": "1.0, CURRENT, WIP",

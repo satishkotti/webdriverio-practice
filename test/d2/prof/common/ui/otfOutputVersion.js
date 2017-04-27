@@ -1,6 +1,6 @@
 var maxWaitTimeInMs = 20000;
 
-var mediaObj = module.exports = {
+var OutputVersionObj = module.exports = {
 
     OutputVersionProperties: function(objName){
        
@@ -53,7 +53,5 @@ var mediaObj = module.exports = {
     otfOutputversionDefaultValidation: function(){
         var defaultOutputlink = browser.isExisting("//td[contains(.,'text')]//following-sibling::td[contains(.,'Transcript')]//following-sibling::td[button[@popover-html='Unlink this item']]");
         expect(defaultOutputlink).to.be.false;
-    }
-
-        
+    },
 }

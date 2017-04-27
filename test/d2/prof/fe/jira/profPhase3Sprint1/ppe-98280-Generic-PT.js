@@ -26,7 +26,7 @@ describe('OTF Profoutput-Implementation- PPE-98280', function () {
 
     it('Should verify the navigation and article creation functionality', function () {
         workspaceMenu.createContent(global.d2ProfDataSettings.OPTData.ProfileName,
-                    global.d2ProfDataSettings.inputData.ArticleTemplate, 
+                    global.d2ProfDataSettings.inputData.GenericTemplate, 
                     newsObjectname, 
                     global.d2ProfDataSettings.inputData.ContentType);
         documentListTab.selectAsset(newsObjectname);

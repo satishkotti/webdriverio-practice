@@ -203,6 +203,9 @@ var otfTabActionObj = {
         browser.frameParent();
         otfTabUI.otfRemoveDefaultoutputversionPopup();
     },
+    otfCreateMedia: function(objectname) {
+        otfTabUI.otfCreateMedia(objectname);
+    },
 }
 
 module.exports = otfTabActionObj;

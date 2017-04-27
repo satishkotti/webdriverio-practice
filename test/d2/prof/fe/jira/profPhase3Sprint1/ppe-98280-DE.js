@@ -69,6 +69,19 @@ describe('OTF Profoutput-Implementation- PPE-98280', function () {
         browser.frameParent();
         otfOutputVersion.OutputVersionProperties();
     });
+    it.skip('Should Verify properties of OutPut version object through OTF widget', function () {
+        otfTab.selectOTFTab();
+        otfTab.selectExternalWidget();
+        otfTab.CreateOutputVersionIMP(global.d2ProfDataSettings.otfData.OutputTypeaudio);
+        otfTab.verifyNewOutputVersionData(objName+"-"+global.d2ProfDataSettings.otfData.OutputTypeaudio);
+        browser.pause(2000);
+        otfTab.otfCreateMedia(global.d2ProfDataSettings.otfData.OutputTypeaudio);
+        browser.pause(2000);
+        repositoryBrowserTab.openFolder('webmd/professional_assets/medscape/media/output_version');
+        otfTab.otfSelectOutputVersion(objName+"-"+global.d2ProfDataSettings.otfData.OutputTypeaudio); 
+        browser.frameParent();
+        otfOutputVersion.FillOutputVersionProperties();
+    });
     
 });
 
