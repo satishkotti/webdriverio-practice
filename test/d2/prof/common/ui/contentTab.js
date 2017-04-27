@@ -40,6 +40,7 @@ var contentTabUIObj = {
         if(contentWidgetIFrameElement.value==null)
             contentWidgetIFrameElement = browser.element(externalWidget3Selector);
         browser.frame(contentWidgetIFrameElement.value);
+        console.log("Frame Test "+contentWidgetIFrameElement.value);
     },
     switchTomModuleMenuFrame: function(){
         //var contentWidgetIFrameElement = browser.element("iframe[id*='cke_279_frame']");
@@ -242,7 +243,21 @@ var contentTabUIObj = {
         browser.waitForVisible(aboveTitleSelector,maxWaitTimeInMs);
         browser.scroll(aboveTitleSelector);
         browser.setValue(aboveTitleSelector,abovetitlevalue);
-    }
+    },
+    updateProfpublicationContent:function(data)    {
+
+       browser.waitForVisible("//h2[span[contains(.,'Publication Name')]]//following-sibling::div//div[@role='textbox']",maxWaitTimeInMs);
+       browser.setValue("//h2[span[contains(.,'Publication Name')]]//following-sibling::div//div[@role='textbox']","Sample Text");
+       browser.leftClick("//button[contains(.,'Set Image')]");
+       browser.frameParent();
+       browser.waitForVisible("//input[@placeholder='Search by keyword']",maxWaitTimeInMs);
+       browser.setValue("//input[@placeholder='Search by keyword']",data);
+       browser.click("//span[@class='glyphicon glyphicon-search']");
+       browser.waitForVisible("//table[@class='repo-table table-hover-dialog']/tbody/tr[1]/td[2]/a");
+       browser.click("//table[@class='repo-table table-hover-dialog']/tbody/tr[1]/td[2]/a");
+       browser.click("//button[contains(.,'Select')]");
+       browser.pause(2000);
+    },
 }
 
 module.exports = contentTabUIObj;

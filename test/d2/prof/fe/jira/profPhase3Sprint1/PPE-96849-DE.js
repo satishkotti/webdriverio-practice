@@ -24,11 +24,11 @@ describe('Professional - ProfPublication PPE-96849', function () {
     before(function () {
         Login.login({
         url: functions.getEnvTestUrl(),
-        username: functions.getQAPublicationUser().username,
-        password: functions.getQAPublicationUser().password
+        username: functions.getQAAdminEmedUser().username,
+        password: functions.getQAAdminEmedUser().password
     });
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath);
-        workspaceMenu.createProfPublication(global.d2ProfDataSettings.inputData.PublicationProfileName,
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.DEData.testFolderPath);
+        workspaceMenu.createProfPublication(global.d2ProfDataSettings.DEData.PublicationProfileName,
                     global.d2ProfDataSettings.inputData.ProfPublication, 
                     Objectname, PublicationName);
         documentListTab.selectAsset(Objectname);
@@ -45,7 +45,7 @@ describe('Professional - ProfPublication PPE-96849', function () {
         objName = objPublicationName.name;
         title = objPublicationName.title;
         publicationName=objPublicationName.publicationName;
-        propertiesTab.setRequiredPropertiesForProfPublication(publicationName, title,global.d2ProfDataSettings.inputData.publicationRelationships,global.d2ProfDataSettings.inputData.siteRestrictions);
+        propertiesTab.setRequiredPropertiesForProfPublication(publicationName, title,global.d2ProfDataSettings.DEData.publicationRelationships,global.d2ProfDataSettings.DEData.siteRestrictions);
         documentListTab.selectAsset(title);
         var IsInitialVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.InitialVersion);
         expect(IsInitialVersionVerified).to.be.true;
@@ -58,8 +58,8 @@ describe('Professional - ProfPublication PPE-96849', function () {
         objName = objPublicationName.name;
         title = objPublicationName.title;
         publicationName=objPublicationName.publicationName;
-        allFields.setProfPublicationAllFields(objName,global.d2ProfDataSettings.inputData.publicationType,objName,objName,objName
-        ,objName,objName,objName,objName,objName,global.d2ProfDataSettings.inputData.companyName,global.d2ProfDataSettings.inputData.publicationSections,global.d2ProfDataSettings.inputData.copyRights);
+        allFields.setProfPublicationAllFields(objName,global.d2ProfDataSettings.DEData.publicationType,objName,objName,objName
+        ,objName,objName,objName,objName,objName,global.d2ProfDataSettings.DEData.companyName,global.d2ProfDataSettings.inputData.publicationSections,global.d2ProfDataSettings.DEData.copyRights);
         //contentTab.updateProfpublicationContent("heart");
         expect(Objectname).to.equal(title);
     });  

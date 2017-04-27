@@ -202,11 +202,15 @@ module.exports = {
         browser.click("//div[@id='wbmd_publ_print']//input");
         browser.click("//div[@id='wbmd_publ_pg_supp']//input");        
         browser.click("//div[@id='wbmd_no_bots']//input");
-        browser.click("//label[@for='wbmd_publ_cpyrt_id']/..//td[@valign='TOP']//td/div[@id='assistance']");
-        browser.waitForVisible("//div[@id='"+copyRights+"']",maxWaitTimeInMs);
-        browser.doubleClick("//div[@id='"+copyRights+"']");
-        browser.click("//table[@id='ok-button']/tbody//td[contains(@class,'btn-mc')]//button");
-        browser.pause(2000);
+        if(copyRights!="")
+        {
+            browser.click("//label[@for='wbmd_publ_cpyrt_id']/..//td[@valign='TOP']//td/div[@id='assistance']");
+            browser.waitForVisible("//div[@id='"+copyRights+"']",maxWaitTimeInMs);
+            browser.doubleClick("//div[@id='"+copyRights+"']");
+            browser.click("//table[@id='ok-button']/tbody//td[contains(@class,'btn-mc')]//button");
+            browser.pause(2000);
+        }
+
         propertiesTabUI.companyNameSet(companyName);
         browser.click("//div[@id='wbmd_featured_supp']//input");
         propertiesTabUI.save();

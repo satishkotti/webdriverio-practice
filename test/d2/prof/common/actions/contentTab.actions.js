@@ -89,6 +89,11 @@ var contentTabObj = {
         contentTabUI.introductionText(AssetTitle);
          contentTabUI.checkIn();
     },
+    updateProfpublicationContent:function(data)    {
+        contentTabObj.checkOut();
+        contentTabUI.updateProfpublicationContent(data);
+        contentTabUI.checkIn();
+    },
 }
 
 module.exports = contentTabObj;
