@@ -290,5 +290,5 @@ module.exports = {
         browser.frameParent();
          browser.pause(20000);
 
-     },
+     }
 }

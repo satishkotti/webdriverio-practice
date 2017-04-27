@@ -44,27 +44,51 @@ var contentTabObj = {
         contentTabUI.relatedLinksSetValue(data);
         contentTabObj.mModuleckEditorMenuClick(5);
     },
+     abovetitleSetValue: function(data){
+        contentTabUI.switchToExternalWidget4Frame();
+        contentTabUI.abovetitleSetValue(data);
+    },
 
+    updateContentAllFields:function(data)    {
+        contentTabObj.checkOut();
+        contentTabObj.AllFieldsSetValueForPubSection(data);
+        contentTabUI.checkIn();
+    },
     contentHeaderGet:function()
     {
         return contentTabUI.contentHeaderGet();
     },
-    abovetitleSetValue: function(data){
 
-        //contentTabUI.switchToExternalWidgetFrame();
-        contentTabUI.abovetitleSetValue(data);
+    AllFieldsSetValueForPubSection: function(data){
+        //contentTabUI.switchToExternalWidget4Frame();
+        contentTabUI.AllFieldsSetValueForPubSection(data);
     },
     updateContent:function(data)    {
         contentTabObj.checkOut();
         contentTabObj.abovetitleSetValue(data);
         contentTabUI.checkIn();
     },
-
-     contentHeaderGet:function()
+    contentHeaderGet:function()
     {
         return contentTabUI.contentHeaderGet();
-    }
+    },
+    updatePubSubsectionContent:function(data)    {
+        contentTabObj.checkOut();
+        contentTabObj.titleSetValue(data);
+        contentTabUI.checkIn();
+    },
+     titleSetValue: function(data){
+        //contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.titleSetValue(data);
+    },
 
+    SetPubsubsectionContentAllProperties: function(AssetTitle,imageTitle){
+        contentTabObj.checkOut();
+        contentTabUI.titleSetValue(AssetTitle);
+        contentTabUI.pubSectionImageSetValue(imageTitle);
+        contentTabUI.introductionText(AssetTitle);
+         contentTabUI.checkIn();
+    },
 }
 
 module.exports = contentTabObj;

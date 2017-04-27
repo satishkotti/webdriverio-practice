@@ -8,6 +8,11 @@ var newContentObj = module.exports = {
         newContentObj.setProfile(creationProflieName, articleTemplateName);
         newContentObj.setObjectName(objectName, descriptionName);
     },
+    createNewPubSectionArticle: function(creationProflieName, articleTemplateName, objectName, descriptionName){
+
+        newContentObj.setProfilePubSection(creationProflieName, articleTemplateName);
+        newContentObj.setObjectNamePubSection(objectName, descriptionName);
+    },
     createNewArticle1: function (cabinet, props) {
 
         switch (cabinet) {
@@ -86,6 +91,15 @@ var newContentObj = module.exports = {
         browser.click('//div[@title="' + descName + '"]');
         browser.waitForVisible('//*[@id="next-button"]');
         browser.click('//*[@id="next-button"]');
+        browser.waitForVisible('//span[@title="'+objName+'"]',maxWaitTimeInMs);
+    },
+    setPointerObjectName: function(objName, objTitle){
+        browser.waitForVisible("#object_name-input")
+        browser.setValue('#object_name-input',objName)
+        browser.waitForVisible("#title-input");
+        browser.setValue('#title-input', objTitle);
+        browser.waitForVisible('//*[@id="next-button"]');
+        browser.click('//*[@id="next-button"]');
         browser.waitForVisible('//span[@title="' + objName + '"]', maxWaitTimeInMs);
     },
     setMediaObjectName: function (objName, objTitle) {
@@ -107,7 +121,7 @@ var newContentObj = module.exports = {
         browser.click('//div[@title="' + descName + '"]');
         browser.waitForVisible('//*[@id="next-button"]');
         browser.click('//*[@id="next-button"]');
-        browser.waitForVisible('//span[@title="' + objName + '"]', maxWaitTimeInMs);
+        browser.waitForVisible('//span[@title="'+objName+'"]',maxWaitTimeInMs);
     },
     setPointerObjectName: function (objName, objTitle) {
         browser.waitForVisible("#object_name-input");
@@ -117,5 +131,37 @@ var newContentObj = module.exports = {
         browser.waitForVisible('//*[@id="next-button"]');
         browser.click('//*[@id="next-button"]');
         browser.waitForVisible('//span[@title="' + objTitle + '"]', maxWaitTimeInMs);
+    },
+
+    setProfilePubSection: function(profileName, template){
+        
+        browser.waitForVisible("#creationProfileChooser-input");
+        browser.click('#creationProfileChooser-input');
+        browser.leftClick('//div[@title="'+profileName+'"]');
+        browser.waitForVisible("//div[starts-with(@id,'combo')]");
+        browser.leftClick("//div[starts-with(@id,'combo')]");
+        browser.click('//div[@title="'+template+'"]');
+        browser.click('//*[@id="next-button"]');
+    },
+    setObjectNamePubSection: function(objName, descName){
+        browser.waitForVisible("#title-input");
+        browser.setValue('#title-input', objName);
+        browser.waitForVisible('//*[@id="next-button"]');
+        browser.click('//*[@id="next-button"]');
+        browser.waitForVisible('//span[@title="'+objName+'"]',40000);
+    },
+        setPublicationSubsectionTitle: function(objName){
+        browser.waitForVisible("#title-input");
+        browser.setValue('#title-input', objName);
+        browser.waitForVisible('//*[@id="next-button"]');
+        browser.click('//*[@id="next-button"]');
+        browser.waitForVisible('//span[@title="'+objName+'"]',maxWaitTimeInMs);
+    },
+
+    createPublicationSubsection: function(creationProflieName, articleTemplateName, objectName){
+
+        newContentObj.setProfile(creationProflieName, articleTemplateName);
+        newContentObj.setPublicationSubsectionTitle(objectName);
     }
 }
+

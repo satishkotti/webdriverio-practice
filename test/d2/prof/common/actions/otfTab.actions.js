@@ -134,6 +134,8 @@ var otfTabActionObj = {
     },
     otfDefaultOutputversion: function(){
         contentTabUI.switchToExternalWidget3Frame();
+        otfTabUI.otfCreateOutputVersion();
+        contentTabUI.switchToExternalWidget3Frame();
         otfTabUI.otfRemoveDefaultoutputversion();
          browser.frameParent();
          otfTabUI.otfRemoveDefaultoutputversionPopup();
@@ -146,7 +148,6 @@ var otfTabActionObj = {
           contentTabUI.switchToExternalWidget3Frame();
          var textattribute = otfTabUI.otfDefaultoutputversionValidation();
          expect(textattribute).to.be.true;
-
     },
     otfCreateOutputVersion: function() {
         otfTabUI.otfCreateOutputVersion();
@@ -175,7 +176,6 @@ var otfTabActionObj = {
      otfMediaFolder: function(){
         otfTabUI.otfMediaFolder();
     },
-
 
 }
 
