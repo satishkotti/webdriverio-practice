@@ -166,12 +166,15 @@ var otfTabActionObj = {
         contentTabUI.switchToExternalWidget3Frame();
         otfTabUI.otfSelectMedia(objectname);
         browser.frameParent();
-        otfTabUI.otfSelectMedia(objectname);
+       // otfTabUI.otfSelectMedia(objectname);
 
     },
      otfCreateMediaValidation: function(objName) {
         otfTabUI.otfCreateMediaValidation(objName);
-    }
+    },
+     otfMediaFolder: function(){
+        otfTabUI.otfMediaFolder();
+    },
 
 
 }

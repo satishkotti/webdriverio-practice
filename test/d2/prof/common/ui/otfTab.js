@@ -1,7 +1,7 @@
 var otfTab = require('./../../common/actions/otfTab.actions');
 var contenttab = require('./contentTab');
 var propertiestab = require('./propertiesTab');
-var maxWaitTimeInMs = 60000;
+var maxWaitTimeInMs = 10000;
 var otfTabSelector="//li[@tag_id='OnTheFly-widgetTab']";
 var otfWidget="//div[@tag_id='OnTheFly-widget']";
 
@@ -212,7 +212,7 @@ module.exports = {
         browser.click("//select[@ng-model='attr.value']")
         browser.click("//option[string()='Audio']")
         browser.click("//button[text()='Create']");
-        browser.pause(10000);
+        browser.pause(20000);
     },
      verifymediaIsDisabled: function(){
         browser.click("//button[@id='single-button']");
@@ -224,11 +224,7 @@ module.exports = {
         browser.click("//a[contains(.,'Media Object')]"); 
         browser.frameParent();
         browser.waitForExist("//strong[contains(.,'Create a Media Object')]",maxWaitTimeInMs);
-        //browser.click("//select[@ng-change='parentChange()']");
-       // browser.isExisting("//option[string()='"+newsObjectname+"-Audio']");
-        //browser.isExisting("//option[string()='"+newsObjectname+"-Audio_2']");
-        //browser.click("//option[string()='"+newsObjectname+"-Audio']");
-       // browser.setValue("//div[contains(.,'Object Name')]/following-sibling::div/input",'QAtestobjName');
+
         browser.setValue("//div[contains(.,'Title')]/following-sibling::div/input",'QAtestobjName');
         browser.click("//div[contains(.,'Media Format')]/following-sibling::div/select");
         browser.click("//option[contains(.,'MP3')]");
@@ -245,15 +241,19 @@ module.exports = {
         browser.setValue("//div[contains(.,'Width')]/following-sibling::div/input",'222');
         browser.setValue("//div[contains(.,'Height')]/following-sibling::div/input",'222');
         browser.click("//button[contains(.,'Create')]");
-        browser.pause(10000);
+        browser.pause(20000);
     },
     otfMediaState: function(newsObjectname){
         var mediaState= browser.isExisting("//td[contains(.,'"+newsObjectname+"-media')]//following-sibling::td[contains(.,'QAtestobjName')]//following-sibling::td[contains(.,'Active')]");
         expect(mediaState).to.be.true;
     },
     otfSelectMedia: function(newsObjectname){
-        browser.click("//span[string()='"+newsObjectname+"-media']");
-        browser.pause(4000);
+        browser.click("//span[string()='"+newsObjectname+"-media_2']");
+        browser.pause(8000);
+    },
+    otfMediaFolder: function(){
+         var mediafolder = browser.isExisting("//div[string()='media']//parent::div//preceding-sibling::div[string()='output_version']");
+        expect(mediafolder).to.be.true;
     },
     otfCreateMediaValidation: function(newsObjectname){
         browser.click("//button[@id='single-button']");
@@ -286,9 +286,9 @@ module.exports = {
         expect(mediaFormat).to.be.true;
          browser.click("//div[contains(.,'Media Format')]/following-sibling::div/select");
         browser.click("//option[contains(.,'MP3')]");
-        browser.pause(2000);
-       browser.click("//button[contains(.,'Create')]");
+        browser.click("//button[contains(.,'Create')]");
         browser.frameParent();
+         browser.pause(20000);
 
      },
 }
