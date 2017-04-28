@@ -112,7 +112,8 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-    waitforTimeout: 480000,
+    waitforTimeout: 500000,
+
 
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
@@ -159,8 +160,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 480000
-
+        timeout: 500000
     },
 
     //

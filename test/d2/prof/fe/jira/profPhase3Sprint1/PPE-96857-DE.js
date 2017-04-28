@@ -26,7 +26,7 @@ describe('Professional - PublicationSubSection PPE-96857', function () {
         password: functions.getQAAdminEmedUser().password
     });
         browser.pause(2000);
-        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.DEData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.testFolderPath_de);
         AssetTitle = global.d2ProfDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         workspaceMenu.createPublicationSubsection(global.d2ProfDataSettings.DEData.publicationProfileName,
         global.d2ProfDataSettings.inputData.PublicationsubsectionTemplate, 

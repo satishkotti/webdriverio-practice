@@ -163,5 +163,5 @@ var newContentObj = module.exports = {
         newContentObj.setProfile(creationProflieName, articleTemplateName);
         newContentObj.setPublicationSubsectionTitle(objectName);
     }
-
 }
+
