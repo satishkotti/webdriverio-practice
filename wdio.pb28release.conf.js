@@ -5,7 +5,7 @@ var wdioConf = require('./wdio.conf.js');
 exports.config = merge(wdioConf.config, {
 
     debug: false,
-    specs: ['./test/pb2/**/PPE-103206.js',],
+    specs: ['./test/pb2/**/PPE-103181.js',],
     waitforTimeout: 120000,
     mochaOpts: {
         ui: 'bdd',
@@ -102,7 +102,9 @@ exports.config = merge(wdioConf.config, {
             './test/pb2/**/PPE-102342.js',
         ],
         sharedmodulesXmlValidations: [
-            './test/pb2/**/ppe-103716/**.js'
+            './test/pb2/**/ppe-103716/**.js',
+            './test/pb2/**/ppe-106109/**.js',
+            './test/pb2/**/ppe-106112/**.js'
         ]
     },
     capabilities: [{

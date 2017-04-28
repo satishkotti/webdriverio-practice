@@ -89,11 +89,13 @@ describe('PPE-77199:Verify the Propagation & Delete Propagation functionality fo
     it('Display of Propagate module on Template', () => {
         test.SearchFor(null, childTempChronId, 'Global Search', null);
         test.SwitchAssetTabs('Template Layout');
-        expect(browser.isExisting('//a[@title="PM0004"]')).to.be.true;
+        browser.waitForVisible('//span[@title="PM0004"]');
+        expect(browser.isExisting('//span[@title="PM0004"]')).to.be.true;
     });
     it('Display of Propagate module on Page', () => {
         test.SearchFor(null, childPageChronId, 'Global Search', null);
         test.SwitchAssetTabs('Page Layout');
-        expect(browser.isExisting('//a[@title="PM0004"]')).to.be.true;
+        browser.waitForVisible('//span[@title="PM0004"]');
+        expect(browser.isExisting('//span[@title="PM0004"]')).to.be.true;
     });
 });
