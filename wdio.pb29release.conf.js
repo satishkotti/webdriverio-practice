@@ -4,14 +4,48 @@ var wdioConf = require('./wdio.conf.js');
 // have main config file as default but overwrite environment specific information
 exports.config = merge(wdioConf.config, {
 
-    debug: true,
-    specs: ['./test/pb2/**.js'],
+    debug: false,
+    specs: ['./test/pb2/**/PPE-101669.js', ],
+    waitforTimeout: 120000,
+    mochaOpts: {
+        ui: 'bdd',
+        timeout: 900000
+    },
     capabilities: [{
         maxInstances: 1,
         browserName: 'chrome',
         chromeOptions:
         //args: ['window-size=1920,1080']
         {
+            "args": [
+                "start-maximized",
+                "no-proxy-server",
+                "no-default-browser-check",
+                "no-first-run",
+                "disable-boot-animation",
+                "disable-default-apps",
+                "disable-extensions",
+                "no-experiments",
+                "no-service-autorun",
+                "disable-infobars"
+            ],
+            "prefs": {
+                "credentials_enable_service": false,
+                "profile": {
+                    password_manager_enabled: false
+                }
+            }
+        }
+    }],
+    suites: {
+        redirectTool: [
+            './test/pb2/**/PPE-101669.js'
+        ]
+    },
+    capabilities: [{
+        maxInstances: 1,
+        browserName: 'chrome',
+        chromeOptions: {
             "args": [
                 "start-maximized",
                 "no-proxy-server",
