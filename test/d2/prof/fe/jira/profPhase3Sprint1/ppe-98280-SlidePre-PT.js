@@ -58,13 +58,9 @@ describe('OTF Profoutput-Implementation- PPE-98280', function () {
     });
 
     it('Should Verify the folder placement of created Output Version object', function(){
-        otfTab.selectOTFTab();
-        otfTab.selectExternalWidget();
-        otfTab.CreateOutputVersionIMP(global.d2ProfDataSettings.otfData.OutputTypeaudio);
-        otfTab.verifyNewOutputVersionData(objName+"-"+global.d2ProfDataSettings.otfData.OutputTypeaudio);
         browser.pause(2000);
         browser.frameParent();
-        repositoryBrowserTab.openFolder('webmd/professional_assets/medscape/media/output_version');
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.otfData.OutputVersionPath);
         otfTab.otfSelectOutputVersion(objName+"-"+global.d2ProfDataSettings.otfData.OutputTypeaudio); 
         browser.frameParent();
         otfOutputVersion.OutputVersionProperties();

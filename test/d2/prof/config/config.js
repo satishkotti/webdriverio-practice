@@ -171,7 +171,8 @@ module.exports.testSettings = {
 
              "active":"Active",
 	        "searchdata": "860272",
-            "objName":"QATestAssethNrnC"
+            "objName":"QATestAssethNrnC",
+            "OutputVersionPath":"webmd/professional_assets/medscape/media/output_version"
         },
 
         "SDEData":{
@@ -264,22 +265,22 @@ module.exports.testSettings = {
         },
 
         "ODEData":{
-            "testFolderPath": "webmd_de/professional_assets/medscape/articles/news/articles/2015/test",
+            "testFolderPath": "webmd_de/professional_assets/medscape/articles/news",
             "ProfileName":"DE / Article Templates",
             "NewsArticleObjectName": "QADETestAsset" + exports.GenerateRandomString(5),
         },
         "OFRData":{
-            "testFolderPath": "webmd_fr/professional_assets/medscape/articles/news/articles/2013/test",
+            "testFolderPath": "webmd_fr/professional_assets/medscape/articles/news",
             "ProfileName":"FR / Article Templates",
             "NewsArticleObjectName": "QAFRTestAsset" + exports.GenerateRandomString(5),
         },
         "OPTData":{
-            "testFolderPath": "webmd_pt/professional_assets/medscape/articles/news/articles/2015/test",
+            "testFolderPath": "webmd_pt/professional_assets/medscape/articles/news",
             "ProfileName":"PT / Article Templates",
             "NewsArticleObjectName": "QAPTTestAsset" + exports.GenerateRandomString(5),
         },
         "OSPData":{
-            "testFolderPath": "webmd_sp/professional_assets/medscape/articles/news/articles/SP/test",
+            "testFolderPath": "webmd_sp/professional_assets/medscape/articles/news",
             "ProfileName":"SP / Article Templates",
             "NewsArticleObjectName": "QASPTestAsset" + exports.GenerateRandomString(5),
             "ContentType":"Alertas",
