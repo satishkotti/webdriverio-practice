@@ -178,3 +178,4 @@ var newContentObj = module.exports = {
     },
 
 }
+
