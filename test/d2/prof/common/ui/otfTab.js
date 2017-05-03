@@ -1,7 +1,7 @@
 var otfTab = require('./../../common/actions/otfTab.actions');
 var contenttab = require('./contentTab');
 var propertiestab = require('./propertiesTab');
-var maxWaitTimeInMs = 60000;
+var maxWaitTimeInMs = 10000;
 var otfTabSelector="//li[@tag_id='OnTheFly-widgetTab']";
 var otfWidget="//div[@tag_id='OnTheFly-widget']";
 
@@ -277,16 +277,27 @@ module.exports = {
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
     },
+
+    otfCreateOutputVersion: function(){
+        browser.click("//button[@id='single-button']");
+        browser.click("//li[@ng-repeat='createItem in searchResponse.createItems']/a");
+        browser.frameParent();
+        browser.waitForExist("//span[contains(.,'Output Type')]",maxWaitTimeInMs);
+        browser.click("//select[@ng-model='attr.value']")
+        browser.click("//option[string()='Audio']")
+        browser.click("//button[text()='Create']");
+        browser.pause(20000);
+    },
+     verifymediaIsDisabled: function(){
+        browser.click("//button[@id='single-button']");
+        browser.isExisting("//span[string()='Media Object' and contains(@style,'color : lightgrey')]");
+        browser.click("//button[@id='single-button']");
+    },
     otfCreateMedia: function(newsObjectname){
         browser.click("//button[@id='single-button']");
         browser.click("//a[contains(.,'Media Object')]"); 
         browser.frameParent();
         browser.waitForExist("//strong[contains(.,'Create a Media Object')]",maxWaitTimeInMs);
-        //browser.click("//select[@ng-change='parentChange()']");
-       // browser.isExisting("//option[string()='"+newsObjectname+"-Audio']");
-        //browser.isExisting("//option[string()='"+newsObjectname+"-Audio_2']");
-        //browser.click("//option[string()='"+newsObjectname+"-Audio']");
-       // browser.setValue("//div[contains(.,'Object Name')]/following-sibling::div/input",'QAtestobjName');
         browser.setValue("//div[contains(.,'Title')]/following-sibling::div/input",'QAtestobjName');
         browser.click("//div[contains(.,'Media Format')]/following-sibling::div/select");
         browser.click("//option[contains(.,'MP3')]");
@@ -305,6 +316,54 @@ module.exports = {
         browser.click("//button[contains(.,'Create')]");
         browser.pause(20000);
     },
+    otfMediaState: function(newsObjectname){
+        var mediaState= browser.isExisting("//td[contains(.,'"+newsObjectname+"-media')]//following-sibling::td[contains(.,'QAtestobjName')]//following-sibling::td[contains(.,'Active')]");
+        expect(mediaState).to.be.true;
+    },
+    otfSelectMedia: function(newsObjectname){
+        browser.click("//span[string()='"+newsObjectname+"-media_2']");
+        browser.pause(8000);
+    },
+    otfMediaFolder: function(){
+         var mediafolder = browser.isExisting("//div[string()='media']//parent::div//preceding-sibling::div[string()='output_version']");
+        expect(mediafolder).to.be.true;
+    },
+    otfCreateMediaValidation: function(newsObjectname){
+        browser.click("//button[@id='single-button']");
+        browser.click("//a[contains(.,'Media Object')]"); 
+        browser.frameParent();
+        browser.waitForExist("//strong[contains(.,'Create a Media Object')]",maxWaitTimeInMs);
+        browser.click("//button[contains(.,'Create')]");
+        browser.moveToObject("//div[@class='toast-message' and contains(.,'A parent item must be selected!')]");
+        var parentobject = browser.isExisting("//div[@class='toast-message' and contains(.,'A parent item must be selected!')]");
+        expect(parentobject).to.be.true;
+        browser.click("//select[@ng-change='parentChange()']");
+        browser.click("//option[string()='"+newsObjectname+"-Audio_2']");
+
+        browser.setValue("//div[contains(.,'Object Name')]/following-sibling::div/input",'$#@');
+        browser.click("//button[contains(.,'Create')]");
+        browser.moveToObject("//div[@class='toast-message' and contains(.,'Object Name validation failed! Do not use any spaces or special characters like the following characters')]");
+        var objectName = browser.isExisting("//div[@class='toast-message' and contains(.,'Object Name validation failed! Do not use any spaces or special characters like the following characters')]");
+        expect(objectName).to.be.true;
+        browser.setValue("//div[contains(.,'Object Name')]/following-sibling::div/input",newsObjectname+"-media_2");
+
+        browser.click("//button[contains(.,'Create')]");
+        browser.moveToObject("//div[@class='toast-message' and contains(.,'Title is required to have a value!')]");
+        var title= browser.isExisting("//div[@class='toast-message' and contains(.,'Title is required to have a value!')]");
+        expect(title).to.be.true;
+        browser.setValue("//div[contains(.,'Title')]/following-sibling::div/input",'QAtestobjName');
+        
+        browser.click("//button[contains(.,'Create')]");
+        browser.moveToObject("//div[@class='toast-message' and contains(.,'Media Format is required to have a value!')]");
+        var mediaFormat= browser.isExisting("//div[@class='toast-message' and contains(.,'Media Format is required to have a value!')]");
+        expect(mediaFormat).to.be.true;
+         browser.click("//div[contains(.,'Media Format')]/following-sibling::div/select");
+        browser.click("//option[contains(.,'MP3')]");
+        browser.click("//button[contains(.,'Create')]");
+        browser.frameParent();
+         browser.pause(20000);
+
+     },
 }
 
 

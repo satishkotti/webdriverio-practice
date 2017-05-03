@@ -16,6 +16,7 @@ module.exports = {
         browser.frameParent();
     },
     propertiesFieldsValidation: function(){
+        browser.frameParent();
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.otherTabSelect();
         propertiesTabUI.propertiesOtherTabElements();

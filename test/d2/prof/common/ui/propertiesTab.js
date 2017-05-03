@@ -22,6 +22,148 @@ module.exports = {
     titileGet: function(){
         return browser.getValue("#title-input");
     },
+    //Start  Professional Media Properties Editing
+    mediaNameSet: function(textValue){
+        browser.setValue("input#object_name-input", textValue);
+    },
+    mediaNameGet: function(){
+        return browser.getValue("input#object_name-input");
+    },
+    mediaFormatSet: function(textValue){
+        browser.setValue("input#wbmd_media_type-input", textValue);
+    },
+    mediaFormatGet: function(){
+        return browser.getValue("input#wbmd_media_type-input");
+    },
+     mediaLocationSet: function(textValue){
+        browser.setValue("input#wbmd_media_dl_url-input", textValue);
+    },
+    mediaLocationtGet: function(){
+        return browser.getValue("input#wbmd_media_dl_url-input");
+    },
+
+     videoRSSSet: function(textValue){
+        browser.setValue("input#wbmd_vid_rss_media_loc-input", textValue);
+    },
+    videoRSSGet: function(){
+        return browser.getValue("input#wbmd_vid_rss_media_loc-input");
+    },
+
+     audioRSSSet: function(textValue){
+        browser.setValue("input#wbmd_aud_rss_media_loc-input", textValue);
+    },
+    audioRSSGet: function(){
+        return browser.getValue("input#wbmd_aud_rss_media_loc-input");
+    },
+
+     autoPlaySet: function(){
+        browser.click("input#wbmd_autoplay");
+    },
+    autoPlayGet: function(){
+        return browser.getValue("input#wbmd_autoplay");
+    },
+
+     startimgLocSet: function(textValue){
+        browser.setValue("input#wbmd_start_img_loc-input", textValue);
+    },
+    startimgLocGet: function(){
+        return browser.getValue("input#wbmd_start_img_loc-input");
+    },
+
+     endImgLocSet: function(textValue){
+        browser.setValue("input#wbmd_end_img_loc-input", textValue);
+    },
+    endImgLocGet: function(){
+        return browser.getValue("input#wbmd_end_img_loc-input");
+    },
+
+     configLocSet: function(textValue){
+        browser.setValue("input#wbmd_config_loc-input", textValue);
+    },
+    configLocGet: function(){
+        return browser.getValue("input#wbmd_config_loc-input");
+    },
+
+     swfLocSet: function(textValue){
+        browser.setValue("input#wbmd_swf_loc-input", textValue);
+    },
+    swfLocGet: function(){
+        return browser.getValue("input#wbmd_swf_loc-input");
+    },
+
+    durationSet: function(textValue){
+        browser.setValue("input#wbmd_media_duration-input", textValue);
+    },
+    durationGet: function(){
+        return browser.getValue("input#wbmd_media_duration-input");
+    },
+
+    audioDownloadBytesSet: function(textValue){
+        browser.setValue("input#wbmd_file_size-input", textValue);
+    },
+    audioDownloadBytesGet: function(){
+        return browser.getValue("input#wbmd_file_size-input");
+    },
+
+    videoDownloadBytesSet: function(textValue){
+        browser.setValue("input#wbmd_vid_file_size-input", textValue);
+    },
+    videoDownloadBytesGet: function(){
+        return browser.getValue("input#wbmd_vid_file_size-input");
+    },
+
+    widthSet: function(textValue){
+        browser.setValue("input#wbmd_media_width-input", textValue);
+    },
+    widthGet: function(){
+        return browser.getValue("input#wbmd_media_width-input");
+    },
+
+    heightSet: function(textValue){
+        browser.setValue("input#wbmd_media_height-input", textValue);
+    },
+    heightGet: function(){
+        return browser.getValue("input#wbmd_media_height-input");
+    },
+
+    baseFolderSet: function(textValue){
+        browser.setValue("input#wbmd_media_base-input", textValue);
+    },
+    baseFolderGet: function(){
+        return browser.getValue("input#wbmd_media_base-input");
+    },
+    userDescriptionSet: function(textValue){
+        browser.setValue("input#wbmd_desc_user-input", textValue);
+    },
+    userDescriptionGet: function(){
+        return browser.getValue("input#wbmd_desc_user-input");
+    },
+    webmdKeyWordsSet: function(textValue){
+        browser.setValue("input#wbmd_keywords-input", textValue);
+    },
+    webmdKeyWordsGet: function(){
+        return browser.getValue("input#wbmd_keywords-input");
+    },
+    windowTitleSet: function(textValue){
+        browser.setValue("input#wbmd_wdw_ttl-input", textValue);
+    },
+    windowTitleGet: function(){
+        return browser.getValue("input#wbmd_wdw_ttl-input");
+    },
+    publicationSet: function(textValue){
+        browser.setValue("input#wbmd_publ-input", textValue);
+    },
+    publicationGet: function(){
+        return browser.getValue("input#wbmd_publ-input");
+    },
+    externalIDSet: function(textValue){
+        browser.setValue("input#wbmd_ext_id-input", textValue);
+    },
+    externalIDGet: function(){
+        return browser.getValue("input#wbmd_ext_id-input");
+    },
+
+    // End Professional Media Properties Editing
     outputTypeGet: function(){
         return browser.getValue("#wbmd_outpt_type-input");
     },
@@ -60,16 +202,19 @@ module.exports = {
     },
     articleTOCDisplayFormatGet:function(){
          return browser.getValue("#wbmd_toc_display-input");
-    },
+    },   
     systemPublishingDateSet:function(textValue){
-         browser.setValue("#wbmd_eff_date-input",textValue);
-    },
+         browser.setValue("#wbmd_eff_date-input",textValue);
+    },
     sysPublishingDateGet: function(){
         return browser.getValue("#wbmd_eff_date-input");
     },
     versionLabelGet: function(){
         return browser.getText("#r_version_label");
     }, 
+    expirationDateGet: function(){
+        return browser.getValue("#wbmd_exp_date-input");
+    },
     objectTypeGet: function(){
         return browser.getText("#r_object_type");
     },  
@@ -94,15 +239,20 @@ module.exports = {
     publishingTabSelect: function(){
         browser.click("//span//span[contains(.,'Publishing')]");
     },
+    publishingSubsectionTabSelect: function(){
+        browser.click("//span//span[contains(.,'Pub Subsection')]");
+    },
     otherTabSelect: function(){
-        browser.pause(2000);
         browser.click("//span//span[contains(.,'Other')]");
     },
+   
     propertiesTabSelect: function(){
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
         browser.click(propertiesTabSelector);
        browser.waitForVisible("#title-input", maxWaitTimeInMs);
+
     },
+
     ProfMediaPropertiesTabSelect: function(){
         browser.waitForVisible(propertiesTabSelector, maxWaitTimeInMs);
         browser.click(propertiesTabSelector);
@@ -156,10 +306,9 @@ module.exports = {
         browser.waitForVisible("#r_version_label", maxWaitTimeInMs);
     },
     edit: function(){
-        if (browser.isVisible("//div[@tag_id='Properties-widget']//button[text()='Edit']"))
-        {
-            browser.click("//div[@tag_id='Properties-widget']//button[text()='Edit']");
-        }
+        browser.pause(2000);
+        browser.click("//div[@tag_id='Properties-widget']//button[text()='Edit']");
+        browser.pause(2000);
     },
     save: function(){
         if (browser.isVisible("//div[@tag_id='Properties-widget']//button[text()='Save']"))
@@ -210,6 +359,27 @@ module.exports = {
         return isExist;
     },
 
+    clearManadatoryFieldsForPublishSection: function(){
+        //browser.waitForVisible("#object_name-input", maxWaitTimeInMs);
+        //browser.clearElement("#object_name-input");
+        browser.waitForVisible("#title-input", maxWaitTimeInMs);
+        browser.clearElement("#title-input");
+    },
+    verifyMandatoryFieldsforPubSectionProp: function(){
+        var IsExistTitle = browser.isExisting("//span[contains(., 'Title')]");
+        var IsExistName = browser.isExisting("//span[contains(., 'Name')]");
+        var IsExistwarningClass = browser.isExisting("//div[contains(@class,'ext-mb-warning')]");
+        browser.click("//div[@class='x-window-br']//button[contains(.,'OK')]");
+        if(IsExistTitle == true && IsExistName == true && IsExistwarningClass == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    },
+
     clearManadatoryFields: function(){
         browser.clearElement("#title-input");
         browser.setValue("#wbmd_bus_ref-input","");
@@ -241,6 +411,17 @@ module.exports = {
             return false;
         }
     },
+
+    setRequiredPropertiesForPubSection: function(Name, Title){
+        //browser.setValue("#object_name-input", Name);
+        browser.setValue("#title-input", Title);
+    },
+    setAllPropertiesForPubSection: function(Title){
+        browser.setValue("#title-input", Title);
+        browser.setValue("#wbmd_desc-input", 'PubSection Description');
+        browser.setValue("#wbmd_publ_ad_ovrd-input", 'TestPub Section Page Ad Override');
+        browser.setValue("#wbmd_publ_url_ovrd-input", 'TestPubURL');
+    },
     
     systemPublishingDateSet:function(textValue){
          browser.setValue("#wbmd_eff_date-input",textValue);
@@ -258,7 +439,33 @@ module.exports = {
             return true;
         else
             return false;
-    }
-
+    },
+     description: function(textValue){
+        browser.setValue("#wbmd_desc-input", textValue);
+    },
+    indexPageAdOverrid: function(textValue){
+        browser.setValue("#wbmd_publ_ad_ovrd-input", textValue);
+    },
+    articlesPubURL: function(textValue){
+        browser.setValue("#wbmd_publ_url_ovrd-input", textValue);
+    },
+    propertiesOtherTabElements: function(){
+        browser.isExisting("//label[@for='language_code']");
+        browser.isExisting("//label[@for='r_current_state']");
+        browser.isExisting("//label[@for='authors']");
+        browser.isExisting("//label[@for='a_content_type']");
+        browser.isExisting("//label[@for='r_full_content_size']");
+        browser.isExisting("//label[@for='r_modify_date']");
+        browser.isExisting("//label[@for='r_modifier']");
+        browser.isExisting("//label[@for='r_creation_date']");
+        browser.isExisting("//label[@for='r_creator_name']");
+        browser.isExisting("//label[@for='r_lock_date']");
+        browser.isExisting("//label[@for='r_lock_owner']");
+        browser.isExisting("//label[@for='a_last_review_date']");
+        browser.isExisting("//label[@for='r_access_date']");
+        browser.isExisting("//label[@for='owner_name']");
+        browser.isExisting("//label[@for='r_object_type']");
+        browser.isExisting("//label[@for='r_version_label']");
+    },
 }
 

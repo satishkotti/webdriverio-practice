@@ -22,11 +22,13 @@ module.exports = {
     getAtsScsFileUrl: function() {
         return global.envSettings.ats.url;
     },
+    getQAAdminEmedUser: function(){
+        return global.envSettings.d2prof.users[2];
+    },
     verfiyElementExists: function (selectorVal) {
         if (!browser.isExisting(selectorVal)) {
             browser.frame();
             browser.waitForExist(selectorVal, maxWaitTimeInMs);
         }
     },  
-  
 }

@@ -1,4 +1,3 @@
-
 var maxWaitTimeInMs = 120000;
 var PaginationTimeInMs = 3000;
 
@@ -44,21 +43,52 @@ var documentListUIObj = {
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
     },
+
+    selectVersionTab: function(version){
+        browser.click(vertionTabSelector);
+        browser.pause(1000);
+        var verfityVersionSelector = "//div[@widget_type='DetailsVersionsWidget']//span[@title='"+version+"']";
+        var IsVersionVerified = browser.isExisting(verfityVersionSelector);
+        return IsVersionVerified;
+    },
+
+    verifyPubSectionRelations: function(){
+        browser.click("//span[text()='Relations']");
+        browser.pause(1000);
+        browser.isExisting("//td[contains(.,'wcm_category')]//following-sibling::td[contains(.,'Publication')]");
+        browser.isExisting("//td[contains(.,'wcm_doc_template')]//following-sibling::td[contains(.,'professional_publication_section') and contains(.,'xml')]");
+        browser.isExisting("//td[contains(.,'wcm_layout_template')]//following-sibling::td[contains(.,'publication_section_html') and contains(.,'xsl')]");
+        browser.isExisting("//td[contains(.,'wcm_rules_template')]//following-sibling::td[contains(.,'Rule_Professional_for_Publication_Section') and contains(.,'xml')]");
+       
+    },
+    verifyLock: function(objName){
+        var LockSelector = "//div[starts-with(@id,'DoclistWidget')]//span[@title="+objName+"]//preceding-sibling::span[starts-with(@class,'DocListLockByYou')]";
+        var IsLocked = browser.isExisting(LockSelector);
+        return IsLocked;
+    },
+    
      contextualMenuActivate: function(assetName){
         browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
         browser.moveToObject("//span[@title='" + assetName + "']",0,0);
         browser.rightClick("//span[@title='" + assetName + "']");
         browser.pause(1000);
-
         browser.waitForVisible("div.x-menu-list", maxWaitTimeInMs);
     },
     contextualMenuLifeCycleSelect: function()
     {
-
+        browser.waitForExist("//a[@id='menuContextDocumentLifeCycle']");
+        browser.click("//a[@id='menuContextDocumentLifeCycle']");
+  
         browser.waitForVisible("#x-menu-el-menuContextDocumentLifeCycle");
         browser.click("#x-menu-el-menuContextDocumentLifeCycle");
         browser.pause(1000);
     },
+
+     lifeCyclePromoteSelect: function()
+  {
+        browser.waitForVisible("//a[text()='Promote']", maxWaitTimeInMs);
+        browser.click("//a[text()='Promote']");
+  },
     lifeCyclePowerPromoteSelect: function(){
           browser.waitForVisible("//a[text()='Power Promote']", maxWaitTimeInMs);
         //browser.waitForExist("//a[text()='Power Promote']");
@@ -70,13 +100,13 @@ var documentListUIObj = {
         browser.click("//a[text()='Publish']");
         browser.pause(1000);
 
+
     },
     powerPromoteConfirmDialogueOkSelect: function(){
         browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
         var ppModalLabel = browser.getText("div.modal-body > label");
         expect(ppModalLabel).to.equal(ppModalLabel);
         browser.click("button[ng-click='$confirm()']");
-
         browser.pause(3000);
 
     },
@@ -91,12 +121,11 @@ var documentListUIObj = {
         expect(sysMsg).to.equal(successPublishSysMsg);
         browser.click("button[ng-click='$confirm()']");
     },
-
     publishToStaging: function(assetName){
         documentListUIObj.contextualMenuActivate(assetName);
         documentListUIObj.contextualMenuLifeCycleSelect();
         documentListUIObj.lifeCyclePublishSelect();
-        documentListUIObj.publishToDialogueOkSelect('Staging');
+        documentListUIObj.publishToDialogueOkSelect('Staging',assetName);
     },
     schedulePublishResultsDialogueOkSelect: function(assetName){
         browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
@@ -117,19 +146,19 @@ var documentListUIObj = {
         documentListUIObj.powerPromoteResultsDialogueOkSelect(assetName);
     },
     schedulePublishAsset: function (assetName) 
-    {
-        documentListUIObj.contextualMenuActivate(assetName);
-        documentListUIObj.contextualMenuLifeCycleSelect();
-        documentListUIObj.lifeCyclePowerPromoteSelect();
-        documentListUIObj.powerPromoteConfirmDialogueOkSelect();
-        documentListUIObj.schedulePublishResultsDialogueOkSelect(assetName);
-    },
+    {
+        documentListUIObj.contextualMenuActivate(assetName);
+        documentListUIObj.contextualMenuLifeCycleSelect();
+        documentListUIObj.lifeCyclePowerPromoteSelect();
+        documentListUIObj.powerPromoteConfirmDialogueOkSelect();
+        documentListUIObj.schedulePublishResultsDialogueOkSelect(assetName);
+    },
 
-  lifeCyclePromoteSelect: function()
-  {
+    lifeCyclePromoteSelect: function()
+    {
         browser.waitForVisible("//a[text()='Promote']", maxWaitTimeInMs);
         browser.click("//a[text()='Promote']");
-  },
+    },
      promoteResultsDialogueOkSelect: function(assetName)
      {
         browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
@@ -141,6 +170,31 @@ var documentListUIObj = {
         expect(sysMsg).to.equal(successStagingSysMsg);
         browser.click("//div[@class='modal-footer']//button[contains(text(),'OK')]");
     },
+    checkoutObject: function (objName) 
+    {
+        documentListUIObj.contextualMenuActivate(objName);
+       browser.waitForVisible("//a[text()='Check Out']",maxWaitTimeInMs);
+       browser.click("//a[text()='Check Out']");
+       browser.pause(2000);
+        
+    },
+     checkinObject: function (objName) 
+    {
+        documentListUIObj.contextualMenuActivate(objName);
+       browser.waitForVisible("#menuContextCheckin",maxWaitTimeInMs);
+       browser.click("#menuContextCheckin");
+       browser.waitForVisible("//*[@id='buttonOk']/tbody/tr[2]/td[2]/em/button",maxWaitTimeInMs);
+       browser.click("//*[@id='buttonOk']/tbody/tr[2]/td[2]/em/button");
+       browser.pause(4000);
+    },
+    cancelCheckOutObject: function (objName) 
+    {
+       documentListUIObj.contextualMenuActivate(objName);
+       browser.waitForVisible("#menuContextCancelCheckout",maxWaitTimeInMs);
+       browser.click("#menuContextCancelCheckout");
+       browser.pause(3000);
+        
+    },
 promoteAsset: function (assetName) 
     {
         documentListUIObj.contextualMenuActivate(assetName);
@@ -148,11 +202,13 @@ promoteAsset: function (assetName)
         documentListUIObj.lifeCyclePromoteSelect();
         documentListUIObj.promoteResultsDialogueOkSelect(assetName);
     },
-lifeCycleExpireSelect: function()
+ 
+    lifeCycleExpireSelect: function()
    {
         browser.waitForVisible("//a[text()='Expire Now']", maxWaitTimeInMs);
         browser.click("//a[text()='Expire Now']");
    },
+
   expireResultsDialogueOkSelect: function(assetName)
     {
         browser.waitForVisible("//table[@id='validateTable']//tr//td[contains(text(),'"+successExpireSysMsg+"')]", maxWaitTimeInMs);
@@ -161,7 +217,6 @@ lifeCycleExpireSelect: function()
         expect(IssysMsgExist).to.be.true;
         browser.click("//div[@class='modal-dialog prompt validate']//div//button");
     },
-
     expireAsset: function (assetName)
     {
             documentListUIObj.contextualMenuActivate(assetName);
@@ -187,9 +242,9 @@ lifeCycleExpireSelect: function()
         browser.click("//span[text()='Relations']");
         browser.pause(1000);
     },
-
     verifyLock: function(objName){
         var LockSelector = "//div[starts-with(@id,'DoclistWidget')]//span[@title='"+objName+"']//preceding-sibling::span[starts-with(@class,'DocListLockByYou')]";
+        browser.waitForVisible(LockSelector,maxWaitTimeInMs);
         var IsLocked = browser.isExisting(LockSelector);
         return IsLocked;
     },
@@ -216,20 +271,20 @@ lifeCycleExpireSelect: function()
         documentListUIObj.lifeCycleDemoteSelect();
         documentListUIObj.demoteResultsDialogueOkSelect(assetName);
     },
+
     deleteArticle:function(assetName,DeleteVersionType){
+        browser.pause(1000);
         browser.rightClick("//span[@class='DocListLockByNone']//following-sibling::span[text()='"+assetName+"']");
+        browser.rightClick("//span[@title='" + assetName + "']");
         browser.waitForVisible("#menuContextDestroy", maxWaitTimeInMs);
         browser.click("#menuContextDestroy");
         browser.waitForVisible("//label[contains(.,'" + DeleteVersionType + "')]",maxWaitTimeInMs);
         browser.click("//label[contains(.,'" + DeleteVersionType + "')]");
         browser.pause(2000);
         browser.waitForVisible("//button[text()='OK']",maxWaitTimeInMs);
-        //browser.click("//button[text()='OK']");
         browser.leftClick("//button[contains(.,'OK') and @type='submit']");
-        //browser.pause(maxWaitTimeInMs);
          while (deleteresult) {
         deleteresult=documentListUIObj.deleteloading();
-       // console.log(deleteresult);
         }
         
    },
@@ -237,6 +292,7 @@ lifeCycleExpireSelect: function()
     {
         return browser.isVisible('//div[@class=" x3-loading-medium x-component x-abs-layout-container"]');
     },
+
     copyArticle:function(assetName){
         browser.frameParent();
         browser.rightClick("//span[@title='" + assetName + "']");
@@ -247,20 +303,18 @@ lifeCycleExpireSelect: function()
         browser.click("#menuContextPaste");
         while (copywaitingtime) {
         copywaitingtime=documentListUIObj.copyloading();
-
-        }
+    }
+    browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
         var results=browser.elements("//span[@title='" + assetName + "']");
     },
+
     searchTextSetValue:function(searcValue){
         browser.setValue("#searchText-input-input",searcValue);
     },
     loadSearchData:function(){
         return browser.isVisible('//div[@class="ext-el-mask-msg x3-loading-medium"]');
     },
-    deleteloading:function()
-    {
-        return browser.isVisible('//div[@class=" x3-loading-medium x-component x-abs-layout-container"]');
-    },
+
     copyloading:function(){
         return browser.isVisible('//div[@class="x3-loading-medium"]');
     },
@@ -278,9 +332,9 @@ lifeCycleExpireSelect: function()
         searchresult=true;
         while (searchresult) {
         searchresult=documentListUIObj.loadSearchData();
+
     }
-     browser.waitForVisible("//span[@title='" + title + "']");
-        browser.pause(2000);
+
     },
     searchCopyArticle:function(assetName){
         documentListUIObj.searchTextSetValue(assetName);
@@ -292,7 +346,9 @@ lifeCycleExpireSelect: function()
         browser.waitForVisible("//span[@title='" + assetName + "']");
         var results=browser.elements("//span[@title='" + assetName + "']");
         browser.pause(3000);
+
     },
+    
     verifyGenericRelations: function(){
         browser.click("//span[text()='Relations']");
         browser.pause(2000);
@@ -305,7 +361,7 @@ lifeCycleExpireSelect: function()
         browser.isExisting("//td[contains(.,'wcm_rules_template')]//following-sibling::td[contains(.,'Rule_Professional_for_Article') and contains(.,'xml')]");
         browser.isExisting("//td[contains(.,'wcm_rules_editor')]//following-sibling::td[contains(.,'professional_article_generic') and contains(.,'xml')]");
     },
-    publishToDialogueOkSelect:function(lifeCycle){
+    publishToDialogueOkSelect:function(lifeCycle,assetName){
         if(lifeCycle === ''){
             lifeCycle = 'Staging'
         }
@@ -313,41 +369,6 @@ lifeCycleExpireSelect: function()
         browser.waitForExist(selectorExp);
         browser.click(selectorExp);
         browser.click("div.modal-content > div.modal-footer > button.btn.btn-primary");
-
-    
-    browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
-        var results=browser.elements("//span[@title='" + assetName + "']");
-    },
-    searchTextSetValue:function(searcValue){
-        browser.setValue("#searchText-input-input",searcValue);
-    },
-    loadSearchData:function(){
-        return browser.isVisible('//div[@class="ext-el-mask-msg x3-loading-medium"]');
-    },
-    deleteloading:function()
-    {
-        return browser.isVisible('//div[@class=" x3-loading-medium x-component x-abs-layout-container"]');
-    },
-    copyloading:function(){
-        return browser.isVisible('//div[@class="x3-loading-medium"]');
-    },
-    searchArticle:function(assetName, title){
-        documentListUIObj.searchTextSetValue(assetName);
-        browser.click("//div[@id='searchText-input']//following-sibling::span//img[2]");
-        while (searchresult) {
-        searchresult=documentListUIObj.loadSearchData();
-        }
-        browser.pause(4000);
-        var isexists=browser.isExisting("//div[text()='No items found']");
-        expect(isexists).to.equal(true);
-        
-        browser.click("//div[@id='searchText-input']//following-sibling::span//img[1]");
-        searchresult=true;
-        while (searchresult) {
-        searchresult=documentListUIObj.loadSearchData();
-        }
-        browser.waitForVisible("//span[@title='" + title + "']");
-        browser.pause(2000);
     },
     searchCopyArticle:function(assetName){
         documentListUIObj.searchTextSetValue(assetName);
@@ -359,8 +380,6 @@ lifeCycleExpireSelect: function()
         browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
         var results=browser.elements("//span[@title='" + assetName + "']");
         browser.pause(5000);
-        console.log(results);
-        console.log(results.value);
     },
 
     verifySlideRelations: function(){
@@ -404,8 +423,6 @@ lifeCycleExpireSelect: function()
         }
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
-    },
-
-
+    }
 }
 module.exports = documentListUIObj;

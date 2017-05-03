@@ -161,6 +161,8 @@ var otfTabActionObj = {
     },
     otfDefaultOutputversion: function(){
         contentTabUI.switchToExternalWidget3Frame();
+        otfTabUI.otfCreateOutputVersion();
+        contentTabUI.switchToExternalWidget3Frame();
         otfTabUI.otfRemoveDefaultoutputversion();
          browser.frameParent();
          otfTabUI.otfRemoveDefaultoutputversionPopup();
@@ -173,6 +175,26 @@ var otfTabActionObj = {
           contentTabUI.switchToExternalWidget3Frame();
          var textattribute = otfTabUI.otfDefaultoutputversionValidation();
          expect(textattribute).to.be.true;
+    },
+    otfCreateOutputVersion: function() {
+        otfTabUI.otfCreateOutputVersion();
+    },
+    verifymediaIsDisabled: function(){
+        otfTabUI.verifymediaIsDisabled();
+    },
+    otfCreateMedia: function(objectname) {
+        otfTabUI.otfCreateMedia(objectname);
+    },
+       otfMediaState: function(objectname) {
+        contentTabUI.switchToExternalWidget3Frame();
+        otfTabUI.otfMediaState(objectname);
+        browser.frameParent();
+    },
+       otfSelectMedia: function(objectname) {
+        contentTabUI.switchToExternalWidget3Frame();
+        otfTabUI.otfSelectMedia(objectname);
+        browser.frameParent();
+       // otfTabUI.otfSelectMedia(objectname);
 
     },
     DeleteOutputVersion: function(){
@@ -205,6 +227,12 @@ var otfTabActionObj = {
     },
     otfCreateMedia: function(objectname) {
         otfTabUI.otfCreateMedia(objectname);
+    },
+     otfCreateMediaValidation: function(objName) {
+        otfTabUI.otfCreateMediaValidation(objName);
+    },
+     otfMediaFolder: function(){
+        otfTabUI.otfMediaFolder();
     },
 }
 
