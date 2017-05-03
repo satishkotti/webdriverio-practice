@@ -84,6 +84,7 @@ module.exports = {
         return browser.getValue("//table[@st-table='displayedCollection']/tbody/tr[2]/td[6]/span/span/input");
     },
 
+
    verifyCreateOutputVersion: function(newsObjectname){
         browser.click("//button[@id='single-button']");
         browser.click("//li[@ng-repeat='createItem in searchResponse.createItems']/a");
@@ -96,6 +97,7 @@ module.exports = {
         browser.click("//button[text()='Create']");
     },
     verifyMultipleOutputVersionCreation: function(newsObjectname){
+        
         browser.click("//button[@id='single-button']");
         browser.click("//li[@ng-repeat='createItem in searchResponse.createItems']/a");
         browser.frameParent();
@@ -105,7 +107,22 @@ module.exports = {
         var outputType = browser.element("//div[@ng-repeat='attr in createItem.inputAttributes'][3]//div[2]//select[@ng-model='attr.value']");
         outputType.selectByVisibleText("Audio");
         browser.click("//button[text()='Create']");
-    },
+    },  
+    
+    
+     
+     CreateOutputVersionIMP: function(OutputType){
+        browser.waitForExist("//button[@id='single-button']",maxWaitTimeInMs);
+        browser.click("//button[@id='single-button']");
+        browser.click("//li[@ng-repeat='createItem in searchResponse.createItems']/a");
+        browser.frameParent();
+        browser.waitForExist("//span[contains(.,'Output Type')]",maxWaitTimeInMs);
+        browser.click("//select[@ng-model='attr.value']")
+        browser.click("//option[contains(.,'"+OutputType+"')]")
+        browser.click("//button[text()='Create']");
+        browser.pause(4000);
+    },
+        
     objectTypeValueNewOV: function(){
         return browser.getText("//table[@st-table='displayedCollection']/tbody/tr[3]/td[2]/span[@ng-style='getRowStyle(item.level)']");
     },
@@ -204,6 +221,63 @@ module.exports = {
         browser.pause(2000);
         
     },
+
+    verifyCreateOutputVersionIMP: function (outputtype) {
+        
+         browser.waitForExist("//div//span[@ng-if='possibleParents.length == 1']", maxWaitTimeInMs);
+        var outputType = browser.element("//div[@ng-repeat='attr in createItem.inputAttributes']//div[2]//select[@ng-model='attr.value']");
+        outputType.selectByVisibleText(outputtype);
+    },
+
+       
+     
+     CreateOutputVersionIMPClick: function(OutputType){
+        browser.waitForExist("//button[@id='single-button']", maxWaitTimeInMs);
+        browser.click("//button[@id='single-button']");
+        browser.click("//li[@ng-repeat='createItem in searchResponse.createItems']/a");
+        browser.frameParent();
+     },
+
+    getParentObjectValue:function () {
+        
+        browser.waitForExist("//div//span[@ng-if='possibleParents.length == 1']",maxWaitTimeInMs);
+        return browser.getText("//div//span[@ng-if='possibleParents.length == 1']")
+
+
+    },
+
+    CancelCreateOutputVersion:function () {
+
+        browser.click("//div[@class='modal-footer']//button[text()='Cancel']");
+        browser.pause(4000);
+    },
+
+    CreateCreateOutputVersion:function () {
+
+        browser.click("//div[@class='modal-footer']//button[text()='Create']");
+        browser.pause(4000);
+    },
+    otfRemoveCreatedoutputversion:function(Title){
+        browser.waitForVisible("//td[span[contains(.,'Output Version')]]//following-sibling::td[contains(.,'"+Title+"')]//following-sibling::td//button[@popover-html='Unlink this item']");
+        browser.click("//td[span[contains(.,'Output Version')]]//following-sibling::td[contains(.,'"+Title+"')]//following-sibling::td//button[@popover-html='Unlink this item']");
+    },
+    ValidateUnlinkOutputVersion: function(Title){
+        var IsExistUnlink = browser.isExisting("//td[contains(text(),'"+Title+"')]//following::td[4]");
+        expect(IsExistUnlink).to.be.false;
+    },
+    otfSelectOutputVersion: function(newsObjectname){
+        browser.waitForVisible("//span[string()='"+newsObjectname+"']", maxWaitTimeInMs);
+        browser.click("//span[string()='"+newsObjectname+"']");
+        browser.pause(4000);
+    },
+    SelectCreatedOutputVersion: function(assetName){
+        browser.waitForVisible('#x3-doclist-filter-input', maxWaitTimeInMs);
+        browser.setValue('#x3-doclist-filter-input', assetName);
+        browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
+        browser.click("//span[@title='" + assetName + "']");
+        browser.pause(1000);
+    },
+
     otfCreateOutputVersion: function(){
         browser.click("//button[@id='single-button']");
         browser.click("//li[@ng-repeat='createItem in searchResponse.createItems']/a");
@@ -224,7 +298,6 @@ module.exports = {
         browser.click("//a[contains(.,'Media Object')]"); 
         browser.frameParent();
         browser.waitForExist("//strong[contains(.,'Create a Media Object')]",maxWaitTimeInMs);
-
         browser.setValue("//div[contains(.,'Title')]/following-sibling::div/input",'QAtestobjName');
         browser.click("//div[contains(.,'Media Format')]/following-sibling::div/select");
         browser.click("//option[contains(.,'MP3')]");
@@ -290,5 +363,7 @@ module.exports = {
         browser.frameParent();
          browser.pause(20000);
 
-     }
+     },
 }
+
+
