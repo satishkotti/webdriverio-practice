@@ -38,10 +38,8 @@ console.log('specs: '+specList);
 };
 
 exports.config = {
-
     debug: false,
     maxInstances: 1,
-    
     //
     // ==================
     // Specify Test Files
@@ -114,7 +112,9 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-    waitforTimeout: 9999999,
+    waitforTimeout: 500000,
+
+
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as property. Make sure you have
@@ -160,7 +160,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 9999999
+        timeout: 500000
     },
 
     //
