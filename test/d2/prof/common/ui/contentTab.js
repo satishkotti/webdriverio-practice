@@ -20,6 +20,7 @@ var PubSectionTitleSelector = "//h2[span[contains(.,'Title')]]//following-siblin
 var PubSectionIntroductionTextSelector = "//h2[span[contains(.,'Introduction Text')]]//following-sibling::div//div[@role='textbox']";
 var SetImageButtonSelector = "//button[contains(string(),'Set Image')]";
 var contentHeader="//div[@class='container']//center[@class='ng-binding']";
+var contentUpdate = require('./GenricEditcontentTab');
 
 
 var contentTabUIObj = {
@@ -245,19 +246,30 @@ var contentTabUIObj = {
         browser.setValue(aboveTitleSelector,abovetitlevalue);
     },
     updateProfpublicationContent:function(data)    {
-
+       contentTabUIObj.switchToExternalWidget4Frame();
        browser.waitForVisible("//h2[span[contains(.,'Publication Name')]]//following-sibling::div//div[@role='textbox']",maxWaitTimeInMs);
        browser.setValue("//h2[span[contains(.,'Publication Name')]]//following-sibling::div//div[@role='textbox']","Sample Text");
-       browser.leftClick("//button[contains(.,'Set Image')]");
-       browser.frameParent();
-       browser.waitForVisible("//input[@placeholder='Search by keyword']",maxWaitTimeInMs);
-       browser.setValue("//input[@placeholder='Search by keyword']",data);
-       browser.click("//span[@class='glyphicon glyphicon-search']");
-       browser.waitForVisible("//table[@class='repo-table table-hover-dialog']/tbody/tr[1]/td[2]/a");
-       browser.click("//table[@class='repo-table table-hover-dialog']/tbody/tr[1]/td[2]/a");
-       browser.click("//button[contains(.,'Select')]");
+       contentUpdate.ImageClick("Primary Publ Image");
+       contentTabUIObj.selectProfPublicationImageSearch("heart");
+    //    contentUpdate.ImageClick("Secondary Publ Image");
+    //    contentTabUIObj.selectProfPublicationImageSearch("heart");
+    //    contentUpdate.ImageClick("Article Level Publ Image");
+    //    contentTabUIObj.selectProfPublicationImageSearch("heart");
+    browser.moveToObject("//h2[span[contains(.,'Introduction Text')]]//following-sibling::div//div[@role='textbox']");
+       browser.setValue("//h2[span[contains(.,'Introduction Text')]]//following-sibling::div//div[@role='textbox']","Sample Text");
+       browser.setValue("//h2[span[contains(.,'TOC Element Label')]]//following-sibling::div//div[@role='textbox']","Sample Text");
+       browser.setValue("//h2[span[contains(.,'TOC Element Footnotes')]]//following-sibling::div//div[@role='textbox']","Sample Text");
+       browser.setValue("//h2[span[contains(.,'Section Header')]]//following-sibling::div//div[@role='textbox']","Sample Text");
+       browser.setValue("//h2[span[contains(.,'SubSection Header')]]//following-sibling::div//div[@role='textbox']","Sample Text");
+       browser.setValue("//h2[span[contains(.,'SubSection Content')]]//following-sibling::div//div[@role='textbox']","Sample Text");
        browser.pause(2000);
-    },
+},
+ selectProfPublicationImageSearch: function (searchimagetype) {
+        contentUpdate.setImageType("Image");
+        contentUpdate.setImageSearchValue(searchimagetype);
+        contentUpdate.clickImageSearchResult();
+        contentUpdate.profPublicationSelectImage();
+    }
 }
 
 module.exports = contentTabUIObj;

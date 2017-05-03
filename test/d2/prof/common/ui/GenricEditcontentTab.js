@@ -100,6 +100,11 @@ var contentTabUIObj = {
         browser.click("//div[@class='modal-footer']//button[contains(string(),'Select')]");
         browser.pause(1000);
         contentTabUIObj.switchToExternalWidget3Frame();
+    },
+    profPublicationSelectImage: function () {
+        browser.click("//div[@class='modal-footer']//button[contains(string(),'Select')]");
+        browser.pause(5000);
+        contentTabUIObj.switchToExternalWidget4Frame();
     }
 }
 

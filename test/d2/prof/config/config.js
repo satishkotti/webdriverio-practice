@@ -163,7 +163,8 @@ module.exports.testSettings = {
             "publicationRelationships":"None",
             "siteRestrictions":"Medscape-www",
             "publicationSections":"QATestPublicationSection",
-            "copyRights":"London: SAGE",    
+            "copyRights":"London: SAGE",
+            "ExistingArticleName":"QAGenericArticleTest",    
         },
         "otfData": {
             "objectType":"Object Type",

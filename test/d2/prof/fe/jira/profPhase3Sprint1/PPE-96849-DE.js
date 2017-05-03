@@ -53,18 +53,8 @@ describe('Professional - ProfPublication PPE-96849', function () {
         documentListTab.verifyProfpublicationRelations();
         
     });
-    it('Should be able to save the  professional publication object with all fields data', function () {
-        objPublicationName = propertiesTab.getObjectNamePublicationTab();
-        objName = objPublicationName.name;
-        title = objPublicationName.title;
-        publicationName=objPublicationName.publicationName;
-        allFields.setProfPublicationAllFields(objName,global.d2ProfDataSettings.DEData.publicationType,objName,objName,objName
-        ,objName,objName,objName,objName,objName,global.d2ProfDataSettings.DEData.companyName,global.d2ProfDataSettings.inputData.publicationSections,global.d2ProfDataSettings.DEData.copyRights);
-        //contentTab.updateProfpublicationContent("heart");
-        expect(Objectname).to.equal(title);
-    });  
-    
-    it('Should be able to Checkout and checkin functionality on  professional publication', function(){
+
+     it('Should be able to Checkout and checkin functionality on  professional publication', function(){
         contentTab.checkOut();
         documentListTab.selectAsset(Objectname);
         var IsLocked = documentListTab.verifyLock(objName);
@@ -75,6 +65,17 @@ describe('Professional - ProfPublication PPE-96849', function () {
         var IsCheckInVersionVerified = documentListTab.verifyVersions(global.d2ProfDataSettings.inputData.CheckedInVersion);
         expect(IsCheckInVersionVerified).to.be.true;
     });
+
+    it('Should be able to save the  professional publication object with all fields data', function () {
+        objPublicationName = propertiesTab.getObjectNamePublicationTab();
+        objName = objPublicationName.name;
+        title = objPublicationName.title;
+        publicationName=objPublicationName.publicationName;
+        allFields.setProfPublicationAllFields(objName,global.d2ProfDataSettings.DEData.publicationType,objName,objName,objName
+        ,objName,objName,objName,objName,objName,global.d2ProfDataSettings.DEData.companyName,global.d2ProfDataSettings.inputData.publicationSections,global.d2ProfDataSettings.DEData.copyRights);
+        contentTab.updateProfpublicationContent("heart");
+        expect(Objectname).to.equal(title);
+    });  
 
      it('Should be able to Promote functionality on  professional publication', function () {
         documentListTab.promoteAsset(objName);

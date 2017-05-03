@@ -259,5 +259,28 @@ module.exports = {
             title:propertiesTabUI.titileGet()
         };
     },
+    verifySystemPublishingDate: function(){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.publishingTabSelect();
+        browser.waitForVisible("#wbmd_eff_date-input",maxWaitTimeInMs);
+        browser.click("//input[@id='wbmd_eff_date-input']//following-sibling::img");
+        browser.waitForVisible("//button[text()='Apply']",maxWaitTimeInMs);
+        browser.click("//button[text()='Apply']");
+        propertiesTabUI.save();
+    },
+    verifySystemPublishingDateClear: function(){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.publishingTabSelect();
+        browser.waitForVisible("#wbmd_eff_date-input",maxWaitTimeInMs);
+        propertiesTabUI.systemPublishingDateSet("");        
+        propertiesTabUI.save();
+        browser.pause(2000);
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.publishingTabSelect();
+        expect(propertiesTabUI.systemPublishingDateGet()).to.equal("MM/DD/YYYY HH:MM:SS");
+    },
     
 }
