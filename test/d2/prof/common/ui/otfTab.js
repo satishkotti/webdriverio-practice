@@ -270,7 +270,7 @@ module.exports = {
         browser.click("//span[string()='"+newsObjectname+"']");
         browser.pause(4000);
     },
-    otfSelectOutputVersion: function(assetName){
+    SelectCreatedOutputVersion: function(assetName){
         browser.waitForVisible('#x3-doclist-filter-input', maxWaitTimeInMs);
         browser.setValue('#x3-doclist-filter-input', assetName);
         browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);

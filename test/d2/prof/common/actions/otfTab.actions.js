@@ -218,6 +218,9 @@ var otfTabActionObj = {
         //otfTabUI.selectItemByNamePagination(objectname);
 
     },
+    SelectCreatedOutputVersion: function(objectname){
+        otfTabUI.SelectCreatedOutputVersion(objectname)
+    },
     DeleteSecondOutputVersion: function(Title){
         browser.pause(20000);
        
