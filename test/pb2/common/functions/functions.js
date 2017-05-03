@@ -11,6 +11,7 @@ var usersDetails = require('./../../config/users');
 var ats = require('./../actions/ats.actions');
 var user = usersDetails.users;
 var parseXml = require('./../../../common/xml/parseXml');
+var RedirectAPI = require('./../RedirectAPI/Redirectapi');
 
 //Launch App and login
 module.exports.LaunchApp = () => {
@@ -401,4 +402,110 @@ module.exports.GetXMLValues = (assetType, xml) => {
 //Navigates to the homepage
 module.exports.NavigateToRedirectTool = () => {
     menu.GoHome();
+}
+
+
+module.exports.GetResult = (env, param) => {
+
+    var Url;
+   
+    switch (env) {
+        case 'Dev': Url = 'http://redirect.dev01.webmd.com/api/redirect/' + param; break;
+        case 'QA01': Url = 'http://redirect.qa01.webmd.com/api/redirect/' + param; break;
+        case 'QA00': Url = 'http://redirect.qa00.webmd.com/api/redirect/' + param; break;
+        case 'PROD': Url = 'http://redirect.webmd.com/api/redirect/' + param; break;
+
+
+    }
+    var response;
+    browser.call(() => {
+        return Promise.resolve(RedirectAPI.GetResultsApi(Url, null)
+            .then(function (result) {
+                response = result;
+                console.log(response.body);
+            }).catch(err => {
+                console.log(err);
+            }));
+    });
+    return response;
+
+}
+
+
+module.exports.PostResult = (env, param) => {
+
+    var Url;
+
+    switch (env) {
+        case 'Dev': Url = 'http://redirect.dev01.webmd.com/api/redirect/' + param; break;
+        case 'QA01': Url = 'http://redirect.qa01.webmd.com/api/redirect/' + param; break;
+        case 'QA00': Url = 'http://redirect.qa00.webmd.com/api/redirect/' + param; break;
+        case 'PROD': Url = 'http://redirect.webmd.com/api/redirect/' + param; break;
+
+
+    }
+    var response;
+    browser.call(() => {
+        return Promise.resolve(RedirectAPI.PostResultsApi(Url, null)
+            .then(function (result) {
+                response = result;
+                console.log(response.body);
+            }).catch(err => {
+                console.log(err);
+            }));
+    });
+    return response;
+
+}
+
+module.exports.PutResult = (env, param) => {
+
+    var Url;
+
+    switch (env) {
+        case 'Dev': Url = 'http://redirect.dev01.webmd.com/api/redirect/' + param; break;
+        case 'QA01': Url = 'http://redirect.qa01.webmd.com/api/redirect/' + param; break;
+        case 'QA00': Url = 'http://redirect.qa00.webmd.com/api/redirect/' + param; break;
+        case 'PROD': Url = 'http://redirect.webmd.com/api/redirect/' + param; break;
+
+
+    }
+    var response;
+    browser.call(() => {
+        return Promise.resolve(RedirectAPI.PutResultsApi(Url, null)
+            .then(function (result) {
+                response = result;
+                console.log(response.body);
+            }).catch(err => {
+                console.log(err);
+            }));
+    });
+    return response;
+
+}
+
+module.exports.DeleteResult = (env, param) => {
+
+    var Url;
+
+    switch (env) {
+        case 'Dev': Url = 'http://redirect.dev01.webmd.com/api/redirect/' + param; break;
+        case 'QA01': Url = 'http://redirect.qa01.webmd.com/api/redirect/' + param; break;
+        case 'QA00': Url = 'http://redirect.qa00.webmd.com/api/redirect/' + param; break;
+        case 'PROD': Url = 'http://redirect.webmd.com/api/redirect/' + param; break;
+
+
+    }
+    var response;
+    browser.call(() => {
+        return Promise.resolve(RedirectAPI.DeleteResultsApi(Url, null)
+            .then(function (result) {
+                response = result;
+                console.log(response.body);
+            }).catch(err => {
+                console.log(err);
+            }));
+    });
+    return response;
+
 }
