@@ -19,9 +19,14 @@ module.exports.LaunchApp = () => {
 
 module.exports.LaunchAppAndLogin = (user) => {
     switch (user) {
-        default: app.LaunchApp(); app.Login(global.username, global.password); break;
-        case 'superuser': app.LaunchApp(); app.Login(user.superuser.username, user.superuser.password); break;
-        case 'superuser1': app.LaunchApp(); app.Login(user.superuser1.username, user.superuser1.password); break;
+        default: app.LaunchApp();app.Login(global.username, global.password);
+        break;
+        case 'superuser':
+                app.LaunchApp();app.Login(user.superuser.username, user.superuser.password);
+            break;
+        case 'superuser1':
+                app.LaunchApp();app.Login(user.superuser1.username, user.superuser1.password);
+            break;
     }
 
 }
@@ -30,8 +35,10 @@ module.exports.LaunchAppAndLogin = (user) => {
 module.exports.Login = (user) => {
     switch (user) {
         default: app.Login(global.username, global.password);
-        case 'superuser': app.Login(user.superuser.username, user.superuser.password);
-        case 'superuser1': app.Login(user.superuser1.username, user.superuser1.password);
+        case 'superuser':
+                app.Login(user.superuser.username, user.superuser.password);
+        case 'superuser1':
+                app.Login(user.superuser1.username, user.superuser1.password);
     }
 }
 
@@ -54,9 +61,18 @@ Create a page or template or shared module.
 
 module.exports.Create = (assetType, assetDetails) => {
     switch (assetType) {
-        case 'Page': iwc.AddToNode(assetType); return props.PopulatePageProps(assetDetails); break;
-        case 'Template': iwc.AddToNode(assetType); return props.PopulateTemplateProps(assetDetails); break;
-        case 'Shared Module': menu.SelectCreateMenuItem('Shared Modules'); return props.PopulateSMProps(assetDetails); break;
+        case 'Page':
+            iwc.AddToNode(assetType);
+            return props.PopulatePageProps(assetDetails);
+            break;
+        case 'Template':
+            iwc.AddToNode(assetType);
+            return props.PopulateTemplateProps(assetDetails);
+            break;
+        case 'Shared Module':
+            menu.SelectCreateMenuItem('Shared Modules');
+            return props.PopulateSMProps(assetDetails);
+            break;
     }
 }
 
@@ -82,8 +98,7 @@ module.exports.SearchFor = (assetType, keyword, from, level) => {
         case 'Global Search':
             if (assetType == null && (keyword.length == 16 && keyword.startsWith('091'))) {
                 search.GlobalSearchUsingChronID(keyword);
-            }
-            else {
+            } else {
                 search.GlobalSearchUsingKeyword(assetType, keyword);
             }
             break;
@@ -135,8 +150,12 @@ Obtain the asset version (eg: 3.0) and stage (eg: staging)
 */
 module.exports.GetAssetVersionAndStage = (assetName, from) => {
     switch (from) {
-        case 'Asset Screen': return props.GetAssetVersionAndStage(); break;
-        default: return iwc.GetVersionAndStageOfAsset(assetName); break;
+        case 'Asset Screen':
+            return props.GetAssetVersionAndStage();
+            break;
+        default:
+            return iwc.GetVersionAndStageOfAsset(assetName);
+            break;
     }
 }
 
@@ -251,23 +270,55 @@ module.exports.ClickButtonInATSPage = (buttonText) => {
 
 module.exports.ConfigureModule = (moduleType, moduleprops) => {
     switch (moduleType.toLowerCase()) {
-        case 'multiple video launch': moduleConfigs.ConfigureMultipleVideoLaunchModule(moduleprops); break;
-        case 'update multiple video launch module': moduleConfigs.ConfigureUpdateMultipleVideoLaunchModule(moduleprops); break;
-        case 'sponsor box module': moduleConfigs.ConfigureSponsorBoxModule(moduleprops); break;
-        case 'navigation module': moduleConfigs.ConfigureNavigationModule(moduleprops); break;
-        case 'editorial module': moduleConfigs.ConfigureEditorialModule(moduleprops); break;
-        case 'vertical promo module': moduleConfigs.ConfigureVerticalPromoModule(moduleprops); break;
-        case 'editnavigationmodule': moduleConfigs.ConfigureEditNavigationModule(moduleprops); break;
-        case 'editsponsorboxmodule': moduleConfigs.Configureeditsponsorboxmodule(moduleprops); break;
-        case 'editverticalpromomodule': moduleConfigs.ConfigureEditverticalpromomodule(moduleprops); break;
-        case 'editeditorialmodule': moduleConfigs.configureediteditorialmodule(moduleprops); break;
-        case 'html module': moduleConfigs.configureHtmlModule(moduleprops); break;
-        case 'edithtmlmodule': moduleConfigs.EditconfigureHtmlModule(moduleprops); break;
-        case 'standardpromomodule': moduleConfigs.configureStandardPromomodule(moduleprops); break;
-        case 'editstandardpromomodule': moduleConfigs.configureEditStandardPromoModule(moduleprops); break;
-        case 'twocolumnheadermodule':moduleConfigs.ConfigureTwoColumnHeaderModule(moduleprops);break;
-        case 'edittwocolumnheadermodule':moduleConfigs.ConfigureEditColumnHeaderModule(moduleprops);break;
-}
+        case 'multiple video launch':
+            moduleConfigs.ConfigureMultipleVideoLaunchModule(moduleprops);
+            break;
+        case 'update multiple video launch module':
+            moduleConfigs.ConfigureUpdateMultipleVideoLaunchModule(moduleprops);
+            break;
+        case 'sponsor box module':
+            moduleConfigs.ConfigureSponsorBoxModule(moduleprops);
+            break;
+        case 'navigation module':
+            moduleConfigs.ConfigureNavigationModule(moduleprops);
+            break;
+        case 'editorial module':
+            moduleConfigs.ConfigureEditorialModule(moduleprops);
+            break;
+        case 'vertical promo module':
+            moduleConfigs.ConfigureVerticalPromoModule(moduleprops);
+            break;
+        case 'editnavigationmodule':
+            moduleConfigs.ConfigureEditNavigationModule(moduleprops);
+            break;
+        case 'editsponsorboxmodule':
+            moduleConfigs.Configureeditsponsorboxmodule(moduleprops);
+            break;
+        case 'editverticalpromomodule':
+            moduleConfigs.ConfigureEditverticalpromomodule(moduleprops);
+            break;
+        case 'editeditorialmodule':
+            moduleConfigs.configureediteditorialmodule(moduleprops);
+            break;
+        case 'html module':
+            moduleConfigs.configureHtmlModule(moduleprops);
+            break;
+        case 'edithtmlmodule':
+            moduleConfigs.EditconfigureHtmlModule(moduleprops);
+            break;
+        case 'standardpromomodule':
+            moduleConfigs.configureStandardPromomodule(moduleprops);
+            break;
+        case 'editstandardpromomodule':
+            moduleConfigs.configureEditStandardPromoModule(moduleprops);
+            break;
+        case 'twocolumnheadermodule':
+            moduleConfigs.ConfigureTwoColumnHeaderModule(moduleprops);
+            break;
+        case 'edittwocolumnheadermodule':
+            moduleConfigs.ConfigureEditColumnHeaderModule(moduleprops);
+            break;
+    }
 
 }
 
@@ -279,24 +330,21 @@ module.exports.GetXML = (chronId, stage, inputType) => {
     var xmlUrl;
     if (inputType == 'FILE') {
         xmlUrl = chronId;
-    }
-    else
+    } else
         switch (global.testEnv) {
             case 'qa02':
             case 'Qa02':
             case 'QA02':
                 if (stage.toLowerCase() != 'live') {
                     xmlUrl = "http://ats." + stage + ".perf.webmd.com/ATSFile.aspx?ID=" + chronId;
-                }
-                else {
+                } else {
                     xmlUrl = "http://ats.perf.webmd.com/ATSFile.aspx?ID=" + chronId;
                 }
                 break;
             default:
                 if (stage.toLowerCase() != 'live') {
                     xmlUrl = "http://ats." + stage + "." + global.testEnv + ".webmd.com/ATSFile.aspx?ID=" + chronId;
-                }
-                else {
+                } else {
                     xmlUrl = "http://ats." + global.testEnv + ".webmd.com/ATSFile.aspx?ID=" + chronId;
                 }
                 break;
@@ -305,7 +353,7 @@ module.exports.GetXML = (chronId, stage, inputType) => {
     var xml;
     browser.call(() => {
         return Promise.resolve(parseXml.getXmlFromUrl(xmlUrl, null, inputType))
-            .then(function (result) {
+            .then(function(result) {
                 xml = result;
             }).catch(err => {
                 console.log(err);
@@ -316,16 +364,41 @@ module.exports.GetXML = (chronId, stage, inputType) => {
 
 module.exports.GetXMLValues = (assetType, xml) => {
     switch (assetType.toLowerCase()) {
-        case 'multiple video launch module': return assetxml.MultipleVideoLaunchXMLValues(xml); break;
-        case 'update multiple video launch module': return assetxml.EditMultipulVideoLaunchXMLValues(xml); break;
-        case 'sponsor box module': return assetxml.SponsorModuleLaunchXMLValues(xml); break;
-        case 'navigation module': return assetxml.NavigationModuleLaunchXMLValues(xml); break;
-        case 'editorial module': return assetxml.ConfigureEditorialModule(xml); break;
-        case 'vertical promo module': return assetxml.ConfigureVerticalPromoModule(xml); break;
-        case 'editnavigation module': return assetxml.EditNavigationModuleLaunchXMLValues(xml); break;
-        case 'html module': return assetxml.HTMlModuleXMLValues(xml); break;
-        case 'standardpromomodule': return assetxml.StandardPromomodule(xml); break;
-        case 'twocolumnheadermodule':return assetxml.twocolumnheadermodule(xml);break;
+        case 'multiple video launch module':
+            return assetxml.MultipleVideoLaunchXMLValues(xml);
+            break;
+        case 'update multiple video launch module':
+            return assetxml.EditMultipulVideoLaunchXMLValues(xml);
+            break;
+        case 'sponsor box module':
+            return assetxml.SponsorModuleLaunchXMLValues(xml);
+            break;
+        case 'navigation module':
+            return assetxml.NavigationModuleLaunchXMLValues(xml);
+            break;
+        case 'editorial module':
+            return assetxml.ConfigureEditorialModule(xml);
+            break;
+        case 'vertical promo module':
+            return assetxml.ConfigureVerticalPromoModule(xml);
+            break;
+        case 'editnavigation module':
+            return assetxml.EditNavigationModuleLaunchXMLValues(xml);
+            break;
+        case 'html module':
+            return assetxml.HTMlModuleXMLValues(xml);
+            break;
+        case 'standardpromomodule':
+            return assetxml.StandardPromomodule(xml);
+            break;
+        case 'twocolumnheadermodule':
+            return assetxml.twocolumnheadermodule(xml);
+            break;
     }
 
+}
+
+//Navigates to the homepage
+module.exports.NavigateToRedirectTool = () => {
+    menu.GoHome();
 }
