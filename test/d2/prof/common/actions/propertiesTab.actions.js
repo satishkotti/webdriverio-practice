@@ -233,5 +233,54 @@ module.exports = {
        propertiesTabUI.articlesPubURL(AssetTitle);
         propertiesTabUI.save();
     },
+    verifyMandatoryFieldsforProfpublicationProp:function(){
+         propertiesTabUI.propertiesTabSelect();
+         propertiesTabUI.edit();
+         propertiesTabUI.clearManadatoryFieldsForProfPublication();
+         propertiesTabUI.save();
+         var AlertMessage = propertiesTabUI.verifyMandatoryFieldsforPorfPublicationProp();
+         return AlertMessage;
+     },
+     setRequiredPropertiesForProfPublication: function(publicationName, Title,PublRelation,SiteRelation){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.clearManadatoryFieldsForProfPublication();
+        propertiesTabUI.titleSet(Title);
+        propertiesTabUI.publicationNameSet(publicationName);
+        browser.setValue("#wbmd_publ_reln-input",PublRelation);
+        browser.setValue("#wbmd_site_only-input",SiteRelation);
+        propertiesTabUI.save();
+    },
+    getObjectNamePublicationTab: function(){
+        propertiesTabUI.ProfMediaPropertiesTabSelect();
+        return {
+            name: propertiesTabUI.objectNameGet(),
+            publicationName: propertiesTabUI.publicationNameGet(),
+            title:propertiesTabUI.titileGet()
+        };
+    },
+    verifySystemPublishingDate: function(){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.publishingTabSelect();
+        browser.waitForVisible("#wbmd_eff_date-input",maxWaitTimeInMs);
+        browser.click("//input[@id='wbmd_eff_date-input']//following-sibling::img");
+        browser.waitForVisible("//button[text()='Apply']",maxWaitTimeInMs);
+        browser.click("//button[text()='Apply']");
+        propertiesTabUI.save();
+    },
+    verifySystemPublishingDateClear: function(){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.publishingTabSelect();
+        browser.waitForVisible("#wbmd_eff_date-input",maxWaitTimeInMs);
+        propertiesTabUI.systemPublishingDateSet("");        
+        propertiesTabUI.save();
+        browser.pause(2000);
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.publishingTabSelect();
+        expect(propertiesTabUI.systemPublishingDateGet()).to.equal("MM/DD/YYYY HH:MM:SS");
+    },
     
 }

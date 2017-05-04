@@ -33,5 +33,10 @@ module.exports = {
     createOutputProfContent: function(creationProflieName, articleTemplateName, objectName, descriptionName){
        workspaceMenuUI.selectNewContent();
        newContentModal.createNewOutputProfArticle(creationProflieName, articleTemplateName, objectName, descriptionName);
-    }
+    },
+     createProfPublication: function(creationProflieName, publicationType, objectTitle,publicationName){
+       workspaceMenuUI.selectNewContent();
+       newContentModal.createProfPublication(creationProflieName, publicationType, objectTitle,publicationName);
+
+     },
 }

@@ -134,5 +134,8 @@ var documentListObj = {
     selectItemByNamePagination: function (assetName) {
          documentListUI.selectItemByNamePagination(assetName);
      },
+     verifyProfpublicationRelations: function(){
+         documentListUI.verifyProfpublicationRelations();
+     },
 }
 module.exports = documentListObj;

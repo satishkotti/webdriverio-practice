@@ -421,6 +421,74 @@ module.exports = {
             return true;
         else
             return false;
-    }
+    },
+    // Start verify prof Publication creation with all fields	
+    publicationDisplaySet:function(textValue){
+         browser.setValue("#wbmd_publ_display-input",textValue);
+    },
+    publicationDisplayGet:function(){
+         return browser.getValue("#wbmd_publ_display-input");
+    },
+     publicationTypeSet:function(textValue){
+         browser.setValue("#wbmd_publ_type-input",textValue);
+    },
+    publicationTypeGet:function(){
+         return browser.getValue("#wbmd_publ_type-input");
+    },
+    publicationAbbreviationSet:function(textValue){
+         browser.setValue("#wbmd_publ_abbr-input",textValue);
+    },
+    publicationAbbreviationGet:function(){
+         return browser.getValue("#wbmd_publ_abbr-input");
+    },
+    publicationISSNSet:function(textValue){
+         browser.setValue("#wbmd_publ_issn-input",textValue);
+    },
+    publicationISSNGet:function(){
+         return browser.getValue("#wbmd_publ_issn-input");
+    },
+    publicationDescriptionSet:function(textValue){
+         browser.setValue("#wbmd_publ_desc-input",textValue);
+    },
+    publicationDescriptionGet:function(){
+         return browser.getValue("#wbmd_publ_desc-input");
+    },
+    articlePubsURLSet:function(textValue){
+         browser.setValue("#wbmd_publ_url_ovrd-input",textValue);
+    },
+    articlePubsURLGet:function(){
+         return browser.getValue("#wbmd_publ_url_ovrd-input");
+    },
+    primaryPubImageURLSet:function(textValue){
+         browser.setValue("#wbmd_publ_url_prim-input",textValue);
+    },
+    primaryPubImageGet:function(){
+         return browser.getValue("#wbmd_publ_url_prim-input");
+    },
+    secondaryPubImageURLSet:function(textValue){
+         browser.setValue("#wbmd_publ_url_sec-input",textValue);
+    },
+    secondaryPubImageGet:function(){
+         return browser.getValue("#wbmd_publ_url_sec-input");
+    },
+    linkOutURLSet:function(textValue){
+         browser.setValue("#wbmd_publ_url_linkout-input",textValue);
+    },
+    linkOutURLGet:function(){
+         return browser.getValue("#wbmd_publ_url_linkout-input");
+    },
+    pubPageAdOverrideSet:function(textValue){
+         browser.setValue("#wbmd_publ_ad_ovrd-input",textValue);
+    },
+    pubPageAdOverrideGet:function(){
+         return browser.getValue("#wbmd_publ_ad_ovrd-input");
+    },
+    companyNameSet:function(textValue){
+         browser.setValue("#wbmd_publ_comp_id-input",textValue);
+    },
+    companyNameGet:function(){
+         return browser.getValue("#wbmd_publ_comp_id-input");
+    },
+    //End verify prof Publication creation with all fields
 }
 

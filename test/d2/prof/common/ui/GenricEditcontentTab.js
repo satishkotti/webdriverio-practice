@@ -92,14 +92,19 @@ var contentTabUIObj = {
         browser.pause(5000);
     },
     clickImageSearchResult: function () {
-        Helper.verfiyElementExists("div.ng-scope > table >tbody > tr:nth-child(1) >td:nth-child(2) >img ", 90000);
-        browser.click("div.ng-scope > table >tbody > tr:nth-child(1) >td:nth-child(2) >img ");
+        Helper.verfiyElementExists("div.ng-scope > table >tbody > tr:nth-child(1) >td:nth-child(1) >img ", 90000);
+        browser.click("div.ng-scope > table >tbody > tr:nth-child(1) >td:nth-child(1) >img ");
         browser.pause(5000);
     },
     selectImage: function () {
         browser.click("//div[@class='modal-footer']//button[contains(string(),'Select')]");
         browser.pause(1000);
         contentTabUIObj.switchToExternalWidget3Frame();
+    },
+    profPublicationSelectImage: function () {
+        browser.click("//div[@class='modal-footer']//button[contains(string(),'Select')]");
+        browser.pause(5000);
+        contentTabUIObj.switchToExternalWidget4Frame();
     }
 }
 

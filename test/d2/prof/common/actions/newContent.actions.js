@@ -28,6 +28,9 @@ module.exports = {
   createMediaObject: function (creationProflieName, mediaTemplateName, objectName, objectTitle) {
 
     newContentUI.createMediaObject(creationProflieName, mediaTemplateName, objectName, objectTitle);
-  }
+  },
+  createProfPublication: function(creationProflieName, publicationType, objectTitle,publicationName){
+    newContentUI.createProfPublication(creationProflieName, publicationType, objectTitle,publicationName);
+}
 
 }

@@ -20,6 +20,7 @@ var PubSectionTitleSelector = "//h2[span[contains(.,'Title')]]//following-siblin
 var PubSectionIntroductionTextSelector = "//h2[span[contains(.,'Introduction Text')]]//following-sibling::div//div[@role='textbox']";
 var SetImageButtonSelector = "//button[contains(string(),'Set Image')]";
 var contentHeader="//div[@class='container']//center[@class='ng-binding']";
+var contentUpdate = require('./GenricEditcontentTab');
 
 
 var contentTabUIObj = {
@@ -244,6 +245,31 @@ var contentTabUIObj = {
         browser.waitForVisible(aboveTitleSelector,maxWaitTimeInMs);
         browser.scroll(aboveTitleSelector);
         browser.setValue(aboveTitleSelector,abovetitlevalue);
+    },
+    updateProfpublicationContent:function(data)    {
+       contentTabUIObj.switchToExternalWidget4Frame();
+       browser.waitForVisible("//h2[span[contains(.,'Publication Name')]]//following-sibling::div//div[@role='textbox']",maxWaitTimeInMs);
+       browser.setValue("//h2[span[contains(.,'Publication Name')]]//following-sibling::div//div[@role='textbox']","Sample Text");
+       contentUpdate.ImageClick("Primary Publ Image");
+       contentTabUIObj.selectProfPublicationImageSearch(data);
+    //    contentUpdate.ImageClick("Secondary Publ Image");
+    //    contentTabUIObj.selectProfPublicationImageSearch("heart");
+    //    contentUpdate.ImageClick("Article Level Publ Image");
+    //    contentTabUIObj.selectProfPublicationImageSearch("heart");
+    browser.moveToObject("//h2[span[contains(.,'Introduction Text')]]//following-sibling::div//div[@role='textbox']");
+       browser.setValue("//h2[span[contains(.,'Introduction Text')]]//following-sibling::div//div[@role='textbox']","Sample Text");
+       browser.setValue("//h2[span[contains(.,'TOC Element Label')]]//following-sibling::div//div[@role='textbox']","Sample Text");
+       browser.setValue("//h2[span[contains(.,'TOC Element Footnotes')]]//following-sibling::div//div[@role='textbox']","Sample Text");
+       browser.setValue("//h2[span[contains(.,'Section Header')]]//following-sibling::div//div[@role='textbox']","Sample Text");
+       browser.setValue("//h2[span[contains(.,'SubSection Header')]]//following-sibling::div//div[@role='textbox']","Sample Text");
+       browser.setValue("//h2[span[contains(.,'SubSection Content')]]//following-sibling::div//div[@role='textbox']","Sample Text");
+       browser.pause(2000);
+},
+ selectProfPublicationImageSearch: function (searchimagetype) {
+        contentUpdate.setImageType("Image");
+        contentUpdate.setImageSearchValue(searchimagetype);
+        contentUpdate.clickImageSearchResult();
+        contentUpdate.profPublicationSelectImage();
     }
 }
 

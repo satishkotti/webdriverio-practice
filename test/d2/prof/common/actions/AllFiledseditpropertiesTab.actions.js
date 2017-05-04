@@ -1,4 +1,5 @@
 var propertiesTabUI = require('./../ui/AllFiledseditpropertiesTab');
+
 var maxWaitTimeInMs = 30000;
 module.exports = {
     
@@ -175,5 +176,50 @@ module.exports = {
         propertiesTabUI.systemPublishingDateSet(systempubdate);
         //propertiesTabUI.expirationDateSet(expdate);
         propertiesTabUI.save();
+    },
+    // Start verify prof Publication creation with all fields	
+    setProfPublicationAllFields:function(publicationDisplay,publicationType,publobbervation,publISSN,PublDesc,ArticleURL,primaryPubURL,SecPubURL,linkOutURL,
+    pageAdOverride,companyName,publicationSections,copyRights)
+    {   
+        propertiesTabUI.edit();
+        browser.waitForVisible("//div[@id='wbmd_publ_medline']//input",maxWaitTimeInMs);
+        propertiesTabUI.publicationDisplaySet(publicationDisplay);
+        propertiesTabUI.publicationTypeSet(publicationType);
+        browser.click("//label[@for='wbmd_publ_sectn']/..//td[@valign='TOP']//td/div[@id='assistance']");
+        browser.waitForVisible("//div[@id='"+publicationSections+"']",maxWaitTimeInMs);
+        browser.doubleClick("//div[@id='"+publicationSections+"']");
+        browser.click("//table[@id='ok-button']/tbody//td[contains(@class,'btn-mc')]//button");
+        browser.pause(2000);
+        propertiesTabUI.publicationAbbreviationSet(publobbervation);
+        propertiesTabUI.publicationISSNSet(publISSN);
+        propertiesTabUI.publicationDescriptionSet(PublDesc);
+        propertiesTabUI.articlePubsURLSet(ArticleURL);
+        propertiesTabUI.primaryPubImageURLSet(primaryPubURL);
+        propertiesTabUI.secondaryPubImageURLSet(SecPubURL);
+        propertiesTabUI.linkOutURLSet(linkOutURL);
+        browser.click("//div[@id='wbmd_publ_medline']//input");
+        browser.click("//div[@id='wbmd_publ_select']//input");
+        propertiesTabUI.pubPageAdOverrideSet(pageAdOverride);
+        browser.click("//div[@id='wbmd_publ_print']//input");
+        browser.click("//div[@id='wbmd_publ_pg_supp']//input");        
+        browser.click("//div[@id='wbmd_no_bots']//input");
+        if(copyRights!="")
+        {
+            browser.click("//label[@for='wbmd_publ_cpyrt_id']/..//td[@valign='TOP']//td/div[@id='assistance']");
+            browser.waitForVisible("//div[@id='"+copyRights+"']",maxWaitTimeInMs);
+            browser.doubleClick("//div[@id='"+copyRights+"']");
+            browser.click("//table[@id='ok-button']/tbody//td[contains(@class,'btn-mc')]//button");
+            browser.pause(2000);
+        }
+
+        propertiesTabUI.companyNameSet(companyName);
+        browser.click("//div[@id='wbmd_featured_supp']//input");
+        propertiesTabUI.save();
+         browser.pause(2000);
+        // browser.click("//label[@for='wbmd_publ_disclmr_id']/..//td[@valign='TOP']//td/div[@id='assistance']");
+        // browser.waitForVisible("//div[@id='AAEM Articles']",maxWaitTimeInMs);
+        // browser.doubleClick("//div[@id='AAEM Articles']");
+        // browser.click("//table[@id='ok-button']/tbody//td[contains(@class,'btn-mc')]//button");
+        // browser.pause(2000);
     },
 }

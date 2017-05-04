@@ -197,6 +197,14 @@ var otfTabActionObj = {
        // otfTabUI.otfSelectMedia(objectname);
 
     },
+    verfiyPublicationStructure: function(selectorVal) {
+        browser.waitForVisible("//select[@ng-model='currentLocale']",maxWaitTimeInMs);
+        var objectNameValue = otfTabUI.titleValue();
+        expect(objectNameValue).to.equal(selectorVal);
+        var isExistPublicationStructure=browser.isExisting("//table[@st-table='displayedCollection']/tbody/tr[td//text()='Publication']//following-sibling::tr[td//text()='Publication Section']//following-sibling::tr[td//text()='Publication Subsection']");
+        expect(isExistPublicationStructure).to.equal(true);
+        browser.frameParent();
+    },
     DeleteOutputVersion: function(){
         browser.pause(20000);
         var otfTabSelector = otfTabUI.otfTabSelector();
