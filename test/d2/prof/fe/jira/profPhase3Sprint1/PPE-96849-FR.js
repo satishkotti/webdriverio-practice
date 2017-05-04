@@ -74,7 +74,7 @@ describe('Professional - ProfPublication PPE-96849', function () {
         publicationName=objPublicationName.publicationName;
         allFields.setProfPublicationAllFields(objName,global.d2ProfDataSettings.FRData.publicationType,objName,objName,objName
         ,objName,objName,objName,objName,objName,global.d2ProfDataSettings.FRData.companyName,global.d2ProfDataSettings.inputData.publicationSections,global.d2ProfDataSettings.FRData.copyRights);
-        contentTab.updateProfpublicationContent("heart");
+        contentTab.updateProfpublicationContent(global.d2ProfDataSettings.inputData.searchImageData);
         expect(Objectname).to.equal(title);
     });  
 

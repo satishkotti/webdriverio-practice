@@ -28,7 +28,7 @@ describe('Professional - ProfPublication PPE-96849', function () {
         password: functions.getQAAdminEmedUser().password
     });
         repositoryBrowserTab.openFolder(global.d2ProfDataSettings.SPData.testFolderPath);
-        workspaceMenu.createProfPublication(global.d2ProfDataSettings.SPData.PublicationProfileName,
+        workspaceMenu.createProfPublication(global.d2ProfDataSettings.SPData.publicationProfileName,
                     global.d2ProfDataSettings.inputData.ProfPublication, 
                     Objectname, PublicationName);
         documentListTab.selectAsset(Objectname);
@@ -74,7 +74,7 @@ describe('Professional - ProfPublication PPE-96849', function () {
         publicationName=objPublicationName.publicationName;
         allFields.setProfPublicationAllFields(objName,global.d2ProfDataSettings.SPData.publicationType,objName,objName,objName
         ,objName,objName,objName,objName,objName,global.d2ProfDataSettings.SPData.companyName,global.d2ProfDataSettings.inputData.publicationSections,global.d2ProfDataSettings.SPData.copyRights);
-        contentTab.updateProfpublicationContent("heart");
+        contentTab.updateProfpublicationContent(global.d2ProfDataSettings.inputData.searchImageData);
         expect(Objectname).to.equal(title);
     }); 
 

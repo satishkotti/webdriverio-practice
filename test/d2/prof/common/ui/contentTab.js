@@ -41,7 +41,6 @@ var contentTabUIObj = {
         if(contentWidgetIFrameElement.value==null)
             contentWidgetIFrameElement = browser.element(externalWidget3Selector);
         browser.frame(contentWidgetIFrameElement.value);
-        console.log("Frame Test "+contentWidgetIFrameElement.value);
     },
     switchTomModuleMenuFrame: function(){
         //var contentWidgetIFrameElement = browser.element("iframe[id*='cke_279_frame']");
@@ -250,7 +249,7 @@ var contentTabUIObj = {
        browser.waitForVisible("//h2[span[contains(.,'Publication Name')]]//following-sibling::div//div[@role='textbox']",maxWaitTimeInMs);
        browser.setValue("//h2[span[contains(.,'Publication Name')]]//following-sibling::div//div[@role='textbox']","Sample Text");
        contentUpdate.ImageClick("Primary Publ Image");
-       contentTabUIObj.selectProfPublicationImageSearch("heart");
+       contentTabUIObj.selectProfPublicationImageSearch(data);
     //    contentUpdate.ImageClick("Secondary Publ Image");
     //    contentTabUIObj.selectProfPublicationImageSearch("heart");
     //    contentUpdate.ImageClick("Article Level Publ Image");

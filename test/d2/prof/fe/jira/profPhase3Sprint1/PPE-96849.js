@@ -73,7 +73,7 @@ describe('Professional - ProfPublication PPE-96849', function () {
         publicationName=objPublicationName.publicationName;
         allFields.setProfPublicationAllFields(objName,global.d2ProfDataSettings.inputData.publicationType,objName,objName,objName
         ,objName,objName,objName,objName,objName,global.d2ProfDataSettings.inputData.companyName,global.d2ProfDataSettings.inputData.publicationSections,global.d2ProfDataSettings.inputData.copyRights);
-        contentTab.updateProfpublicationContent("heart");
+        contentTab.updateProfpublicationContent(global.d2ProfDataSettings.inputData.searchImageData);
         expect(Objectname).to.equal(title);
     });  
     
@@ -133,9 +133,6 @@ describe('Professional - ProfPublication PPE-96849', function () {
         title = objPublicationName.title;
         publicationName=objPublicationName.publicationName;
         propertiesTab.setRequiredPropertiesForPubSection(publicationName, title); 
-        propertiesTab.verifySystemPublishingDate();
-        browser.pause(2000);
-        propertiesTab.verifySystemPublishingDateClear();
         expect(d2ProfDataSettings.inputData.ExistingProfPublicationName).to.equal(title);
    });
 
@@ -143,7 +140,7 @@ describe('Professional - ProfPublication PPE-96849', function () {
         browser.pause(2000);
         documentListTab.selectItemByNamePagination(d2ProfDataSettings.inputData.ExistingArticleName);
         propertiesTab.verifySystemPublishingDate();
-        browser.pause(2000);
+        browser.pause(3000);
         propertiesTab.verifySystemPublishingDateClear();
         expect(d2ProfDataSettings.inputData.ExistingArticleName).to.equal(d2ProfDataSettings.inputData.ExistingArticleName);
    });
