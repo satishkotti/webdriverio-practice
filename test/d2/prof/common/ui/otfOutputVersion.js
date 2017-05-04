@@ -54,4 +54,7 @@ var OutputVersionObj = module.exports = {
         var defaultOutputlink = browser.isExisting("//td[contains(.,'text')]//following-sibling::td[contains(.,'Transcript')]//following-sibling::td[button[@popover-html='Unlink this item']]");
         expect(defaultOutputlink).to.be.false;
     },
+    MovetoframeParent: function(){
+        browser.frameParent();
+    },
 }

@@ -27,7 +27,12 @@ module.exports = {
 
     otfOutputversionDefaultValidation: function(){
         otfOutputVersionUI.otfOutputversionDefaultValidation();
-    }
+    },
+
+    MovetoframeParent:function(){
+        otfOutputVersionUI.MovetoframeParent();
+    },
+
 
 
 }

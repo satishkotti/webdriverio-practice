@@ -59,10 +59,10 @@ describe('OTF Profoutput-Implementation- PPE-98280', function () {
 
     it('Should Verify the folder placement of created Output Version object', function(){
         browser.pause(2000);
-        browser.frameParent();
+        otfOutputVersion.MovetoframeParent();
         repositoryBrowserTab.openFolder('webmd/professional_assets/medscape/media/output_version');
         otfTab.SelectCreatedOutputVersion(objName+"-"+global.d2ProfDataSettings.otfData.OutputTypeaudio); 
-        browser.frameParent();
+        otfOutputVersion.MovetoframeParent();
         otfOutputVersion.OutputVersionProperties();
     });
     it.skip('Should Verify properties of OutPut version object through OTF widget', function () {
@@ -75,7 +75,7 @@ describe('OTF Profoutput-Implementation- PPE-98280', function () {
         browser.pause(2000);
         repositoryBrowserTab.openFolder('webmd/professional_assets/medscape/media/output_version');
         otfTab.SelectCreatedOutputVersion(objName+"-"+global.d2ProfDataSettings.otfData.OutputTypeaudio); 
-        browser.frameParent();
+        otfOutputVersion.MovetoframeParent();
         otfOutputVersion.FillOutputVersionProperties();
     });
     
