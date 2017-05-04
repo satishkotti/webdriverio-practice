@@ -180,9 +180,16 @@ module.exports.testSettings = {
             "unlink":"UnLink",
             "article":"Article",
             "audio":"Audio",
+            "OutputTypes": "Slides/Video,Slides/Audio,Audio,Video,Slides",
+            "OutputTypeaudio":"Audio",
+            "OutputTypeSlides/Video":"Slides/Video",
+            "OutputTypeSlides/Audio":"Slides/Audio",
+            "OutputTypeVideo":"Video",
+            "OutputTypeSlides":"Slides",
             "wip":"WIP",
             "outputVersion":"Output Version",
             "text":"text",
+            "OutputVersionPath":"webmd/professional_assets/medscape/media/output_version",
             "transcript":"Transcript",
             "active":"Active",
             "searchdata": "860272",
@@ -351,7 +358,29 @@ module.exports.testSettings = {
             "defaultDateText": "MM/DD/YYYY HH:MM:SS",
             "wipVersion": "1.0, CURRENT, WIP",
             "objType": "wbmd_prof_output"
-        }
+        },
+
+        "ODEData":{
+            "testFolderPath": "webmd_de/professional_assets/medscape/articles/news",
+            "ProfileName":"DE / Article Templates",
+            "NewsArticleObjectName": "QADETestAsset" + exports.GenerateRandomString(5),
+        },
+        "OFRData":{
+            "testFolderPath": "webmd_fr/professional_assets/medscape/articles/news",
+            "ProfileName":"FR / Article Templates",
+            "NewsArticleObjectName": "QAFRTestAsset" + exports.GenerateRandomString(5),
+        },
+        "OPTData":{
+            "testFolderPath": "webmd_pt/professional_assets/medscape/articles/news",
+            "ProfileName":"PT / Article Templates",
+            "NewsArticleObjectName": "QAPTTestAsset" + exports.GenerateRandomString(5),
+        },
+        "OSPData":{
+            "testFolderPath": "webmd_sp/professional_assets/medscape/articles/news",
+            "ProfileName":"SP / Article Templates",
+            "NewsArticleObjectName": "QASPTestAsset" + exports.GenerateRandomString(5),
+            "ContentType":"Alertas",
+        },
     }
 }
 

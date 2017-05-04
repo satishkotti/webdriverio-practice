@@ -37,6 +37,8 @@ var contentTabUIObj = {
         browser.frame(contentWidgetIFrameElement.value);
     },
     switchToExternalWidget4Frame: function(){
+
+        browser.frame();
         var contentWidgetIFrameElement = browser.element(externalWidget4Selector);
         if(contentWidgetIFrameElement.value==null)
             contentWidgetIFrameElement = browser.element(externalWidget3Selector);
