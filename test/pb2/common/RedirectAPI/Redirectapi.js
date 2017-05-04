@@ -6,31 +6,31 @@ var USERNAME ='QAPbUser09';
 
 
 var CreateRedirectonUrls = {
-    fromUrl: 'http://www.dev01.webmd.com/diet/features/nutrition-news-got-confused-get-facts',
-    toUrl: 'http://www.webmd.com'
+    fromUrl: 'http://www.dev01.webmd.com/cancer/features/cancer-living-with-talking-to-your-kids-about-cancer',
+    toUrl: 'http://www.cancercenter.com/cancer/'
 };
 
 
 var CreateRedirectonChronicleIDS = {
-    fromChronID: '091e9c5e80038e7a',
-    toChronID: '091e9c5e80038e62'
+    fromChronID: '091e9c5e80038eb2',
+    toChronID: '091e9c5e80044d75'
 }
 
 var updatetourl = {
     id: 'C35FFC22-5469-40EB-94AF-85E057629692',
-    toUrl: 'http://www.webmd.com'
+    toUrl: 'http://www.cancercenter.com/cancer/'
 };
 
 var replacetochronicleidforall = {
-    oldToChronicleID: '091e9c5e8000596a',
-    newToChronicleID: '091e9c5e80005968'
+    oldToChronicleID: '091e9c5e80005962',
+    newToChronicleID: '091e9c5e80038ec9'
 };
 
 
 
 var DeleteOneormoreid = {
    
-       Ids:['C35FFC22-5469-40EB-94AF-85E057629692', 'D611DF56-4711-425C-A918-D2F7DE7C9FAD']
+       Ids:['2D79A320-04B0-43B9-A77D-A8946AEAF4B4', '5EC133C0-3AF4-4B71-97DA-DA01D59A5548']
    
 };
 
