@@ -183,8 +183,8 @@ var documentListUIObj = {
         documentListUIObj.contextualMenuActivate(objName);
        browser.waitForVisible("#menuContextCheckin",maxWaitTimeInMs);
        browser.click("#menuContextCheckin");
-       browser.waitForVisible("//*[@id='buttonOk']/tbody/tr[2]/td[2]/em/button",maxWaitTimeInMs);
-       browser.click("//*[@id='buttonOk']/tbody/tr[2]/td[2]/em/button");
+    //    browser.waitForVisible("//*[@id='buttonOk']/tbody/tr[2]/td[2]/em/button",maxWaitTimeInMs);
+    //    browser.click("//*[@id='buttonOk']/tbody/tr[2]/td[2]/em/button");
        browser.pause(4000);
     },
     cancelCheckOutObject: function (objName) 
