@@ -14,6 +14,7 @@ var compareTabUIObj = {
     },
 
     versionOnCompareWidgetValidation: function (asset1Withversion, asset2Withversion) {
+        browser.pause(2000);
         var asset1 = browser.isExisting("//p[contains(.,'" + asset1Withversion + "')]");
         expect(asset1).to.be.true;
         var asset2 = browser.isExisting("//p[contains(.,'" + asset2Withversion + "')]");

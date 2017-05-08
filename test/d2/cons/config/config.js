@@ -60,7 +60,8 @@ module.exports.testSettings = {
             "url": "http://dmrest.dev04.webmd.com/pbws"
         },
         "d2cons": {
-            "url": "http://d2.dev04.webmd.com/D2/#d2",
+            //"url": "http://d2.dev04.webmd.com/D2/#d2",
+            "url": "http://dmd241d-con-08.portal.webmd.com:8080/D2/#d2",
             "users": [{
                     "id": "1",
                     "username": "QAPublication",
@@ -257,7 +258,17 @@ module.exports.testSettings = {
              "htmlAsset2Compare":"carolinacareplan-cbhat2.whtml - ( Ver. 3.0)",
              "htmlCompareAttribute": "18 differences",
              "htmlCompareContent":"Matches",
-             "htmlComparerendition":"Matches"
+             "htmlComparerendition":"Matches",
+            "cssFolderpath": "webmd/PageBuilder_Assets/CSS/091e9c5e8022c604/Slideshow Citations In Progam",
+            "cssAssetName":"Center Well_091e9c5e80303e29.css",
+            "cssAssetTitle":"Center Well",
+            "cssVersion1":"1.0, Live",
+            "cssVersion2":"5.0, Live",
+            "cssAsset1Compare":"Center Well_091e9c5e80303e29.css- ( Ver. 1.0)",
+            "cssAsset2Compare":"Center Well_091e9c5e80303e29.css - ( Ver. 5.0)",
+             "cssCompareAttribute": "10 differences",
+             "cssCompareContent":"Has differences",
+             "cssComparerendition":"Matches"
 
         }      
     }
