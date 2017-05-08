@@ -192,7 +192,7 @@ module.exports.testSettings = {
                 "copyright": "2015 WebMD",
                 "primaryTopicId": "Cold and Flu",
                 "expectedClass": "wbmdembededmodule cke_widget_inline"
-            },
+            },   
     	"featureTemplate": {
             "articleFeatureTemplate": 'Article / Feature Template',
             "imageSearchText":"heart",
@@ -247,9 +247,19 @@ module.exports.testSettings = {
             "HealthRefTemplate": 'Article / Health Reference Template',
             "ShareableAlign":"Left",
             "ShareableSupressSocialShare":"true",
-            "SectionTextData":"sample test data"+ exports.GenerateRandomString(2)
+            "SectionTextData":"sample test data"+ exports.GenerateRandomString(2),
+            "htmlFolderpath": "webmd/consumer_assets/html/modules/cobrands",
+            "htmlAssetName":"carolinacareplan-cbhat2.whtml",
+            "htmlAssetTitle":"Carolina Care Plan cobrand file",
+            "htmlVersion1":"1.0, Live",
+            "htmlVersion2":"3.0, CURRENT, WIP",
+            "htmlAsset1Compare":"carolinacareplan-cbhat2.whtml - ( Ver. 1.0)",
+             "htmlAsset2Compare":"carolinacareplan-cbhat2.whtml - ( Ver. 3.0)",
+             "htmlCompareAttribute": "18 differences",
+             "htmlCompareContent":"Matches",
+             "htmlComparerendition":"Matches"
 
-        }
+        }      
     }
 }
 

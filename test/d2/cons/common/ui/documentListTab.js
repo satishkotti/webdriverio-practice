@@ -28,52 +28,51 @@ var documentListUIObj = {
         browser.pause(1000);
 
     },
-    publishToStaging: function(assetName){
+    publishToStaging: function (assetName) {
         documentListUIObj.contextualMenuActivate(assetName);
         documentListUIObj.contextualMenuLifeCycleSelect();
         documentListUIObj.lifeCyclePublishSelect();
         documentListUIObj.publishToDialogueOkSelect('Staging');
         browser.pause(1000);
     },
-    contextualMenuActivate: function(assetName){
+    contextualMenuActivate: function (assetName) {
         browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
-        browser.moveToObject("//span[@title='" + assetName + "']",0,0);
+        browser.moveToObject("//span[@title='" + assetName + "']", 0, 0);
         browser.rightClick("//span[@title='" + assetName + "']");
         browser.pause(1000);
         browser.waitForVisible("div.x-menu-list", maxWaitTimeInMs);
     },
-    contextualMenuLifeCycleSelect: function()
-    {
+    contextualMenuLifeCycleSelect: function () {
         browser.waitForVisible("#x-menu-el-menuContextDocumentLifeCycle");
         browser.click("#x-menu-el-menuContextDocumentLifeCycle");
         browser.pause(1000);
     },
-    lifeCyclePowerPromoteSelect: function(){
-          browser.waitForVisible("//a[text()='Power Promote']", maxWaitTimeInMs);
+    lifeCyclePowerPromoteSelect: function () {
+        browser.waitForVisible("//a[text()='Power Promote']", maxWaitTimeInMs);
         //browser.waitForExist("//a[text()='Power Promote']");
         browser.click("//a[text()='Power Promote']");
         browser.pause(1000);
     },
-    lifeCyclePublishSelect: function(){
+    lifeCyclePublishSelect: function () {
         browser.waitForExist("//a[text()='Publish']");
         browser.click("//a[text()='Publish']");
         browser.pause(1000);
     },
-    powerPromoteConfirmDialogueOkSelect: function(){
+    powerPromoteConfirmDialogueOkSelect: function () {
         browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
         var ppModalLabel = browser.getText("div.modal-body > label");
         expect(ppModalLabel).to.equal(ppModalLabel);
         browser.click("button[ng-click='$confirm()']");
     },
-    powerPromoteResultsDialogueOkSelect: function(assetName){
+    powerPromoteResultsDialogueOkSelect: function (assetName) {
 
-         browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
+        browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
 
-/*
-         browser.waitUntil(function () {
-            return browser.getText("div.modal-body > label") === 'Power Promote Validation Results for the following assets:'
-        }, maxWaitTimeInMs, 'expected Power Promote Validation Result Dialogue box.');
-*/
+        /*
+                 browser.waitUntil(function () {
+                    return browser.getText("div.modal-body > label") === 'Power Promote Validation Results for the following assets:'
+                }, maxWaitTimeInMs, 'expected Power Promote Validation Result Dialogue box.');
+        */
 
         var objName = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(2)");
         var state = browser.getText("#validateTable > tbody > tr:nth-child(2) > td:nth-child(3)");
@@ -84,14 +83,18 @@ var documentListUIObj = {
 
         browser.click("button[ng-click='$confirm()']");
     },
-    publishToDialogueOkSelect:function(lifeCycle){
-        if(lifeCycle === ''){
+    publishToDialogueOkSelect: function (lifeCycle) {
+        if (lifeCycle === '') {
             lifeCycle = 'Staging'
         }
-        var selectorExp = "input[value='"+lifeCycle+"']";
+        var selectorExp = "input[value='" + lifeCycle + "']";
         browser.waitForExist(selectorExp);
         browser.click(selectorExp);
         browser.click("div.modal-content > div.modal-footer > button.btn.btn-primary");
+    },
+    selectasset: function (assetName, assetTitle) {
+        browser.waitForVisible("//td[contains(.,'" + assetName + "')]//following-sibling::td[contains(.,'" + assetTitle + "')]");
+        browser.click("//td[contains(.,'" + assetName + "')]//following-sibling::td[contains(.,'" + assetTitle + "')]");
     }
 }
 
