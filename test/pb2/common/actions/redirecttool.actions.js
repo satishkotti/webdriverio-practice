@@ -77,3 +77,12 @@ module.exports.GoToBulkImport = function(option) {
 module.exports.GoToBulkImport = function(option) {
     browser.click("a.pb-redirect-nav-link.floatright");
 }
+
+module.exports.SearchFromUrl = function(option) {
+    var url = option.url;
+
+}
+
+module.exports.SearchToUrl = function(option) {
+
+}
