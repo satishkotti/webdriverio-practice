@@ -50,7 +50,7 @@ describe('PPE-110004', () => {
         });
 
         //Traverse to the required folder
-        repbrowser.openFolder(testArticlePath);
+        //repbrowser.openFolder(testArticlePath);
 
         /*
         browser.execute(function(){
@@ -111,10 +111,11 @@ describe('PPE-110004', () => {
         //Validation
         UntilExist(wcm_layout_template);
         var elementsCount = browser.elements(wcm_layout_template).value.length;
-        it('Verify whether the relation "wcm_layout_template" exists only once', () => {
-            expect(browser.elements(wcm_layout_template).value.length).to.eql(1);
+    });
 
-        });
+    it('Verify whether the relation "wcm_layout_template" exists only once', () => {
+        expect(browser.elements(wcm_layout_template).value.length).to.eql(1);
+
     });
 
 });
