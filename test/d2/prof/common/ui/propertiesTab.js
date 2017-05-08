@@ -496,6 +496,27 @@ module.exports = {
     publicationNameGet: function(){
         return browser.getValue("input#wbmd_publ_name-input");
     },
+    ClearGenericManadatoryFields: function(){
+        browser.clearElement("#title-input");
+        browser.setValue("#wbmd_bus_ref-input","");
+    },
+
+    VerifyMandatoryFieldsforGenericArticle: function(){
+        var IsExistTitle = browser.isExisting("//span[contains(., 'Title')]");
+        var IsExistContentType = browser.isExisting("//span[contains(., 'Content Type')]");
+        var IsExistLead = browser.isExisting("//span[contains(., 'Lead Specialty')]");
+        var IsExistContent = browser.isExisting("//span[contains(., 'Content Developer')]");
+        var IsExistwarningClass = browser.isExisting("//div[contains(@class,'ext-mb-warning')]");
+        browser.click("//div[@class='x-window-br']//button[contains(.,'OK')]");
+        if(IsExistTitle == true && IsExistContentType == true && IsExistLead == true && IsExistwarningClass == true && IsExistContent == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    },
    
 }
 

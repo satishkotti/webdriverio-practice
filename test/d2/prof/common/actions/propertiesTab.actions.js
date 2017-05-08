@@ -282,5 +282,14 @@ module.exports = {
         propertiesTabUI.publishingTabSelect();
         expect(propertiesTabUI.systemPublishingDateGet()).to.equal("MM/DD/YYYY HH:MM:SS");
     },
+    VerifyMandatoryFieldsforGeneric:function(){
+         propertiesTabUI.propertiesTabSelect();
+         propertiesTabUI.edit();
+         propertiesTabUI.ClearGenericManadatoryFields();
+         propertiesTabUI.save();
+         var AlertMessage = propertiesTabUI.VerifyMandatoryFieldsforGenericArticle();
+         propertiesTabUI.cancelEdit();
+         return AlertMessage;
+     },
     
 }

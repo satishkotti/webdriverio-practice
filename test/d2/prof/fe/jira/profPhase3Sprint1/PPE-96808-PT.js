@@ -20,7 +20,7 @@ var  ArticleObjectName1= global.d2ProfDataSettings.inputData.ArticleObjectName+ 
 var  title1= ArticleObjectName1+ randomstring.generate(2);
 var inputdata=randomstring.generate(5);
  
-describe('Professional - ProfMedia Meta Template - PPE-96821', function () {
+describe('Professional - ProfMedia Meta Template - PPE-96808', function () {
     before(function () {
         Login.login({
         url: functions.getEnvTestUrl(),

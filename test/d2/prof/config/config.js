@@ -87,7 +87,7 @@ module.exports.testSettings = {
             "locale":"US",
             "testFolderPathPubSection": "webmd/professional_assets/medscape/news",
             "AssetName":"QATestAssethNrnC",
-            "MediaName":"QAProfMediaTest",
+            "MediaName":"QATestProfMediaTest",
             "testFolderPath": "webmd/professional_assets/medscape/news",
             "testFolderPath_de": "webmd_de/professional_assets/medscape/articles/news",
             "testFolderPath_fr": "webmd_fr/professional_assets/medscape/articles/news",

@@ -29,7 +29,7 @@ describe('Professional - ProfArticle (Generic) PPE-96821', function () {
        // documentListTab.selectAsset(genericObjectName);
     });
     it('Should display the validation message when mandatory fields are blank', function () {
-        var AlertMessage = propertiesTab.verifyMandatoryFieldsforProperties();
+        var AlertMessage = propertiesTab.VerifyMandatoryFieldsforGeneric();
         expect(AlertMessage).to.be.true;
     });
 
