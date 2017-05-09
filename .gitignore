@@ -3,3 +3,4 @@
 **/**/allure-results/*
 **/**/errorShots/*
 npm-debug.log
+**/.vscode/*
