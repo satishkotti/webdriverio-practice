@@ -1,15 +1,13 @@
 var repositoryBrowserUI = require('./../ui/repositoryBrowserTab');
 
 module.exports = {
-    selectRepositoryBrowserTab: function () {
+    selectRepositoryBrowserTab: function(){
         repositoryBrowserUI.selectRepositoryBrowserTab();
     },
-    openFolder: function (folderPath) {
+    openFolder: function(folderPath){
 
         repositoryBrowserUI.RepositoryRefresh();
         var folerPathArr = folderPath.split('/');
-        
-        /*
         var folderLevel = 1;
          do {
                 if(folerPathArr && folerPathArr.length > 0)
@@ -19,26 +17,5 @@ module.exports = {
                     folderLevel++;
                 }
             } while(folerPathArr && folerPathArr.length > 0)
-        */
-
-        
-        for (var i = 1; i < folerPathArr.length; i++) {
-            var locator;
-
-            if (i != (folerPathArr.length - 1)) {
-                locator = '//span[@title="' + folerPathArr[i] + '"]//preceding-sibling::img[contains(@class, "node-joint")]';
-            }
-            else {
-                locator = '//span[@title="' + folerPathArr[i] + '"]';
-            }
-            browser.waitForExist(locator);
-            //browser.scroll(locator);
-            
-            browser.execute(function(){
-                document.querySelector()
-            });
-            
-            browser.click(locator);
-        }
     }
 }
