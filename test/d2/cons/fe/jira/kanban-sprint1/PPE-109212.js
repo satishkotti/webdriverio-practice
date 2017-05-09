@@ -31,5 +31,11 @@ describe('PORT: add htm, css and js content types to text comparison - PPE-10921
     compareTab.compareVersions(global.d2ConDataSettings.inputData.cssAssetName, global.d2ConDataSettings.inputData.cssVersion1, global.d2ConDataSettings.inputData.cssVersion2, global.d2ConDataSettings.inputData.cssAsset1Compare, global.d2ConDataSettings.inputData.cssAsset2Compare, global.d2ConDataSettings.inputData.cssCompareAttribute, global.d2ConDataSettings.inputData.cssCompareContent, global.d2ConDataSettings.inputData.cssComparerendition);
 
   });
+  it('Verify the user is able to select different version for JS in compare Widget - PPE-109967,Verify the user is able to comparison summary for the JS in compare widget-PPE-109968', function () {
+    repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.jsFolderpath);
+    documentListTab.selectAsset(global.d2ConDataSettings.inputData.jsAssetName, global.d2ConDataSettings.inputData.jsAssetTitle);
+    compareTab.compareVersions(global.d2ConDataSettings.inputData.jsAssetName, global.d2ConDataSettings.inputData.jsVersion1, global.d2ConDataSettings.inputData.jsVersion2, global.d2ConDataSettings.inputData.jsAsset1Compare, global.d2ConDataSettings.inputData.jsAsset2Compare, global.d2ConDataSettings.inputData.jsCompareAttribute, global.d2ConDataSettings.inputData.jsCompareContent, global.d2ConDataSettings.inputData.jsComparerendition);
+
+  });
 
 });
