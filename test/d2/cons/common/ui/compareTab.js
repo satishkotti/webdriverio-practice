@@ -21,6 +21,7 @@ var compareTabUIObj = {
         expect(asset2).to.be.true;
     },
     compareSummaryOnCompareWidget: function (attributeSummary, contentSummary, renditionSummary) {
+        browser.waitForVisible("//h4[contains(.,'Comparison Summary')]//following-sibling::div[contains(.,'Attributes') and contains(.,'" + attributeSummary + "')]",maxWaitTimeInMs)
         var attribute = browser.isExisting("//h4[contains(.,'Comparison Summary')]//following-sibling::div[contains(.,'Attributes') and contains(.,'" + attributeSummary + "')]");
         var content = browser.isExisting("//h4[contains(.,'Comparison Summary')]//following-sibling::div[contains(.,'Content') and contains(.,'" + contentSummary + "')]");
         var rendition = browser.isExisting("//h4[contains(.,'Comparison Summary')]//following-sibling::div[contains(.,'Rendition') and contains(.,'" + renditionSummary + "')]");
