@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webmd_rendition>
+   <content>
+      <wbmd_asset xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:xalan="http://xml.apache.org/xalan" object_type="wbmd_pb_module" id="091e9c5e815a195e">
+         <webmd_module>
+            <module_settings>
+               <chronic_id>091e9c5e815a195e</chronic_id>
+               <r_object_id>091e9c5e815a195e</r_object_id>
+               <title>0403QASponsorBox</title>
+               <object_name>module_0403QASponsorBox_091e9c5e815a195e.xml</object_name>
+               <object_type>wbmd_pb_sharedmodule</object_type>
+               <wbmd_pb_module_category />
+               <wbmd_pb_dyn_module_category />
+               <md_pb_module_label1_group>
+                  <wbmd_pb_module_label1 />
+               </md_pb_module_label1_group>
+               <md_pb_module_label2_group>
+                  <wbmd_pb_module_label2 />
+               </md_pb_module_label2_group>
+               <wbmd_pb_module_sp_program />
+               <wbmd_pb_module_tier>0</wbmd_pb_module_tier>
+               <wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
+               <r_modify_date>04/03/2017 03:26:21</r_modify_date>
+               <wbmd_c_channel_ids_group />
+               <wbmd_program_group />
+               <wbmd_pb_moduledataschema path="/webmd_uk/PageBuilder_Assets/schemas/module_schemas/SponsorBoxes.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005125" />
+               <wbmd_pb_moduledataschema path="/webmd/PageBuilder_Assets/schemas/module_schemas/SponsorBoxes.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005125" />
+               <wbmd_pb_owner_page_id path="/webmd/PageBuilder_Assets/Shared_Modules/SponsorBoxes/0403QASponsorBox_091e9c5e815a195d/smc_0403QASponsorBox_091e9c5e815a195d.xml" object_type="wbmd_pb_page" chronic_id="091e9c5e815a195d" />
+               <dnn_id>0</dnn_id>
+               <class>SponsorBoxes</class>
+            </module_settings>
+            <module_data>
+               <sponsor_logo>
+                  <sponsor_logo_link_view>Page Refresh(Default)</sponsor_logo_link_view>
+                  <sponsor_logo_source chronic_id="091e9c5e803fecd4" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/logos/client/unilever/logo_promise_153x29.png" alt="Promise Brands" />
+                  <sponsor_logo_link chronic_id="091e9c5e80661dc9" directive="friendlyurl" object_type="wbmd_cons_article" wbmd_lookup_type="" wbmd_storage_value="" />
+               </sponsor_logo>
+               <header>
+                  <header_text>Header Text</header_text>
+                  <header_link_view>Page Refresh(Default)</header_link_view>
+                  <header_link chronic_id="091e9c5e801651b2" directive="friendlyurl" object_type="wbmd_cons_article" wbmd_lookup_type="" wbmd_storage_value="" />
+               </header>
+               <body_copies>
+                  <body_copy>
+                     <body_copy_link_view>Page Refresh(Default)</body_copy_link_view>
+                     <body_copy_link />
+                  </body_copy>
+               </body_copies>
+               <body_image>
+                  <body_image_link_view>Page Refresh(Default)</body_image_link_view>
+                  <body_image_align>right</body_image_align>
+                  <body_image_source chronic_id="091e9c5e8046dba9" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/logos/client/sanofi-pasteur/logo_sanofi_119x26.gif" alt="Sanofi" />
+                  <body_image_link />
+               </body_image>
+               <body_links>
+                  <body_bullet>false</body_bullet>
+                  <body_link>
+                     <body_link_link_view>Page Refresh(Default)</body_link_link_view>
+                     <body_link_link />
+                  </body_link>
+               </body_links>
+               <lower_links>
+                  <link_display>new page</link_display>
+                  <link_bullet>false</link_bullet>
+                  <lower_link>
+                     <lower_link_link_view>Page Refresh(Default)</lower_link_link_view>
+                     <lower_link_link />
+                  </lower_link>
+                  <lower_link>
+                     <lower_link_link_view>Page Refresh(Default)</lower_link_link_view>
+                     <lower_link_link />
+                  </lower_link>
+                  <lower_link>
+                     <lower_link_link_view>Page Refresh(Default)</lower_link_link_view>
+                     <lower_link_link />
+                  </lower_link>
+                  <lower_link>
+                     <lower_link_link_view>Page Refresh(Default)</lower_link_link_view>
+                     <lower_link_link />
+                  </lower_link>
+               </lower_links>
+            </module_data>
+         </webmd_module>
+      </wbmd_asset>
+   </content>
+   <friendlyurls />
+   <referenced_objects>
+      <object chronic_id="091e9c5e80661dc9" thmbnl="/webmd/consumer_assets/site_images/articles/thumbnails_daily_images/2010/09_2010/69x75_dog_allergies_kids_eczema_01.jpg" wbmd_c_alt_tag="group of business people with heads together" wbmd_c_width="" wbmd_c_ht="" pointer="0" path="/webmd/consumer_assets/editorial/articles/news/allergies/skin_allergies/study_dogs_protect_kids_at_risk_for_eczema.wxml">
+         <target siteid="3" name="" prefix="www" friendlyurl="/skin-problems-and-treatments/eczema/news/20100930/study-dogs-protect-kids-at-risk-for-eczema" />
+         <target siteid="8" name="" prefix="www" friendlyurl="/eczema/news/20100930/study-dogs-protect-kids-at-risk-for-eczema" />
+      </object>
+      <object chronic_id="091e9c5e801651b2" thmbnl="/webmd/consumer_assets/site_images/articles/thumbnails_daily_images/2008/January08/sickle_cell_disease_pain.jpg" wbmd_c_alt_tag="Sickle Cell Disease Pain" wbmd_c_width="" wbmd_c_ht="" pointer="0" path="/webmd/consumer_assets/editorial/articles/news/blood_disorders/sickle_cell_disease/pain_common_with_sickle_cell_disease.wxml">
+         <target siteid="3" name="" prefix="www" friendlyurl="/news/20080114/pain-common-with-sickle-cell-disease" />
+         <target siteid="8" name="" prefix="www" friendlyurl="/a-to-z-guides/news/20080114/pain-common-with-sickle-cell-disease" />
+      </object>
+   </referenced_objects>
+   <container_hierarchy />
+   <expanded_objects />
+</webmd_rendition>

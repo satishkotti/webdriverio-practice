@@ -22,7 +22,7 @@ module.exports = {
         crosslink.crosslinkerSummary().waitForVisible();
 
     },
-    saveCrosslink = function (expectedStatus) {
+    saveCrosslink: function (expectedStatus) {
         switch (expectedStatus) {
             default:
                 crosslink.saveCrosslink().click();
