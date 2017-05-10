@@ -26,6 +26,10 @@ describe('PPE-81172:Redirect API', () => {
     var env = "Dev";
     var GetAllRedirectsForEntireSystem = {};
     var GetAll_Redirects_For_EntireSystem = "get-all?&includeDeleted=" + smProps.true;
+    var GetOneRedirectByFromUrl = {};
+    var Get_One_Redirect_By_From_Url = "get-by-from-url?fromUrl=" + smProps.searchfromurl + "&includeDeleted=" + smProps.true;
+    var GetAllRedirectsToaUrl = {};
+    var Get_All_Redirects_To_a_Url = "get-by-from-url-id?toUrl=" + smProps.searchtourl + "&includeDeleted=" + smProps.true;
     var GetAllRedirectsForSiteID = {};
     var GetAll_Redirects_ForSiteID = "get-all-for-site?siteID=" + smProps.webmdcom + "&includeDeleted=" + smProps.true;
     var GetOneRedirectByID = {};
@@ -56,6 +60,8 @@ describe('PPE-81172:Redirect API', () => {
     before(() => {
 
         GetAllRedirectsForEntireSystem = test.GetResult(env, GetAll_Redirects_For_EntireSystem);
+        GetOneRedirectByFromUrl = test.GetResult(env, Get_One_Redirect_By_From_Url);
+        GetAllRedirectsToaUrl = test.GetResult(env, Get_All_Redirects_To_a_Url);
         GetAllRedirectsForSiteID = test.GetResult(env, GetAll_Redirects_ForSiteID);
         GetOneRedirectByID = test.GetResult(env, GetOne_RedirectByID);
         GetAllRedirectFromUrlPattern = test.GetResult(env, GetAll_RedirectFromUrl_Pattern);
@@ -73,58 +79,64 @@ describe('PPE-81172:Redirect API', () => {
 
     //assertions
 
-    it('Verify Get All Redirects For Entire System (optionally include Deleted)', () => {
+        it('Verify Get All Redirects For Entire System (optionally include Deleted)', () => {
         expect(GetAllRedirectsForEntireSystem.statusCode).to.equal(200);
 
     });
+         it('Verify Get One Redirect By From Url', () => {
+         expect(GetOneRedirectByFromUrl.statusCode).to.equal(200);
 
+    });
+        it('Verify Get All Redirects To a Url', () => {
+        expect(GetAllRedirectsToaUrl.statusCode).to.equal(200);
+        
+        });
+        it('Verify Get All Redirects For Site ID (optionally include Deleted)', () => {
+            expect(GetAllRedirectsForSiteID.statusCode).to.equal(200);
+        });
 
-    it('Verify Get All Redirects For Site ID (optionally include Deleted)', () => {
-        expect(GetAllRedirectsForSiteID.statusCode).to.equal(200);
-    });
+        it('Verify Get One Redirect By ID', () => {
 
-    it('Verify Get One Redirect By ID', () => {
+            expect(GetOneRedirectByID.statusCode).to.equal(200);
+        });
 
-        expect(GetOneRedirectByID.statusCode).to.equal(200);
-    });
+        it('Verify Get All Redirect From Url Pattern (must include the start of the url)', () => {
+            expect(GetAllRedirectFromUrlPattern.statusCode).to.equal(200);
+        });
 
-    it('Verify Get All Redirect From Url Pattern (must include the start of the url)', () => {
-        expect(GetAllRedirectFromUrlPattern.statusCode).to.equal(200);
-    });
+        it('Verify Get All Redirect To Url Pattern (must include the start of the url)', () => {
+            expect(GetAllRedirectToUrlPattern.statusCode).to.equal(200);
+        });
+        it('Verify Get All Redirect From a ChronicleID', () => {
+            expect(GetAllRedirectFromaChronicleID.statusCode).to.equal(200);
+        });
+        it('Verify Get All Redirects Redirected to a ChronicleID', () => {
+            expect(GetAllRedirectsRedirectedtoaChronicleID.statusCode).to.equal(200);
+        });
 
-    it('Verify Get All Redirect To Url Pattern (must include the start of the url)', () => {
-        expect(GetAllRedirectToUrlPattern.statusCode).to.equal(200);
-    });
-    it('Verify Get All Redirect From a ChronicleID', () => {
-        expect(GetAllRedirectFromaChronicleID.statusCode).to.equal(200);
-    });
-    it('Verify Get All Redirects Redirected to a ChronicleID', () => {
-        expect(GetAllRedirectsRedirectedtoaChronicleID.statusCode).to.equal(200);
-    });
+        it('Verify Export All Redirects To Csv File', () => {
+            expect(ExportAllRedirectsToCsvFile.statusCode).to.equal(200);
+        });
 
-    it('Verify Export All Redirects To Csv File', () => {
-        expect(ExportAllRedirectsToCsvFile.statusCode).to.equal(200);
-    });
+        it('Verify Export All Redirects For Site To Csv File', () => {
+            expect(ExportAllRedirectsForSiteToCsvFile.statusCode).to.equal(200);
+        });
 
-    it('Verify Export All Redirects For Site To Csv File', () => {
-        expect(ExportAllRedirectsForSiteToCsvFile.statusCode).to.equal(200);
-    });
+        it('Verify Create Redirect on Urls', () => {
+            expect(CreateRedirectonUrls.body.StatusCode).to.equal(1);
+        });
 
-    it('Verify Create Redirect on Urls', () => {
-        expect(CreateRedirectonUrls.body.StatusCode).to.equal(1);
-    });
+        it('Verify Create Redirect on Chronicle IDS', () => {
+            expect(CreateRedirectonChronicleIDS.body.StatusCode).to.equal(1);
+        });
+        it('Verify Update To Url', () => {
+            expect(UpdateToUrl.body.StatusCode).to.equal(1);
+        });
+        it('Verify Replace To ChronicleID for All', () => {
+            expect(ReplaceToChronicleIDforAll.body.StatusCode).to.equal(1);
+        });
+        it('Verify Delete One or more (mark Deletd by id)', () => {
+            expect(DeleteOneormoreid.body.StatusCode).to.equal(1);
+        });
 
-    it('Verify Create Redirect on Chronicle IDS', () => {
-        expect(CreateRedirectonChronicleIDS.body.StatusCode).to.equal(1);
     });
-    it('Verify Update To Url', () => {
-        expect(UpdateToUrl.body.StatusCode).to.equal(1);
-    });
-    it('Verify Replace To ChronicleID for All', () => {
-        expect(ReplaceToChronicleIDforAll.body.StatusCode).to.equal(1);
-    });
-    it('Verify Delete One or more (mark Deletd by id)', () => {
-        expect(DeleteOneormoreid.body.StatusCode).to.equal(1);
-    });
-
-});
