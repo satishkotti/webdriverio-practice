@@ -2,7 +2,6 @@ var Q = require("q");
 
 exports.config = {
 
-    debug: false,
     maxInstances: 1,
     
     //
@@ -31,7 +30,7 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    capabilities: [{
+   capabilities: [{
         browserName: 'chrome',
 		 chromeOptions: {
             "args": [
@@ -75,9 +74,7 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-    waitforTimeout: 500000,
-
-
+    waitforTimeout: 120000,
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as property. Make sure you have
@@ -123,7 +120,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 500000
+        timeout: 1200000
     },
 
     //
