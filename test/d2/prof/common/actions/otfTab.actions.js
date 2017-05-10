@@ -1,5 +1,6 @@
 var otfTabUI = require('./../ui/otfTab');
 var contentTabUI = require('./../ui/contentTab');
+var propertiesTabUI = require('./../ui/propertiesTab');
 var maxWaitTimeInMs = 30000;
 
 var otfTabActionObj = {
@@ -10,8 +11,13 @@ var otfTabActionObj = {
         contentTabUI.switchToExternalWidget3Frame();
     },
     verfiyIfElementExists: function(selectorVal) {
-        var isExisting =  browser.isExisting(selectorVal);
-        return isExisting;
+        browser.waitForVisible("//select[@ng-model='currentLocale']",maxWaitTimeInMs);
+        var objectNameValue = otfTabUI.titleValue();
+        expect(objectNameValue).to.equal(selectorVal);
+        browser.click('#single-button');
+        var isexits=browser.isExisting("//li[@ng-repeat='createItem in searchResponse.createItems']/a[text()='Generic Article']");
+        expect(isexits).to.equal(false);
+        browser.frameParent();
     },
     verifyOTFHeader: function() {
         var objectTypeHeader = otfTabUI.objectTypeHeader();
@@ -55,9 +61,36 @@ var otfTabActionObj = {
          console.log("isPrimaryOV:"+isPrimaryOV);        
     },
     verifyCreateOutputVersion: function(newsObjectname) {
+
         otfTabUI.verifyCreateOutputVersion(newsObjectname);
     },
-    verifyNewOutputVersionData: function(newsObjectname) {
+    verifyOutputVersionOutputtypeIMP: function(OutputType) {
+        otfTabActionObj.selectExternalWidget();
+        otfTabUI.CreateOutputVersionIMPClick();
+        OutputType.split(',').forEach(function (x) {               
+            otfTabUI.verifyCreateOutputVersionIMP(x);
+        });
+        otfTabUI.CancelCreateOutputVersion();
+        
+    },
+     verifyParentObjectIMP: function(objName) {
+       
+       otfTabUI.CreateOutputVersionIMPClick();
+        var Parentobjname = otfTabUI.getParentObjectValue();
+       
+        
+        expect(Parentobjname).to.equal(objName);
+        otfTabUI.CancelCreateOutputVersion();
+        
+    },
+    CreateOutputVersionIMP: function(OutputType) {
+        
+        otfTabUI.CreateOutputVersionIMPClick();
+        otfTabUI.verifyCreateOutputVersionIMP(OutputType);
+        otfTabUI.CreateCreateOutputVersion();
+    },
+    
+    verifyNewOutputVersionData: function(objName) {
         browser.pause(20000);
         var otfTabSelector = otfTabUI.otfTabSelector();
         browser.click(otfTabSelector);
@@ -68,9 +101,9 @@ var otfTabActionObj = {
         var objectTypeValueNewOV= otfTabUI.objectTypeValueNewOV();
         expect(objectTypeValueNewOV).to.equal(global.d2ProfDataSettings.otfData.outputVersion);
         var objectNameValueNewOV = otfTabUI.objectNameValueNewOV();
-        expect(objectNameValueNewOV).to.equal("OutputVersion-"+newsObjectname);
+        expect(objectNameValueNewOV).to.equal(objName);
         var titleValueNewOV= otfTabUI.titleValueNewOV();
-        expect(titleValueNewOV).to.equal("OutputVersion-Title-"+newsObjectname);
+        expect(titleValueNewOV).to.equal(objName);
         var statusValueNewOV = otfTabUI.statusValueNewOV();
         expect(statusValueNewOV).to.equal(global.d2ProfDataSettings.otfData.active);
          //unable to validate the primary input radio button
@@ -80,7 +113,7 @@ var otfTabActionObj = {
     verifyMultipleOutputVersionCreation: function(newsObjectname) {
         otfTabUI.verifyMultipleOutputVersionCreation(newsObjectname);
     },
-    verifySecondOutputVersionData: function(newsObjectname) {
+    verifySecondOutputVersionData: function(objName) {
         browser.pause(10000);
         var otfTabSelector = otfTabUI.otfTabSelector();
         browser.click(otfTabSelector);
@@ -91,15 +124,127 @@ var otfTabActionObj = {
         var objectTypeValueSecondOV= otfTabUI.objectTypeValueSecondOV();
         expect(objectTypeValueSecondOV).to.equal(global.d2ProfDataSettings.otfData.outputVersion);
         var objectNameValueSecondOV = otfTabUI.objectNameValueSecondOV();
-        expect(objectNameValueSecondOV).to.equal("OutputVersion-2-"+newsObjectname);
+        expect(objectNameValueSecondOV).to.equal(objName);
         var titleValueSecondOV= otfTabUI.titleValueSecondOV();
-        expect(titleValueSecondOV).to.equal("OutputVersion-Title-2-"+newsObjectname);
+        expect(titleValueSecondOV).to.equal(objName);
         var statusValueSecondOV = otfTabUI.statusValueSecondOV();
         expect(statusValueSecondOV).to.equal(global.d2ProfDataSettings.otfData.active);
          //unable to validate the primary input radio button
          var isPrimarySecondOV = otfTabUI.isPrimarySecondOV();
          console.log("isPrimarySecondOV:"+isPrimarySecondOV);
-    }
+    },
+    searchobject:function(objName,locale){
+        otfTabUI.searchObject(objName,locale);
+    },
+    searchForAnAssetThroughOTF:function(searchdata,objName,locale){
+    otfTabUI.searchForAnAssetThroughOTF(searchdata,objName,locale);
+    var objectNameValue = otfTabUI.titleValue();
+    expect(objectNameValue).to.equal(objName);
+    browser.frameParent();
+    propertiesTabUI.propertiesTabSelect();
+    propertiesTabUI.edit();
+    propertiesTabUI.titleSet("_updated");
+    propertiesTabUI.leadSpecialtySet(global.d2ProfDataSettings.inputData.LeadSpecialty);
+    propertiesTabUI.contentDeveloperSet(global.d2ProfDataSettings.inputData.ContentDeveloper);
+    propertiesTabUI.save();
+    contentTabUI.switchToExternalWidget3Frame();
+    otfTabUI.searchForAnAssetThroughOTF(searchdata,"_updated",locale);
+    var objectNameValue = otfTabUI.titleValue();
+    expect(objectNameValue).to.equal("_updated");
+    browser.frameParent();
+    },
+
+    selectOTFWidgetTab: function(){
+        otfTabUI.selectOTFWidgetTab();
+        
+
+    },
+    otfDefaultOutputversion: function(){
+        contentTabUI.switchToExternalWidget3Frame();
+        otfTabUI.otfCreateOutputVersion();
+        contentTabUI.switchToExternalWidget3Frame();
+        otfTabUI.otfRemoveDefaultoutputversion();
+         browser.frameParent();
+         otfTabUI.otfRemoveDefaultoutputversionPopup();
+         contentTabUI.switchToExternalWidget3Frame();
+         var textattribute = otfTabUI.otfDefaultoutputversionValidation();
+         expect(textattribute).to.be.false;
+         otfTabUI.otfLinkDefaultoutputversion();
+         browser.frameParent();
+         otfTabUI.otfDefaultoutputversion();
+          contentTabUI.switchToExternalWidget3Frame();
+         var textattribute = otfTabUI.otfDefaultoutputversionValidation();
+         expect(textattribute).to.be.true;
+    },
+    otfCreateOutputVersion: function() {
+        otfTabUI.otfCreateOutputVersion();
+    },
+    verifymediaIsDisabled: function(){
+        otfTabUI.verifymediaIsDisabled();
+    },
+    otfCreateMedia: function(objectname) {
+        otfTabUI.otfCreateMedia(objectname);
+    },
+       otfMediaState: function(objectname) {
+        contentTabUI.switchToExternalWidget3Frame();
+        otfTabUI.otfMediaState(objectname);
+        browser.frameParent();
+    },
+       otfSelectMedia: function(objectname) {
+        contentTabUI.switchToExternalWidget3Frame();
+        otfTabUI.otfSelectMedia(objectname);
+        browser.frameParent();
+       // otfTabUI.otfSelectMedia(objectname);
+
+    },
+    verfiyPublicationStructure: function(selectorVal) {
+        browser.waitForVisible("//select[@ng-model='currentLocale']",maxWaitTimeInMs);
+        var objectNameValue = otfTabUI.titleValue();
+        expect(objectNameValue).to.equal(selectorVal);
+        var isExistPublicationStructure=browser.isExisting("//table[@st-table='displayedCollection']/tbody/tr[td//text()='Publication']//following-sibling::tr[td//text()='Publication Section']//following-sibling::tr[td//text()='Publication Subsection']");
+        expect(isExistPublicationStructure).to.equal(true);
+        browser.frameParent();
+    },
+    DeleteOutputVersion: function(){
+        browser.pause(20000);
+        var otfTabSelector = otfTabUI.otfTabSelector();
+        browser.click(otfTabSelector);
+        var otfWidgetSelector = otfTabUI.otfWidgetSelector();
+        browser.waitForExist(otfWidgetSelector, 30000);
+        otfTabActionObj.selectExternalWidget();
+        browser.waitForVisible("//table[@st-table='displayedCollection']/tbody/tr[3]/td[2]/span[@ng-style='getRowStyle(item.level)']", maxWaitTimeInMs);
+        var titleValueNewOV= otfTabUI.titleValueNewOV();
+        otfTabUI.otfRemoveCreatedoutputversion(titleValueNewOV);
+        browser.frameParent();
+        otfTabUI.otfRemoveDefaultoutputversionPopup();
+        otfTabUI.ValidateUnlinkOutputVersion(titleValueNewOV);
+
+
+    },
+    otfSelectOutputVersion: function(objectname) {
+        otfTabUI.otfSelectOutputVersion(objectname);
+        //otfTabUI.selectItemByNamePagination(objectname);
+
+    },
+    SelectCreatedOutputVersion: function(objectname){
+        otfTabUI.SelectCreatedOutputVersion(objectname)
+    },
+    DeleteSecondOutputVersion: function(Title){
+        browser.pause(20000);
+       
+        otfTabUI.otfRemoveCreatedoutputversion(Title);
+        browser.frameParent();
+        otfTabUI.otfRemoveDefaultoutputversionPopup();
+    },
+    otfCreateMedia: function(objectname) {
+        otfTabUI.otfCreateMedia(objectname);
+    },
+     otfCreateMediaValidation: function(objName) {
+        otfTabUI.otfCreateMediaValidation(objName);
+    },
+     otfMediaFolder: function(){
+        otfTabUI.otfMediaFolder();
+    },
 }
 
 module.exports = otfTabActionObj;

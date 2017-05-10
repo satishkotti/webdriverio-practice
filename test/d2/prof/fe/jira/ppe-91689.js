@@ -47,13 +47,28 @@ describe('OTF Widget Verifications with one output version - PPE-91689', functio
         otfTab.verifyOTFOutputVersionValues();
     });
 
-    it('Should verify if new Output Version is created for selected Asset', function () {
+    it.skip('Should verify if new Output Version is created for selected Asset', function () {
         otfTab.verifyCreateOutputVersion(newsObjectname);
     });
     
-    it('Should verify the data for new Output Version created for selected Asset', function () {
+    it.skip('Should verify the data for new Output Version created for selected Asset', function () {
         otfTab.verifyNewOutputVersionData(newsObjectname);
     });
+     it('Verify that Properties updated from Properties widget are reflected in OTF Widget', function () {
+        browser.frameParent();         
+        var cid=propertiesTab.getChronicleIdAndName();
+        otfTab.selectExternalWidget();
+        otfTab.searchForAnAssetThroughOTF(cid.chronicleId,
+        cid.title,global.d2ProfDataSettings.inputData.locale);
+    });
+    it('Verify that Properties/Content screen is loaded when user clicks on an object in OTF widget', function () {
+        var cid=propertiesTab.getChronicleIdAndName();
+        console.log("CID "+ cid.chronicleId);
+        repositoryBrowserTab.openFolder(global.d2ProfDataSettings.inputData.changeFolderPath);
+        otfTab.selectOTFTab();
+        otfTab.selectExternalWidget();
+        otfTab.searchobject(cid.chronicleId,global.d2ProfDataSettings.inputData.locale);
+        
+    });
 });
-
 
