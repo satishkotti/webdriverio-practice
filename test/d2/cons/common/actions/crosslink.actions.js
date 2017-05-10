@@ -7,8 +7,7 @@ module.exports = {
 
         //Switch to Crosslink tab
         bottomwidgets.SwitchTo('Crosslink');
-        var iFrameId = crosslink.crosslinker_bottom_iframe().getAttribute('id');
-        browser.frame(iFrameId);
+        browser.frame(crosslink.crosslinker_bottom_iframe());
 
         //Click on Open Crosslinker button
         crosslink.openCrosslinker().click();

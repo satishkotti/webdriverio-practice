@@ -1,6 +1,7 @@
 var d2app = require('./../../../../../d2/cons/common/actions/login.actions');
 var bottomwidgets = require('./../../../../../d2/cons/common/actions/bottomwidgets.actions');
 var crosslinker = require('./../../../../../d2/cons/common/actions/crosslink.actions');
+var relations = require('./../../../../../d2/cons/common/actions/relations.actions');
 var repbrowser = require('./../../../../../d2/cons/common/actions/repositoryBrowserTab.actions');
 
 
@@ -8,28 +9,12 @@ describe('PPE-110004', () => {
 
     var testArticlePath = 'webmddoc01/webmd_uk/consumer_assets/editorial/articles/news/care_giving/caregiver_stress';
     var testArticle = 'cancer_carers_neglect_own_health.xml';
-    var isExisting = function (locator) {
-        return browser.isExisting(locator);
-    };
-    var UntilVisible = function (locator) {
-        isExisting(locator);
-        browser.waitForVisible(locator);
-    };
-    var UntilExist = function (locator) {
-        browser.waitForExist(locator);
-    }
+    
     var SelectArticle = function (article) {
         var locator = '//div[@id="x3-docList-panel"]//span[@title="' + article + '"]';
         UntilVisible(locator);
         browser.click(locator);
     };
-
-    //var crosslinkTabHeading = '//li[@tag_id="Crosslink-widgetTab"]//span[contains(@class,"label") and string()="Crosslink"]';
-    var widgetTab = function (tabHeading) {
-        return '//li[@tag_id="' + tabHeading + '-widgetTab"]//span[contains(@class,"label") and string()="' + tabHeading + '"]';
-    }
-    var crosslinkwidgetIFrame = '(//div[@widget_type="ExternalWidget"]//iframe)[1]';
-    var crosslinkSummary = '#sideBarContents';
     var crosslinked = '.crossLinked';
     var crosslink = 'a.crossLink';
     var crosslinkOptions = {
@@ -37,11 +22,6 @@ describe('PPE-110004', () => {
         canLink: '//tr[@class="Row" and not(contains(.,"None"))]'
 
     };
-    var openCrosslinker = '//button[contains(.,"Open CrossLinker")]';
-    var saveCrosslink = '#btnSave';
-    var success = '#divSuccess';
-    var closeBtn = '//button[contains(.,"Close")]';
-    var wcm_layout_template = '//div[@tag_id="Relations-widget"]//span[@title="wcm_layout_template"]';
 
     before(() => {
         //Launch App and Login
@@ -54,36 +34,13 @@ describe('PPE-110004', () => {
         //Traverse to the required folder
         //repbrowser.openFolder(testArticlePath);
 
-        /*
-        browser.execute(function(){
-            return document.querySelectorAll('span[title="caregiver_stress"]')[0].scrollIntoView();
-        });
-        browser.click(span[title="caregiver_stress"]);
-        */
-
         //Select the asset
-        try {
             SelectArticle(testArticle);
-        } catch (err) { };
 
         //Switch to Crosslink Tab
-        //browser.click(widgetTab('Crosslink'));
         bottomwidgets.SwitchTo('Crosslink');
 
         //Crosslink
-        /*
-        UntilVisible(crosslinkwidgetIFrame);
-        var iFrameId = browser.getAttribute(crosslinkwidgetIFrame, 'id');
-        browser.frame(iFrameId);
-        browser.click(openCrosslinker);
-        browser.pause(5000);
-
-        var tabs = browser.getTabIds();
-        if (tabs[1] != browser.getCurrentTabId()) {
-            browser.switchTab(tabs[1]);
-        }
-        UntilExist(crosslinkSummary);
-        */
         crosslinker.crosslinkArticle();
         
         if (isExisting(crosslinked)) {
@@ -102,29 +59,23 @@ describe('PPE-110004', () => {
         }
 
         //Save
-        /*
-        browser.click(saveCrosslink);
-        UntilVisible(success);
-        browser.click(closeBtn);
-        */
         crosslinker.saveCrosslink();
 
         //Refresh the session
-        //browser.switchTab();
         browser.refresh();
 
-        //Switch to Relations Tab
-        //browser.frame();
-        //browser.click(widgetTab('Relations'));
-        bottomwidgets.SwitchTo('Relations');
+        //Traverse
+        //--- ---
+        SelectArticle(testArticle);
 
-        //Validation
-        UntilExist(wcm_layout_template);
-        var elementsCount = browser.elements(wcm_layout_template).value.length;
+        //Switch to Relations Tab
+        bottomwidgets.SwitchTo('Relations');
     });
 
     it('Verify whether the relation "wcm_layout_template" exists only once', () => {
-        expect(browser.elements(wcm_layout_template).value.length).to.eql(1);
+        //Validation
+        var wcm_layout_template_relations = relations.getRelation('wcm_layout_template');
+        expect(wcm_layout_template_relations.length).to.eql(1);
 
     });
 

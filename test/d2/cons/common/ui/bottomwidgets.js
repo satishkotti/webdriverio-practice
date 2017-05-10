@@ -1,7 +1,6 @@
 var locator;
 
-var UntilVisible = function (loator) {
-    isExisting(locator);
+var UntilVisible = function () {
     browser.waitForVisible(locator);
 };
 var UntilExist = function () {
