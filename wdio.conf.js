@@ -32,7 +32,28 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+		 chromeOptions: {
+            "args": [
+                "start-maximized",
+                "no-proxy-server",
+                "no-default-browser-check",
+                "no-first-run",
+                "disable-boot-animation",
+                "disable-default-apps",
+                "disable-extensions",
+                "no-experiments",
+                "no-service-autorun",
+                "disable-infobars"
+                ],
+			"prefs":{
+				"credentials_enable_service": false,
+				"profile":{
+					password_manager_enabled: false
+				}
+			}
+		}
+
     }],
     //
     // ===================
@@ -54,7 +75,9 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-    waitforTimeout: 60000,
+    waitforTimeout: 500000,
+
+
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as property. Make sure you have
@@ -100,7 +123,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 2400000
+        timeout: 500000
     },
 
     //
