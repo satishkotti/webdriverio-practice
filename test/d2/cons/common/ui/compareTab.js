@@ -1,5 +1,5 @@
 var maxWaitTimeInMs = 50000;
-var comparepaneFrameSelector = "iframe[id*='oam_id==ExternalWidget-5!!oam_target_type==ExternalWidget']";
+var comparepaneFrameSelector = "iframe[id*='oam_id==ExternalWidget-4!!oam_target_type==ExternalWidget']";
 
 var compareTabUIObj = {
     switchToExternalWidgetFrame: function () {

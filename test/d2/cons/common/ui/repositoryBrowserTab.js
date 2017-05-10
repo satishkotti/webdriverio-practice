@@ -35,7 +35,8 @@ module.exports = {
                 divElm.scrollTop = (divElm.scrollHeight * 2);
             });
     },
-    RepositoryRefresh: function () {    
+    RepositoryRefresh: function () {   
+        browser.pause(1000); 
         browser.waitForVisible('//span[contains(.,"Repository browser")]//*[@id="menuDownArrow-button"]');
         browser.click('//span[contains(.,"Repository browser")]//*[@id="menuDownArrow-button"]');
         browser.waitForVisible("//*[@id='refreshWidget-menuItem']");
