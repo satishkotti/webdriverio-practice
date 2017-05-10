@@ -11,7 +11,8 @@ var usersDetails = require('./../../config/users');
 var ats = require('./../actions/ats.actions');
 var user = usersDetails.users;
 var parseXml = require('./../../../common/xml/parseXml');
-var RedirectAPI = require('./../RedirectAPI/Redirectapi');
+var Apidetails = require('./../../config/api.config');
+var redirect = require('./../actions/redirectapi.actions');
 
 //Launch App and login
 module.exports.LaunchApp = () => {
@@ -410,16 +411,16 @@ module.exports.GetResult = (env, param) => {
     var Url;
    
     switch (env) {
-        case 'Dev': Url = 'http://redirect.dev01.webmd.com/api/redirect/' + param; break;
-        case 'QA01': Url = 'http://redirect.qa01.webmd.com/api/redirect/' + param; break;
-        case 'QA00': Url = 'http://redirect.qa00.webmd.com/api/redirect/' + param; break;
-        case 'PROD': Url = 'http://redirect.webmd.com/api/redirect/' + param; break;
+        case 'dev01': Url = Apidetails.testEnvUrl.dev + param; break;
+        case 'dev03': Url = Apidetails.testEnvUrl.dev03 + param; break;
+        case 'qa02': Url = Apidetails.testEnvUrl.qa + param; break;
+        case 'qa00': Url = Apidetails.testEnvUrl.preprod + param; break;
 
 
     }
     var response;
     browser.call(() => {
-        return Promise.resolve(RedirectAPI.GetResultsApi(Url, null)
+        return Promise.resolve(redirect.GetResultsApi(Url, null)
             .then(function (result) {
                 response = result;
                 console.log(response.body);
@@ -437,16 +438,15 @@ module.exports.PostResult = (env, param) => {
     var Url;
 
     switch (env) {
-        case 'Dev': Url = 'http://redirect.dev01.webmd.com/api/redirect/' + param; break;
-        case 'QA01': Url = 'http://redirect.qa01.webmd.com/api/redirect/' + param; break;
-        case 'QA00': Url = 'http://redirect.qa00.webmd.com/api/redirect/' + param; break;
-        case 'PROD': Url = 'http://redirect.webmd.com/api/redirect/' + param; break;
-
+         case 'dev01': Url = Apidetails.testEnvUrl.dev + param; break;
+        case 'dev03': Url = Apidetails.testEnvUrl.dev03 + param; break;
+        case 'qa02': Url = Apidetails.testEnvUrl.qa + param; break;
+        case 'qa00': Url = Apidetails.testEnvUrl.preprod + param; break;
 
     }
     var response;
     browser.call(() => {
-        return Promise.resolve(RedirectAPI.PostResultsApi(Url, null)
+        return Promise.resolve(redirect.PostResultsApi(Url, null)
             .then(function (result) {
                 response = result;
                 console.log(response.body);
