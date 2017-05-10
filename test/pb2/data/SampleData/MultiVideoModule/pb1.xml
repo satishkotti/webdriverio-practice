@@ -1,0 +1,104 @@
+<webmd_rendition>
+<content>
+<wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e815ba3ec">
+<webmd_module>
+<module_settings>
+<chronic_id>091e9c5e815ba3ec</chronic_id>
+<r_object_id>091e9c5e815ba3ec</r_object_id>
+<title>0330MVLAllFields</title>
+<object_name>module_0330MVLAllFields_091e9c5e815ba3ec.xml</object_name>
+<object_type>wbmd_pb_sharedmodule</object_type>
+<wbmd_pb_module_category/>
+<wbmd_pb_dyn_module_category/>
+<md_pb_module_label1_group>
+<wbmd_pb_module_label1/>
+</md_pb_module_label1_group>
+<md_pb_module_label2_group>
+<wbmd_pb_module_label2/>
+</md_pb_module_label2_group>
+<wbmd_pb_module_sp_program/>
+<wbmd_pb_module_tier>0</wbmd_pb_module_tier>
+<wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
+<r_modify_date>03/30/2017 02:34:24</r_modify_date>
+<wbmd_c_channel_ids_group/>
+<wbmd_program_group/>
+<wbmd_pb_asset_css path="/webmd/PageBuilder_Assets/CSS/091e9c5e80005120/Editorial Destination Promo/Sponsored Video Promo_091e9c5e80f24ddd.css" object_type="wbmd_pb_css" chronic_id="091e9c5e80f24ddd"/>
+<wbmd_pb_module_xsl path="/webmd/PageBuilder_Assets/XSL/MultipleVideoLaunch/Editorial Destination Promo_091e9c5e80d7c87f.xsl" object_type="wbmd_pb_xsl" chronic_id="091e9c5e80d7c87f"/>
+<wbmd_pb_moduledataschema path="/webmd_uk/PageBuilder_Assets/schemas/module_schemas/MultipleVideoLaunch.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005120"/>
+<wbmd_pb_moduledataschema path="/webmd/PageBuilder_Assets/schemas/module_schemas/MultipleVideoLaunch.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005120"/>
+<wbmd_pb_owner_page_id path="/webmd/PageBuilder_Assets/Shared_Modules/MultipleVideoLaunch/0330MVLAllFields_091e9c5e815ba3eb/smc_0330MVLAllFields_091e9c5e815ba3eb.xml" object_type="wbmd_pb_page" chronic_id="091e9c5e815ba3eb"/>
+<dnn_id>0</dnn_id>
+<class>MultipleVideoLaunch</class>
+</module_settings>
+<module_data>
+<VideoBrand>WebMD Daily</VideoBrand>
+<VideoLinkView>Page Refresh</VideoLinkView>
+<ModuleDescription>QA Description</ModuleDescription>
+<ModuleTitle>QA Title</ModuleTitle>
+<Videos>
+<Video>
+<VideoTitleOverride>QA Video Title Override</VideoTitleOverride>
+<VideoDescriptionOverride>QA Video Description Override</VideoDescriptionOverride>
+<VideoSource directive="expandinplace" object_type="wbmd_cons_video" chronic_id="091e9c5e80167396">
+<r_object_id>091e9c5e80a36677</r_object_id>
+<i_chronicle_id>091e9c5e80167396</i_chronicle_id>
+<title>ADHD in Children</title>
+<wbmd_desc_meta>
+Experts are rethinking the ways in which kids are evaluated for ADHD.
+</wbmd_desc_meta>
+<wbmd_desc_user>
+Experts are rethinking the ways in which kids are evaluated for ADHD.
+</wbmd_desc_user>
+<wbmd_c_vid_thmbnl directive="imageurl" chronic_id="" path="/webmd/consumer_assets/site_images/dam/editorial/mental-health/add-adhd/adhd-in-children/graphics/thumbnails/final/adhd-in-children-48x48.jpg" alt="child sitting outside"/>
+<wbmd_c_md_vid_thmbnl directive="imageurl" chronic_id="" path="/webmd/consumer_assets/site_images/dam/editorial/mental-health/add-adhd/adhd-in-children/graphics/thumbnails/final/adhd-in-children-128x73.jpg" alt="child sitting outside"/>
+<wbmd_c_lg_vid_thmbnl directive="imageurl" chronic_id="" path="/webmd/consumer_assets/site_images/dam/editorial/mental-health/add-adhd/adhd-in-children/graphics/thumbnails/final/adhd-in-children-375x321.jpg" alt="child sitting outside"/>
+<wbmd_c_loc_url>
+/delivery/8a/db/8adbec0c-f344-4ca7-a5c5-e4b565e95c88/adhd-in-children_,750k,1000k,400k,4500k,2500k,.mp4
+</wbmd_c_loc_url>
+<wbmd_prim_revw_dt>6/8/2012 12:00:00 AM</wbmd_prim_revw_dt>
+<wbmd_c_vid_sp>0</wbmd_c_vid_sp>
+<wbmd_c_duration>182.248</wbmd_c_duration>
+<wbmd_prim_med_revr>
+<r_object_id>091e9c5e8088a189</r_object_id>
+<wbmd_first_nm>Kathy</wbmd_first_nm>
+<wbmd_middle_name></wbmd_middle_name>
+<wbmd_lst_nm>Empen</wbmd_lst_nm>
+<wbmd_person_prof_ttl></wbmd_person_prof_ttl>
+<wbmd_bio_obj_id/>
+<wbmd_person_suffix_group>
+<wbmd_person_suffix object_type="wbmd_lookup" wbmd_lookup_type="person_suffix" wbmd_storage_val="48" wbmd_disp_nm="MD"/>
+</wbmd_person_suffix_group>
+</wbmd_prim_med_revr>
+<wbmd_cpyrt>
+<r_object_id>091e9c5e80166c19</r_object_id>
+<wbmd_copyright>
+<wbmd_copyright_statement>© 2008 WebMD, LLC. All rights reserved.</wbmd_copyright_statement>
+</wbmd_copyright>
+</wbmd_cpyrt>
+<wbmd_c_vid_citations>
+"Attention-Deficit/Hyperactivity Disorder (ADHD)." Thomas E. Brown, PhD, assistant clinical professor, psychiatry, Yale University School of Medicine; associate director, Yale Clinic for Attention and Related Disorders. Edward Gotlieb, MD, FAAP, FASM, pediatrician. Chris A. Zeigler Dendy, MS, mental health counselor; former teacher and school psychologist.
+</wbmd_c_vid_citations>
+<wbmd_c_vid_credits>
+Thomas E. Brown, PhD; Edward Gotlieb, MD; Leann Fabian, Christopher’s mom; Laura Markson, Noah’s mom
+</wbmd_c_vid_credits>
+<object_name>adhd-in-children_091e9c5e80167396.xml</object_name>
+</VideoSource>
+<VideoLink chronic_id="091e9c5e80167396" directive="friendlyurl" object_type="wbmd_cons_video"/>
+<PopupLink chronic_id="" directive="friendlyurl" object_type="wbmd_pb_page"/>
+</Video>
+</Videos>
+<VideoLibrary/>
+</module_data>
+</webmd_module>
+</wbmd_asset>
+</content>
+<friendlyurls/>
+<referenced_objects>
+<object chronic_id="091e9c5e80167396" thmbnl="/webmd/consumer_assets/site_images/dam/editorial/mental-health/add-adhd/adhd-in-children/graphics/thumbnails/final/adhd-in-children-48x48.jpg" wbmd_c_alt_tag="child sitting outside" wbmd_c_width="48" wbmd_c_ht="48" pointer="0" path="/webmd/consumer_assets/videos/adhd-in-children_091e9c5e80167396.wxml">
+<target siteid="3" name="" prefix="www" friendlyurl="/add-adhd/video/adhd-in-children"/>
+<target siteid="8" name="" prefix="www" friendlyurl="/a-to-z-guides/video/adhd-in-children"/>
+</object>
+</referenced_objects>
+<container_hierarchy/>
+<expanded_objects/>
+</webmd_rendition>
