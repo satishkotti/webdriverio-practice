@@ -1,5 +1,7 @@
-var page = require('./../../common/page');
-var common = require('./commonLib');
+var page = require('./../../../common/page');
+var wdioConf = require('./../../../../wdio.conf.js');
+
+var testUrl = 'http://genesys.dev01.webmd.com';
 
 var pbLoginPg = Object.create(page, {
     
@@ -10,16 +12,16 @@ var pbLoginPg = Object.create(page, {
     failLoginText: { get: function () {
         return browser.getText("span=Username or password incorrect");
     } },
+    maximize: { value: function (window) { browser.windowHandleMaximize(window); } },
     browser: { get: function()  { return browser }},
 
-    open: { value: function() {
-        page.open.call(this, common.getEnvTestUrl());
+    open: { value: function(url) {
+        page.open(url);
     } },
 
     submit: { value: function() {
         this.form.submitForm();
-    } }
-
+    } },
 });
 
 module.exports = pbLoginPg

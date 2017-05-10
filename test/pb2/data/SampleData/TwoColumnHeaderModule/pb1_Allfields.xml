@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<webmd_rendition>
+  <content>
+<wbmd_asset xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" object_type="wbmd_pb_module" id="091e9c5e815a58ea">
+    <webmd_module>
+        <module_settings>
+            <chronic_id>091e9c5e815a58ea</chronic_id>
+            <r_object_id>091e9c5e815a58ea</r_object_id>
+            <title>0407QATwoColumnHeaderAllFields</title>
+            <object_name>module_0407QATwoColumnHeaderAllFields_091e9c5e815a58ea.xml</object_name>
+            <object_type>wbmd_pb_sharedmodule</object_type>
+            <wbmd_pb_module_category>091e9c5e8009b213</wbmd_pb_module_category>
+            <wbmd_pb_dyn_module_category />
+            <md_pb_module_label1_group>
+                <wbmd_pb_module_label1 />
+            </md_pb_module_label1_group>
+            <md_pb_module_label2_group>
+                <wbmd_pb_module_label2 object_type="wbmd_lookup" wbmd_lookup_type="wbmd_module_label2" i_chronicle_id="091e9c5e812144fd" wbmd_disp_nm="1 Column" wbmd_storage_val="1_column" />
+            </md_pb_module_label2_group>
+            <wbmd_pb_module_sp_program />
+            <wbmd_pb_module_tier>0</wbmd_pb_module_tier>
+            <wbmd_pb_cache_duration>1440</wbmd_pb_cache_duration>
+            <r_modify_date>04/07/2017 07:00:15</r_modify_date>
+            <wbmd_c_channel_ids_group />
+            <wbmd_program_group />
+            <wbmd_pb_asset_css path="/webmd/PageBuilder_Assets/CSS/TwoColumnHeaderModule/News Two Column Header/News Two Column Header_091e9c5e80098465.css" object_type="wbmd_pb_css" chronic_id="091e9c5e80098465" />
+            <wbmd_pb_module_xsl path="/webmd/PageBuilder_Assets/XSL/TwoColumnHeaderModule/News Two Column Header_091e9c5e8009842e.xsl" object_type="wbmd_pb_xsl" chronic_id="091e9c5e8009842e" />
+            <wbmd_pb_moduledataschema path="/webmd/PageBuilder_Assets/schemas/module_schemas/TwoColumnHeaderModule.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005129" />
+            <wbmd_pb_moduledataschema path="/webmd_uk/PageBuilder_Assets/schemas/module_schemas/TwoColumnHeaderModule.xsd" object_type="wbmd_pb_schemas" chronic_id="091e9c5e80005129" />
+            <wbmd_pb_owner_page_id path="/webmd/PageBuilder_Assets/Shared_Modules/TwoColumnHeaderModule/0407QATwoColumnHeaderAllFields_091e9c5e815a58e9/smc_0407QATwoColumnHeaderAllFields_091e9c5e815a58e9.xml" object_type="wbmd_pb_page" chronic_id="091e9c5e815a58e9" />
+            <dnn_id>0</dnn_id>
+            <class>TwoColumnHeaderModule</class>
+        </module_settings>
+        <module_data>
+            <moduleTitle>HEADER Title Text</moduleTitle>
+            <module_link_view>Page Refresh(Default)</module_link_view>
+            <module_subtitle>HEADER Subtitle Text</module_subtitle>
+            <imageToggle>Off</imageToggle>
+            <medicalReviewedByText>Medically Reviewed By</medicalReviewedByText>
+            <attribution_link_text>ATTRIBUTION Text</attribution_link_text>
+            <attribution_link_view>Page Refresh(Default)</attribution_link_view>
+            <module_link chronic_id="091e9c5e80661dc9" directive="friendlyurl" object_type="wbmd_cons_article" wbmd_lookup_type="" wbmd_storage_value="" />
+            <attribution_link chronic_id="091e9c5e801651b2" directive="friendlyurl" object_type="wbmd_cons_article" wbmd_lookup_type="" wbmd_storage_value="" />
+            <body_images>
+                <body_image>
+                    <override_text>IMAGES Override Text</override_text>
+                    <image_link_view>Page Refresh(Default)</image_link_view>
+                    <sort_order>0</sort_order>
+                    <source chronic_id="091e9c5e80d34830" directive="imageurl" object_type="wbmd_cons_img" wbmd_lookup_type="" wbmd_storage_value="" path="/webmd/consumer_assets/site_images/close_icon.png" alt="close" />
+                    <image_link chronic_id="091e9c5e801651b2" directive="friendlyurl" object_type="wbmd_cons_article" wbmd_lookup_type="" wbmd_storage_value="" />
+                </body_image>
+            </body_images>
+        </module_data>
+    </webmd_module>
+</wbmd_asset>
+</content>
+  <friendlyurls />
+  <referenced_objects>
+    <object chronic_id="091e9c5e80661dc9" thmbnl="/webmd/consumer_assets/site_images/articles/thumbnails_daily_images/2010/09_2010/69x75_dog_allergies_kids_eczema_01.jpg" wbmd_c_alt_tag="group of business people with heads together" wbmd_c_width="" wbmd_c_ht="" pointer="0" path="/webmd/consumer_assets/editorial/articles/news/allergies/skin_allergies/study_dogs_protect_kids_at_risk_for_eczema.wxml">
+      <target siteid="3" name="" prefix="www" friendlyurl="/skin-problems-and-treatments/eczema/news/20100930/study-dogs-protect-kids-at-risk-for-eczema" />
+      <target siteid="8" name="" prefix="www" friendlyurl="/eczema/news/20100930/study-dogs-protect-kids-at-risk-for-eczema" />
+    </object>
+    <object chronic_id="091e9c5e801651b2" thmbnl="/webmd/consumer_assets/site_images/articles/thumbnails_daily_images/2008/January08/sickle_cell_disease_pain.jpg" wbmd_c_alt_tag="Sickle Cell Disease Pain" wbmd_c_width="" wbmd_c_ht="" pointer="0" path="/webmd/consumer_assets/editorial/articles/news/blood_disorders/sickle_cell_disease/pain_common_with_sickle_cell_disease.wxml">
+      <target siteid="3" name="" prefix="www" friendlyurl="/news/20080114/pain-common-with-sickle-cell-disease" />
+      <target siteid="8" name="" prefix="www" friendlyurl="/a-to-z-guides/news/20080114/pain-common-with-sickle-cell-disease" />
+    </object>
+  </referenced_objects>
+  <container_hierarchy />
+  <expanded_objects />
+</webmd_rendition>
