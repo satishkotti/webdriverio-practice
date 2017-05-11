@@ -1,6 +1,5 @@
-var page = require('./../../common/page')
-
-var testUrl = 'http://genesys.dev01.webmd.com';
+var page = require('./../../common/page');
+var common = require('./commonLib');
 
 var pbLoginPg = Object.create(page, {
     
@@ -14,12 +13,13 @@ var pbLoginPg = Object.create(page, {
     browser: { get: function()  { return browser }},
 
     open: { value: function() {
-        page.open.call(this, testUrl);
+        page.open.call(this, common.getEnvTestUrl());
     } },
 
     submit: { value: function() {
         this.form.submitForm();
     } }
+
 });
 
 module.exports = pbLoginPg

@@ -1,31 +1,51 @@
 {
-    // Use IntelliSense to learn about possible Node.js debug attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-    
-         {
-            "type": "node",
-            "request": "launch",
-            "port": 5859,
-            "name": "WebdriverIO",
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
-            "windows": {
-                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio.cmd"
-            },
-            "cwd": "${workspaceRoot}",
-            "console": "integratedTerminal",
-            // This args config runs only the file that's open and displayed
-            // (e.g., a file in test/spec/):
-            "args":[
+    // Use IntelliSense to learn about possible Node.js debug attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
 
-                "--spec", "${workspaceRoot}/test/d2/cons/fe/jira/PPE-85795.js",
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Mocha Tests",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/mocha",
+            "windows": {
+                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/mocha.cmd"
+            },
+            "runtimeArgs": [
+                "-u",
+                "tdd",
+                "--timeout",
+                "999999",
+                "--colors",
+                "${workspaceRoot}/test/pb2/fe/baseline/mytest.js"
+            ],
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+
+        {
+            "type": "node",
+            "request": "launch",
+            "port": 5859,
+            "name": "WebdriverIO",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
+            "windows": {
+                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio.cmd"
+            },
+            "cwd": "${workspaceRoot}",
+            "console": "integratedTerminal",
+            // This args config runs only the file that's open and displayed
+            // (e.g., a file in test/spec/):
+            "args":[
+                "--spec", "${workspaceRoot}/test/d2/prof/fe/jira/PPE-96831.js",
                 "--testEnv=dev04",
-                "--testApp=d2cons"
+                "--testApp=d2prof"
                 // To run a specific file, you can also do:
                 //"--spec", "test/specs/foo.spec.js"
-            ]
-        }
-    ]
+            ] 
+
+        }
+    ]
 }
