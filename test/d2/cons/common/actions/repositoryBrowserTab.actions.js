@@ -1,21 +1,25 @@
-var repositoryBrowserUI = require('./../ui/repositoryBrowserTab');
+var repositoryBrowserPage = require('./../ui/repositoryBrowserTab');
 
 module.exports = {
     selectRepositoryBrowserTab: function(){
-        repositoryBrowserUI.selectRepositoryBrowserTab();
+        repositoryBrowserPage.selectRepositoryBrowserTab();
     },
     openFolder: function(folderPath){
-
-        repositoryBrowserUI.RepositoryRefresh();
+        repositoryBrowserPage.RepositoryRefresh();
         var folerPathArr = folderPath.split('/');
-        var folderLevel = 1;
+        var folderLevel = 2;
          do {
                 if(folerPathArr && folerPathArr.length > 0)
                 {
-                    repositoryBrowserUI.openFolder(folerPathArr[0], folderLevel);
+                    //console.log("folderPathArr[0]:"+folerPathArr[0]+"||folderLevel:"+ folderLevel);
+                    repositoryBrowserPage.openFolder(folerPathArr[0], folderLevel); 
                     folerPathArr.shift();
-                    folderLevel++;
+                    folderLevel = folderLevel + 1;
                 }
             } while(folerPathArr && folerPathArr.length > 0)
+    },
+
+    refreshRepositoryBrowserTab: function(){
+        repositoryBrowserPage.refreshRepositoryBrowserTab();
     }
 }
