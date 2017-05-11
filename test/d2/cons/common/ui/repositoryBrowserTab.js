@@ -8,11 +8,12 @@ module.exports = {
     openFolder: function (nodeName, folderLevel) {
 
         var folderSelector = "//div[@aria-level='" + folderLevel + "']//span[text()='" + nodeName + "']";
-        var isExistmore = browser.isExisting('//span[contains(.,"More")]');  
+        var isExistmore = browser.isExisting('//span[contains(.,"More")]'); 
+        var folderExist = browser.isExisting(folderSelector) ;
 
 //console.log('repo browser' + folderSelector);
 
-        if (isExistmore == true) {          
+        if (isExistmore == true && folderExist== false) {          
             browser.waitForVisible('//span[contains(.,"More")]');    
             browser.element('//span[contains(.,"More")]').click();
             browser.pause(2000);
@@ -34,11 +35,31 @@ module.exports = {
                 divElm.scrollTop = (divElm.scrollHeight * 2);
             });
     },
-    RepositoryRefresh: function () {    
+    RepositoryRefresh: function () {   
+        browser.pause(1000); 
         browser.waitForVisible('//span[contains(.,"Repository browser")]//*[@id="menuDownArrow-button"]');
         browser.click('//span[contains(.,"Repository browser")]//*[@id="menuDownArrow-button"]');
         browser.waitForVisible("//*[@id='refreshWidget-menuItem']");
         browser.click("//*[@id='refreshWidget-menuItem']");
         browser.pause(2000);
+    },
+     ExpandContentTab: function () {
+        browser.waitForVisible('//span[contains(.,"Repository browser")]//*[@id="menuDownArrow-button"]');
+        browser.click('//span[contains(.,"Repository browser")]//*[@id="menuDownArrow-button"]');
+
+
+        if (browser.isExisting("//div[@id='x-menu-el-toggleViewWidget-menuItem']//span[text()='Expand']")) {
+            browser.click("//div[@id='x-menu-el-toggleViewWidget-menuItem']//span[text()='Expand']");
+            browser.pause(5000);
+        }
+    },
+    CollapseContentTab: function () {
+        browser.waitForVisible('//span[contains(.,"Repository browser")]//*[@id="menuDownArrow-button"]');
+        browser.click('//span[contains(.,"Repository browser")]//*[@id="menuDownArrow-button"]');
+
+        if (browser.isExisting("//div[@id='x-menu-el-toggleViewWidget-menuItem']//span[text()='Collapse']")) {
+            browser.click("//div[@id='x-menu-el-toggleViewWidget-menuItem']//span[text()='Collapse']");
+            browser.pause(5000);
+        }
     }
 }
