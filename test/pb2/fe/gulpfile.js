@@ -54,7 +54,8 @@ gulp.task('branch', function(cb) {
             tests.push(`jira/${testfile}/*.js`);
         } else if (currentBranch.indexOf('PPE-') >= 0) {
             var testfile = currentBranch.toLowerCase().split("ppe-")[1].split("-")[0];
-            tests.push(`jira/**/${testfile}.js`);
+            //tests.push(`jira/**/${testfile}.js`);
+            tests.push(`jira/**/*.js`);
         } else {
 
             console.log('defaulting tests');
@@ -102,7 +103,7 @@ gulp.task('webdriver', function(done) {
         reporters: ['spec', 'dot']
     };
 
-console.log('baseurl:' + releaseconfig.config.baseUrl);
+console.log('baseurl:' + global.appUrl);
 
     var wdio = new Launcher(path.join(__dirname, './../config/release.config.js'), releaseconfig.config);
     return wdio.run().then(function(code) {

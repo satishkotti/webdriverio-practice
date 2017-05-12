@@ -22,7 +22,7 @@
         "dotenv": "^4.0.0",
         "glob": "^7.1.1",
         "gulp": "^3.9.1",
-        "gulp-webdriver": "1.0.3",
+        "gulp-webdriver": "2.0.3",
         "lodash": "^4.17.2",
         "mocha": "^3.0.2",
         "mssql": "3.3.0",
