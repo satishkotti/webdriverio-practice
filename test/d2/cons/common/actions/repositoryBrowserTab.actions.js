@@ -5,9 +5,11 @@ module.exports = {
         repositoryBrowserPage.selectRepositoryBrowserTab();
     },
     openFolder: function(folderPath){
+        repositoryBrowserPage.ExpandContentTab();
+        repositoryBrowserPage.CollapseContentTab();
         repositoryBrowserPage.RepositoryRefresh();
         var folerPathArr = folderPath.split('/');
-        var folderLevel = 2;
+        var folderLevel = 1;
          do {
                 if(folerPathArr && folerPathArr.length > 0)
                 {

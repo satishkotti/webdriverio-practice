@@ -235,6 +235,8 @@ module.exports.testSettings = {
             "bulletlistalignment": "Right,Left,Middle",
             "CodeTypes": "Facebook,Youtube,Twitter,Pinterest,Reddit,Imgur,Snapchat,Tumblr,Instagram",
             "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other",
+            "USFolderpath": "webmddoc01/webmd/consumer_assets/editorial/articles",
+            "UKFolderpath": "webmddoc01/webmd_uk/consumer_assets/editorial/articles",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
             "ArticleTemplate": 'Article /  News Template',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),

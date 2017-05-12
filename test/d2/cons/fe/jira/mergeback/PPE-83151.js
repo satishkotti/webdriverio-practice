@@ -20,14 +20,36 @@ describe('PORT: Remove customization to navigate to webmd folder - PPE-83151', f
   });
 
   it('PPE-110572 Verify the user is navigate to desired folder', function () {
-    repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UsFolderpath);
-    login.logoutCloseWindow();
+    repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.USFolderpath);
+    RemoveCustomNavigateTab.logoutWindow();
     
 
   });
 
 
   it('PPE-110573 Verify user is able to navigate to the desired folder after relaunching the browser for US cabinet', function () {
+      browser.pause(5000);
+      login.login({
+      url: functions.getEnvTestUrl(),
+      username: functions.getQAPublicationUser().username,
+      password: functions.getQAPublicationUser().password
+    });
+   
+    RemoveCustomNavigateTab.VerifyfolderNavgte(global.d2ConDataSettings.inputData.USFolderpath);
+
+  });
+
+
+  it('PPE-110579 Verify the user is navigate to desired folder in UK', function () {
+    browser.pause(2000);
+    repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UKFolderpath);
+    RemoveCustomNavigateTab.logoutWindow();
+    
+
+  });
+
+
+  it('PPE-110579 Verify user is able to navigate to the desired folder after relaunching the browser for UK cabinet', function () {
 
       login.login({
       url: functions.getEnvTestUrl(),
@@ -35,10 +57,9 @@ describe('PORT: Remove customization to navigate to webmd folder - PPE-83151', f
       password: functions.getQAPublicationUser().password
     });
    
-    RemoveCustomNavigateTab.VerifyfolderNavgte(global.d2ConDataSettings.inputData.UsFolderpath);
+    RemoveCustomNavigateTab.VerifyfolderNavgte(global.d2ConDataSettings.inputData.UKFolderpath);
 
   });
-
-  
+ 
 
 });
