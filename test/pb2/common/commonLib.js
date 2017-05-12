@@ -1,4 +1,4 @@
-var smdb = require('./../../common/smdb/siteManagementDb');
+//var smdb = require('./../../common/smdb/siteManagementDb');
 
 module.exports.getEnvTestUrl = function() {
     return global.envSettings.genesys.url;
