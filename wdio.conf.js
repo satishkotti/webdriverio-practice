@@ -1,45 +1,7 @@
 var Q = require("q");
 
-module.exports.getSpecs = function()
-{
-    var specList;
-    var testApp = process.env.npm_config_testApp ? process.env.npm_config_testApp : 'd2cons' ;
-    try
-    {
-        switch(testApp) {
-            case "pb2":
-                var config = require('./test/pb2/config/config');
-                specList = [ './test/pb2/**/*.js' ];
-            break;
-            case "d2cons":
-                var config = require('./test/d2/cons/config/config');
-                specList = [ './test/d2/cons/**/*.js' ];
-            break;
-            case "d2prof":
-                var config = require('./test/d2/prof/config/config');
-                specList = [ './test/d2/prof/**/*.js' ];
-            break;
-            case "rt":
-                var config = require('./test/rt/config/config');
-                specList = [ './test/rt/**/*.js' ];
-                break;
-            default:
-                throw "Missing Specs"
-            }  
-        }
-        catch(err)
-        {
-            console.log(err);
-        }
-
-console.log('specs: '+specList);
-
-        return specList;
-};
-
 exports.config = {
 
-    debug: true,
     maxInstances: 1,
     
     //
@@ -51,11 +13,9 @@ exports.config = {
     // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
-    specs: module.exports.getSpecs(),
+    specs: [],
     // Patterns to exclude.
     exclude: [
-         './test/d2/cons/config/**/*.*',
-         './test/d2/cons/common/**/*.*',
     ],
     //
     // ============
@@ -194,8 +154,8 @@ exports.config = {
     // variables like `browser`. It is the perfect place to define custom commands.
     before: function() {
 
-        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'qa01';
-        var testApp = process.env.npm_config_testApp ? process.env.npm_config_testApp : 'd2cons' ;
+        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'dev01';
+        var testApp = process.env.npm_config_testApp ? process.env.npm_config_testApp : 'pb2' ;
         
         var chai = require('chai');
         chai.config.includeStack = true;
@@ -205,38 +165,6 @@ exports.config = {
         assert = chai.assert;
         should = chai.should();
         _ = require('lodash');
-
-    try
-    {
-        switch(testApp) {
-            case "pb2":
-                var config = require('./test/pb2/config/config');
-                global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
-                global.dataSettings = config.EnvSettings.getEnvData(testEnv);
-            break;
-            case "d2cons":
-                var config = require('./test/d2/cons/config/config');
-                global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
-                global.d2ConDataSettings = config.EnvSettings.getEnvData(testEnv);
-            break;
-            case "d2prof":
-                var config = require('./test/d2/prof/config/config');
-                global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
-                global.d2ProfDataSettings = config.EnvSettings.getEnvData(testEnv);
-            break;
-            case "rt":
-                var config = require('./test/rt/config/config');
-                global.envSettings = config.EnvSettings.getEnvSettings(testEnv);
-                global.rt2DataSettings = config.EnvSettings.getEnvData(testEnv);
-                break;
-            default:
-                specs = [ ];
-            }  
-        }
-        catch(err)
-        {
-            console.log(err);
-        }
 
     },
     //
@@ -250,23 +178,5 @@ exports.config = {
     // possible to defer the end of the process using a promise.
     onComplete: function() {
         // do something
-    },
-    suites: {
-        pb2Sanity: [
-            './test/pb2/sanity/favorite.js',
-            './test/pb2/sanity/page.js',
-            './test/pb2/sanity/template.js'
-            ],
-        pb2Ui: [
-            './test/pb2/ui/login.js',
-            './test/pb2/ui/navmap.js',
-            './test/pb2/ui/ppe-81340.js'
-            ],
-        rtSanity: [ 
-            './test/rt/sanity/dynamicUrl.js',
-            './test/rt/sanity/homePage.js'
-            ],
-        rtUi:[
-            ],
     }
 };
