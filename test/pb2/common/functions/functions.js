@@ -135,6 +135,13 @@ module.exports.SaveOrPublishTheAsset = (action, comment) => {
 }
 
 /*
+Save the changes made to module while creating a page
+*/
+module.exports.SaveModule = () => {
+    act.Save();
+}
+
+/*
 Publish the asset from More Actions menu
 'action' can be 'Publish to Staging' or 'Publish to Live'
 'comment' can be user comment entered while saving/publishin the asset
