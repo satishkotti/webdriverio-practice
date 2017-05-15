@@ -34,6 +34,10 @@ var documentListObj = {
         documentListObj.selectAsset(assetName);
         documentListObj.powerPromoteAsset(assetName);
         documentListObj.publishAssetToStaging(assetName);
-    }
+    },
+    
+     CheckVersionvalue: function(assetName){
+        documentListUI.CheckVersionvalue(assetName);
+    },
 }
 module.exports = documentListObj;
