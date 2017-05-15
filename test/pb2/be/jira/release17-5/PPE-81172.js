@@ -1,71 +1,170 @@
 var test = require('./../../../common/functions/functions');
-var smTestData = require('./../../../config/api.config');
-var sqldata = require('./../../Apidb/apidb');
+var smTestData = require('./../../../../common/config/api.config');
+var manualRedirectSqlService = require('./../../../../common/component/redirectapidb/apidb');
+var envSettings = require('./../../../../common/config/envSettings.js');
+var Promise = require("bluebird");
+var rp = require('request-promise');
 var fs = require('fs');
-const sql = require('mssql')
 var testAssetProps = smTestData.ApiTestData;
-var testEnvProps = smTestData.testEnv;
-var env = testEnvProps.dev;
-
+var config = envSettings.getConfig();
+manualRedirectSqlService.connection = config.dbRtLive;
 
 
 describe('PPE-81172:Get All Redirects For Entire System (optionally include Deleted)', () => {
 
+    var GetAllRedirectsForEntireSystem = {};
+    var _GetAllRedirectsForEntireSystem = {};
+
+
     before(() => {
 
-        GetAllRedirectsForEntireSystem = test.GetResult(env, testAssetProps.GetAll_Redirects_For_EntireSystem);
+        return Promise.resolve
+            (
+            manualRedirectSqlService.GetAllRedirectsForEntireSystem().then(function (records) {
+                _GetAllRedirectsForEntireSystem = records;
+
+            })
+            );
 
     });
 
-    it('Verify Get All Redirects For Entire System (optionally include Deleted)', () => {
-        expect(GetAllRedirectsForEntireSystem.statusCode).to.equal(200);
+    describe('Get All Redirects For Entire System', () => {
+        it('Get the Results from Api', () => {
 
+            GetAllRedirectsForEntireSystem = test.GetResult(_GetAllRedirectsForEntireSystem[0].apiGetAllRedirectsForEntireSystem);
+
+        });
+
+
+        it('Verify Get All Redirects For Entire System (optionally include Deleted)', () => {
+            expect(GetAllRedirectsForEntireSystem.statusCode).to.equal(200);
+
+        });
     });
 
 });
 
 describe('PPE-81172:Get All Redirects For Site ID (optionally include Deleted)', () => {
 
+    var GetAllRedirectsForSiteID = {};
+    var _GetAllRedirectsForSiteID = {};
+
+
     before(() => {
 
-        GetAllRedirectsForSiteID = test.GetResult(env, testAssetProps.GetAll_Redirects_ForSiteID);
+        return Promise.resolve
+            (
+            manualRedirectSqlService.GetAllRedirectsForSiteID().then(function (records) {
+                _GetAllRedirectsForSiteID = records;
+
+            })
+            );
 
     });
 
-    it('Verify Get All Redirects For Site ID (optionally include Deleted)', () => {
-        expect(GetAllRedirectsForSiteID.statusCode).to.equal(200);
+    describe('Get All Redirects For Site ID ', () => {
+        it('Get the Results from Api', () => {
+
+            GetAllRedirectsForSiteID = test.GetResult(_GetAllRedirectsForSiteID[0].apiGetAllRedirectsForSiteID);
+
+        });
+
+
+        it('Verify Get All Redirects For Site ID (optionally include Deleted', () => {
+
+            expect(GetAllRedirectsForSiteID.statusCode).to.equal(200);
+
+        });
     });
 
 });
 
 describe('PPE-81172:Get One Redirect By ID', () => {
 
+    var GetOneRedirectByID = {};
+    var _getByID = {};
+
+
     before(() => {
 
-        GetOneRedirectByID = test.GetResult(env, testAssetProps.GetOne_RedirectByID);
-        var res = sqldata.getOneRedirectByID();
+        return Promise.resolve
+            (
+            manualRedirectSqlService.getByID().then(function (records) {
+                _getByID = records;
+
+            })
+            );
 
     });
 
+    describe('Get One Redirect By ID', () => {
+        it('Get the Results from Api', () => {
 
-    it('Verify Get One Redirect By ID', () => {
+            GetOneRedirectByID = test.GetResult(_getByID[0].apigetByID);
 
-        expect(GetOneRedirectByID.statusCode).to.equal(200);
+        });
+
+
+        it('Verify Get One Redirect By ID', () => {
+
+            expect(GetOneRedirectByID.statusCode).to.equal(200);
+            expect(GetOneRedirectByID.body.Data.Id).to.equal(_getByID[0].Id);
+            expect(GetOneRedirectByID.body.Data.FromChronicId).to.equal(_getByID[0].FromChronicId);
+            expect(GetOneRedirectByID.body.Data.FromSiteId).to.equal(_getByID[0].FromSiteId);
+            expect(GetOneRedirectByID.body.Data.FromPrefix).to.equal(_getByID[0].FromPrefix);
+            expect(GetOneRedirectByID.body.Data.FromUrl).to.equal(_getByID[0].FromUrl);
+            expect(GetOneRedirectByID.body.Data.ToSiteId).to.equal(_getByID[0].ToSiteId);
+            expect(GetOneRedirectByID.body.Data.ToChronicId).to.equal(_getByID[0].ToChronicId);
+            expect(GetOneRedirectByID.body.Data.ToUrl).to.equal(_getByID[0].ToUrl);
+            expect(GetOneRedirectByID.body.Data.IsExternal).to.equal(_getByID[0].IsExternal);
+            expect(GetOneRedirectByID.body.Data.ModifiedBy).to.equal(_getByID[0].ModifiedBy);
+            expect(GetOneRedirectByID.body.Data.Status).to.equal(_getByID[0].Status);
+            expect(GetOneRedirectByID.body.Data.FromPage_ChronicID).to.equal(_getByID[0].FromPage_ChronicID);
+            expect(GetOneRedirectByID.body.Data.FromPage_SiteId).to.equal(_getByID[0].FromPage_SiteId);
+            expect(GetOneRedirectByID.body.Data.FromPage_Prefix).to.equal(_getByID[0].FromPage_Prefix);
+            expect(GetOneRedirectByID.body.Data.FromPage_Url).to.equal(_getByID[0].FromPage_Url);
+            expect(GetOneRedirectByID.body.Data.FromPage_Status).to.equal(_getByID[0].FromPage_Status);
+            expect(GetOneRedirectByID.body.Data.ToPage_Url).to.equal(_getByID[0].ToPage_Url);
+            expect(GetOneRedirectByID.body.Data.ToPage_Prefix).to.equal(_getByID[0].ToPage_Prefix);
+            expect(GetOneRedirectByID.body.Data.ToPage_SiteID).to.equal(_getByID[0].ToPage_SiteID);
+            expect(GetOneRedirectByID.body.Data.ToPage_Status).to.equal(_getByID[0].ToPage_Status);
+            expect(GetOneRedirectByID.body.Data.ToQString).to.equal(_getByID[0].ToQString);
+
+        });
     });
 
 });
 
 describe('PPE-81172:Get One Redirect By From Url', () => {
 
+    var GetOneRedirectByFromUrl = {};
+    var _GetOneRedirectByFromUrl = {};
+
+
     before(() => {
 
-        GetOneRedirectByFromUrl = test.GetResult(env, testAssetProps.GetOne_RedirectBy_FromUrl);
+        return Promise.resolve
+            (
+            manualRedirectSqlService.GetOneRedirectByFromUrl().then(function (records) {
+                _GetOneRedirectByFromUrl = records;
+
+            })
+            );
 
     });
 
-    it('Verify Get One Redirect By From Url', () => {
+    describe('Get One Redirect By From Url', () => {
+        it('Get the Results from Api', () => {
 
-        expect(GetOneRedirectByFromUrl.statusCode).to.equal(200);
+           GetOneRedirectByFromUrl = test.GetResult(_GetOneRedirectByFromUrl[0].apiGetOneRedirectByFromUrl);
+
+        });
+
+
+        it('Verify Get One Redirect By From Url', () => {
+            expect(GetOneRedirectByFromUrl.statusCode).to.equal(200);
+
+        });
     });
 
 });
@@ -73,176 +172,72 @@ describe('PPE-81172:Get One Redirect By From Url', () => {
 
 describe('PPE-81172:Get All Redirect From Url Pattern (must include the start of the url)', () => {
 
+    var GetAllRedirectFromUrlPattern = {};
+    var _GetAllRedirectFromUrlPattern = {};
+
+
     before(() => {
 
-        GetAllRedirectFromUrlPattern = test.GetResult(env, testAssetProps.GetAll_RedirectFromUrl_Pattern);
+        return Promise.resolve
+            (
+            manualRedirectSqlService.GetAllRedirectFromUrlPattern().then(function (records) {
+                _GetAllRedirectFromUrlPattern = records;
+
+            })
+            );
 
     });
 
-    it('Verify Get All Redirect From Url Pattern (must include the start of the url)', () => {
+    describe('Get All Redirect From Url Pattern', () => {
+        it('Get the Results from Api', () => {
 
-        expect(GetAllRedirectFromUrlPattern.statusCode).to.equal(200);
+           GetAllRedirectFromUrlPattern = test.GetResult(_GetAllRedirectFromUrlPattern[0].apiGetAllRedirectFromUrlPattern);
+
+        });
+
+
+        it('Verify Get All Redirect From Url Pattern (must include the start of the url)', () => {
+            expect(GetAllRedirectFromUrlPattern.statusCode).to.equal(200);
+
+        });
     });
 
 });
+
 
 describe('PPE-81172:Get All Redirect To Url Pattern (must include the start of the url)', () => {
 
+    var GetAllRedirectToUrlPattern = {};
+    var _GetAllRedirectToUrlPattern = {};
+
+
     before(() => {
 
-        GetAllRedirectToUrlPattern = test.GetResult(env, testAssetProps.GetAll_RedirectToUrl_Pattern);
+        return Promise.resolve
+            (
+            manualRedirectSqlService.GetAllRedirectToUrlPattern().then(function (records) {
+                _GetAllRedirectToUrlPattern = records;
+
+            })
+            );
 
     });
 
-    it('Verify Get All Redirect To Url Pattern (must include the start of the url)', () => {
+    describe('Get All Redirect To Url Pattern', () => {
+        it('Get the Results from Api', () => {
 
-        expect(GetAllRedirectToUrlPattern.statusCode).to.equal(200);
+           GetAllRedirectToUrlPattern = test.GetResult(_GetAllRedirectToUrlPattern[0].apiGetAllRedirectToUrlPattern);
+
+        });
+
+
+        it('Verify Get All Redirect To Url Pattern (must include the start of the url)', () => {
+            expect(GetAllRedirectToUrlPattern.statusCode).to.equal(200);
+
+        });
     });
 
 });
 
-describe('PPE-81172:Get All Redirect From a ChronicleID', () => {
 
-    before(() => {
 
-        GetAllRedirectFromaChronicleID = test.GetResult(env, testAssetProps.GetAll_RedirectFroma_ChronicleID);
-
-    });
-
-    it('Verify Get All Redirect From a ChronicleID', () => {
-
-        expect(GetAllRedirectFromaChronicleID.statusCode).to.equal(200);
-    });
-
-});
-
-
-describe('PPE-81172:Get All Redirects Redirected to a ChronicleID', () => {
-
-    before(() => {
-
-        GetAllRedirectsRedirectedtoaChronicleID = test.GetResult(env, testAssetProps.GetAll_RedirectsRedirectedtoa_ChronicleID);
-
-    });
-
-    it('Verify Get All Redirects Redirected to a ChronicleID', () => {
-
-        expect(GetAllRedirectsRedirectedtoaChronicleID.statusCode).to.equal(200);
-    });
-
-});
-
-describe('PPE-81172:Get All Redirects To a Url', () => {
-
-    before(() => {
-
-        GetAllRedirectsToaUrl = test.GetResult(env, testAssetProps.GetAll_Redirects_ToaUrl);
-
-    });
-
-    it('Verify Get All Redirects To a Url', () => {
-
-        expect(GetAllRedirectsToaUrl.statusCode).to.equal(200);
-    });
-
-});
-
-describe('PPE-81172:Export All Redirects To Csv File', () => {
-
-    before(() => {
-
-        ExportAllRedirectsToCsvFile = test.GetResult(env, testAssetProps.Export_AllRedirects_ToCsv_File);
-
-    });
-
-    it('Verify Export All Redirects To Csv File', () => {
-
-        expect(ExportAllRedirectsToCsvFile.statusCode).to.equal(200);
-    });
-
-});
-
-describe('PPE-81172:Export All Redirects For Site To Csv File', () => {
-
-    before(() => {
-
-        ExportAllRedirectsForSiteToCsvFile = test.GetResult(env, testAssetProps.Export_AllRedirects_ForSiteToCsv_File);
-
-    });
-
-    it('Verify Export All Redirects For Site To Csv File', () => {
-
-        expect(ExportAllRedirectsForSiteToCsvFile.statusCode).to.equal(200);
-    });
-
-});
-
-describe('PPE-81172:Create Redirect on Urls', () => {
-
-    before(() => {
-
-        CreateRedirectonUrls = test.PostResult(env, testAssetProps.Create_Redirect_on_Urls);
-
-    });
-
-    it('Verify Create Redirect on Urls', () => {
-        expect(CreateRedirectonUrls.body.StatusCode).to.equal(1);
-    });
-
-});
-
-describe('PPE-81172:Create Redirect on Chronicle IDS', () => {
-
-    before(() => {
-
-        CreateRedirectonChronicleIDS = test.PostResult(env, testAssetProps.Create_Redirect_on_ChronicleIDS);
-
-    });
-
-    it('Verify Create Redirect on Chronicle IDS', () => {
-        expect(CreateRedirectonChronicleIDS.body.StatusCode).to.equal(1);
-    });
-
-});
-
-describe('PPE-81172:Update To Url', () => {
-
-    before(() => {
-
-        UpdateToUrl = test.PutResult(env, testAssetProps.Update_To_Url);
-
-    });
-
-    it('Verify Update To Url', () => {
-        expect(UpdateToUrl.body.StatusCode).to.equal(1);
-    });
-
-});
-
-describe('PPE-81172:Replace To ChronicleID for All', () => {
-
-    before(() => {
-
-        ReplaceToChronicleIDforAll = test.PutResult(env, testAssetProps.Replace_To_ChronicleID_for_All);
-
-    });
-
-    it('Verify Replace To ChronicleID for All', () => {
-        expect(ReplaceToChronicleIDforAll.body.StatusCode).to.equal(1);
-    });
-
-});
-
-describe('PPE-81172:Delete One or more (mark Deletd by id)', () => {
-
-    before(() => {
-
-        DeleteOneormoreid = test.DeleteResult(env, testAssetProps.Delete_One_or_more);
-
-    });
-
-    it('Verify Delete One or more (mark Deletd by id)', () => {
-        expect(DeleteOneormoreid.body.StatusCode).to.equal(1);
-    });
-
-});
