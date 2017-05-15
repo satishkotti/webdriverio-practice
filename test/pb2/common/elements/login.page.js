@@ -7,6 +7,7 @@ var pbLoginPg = Object.create(page, {
     
     username: { get: function () { return browser.element('#username'); } },
     password: { get: function () { return browser.element('#password'); } },
+    site:     { get: function () { return browser.element('#site'); } },
     form:     { get: function () { return browser.element('#pb-login'); } },
     title:    { get: function () { return browser.getTitle(); } },
     failLoginText: { get: function () {

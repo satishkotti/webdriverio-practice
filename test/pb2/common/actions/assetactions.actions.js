@@ -32,6 +32,10 @@ module.exports.ClickShowExpired = () => {
     acts.splbutton.get('Expired').click();
 }
 
+module.exports.Save = () => {
+    acts.button.get('Save').click()
+}
+
 module.exports.SavePublish = (action, comment) => {
     switch (action.toLowerCase()) {
         case 'publish to staging':

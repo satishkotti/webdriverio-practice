@@ -9,9 +9,9 @@ var pmdata = Object.create(page, {
             "moduleName": moduleName,
             "moduleDispName": moduleName,
             "moduleType": "HTML",
-            "category": null,
+            "category": 'Responsive',
             "selectXSL": "HTML",
-            "selectCSS": null,
+            "selectCSS": 'Blank',
             "dynamicModuleCategory": null,
             "moduleLabel1":null,
             "moduleLabel2":null,
@@ -20,6 +20,14 @@ var pmdata = Object.create(page, {
             "description": moduleName + "-desc",
             "tier": "tier2",
 
+        }
+    }}
+    },
+		htmlModuleConfiguration: {value: {get : (moduleconf) =>{
+        var pmconf ={};
+        return pmconf =
+        {
+            "Module HTML": moduleconf,
         }
     }}
     }
