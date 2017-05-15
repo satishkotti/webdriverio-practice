@@ -35,6 +35,7 @@ var documentListObj = {
         documentListObj.powerPromoteAsset(assetName);
         documentListObj.publishAssetToStaging(assetName);
     },
+
      promoteAsset: function(assetName){
         documentListUI.promoteAsset(assetName);
     },
@@ -68,6 +69,7 @@ var documentListObj = {
     
      CheckVersionvalue: function(assetName){
         documentListUI.CheckVersionvalue(assetName);
-    }
+    },
+
 }
 module.exports = documentListObj;

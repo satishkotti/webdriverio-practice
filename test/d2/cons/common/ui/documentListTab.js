@@ -1,4 +1,5 @@
 var maxWaitTimeInMs = 50000;
+var contentTab = require('./../../common/actions/contentTab.actions');
 
 var ppModalLabel = "Power Promote Confirmation Message";
 var ppModalMsg = " Are you sure you want to power promote this document?"
@@ -307,6 +308,44 @@ var documentListUIObj = {
         }
         browser.click("//span[@title='" + assetName + "']");
         browser.pause(1000);
+    },
+
+    
+    GetVersionvalue: function (assetName) 
+    {
+
+        browser.leftClick("//span[@title='" + assetName + "']");
+            browser.pause(500);
+            browser.leftClick("//span[text()='Versions']");
+            browser.leftClick("//span[text()='Versions']");
+            browser.pause(500);
+            
+            var Outversionval = browser.execute(function () 
+            {
+               var inversionval=document.evaluate('//div[@id="DetailsVersionsWidget-0"]//following-sibling::td[contains(@class,"x-grid3-col x-grid3-cell x-grid3-td-r_version_label")]//span', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.innerHTML;
+               return inversionval;
+            });
+                var splitOutversionval =Outversionval.value;
+                splitOutversionval = splitOutversionval.split(',')[0];
+                return splitOutversionval;
+
+    },
+
+    CheckVersionvalue: function (assetName) 
+    {
+          var splitOutversionval=documentListUIObj.GetVersionvalue(assetName) ;
+          var expectmajorversionval = parseInt(splitOutversionval.split('.')[0]);
+          var expectminorversionval = parseInt(splitOutversionval.split('.')[1])+1;
+                browser.pause(2000);
+                contentTab.checkOut();
+                browser.frameParent();
+                contentTab.checkIn();
+           var splitOutversionval=documentListUIObj.GetVersionvalue(assetName) ;
+           var aftermajorversion = parseInt(splitOutversionval.split('.')[0]);
+           var afterminorversion = parseInt(splitOutversionval.split('.')[1]);
+                expect(expectmajorversionval).to.equal(aftermajorversion);
+                expect(expectminorversionval).to.equal(afterminorversion);
+            
     }
 }
 

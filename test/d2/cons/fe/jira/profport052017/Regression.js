@@ -38,6 +38,8 @@ describe('Regression', function () {
         documentListTab.selectAsset(AssetTitle);
         relationsTab.relations();
     });
+
+
      it('Verify the checkout , cancel and checkin operation', function () {
         documentListTab.selectAsset(AssetTitle);
         contentTab.checkOut();
@@ -45,6 +47,13 @@ describe('Regression', function () {
         contentTab.checkOut();
         contentTab.checkIn();
     });
+
+     it('Verify the Versions', function () {
+        documentListTab.selectAsset(AssetTitle);
+        documentListTab.CheckVersionvalue(AssetTitle);
+        
+    });
+    
       it('Verify the Mandatory fields, promote, demote and power promote', function () {
         documentListTab.selectAsset(AssetTitle);
         var cidName = propertiesTab.getChronicleIdAndName();
