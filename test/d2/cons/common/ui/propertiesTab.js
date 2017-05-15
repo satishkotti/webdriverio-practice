@@ -83,9 +83,9 @@ module.exports = {
         return browser.getValue("input#wbmd_bus_ref-input");
     },
     originalPublishDateSet: function(){
-          browser.click("//div[@id='wbmd_orig_pub_dt']/img")
-          browser.pause(1000);  
-          browser.click("//button[contains(.,'Today')]")
+          browser.click("//div[@id='wbmd_orig_pub_dt']/img");
+          browser.waitForVisible("//button[contains(.,'Now')]");
+          browser.click("//button[contains(.,'Now')]");
           //browser.setValue("input#wbmd_bus_ref-input", textValue);
           browser.pause(1000);
     },
