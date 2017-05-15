@@ -34,6 +34,40 @@ var documentListObj = {
         documentListObj.selectAsset(assetName);
         documentListObj.powerPromoteAsset(assetName);
         documentListObj.publishAssetToStaging(assetName);
+    },
+     promoteAsset: function(assetName){
+        documentListUI.promoteAsset(assetName);
+    },
+    demoteAsset: function(assetName){
+        documentListUI.demoteAsset(assetName);
+    },
+    powerPromoteAsset: function(assetName){
+        documentListUI.powerPromote(assetName);
+    },
+    schedulePublishAsset: function(assetName){
+        documentListUI.schedulePublishAsset(assetName);
+    },
+    expireAsset: function(assetName){
+    documentListUI.expireAsset(assetName);
+    },
+    scheduleExpireAsset: function(assetName){
+        documentListUI.scheduleExpireAsset(assetName);
+
+    },
+    publishAssetToStaging: function(assetName){
+        documentListUI.publishToStaging(assetName);
+    },
+    deleteArticle: function(assetName,DeleteVersionType){
+         documentListUI.deleteArticle(assetName,DeleteVersionType);
+     },
+     searchArticle: function(title)
+     {
+         documentListUI.searchArticle(title);
+
+     },
+    
+     CheckVersionvalue: function(assetName){
+        documentListUI.CheckVersionvalue(assetName);
     }
 }
 module.exports = documentListObj;
