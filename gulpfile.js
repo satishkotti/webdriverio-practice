@@ -16,6 +16,7 @@ var glob = require("glob");
 /*
 args.option('env', 'Environment targetted', "dev02")
     .option('branch', 'Master -- Will run all tests  branch/name (PPE-<branch name>) -- Will run branch tests  release release-sprint-<number>/integration runs sprint tests')
+<<<<<<< HEAD
     .option('samplesize', 'Sample Size', "10");
 */
 args.option('env', 'Environment targetted', "dev02")
@@ -23,11 +24,47 @@ args.option('env', 'Environment targetted', "dev02")
     .option('samplesize', 'Sample Size', "10")
     .option('conf', 'WebDriver IO Config file to run', "release.config.js");
 var flags = args.parse(process.argv);
+=======
+    .option('samplesize', 'Sample Size', "10")
+    .option('app', 'app name', "");
+var flags = args.parse(process.argv);
+
+var currentApp = flags.app;
+console.log('app: ' + currentApp);
+
+var appFolder;
+switch (currentApp) {
+    case 'rt':
+        appFolder = 'rt';
+        break;
+    case 'd2cons':
+        appFolder = 'd2/cons';
+        break;
+    case 'd2prof':
+        appFolder = 'd2/prof';
+        break;
+    case 'pb2':
+        appFolder = 'pb2';
+        break;
+}
+
+var appConfig = `./test/${appFolder}/config/release.config.js`
+var configpath = `./test/${appFolder}/config/${flags.env.toLowerCase()}.env`;
+require('dotenv').config({
+    path: configpath
+});
+>>>>>>> 287fdd2c3155976b4b22e7c55d77697e5b69baf2
 var error = chalk.bold.red;
 var tests = [];
 var currentBranch;
 gulp.task('branch', function (cb) {
+<<<<<<< HEAD
     return git.revParse({ args: '--abbrev-ref HEAD' }, function (err, branch) {
+=======
+    return git.revParse({
+        args: '--abbrev-ref HEAD'
+    }, function (err, branch) {
+>>>>>>> 287fdd2c3155976b4b22e7c55d77697e5b69baf2
         console.log('current git branch: ' + branch);
 
         if (branch === "HEAD" && flags.branch === undefined) {
@@ -43,32 +80,39 @@ gulp.task('branch', function (cb) {
             tests.push('jira/**/*.js');
         }
         else if (currentBranch.indexOf('release-pb2-') >= 0) {
+            tests.push(`test/${appFolder}/**/jira/**/*.js`);
+        } else if (currentBranch.indexOf('release-pb2-') >= 0) {
             var testfile = currentBranch.toLowerCase().split("release-pb2-")[1];
 
-            console.log('tests: ' + `jira/${testfile}/*.js`);
+            console.log('release tests: ' + `test/${appFolder}/**/jira/${testfile}/*.js`);
 
             if (testfile) {
-                tests.push(`jira/${testfile}/*.js`);
+                tests.push(`test/${appFolder}/**/jira/${testfile}/*.js`);
             } else {
-                tests.push('jira/**/*.js');
+                tests.push('test/${appFolder}/**/jira/**/*.js');
             }
         }
         else if (currentBranch.indexOf('integration-pb2-') >= 0) {
             var testfile = currentBranch.toLowerCase().split("integration-pb2-")[1];
 
             console.log('tests: ' + `jira/${testfile}/*.js`);
+        } else if (currentBranch.indexOf('integration-pb2-') >= 0) {
+            var testfile = currentBranch.toLowerCase().split("integration-pb2-")[1];
 
-            tests.push(`jira/${testfile}/*.js`);
+            console.log('integration tests: ' + `test/${appFolder}/**/jira/${testfile}/*.js`);
+>>>>>>> 287fdd2c3155976b4b22e7c55d77697e5b69baf2
+
+            tests.push(`test/${appFolder}/**/jira/${testfile}/*.js`);
         } else if (currentBranch.indexOf('PPE-') >= 0) {
             var testfile = currentBranch.toLowerCase().split("ppe-")[1].split("-")[0];
 
-            console.log('tests: ' + `jira/${testfile}/*.js`);
+            console.log('ppe tests: ' + `test/${appFolder}/**/jira/${testfile}/*.js`);
 
-            tests.push(`jira/**/${testfile}.js`);
+            tests.push(`test/${appFolder}/**/jira/**/${testfile}.js`);
         } else {
 
-            console.log('defaulting tests');
-            tests.push(`jira/**/*.js`);
+            console.log('tests: ' + `test/${appFolder}/**/jira/**/*.js`);
+            tests.push(`test/${appFolder}/**/jira/**/*.js`);
         }
 
         var results = [];
@@ -81,10 +125,10 @@ gulp.task('branch', function (cb) {
         if (results.length === 0) {
             console.log("Found no pattern running all tests");
             tests = [];
-            tests.push(`baseline/**/*.js`);
-            tests.push(`./test/pb2/fe/jira/**/*.js`);
-            tests.push(`regression/**/*.js`);
-            tests.push(`smoke/**/*.js`);
+            tests.push(`test/${appFolder}/**/baseline/**/*.js`);
+            tests.push(`test/${appFolder}/**/release29/*.js`);
+            tests.push(`test/${appFolder}/**/regression/**/*.js`);
+            tests.push(`test/${appFolder}/**/smoke/**/*.js`);
             console.log("Found no pattern running all tests", tests);
         } else {
             tests = results;
@@ -94,6 +138,7 @@ gulp.task('branch', function (cb) {
     });
 });
 
+<<<<<<< HEAD
 gulp.task('allbranches', function (cb) {
     return git.revParse({ args: '--abbrev-ref HEAD' }, function (err, branch) {
         console.log('current git branch: ' + branch);
@@ -110,6 +155,17 @@ gulp.task('webdriver', function (done) {
         specs: tests
     };
     var wdio = new Launcher(path.join(__dirname, flags.conf), releaseconfig.config);
+=======
+gulp.task('webdriver', function (done) {
+
+    console.log('running tests: ' + tests);
+
+    releaseconfig.config = {
+        specs: tests
+    };
+
+    var wdio = new Launcher(path.join(__dirname, appConfig), releaseconfig.config);
+>>>>>>> 287fdd2c3155976b4b22e7c55d77697e5b69baf2
     return wdio.run().then(function (code) {
         console.log(code);
     }, function (error) {
@@ -121,7 +177,11 @@ gulp.task('webdriver', function (done) {
 
 gulp.task('selenium', function (done) {
     selenium.install({
+<<<<<<< HEAD
         logger: function (message) { }
+=======
+        logger: function (message) {}
+>>>>>>> 287fdd2c3155976b4b22e7c55d77697e5b69baf2
     }, function (err) {
         if (err) return done(err);
 
