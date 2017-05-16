@@ -100,4 +100,3 @@ console.log('is access'+ newScopeMapNodePath);
             password: common.getQAPublicationInfo().password
         });
     });
-});

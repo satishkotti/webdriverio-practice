@@ -13,15 +13,19 @@ var _ = require("lodash");
 var releaseconfig = require('./wdio.conf.js');
 var glob = require("glob");
 
-args.option('env', 'Environment targetted', "dev02")
+args.option('env', 'Environment targetted', "")
     .option('branch', 'Master -- Will run all tests  branch/name (PPE-<branch name>) -- Will run branch tests  release release-sprint-<number>/integration runs sprint tests')
     .option('samplesize', 'Sample Size', "10")
-    .option('conf', 'WebDriver IO Config file to run', "release.config.js");
+    .option('conf', 'WebDriver IO Config file to run', "")
+    .option('app', 'App', '');
 
 var flags = args.parse(process.argv);
 
 var currentApp = flags.app;
 console.log('app: ' + currentApp);
+
+var conf = flags.conf;
+var testEnv = flags.env;
 
 var error = chalk.bold.red;
 var tests = [];
@@ -39,7 +43,13 @@ switch (currentApp) {
         appFolder = 'd2/prof';
         break;
     case 'pb2':
-        appFolder = 'pb2';
+        if(testEnv.length == 0)
+            testEnv = 'qa02';
+        if(conf.length == 0)
+        {
+            appFolder = 'pb2';
+            conf = './wdio.conf';
+        }
         break;
 }
 
@@ -132,9 +142,8 @@ gulp.task('webdriver', function (done) {
     releaseconfig.config = {
         specs: tests
     };
-    var wdio = new Launcher(path.join(__dirname, flags.conf), releaseconfig.config);
+    var wdio = new Launcher(path.join(__dirname, conf), releaseconfig.config);
     return wdio.run().then(function (code) {
-        console.log('Running wdio config file' + flags.conf);
         console.log(code);
     }, function (error) {
         console.error('Launcher failed to start the test', error.stacktrace);
@@ -172,4 +181,4 @@ gulp.task('default', function () {
     });
 });
 
-module.exports.TestEnv = flags.env;
+module.exports.TestEnv = testEnv;
