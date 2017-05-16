@@ -18,7 +18,8 @@ describe('Regression', function () {
     var chronicleId;
     var AssetTitle;
     var AssetName;
-
+    var cidName;
+     var objName;
     before(function () {
         login.loginWithNewWindow({
             url: functions.getEnvTestUrl(),
@@ -34,9 +35,16 @@ describe('Regression', function () {
             AssetTitle,
             AssetName);
     });
+
+   
+
+    
+
+
     it('Verify the relations', function () {
         documentListTab.selectAsset(AssetTitle);
         relationsTab.relations();
+        
     });
 
 
@@ -48,45 +56,70 @@ describe('Regression', function () {
         contentTab.checkIn();
     });
 
-     it('Verify the Versions', function () {
-        documentListTab.selectAsset(AssetTitle);
-        documentListTab.CheckVersionvalue(AssetTitle);
-        
-    });
+   
     
       it('Verify the Mandatory fields, promote, demote and power promote', function () {
         documentListTab.selectAsset(AssetTitle);
-        var cidName = propertiesTab.getChronicleIdAndName();
-        var objName = cidName.objectName;
+        cidName = propertiesTab.getChronicleIdAndName();
+        objName = cidName.objectName;
         chronicleId = cidName.chronicleId;
         propertiesTab.setRequiredProperties(objName, 'News', objName, objName, objName, objName, 'WebMD Medical News', '2015 WebMD', 'ADD-ADHD (Adult)');
-       documentListTab.promoteAsset(AssetTitle);
-       documentListTab.demoteAsset(AssetTitle);
-       documentListTab.powerPromoteAsset(AssetTitle);
-       documentListTab.publishAssetToStaging(AssetTitle);
+        contentTab.checkOut();
+        contentTab.Setimage("Thumbnail Image","Heart");
+        var TImagelinkVal=contentTab.ImagelinkVal("Thumbnail Image");
+        contentTab.Setimage("Media Asset","Heart");
+        var MImagelinkVal=contentTab.ImagelinkVal("Media Asset");
+        browser.frameParent();
+        contentTab.checkIn();
+        documentListTab.promoteAsset(AssetTitle);
+        documentListTab.demoteAsset(AssetTitle);
+        documentListTab.powerPromoteAsset(AssetTitle);
+        documentListTab.publishAssetToStaging(AssetTitle);
+        browser.pause(5000);
 
-        browser.call(function () {
+           browser.call(function () {
             return Promise.resolve(
-                parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + "091e9c5e816b371d", null).then(function (result) {
+                parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
+                    var style = 'float:' + global.d2ConDataSettings.inputData.ShareableAlign.toLowerCase() + ';';
                     var Asset = JSONPath({
                         json: result,
                         path: "$..metadata_section",
                         resultType: 'all'
                     });
-                    expect(Asset[0].parent.metadata_section.i_chronicle_id).to.equal("091e9c5e816b371d");
 
-                  }));
-                });
+                     var Content = JSONPath({
+                        json: result,
+                        path: "$..content_section",
+                        resultType: 'all'
+                    });
+
+                     
+                    
+
+                    expect(Asset[0].parent.metadata_section.i_chronicle_id).to.equal(chronicleId);
+                    expect(Content[0].parent.content_section.cons_news.thumbnail_image.$.path).to.equal(TImagelinkVal);
+                    expect(Content[0].parent.content_section.cons_news.media_asset.$.path).to.equal(MImagelinkVal);
+
+                      }));
+        });
+
+
     });
-    it.skip('Verify the Expire and delete operations', function () {
+
+      it('Verify the Versions', function () {
         documentListTab.selectAsset(AssetTitle);
-         var cidName = propertiesTab.getChronicleIdAndName();
-        var objName = cidName.objectName;
-        chronicleId = cidName.chronicleId;
-        propertiesTab.setRequiredProperties(objName, 'News', objName, objName, objName, objName, 'WebMD Medical News', '2015 WebMD', 'ADD-ADHD (Adult)');
+        documentListTab.CheckVersionvalue(AssetTitle);
+        
+    });
+    it('Verify the Expire and delete operations', function () {
+        documentListTab.selectAsset(AssetTitle);
+        documentListTab.selectAsset(AssetTitle);
         documentListTab.powerPromoteAsset(AssetTitle);
         documentListTab.expireAsset(AssetTitle);
         documentListTab.deleteArticle(objName,global.d2ConDataSettings.inputData.DeleteAllversions);
+        browser.pause(5000)
         documentListTab.searchArticle(chronicleId);
     });
+
+    
 });

@@ -334,8 +334,8 @@ var documentListUIObj = {
     CheckVersionvalue: function (assetName) 
     {
           var splitOutversionval=documentListUIObj.GetVersionvalue(assetName) ;
-          var expectmajorversionval = parseInt(splitOutversionval.split('.')[0]);
-          var expectminorversionval = parseInt(splitOutversionval.split('.')[1])+1;
+          var expectmajorversionval = parseInt(splitOutversionval.split('.')[0])+1;
+          var expectminorversionval = parseInt(splitOutversionval.split('.')[1])-1;
                 browser.pause(2000);
                 contentTab.checkOut();
                 browser.frameParent();

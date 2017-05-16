@@ -8,6 +8,7 @@ var checkoutButtonSelector = "//button[contains(string(),'Check-out')]";
 var checkInButonSelector = "//button[contains(string(),'Check-in')]";
 var contentTabSelector = "//span[text()='Content']";
 var contentPaneFrameSelector = "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
+var Helper = require('./../functions/functions');
 
 var contentTabUIObj = {
     switchToMainFrame: function(){
@@ -146,7 +147,48 @@ var contentTabUIObj = {
             browser.click("//div[@id='x-menu-el-toggleViewWidget-menuItem']//span[text()='Collapse']");
             browser.pause(5000);
         }
+    },
+
+
+     ImageClick:function(Imagemodule){
+        var ImageSelector= "//h2[span[contains(.,'"+Imagemodule+"')]]//following-sibling::div//div//div//div[@class='column']//button[@ng-click='repoImageSelector()']";
+        browser.waitForVisible(ImageSelector,maxWaitTimeInMs);
+        browser.moveToObject(ImageSelector);
+        browser.leftClick(ImageSelector);
+        browser.pause(10000);
+    },
+
+    setImageType: function (moduleType) {
+        Helper.verfiyElementExists("select[ng-model='viewType']", maxWaitTimeInMs);
+        browser.click("select[ng-model='viewType']");
+        browser.click("//option[contains(.,'" + moduleType + "')]");
+        browser.pause(1000);
+
+    },
+    setImageSearchValue: function (text) {
+        Helper.verfiyElementExists("input[placeholder='Search by keyword']", maxWaitTimeInMs);
+
+        browser.setValue("input[placeholder='Search by keyword']", text);
+        browser.click("span[class='input-group-addon']");
+        browser.pause(5000);
+    },
+    clickImageSearchResult: function () {
+        Helper.verfiyElementExists("div.ng-scope > table >tbody > tr:nth-child(1) >td:nth-child(1) >img ", 90000);
+        browser.click("div.ng-scope > table >tbody > tr:nth-child(1) >td:nth-child(1) >img ");
+        browser.pause(5000);
+    },
+    selectImage: function () {
+        browser.click("//div[@class='modal-footer']//button[contains(string(),'Select')]");
+        browser.pause(1000);
+        
+    },
+    ImagelinkVal:function (Imagemodule) {
+        var ImageSelector= "//h2[span[contains(.,'"+Imagemodule+"')]]//following-sibling::div//div//div//div[@class='ng-binding']";
+        browser.waitForVisible(ImageSelector,maxWaitTimeInMs);
+        var imagelinkval = browser.getText(ImageSelector);
+        return imagelinkval;
     }
+
 }
 
 module.exports = contentTabUIObj;
