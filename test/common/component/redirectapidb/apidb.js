@@ -14,7 +14,11 @@ module.exports = {
         mssql.connection = this.connection;
 
         var sql = `
-                select top 1 ('get-all?&includeDeleted=' + CAST(is_core_site AS varchar(10))) As apiGetAllRedirectsForEntireSystem from webmd_domains where is_core_site=1
+                        DECLARE @includeDeleted varchar(2)
+                        DECLARE @sql nvarchar(4000)
+                        set @includeDeleted = 1
+                        SET @sql = ('get-all?&includeDeleted=' + @includeDeleted ) 
+                        select @sql as apiGetAllRedirectsForEntireSystem
                       
                     `;
 
@@ -23,11 +27,17 @@ module.exports = {
             mssql.executeSql(sql)
             );
     },
-     GetAllRedirectsForSiteID: function () {
+    GetAllRedirectsForSiteID: function () {
         mssql.connection = this.connection;
 
         var sql = `
-                select top 1 ('get-all-for-site?siteID=' + CAST(site_id AS varchar(10)) + '&includeDeleted=' + CAST(is_core_site AS varchar(10))) As apiGetAllRedirectsForSiteID from webmd_domains where site_id=7 and is_core_site=1
+                            DECLARE @siteID varchar(2)
+                            DECLARE @includeDeleted varchar(2)
+                            DECLARE @sql nvarchar(4000)
+                            set @siteID=3
+                            set @includeDeleted = 1
+                            SET @sql = ('get-all-for-site?siteID=' + @siteID + '&includeDeleted=' + @includeDeleted ) 
+                            select @sql as apiGetAllRedirectsForSiteID
                       
                     `;
 
@@ -75,7 +85,7 @@ AND R.To_Site_Id = ToPage.site_id
             mssql.executeSql(sql)
             );
     },
-   
+
     GetOneRedirectByFromUrl: function () {
         mssql.connection = this.connection;
 
@@ -124,16 +134,16 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-              SELECT TOP 1 ('search-start-of-to-url?startsWith='+'http://' + PTo.Prefix + '.' + D.Domain + PTo.friendly_url + '&includeDeleted='+CAST(D.is_core_site AS varchar(10))) AS apiGetAllRedirectToUrlPattern
-FROM Manual_Redirect R
-INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
-INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
-AND R.To_Site_ID = PTo.Site_ID
-INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
-AND D.is_core_site = 1
-WHERE R.status <> 'd'
-  AND PFrom.Status <> 'd'
-  AND PTo.Status <> 'd'
+                SELECT TOP 1 ('search-start-of-to-url?startsWith='+'http://' + PTo.Prefix + '.' + D.Domain + PTo.friendly_url + '&includeDeleted='+CAST(D.is_core_site AS varchar(10))) AS apiGetAllRedirectToUrlPattern
+                FROM Manual_Redirect R
+                INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
+                INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
+                AND R.To_Site_ID = PTo.Site_ID
+                INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
+                AND D.is_core_site = 1
+                WHERE R.status <> 'd'
+                AND PFrom.Status <> 'd'
+                AND PTo.Status <> 'd'
                       
                     `;
 
@@ -142,5 +152,97 @@ WHERE R.status <> 'd'
             mssql.executeSql(sql)
             );
     },
+    GetAllRedirectFromaChronicleID: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                        SELECT TOP 1 ('get-by-from-chronicle-id?chronicleid='+CAST(R.From_Chronic_Id AS varchar(100))) AS apiGetAllRedirectFromaChronicleID
+                        FROM Manual_Redirect R
+                        WHERE R.status <> 'd'
+                      
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+    GetAllRedirectsRedirectedtoaChronicleID: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                        SELECT TOP 1 ('get-by-to-chronicle-id?chronicleid='+CAST(R.To_Chronic_Id AS varchar(100))) AS apiGetAllRedirectsRedirectedtoaChronicleID
+                        FROM Manual_Redirect R
+                        WHERE R.status <> 'd'
+                      
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+    GetAllRedirectsToaUrl: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                            SELECT TOP 1 ('get-by-to-url?toUrl='+ R.To_URL + '&includeDeleted='+CAST(D.is_core_site AS varchar(10))) AS apiGetAllRedirectsToaUrl
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
+                            INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
+                            AND D.is_core_site = 1
+                            WHERE R.To_URL IS NOT NULL and  R.status <> 'd'
+                      
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+     ExportAllRedirectsToCsvFile: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                        DECLARE @includeDeleted varchar(2)
+                        DECLARE @includeAllFields varchar(2)
+                        DECLARE @sql nvarchar(4000)
+                        set @includeAllFields = 1
+                        set @includeDeleted = 1
+                        SET @sql = ('export-all-to-csv?includeAllFields=' + @includeAllFields + '&includeDeleted='+ @includeDeleted) 
+                        select @sql as apiExportAllRedirectsToCsvFile
+                      
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+    ExportAllRedirectsForSiteToCsvFile: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                            DECLARE @siteID varchar(2)
+                            DECLARE @includeAllFieldsBool varchar(2)
+                            DECLARE @includeDeleted varchar(2)
+                            DECLARE @sql nvarchar(4000)
+                            set @siteID=3
+                            set @includeAllFieldsBool = 1
+                            set @includeDeleted = 1
+
+                            SET @sql = ('export-all-for-site-to-csv?siteID=' + @siteID + '&includeAllFields='+ @includeAllFieldsBool +'&includeDeleted=' + @includeDeleted ) 
+
+                            select @sql as apiExportAllRedirectsForSiteToCsvFile
+                                               
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+
     
+
 };

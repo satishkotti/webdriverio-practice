@@ -226,7 +226,7 @@ describe('PPE-81172:Get All Redirect To Url Pattern (must include the start of t
     describe('Get All Redirect To Url Pattern', () => {
         it('Get the Results from Api', () => {
 
-           GetAllRedirectToUrlPattern = test.GetResult(_GetAllRedirectToUrlPattern[0].apiGetAllRedirectToUrlPattern);
+            GetAllRedirectToUrlPattern = test.GetResult(_GetAllRedirectToUrlPattern[0].apiGetAllRedirectToUrlPattern);
 
         });
 
@@ -240,4 +240,172 @@ describe('PPE-81172:Get All Redirect To Url Pattern (must include the start of t
 });
 
 
+describe('PPE-81172:Get All Redirect From a ChronicleID', () => {
+
+    var GetAllRedirectFromaChronicleID = {};
+    var _GetAllRedirectFromaChronicleID = {};
+
+
+    before(() => {
+
+        return Promise.resolve
+            (
+            manualRedirectSqlService.GetAllRedirectFromaChronicleID().then(function (records) {
+                _GetAllRedirectFromaChronicleID = records;
+
+            })
+            );
+
+    });
+
+    describe('Get All Redirect From a ChronicleID', () => {
+        it('Get the Results from Api', () => {
+
+            GetAllRedirectFromaChronicleID = test.GetResult(_GetAllRedirectFromaChronicleID[0].apiGetAllRedirectFromaChronicleID);
+
+        });
+
+
+        it('Verify Get All Redirect From a ChronicleID', () => {
+            expect(GetAllRedirectFromaChronicleID.statusCode).to.equal(200);
+
+        });
+    });
+
+});
+
+
+describe('PPE-81172:Get All Redirects Redirected to a ChronicleID', () => {
+
+    var GetAllRedirectsRedirectedtoaChronicleID = {};
+    var _GetAllRedirectsRedirectedtoaChronicleID = {};
+
+
+    before(() => {
+
+        return Promise.resolve
+            (
+            manualRedirectSqlService.GetAllRedirectsRedirectedtoaChronicleID().then(function (records) {
+                _GetAllRedirectsRedirectedtoaChronicleID = records;
+
+            })
+            );
+
+    });
+
+    describe('Get All Redirects Redirected to a ChronicleID', () => {
+        it('Get the Results from Api', () => {
+
+            GetAllRedirectsRedirectedtoaChronicleID = test.GetResult(_GetAllRedirectsRedirectedtoaChronicleID[0].apiGetAllRedirectsRedirectedtoaChronicleID);
+
+        });
+
+
+        it('Verify Get All Redirects Redirected to a ChronicleID', () => {
+            expect(GetAllRedirectsRedirectedtoaChronicleID.statusCode).to.equal(200);
+
+        });
+    });
+
+});
+
+describe('PPE-81172:Get All Redirects To a Url', () => {
+
+    var GetAllRedirectsToaUrl = {};
+    var _GetAllRedirectsToaUrl = {};
+
+
+    before(() => {
+
+        return Promise.resolve
+            (
+            manualRedirectSqlService.GetAllRedirectsToaUrl().then(function (records) {
+                _GetAllRedirectsToaUrl = records;
+
+            })
+            );
+
+    });
+
+    describe('Get All Redirects To a Url', () => {
+        it('Get the Results from Api', () => {
+
+            GetAllRedirectsToaUrl = test.GetResult(_GetAllRedirectsToaUrl[0].apiGetAllRedirectsToaUrl);
+
+        });
+
+
+        it('Verify Get All Redirects To a Url', () => {
+            expect(GetAllRedirectsToaUrl.statusCode).to.equal(200);
+
+        });
+    });
+
+});
+
+describe('PPE-81172:Export All Redirects To Csv File', () => {
+
+    var ExportAllRedirectsToCsvFile = {};
+    var _ExportAllRedirectsToCsvFile = {};
+
+
+    before(() => {
+
+        return Promise.resolve
+            (
+            manualRedirectSqlService.ExportAllRedirectsToCsvFile().then(function (records) {
+                _ExportAllRedirectsToCsvFile = records;
+
+            })
+            );
+
+    });
+
+    describe('Export All Redirects To Csv File', () => {
+        it('Get the Results from Api', () => {
+
+            ExportAllRedirectsToCsvFile = test.GetResult(_ExportAllRedirectsToCsvFile[0].apiExportAllRedirectsToCsvFile);
+
+        });
+
+        it('Verify Export All Redirects To Csv File', () => {
+            expect(ExportAllRedirectsToCsvFile.statusCode).to.equal(200);
+
+        });
+    });
+
+});
+describe('PPE-81172:Export All Redirects For Site To Csv File', () => {
+
+    var ExportAllRedirectsForSiteToCsvFile = {};
+    var _ExportAllRedirectsForSiteToCsvFile = {};
+
+
+    before(() => {
+
+        return Promise.resolve
+            (
+            manualRedirectSqlService.ExportAllRedirectsForSiteToCsvFile().then(function (records) {
+                _ExportAllRedirectsForSiteToCsvFile = records;
+
+            })
+            );
+
+    });
+
+    describe('Export All Redirects For Site To Csv File', () => {
+        it('Get the Results from Api', () => {
+
+            ExportAllRedirectsForSiteToCsvFile = test.GetResult(_ExportAllRedirectsForSiteToCsvFile[0].apiExportAllRedirectsForSiteToCsvFile);
+
+        });
+
+
+        it('Verify Export All Redirects For Site To Csv File', () => {
+            expect(ExportAllRedirectsForSiteToCsvFile.statusCode).to.equal(200);
+
+        });
+    });
+
+});
 
