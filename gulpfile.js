@@ -13,11 +13,12 @@ var _ = require("lodash");
 var releaseconfig = require('./wdio.conf.js');
 var glob = require("glob");
 
-args.option('env', 'Environment targetted', "")
+args.option('env', 'Environment targetted', "dev01")
     .option('branch', 'Master -- Will run all tests  branch/name (PPE-<branch name>) -- Will run branch tests  release release-sprint-<number>/integration runs sprint tests')
     .option('samplesize', 'Sample Size', "10")
     .option('conf', 'WebDriver IO Config file to run', "")
-    .option('app', 'App', '');
+    .option('app', 'App', '')
+    .option('maxInstances', 'Maximum number of instances a browser can have', 1);
 
 var flags = args.parse(process.argv);
 
@@ -32,6 +33,7 @@ var tests = [];
 var currentBranch;
 
 var appFolder;
+
 switch (currentApp) {
     case 'rt':
         appFolder = 'rt';
@@ -43,16 +45,13 @@ switch (currentApp) {
         appFolder = 'd2/prof';
         break;
     case 'pb2':
-        if(testEnv.length == 0)
-            testEnv = 'qa02';
-        if(conf.length == 0)
-        {
-            appFolder = 'pb2';
-            conf = './wdio.conf';
-        }
+        appFolder = 'pb2';
         break;
 }
 
+if (conf.length == 0) {
+    conf = `./test/${appFolder}/config/wdio/wdio.default.conf`;
+}
 gulp.task('branch', function (cb) {
     return git.revParse({ args: '--abbrev-ref HEAD' }, function (err, branch) {
         console.log('current git branch: ' + branch);
@@ -68,6 +67,8 @@ gulp.task('branch', function (cb) {
 
         if (currentBranch.indexOf('master') === 0) {
             tests.push('jira/**/*.js');
+            var testRunner = require(conf).config;
+            testRunner.specs = tests;
         }
         else if (currentBranch.indexOf('release-pb2-') >= 0) {
             tests.push(`test/${appFolder}/**/jira/**/*.js`);
@@ -75,33 +76,31 @@ gulp.task('branch', function (cb) {
             var testfile = currentBranch.toLowerCase().split("release-pb2-")[1];
 
             console.log('release tests: ' + `test/${appFolder}/**/jira/${testfile}/*.js`);
-
+            var testRunner = require(conf).config;
             if (testfile) {
                 tests.push(`test/${appFolder}/**/jira/${testfile}/*.js`);
+                testRunner.specs = tests;
             } else {
                 tests.push('test/${appFolder}/**/jira/**/*.js');
+                testRunner.specs = tests;
             }
         }
         else if (currentBranch.indexOf('integration-pb2-') >= 0) {
             var testfile = currentBranch.toLowerCase().split("integration-pb2-")[1];
-
             console.log('tests: ' + `jira/${testfile}/*.js`);
-        } else if (currentBranch.indexOf('integration-pb2-') >= 0) {
-            var testfile = currentBranch.toLowerCase().split("integration-pb2-")[1];
-
-            console.log('integration tests: ' + `test/${appFolder}/**/jira/${testfile}/*.js`);
-
-            tests.push(`test/${appFolder}/**/jira/${testfile}/*.js`);
+            var testRunner = require(conf).config;
+            testRunner.specs = tests;
         } else if (currentBranch.indexOf('PPE-') >= 0) {
             var testfile = currentBranch.toLowerCase().split("ppe-")[1].split("-")[0];
-
             console.log('ppe tests: ' + `test/${appFolder}/**/jira/${testfile}/*.js`);
-
             tests.push(`test/${appFolder}/**/jira/**/${testfile}.js`);
+            var testRunner = require(conf).config;
+            testRunner.specs = tests;
         } else {
-
             console.log('tests: ' + `test/${appFolder}/**/jira/**/*.js`);
             tests.push(`test/${appFolder}/**/jira/**/*.js`);
+            var testRunner = require(conf).config;
+            testRunner.specs = tests;
         }
 
         var results = [];
@@ -114,11 +113,12 @@ gulp.task('branch', function (cb) {
         if (results.length === 0) {
             console.log("Found no pattern running all tests");
             tests = [];
-            tests.push(`test/${appFolder}/**/baseline/**/*.js`);
-            tests.push(`test/${appFolder}/**/release29/*.js`);
+            //tests.push(`test/${appFolder}/**/baseline/**/*.js`);
+            tests.push(`test/${appFolder}/**/jira/**/*.js`);
             tests.push(`test/${appFolder}/**/regression/**/*.js`);
             tests.push(`test/${appFolder}/**/smoke/**/*.js`);
-            console.log("Found no pattern running all tests", tests);
+            var testRunner = require(conf).config;
+            testRunner.specs = tests;
         } else {
             tests = results;
         }
@@ -181,4 +181,8 @@ gulp.task('default', function () {
     });
 });
 
-module.exports.TestEnv = testEnv;
+module.exports = {
+    TestEnv: testEnv,
+    MaxInstances: flags.maxInstances
+
+}
