@@ -8,30 +8,11 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Mocha Tests",
-            "cwd": "${workspaceRoot}",
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/mocha",
-            "windows": {
-                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/mocha.cmd"
-            },
-            "runtimeArgs": [
-                "-u",
-                "tdd",
-                "--timeout",
-                "999999",
-                "--colors",
-                "${workspaceRoot}/test/pb2/fe/baseline/myTest.js"
-            ],
-            "internalConsoleOptions": "openOnSessionStart"
-        },
-        {
-            "type": "node",
-            "request": "launch",
             "port": 5859,
             "name": "WebdriverIO",
             "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
             "windows": {
-                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio.cmd"
+                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio"
             },
             "cwd": "${workspaceRoot}",
             "console": "integratedTerminal",
@@ -39,8 +20,7 @@
             // (e.g., a file in test/spec/):
             "args":[
                 "--spec", "${relativeFile}",
-                "--testEnv=dev04",
-                "--testApp=d2prof"
+                "wdio.pbtest.conf"
                 // To run a specific file, you can also do:
                 //"--spec", "test/specs/foo.spec.js"
             ]

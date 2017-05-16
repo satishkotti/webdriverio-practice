@@ -10,7 +10,7 @@ module.exports.Login = (user, pass, website) => {
         LoginPage.username.setValue(user);
         LoginPage.password.setValue(pass);
         if(website !=null){
-                LoginPage.site.selectByVisibleText(website);
+                LoginPage.select('Site',website);
         }
         LoginPage.submit();
         LoginPage.browser.waitForVisible("#grid-favorites");
