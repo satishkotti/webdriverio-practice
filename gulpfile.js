@@ -13,24 +13,19 @@ var _ = require("lodash");
 var releaseconfig = require('./wdio.conf.js');
 var glob = require("glob");
 
-/*
-args.option('env', 'Environment targetted', "dev02")
-    .option('branch', 'Master -- Will run all tests  branch/name (PPE-<branch name>) -- Will run branch tests  release release-sprint-<number>/integration runs sprint tests')
-<<<<<<< HEAD
-    .option('samplesize', 'Sample Size', "10");
-*/
 args.option('env', 'Environment targetted', "dev02")
     .option('branch', 'Master -- Will run all tests  branch/name (PPE-<branch name>) -- Will run branch tests  release release-sprint-<number>/integration runs sprint tests')
     .option('samplesize', 'Sample Size', "10")
     .option('conf', 'WebDriver IO Config file to run', "release.config.js");
-var flags = args.parse(process.argv);
-=======
-    .option('samplesize', 'Sample Size', "10")
-    .option('app', 'app name', "");
+
 var flags = args.parse(process.argv);
 
 var currentApp = flags.app;
 console.log('app: ' + currentApp);
+
+var error = chalk.bold.red;
+var tests = [];
+var currentBranch;
 
 var appFolder;
 switch (currentApp) {
@@ -48,23 +43,8 @@ switch (currentApp) {
         break;
 }
 
-var appConfig = `./test/${appFolder}/config/release.config.js`
-var configpath = `./test/${appFolder}/config/${flags.env.toLowerCase()}.env`;
-require('dotenv').config({
-    path: configpath
-});
->>>>>>> 287fdd2c3155976b4b22e7c55d77697e5b69baf2
-var error = chalk.bold.red;
-var tests = [];
-var currentBranch;
 gulp.task('branch', function (cb) {
-<<<<<<< HEAD
     return git.revParse({ args: '--abbrev-ref HEAD' }, function (err, branch) {
-=======
-    return git.revParse({
-        args: '--abbrev-ref HEAD'
-    }, function (err, branch) {
->>>>>>> 287fdd2c3155976b4b22e7c55d77697e5b69baf2
         console.log('current git branch: ' + branch);
 
         if (branch === "HEAD" && flags.branch === undefined) {
@@ -100,7 +80,6 @@ gulp.task('branch', function (cb) {
             var testfile = currentBranch.toLowerCase().split("integration-pb2-")[1];
 
             console.log('integration tests: ' + `test/${appFolder}/**/jira/${testfile}/*.js`);
->>>>>>> 287fdd2c3155976b4b22e7c55d77697e5b69baf2
 
             tests.push(`test/${appFolder}/**/jira/${testfile}/*.js`);
         } else if (currentBranch.indexOf('PPE-') >= 0) {
@@ -138,7 +117,6 @@ gulp.task('branch', function (cb) {
     });
 });
 
-<<<<<<< HEAD
 gulp.task('allbranches', function (cb) {
     return git.revParse({ args: '--abbrev-ref HEAD' }, function (err, branch) {
         console.log('current git branch: ' + branch);
@@ -155,18 +133,8 @@ gulp.task('webdriver', function (done) {
         specs: tests
     };
     var wdio = new Launcher(path.join(__dirname, flags.conf), releaseconfig.config);
-=======
-gulp.task('webdriver', function (done) {
-
-    console.log('running tests: ' + tests);
-
-    releaseconfig.config = {
-        specs: tests
-    };
-
-    var wdio = new Launcher(path.join(__dirname, appConfig), releaseconfig.config);
->>>>>>> 287fdd2c3155976b4b22e7c55d77697e5b69baf2
     return wdio.run().then(function (code) {
+        console.log('Running wdio config file' + flags.conf);
         console.log(code);
     }, function (error) {
         console.error('Launcher failed to start the test', error.stacktrace);
@@ -177,11 +145,7 @@ gulp.task('webdriver', function (done) {
 
 gulp.task('selenium', function (done) {
     selenium.install({
-<<<<<<< HEAD
         logger: function (message) { }
-=======
-        logger: function (message) {}
->>>>>>> 287fdd2c3155976b4b22e7c55d77697e5b69baf2
     }, function (err) {
         if (err) return done(err);
 
