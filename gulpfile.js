@@ -12,6 +12,7 @@ var glob = require("glob");
 var _ = require("lodash");
 var releaseconfig = require('./wdio.conf.js');
 var glob = require("glob");
+var fs = require("fs");
 
 args.option('env', 'Environment targetted', "dev01")
     .option('branch', 'Master -- Will run all tests  branch/name (PPE-<branch name>) -- Will run branch tests  release release-sprint-<number>/integration runs sprint tests')
@@ -53,7 +54,9 @@ if (conf.length == 0) {
     conf = `./test/${appFolder}/config/wdio/wdio.default.conf`;
 }
 gulp.task('branch', function (cb) {
-    return git.revParse({ args: '--abbrev-ref HEAD' }, function (err, branch) {
+    return git.revParse({
+        args: '--abbrev-ref HEAD'
+    }, function (err, branch) {
         console.log('current git branch: ' + branch);
 
         if (branch === "HEAD" && flags.branch === undefined) {
@@ -64,45 +67,36 @@ gulp.task('branch', function (cb) {
             branch = flags.branch;
         }
         currentBranch = branch;
-
+        
+        var testRunner = require(conf).config;
         if (currentBranch.indexOf('master') === 0) {
-            tests.push('jira/**/*.js');
-            var testRunner = require(conf).config;
-            testRunner.specs = tests;
-        }
-        else if (currentBranch.indexOf('release-pb2-') >= 0) {
+            console.log('master: ' + `test/${appFolder}/**/${testfile}/*.js`);
+            tests.push(`test/${appFolder}/**/${testfile}/*.js`);
+        } else if (currentBranch.indexOf('release-pb2-') >= 0) {
             tests.push(`test/${appFolder}/**/jira/**/*.js`);
         } else if (currentBranch.indexOf('release-pb2-') >= 0) {
             var testfile = currentBranch.toLowerCase().split("release-pb2-")[1];
 
-            console.log('release tests: ' + `test/${appFolder}/**/jira/${testfile}/*.js`);
-            var testRunner = require(conf).config;
+            console.log('release: ' + `test/${appFolder}/**/${testfile}/*.js`);
             if (testfile) {
-                tests.push(`test/${appFolder}/**/jira/${testfile}/*.js`);
-                testRunner.specs = tests;
+                tests.push(`test/${appFolder}/**/${testfile}/*.js`);
             } else {
                 tests.push('test/${appFolder}/**/jira/**/*.js');
-                testRunner.specs = tests;
             }
-        }
-        else if (currentBranch.indexOf('integration-pb2-') >= 0) {
+        } else if (currentBranch.indexOf('integration-pb2-') >= 0) {
             var testfile = currentBranch.toLowerCase().split("integration-pb2-")[1];
-            console.log('tests: ' + `jira/${testfile}/*.js`);
-            var testRunner = require(conf).config;
-            testRunner.specs = tests;
+            console.log('integration: ' + `test/${appFolder}/**/${testfile}/*.js`);
+            tests.push(`test/${appFolder}/**/${testfile}/*.js`);
         } else if (currentBranch.indexOf('PPE-') >= 0) {
             var testfile = currentBranch.toLowerCase().split("ppe-")[1].split("-")[0];
             console.log('ppe tests: ' + `test/${appFolder}/**/jira/${testfile}/*.js`);
             tests.push(`test/${appFolder}/**/jira/**/${testfile}.js`);
-            var testRunner = require(conf).config;
-            testRunner.specs = tests;
         } else {
-            console.log('tests: ' + `test/${appFolder}/**/jira/**/*.js`);
+            console.log('all tests: ' + `test/${appFolder}/**/jira/**/*.js`);
             tests.push(`test/${appFolder}/**/jira/**/*.js`);
-            var testRunner = require(conf).config;
-            testRunner.specs = tests;
         }
 
+        testRunner.specs = tests;
         var results = [];
         _.forEach(tests, function (t) {
             if (!_.isEmpty(glob.sync(t))) {
@@ -113,7 +107,7 @@ gulp.task('branch', function (cb) {
         if (results.length === 0) {
             console.log("Found no pattern running all tests");
             tests = [];
-            //tests.push(`test/${appFolder}/**/baseline/**/*.js`);
+            tests.push(`test/${appFolder}/**/baseline/**/*.js`);
             tests.push(`test/${appFolder}/**/jira/**/*.js`);
             tests.push(`test/${appFolder}/**/regression/**/*.js`);
             tests.push(`test/${appFolder}/**/smoke/**/*.js`);
@@ -123,12 +117,30 @@ gulp.task('branch', function (cb) {
             tests = results;
         }
 
+        console.log('specs: ' + tests.toString());
+
         cb();
     });
 });
 
+var deleteFolderRecursive = function (path) {
+    if (fs.existsSync(path)) {
+        fs.readdirSync(path).forEach(function (file, index) {
+            var curPath = path + "/" + file;
+            if (fs.lstatSync(curPath).isDirectory()) { // recurse
+                deleteFolderRecursive(curPath);
+            } else { // delete file
+                fs.unlinkSync(curPath);
+            }
+        });
+        fs.rmdirSync(path);
+    }
+};
+
 gulp.task('allbranches', function (cb) {
-    return git.revParse({ args: '--abbrev-ref HEAD' }, function (err, branch) {
+    return git.revParse({
+        args: '--abbrev-ref HEAD'
+    }, function (err, branch) {
         console.log('current git branch: ' + branch);
         tests.push(`baseline/*.js`);
         tests.push(`jira/**/*.js`);
@@ -154,7 +166,7 @@ gulp.task('webdriver', function (done) {
 
 gulp.task('selenium', function (done) {
     selenium.install({
-        logger: function (message) { }
+        logger: function (message) {}
     }, function (err) {
         if (err) return done(err);
 
@@ -166,8 +178,15 @@ gulp.task('selenium', function (done) {
     });
 });
 
+gulp.task('clean', function () {
+    var allure = rootPath = path.join(process.cwd(), "allure-results");
+
+    console.log('remove folder: ' + allure);
+    deleteFolderRecursive(allure);
+})
+
 gulp.task('local', function (cb) {
-    gulpSequence('branch', 'selenium', 'webdriver')(function (err) {
+    gulpSequence(['clean'], 'branch', 'selenium', 'webdriver')(function (err) {
         if (err) console.log(err)
         selenium.child.kill();
     });
@@ -176,7 +195,7 @@ gulp.task('local', function (cb) {
 gulp.task('default', function () {
     releaseconfig.config.host = '172.28.38.219';
     releaseconfig.config.port = 4444;
-    gulpSequence('branch', 'webdriver')(function (err) {
+    gulpSequence(['clean'], 'branch', 'webdriver')(function (err) {
         if (err) console.log(err);
     });
 });
