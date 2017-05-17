@@ -9,7 +9,7 @@ module.exports = {
         repositoryBrowserUI.RepositoryRefresh();
         repositoryBrowserUI.ExpandContentTab();
         var folerPathArr = folderPath.split('/');
-        var folderLevel = 2;
+        var folderLevel = 1;
          do {
                 if(folerPathArr && folerPathArr.length > 0)
                 {
