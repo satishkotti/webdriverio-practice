@@ -235,7 +235,7 @@ module.exports.testSettings = {
             "middlealignent": "Middle",
             "bulletlistalignment": "Right,Left,Middle",
             "CodeTypes": "Facebook,Youtube,Twitter,Pinterest,Reddit,Imgur,Snapchat,Tumblr,Instagram",
-            "testFolderPath": "webmd/consumer_assets/editorial/articles/other",
+            "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
             "ArticleTemplate": 'Article /  News Template',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
@@ -310,6 +310,8 @@ module.exports.testSettings = {
              "jsCompareContent_uk":"Has differences",
              "jsComparerendition_uk":"Matches",
              "DeleteAllversions":"Delete all versions", 
+             "testFolderPath_uk": "webmddoc01/webmd_uk/consumer_assets/editorial/articles/Others",
+             "ArticleProfileName_uk": 'Consumer Portal UK / Article Templates',
 
         }      
     }

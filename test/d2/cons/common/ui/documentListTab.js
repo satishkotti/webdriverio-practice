@@ -346,7 +346,23 @@ var documentListUIObj = {
                 expect(expectmajorversionval).to.equal(aftermajorversion);
                 expect(expectminorversionval).to.equal(afterminorversion);
             
-    }
+    },
+     powerPromoteTimeStampValidation: function (assetName,dateTimeStamp) {
+
+        documentListUIObj.contextualMenuActivate(assetName);
+        documentListUIObj.contextualMenuLifeCycleSelect();
+        documentListUIObj.lifeCyclePowerPromoteSelect();
+        documentListUIObj.powerPromoteConfirmDialogueOkSelect();
+        documentListUIObj.powerPromoteTimeValidation(dateTimeStamp);
+        browser.pause(1000);
+
+    },
+    powerPromoteTimeValidation: function (dateTimeStamp) {
+        browser.waitForVisible("//td[@ng-bind-html='obj.description | to_trusted ']", maxWaitTimeInMs);
+        var ppTimestamp = browser.isExisting("//td[contains(.,'Object has been Approved and will become Active on "+dateTimeStamp+"')]");
+        expect(ppTimestamp).to.be.true;
+        browser.click("button[ng-click='$confirm()']");
+    },
 }
 
 module.exports = documentListUIObj;

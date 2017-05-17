@@ -1,5 +1,6 @@
 var maxWaitTimeInMs = 30000;
 var propertiesTabSelector= "//span[text()='Properties']";
+var moment =require('moment-timezone');
 
 module.exports = {
     chronicleIdGet: function(){
@@ -110,6 +111,49 @@ module.exports = {
     cancelEdit: function(){
          browser.click("//div[@tag_id='Properties-widget']//button[text()='Cancel Edit']");
          browser.pause(5000);
+    },
+    originalPublishDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_orig_pub_dt-input", dateTimeStamp);
+    },
+      overrideSiteArchiveDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_site_archv_ovrd_dt-input", dateTimeStamp);
+    },
+      primaryMedicalReviewDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_prim_revw_dt-input", dateTimeStamp);
+    },
+       secondaryMedicalReviewDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_c_sec_med_revw_dt-input", dateTimeStamp);
+    },
+       editorReviewDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_c_edtr_revr_dt-input", dateTimeStamp);
+    },
+       copyEditorReviewDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_c_cons_revw_dt-input", dateTimeStamp);
+    },
+      sponsorMLRDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_sponsor_mlr_dt-input", dateTimeStamp);
+    },
+      sponsorInternalMLRDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_sponsor_int_mlr_dt-input", dateTimeStamp);
+    },
+     effectiveDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_eff_date-input", dateTimeStamp);
+    },
+     expirationDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_exp_date-input", dateTimeStamp);
+    },
+    authRevtab: function(){
+        browser.click("//span/span[contains(.,'Auth & Rev')]");
+        browser.pause(1000);
+    },
+     sponsorMLRtab: function(){
+        browser.click("//span/span[contains(.,'Sponsor MLR')]");
+        browser.pause(1000);
+    },
+     publishingtab: function(){
+        browser.click("//span/span[contains(.,'Auth & Rev')]");
+        browser.click("//span/span[contains(.,'Publishing')]");
+        browser.pause(1000);
     }
 }
 

@@ -70,6 +70,10 @@ var documentListObj = {
      CheckVersionvalue: function(assetName){
         documentListUI.CheckVersionvalue(assetName);
     },
+    
+    powerPromoteTimeStampValidation: function(assetName,dateTimeStamp){
+        documentListUI.powerPromoteTimeStampValidation(assetName,dateTimeStamp);
+    }
 
 }
 module.exports = documentListObj;
