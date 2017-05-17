@@ -12,7 +12,7 @@ var smdata = Object.create(page, {
             var mwebmdbootscom = 9;
             var booltrue = 1;
             var boolfalse = 0;
-           // var RedirectByID = 'A19338F8-DA37-4ED6-9FCC-00312C79465A';
+            // var RedirectByID = 'A19338F8-DA37-4ED6-9FCC-00312C79465A';
             var searchfromurl = 'http://www.dev01.webmd.com/video/blind-sleep-disorders';
             var searchtourl = 'http://www.dev01.webmd.com/a-to-z-guides/clinical-trials-related-information';
             var fromchronicleid = '091e9c5e8004aaff';
@@ -86,29 +86,8 @@ var smdata = Object.create(page, {
 
         }
     },
-    testEnv: {
-
-        get: () => {
-            return {
-                dev: 'dev01',
-                dev03: 'dev03',
-                qa: 'qa02',
-                preprod: 'qa00'
-            }
-        }
-    },
-    testEnvUrl: {
-        get: () => {
-            return {
-                dev: 'http://redirect.dev01.webmd.com/api/redirect/',
-                dev03: 'http://redirect.dev03.webmd.com/api/redirect/',
-                qa: 'http://redirect.qa02.webmd.com/api/redirect/',
-                preprod: 'http://redirect.qa00.webmd.com/api/redirect/'
-            }
-
-        }
-    },
    
+
 
 });
 

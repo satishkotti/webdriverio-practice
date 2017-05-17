@@ -11,8 +11,9 @@ var usersDetails = require('./../../config/users');
 var ats = require('./../actions/ats.actions');
 var user = usersDetails.users;
 var parseXml = require('./../../../common/xml/parseXml');
-var Apidetails = require('./../../config/api.config');
-var redirect = require('./../actions/redirectapi.actions');
+var Apidetails = require('./../../../common/config/api.config');
+var redirect = require('./../../../common/component/redirectapi/redirectapi');
+var apiUrl;
 
 //Launch App and login
 module.exports.LaunchApp = () => {
@@ -406,21 +407,32 @@ module.exports.NavigateToRedirectTool = () => {
 }
 
 
-module.exports.GetResult = (env, param) => {
-
-    var Url;
-   
-    switch (env) {
-        case 'dev01': Url = Apidetails.testEnvUrl.dev + param; break;
-        case 'dev03': Url = Apidetails.testEnvUrl.dev03 + param; break;
-        case 'qa02': Url = Apidetails.testEnvUrl.qa + param; break;
-        case 'qa00': Url = Apidetails.testEnvUrl.preprod + param; break;
+module.exports.GetResult = (param) => {
 
 
-    }
+    apiUrl = global.testapiurl + param; 
+
     var response;
     browser.call(() => {
-        return Promise.resolve(redirect.GetResultsApi(Url, null)
+        return Promise.resolve(redirect.GetResultsApi(apiUrl, null)
+            .then(function (result) {
+                response = result;
+               console.log(response.body);
+            }).catch(err => {
+                console.log(err);
+            }));
+    });
+    return response;
+
+}
+
+
+module.exports.PostResult = (appendurl,apiparameters) => {
+
+    apiUrl = global.testapiurl + appendurl;
+    var response;
+    browser.call(() => {
+        return Promise.resolve(redirect.PostResultsApi(apiUrl, null,apiparameters)
             .then(function (result) {
                 response = result;
                 console.log(response.body);
@@ -432,21 +444,12 @@ module.exports.GetResult = (env, param) => {
 
 }
 
+module.exports.PutResult = (param) => {
 
-module.exports.PostResult = (env, param) => {
-
-    var Url;
-
-    switch (env) {
-         case 'dev01': Url = Apidetails.testEnvUrl.dev + param; break;
-        case 'dev03': Url = Apidetails.testEnvUrl.dev03 + param; break;
-        case 'qa02': Url = Apidetails.testEnvUrl.qa + param; break;
-        case 'qa00': Url = Apidetails.testEnvUrl.preprod + param; break;
-
-    }
+    apiUrl = global.testapiurl + param; 
     var response;
     browser.call(() => {
-        return Promise.resolve(redirect.PostResultsApi(Url, null)
+        return Promise.resolve(redirect.PutResultsApi(apiUrl, null)
             .then(function (result) {
                 response = result;
                 console.log(response.body);
@@ -458,47 +461,12 @@ module.exports.PostResult = (env, param) => {
 
 }
 
-module.exports.PutResult = (env, param) => {
+module.exports.DeleteResult = (param) => {
 
-    var Url;
-
-    switch (env) {
-        case 'Dev': Url = 'http://redirect.dev01.webmd.com/api/redirect/' + param; break;
-        case 'QA01': Url = 'http://redirect.qa01.webmd.com/api/redirect/' + param; break;
-        case 'QA00': Url = 'http://redirect.qa00.webmd.com/api/redirect/' + param; break;
-        case 'PROD': Url = 'http://redirect.webmd.com/api/redirect/' + param; break;
-
-
-    }
+    apiUrl = global.testapiurl + param; 
     var response;
     browser.call(() => {
-        return Promise.resolve(RedirectAPI.PutResultsApi(Url, null)
-            .then(function (result) {
-                response = result;
-                console.log(response.body);
-            }).catch(err => {
-                console.log(err);
-            }));
-    });
-    return response;
-
-}
-
-module.exports.DeleteResult = (env, param) => {
-
-    var Url;
-
-    switch (env) {
-        case 'Dev': Url = 'http://redirect.dev01.webmd.com/api/redirect/' + param; break;
-        case 'QA01': Url = 'http://redirect.qa01.webmd.com/api/redirect/' + param; break;
-        case 'QA00': Url = 'http://redirect.qa00.webmd.com/api/redirect/' + param; break;
-        case 'PROD': Url = 'http://redirect.webmd.com/api/redirect/' + param; break;
-
-
-    }
-    var response;
-    browser.call(() => {
-        return Promise.resolve(RedirectAPI.DeleteResultsApi(Url, null)
+        return Promise.resolve(redirect.DeleteResultsApi(apiUrl, null)
             .then(function (result) {
                 response = result;
                 console.log(response.body);

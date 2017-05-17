@@ -13,12 +13,13 @@ module.exports = {
     GetAllRedirectsForEntireSystem: function () {
         mssql.connection = this.connection;
 
-        var sql = `
+        var sql = `      -- {bool} - include deleted redirects (true to include, false or parameter not included to exclude)
                         DECLARE @includeDeleted varchar(2)
                         DECLARE @sql nvarchar(4000)
-                        set @includeDeleted = 1
+                        set @includeDeleted = 1 
                         SET @sql = ('get-all?&includeDeleted=' + @includeDeleted ) 
                         select @sql as apiGetAllRedirectsForEntireSystem
+                       
                       
                     `;
 
@@ -31,6 +32,8 @@ module.exports = {
         mssql.connection = this.connection;
 
         var sql = `
+                            --{bool} - include deleted redirects (true to include, false or parameter not included to exclude)
+                            --{siteID} - a valid site ID which are typically {3 - webmd.com ;7 - webmd.boots.com;8 - m.webmd.com;9 - m.webmd.boots.com}
                             DECLARE @siteID varchar(2)
                             DECLARE @includeDeleted varchar(2)
                             DECLARE @sql nvarchar(4000)
@@ -38,6 +41,7 @@ module.exports = {
                             set @includeDeleted = 1
                             SET @sql = ('get-all-for-site?siteID=' + @siteID + '&includeDeleted=' + @includeDeleted ) 
                             select @sql as apiGetAllRedirectsForSiteID
+                         
                       
                     `;
 
@@ -50,7 +54,7 @@ module.exports = {
         mssql.connection = this.connection;
 
         var sql = `
-              SELECT Top 1 ('get-by-id?id=' + CAST(R.id AS varchar(100))) AS apigetByID,
+              SELECT Top 1 ('get-by-id?id=' + CAST(R.id AS varchar(100))) AS apigetRandomRedirectID,
            LOWER(R.id) AS 'Id',
            R.From_Chronic_Id AS 'FromChronicId',
            CAST(R.From_Site_Id AS int) AS 'FromSiteId',
@@ -90,16 +94,20 @@ AND R.To_Site_Id = ToPage.site_id
         mssql.connection = this.connection;
 
         var sql = `
-               SELECT TOP 1 ('get-by-from-url?fromUrl='+'http://' + PFrom.Prefix + '.' + D.domain + PFrom.friendly_url + '?includeDeleted='+CAST(D.is_core_site AS varchar(10))) AS apiGetOneRedirectByFromUrl
-FROM Manual_Redirect R
-INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
-INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
-AND R.To_Site_ID = PTo.Site_ID
+              SELECT TOP 1 ('get-by-from-url?fromUrl='+'http://' + PFrom.Prefix + '.' + D.domain + PFrom.friendly_url + '?includeDeleted='+CAST(D.is_core_site AS varchar(10))) AS apiGetOneRedirectByFromUrl
+FROM RT_PageUrlMap PFrom
 INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
 AND D.is_core_site = 1
-WHERE R.status <> 'd'
+LEFT OUTER JOIN Manual_Redirect R ON PFrom.Redirect_ID = R.id
+LEFT OUTER JOIN Manual_Redirect ROnUrl ON ROnUrl.From_Url = PFrom.friendly_url
+AND ROnUrl.From_Site_ID = PFrom.Site_ID
+AND ROnUrl.From_Prefix = PFrom.Prefix
+WHERE PFrom.Site_ID = D.site_id
+  AND R.id IS NULL --no hard connection between active page and redirect
+
+  AND ROnUrl.ID IS NULL --no manual redirect record for the url of the page
+
   AND PFrom.Status <> 'd'
-  AND PTo.Status <> 'd'
                       
                     `;
 
@@ -200,10 +208,12 @@ WHERE R.status <> 'd'
             mssql.executeSql(sql)
             );
     },
-     ExportAllRedirectsToCsvFile: function () {
+    ExportAllRedirectsToCsvFile: function () {
         mssql.connection = this.connection;
 
         var sql = `
+                        --{bool} - include deleted redirects (true to include, false or parameter not included to exclude)
+                        --{includeAllFieldsBool} - true to get a raw dump of all fields, false or parameter excluded to get a friendlier dump
                         DECLARE @includeDeleted varchar(2)
                         DECLARE @includeAllFields varchar(2)
                         DECLARE @sql nvarchar(4000)
@@ -223,16 +233,17 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
+                             --{bool} - include deleted redirects (true to include, false or parameter not included to exclude)
+                             --{includeAllFieldsBool} - true to get a raw dump of all fields, false or parameter excluded to get a friendlier dump
+                             --{siteID} - a valid site ID which are typically {3 - webmd.com ;7 - webmd.boots.com;8 - m.webmd.com;9 - m.webmd.boots.com}
                             DECLARE @siteID varchar(2)
                             DECLARE @includeAllFieldsBool varchar(2)
                             DECLARE @includeDeleted varchar(2)
                             DECLARE @sql nvarchar(4000)
-                            set @siteID=3
+                            set @siteID=3 --
                             set @includeAllFieldsBool = 1
                             set @includeDeleted = 1
-
                             SET @sql = ('export-all-for-site-to-csv?siteID=' + @siteID + '&includeAllFields='+ @includeAllFieldsBool +'&includeDeleted=' + @includeDeleted ) 
-
                             select @sql as apiExportAllRedirectsForSiteToCsvFile
                                                
                     `;
@@ -242,7 +253,226 @@ WHERE R.status <> 'd'
             mssql.executeSql(sql)
             );
     },
+    CreateByURLInvalidURLCombination: function () {
+        mssql.connection = this.connection;
 
-    
+        var sql = `
+                             SELECT TOP 1 
+                           
+                            'http://' + PFrom.Prefix + '.' + D.domain + PFrom.friendly_url AS 'fromUrl',
+                            'http://' + PFrom.Prefix + '.' + D.Domain + PFrom.friendly_url AS 'toUrl'
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
+                            INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
+                            AND R.To_Site_ID = PTo.Site_ID
+                            INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
+                            AND D.is_core_site = 1
+                            WHERE R.status <> 'd'
+                            AND PFrom.Status <> 'd'
+                            AND PTo.Status <> 'd'
+                                               
+                    `;
 
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+    CreateByURLInvalidToURLInternal: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                        SELECT TOP 1 'http://' + PFrom.Prefix + '.' + D.domain + PFrom.friendly_url AS 'FromUrl',
+                        'http://' + PTo.Prefix + '.' + D.Domain + PTo.friendly_url AS 'ToUrl'
+                        FROM Manual_Redirect R
+                        INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
+                        INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
+                        AND R.To_Site_ID = PTo.Site_ID
+                        INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
+                        AND D.is_core_site = 1
+                        LEFT OUTER JOIN RT_UrlRedirects SysR ON SysR.old_prefix = R.From_Prefix
+                        AND SysR.old_friendly_url = R.From_Url
+                        LEFT OUTER JOIN RT_PageUrlMap PFromOnUrl ON R.From_Url = PFromOnUrl.friendly_url
+                        AND R.From_Site_id = PFromOnUrl.Site_ID
+                        AND R.From_Prefix = PFromOnUrl.Prefix
+                        WHERE PFromOnUrl.status = 'D'
+                                               
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+    CreateByURLInvalidFormToURL: function () {
+        mssql.connection = this.connection;
+
+            var sql = `
+                            SELECT TOP 1 'http://' + PFrom.Prefix + '.' + D.domain + PFrom.friendly_url AS 'FromUrl',
+                            'http://' + PTo.Prefix + '.' + D.Domain + '?click?id=http://www.cnn.com' AS 'ToUrl'
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
+                            INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
+                            AND R.To_Site_ID = PTo.Site_ID
+                            INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
+                            AND D.is_core_site = 1
+                            LEFT OUTER JOIN RT_UrlRedirects SysR ON SysR.old_prefix = R.From_Prefix
+                            AND SysR.old_friendly_url = R.From_Url
+                            LEFT OUTER JOIN RT_PageUrlMap PFromOnUrl ON R.From_Url = PFromOnUrl.friendly_url
+                            AND R.From_Site_id = PFromOnUrl.Site_ID
+                            AND R.From_Prefix = PFromOnUrl.Prefix
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+
+     CreateByURLInvalidAnotherLifecyleToURL: function () {
+        mssql.connection = this.connection;
+
+            var sql = `
+                            SELECT TOP 1 'http://' + PFrom.Prefix + '.' + D.domain + PFrom.friendly_url AS 'FromUrl',
+                            'http://' + PTo.Prefix + '.' +
+                            (SELECT DOMAIN
+                            FROM webmd_Domains
+                            WHERE domain_id =2) + PTo.friendly_url AS 'ToUrl'
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
+                            INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
+                            AND R.To_Site_ID = PTo.Site_ID
+                            INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
+                            AND D.is_core_site = 1
+                            WHERE R.status <> 'd'
+                            AND PFrom.Status <> 'd'
+                            AND PTo.Status <> 'd'
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+
+CreateByURLInvalidExtraSlashToURL: function () {
+        mssql.connection = this.connection;
+
+            var sql = `
+                                SELECT TOP 1 'http://' + PFrom.Prefix + '.' + D.domain + PFrom.friendly_url AS 'fromUrl',
+                                'http://' + PTo.Prefix + '.' + D.Domain +'/'+ PTo.friendly_url AS 'toUrl'
+                                FROM Manual_Redirect R
+                                INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
+                                INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
+                                AND R.To_Site_ID = PTo.Site_ID
+                                INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
+                                AND D.is_core_site = 1
+                                WHERE R.status <> 'd'
+                                AND PFrom.Status <> 'd'
+                                AND PTo.Status <> 'd'
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+    CreateByURLInvalidDoesNoStartWithhttpToURL: function () {
+        mssql.connection = this.connection;
+
+            var sql = `
+                            SELECT TOP 1 'http://' + PFrom.Prefix + '.' + D.domain + PFrom.friendly_url AS 'fromUrl',
+                            PTo.Prefix + '.' + D.Domain + PTo.friendly_url AS 'toUrl'
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
+                            INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
+                            AND R.To_Site_ID = PTo.Site_ID
+                            INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
+                            AND D.is_core_site = 1
+                            WHERE R.status <> 'd'
+                            AND PFrom.Status <> 'd'
+                            AND PTo.Status <> 'd'
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+    CreateByURLInvalidExtraSlashFromURL: function () {
+        mssql.connection = this.connection;
+
+            var sql = `
+                                SELECT TOP 1 'http://' + PFrom.Prefix + '.' + D.domain+'/' + PFrom.friendly_url AS 'fromUrl',
+                                'http://' + PTo.Prefix + '.' + D.Domain + PTo.friendly_url AS 'toUrl'
+                                FROM Manual_Redirect R
+                                INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
+                                INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
+                                AND R.To_Site_ID = PTo.Site_ID
+                                INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
+                                AND D.is_core_site = 1
+                                WHERE R.status <> 'd'
+                                AND PFrom.Status <> 'd'
+                                AND PTo.Status <> 'd'
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+    CreateByURLInvalidDoesNoStartWithhttpFormURL: function () {
+        mssql.connection = this.connection;
+
+            var sql = `
+                                SELECT TOP 1 PFrom.Prefix + '.' + D.domain + PFrom.friendly_url AS 'FromUrl',
+                                'http://' + PTo.Prefix + '.' + D.Domain + PTo.friendly_url AS 'ToUrl'
+                                FROM Manual_Redirect R
+                                INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
+                                INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
+                                AND R.To_Site_ID = PTo.Site_ID
+                                INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
+                                AND D.is_core_site = 1
+                                WHERE R.status <> 'd'
+                                AND PFrom.Status <> 'd'
+                                AND PTo.Status <> 'd'
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+    CreateByURLInvalidAnotherLifecyleFromURL: function () {
+        mssql.connection = this.connection;
+
+            var sql = `
+                                    SELECT TOP 1 'http://' + PFrom.Prefix + '.' +
+                                    (SELECT DOMAIN
+                                    FROM webmd_Domains
+                                    WHERE domain_id =2) + PFrom.friendly_url AS 'FromUrl',
+                                            'http://' + PTo.Prefix + '.' + D.Domain + PTo.friendly_url AS 'ToUrl'
+                                    FROM Manual_Redirect R
+                                    INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
+                                    INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
+                                    AND R.To_Site_ID = PTo.Site_ID
+                                    INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
+                                    AND D.is_core_site = 1
+                                    WHERE R.status <> 'd'
+                                    AND PFrom.Status <> 'd'
+                                    AND PTo.Status <> 'd'
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
 };

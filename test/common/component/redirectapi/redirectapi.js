@@ -6,7 +6,7 @@ var path = require('path');
 var usersDetails = require('./../../../pb2/config/users');
 var smTestData = require('./../../config/api.config');
 
-var USERNAME = usersDetails.users.superuser1.username;
+var USERNAME = global.username//usersDetails.users.superuser1.username;
 var testAssetProps = smTestData.ApiTestData;
 var testurl=global.testapiurl
 var jsonData = {};
@@ -48,12 +48,12 @@ Redirectapi.prototype.GetResultsApi = function GetResultsApi(url, options) {
 };
 
 
-Redirectapi.prototype.PostResultsApi = function PostResultsApi(url, options) {
+Redirectapi.prototype.PostResultsApi = function PostResultsApi(url, options,apiparameters) {
 
 
     switch (url) {
-        case testurl + testAssetProps.Create_Redirect_on_Urls: jsonData =  testAssetProps.CreateRedirectonUrls; break;
-       case testurl + testAssetProps.Create_Redirect_on_ChronicleIDS: jsonData = testAssetProps.CreateRedirectonChronicleIDS; break;
+        case testurl + testAssetProps.Create_Redirect_on_Urls: jsonData =  apiparameters[0]; break;
+        case testurl + testAssetProps.Create_Redirect_on_ChronicleIDS: jsonData = apiparameters[0]; break;
     }
 
     return new Promise(function (resolve, reject) {
