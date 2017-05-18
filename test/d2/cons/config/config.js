@@ -236,9 +236,10 @@ module.exports.testSettings = {
             "bulletlistalignment": "Right,Left,Middle",
             "CodeTypes": "Facebook,Youtube,Twitter,Pinterest,Reddit,Imgur,Snapchat,Tumblr,Instagram",
             "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other",
-            "USFolderpath": "webmddoc01/webmd/consumer_assets/editorial/articles",
-            "UKFolderpath": "webmddoc01/webmd_uk/consumer_assets/editorial/articles",
+            "UKtestFolderPath": "webmddoc01/webmd_uk/consumer_assets/editorial/articles/Others",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
+            "UkArticleProfileName": 'Consumer Portal UK / Article Templates',
+             "HelathRefArticleTemplate":'Article / Health Reference Template',
             "ArticleTemplate": 'Article /  News Template',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
@@ -310,7 +311,10 @@ module.exports.testSettings = {
             "jsAsset2Compare_uk":"webmd.m.slideshowDynamic.js - ( Ver. 3.1)",
              "jsCompareAttribute_uk": "7 differences",
              "jsCompareContent_uk":"Has differences",
-             "jsComparerendition_uk":"Matches"
+             "jsComparerendition_uk":"Matches",
+             "DeleteAllversions":"Delete all versions", 
+             "testFolderPath_uk": "webmddoc01/webmd_uk/consumer_assets/editorial/articles/Others",
+             "ArticleProfileName_uk": 'Consumer Portal UK / Article Templates',
 
         }      
     }
