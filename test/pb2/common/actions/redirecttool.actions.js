@@ -18,9 +18,11 @@ module.exports.GetPageTitle = function(option) {
         return browser.getText("div.row > div:nth-of-type(1) > section.pb-module > header > h3");
     } else if (option.target == 'Create') {
         return browser.getText("div.row > div:nth-of-type(2) > section.pb-module > header > h3");
-    } else if (option.target = "Bulk") {
+    } else if (option.target == "Bulk") {
         return browser.getText("h3");
-    } else return ""
+    } else {
+        return browser.getTitle();
+    }
 }
 
 module.exports.GetRedirectElement = function(option) {
@@ -76,4 +78,20 @@ module.exports.GoToBulkImport = function(option) {
 
 module.exports.GoToBulkImport = function(option) {
     browser.click("a.pb-redirect-nav-link.floatright");
+}
+
+module.exports.SearchFromUrl = function(option) {
+    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
+    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
+    var url = option;
+    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', url);
+    browser.click('button.floatright');
+}
+
+module.exports.SearchToUrl = function(option) {
+    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
+    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
+    var url = option;
+    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', url);
+    browser.click('button.floatright');
 }
