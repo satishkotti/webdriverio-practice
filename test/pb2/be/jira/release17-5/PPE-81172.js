@@ -10,74 +10,37 @@ var config = envSettings.getConfig();
 manualRedirectSqlService.connection = config.dbRtLive;
 
 
+
 describe('PPE-81172:Get All Redirects For Entire System (optionally include Deleted)', () => {
-
-    var GetAllRedirectsForEntireSystem = {};
-    var _GetAllRedirectsForEntireSystem = {};
-
 
     before(() => {
 
-        return Promise.resolve
-            (
-            manualRedirectSqlService.GetAllRedirectsForEntireSystem().then(function (records) {
-                _GetAllRedirectsForEntireSystem = records;
-
-            })
-            );
+        GetAllRedirectsForEntireSystem = test.GetResult(testAssetProps.GetAll_Redirects_For_EntireSystem);
 
     });
 
-    describe('Get All Redirects For Entire System', () => {
-        it('Get the Results from Api', () => {
+    it('Verify Get All Redirects For Entire System (optionally include Deleted)', () => {
+        expect(GetAllRedirectsForEntireSystem.statusCode).to.equal(200);
 
-            GetAllRedirectsForEntireSystem = test.GetResult(_GetAllRedirectsForEntireSystem[0].apiGetAllRedirectsForEntireSystem);
-
-        });
-
-
-        it('Verify Get All Redirects For Entire System (optionally include Deleted)', () => {
-            expect(GetAllRedirectsForEntireSystem.statusCode).to.equal(200);
-
-        });
     });
 
 });
 
 describe('PPE-81172:Get All Redirects For Site ID (optionally include Deleted)', () => {
 
-    var GetAllRedirectsForSiteID = {};
-    var _GetAllRedirectsForSiteID = {};
-
-
     before(() => {
 
-        return Promise.resolve
-            (
-            manualRedirectSqlService.GetAllRedirectsForSiteID().then(function (records) {
-                _GetAllRedirectsForSiteID = records;
-
-            })
-            );
+        GetAllRedirectsForSiteID = test.GetResult(testAssetProps.GetAll_Redirects_ForSiteID);
 
     });
 
-    describe('Get All Redirects For Site ID ', () => {
-        it('Get the Results from Api', () => {
+    it('Verify Get All Redirects For Site ID (optionally include Deleted)', () => {
+        expect(GetAllRedirectsForSiteID.statusCode).to.equal(200);
 
-            GetAllRedirectsForSiteID = test.GetResult(_GetAllRedirectsForSiteID[0].apiGetAllRedirectsForSiteID);
-
-        });
-
-
-        it('Verify Get All Redirects For Site ID (optionally include Deleted', () => {
-
-            expect(GetAllRedirectsForSiteID.statusCode).to.equal(200);
-
-        });
     });
 
 });
+
 
 describe('PPE-81172:Get One Redirect By ID', () => {
 
@@ -100,7 +63,7 @@ describe('PPE-81172:Get One Redirect By ID', () => {
     describe('Get One Redirect By ID', () => {
         it('Get the Results from Api', () => {
 
-            GetOneRedirectByID = test.GetResult(_getByID[0].apigetRandomRedirectID);
+            GetOneRedirectByID = test.GetResult(testAssetProps.GetOne_RedirectByID + _getByID[0].Id);
 
         });
 
@@ -156,7 +119,7 @@ describe('PPE-81172:Get One Redirect By From Url', () => {
     describe('Get One Redirect By From Url', () => {
         it('Get the Results from Api', () => {
 
-           GetOneRedirectByFromUrl = test.GetResult(_GetOneRedirectByFromUrl[0].apiGetOneRedirectByFromUrl);
+           GetOneRedirectByFromUrl = test.GetResult(testAssetProps.GetOne_RedirectBy_FromUrl + _GetOneRedirectByFromUrl[0].apiGetOneRedirectByFromUrl + testAssetProps.IncludeDeleted );
 
         });
 
@@ -191,7 +154,7 @@ describe('PPE-81172:Get All Redirect From Url Pattern (must include the start of
     describe('Get All Redirect From Url Pattern', () => {
         it('Get the Results from Api', () => {
 
-           GetAllRedirectFromUrlPattern = test.GetResult(_GetAllRedirectFromUrlPattern[0].apiGetAllRedirectFromUrlPattern);
+           GetAllRedirectFromUrlPattern = test.GetResult(testAssetProps.GetAll_RedirectFromUrl_Pattern +_GetAllRedirectFromUrlPattern[0].apiGetAllRedirectFromUrlPattern + testAssetProps.IncludeDeleted );
 
         });
 
@@ -345,69 +308,34 @@ describe('PPE-81172:Get All Redirects To a Url', () => {
 
 describe('PPE-81172:Export All Redirects To Csv File', () => {
 
-    var ExportAllRedirectsToCsvFile = {};
-    var _ExportAllRedirectsToCsvFile = {};
-
-
     before(() => {
 
-        return Promise.resolve
-            (
-            manualRedirectSqlService.ExportAllRedirectsToCsvFile().then(function (records) {
-                _ExportAllRedirectsToCsvFile = records;
-
-            })
-            );
+        ExportAllRedirectsToCsvFile = test.GetResult(testAssetProps.Export_AllRedirects_ToCsv_File);
 
     });
 
-    describe('Export All Redirects To Csv File', () => {
-        it('Get the Results from Api', () => {
+    it('Verify Export All Redirects To Csv File', () => {
 
-            ExportAllRedirectsToCsvFile = test.GetResult(_ExportAllRedirectsToCsvFile[0].apiExportAllRedirectsToCsvFile);
-
-        });
-
-        it('Verify Export All Redirects To Csv File', () => {
-            expect(ExportAllRedirectsToCsvFile.statusCode).to.equal(200);
-
-        });
+        expect(ExportAllRedirectsToCsvFile.statusCode).to.equal(200);
     });
 
 });
+
 describe('PPE-81172:Export All Redirects For Site To Csv File', () => {
 
-    var ExportAllRedirectsForSiteToCsvFile = {};
-    var _ExportAllRedirectsForSiteToCsvFile = {};
-
-
     before(() => {
 
-        return Promise.resolve
-            (
-            manualRedirectSqlService.ExportAllRedirectsForSiteToCsvFile().then(function (records) {
-                _ExportAllRedirectsForSiteToCsvFile = records;
-
-            })
-            );
+        ExportAllRedirectsForSiteToCsvFile = test.GetResult(testAssetProps.Export_AllRedirects_ForSiteToCsv_File);
 
     });
 
-    describe('Export All Redirects For Site To Csv File', () => {
-        it('Get the Results from Api', () => {
+    it('Verify Export All Redirects For Site To Csv File', () => {
 
-            ExportAllRedirectsForSiteToCsvFile = test.GetResult(_ExportAllRedirectsForSiteToCsvFile[0].apiExportAllRedirectsForSiteToCsvFile);
-
-        });
-
-
-        it('Verify Export All Redirects For Site To Csv File', () => {
-            expect(ExportAllRedirectsForSiteToCsvFile.statusCode).to.equal(200);
-
-        });
+        expect(ExportAllRedirectsForSiteToCsvFile.statusCode).to.equal(200);
     });
 
 });
+
 describe('PPE-81172:Create Redirect on Urls', () => {
 
     var CreateRedirectonUrlsInvalidURLCombination = {};
@@ -430,7 +358,7 @@ describe('PPE-81172:Create Redirect on Urls', () => {
     var CreateRedirectonUrlsInvalidExtraSlash  = {};
     var CreateByURLInvalidExtraSlashToURL ={};
     var _CreateByURLInvalidExtraSlashToURL ={};
-    
+
     var CreateRedirectonUrlsDoesNoStartWithhttp  = {};
     var CreateByURLInvalidDoesNoStartWithhttpToURL ={};
     var _CreateByURLInvalidDoesNoStartWithhttpToURL ={};
@@ -448,6 +376,51 @@ describe('PPE-81172:Create Redirect on Urls', () => {
     var CreateByURLInvalidAnotherLifecyleFromURL ={};
     var _CreateByURLInvalidAnotherLifecyleFromURL ={};
 
+
+    var CreateByURLRedirectExists_CreateaRedirectwhereanotherredirect ={};
+    var CreateByURLRedirectExists ={};
+    var _CreateByURLRedirectExists ={};
+
+    var CreateRedirectonUrlsCreateByURL_CreateExists ={};
+    var CreateExists ={};
+    var _CreateExists ={};
+
+    var CreateRedirectonUrlsCreateByURL_ActivePage ={};
+    var CreateByURLActivePage ={};
+    var _CreateByURLActivePage ={};
+
+    var CreateRedirectonUrlsCreateByURL_DeletedPage ={};
+    var CreateByURLDeletedPage ={};
+    var _CreateByURLDeletedPage ={};
+
+    var CreateRedirectonUrlsCreateByURL_NonExistantPage ={};
+    var CreateByURLNonExistantPage ={};
+    var _CreateByURLNonExistantPage ={};
+
+    var CreateRedirectonUrlsCreateByURL_ToNonExistantPage ={};
+    var CreateByURLToNonExistantPage ={};
+    var _CreateByURLToNonExistantPage ={};
+
+    var CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed ={};
+    var CreateByURLConfirmurlsaretrimmed ={};
+    var _CreateByURLConfirmurlsaretrimmed ={};
+
+    var CreateRedirectonUrlsCreateByURL_Testlowercasing ={};
+    var CreateByURLTestlowercasing ={};
+    var _CreateByURLTestlowercasing ={};
+
+     var CreateRedirectonUrlsCreateByURL_TestToQuerystring ={};
+    var CreateByURLTestToQuerystring ={};
+    var _CreateByURLTestToQuerystring ={};
+
+
+    var CRU_CreateByUrlResurrectDeletedRedirect ={};
+    var CreateByUrlResurrectDeletedRedirect ={};
+    var _CreateByUrlResurrectDeletedRedirect ={};
+
+
+
+
     before(() => {
 
         return Promise.resolve
@@ -463,7 +436,7 @@ describe('PPE-81172:Create Redirect on Urls', () => {
             .then(function(records)
             {
                 _CreateByURLInvalidToURLInternal = records;
-                 
+
             })
             .then(function()
             {
@@ -472,7 +445,7 @@ describe('PPE-81172:Create Redirect on Urls', () => {
             .then(function(records)
             {
                 _CreateByURLInvalidFormToURL = records;
-                 
+
             })
 
             .then(function()
@@ -482,7 +455,7 @@ describe('PPE-81172:Create Redirect on Urls', () => {
             .then(function(records)
             {
                 _CreateByURLInvalidAnotherLifecyleToURL = records;
-                 
+
             })
             .then(function()
             {
@@ -491,7 +464,7 @@ describe('PPE-81172:Create Redirect on Urls', () => {
             .then(function(records)
             {
                 _CreateByURLInvalidExtraSlashToURL = records;
-                 
+
             })
             .then(function()
             {
@@ -500,7 +473,7 @@ describe('PPE-81172:Create Redirect on Urls', () => {
             .then(function(records)
             {
                 _CreateByURLInvalidDoesNoStartWithhttpToURL = records;
-                 
+
             })
              .then(function()
             {
@@ -509,7 +482,7 @@ describe('PPE-81172:Create Redirect on Urls', () => {
             .then(function(records)
             {
                 _CreateByURLInvalidExtraSlashFromURL = records;
-                 
+
             })
             .then(function()
             {
@@ -518,7 +491,7 @@ describe('PPE-81172:Create Redirect on Urls', () => {
             .then(function(records)
             {
                 _CreateByURLInvalidDoesNoStartWithhttpFormURL = records;
-                 
+
             })
             .then(function()
             {
@@ -527,8 +500,119 @@ describe('PPE-81172:Create Redirect on Urls', () => {
             .then(function(records)
             {
                 _CreateByURLInvalidAnotherLifecyleFromURL = records;
-                 
+
             })
+             .then(function()
+            {
+                return manualRedirectSqlService.CreateByURLRedirectExists()
+            })
+            .then(function(records)
+            {
+                _CreateByURLRedirectExists = records;
+
+            })
+             .then(function()
+            {
+                return manualRedirectSqlService.CreateExists()
+            })
+            .then(function(records)
+            {
+                _CreateExists = records;
+
+            })
+             .then(function()
+            {
+                return manualRedirectSqlService.CreateByURLActivePage()
+            })
+            .then(function(records)
+            {
+                _CreateByURLActivePage = records;
+
+            })
+
+             .then(function()
+            {
+                return manualRedirectSqlService.CreateByURLDeletedPage()
+            })
+            .then(function(records)
+            {
+                _CreateByURLDeletedPage = records;
+
+            })
+            .then(function()
+            {
+                return manualRedirectSqlService.CreateByURLNonExistantPage()
+            })
+            .then(function(records)
+            {
+                _CreateByURLNonExistantPage = records;
+
+            })
+           .then(function()
+            {
+                return manualRedirectSqlService.CreateByURLToNonExistantPage()
+            })
+            .then(function(records)
+            {
+                _CreateByURLToNonExistantPage = records;
+
+            })
+             .then(function()
+            {
+                return manualRedirectSqlService.CreateByURLToExternalURL()
+            })
+            .then(function(records)
+            {
+                _CreateByURLToExternalURL = records;
+
+            })
+             .then(function()
+            {
+                return manualRedirectSqlService.CreateByURLConfirmurlsaretrimmed()
+            })
+            .then(function(records)
+            {
+                _CreateByURLConfirmurlsaretrimmed = records;
+
+            })
+             .then(function()
+            {
+                return manualRedirectSqlService.CreateByURLTestlowercasing()
+            })
+            .then(function(records)
+            {
+                _CreateByURLTestlowercasing = records;
+
+            })
+            .then(function()
+            {
+                return manualRedirectSqlService.CreateByURLTestToQuerystring()
+            })
+            .then(function(records)
+            {
+                _CreateByURLTestToQuerystring = records;
+
+            })
+            .then(function()
+            {
+                return manualRedirectSqlService.CreateByURLTestlowercasingwithquerystring()
+            })
+            .then(function(records)
+            {
+                _CreateByURLTestlowercasingwithquerystring = records;
+
+            })
+            .then(function()
+            {
+                return manualRedirectSqlService.CreateByUrlResurrectDeletedRedirect()
+            })
+            .then(function(records)
+            {
+                _CreateByUrlResurrectDeletedRedirect = records;
+
+            })
+
+
 
             );
 
@@ -546,6 +630,18 @@ describe('PPE-81172:Create Redirect on Urls', () => {
             CreateRedirectonUrlsInvalidFromExtraSlash = test.PostResult(testAssetProps.Create_Redirect_on_Urls,_CreateByURLInvalidExtraSlashFromURL);
             CreateRedirectonUrlsFormDoesNoStartWithhttp = test.PostResult(testAssetProps.Create_Redirect_on_Urls,_CreateByURLInvalidDoesNoStartWithhttpFormURL);
             CreateRedirectonUrlsFromInvalidAnotherLifecyle = test.PostResult(testAssetProps.Create_Redirect_on_Urls,_CreateByURLInvalidAnotherLifecyleFromURL);
+            CreateByURLRedirectExists_CreateaRedirectwhereanotherredirect = test.PostResult(testAssetProps.Create_Redirect_on_Urls,_CreateByURLRedirectExists);
+            CreateRedirectonUrlsCreateByURL_CreateExists = test.PostResult(testAssetProps.Create_Redirect_on_Urls,_CreateExists);
+            CreateRedirectonUrlsCreateByURL_ActivePage = test.PostResult(testAssetProps.Create_Redirect_on_Urls,_CreateByURLActivePage);
+            CreateRedirectonUrlsCreateByURL_DeletedPage = test.PostResult(testAssetProps.Create_Redirect_on_Urls,_CreateByURLDeletedPage);
+            CreateRedirectonUrlsCreateByURL_NonExistantPage = test.PostResult(testAssetProps.Create_Redirect_on_Urls,_CreateByURLNonExistantPage);
+            CreateRedirectonUrlsCreateByURL_ToNonExistantPage = test.PostResult(testAssetProps.Create_Redirect_on_Urls,_CreateByURLToNonExistantPage);
+            CreateRedirectonUrlsCreateByURL_ToExternalURL = test.PostResult(testAssetProps.Create_Redirect_on_Urls,_CreateByURLToExternalURL);
+            CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed = test.PostResult(testAssetProps.Create_Redirect_on_Urls,_CreateByURLConfirmurlsaretrimmed);
+            CreateRedirectonUrlsCreateByURL_Testlowercasing = test.PostResult(testAssetProps.Create_Redirect_on_Urls,_CreateByURLTestlowercasing);
+            CreateRedirectonUrlsCreateByURL_TestToQuerystring = test.PostResult(testAssetProps.Create_Redirect_on_Urls,_CreateByURLTestToQuerystring);
+            CRU_CreateByURLTestlowercasingwithquerystring = test.PostResult(testAssetProps.Create_Redirect_on_Urls,_CreateByURLTestlowercasingwithquerystring);
+            CRU_CreateByUrlResurrectDeletedRedirect = test.PostResult(testAssetProps.Create_Redirect_on_Urls,_CreateByUrlResurrectDeletedRedirect);
 
         });
 
@@ -595,7 +691,66 @@ describe('PPE-81172:Create Redirect on Urls', () => {
            expect(CreateRedirectonUrlsFromInvalidAnotherLifecyle.body.StatusCode).to.not.equal(1);
 
         });
+         it('//////10)', () => {
+           console.log(CreateByURLRedirectExists_CreateaRedirectwhereanotherredirect.body.Message);    
+           expect(CreateByURLRedirectExists_CreateaRedirectwhereanotherredirect.body.StatusCode).to.not.equal(1);
 
+        });
+          it('11)Verify To Page is redirected', () => {
+           console.log(CreateRedirectonUrlsCreateByURL_CreateExists.body.Message);    
+           expect(CreateRedirectonUrlsCreateByURL_CreateExists.body.StatusCode).to.not.equal(1);
+
+        });
+         it('//////12)', () => {
+           console.log(CreateRedirectonUrlsCreateByURL_ActivePage.body.Message);    
+           expect(CreateRedirectonUrlsCreateByURL_ActivePage.body.StatusCode).to.not.equal(1);
+
+        });
+         it('//////13)', () => {
+           console.log(CreateRedirectonUrlsCreateByURL_DeletedPage.body.Message);    
+           expect(CreateRedirectonUrlsCreateByURL_DeletedPage.body.StatusCode).to.not.equal(1);
+
+        });
+         it('//////14)', () => {
+           console.log(CreateRedirectonUrlsCreateByURL_NonExistantPage.body.Message);    
+           expect(CreateRedirectonUrlsCreateByURL_NonExistantPage.body.StatusCode).to.not.equal(1);
+
+        });
+         it('//////15)', () => {
+           console.log(CreateRedirectonUrlsCreateByURL_ToNonExistantPage.body.Message);    
+           expect(CreateRedirectonUrlsCreateByURL_ToNonExistantPage.body.StatusCode).to.not.equal(1);
+
+        });
+         it('//////16)', () => {
+           console.log(CreateRedirectonUrlsCreateByURL_ToExternalURL.body.Message);    
+           expect(CreateRedirectonUrlsCreateByURL_ToExternalURL.body.StatusCode).to.not.equal(1);
+
+        });
+         it('//////17)', () => {
+           console.log(CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.Message);    
+           expect(CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.StatusCode).to.not.equal(1);
+
+        });
+         it('//////18)', () => {
+           console.log(CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Message);    
+           expect(CreateRedirectonUrlsCreateByURL_Testlowercasing.body.StatusCode).to.not.equal(1);
+
+        });
+        it('//////19)', () => {
+           console.log(CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Message);    
+           expect(CreateRedirectonUrlsCreateByURL_Testlowercasing.body.StatusCode).to.not.equal(1);
+
+        });
+         it('//////20)', () => {
+           console.log(CRU_CreateByURLTestlowercasingwithquerystring.body.Message);    
+           expect(CRU_CreateByURLTestlowercasingwithquerystring.body.StatusCode).to.not.equal(1);
+
+        });
+        it('//////21)', () => {
+           console.log(CRU_CreateByUrlResurrectDeletedRedirect.body.Message);    
+           expect(CRU_CreateByUrlResurrectDeletedRedirect.body.StatusCode).to.not.equal(1);
+
+        });
     });
 
 });

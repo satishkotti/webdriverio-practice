@@ -23,52 +23,13 @@ var smdata = Object.create(page, {
 
             return smProps =
                 {
-
-                    "CreateRedirectonUrls":
-
-                    {
-                        "fromUrl": 'http://www.dev01.webmd.com/cancer/features/cancer-living-with-talking-to-your-kids-about-cancer',
-                        "toUrl": 'http://www.cancercenter.com/cancer/',
-                    },
-
-
-                    "CreateRedirectonChronicleIDS":
-
-                    {
-                        "fromChronID": '091e9c5e8000a4f1',
-                        "toChronID": '091e9c5e8000ab6f',
-                    },
-
-
-                    "updatetourl":
-
-                    {
-                        "id": 'C35FFC22-5469-40EB-94AF-85E057629692',
-                        "toUrl": 'http://www.cancercenter.com/cancer/',
-                    },
-
-
-                    "replacetochronicleidforall":
-
-                    {
-                        "oldToChronicleID": '091e9c5e80005962',
-                        "newToChronicleID": '091e9c5e80038ec9',
-                    },
-
-
-                    "DeleteOneormoreid":
-
-                    {
-                        "Ids": ['2D79A320-04B0-43B9-A77D-A8946AEAF4B4', '5EC133C0-3AF4-4B71-97DA-DA01D59A5548']
-
-                    },
-
-
+                   
                     "GetAll_Redirects_For_EntireSystem": "get-all?&includeDeleted=" + booltrue,
                     "GetAll_Redirects_ForSiteID": "get-all-for-site?siteID=" + webmdcom + "&includeDeleted=" + booltrue,
                     "GetOne_RedirectByID": "get-by-id?id=",
-                    "GetOne_RedirectBy_FromUrl": "get-by-from-url?fromUrl=" + fromfullUrl + "?includeDeleted=" + booltrue,
-                    "GetAll_RedirectFromUrl_Pattern": "search-start-of-from-url?startsWith=" + searchfromurl + "&includeDeleted=" + boolfalse,
+                    "GetOne_RedirectBy_FromUrl": "get-by-from-url?fromUrl=",
+                     "IncludeDeleted":"?includeDeleted=" + booltrue,
+                    "GetAll_RedirectFromUrl_Pattern": "search-start-of-from-url?startsWith=",
                     "GetAll_RedirectToUrl_Pattern": "search-start-of-to-url?startsWith=" + searchtourl + "&includeDeleted=" + boolfalse,
                     "GetAll_RedirectFroma_ChronicleID": "get-by-from-chronicle-id?chronicleid=" + fromchronicleid,
                     "GetAll_RedirectsRedirectedtoa_ChronicleID": "get-by-to-chronicle-id?chronicleid=" + tochronicleid,
