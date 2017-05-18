@@ -1,8 +1,8 @@
 var maxWaitTimeInMs = 30000;
 
 module.exports = {
- 
-    pagebuilderPage_Pagetab_AttributesNames: function(){
+
+    pagebuilderPage_Pagetab_AttributesNames: function () {
         var chronicleID = browser.isExisting("//label[contains(.,'Chronicle ID')]");
         expect(chronicleID).to.be.true;
         var name = browser.isExisting("//label[string()='Name:']");
@@ -21,9 +21,9 @@ module.exports = {
         expect(webMDAssetCSS).to.be.true;
         var channelID = browser.isExisting("//label[string()='Channel ID:']");
         expect(chronicleID).to.be.true;
-        var primaryCollection  = browser.isExisting("//label[string()='Primary Collection:']");
+        var primaryCollection = browser.isExisting("//label[string()='Primary Collection:']");
         expect(primaryCollection).to.be.true;
-        var secondaryCollection  = browser.isExisting("//label[string()='Secondary Collection:']");
+        var secondaryCollection = browser.isExisting("//label[string()='Secondary Collection:']");
         expect(secondaryCollection).to.be.true;
         var collectionCategory = browser.isExisting("//label[string()='Collection Category:']");
         expect(collectionCategory).to.be.true;
@@ -65,7 +65,7 @@ module.exports = {
         expect(versionID).to.be.true;
     },
 
-    pagebuilderPage_Pagetab_AttributesTags: function(){
+    pagebuilderPage_Pagetab_AttributesTags: function () {
         var chronicleID = browser.isExisting("//div[@id='i_chronicle_id']");
         expect(chronicleID).to.be.true;
         var name = browser.isExisting("//div[@id='object_name']");
@@ -84,9 +84,9 @@ module.exports = {
         expect(webMDAssetCSS).to.be.true;
         var channelID = browser.isExisting("//div[@id='wbmd_c_channel_id']");
         expect(chronicleID).to.be.true;
-        var primaryCollection  = browser.isExisting("//div[@id='wbmd_prim_col']");
+        var primaryCollection = browser.isExisting("//div[@id='wbmd_prim_col']");
         expect(primaryCollection).to.be.true;
-        var secondaryCollection  = browser.isExisting("//div[@id='wbmd_sec_col']");
+        var secondaryCollection = browser.isExisting("//div[@id='wbmd_sec_col']");
         expect(secondaryCollection).to.be.true;
         var collectionCategory = browser.isExisting("//div[@id='wbmd_col_cat']");
         expect(collectionCategory).to.be.true;
@@ -129,7 +129,7 @@ module.exports = {
 
     },
 
-    pagebuilderAsset_Othertab_AttributesNames: function(){
+    pagebuilderAsset_Othertab_AttributesNames: function () {
         browser.click("//span/span[string()='Other']");
         var language = browser.isExisting("//label[string()='Language / Locale:']");
         expect(language).to.be.true;
@@ -141,7 +141,7 @@ module.exports = {
         expect(author).to.be.true;
         var versionlabel = browser.isExisting("//label[string()='Version Label:']");
         expect(versionlabel).to.be.true;
-        var modified= browser.isExisting("//label[string()='Modified:']");
+        var modified = browser.isExisting("//label[string()='Modified:']");
         expect(modified).to.be.true;
         var modifiedby = browser.isExisting("//label[string()='Modified By:']");
         expect(modifiedby).to.be.true;
@@ -166,8 +166,8 @@ module.exports = {
         var accessed = browser.isExisting("//label[string()='Accessed:']");
         expect(accessed).to.be.true;
     },
-     pagebuilderAsset_Othertab_AttributesTag: function(){
-         browser.click("//span/span[string()='Other']");
+    pagebuilderAsset_Othertab_AttributesTag: function () {
+        browser.click("//span/span[string()='Other']");
         var language = browser.isExisting("//div[@id='language_code']");
         expect(language).to.be.true;
         var status = browser.isExisting("//div[@id='r_current_state']");
@@ -178,7 +178,7 @@ module.exports = {
         expect(author).to.be.true;
         var versionlabel = browser.isExisting("//div[@id='r_version_label']");
         expect(versionlabel).to.be.true;
-        var modified= browser.isExisting("//div[@id='r_modify_date']");
+        var modified = browser.isExisting("//div[@id='r_modify_date']");
         expect(modified).to.be.true;
         var modifiedby = browser.isExisting("//div[@id='r_modifier']");
         expect(modifiedby).to.be.true;
@@ -203,7 +203,7 @@ module.exports = {
         var accessed = browser.isExisting("//div[@id='r_access_date']");
         expect(accessed).to.be.true;
     },
-       pagebuilderAsset_Publishingtab_AttributesNames: function(){
+    pagebuilderAsset_Publishingtab_AttributesNames: function () {
         browser.click("//span/span[string()='Publishing']");
         var effectiveDate = browser.isExisting("//label[string()='Effective Date:']");
         expect(effectiveDate).to.be.true;
@@ -212,7 +212,7 @@ module.exports = {
         var publishFormat = browser.isExisting("//label[string()='Publish Formats:']");
         expect(publishFormat).to.be.true;
     },
-     pagebuilderAsset_Publishingtab_AttributesTag: function(){
+    pagebuilderAsset_Publishingtab_AttributesTag: function () {
         browser.click("//span/span[string()='Publishing']");
         var effectiveDate = browser.isExisting("//div[@id='a_effective_date']");
         expect(effectiveDate).to.be.true;
@@ -220,5 +220,80 @@ module.exports = {
         expect(expirationDate).to.be.true;
         var publishFormat = browser.isExisting("//div[@id='a_publish_formats']");
         expect(publishFormat).to.be.true;
+    },
+
+    pagebuilderTemplate_Templatetab_AttributesNames: function () {
+        var chronicleID = browser.isExisting("//label[contains(.,'Chronicle ID')]");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//label[string()='Name:']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//label[string()='Title:']");
+        expect(title).to.be.true;
+        var webMDAssetCSS = browser.isExisting("//label[string()='WebMD Asset CSS:']");
+        expect(webMDAssetCSS).to.be.true;
+        var userDescription = browser.isExisting("//label[string()='User Description:']");
+        expect(userDescription).to.be.true;
+        var originalPublishDate = browser.isExisting("//label[string()='Original Publish Date:']");
+        expect(originalPublishDate).to.be.true;
+        var externallySearchable = browser.isExisting("//label[string()='Externally Searchable?:']");
+        expect(externallySearchable).to.be.true;
+        var internallySearchable = browser.isExisting("//label[string()='Internally Searchable?:']");
+        expect(internallySearchable).to.be.true;
+        var nodeID = browser.isExisting("//label[string()='Node ID:']");
+        expect(nodeID).to.be.true;
+        var parentTemplate = browser.isExisting("//label[string()='Parent Template:']");
+        expect(parentTemplate).to.be.true;
+        var schemaTarget = browser.isExisting("//label[string()='Schema Target:']");
+        expect(schemaTarget).to.be.true;
+        var programObject = browser.isExisting("//label[string()='Program Object (CBP):']");
+        expect(programObject).to.be.true;
+        var gatedUsername = browser.isExisting("//label[string()='Gated Username:']");
+        expect(gatedUsername).to.be.true;
+        var IsGated = browser.isExisting("//label[string()='Is Gated?:']");
+        expect(IsGated).to.be.true;
+        var pbAsset = browser.isExisting("//label[string()='wbmd_pb_assetjs:']");
+        expect(pbAsset).to.be.true;
+        var skin = browser.isExisting("//label[string()='Skin:']");
+        expect(skin).to.be.true;
+        var versionID = browser.isExisting("//label[string()='Version ID (r_object_id):']");
+        expect(versionID).to.be.true;
+    },
+
+    pagebuilderTemplate_Templatetab_AttributesTags: function () {
+        var chronicleID = browser.isExisting("//div[@id='i_chronicle_id']");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//div[@id='object_name']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//div[@id='title']");
+        expect(title).to.be.true;
+        var webMDAssetCSS = browser.isExisting("//div[@id='wbmd_pb_asset_css']");
+        expect(webMDAssetCSS).to.be.true;
+        var userDescription = browser.isExisting("//div[@id='wbmd_desc_user']");
+        expect(userDescription).to.be.true;
+        var originalPublishDate = browser.isExisting("//div[@id='wbmd_orig_pub_dt']");
+        expect(originalPublishDate).to.be.true;
+        var externallySearchable = browser.isExisting("//div[@id='wbmd_pb_isextsearchable']");
+        expect(externallySearchable).to.be.true;
+        var internallySearchable = browser.isExisting("//div[@id='wbmd_pb_isintsearchable']");
+        expect(internallySearchable).to.be.true;
+        var nodeID = browser.isExisting("//div[@id='wbmd_pb_node_id']");
+        expect(nodeID).to.be.true;
+        var parentTemplate = browser.isExisting("//div[@id='wbmd_pb_parenttemplate']");
+        expect(parentTemplate).to.be.true;
+        var schemaTarget = browser.isExisting("//div[@id='wbmd_pb_schema_tgt']");
+        expect(schemaTarget).to.be.true;
+        var programObject = browser.isExisting("//div[@id='wbmd_prog_id']");
+        expect(programObject).to.be.true;
+        var gatedusername = browser.isExisting("//div[@id='wbmd_pb_gatedusername']");
+        expect(gatedusername).to.be.true;
+        var IsGated = browser.isExisting("//div[@id='wbmd_pb_is_gated']");
+        expect(IsGated).to.be.true;
+        var pbAsset = browser.isExisting("//div[@id='wbmd_pb_assetjs']");
+        expect(pbAsset).to.be.true;
+        var skin = browser.isExisting("//div[@id='wbmd_pb_skin']");
+        expect(skin).to.be.true;
+        var versionID = browser.isExisting("//div[@id='r_object_id']");
+        expect(versionID).to.be.true;
+
     }
 }
