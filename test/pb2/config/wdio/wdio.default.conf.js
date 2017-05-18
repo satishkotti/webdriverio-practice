@@ -1,18 +1,20 @@
 var merge = require('deepmerge');
-var wdioConf = require('./wdio.conf.js');
+var wdioConf = require('./../../../../wdio.conf.js');
+var gulpFile = require('./../../../../gulpfile.js');
+
 
 // have main config file as default but overwrite environment specific information
 exports.config = merge(wdioConf.config, {
 
     debug: false,
-    specs: ['./test/pb2/**/PPE-101669.js', ],
+    specs: [],
     waitforTimeout: 120000,
     mochaOpts: {
         ui: 'bdd',
         timeout: 900000
     },
     capabilities: [{
-        maxInstances: 1,
+        maxInstances: gulpFile.MaxInstances,
         browserName: 'chrome',
         chromeOptions:
         //args: ['window-size=1920,1080']
@@ -37,13 +39,9 @@ exports.config = merge(wdioConf.config, {
             }
         }
     }],
-    suites: {
-        redirectTool: [
-            './test/pb2/**/PPE-101669.js'
-        ]
-    },
+
     capabilities: [{
-        maxInstances: 1,
+        maxInstances: gulpFile.MaxInstances,
         browserName: 'chrome',
         chromeOptions: {
             "args": [
@@ -67,7 +65,7 @@ exports.config = merge(wdioConf.config, {
         }
     }],
 
-    before: function() {
+    before: function () {
 
         var chai = require('chai');
         chai.config.includeStack = true;
@@ -78,9 +76,9 @@ exports.config = merge(wdioConf.config, {
         should = chai.should();
         _ = require('lodash');
 
-        var appConfigFile = require('./test/pb2/config/test.config');
+        var appConfigFile = require('./../test.config');
         var appConfig = appConfigFile.config;
-        global.testEnv = appConfig.testEnv.dev03;
+        global.testEnv = gulpFile.TestEnv;
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
