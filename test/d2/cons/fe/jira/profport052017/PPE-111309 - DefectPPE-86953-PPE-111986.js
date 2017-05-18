@@ -29,7 +29,7 @@ describe('Regression', function () {
        
     });
 
-   it.skip('PPE-86953-Verify the Health Reference Template - Media Asset field  in SCS Target File in US Folder', function () {
+   it('PPE-86953-Verify the Health Reference Template - Media Asset field  in SCS Target File in US Folder', function () {
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
@@ -93,7 +93,7 @@ describe('Regression', function () {
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
-            global.d2ConDataSettings.inputData.ArticleProfileName,
+            global.d2ConDataSettings.inputData.UkArticleProfileName,
             global.d2ConDataSettings.inputData.HelathRefArticleTemplate,
             AssetTitle,
             AssetName);
@@ -127,9 +127,6 @@ describe('Regression', function () {
                         path: "$..content_section",
                         resultType: 'all'
                     });
-
-                     console.log(Content[0]);
-                    
 
                     expect(Asset[0].parent.metadata_section.i_chronicle_id).to.equal(chronicleId);
                     expect(Content[0].parent.content_section.cons_health_ref.thumbnail_image.$.path).to.equal(TImagelinkVal);
@@ -171,7 +168,6 @@ describe('Regression', function () {
             return Promise.resolve(
                 parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
                
-                    console.log()
                     var Asset = JSONPath({
                         json: result,
                         path: "$..metadata_section",
@@ -183,9 +179,6 @@ describe('Regression', function () {
                         path: "$..content_section",
                         resultType: 'all'
                     });
-
-                     
-                    console.log(Content[0]);
 
                     expect(Asset[0].parent.metadata_section.i_chronicle_id).to.equal(chronicleId);
                     expect(Content[0].parent.content_section.cons_news.thumbnail_image.$.path).to.equal(TImagelinkVal);
@@ -206,7 +199,7 @@ describe('Regression', function () {
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
-            global.d2ConDataSettings.inputData.ArticleProfileName,
+            global.d2ConDataSettings.inputData.UkArticleProfileName,
             global.d2ConDataSettings.inputData.ArticleTemplate,
             AssetTitle,
             AssetName);

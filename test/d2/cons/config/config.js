@@ -238,6 +238,7 @@ module.exports.testSettings = {
             "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other",
             "UKtestFolderPath": "webmddoc01/webmd_uk/consumer_assets/editorial/articles/Others",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
+            "UkArticleProfileName": 'Consumer Portal UK / Article Templates',
              "HelathRefArticleTemplate":'Article / Health Reference Template',
             "ArticleTemplate": 'Article /  News Template',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
