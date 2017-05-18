@@ -47,8 +47,7 @@ exports.config = merge(wdioConf.config, {
 
         global.testEnv = gulpFile.TestEnv;
         var config = require('./../config');
-        global.envSettings = config.EnvSettings.getEnvSettings(global.testEnv);
-        global.d2ConDataSettings = config.EnvSettings.getEnvData(global.testEnv);
-
+        global.envSettings = config.EnvSettings.getEnvSettings(global.testEnv.toLowerCase());
+        global.d2ConDataSettings = config.EnvSettings.getEnvData(global.testEnv.toLowerCase());
     }
 });
