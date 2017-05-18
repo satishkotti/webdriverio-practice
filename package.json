@@ -44,6 +44,11 @@
   "devDependencies": {
     "karma-expect": "^1.1.3",
     "wdio-allure-reporter": "^0.1.2",
-    "wdio-spec-reporter": "0.0.3"
+    "wdio-spec-reporter": "0.0.3",
+    "args": "^2.6.0",
+    "chalk": "^1.1.3",
+    "gulp-git": "^2.2.0",
+    "gulp-sequence": "^0.4.6",
+    "gulp-webdriver": "^1.0.3"
   }
 }
