@@ -6,7 +6,7 @@ var fs = require("fs");
 var parse = require('csv-parse');
 var xpath = require('xpath'),
     dom = require('xmldom').DOMParser;
-var folderPath = './../data/files-for-PPE-93381';
+var folderPath = 'test/pb2/data/files-for-PPE-93381';
 var readFolder = function(folder) {
     return new Promise(function(resolve, reject) {
         fs.readdir(folder, function(err, files) {
