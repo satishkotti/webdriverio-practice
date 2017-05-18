@@ -23,17 +23,17 @@ describe('Pagebuilder Asset Attributes to show - PPE-85205 UK', function () {
     documentListTab.selectAsset(global.d2ConDataSettings.inputData.PBPage_uk);
     pagebuilderAssets.pagebuilderPage();
   });
-   it('Verify the PageBuilder Templates attributes in Consumer D2 - PPE-111512', function () {
+  it('Verify the PageBuilder Templates attributes in Consumer D2 - PPE-111512', function () {
     repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.PBTemplatePath_uk);
     documentListTab.selectAsset(global.d2ConDataSettings.inputData.PBTemplate_uk);
     pagebuilderAssets.pagebuilderTemplate();
   });
-     it('Verify the PageBuilder TemplateModule attributes in Consumer D2 -  PPE-111933 ', function () {
+  it('Verify the PageBuilder TemplateModule attributes in Consumer D2 -  PPE-111933 ', function () {
     repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.PBTemplateModulePath_uk);
     documentListTab.selectAsset(global.d2ConDataSettings.inputData.PBTemplateModule_uk);
     pagebuilderAssets.pagebuilderTemplateModule();
   });
-     it('Verify the PageBuilder Module attributes in Consumer D2 -  PPE-111514', function () {
+  it('Verify the PageBuilder Module attributes in Consumer D2 -  PPE-111514', function () {
     repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.PBModulePath_uk);
     documentListTab.selectAsset(global.d2ConDataSettings.inputData.PBModule_uk);
     pagebuilderAssets.pagebuilderModule();
@@ -43,7 +43,7 @@ describe('Pagebuilder Asset Attributes to show - PPE-85205 UK', function () {
     documentListTab.selectAsset(global.d2ConDataSettings.inputData.PBSchemas_uk);
     pagebuilderAssets.pagebuilderSchemas();
   });
-   it('Verify the PageBuilder XSL attributes in Consumer D2 - PPE-111936 ', function () {
+  it('Verify the PageBuilder XSL attributes in Consumer D2 - PPE-111936 ', function () {
     repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.PBXSLPath_uk);
     documentListTab.selectAsset(global.d2ConDataSettings.inputData.PBxsl_uk);
     pagebuilderAssets.pagebuilderXSL();

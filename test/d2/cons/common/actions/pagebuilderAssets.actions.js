@@ -22,6 +22,8 @@ module.exports = {
    },
     pagebuilderTemplateModule :function(){
        propertiesTabUI.propertiesTabSelect();
+       pagebuilderAssets.pagebuilderTemplateModule_TemplateModuletab_AttributesNames();
+       pagebuilderAssets.pagebuilderTemplateModule_TemplateModuletab_AttributesTags();
        pagebuilderAssets.pagebuilderAsset_Othertab_AttributesNames();
        pagebuilderAssets.pagebuilderAsset_Othertab_AttributesTag();
        pagebuilderAssets.pagebuilderAsset_Publishingtab_AttributesNames();
@@ -29,6 +31,8 @@ module.exports = {
    },
     pagebuilderModule :function(){
        propertiesTabUI.propertiesTabSelect();
+       pagebuilderAssets.pagebuilderModule_Moduletab_AttributesNames();
+       pagebuilderAssets.pagebuilderModule_Moduletab_AttributesTags();
        pagebuilderAssets.pagebuilderAsset_Othertab_AttributesNames();
        pagebuilderAssets.pagebuilderAsset_Othertab_AttributesTag();
        pagebuilderAssets.pagebuilderAsset_Publishingtab_AttributesNames();
@@ -36,6 +40,8 @@ module.exports = {
    },
     pagebuilderSchemas :function(){
        propertiesTabUI.propertiesTabSelect();
+       pagebuilderAssets.pagebuilderSchemas_Schemastab_AttributesNames();
+       pagebuilderAssets.pagebuilderSchemas_Schemastab_AttributesTags();
        pagebuilderAssets.pagebuilderAsset_Othertab_AttributesNames();
        pagebuilderAssets.pagebuilderAsset_Othertab_AttributesTag();
        pagebuilderAssets.pagebuilderAsset_Publishingtab_AttributesNames();
@@ -43,6 +49,8 @@ module.exports = {
    },
    pagebuilderXSL :function(){
        propertiesTabUI.propertiesTabSelect();
+       pagebuilderAssets.pagebuilderXSL_XSLtab_AttributesNames();
+       pagebuilderAssets.pagebuilderXSL_XSLtab_AttributesTags();
        pagebuilderAssets.pagebuilderAsset_Othertab_AttributesNames();
        pagebuilderAssets.pagebuilderAsset_Othertab_AttributesTag();
        pagebuilderAssets.pagebuilderAsset_Publishingtab_AttributesNames();
@@ -50,6 +58,8 @@ module.exports = {
    },
    pagebuilderCSS :function(){
        propertiesTabUI.propertiesTabSelect();
+       pagebuilderAssets.pagebuilderCSS_CSStab_AttributesNames();
+       pagebuilderAssets.pagebuilderCSS_CSStab_AttributesTags();
        pagebuilderAssets.pagebuilderAsset_Othertab_AttributesNames();
        pagebuilderAssets.pagebuilderAsset_Othertab_AttributesTag();
        pagebuilderAssets.pagebuilderAsset_Publishingtab_AttributesNames();
@@ -57,6 +67,8 @@ module.exports = {
    },
     pagebuilderJS :function(){
        propertiesTabUI.propertiesTabSelect();
+       pagebuilderAssets.pagebuilderJS_JStab_AttributesNames();
+       pagebuilderAssets.pagebuilderJS_JStab_AttributesTags();
        pagebuilderAssets.pagebuilderAsset_Othertab_AttributesNames();
        pagebuilderAssets.pagebuilderAsset_Othertab_AttributesTag();
        pagebuilderAssets.pagebuilderAsset_Publishingtab_AttributesNames();
@@ -64,6 +76,8 @@ module.exports = {
    },
     pagebuilderSharedModule :function(){
        propertiesTabUI.propertiesTabSelect();
+       pagebuilderAssets.pagebuilderSharedModule_SharedModuletab_AttributesNames();
+       pagebuilderAssets.pagebuilderSharedModule_SharedModuletab_AttributesTags();
        pagebuilderAssets.pagebuilderAsset_Othertab_AttributesNames();
        pagebuilderAssets.pagebuilderAsset_Othertab_AttributesTag();
        pagebuilderAssets.pagebuilderAsset_Publishingtab_AttributesNames();

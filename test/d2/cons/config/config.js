@@ -323,12 +323,12 @@ module.exports.testSettings = {
              "PBSchemas": "DynamicCollection.xsd",
              "PBXSLPath": "webmddoc01/webmd/PageBuilder_Assets/XSL/ExchangePopularResources",
              "PBxsl":"Helpful Resources_091e9c5e803f36ed.xsl",
-             "PBCSSPath": "webmddoc01/webmd/PageBuilder_Assets/CSS/091e9c5e8001315a/News Articles",
-             "PBcss": "Green header blue links_091e9c5e809b5880.css",
+             "PBCSSPath": "webmddoc01/webmd/PageBuilder_Assets/CSS/091e9c5e80013159/EmailAFriend",
+             "PBcss": "2009 Header Links_091e9c5e802af360.css",
              "PBJSPath": "webmddoc01/webmd/PageBuilder_Assets/JS/sponsored_programs",
              "PBjs": "ahrq.js",
-             "PBSharedModulePath": "webmddoc01/webmd/PageBuilder_Assets/scopemaps/WebMD/Pages/Kaltura Video Test_Copy1201093500_091e9c5e812e9493",
-             "PBSharedModule": "module_html-video_091e9c5e812e9495.xml",
+             "PBSharedModulePath": "webmddoc01/webmd/PageBuilder_Assets/Shared_Modules/DynamicArticle/fit-rmq_091e9c5e8082d5a0",
+             "PBSharedModule": "module_fit-rmq_091e9c5e8082d5a1.xml",
               "PBPagesPath_uk": "webmddoc01/webmd_uk/PageBuilder_Assets/scopemaps/WebMD_UK/Pages/013114 R14 test page 2_091e9c5e80e31298",
              "PBPage_uk":"page_013114 R14 test page 2_091e9c5e80e31298.xml",
              "PBTemplatePath_uk":"webmddoc01/webmd_uk/PageBuilder_Assets/scopemaps/WebMD Consumer/Templates/Endometriosis Slideshows_091e9c5e807bcf7d",
@@ -345,8 +345,8 @@ module.exports.testSettings = {
              "PBcss_uk": "Diet Center TOC_091e9c5e80374060.css",
              "PBJSPath_uk": "webmddoc01/webmd_uk/PageBuilder_Assets/JS/topic-directory",
              "PBjs_uk": "webmd.m.dynrelart.js",
-             "PBSharedModulePath_uk": "webmddoc01/webmd_uk/PageBuilder_Assets/scopemaps/WebMD_UK/Pages/013114 R14 test page 2_091e9c5e80e31298",
-             "PBSharedModule_uk": "module_test_091e9c5e80e31299.xml"
+             "PBSharedModulePath_uk": "webmddoc01/webmd_uk/PageBuilder_Assets/Shared_Modules/AdModule/QA_TEST_SM_091e9c5e812eaf46",
+             "PBSharedModule_uk": "module_QA_TEST_SM_091e9c5e812eaf47.xml"
 
         }      
     }

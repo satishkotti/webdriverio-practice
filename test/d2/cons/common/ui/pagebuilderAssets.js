@@ -295,5 +295,355 @@ module.exports = {
         var versionID = browser.isExisting("//div[@id='r_object_id']");
         expect(versionID).to.be.true;
 
-    }
+    },
+    pagebuilderTemplateModule_TemplateModuletab_AttributesNames: function () {
+        var chronicleID = browser.isExisting("//label[contains(.,'Chronicle ID')]");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//label[string()='Name:']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//label[string()='Title:']");
+        expect(title).to.be.true;
+        var cacheDuration = browser.isExisting("//label[string()='Cache Duration:']");
+        expect(cacheDuration).to.be.true;
+        var moduleCategory = browser.isExisting("//label[string()='Module Category:']");
+        expect(moduleCategory).to.be.true;
+        var dynamicModuleCategory = browser.isExisting("//label[string()='Dynamic Module Category:']");
+        expect(dynamicModuleCategory).to.be.true;
+        var moduleLabel1 = browser.isExisting("//label[string()='Module Label 1:']");
+        expect(moduleLabel1).to.be.true;
+        var moduleLabel2 = browser.isExisting("//label[string()='Module Label 2:']");
+        expect(moduleLabel2).to.be.true;
+        var pagebuilderModuleTier = browser.isExisting("//label[string()='Pagebuilder Module Tier:']");
+        expect(pagebuilderModuleTier).to.be.true;
+        var moduleXSL = browser.isExisting("//label[string()='Module XSL:']");
+        expect(moduleXSL).to.be.true;
+        var moduleCSS = browser.isExisting("//label[string()='Module CSS:']");
+        expect(moduleCSS).to.be.true;
+        //var programObject = browser.isExisting("//label[string()='Program Object (CBP):']");
+        //expect(programObject).to.be.false;
+        var moduleDataSchema = browser.isExisting("//label[string()='Module Data Schema:']");
+        expect(moduleDataSchema).to.be.true;
+        var ownerPageID  = browser.isExisting("//label[string()='Owner Page ID:']");
+        expect(ownerPageID).to.be.true;
+        var versionID = browser.isExisting("//label[string()='Version ID (r_object_id):']");
+        expect(versionID).to.be.true;
+    },
+
+    pagebuilderTemplateModule_TemplateModuletab_AttributesTags: function () {
+        var chronicleID = browser.isExisting("//div[@id='i_chronicle_id']");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//div[@id='object_name']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//div[@id='title']");
+        expect(title).to.be.true;
+        var cacheDuration = browser.isExisting("//div[@id='wbmd_pb_cache_duration']");
+        expect(cacheDuration).to.be.true;
+        var moduleCategory = browser.isExisting("//div[@id='wbmd_pb_module_category']");
+        expect(moduleCategory).to.be.true;
+        var dynamicModuleCategory = browser.isExisting("//div[@id='wbmd_pb_dyn_module_category']");
+        expect(dynamicModuleCategory).to.be.true;
+        var moduleLabel1 = browser.isExisting("//div[@id='wbmd_pb_module_label1']");
+        expect(moduleLabel1).to.be.true;
+        var moduleLabel2 = browser.isExisting("//div[@id='wbmd_pb_module_label2']");
+        expect(moduleLabel2).to.be.true;
+        var pagebuilderModuleTier = browser.isExisting("//div[@id='wbmd_pb_module_tier']");
+        expect(pagebuilderModuleTier).to.be.true;
+        var moduleXSL = browser.isExisting("//div[@id='wbmd_pb_module_xsl']");
+        expect(moduleXSL).to.be.true;
+        var moduleCSS = browser.isExisting("//div[@id='wbmd_pb_asset_css']");
+        expect(moduleCSS).to.be.true;
+       // var programObject = browser.isExisting("//div[@id='wbmd_prog_id']");
+       // expect(programObject).to.be.false;
+        var moduleDataSchema = browser.isExisting("//div[@id='wbmd_pb_moduledataschema']");
+        expect(moduleDataSchema).to.be.true;
+        var ownerPageID  = browser.isExisting("//div[@id='wbmd_pb_owner_page_id']");
+        expect(ownerPageID).to.be.true;
+        var versionID = browser.isExisting("//div[@id='r_object_id']");
+        expect(versionID).to.be.true;
+
+    },
+     pagebuilderModule_Moduletab_AttributesNames: function () {
+        var chronicleID = browser.isExisting("//label[contains(.,'Chronicle ID')]");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//label[string()='Name:']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//label[string()='Title:']");
+        expect(title).to.be.true;
+        var cacheDuration = browser.isExisting("//label[string()='Cache Duration:']");
+        expect(cacheDuration).to.be.true;
+        var moduleCategory = browser.isExisting("//label[string()='Module Category:']");
+        expect(moduleCategory).to.be.true;
+        var dynamicModuleCategory = browser.isExisting("//label[string()='Dynamic Module Category:']");
+        expect(dynamicModuleCategory).to.be.true;
+        var moduleLabel1 = browser.isExisting("//label[string()='Module Label 1:']");
+        expect(moduleLabel1).to.be.true;
+        var moduleLabel2 = browser.isExisting("//label[string()='Module Label 2:']");
+        expect(moduleLabel2).to.be.true;
+        var pagebuilderModuleTier = browser.isExisting("//label[string()='Pagebuilder Module Tier:']");
+        expect(pagebuilderModuleTier).to.be.true;
+        var moduleXSL = browser.isExisting("//label[string()='Module XSL:']");
+        expect(moduleXSL).to.be.true;
+        var moduleCSS = browser.isExisting("//label[string()='Module CSS:']");
+        expect(moduleCSS).to.be.true;
+       // var programObject = browser.isExisting("//label[string()='Program Object (CBP):']");
+        //expect(programObject).to.be.false;
+        var moduleDataSchema = browser.isExisting("//label[string()='Module Data Schema:']");
+        expect(moduleDataSchema).to.be.true;
+        var ownerPageID  = browser.isExisting("//label[string()='Owner Page ID:']");
+        expect(ownerPageID).to.be.true;
+        var versionID = browser.isExisting("//label[string()='Version ID (r_object_id):']");
+        expect(versionID).to.be.true;
+        var channelID = browser.isExisting("//label[string()='Channel IDs:']");
+        expect(channelID).to.be.true;
+        var programCollection = browser.isExisting("//label[string()='Program Collection:']");
+        expect(programCollection).to.be.true;
+        var displayProperties = browser.isExisting("//label[string()='Display Properties:']");
+        expect(displayProperties).to.be.true;
+    },
+
+    pagebuilderModule_Moduletab_AttributesTags: function () {
+        var chronicleID = browser.isExisting("//div[@id='i_chronicle_id']");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//div[@id='object_name']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//div[@id='title']");
+        expect(title).to.be.true;
+        var cacheDuration = browser.isExisting("//div[@id='wbmd_pb_cache_duration']");
+        expect(cacheDuration).to.be.true;
+        var moduleCategory = browser.isExisting("//div[@id='wbmd_pb_module_category']");
+        expect(moduleCategory).to.be.true;
+        var dynamicModuleCategory = browser.isExisting("//div[@id='wbmd_pb_dyn_module_category']");
+        expect(dynamicModuleCategory).to.be.true;
+        var moduleLabel1 = browser.isExisting("//div[@id='wbmd_pb_module_label1']");
+        expect(moduleLabel1).to.be.true;
+        var moduleLabel2 = browser.isExisting("//div[@id='wbmd_pb_module_label2']");
+        expect(moduleLabel2).to.be.true;
+        var pagebuilderModuleTier = browser.isExisting("//div[@id='wbmd_pb_module_tier']");
+        expect(pagebuilderModuleTier).to.be.true;
+        var moduleXSL = browser.isExisting("//div[@id='wbmd_pb_module_xsl']");
+        expect(moduleXSL).to.be.true;
+        var moduleCSS = browser.isExisting("//div[@id='wbmd_pb_asset_css']");
+        expect(moduleCSS).to.be.true;
+        //var programObject = browser.isExisting("//div[@id='wbmd_prog_id']");
+        //expect(programObject).to.be.false;
+        var moduleDataSchema = browser.isExisting("//div[@id='wbmd_pb_moduledataschema']");
+        expect(moduleDataSchema).to.be.true;
+        var ownerPageID  = browser.isExisting("//div[@id='wbmd_pb_owner_page_id']");
+        expect(ownerPageID).to.be.true;
+        var versionID = browser.isExisting("//div[@id='r_object_id']");
+        expect(versionID).to.be.true;
+        var channelID = browser.isExisting("//div[@id='wbmd_c_channel_ids']");
+        expect(channelID).to.be.true;
+        var programCollection = browser.isExisting("//div[@id='wbmd_prog_col']");
+        expect(programCollection).to.be.true;
+        var displayProperties = browser.isExisting("//div[@id='wbmd_pb_module_visibility']");
+        expect(displayProperties).to.be.true;
+
+    },
+    pagebuilderSharedModule_SharedModuletab_AttributesNames: function () {
+        var chronicleID = browser.isExisting("//label[contains(.,'Chronicle ID')]");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//label[string()='Name:']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//label[string()='Title:']");
+        expect(title).to.be.true;
+        var cacheDuration = browser.isExisting("//label[string()='Cache Duration:']");
+        expect(cacheDuration).to.be.true;
+        var moduleCategory = browser.isExisting("//label[string()='Module Category:']");
+        expect(moduleCategory).to.be.true;
+        var dynamicModuleCategory = browser.isExisting("//label[string()='Dynamic Module Category:']");
+        expect(dynamicModuleCategory).to.be.true;
+        var moduleLabel1 = browser.isExisting("//label[string()='Module Label 1:']");
+        expect(moduleLabel1).to.be.true;
+        var moduleLabel2 = browser.isExisting("//label[string()='Module Label 2:']");
+        expect(moduleLabel2).to.be.true;
+        var pagebuilderModuleTier = browser.isExisting("//label[string()='Pagebuilder Module Tier:']");
+        expect(pagebuilderModuleTier).to.be.true;
+        var moduleXSL = browser.isExisting("//label[string()='Module XSL:']");
+        expect(moduleXSL).to.be.true;
+        var moduleCSS = browser.isExisting("//label[string()='Module CSS:']");
+        expect(moduleCSS).to.be.true;
+        var defaultDynamicModuleCategory = browser.isExisting("//label[string()='Default Dynamic Module Category:']");
+        expect(defaultDynamicModuleCategory).to.be.true;
+        var moduleDataSchema = browser.isExisting("//label[string()='Module Data Schema:']");
+        expect(moduleDataSchema).to.be.true;
+        var ownerPageID  = browser.isExisting("//label[string()='Owner Page ID:']");
+        expect(ownerPageID).to.be.true;
+        var versionID = browser.isExisting("//label[string()='Version ID (r_object_id):']");
+        expect(versionID).to.be.true;
+        var channelID = browser.isExisting("//label[string()='Channel IDs:']");
+        expect(channelID).to.be.true;
+        var programCollection = browser.isExisting("//label[string()='Program Collections:']");
+        expect(programCollection).to.be.true;
+        var moduleVisibility = browser.isExisting("//label[string()='Module Visibility:']");
+        expect(moduleVisibility).to.be.true;
+        var friendlyName = browser.isExisting("//label[string()='Friendly Name:']");
+        expect(friendlyName).to.be.true;
+    },
+
+    pagebuilderSharedModule_SharedModuletab_AttributesTags: function () {
+        var chronicleID = browser.isExisting("//div[@id='i_chronicle_id']");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//div[@id='object_name']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//div[@id='title']");
+        expect(title).to.be.true;
+        var cacheDuration = browser.isExisting("//div[@id='wbmd_pb_cache_duration']");
+        expect(cacheDuration).to.be.true;
+        var moduleCategory = browser.isExisting("//div[@id='wbmd_pb_module_category']");
+        expect(moduleCategory).to.be.true;
+        var dynamicModuleCategory = browser.isExisting("//div[@id='wbmd_pb_dyn_module_category']");
+        expect(dynamicModuleCategory).to.be.true;
+        var moduleLabel1 = browser.isExisting("//div[@id='wbmd_pb_module_label1']");
+        expect(moduleLabel1).to.be.true;
+        var moduleLabel2 = browser.isExisting("//div[@id='wbmd_pb_module_label2']");
+        expect(moduleLabel2).to.be.true;
+        var pagebuilderModuleTier = browser.isExisting("//div[@id='wbmd_pb_module_tier']");
+        expect(pagebuilderModuleTier).to.be.true;
+        var moduleXSL = browser.isExisting("//div[@id='wbmd_pb_module_xsl']");
+        expect(moduleXSL).to.be.true;
+        var moduleCSS = browser.isExisting("//div[@id='wbmd_pb_asset_css']");
+        expect(moduleCSS).to.be.true;
+        var defaultDynamicModuleCategory = browser.isExisting("//div[@id='wbmd_pb_dyn_module_cat_def']");
+        expect(defaultDynamicModuleCategory).to.be.true;
+        var moduleDataSchema = browser.isExisting("//div[@id='wbmd_pb_moduledataschema']");
+        expect(moduleDataSchema).to.be.true;
+        var ownerPageID  = browser.isExisting("//div[@id='wbmd_pb_owner_page_id']");
+        expect(ownerPageID).to.be.true;
+        var versionID = browser.isExisting("//div[@id='r_object_id']");
+        expect(versionID).to.be.true;
+        var channelID = browser.isExisting("//div[@id='wbmd_c_channel_id']");
+        expect(channelID).to.be.true;
+        var programCollection = browser.isExisting("//div[@id='wbmd_prog_cols']");
+        expect(programCollection).to.be.true;
+        var moduleVisibility = browser.isExisting("//div[@id='wbmd_pb_module_visibility']");
+        expect(moduleVisibility).to.be.true;
+        var friendlyName = browser.isExisting("//div[@id='wbmd_c_frnd_nm']");
+        expect(friendlyName).to.be.true;
+
+    },
+     pagebuilderSchemas_Schemastab_AttributesNames: function () {
+        var chronicleID = browser.isExisting("//label[contains(.,'Chronicle ID')]");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//label[string()='Name:']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//label[string()='Title:']");
+        expect(title).to.be.true;
+        var targetSchema = browser.isExisting("//label[string()='Target Schema:']");
+        expect(targetSchema).to.be.true;
+        var originalDotNetNukeidentifier = browser.isExisting("//label[string()='Original DotNetNuke identifier:']");
+        expect(originalDotNetNukeidentifier).to.be.true;
+        var schemaCategory = browser.isExisting("//label[string()='Schema Category:']");
+        expect(schemaCategory).to.be.true;
+        var versionID = browser.isExisting("//label[string()='Version ID (r_object_id):']");
+        expect(versionID).to.be.true;
+    },
+
+    pagebuilderSchemas_Schemastab_AttributesTags: function () {
+        var chronicleID = browser.isExisting("//div[@id='i_chronicle_id']");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//div[@id='object_name']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//div[@id='title']");
+        expect(title).to.be.true;
+        var targetSchema = browser.isExisting("//div[@id='wbmd_pb_schema_tgt']");
+        expect(targetSchema).to.be.true;
+        var originalDotNetNukeidentifier = browser.isExisting("//div[@id='wbmd_pb_dnn_module_def_id']");
+        expect(originalDotNetNukeidentifier).to.be.true;
+        var schemaCategory = browser.isExisting("//div[@id='wbmd_pb_schema_category']");
+        expect(schemaCategory).to.be.true;
+        var versionID = browser.isExisting("//div[@id='r_object_id']");
+        expect(versionID).to.be.true;
+
+    },
+         pagebuilderXSL_XSLtab_AttributesNames: function () {
+        var chronicleID = browser.isExisting("//label[contains(.,'Chronicle ID')]");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//label[string()='Name:']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//label[string()='Title:']");
+        expect(title).to.be.true;
+        var level = browser.isExisting("//label[string()='Level:']");
+        expect(level).to.be.true;
+        var XSLCategory = browser.isExisting("//label[string()='XSL Category:']");
+        expect(XSLCategory).to.be.true;
+        var XSLSchema = browser.isExisting("//label[string()='XSL Schema:']");
+        expect(XSLSchema).to.be.true;
+        var versionID = browser.isExisting("//label[string()='Version ID (r_object_id):']");
+        expect(versionID).to.be.true;
+    },
+
+    pagebuilderXSL_XSLtab_AttributesTags: function () {
+        var chronicleID = browser.isExisting("//div[@id='i_chronicle_id']");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//div[@id='object_name']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//div[@id='title']");
+        expect(title).to.be.true;
+        var level = browser.isExisting("//div[@id='wbmd_pb_level']");
+        expect(level).to.be.true;
+        var XSLCategory = browser.isExisting("//div[@id='wbmd_pb_xsl_category']");
+        expect(XSLCategory).to.be.true;
+        var XSLSchema = browser.isExisting("//div[@id='wbmd_pb_xsl_schema']");
+        expect(XSLSchema).to.be.true;
+        var versionID = browser.isExisting("//div[@id='r_object_id']");
+        expect(versionID).to.be.true;
+
+    },
+        pagebuilderCSS_CSStab_AttributesNames: function () {
+        var chronicleID = browser.isExisting("//label[contains(.,'Chronicle ID')]");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//label[string()='Name:']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//label[string()='Title:']");
+        expect(title).to.be.true;
+        var level = browser.isExisting("//label[string()='Level:']");
+        expect(level).to.be.true;
+        var CSSCategory = browser.isExisting("//label[string()='CSS Category:']");
+        expect(CSSCategory).to.be.true;
+        var PBXSL = browser.isExisting("//label[string()='PB XSL:']");
+        expect(PBXSL).to.be.true;
+        var versionID = browser.isExisting("//label[string()='Version ID (r_object_id):']");
+        expect(versionID).to.be.true;
+    },
+
+    pagebuilderCSS_CSStab_AttributesTags: function () {
+        var chronicleID = browser.isExisting("//div[@id='i_chronicle_id']");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//div[@id='object_name']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//div[@id='title']");
+        expect(title).to.be.true;
+        var level = browser.isExisting("//div[@id='wbmd_pb_level']");
+        expect(level).to.be.true;
+        var CSSCategory = browser.isExisting("//div[@id='wbmd_pb_css_category']");
+        expect(CSSCategory).to.be.true;
+        var PBXSL = browser.isExisting("//div[@id='wbmd_pb_xsl']");
+        expect(PBXSL).to.be.true;
+        var versionID = browser.isExisting("//div[@id='r_object_id']");
+        expect(versionID).to.be.true;
+
+    },
+       pagebuilderJS_JStab_AttributesNames: function () {
+        var chronicleID = browser.isExisting("//label[contains(.,'Chronicle ID')]");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//label[string()='Name:']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//label[string()='Title:']");
+        expect(title).to.be.true;
+        var versionID = browser.isExisting("//label[string()='Version ID (r_object_id):']");
+        expect(versionID).to.be.true;
+    },
+
+    pagebuilderJS_JStab_AttributesTags: function () {
+        var chronicleID = browser.isExisting("//div[@id='i_chronicle_id']");
+        expect(chronicleID).to.be.true;
+        var name = browser.isExisting("//div[@id='object_name']");
+        expect(name).to.be.true;
+        var title = browser.isExisting("//div[@id='title']");
+        expect(title).to.be.true;
+        var versionID = browser.isExisting("//div[@id='r_object_id']");
+        expect(versionID).to.be.true;
+
+    },
 }

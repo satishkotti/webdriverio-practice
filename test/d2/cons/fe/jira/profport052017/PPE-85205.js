@@ -23,17 +23,17 @@ describe('Pagebuilder Asset Attributes to show PPE-85205 US', function () {
     documentListTab.selectAsset(global.d2ConDataSettings.inputData.PBPage);
     pagebuilderAssets.pagebuilderPage();
   });
-   it('Verify the PageBuilder Templates attributes in Consumer D2 - PPE-111512', function () {
+  it('Verify the PageBuilder Templates attributes in Consumer D2 - PPE-111512', function () {
     repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.PBTemplatePath);
     documentListTab.selectAsset(global.d2ConDataSettings.inputData.PBTemplate);
     pagebuilderAssets.pagebuilderTemplate();
   });
-     it('Verify the PageBuilder TemplateModule attributes in Consumer D2 -  PPE-111933 ', function () {
+  it('Verify the PageBuilder TemplateModule attributes in Consumer D2 -  PPE-111933 ', function () {
     repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.PBTemplateModulePath);
     documentListTab.selectAsset(global.d2ConDataSettings.inputData.PBTemplateModule);
     pagebuilderAssets.pagebuilderTemplateModule();
   });
-     it('Verify the PageBuilder Module attributes in Consumer D2 -  PPE-111514', function () {
+  it('Verify the PageBuilder Module attributes in Consumer D2 -  PPE-111514', function () {
     repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.PBModulePath);
     documentListTab.selectAsset(global.d2ConDataSettings.inputData.PBModule);
     pagebuilderAssets.pagebuilderModule();
@@ -43,7 +43,7 @@ describe('Pagebuilder Asset Attributes to show PPE-85205 US', function () {
     documentListTab.selectAsset(global.d2ConDataSettings.inputData.PBSchemas);
     pagebuilderAssets.pagebuilderSchemas();
   });
-   it('Verify the PageBuilder XSL attributes in Consumer D2 - PPE-111936', function () {
+  it('Verify the PageBuilder XSL attributes in Consumer D2 - PPE-111936', function () {
     repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.PBXSLPath);
     documentListTab.selectAsset(global.d2ConDataSettings.inputData.PBxsl);
     pagebuilderAssets.pagebuilderXSL();
