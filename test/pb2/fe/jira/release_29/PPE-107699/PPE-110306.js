@@ -3,6 +3,13 @@ var pageTestData = require('./../../../../data/page.assets');
 var templateTestData = require('./../../../../data/template.assets');
 var moduleTestData = require('./../../../../data/pagemodule.assets');
 
+function refreshAndContinue(){
+    console.log("Refrshing the page");
+    browser.refresh();
+    browser.pause(5000);
+    test.EditTheAsset();
+    browser.pause(5000);
+}
 
 function createTemplateAndPublish(){
     test.EnterIWC('Create', 'Templates & Pages');
@@ -13,30 +20,38 @@ function createTemplateAndPublish(){
     var parentTemplateLayoutCSS = templateData.layoutCSS;
     var templateToInheritFrom = parentTemplateName + ' [' + parentTemplateLayout + 'Layout' + ' - ' + parentTemplateLayoutCSS + ']';
     templateChronID = test.Create("Template",templateData);
-    test.AddModule('ContentPane0', moduleTestData.htmlModule.get('PM0001'));
+    test.AddModule('ContentPane0', moduleTestData.htmlModule.get('HTMLPageModule0'));
+    browser.click("=HTMLPageModule0");
+    browser.setValue("//label/textarea","HTMLPageModule0");
+    test.SaveModule();
     test.SaveOrPublishTheAsset('publish to live', 'Test');
     browser.pause(60000);
     return (templateToInheritFrom);
 }
 
 function addModules(index){
-    console.log("Adding module on pane ",index);
-    test.AddModule('ContentPane'+index,moduleTestData.htmlModule.get('HTMLPageModule'+index));
-    browser.pause(5000);
-    console.log("Clicking pagemodule");
+    console.log("Adding module on pane"+index);
+    var url = browser.getUrl();    
+    try{
+        test.AddModule('ContentPane'+index,moduleTestData.htmlModule.get('HTMLPageModule'+index));
+    }
+    catch(err){
+        refreshAndContinue();
+        test.AddModule('ContentPane'+index,moduleTestData.htmlModule.get('HTMLPageModule'+index));
+    }
     try{
         //Clicks the link with text HTMLPageModule0, HTMLPageModule1,....
         browser.click("="+"HTMLPageModule"+index);
-    }
+        console.log("Cofiguring Module on pnae"+index)
+        }
     catch(err){
         browser.scroll("="+"HTMLPageModule"+index);
         browser.click("="+"HTMLPageModule"+index);
+        console.log("Cofiguring Module on pane"+index)
     }
     browser.pause(5000);
-    //test.ConfigureModule('html module', moduleTestData.htmlModuleConfiguration.get("HTMLPageModule"+set[0]));
     browser.setValue("//label/textarea","HTMLPageModule"+index);
     test.SaveModule();
-
 }
 
 function uiVerification(index){
@@ -97,7 +112,6 @@ describe('PPE-107699: New Template/Page Layout screen', function() {
                 uiVerification(set[0]);
             }
         }
-
     });
 
     it('Verify the layout on standalone page', function() {

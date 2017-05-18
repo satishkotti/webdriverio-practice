@@ -151,6 +151,7 @@ module.exports.PopulateSMProps = (assetProps) =>
 
 module.exports.AddModule = (contentPane, assetProps) =>
 {
+    props.element('.fa-eye').waitForVisible();
     props.element('.fa-eye').click();
 	try{
 		props.element('div[name="' + contentPane + '"').waitForVisible();
