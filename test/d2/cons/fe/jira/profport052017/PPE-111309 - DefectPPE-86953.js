@@ -29,7 +29,7 @@ describe('Regression', function () {
        
     });
 
-   it('PPE-86953-Verify the Health Reference Template - Media Asset field  in SCS Target File in US Folder', function () {
+   it.skip('PPE-86953-Verify the Health Reference Template - Media Asset field  in SCS Target File in US Folder', function () {
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
@@ -101,7 +101,7 @@ describe('Regression', function () {
         cidName = propertiesTab.getChronicleIdAndName();
         objName = cidName.objectName;
         chronicleId = cidName.chronicleId;
-        propertiesTab.setRequiredProperties(objName, 'Audio - Event', objName, objName, objName, objName, 'American Dental Association', '2005 American Dental Association', 'ADD-ADHD (Adult)');
+        propertiesTab.setRequiredProperties(objName, 'Audio - Narrative', objName, objName, objName, objName, 'American Council on Excercise', '2006 American Council on Exercise', 'ADD-ADHD (Adult)');
         contentTab.checkOut();
         contentTab.Setimage("Thumbnail Image","Heart");
         var TImagelinkVal=contentTab.ImagelinkVal("Thumbnail Image");
@@ -111,12 +111,11 @@ describe('Regression', function () {
         contentTab.checkIn();
         documentListTab.powerPromoteAsset(AssetTitle);
         documentListTab.publishAssetToStaging(AssetTitle);
-        browser.pause(5000);
+        browser.pause(10000);
 
            browser.call(function () {
             return Promise.resolve(
                 parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
-                    var style = 'float:' + global.d2ConDataSettings.inputData.ShareableAlign.toLowerCase() + ';';
                     var Asset = JSONPath({
                         json: result,
                         path: "$..metadata_section",
@@ -129,7 +128,7 @@ describe('Regression', function () {
                         resultType: 'all'
                     });
 
-                     
+                     console.log(Content[0]);
                     
 
                     expect(Asset[0].parent.metadata_section.i_chronicle_id).to.equal(chronicleId);
@@ -215,7 +214,7 @@ describe('Regression', function () {
         cidName = propertiesTab.getChronicleIdAndName();
         objName = cidName.objectName;
         chronicleId = cidName.chronicleId;
-         propertiesTab.setRequiredProperties(objName, 'News', objName, objName, objName, objName, 'WebMD Medical News', '2015 WebMD', 'ADD-ADHD (Adult)');
+        propertiesTab.setRequiredProperties(objName, 'Audio - Narrative', objName, objName, objName, objName, 'American Council on Excercise', '2006 American Council on Exercise', 'ADD-ADHD (Adult)');
         contentTab.checkOut();
         contentTab.Setimage("Thumbnail Image","Heart");
         var TImagelinkVal=contentTab.ImagelinkVal("Thumbnail Image");
