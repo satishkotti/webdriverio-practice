@@ -195,20 +195,23 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                       SELECT TOP 1 'http://' + PFrom.Prefix + '.' + D.domain + PFrom.friendly_url AS 'FromUrl',
-                        'http://' + PTo.Prefix + '.' + D.Domain + PTo.friendly_url AS 'ToUrl'
-                        FROM Manual_Redirect R
-                        INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
-                        INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
-                        AND R.To_Site_ID = PTo.Site_ID
-                        INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
-                        AND D.is_core_site = 1
-                        LEFT OUTER JOIN RT_UrlRedirects SysR ON SysR.old_prefix = R.From_Prefix
-                        AND SysR.old_friendly_url = R.From_Url
-                        LEFT OUTER JOIN RT_PageUrlMap PFromOnUrl ON R.To_Url = PFromOnUrl.friendly_url
-                        AND R.From_Site_id = PFromOnUrl.Site_ID
-                        AND R.From_Prefix = PFromOnUrl.Prefix
-                        WHERE PFromOnUrl.status = 'D'
+                                SELECT TOP 1 'http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url AS 'FromUrl',
+                                (SELECT TOP 1 'http://' + ToPage.Prefix + '.' + ToDomain.domain + ToPage.friendly_url
+                                FROM Manual_Redirect R
+                                INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                                AND R.To_Site_Id = ToPage.site_id
+                                INNER JOIN webmd_Domains ToDomain ON ToDomain.site_id = r.To_Site_Id
+                                AND ToDomain.is_core_site = 1
+                                WHERE R.Status = 'd'
+                                    AND ToPage.status = 'd') AS 'toUrl'
+                                FROM Manual_Redirect R
+                                INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                                INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
+                                AND FrompageDomain.is_core_site = 1
+                                LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                                AND R.To_Site_Id = ToPage.site_id
+                                WHERE FromPage.Status <> 'd'
+                                AND R.Status <> 'd'
                                                
                     `;
 
@@ -234,7 +237,8 @@ WHERE R.status <> 'd'
                             LEFT OUTER JOIN RT_PageUrlMap PFromOnUrl ON R.From_Url = PFromOnUrl.friendly_url
                             AND R.From_Site_id = PFromOnUrl.Site_ID
                             AND R.From_Prefix = PFromOnUrl.Prefix
-                                                                        
+                             WHERE PFrom.Status <> 'd'
+                                AND R.Status <> 'd'                                    
                     `;
 
         return Promise.resolve
@@ -499,7 +503,19 @@ CreateByURLInvalidExtraSlashToURL: function () {
 
             var sql = `
                                   
-                                                                        
+                                SELECT top 1 'http://' + R.From_Prefix + '.' + FromDomain.domain + '/' +
+                                (SELECT char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65)) AS 'FromUrl',
+
+                                (SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url
+                                FROM RT_PageUrlMap P
+                                INNER JOIN webmd_Domains D ON P.site_id = D.site_id
+                                AND d.is_core_site = 1
+                                WHERE P.status <> 'd') AS 'ToUrl'
+                                FROM Manual_Redirect R
+                                INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                                INNER JOIN webmd_Domains FromDomain ON R.From_Site_Id = FromDomain.site_id
+                                WHERE FromPage.Status = 'd'
+                                AND R.Status <> 'd'                                          
                     `;
 
         return Promise.resolve
@@ -511,7 +527,23 @@ CreateByURLInvalidExtraSlashToURL: function () {
         mssql.connection = this.connection;
 
             var sql = `
-                                  
+
+                                    SELECT top 1 'http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url AS 'FromUrl',
+                                    (SELECT top 1 'http://' + R.From_Prefix + '.' + FromDomain.domain + '/' +
+                                        (SELECT char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65)) AS 'ToUrl'
+                                    FROM Manual_Redirect R
+                                    INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                                    INNER JOIN webmd_Domains FromDomain ON R.From_Site_Id = FromDomain.site_id
+                                    WHERE FromPage.Status = 'd'
+                                        AND R.Status <> 'd' )
+                                    FROM Manual_Redirect R
+                                    INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                                    INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
+                                    AND FrompageDomain.is_core_site = 1
+                                    LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                                    AND R.To_Site_Id = ToPage.site_id
+                                    WHERE FromPage.Status <> 'd'
+                                    AND R.Status <> 'd'   
                                                                         
                     `;
 
@@ -524,25 +556,16 @@ CreateByURLInvalidExtraSlashToURL: function () {
         mssql.connection = this.connection;
 
             var sql = `
-                                SELECT TOP 1 'http://' + PFrom.Prefix + '.' + D.domain + PFrom.friendly_url AS 'FromUrl',
-                                'http://' + 'microsoft' + '.' + 'com' AS 'ToUrl'
-                                FROM Manual_Redirect R
-                                INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
-                                INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
-                                AND R.To_Site_ID = PTo.Site_ID
-                                INNER JOIN webmd_Domains D ON R.From_Site_ID = D.site_id
-                                AND D.is_core_site = 1
-                                LEFT OUTER JOIN RT_UrlRedirects SysR ON SysR.old_prefix = R.From_Prefix
-                                AND SysR.old_friendly_url = R.From_Url
-                                LEFT OUTER JOIN RT_PageUrlMap PFromOnUrl ON R.From_Url = PFromOnUrl.friendly_url
-                                AND R.From_Site_id = PFromOnUrl.Site_ID
-                                AND R.From_Prefix = PFromOnUrl.Prefix
-                                AND PFromOnUrl.status = 'a'
-                                WHERE R.status <> 'd'
-                                AND PFrom.Status = 'd'
-                                AND PTo.Status <> 'd'
-                                AND SysR.pagemap_id IS NULL --no system redirects on from
-                                AND PFromOnUrl.pagemap_id IS NULL --no active pages using url     
+                            SELECT top 1 'http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url AS 'FromUrl',
+                            'http://' + 'microsoft' + '.' + 'com' AS 'ToUrl'
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                            INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
+                            AND FrompageDomain.is_core_site = 1
+                            LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                            AND R.To_Site_Id = ToPage.site_id
+                            WHERE FromPage.Status <> 'd'
+                            AND R.Status <> 'd'   
                                                                         
                     `;
 
@@ -554,8 +577,21 @@ CreateByURLInvalidExtraSlashToURL: function () {
      CreateByURLConfirmurlsaretrimmed: function () {
         mssql.connection = this.connection;
 
-            var sql = `
-                                  
+                    var sql = `
+                                        SELECT top 1 '      '+'http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url+'       ' AS 'FromUrl',
+                                        (SELECT top 1 '        '+'http://' + p.prefix + '.' + d.Domain + P.friendly_url + '         '
+                                        FROM RT_PageUrlMap P
+                                        INNER JOIN webmd_Domains D ON P.site_id = D.site_id
+                                        AND d.is_core_site = 1
+                                        WHERE P.status <> 'd') AS 'ToUrl'
+                                        FROM Manual_Redirect R
+                                        INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                                        INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
+                                        AND FrompageDomain.is_core_site = 1
+                                        LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                                        AND R.To_Site_Id = ToPage.site_id
+                                        WHERE FromPage.Status <> 'd'
+                                        AND R.Status <> 'd'        
                                                                         
                     `;
 
@@ -568,7 +604,24 @@ CreateByURLInvalidExtraSlashToURL: function () {
         mssql.connection = this.connection;
 
             var sql = `
-                                  
+                            SELECT top 1 UPPER ('http://') + FromPage.prefix + '.' + UPPER (FromPageDomain.domain) + FromPage.friendly_url AS 'FromUrl',
+
+                            (SELECT top 1 UPPER ('http://') + ToPage.Prefix + '.' + UPPER (ToDomain.domain) + ToPage.friendly_url
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                            AND R.To_Site_Id = ToPage.site_id
+                            INNER JOIN webmd_Domains ToDomain ON ToDomain.site_id = r.To_Site_Id
+                            AND ToDomain.is_core_site = 1
+                            WHERE R.Status <> 'd'
+                                AND ToPage.status <> 'd') AS 'ToUrl'
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                            INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
+                            AND FrompageDomain.is_core_site = 1
+                            LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                            AND R.To_Site_Id = ToPage.site_id
+                            WHERE FromPage.Status <> 'd'
+                            AND R.Status <> 'd'     
                                                                         
                     `;
 
@@ -581,7 +634,24 @@ CreateByURLInvalidExtraSlashToURL: function () {
         mssql.connection = this.connection;
 
             var sql = `
-                                  
+                                SELECT top 1 'http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url AS 'FromUrl',
+
+                                (SELECT top 1 'http://' + ToPage.Prefix + '.' + ToDomain.domain + ToPage.friendly_url + '?a=b&c=d'
+                                FROM Manual_Redirect R
+                                INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                                AND R.To_Site_Id = ToPage.site_id
+                                INNER JOIN webmd_Domains ToDomain ON ToDomain.site_id = r.To_Site_Id
+                                AND ToDomain.is_core_site = 1
+                                WHERE R.Status <> 'd'
+                                    AND ToPage.status <> 'd') AS 'ToUrl'
+                                FROM Manual_Redirect R
+                                INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                                INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
+                                AND FrompageDomain.is_core_site = 1
+                                LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                                AND R.To_Site_Id = ToPage.site_id
+                                WHERE FromPage.Status <> 'd'
+                                AND R.Status <> 'd'         
                                                                         
                     `;
 
@@ -594,7 +664,24 @@ CreateByURLInvalidExtraSlashToURL: function () {
         mssql.connection = this.connection;
 
             var sql = `
-                                  
+                             SELECT top 1 UPPER('http://') + UPPER(FromPage.prefix) + '.' + FromPageDomain.domain + FromPage.friendly_url + '?Food=Apple'AS 'FromUrl',
+
+                            (SELECT top 1 'http://' + ToPage.Prefix + '.' + ToDomain.domain + ToPage.friendly_url
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                            AND R.To_Site_Id = ToPage.site_id
+                            INNER JOIN webmd_Domains ToDomain ON ToDomain.site_id = r.To_Site_Id
+                            AND ToDomain.is_core_site = 1
+                            WHERE R.Status <> 'd'
+                                AND ToPage.status <> 'd') AS 'ToUrl'
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                            INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
+                            AND FrompageDomain.is_core_site = 1
+                            LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                            AND R.To_Site_Id = ToPage.site_id
+                            WHERE FromPage.Status <> 'd'
+                            AND R.Status <> 'd'      
                                                                         
                     `;
 
@@ -607,7 +694,33 @@ CreateByURLInvalidExtraSlashToURL: function () {
         mssql.connection = this.connection;
 
             var sql = `
-                                  
+                                    SELECT top 1 'http://' + R.From_Prefix + '.' + FromDomain.domain + R.From_Url AS 'FromUrl',
+
+                                    (SELECT top 1 'http://' + R.From_Prefix + '.' + FromDomain.domain + R.From_Url
+                                    FROM Manual_Redirect R
+                                    INNER JOIN webmd_Domains FromDomain ON R.From_Site_Id = FromDomain.site_id
+                                    AND FromDomain.is_core_site = 1
+                                    LEFT OUTER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                                    WHERE FromPage.pagemap_id IS NULL
+                                        AND R.Status = 'd') AS 'ToUrl'
+                                    FROM Manual_Redirect R
+                                    INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                                    INNER JOIN webmd_Domains FromDomain ON R.From_Site_Id = FromDomain.site_id
+                                    WHERE FromPage.Status = 'd'
+                                    AND R.Status = 'd'     
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+     ChronicleIDsSame: function () {
+        mssql.connection = this.connection;
+
+            var sql = `
+                                      
                                                                         
                     `;
 
