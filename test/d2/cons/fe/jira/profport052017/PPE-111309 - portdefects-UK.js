@@ -64,13 +64,20 @@ describe('Regression - Port Defects', function () {
         cidName = propertiesTab.getChronicleIdAndName();
         objName = cidName.objectName;
         chronicleId = cidName.chronicleId;
-        var dateTimeStamp = moment.tz('Asia/Calcutta').format('YYYY-MM-DD HH:mm:ss');
+         var dateTimeStamp = moment.tz('Asia/Calcutta').format('YYYY-MM-DD HH:mm:ss');
         dateTimeStamp = moment(dateTimeStamp);
-        dateTimeStamp = moment(dateTimeStamp, "MM/DD/YYYY hh:mm:ss")
+        dateTimeStamp = moment(dateTimeStamp, "MM/DD/YYYY HH:mm:ss")
+                    .add(00, 'seconds')
+                    .add(20, 'minutes').format('MM/DD/YYYY HH:mm:ss');
+         dateStamp = moment.tz('Asia/Calcutta').format('MM/DD/YYYY hh:mm:ss');
+         dateStamp = moment(dateStamp);
+         dateStamp = moment(dateStamp, "MM/DD/YYYY hh:mm:ss")
                     .add(00, 'seconds')
                     .add(20, 'minutes').format('MM/DD/YYYY hh:mm:ss');
+
+         console.log(dateStamp);
         propertiesTab.PublishDateTimeValidation(objName, 'News', objName, objName, objName, objName, 'WebMD Medical Reference from Medscape - UK', '2006 Medscape', 'ADD-ADHD (Adult)', dateTimeStamp);
-        documentListTab.powerPromoteTimeStampValidation(objName, dateTimeStamp);
+        documentListTab.powerPromoteTimeStampValidation(objName, dateStamp);
     });
 
 });
