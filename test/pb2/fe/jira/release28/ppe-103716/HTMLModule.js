@@ -3,11 +3,11 @@ var smTestData = require('./../../../../data/sm.assets');
 //var pb1xml = require('./../../../../data/sm-pb1-xmls/sponsorboxes_allfields.xml');
 var deep = require('deep-diff')
 
-describe('XML validations for Sponsor box Module', () => {
+describe('XML validations for HTML Module', () => {
 
     var testAssetProps = smTestData.HTMLModule;
     var testAssetName = testAssetProps.moduleName;
-    var chronid = '091e9c5e8158dee5';
+  // var chronid = '091e9c5e8158dee5';
 
     before(() => {
         //Launch App
@@ -41,81 +41,87 @@ describe('XML validations for Sponsor box Module', () => {
         it('Verify Module Settings chronic_id exits or not in pb2 xml', () => {
             expect(xml2['chronic_id']).to.be.true;
         });
-        it('title of both xmls should be same', () => {
-            expect(xml1['title']).to.equal(xml2['title']);
+        it('Verify title tag in PB2.0 xml', () => {
+            expect(xml2['title'].length).to.not.eql(0);
         });
-        it('object_name of both xmls should be same', () => {
-            expect(xml1['object_name']).to.equal(xml2['object_name']);
+        it('Verify object_name of both xmls should be same', () => {
+            expect(xml1['object_name']).to.include('module_');
+            expect(xml1['object_name'].length).to.not.eql(0);
+        //    expect(xml1['object_name']).to.equal(xml2['object_name']);
         });
 
-        it('object_type of both xmls should be same', () => {
+        it('Verify object_type of both xmls should be same', () => {
             expect(xml1['object_type']).to.equal(xml2['object_type']);
         });
 
-        it('wbmd_pb_module_category of both xmls should be same', () => {
+        it('Verify wbmd_pb_module_category of both xmls should be same', () => {
             expect(xml1['wbmd_pb_module_category']).to.equal(xml2['wbmd_pb_module_category']);
         });
 
-        it('wbmd_pb_dyn_module_category of both xmls should be same', () => {
+        it('Verify wbmd_pb_dyn_module_category of both xmls should be same', () => {
             expect(xml1['wbmd_pb_dyn_module_category']).to.equal(xml2['wbmd_pb_dyn_module_category']);
         });
 
-        it('wbmd_pb_module_label1 of both xmls should be same', () => {
-            expect(xml1['wbmd_pb_module_label1']).to.equal(xml2['wbmd_pb_module_label1']);
+        it('Verify wbmd_pb_module_label1 of both xmls should be same', () => {
+            expect(xml1['wbmd_pb_module_label1'].length).to.eql(0);
+            expect(xml2['wbmd_pb_module_label1'].length).to.eql(0);
         });
 
-        it('wbmd_pb_module_label2 of both xmls should be same', () => {
-            expect(xml1['wbmd_pb_module_label2']).to.equal(xml2['wbmd_pb_module_label2']);
+        it('Verify wbmd_pb_module_label2 of both xmls should be same', () => {
+            expect(xml1['wbmd_pb_module_label2'].length).to.eql(0);
+            expect(xml2['wbmd_pb_module_label2'].length).to.eql(0);
         });
 
-        it('wbmd_pb_module_sp_program of both xmls should be same', () => {
+        it('Verify wbmd_pb_module_sp_program of both xmls should be same', () => {
             expect(xml1['wbmd_pb_module_sp_program']).to.equal(xml2['wbmd_pb_module_sp_program']);
         });
 
-        it('wbmd_pb_module_tier of both xmls should be same', () => {
+        it('Verify wbmd_pb_module_tier of both xmls should be same', () => {
             expect(xml1['wbmd_pb_module_tier']).to.equal(xml2['wbmd_pb_module_tier']);
         });
 
-        it('wbmd_pb_cache_duration of both xmls should be same', () => {
-            expect(xml1['wbmd_pb_cache_duration']).to.equal(xml2['wbmd_pb_cache_duration']);
+        it('Verify wbmd_pb_cache_duration of both xmls should be same', () => {
+            expect(xml1['wbmd_pb_cache_duration'].length).to.not.eql(0);
+            expect(xml2['wbmd_pb_cache_duration'].length).to.not.eql(0);
         });
 
-        it('wbmd_c_channel_ids_group of both xmls should be same', () => {
+        it('Verify wbmd_c_channel_ids_group of both xmls should be same', () => {
             expect(xml1['wbmd_c_channel_ids_group']).to.equal(xml2['wbmd_c_channel_ids_group']);
         });
 
-        it('wbmd_program_group of both xmls should be same', () => {
+        it('Verify wbmd_program_group of both xmls should be same', () => {
             expect(xml1['wbmd_program_group']).to.equal(xml2['wbmd_program_group']);
         });
-        it('wbmd_pb_asset_css path of both xmls should be same', () => {
+        it('Verify wbmd_pb_asset_css path of both xmls should be same', () => {
             expect(xml1['wbmd_pb_asset_css_path']).to.equal(xml2['wbmd_pb_asset_css_path']);
         });
-        it('wbmd_pb_asset_css object_type of both xmls should be same', () => {
+        it('Verify wbmd_pb_asset_css object_type of both xmls should be same', () => {
             expect(xml1['wbmd_pb_asset_css_object_type']).to.equal(xml2['wbmd_pb_asset_css_object_type']);
         });
-        it('wbmd_pb_module_xsl path of both xmls should be same', () => {
+        it('Verify wbmd_pb_module_xsl path of both xmls should be same', () => {
             expect(xml1['wbmd_pb_module_xsl_path']).to.equal(xml2['wbmd_pb_module_xsl_path']);
         });
-        it('wbmd_pb_module_xsl object_type of both xmls should be same', () => {
+        it('Verify wbmd_pb_module_xsl object_type of both xmls should be same', () => {
             expect(xml1['wbmd_pb_module_xsl_object_type']).to.equal(xml2['wbmd_pb_module_xsl_object_type']);
         });
 
-        it('wbmd_pb_owner_page_id path object_type of both xmls should be same', () => {
-            expect(xml1['wbmd_pb_owner_page_id_path']).to.equal(xml2['wbmd_pb_owner_page_id_path']);
+        it('Verify wbmd_pb_owner_page_id path object_type of both xmls should be same', () => {
+            expect(xml1['wbmd_pb_owner_page_id_path'].length).to.not.eql(0);
+            expect(xml2['wbmd_pb_owner_page_id_path'].length).to.not.eql(0);
         });
-        it('wbmd_pb_owner_page_id object_type object_type of both xmls should be same', () => {
+        it('Verify wbmd_pb_owner_page_id object_type object_type of both xmls should be same', () => {
             expect(xml1['wbmd_pb_owner_page_id_object_type']).to.equal(xml2['wbmd_pb_owner_page_id_object_type']);
         });
-        it('dnn_id object_type of both xmls should be same', () => {
+        it('Verify dnn_id object_type of both xmls should be same', () => {
             expect(xml1['dnn_id']).to.equal(xml2['dnn_id']);
         });
-        it('class object_type of both xmls should be same', () => {
+        it('Verify class object_type of both xmls should be same', () => {
             expect(xml1['class']).to.equal(xml2['class']);
         });
 
         //#region module data assertions
-        it('contentText of both xmls should be same', () => {
-            expect(xml1['contentText']).to.equal(xml2['contentText']);
+        it('Verify contentText of both xmls should be same', () => {
+            expect(xml2['contentText'].length).to.not.eql(0);
         });
     });
 });

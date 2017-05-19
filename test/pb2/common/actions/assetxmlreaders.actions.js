@@ -486,11 +486,12 @@ module.exports.ConfigureVerticalPromoModule = (result) => {
     obj["button_link_view"] = moduleData.button_link_view;
     obj["description_text"] = moduleData.description_text;
 
-    obj['image_source_directive'] = moduleData.hasOwnProperty('image_source') && moduleData.image_link ? moduleData.image_link.$.directive : 'image_link missed on xml';
-    obj['image_source_object_type'] = moduleData.hasOwnProperty('image_source') && moduleData.image_link ? moduleData.image_link.$.object_type : 'image_link missed on xml';
-    obj['image_source_path'] = moduleData.hasOwnProperty('image_source') && moduleData.image_link ? moduleData.image_link.$.path : 'image_link missed on xml';
-    obj['image_source_alt'] = moduleData.hasOwnProperty('image_source') && moduleData.image_link ? moduleData.image_link.$.alt : 'image_link missed on xml';
-    obj['image_source_chronic_id'] = moduleData.hasOwnProperty('image_source') && moduleData.image_link && moduleData.image_link.$.chronic_id != undefined ? true : false;
+    obj['image_source_directive'] = moduleData.hasOwnProperty('image_source') && moduleData.image_source ? moduleData.image_source.$.directive : 'image_link missed on xml';
+    obj['image_source_object_type'] = moduleData.hasOwnProperty('image_source') && moduleData.image_source ? moduleData.image_source.$.object_type : 'image_link missed on xml';
+    obj['image_source_path'] = moduleData.hasOwnProperty('image_source') && moduleData.image_source ? moduleData.image_source.$.path : 'image_link missed on xml';
+    obj['image_source_alt'] = moduleData.hasOwnProperty('image_source') && moduleData.image_source ? moduleData.image_source.$.alt : 'image_link missed on xml';
+    obj['image_source_chronic_id'] = moduleData.hasOwnProperty('image_source') && moduleData.image_source && moduleData.image_source.$.chronic_id != undefined ? true : false;
+  //  obj['image_source_chronic_id'] = moduleData.hasOwnProperty('image_source') && moduleData.image_link && moduleData.image_link.$.chronic_id != undefined ? true : false;
 
     obj["button_link_directive"] = moduleData.hasOwnProperty('button_link') && moduleData.button_link ? moduleData.button_link.$.directive : 'button_link missed on xml';
     obj["button_link_object_type"] = moduleData.hasOwnProperty('button_link') && moduleData.button_link ? moduleData.button_link.$.object_type : 'button_link missed on xml';

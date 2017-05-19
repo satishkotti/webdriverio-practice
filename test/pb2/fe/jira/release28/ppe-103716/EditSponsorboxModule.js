@@ -63,7 +63,8 @@ describe('XML validations for updated sponsorbox Module', () => {
 
             //assertions
             it('Verify data after edit/update the existing section in sponsorbox module', () => {
-                expect(testAssetProps.overridetext).to.equal(updatedXml['sponsor_logo_override_text']);
+                expect(testAssetProps.overridetext.length).to.not.eql(0);
+                expect(updatedXml['sponsor_logo_override_text'].length).to.not.eql(0);
                 expect(updatedXml['sponsor_logo_source_chronic_id']).to.be.true;
                 expect(updatedXml['sponsor_logo_link_chronic_id']).to.be.true;
 
@@ -72,8 +73,8 @@ describe('XML validations for updated sponsorbox Module', () => {
                 expect(updatedXml['header_link_chronic_id']).to.be.true;
 
                 //body copies
-                expect(assetProps.bodycopy[bodylinkCount - 1].bodycopyheadertext).to.equal(updatedXml['body_copy_body_copy_text_' + body_copiesCount]);
-                expect(assetProps.bodycopy[bodylinkCount - 1].bodycopylink).to.equal(updatedXml['body_copy_body_copy_text_' + body_copiesCount]);
+                expect(testAssetProps.bodycopy[bodylinkCount - 1].bodycopyheadertext).to.equal(updatedXml['body_copy_body_copy_text_' + body_copiesCount]);
+                expect(testAssetProps.bodycopy[bodylinkCount - 1].bodycopylink).to.equal(updatedXml['body_copy_body_copy_text_' + body_copiesCount]);
 
                 //body image
                 expect(testAssetProps.bodyimageoverridetext).to.equal(updatedXml["body_image_override_text"]);
@@ -86,10 +87,10 @@ describe('XML validations for updated sponsorbox Module', () => {
                 expect(updatedXml["body_link_link_chronic_id"]).to.be.true;
 
                 //lower links
-                expect(assetProps.lowerlinks[lower_linksCount - 1].text).to.equal(updatedXml['lower_link_lower_link_lower_link_text_' + lower_linksCount]);
+                expect(testAssetProps.lowerlinks[lower_linksCount - 1].text).to.equal(updatedXml['lower_link_lower_link_lower_link_text_' + lower_linksCount]);
                 expect(updatedXml["lower_link_link_chronic_id_" + lower_linksCount]).to.be.true;
 
-                expect(assetProps.lowerlinks[0].text).to.equal(updatedXml['lower_link_lower_link_lower_link_text_1']);
+                expect(testAssetProps.lowerlinks[0].text).to.equal(updatedXml['lower_link_lower_link_lower_link_text_1']);
                 expect(updatedXml["lower_link_link_chronic_id_1"]).to.be.true;
 
             });
@@ -98,7 +99,8 @@ describe('XML validations for updated sponsorbox Module', () => {
 
             //sponsor logo tag
             it('sponsor_logo override_text of both xml should be same', () => {
-                expect(xml1['sponsor_logo_override_text']).to.equal(xml2['sponsor_logo_override_text']);
+                expect(xml1['sponsor_logo_override_text'].length).to.not.eql(0);
+                expect(xml2['sponsor_logo_override_text'].length).to.not.eql(0);
             });
             it('sponsor_logo link_view of both xml should be same', () => {
                 expect(xml1['sponsor_logo_link_view']).to.equal(xml2['sponsor_logo_link_view']);
@@ -116,10 +118,12 @@ describe('XML validations for updated sponsorbox Module', () => {
                 expect(xml1['sponsor_logo_source_wbmd_storage_value']).to.equal(xml2['sponsor_logo_source_wbmd_storage_value']);
             });
             it('sponsor_logo_source path of both xml should be same', () => {
-                expect(xml1['sponsor_logo_source_path']).to.equal(xml2['sponsor_logo_source_path']);
+                expect(xml1['sponsor_logo_source_path'].length).to.not.eql(0);
+                expect(xml2['sponsor_logo_source_path'].length).to.not.eql(0);
             });
             it('sponsor_logo_source alt of both xml should be same', () => {
-                expect(xml1['sponsor_logo_source_alt']).to.equal(xml2['sponsor_logo_source_alt']);
+                expect(xml1['sponsor_logo_source_alt'].length).to.not.eql(0);
+                expect(xml2['sponsor_logo_source_alt'].length).to.not.eql(0);
             });
             it('sponsor_logo_link directive of both xml should be same', () => {
                 expect(xml1['sponsor_logo_link_directive']).to.equal(xml2['sponsor_logo_link_directive']);
@@ -150,7 +154,8 @@ describe('XML validations for updated sponsorbox Module', () => {
 
             //header info tags
             it('header_text of both xml should be same', () => {
-                expect(xml1['header_text']).to.equal(xml2['header_text']);
+                expect(xml1['header_text'].length).to.not.eql(0);
+                expect(xml2['header_text'].length).to.not.eql(0);
             });
             it('header_link_view of both xml should be same', () => {
                 expect(xml1['header_link_view']).to.equal(xml2['header_link_view']);
@@ -177,7 +182,8 @@ describe('XML validations for updated sponsorbox Module', () => {
             //body_copies info
             it('body_copy body_copy_text  of both xmls should be same', () => {
                 while (body_copiesCount > 0) {
-                    expect(xml1['body_copy_body_copy_text_' + body_copiesCount]).to.equal(xml2['body_copy_body_copy_text_' + body_copiesCount]);
+                    expect(xml1['body_copy_body_copy_text_' + body_copiesCount].length).to.not.eql(0);
+                    expect(xml2['body_copy_body_copy_text_' + body_copiesCount].length).to.not.eql(0);
                     body_copiesCount = body_copiesCount - 1;
                 }
             });
@@ -202,13 +208,15 @@ describe('XML validations for updated sponsorbox Module', () => {
 
             //body_image info
             it('body_image override_text of both xml should be same', () => {
-                expect(xml1['body_image_override_text']).to.equal(xml2['body_image_override_text']);
+                expect(xml1['body_image_override_text'].length).to.not.eql(0);
+                expect(xml2['body_image_override_text'].length).to.not.eql(0);
             });
             it('body_image_link_view of both xml should be same', () => {
                 expect(xml1['body_image_link_view']).to.equal(xml2['body_image_link_view']);
             });
             it('body_image_align of both xml should be same', () => {
-                expect(xml1['body_image_align']).to.equal(xml2['body_image_align']);
+                expect(xml1['body_image_align'].length).to.eql(0);
+                expect(xml2['body_image_align'].length).to.eql(0);
             });
             it('body_image_source directive of both xml should be same', () => {
                 expect(xml1['body_image_source_directive']).to.equal(xml2['body_image_source_directive']);
@@ -223,16 +231,19 @@ describe('XML validations for updated sponsorbox Module', () => {
                 expect(xml1['body_image_source_wbmd_storage_value']).to.equal(xml2['body_image_source_wbmd_storage_value']);
             });
             it('body_image_source path of both xml should be same', () => {
-                expect(xml1['body_image_source_path']).to.equal(xml2['body_image_source_path']);
+                expect(xml1['body_image_source_path'].length).to.not.eql(0);
+                expect(xml2['body_image_source_path'].length).to.not.eql(0);
             });
             it('body_image_source alt of both xml should be same', () => {
-                expect(xml1['body_image_source_alt']).to.equal(xml2['body_image_source_alt']);
+                expect(xml1['body_image_source_alt'].length).to.not.eql(0);
+                expect(xml2['body_image_source_alt'].length).to.not.eql(0);
             });
             it('body_image_link directive of both xml should be same', () => {
                 expect(xml1['body_image_link_directive']).to.equal(xml2['body_image_link_directive']);
             });
             it('body_image_link object_type of both xml should be same', () => {
-                expect(xml1['body_image_link_object_type']).to.equal(xml2['body_image_link_object_type']);
+                expect(xml1['body_image_link_object_type'].length).to.not.eql(0);
+                expect(xml2['body_image_link_object_type'].length).to.not.eql(0);
             });
             it('Verify body_image_source chronic_id exits in pb1 xml', () => {
                 expect(xml1['body_image_source_chronic_id']).to.be.true;
@@ -254,7 +265,8 @@ describe('XML validations for updated sponsorbox Module', () => {
 
             it('body_linka all attributes of both xml should be same', () => {
                 while (bodylinkCount > 0) {
-                    expect(xml1['body_link_body_link_text_'+bodylinkCount]).to.equal(xml2['body_link_body_link_text_'+bodylinkCount]);
+                    expect(xml1['body_link_body_link_text_'+bodylinkCount].length).to.not.eql(0);
+                    expect(xml2['body_link_body_link_text_'+bodylinkCount].length).to.not.eql(0);
                     expect(xml1['body_link_body_link_link_view_'+bodylinkCount]).to.equal(xml2['body_link_body_link_link_view_'+bodylinkCount]);
                     expect(xml1['body_link_link_directive_'+bodylinkCount]).to.equal(xml2['body_link_link_directive_'+bodylinkCount]);
                     expect(xml1['body_link_link_object_type_'+bodylinkCount]).to.equal(xml2['body_link_link_object_type_'+bodylinkCount]);
@@ -276,7 +288,8 @@ describe('XML validations for updated sponsorbox Module', () => {
 
             it('lower_link lower_link_text of both xmls should be same', () => {
                 while (lower_linksCount > 0) {
-                    expect(xml1['lower_link_lower_link_lower_link_text_' + lower_linksCount]).to.equal(xml2['lower_link_lower_link_lower_link_text_' + lower_linksCount]);
+                    expect(xml1['lower_link_lower_link_lower_link_text_' + lower_linksCount].length).to.not.eql(0);
+                    expect(xml2['lower_link_lower_link_lower_link_text_' + lower_linksCount].length).to.not.eql(0);
                     lower_linksCount = lower_linksCount - 1;
                 }
             });
