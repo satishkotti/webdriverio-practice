@@ -32,7 +32,7 @@ Sample test.js file
 var chai = require('chai');
 var should = chai.should();
 var webdriverio = require("webdriverio");
-var urls1 = require("./OmnitureModuleCallsRegression_testdata_staging.json");  // test data file
+var urls1 = require("./OmnitureModuleCallsRegression_testdata.json");  // test data file
 var options = {
     host: '127.0.0.1',
     port: 4444,
