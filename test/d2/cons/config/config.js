@@ -318,7 +318,6 @@ module.exports.testSettings = {
              "testFolderPath_uk": "webmddoc01/webmd_uk/consumer_assets/editorial/articles/Others",
              "ArticleProfileName_uk": 'Consumer Portal UK / Article Templates',
 
-
         }      
     }
 }
