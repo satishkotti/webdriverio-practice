@@ -20,12 +20,9 @@ function createTemplateAndPublish(){
     var parentTemplateLayout = templateData.layout;
     var parentTemplateLayoutCSS = templateData.layoutCSS;
     var templateToInheritFrom = parentTemplateName + ' [' + parentTemplateLayout + 'Layout' + ' - ' + parentTemplateLayoutCSS + ']';
+    var moduleDetails = moduleTestData.htmlModule.get('HTMLPageModule0');
     templateChronID = test.Create("Template",templateData);
-    test.AddModule('ContentPane0', moduleTestData.htmlModule.get('HTMLPageModule0'));
-    browser.click("=HTMLPageModule0");
-    browser.pause(3000);
-    browser.setValue("//label/textarea","HTMLPageModule0");
-    test.SaveModule();
+    addModules(0);
     test.SaveOrPublishTheAsset('publish to live', 'Test');
     browser.pause(60000);
     return (templateToInheritFrom);
@@ -33,29 +30,21 @@ function createTemplateAndPublish(){
 
 function addModules(index){
     console.log("Adding module on pane"+index);
-    var url = browser.getUrl();    
-    
-    try{
-        test.AddModule('ContentPane'+index,moduleTestData.htmlModule.get('HTMLPageModule'+index));
-    }
-    catch(err){
-        refreshAndContinue();
-        test.AddModule('ContentPane'+index,moduleTestData.htmlModule.get('HTMLPageModule'+index));
-    }
+    test.AddModule('ContentPane'+index,moduleTestData.htmlModule.get('HTMLPageModule'+index));
+    browser.waitForVisible("=HTMLPageModule"+index);
     try{
         //Clicks the link with text HTMLPageModule0, HTMLPageModule1,....
-        browser.click("="+"HTMLPageModule"+index);
+        browser.click("=HTMLPageModule"+index);
         console.log("Cofiguring Module on pnae"+index)
         }
     catch(err){
-        browser.scroll("="+"HTMLPageModule"+index);
-        browser.click("="+"HTMLPageModule"+index);
+        browser.scroll("=HTMLPageModule"+index);
+        browser.click("=HTMLPageModule"+index);
         console.log("Cofiguring Module on pane"+index)
     }
     browser.pause(5000);
     browser.setValue("//label/textarea","HTMLPageModule"+index);
     test.SaveModule();
-
 }
 
 function uiVerification(index){
