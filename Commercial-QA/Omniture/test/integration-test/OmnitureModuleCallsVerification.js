@@ -95,68 +95,6 @@ function _Fn(val) {
 
         });
     });
-
-    // describe('basic https test', function () {
-    //     this.timeout(30000);
-    //     var omnitureData;
-    //     before(function (done) {
-    //         browser
-    //             .enableProxy({})//.then(function () { console.log('finsihed enabling proxy'); })
-    //             .addBlackList('https://.*doubleclick.net/.*')
-    //             .url('https://member.webmd.com')
-    //             .end()
-    //             .getNetworkCalls('https://ssl.o.webmd.com').then(function (result) {
-    //                 omnitureData = result;
-    //                 done();
-    //             });
-    //     });
-
-    //     it('it should make some calls to omniture', function () {
-    //         omnitureData.length.should.be.above(0);
-    //     });
-
-    //     it('should make omniture call with the expected prop values', function () {
-    //         //take the last omniture call
-    //         var propValues = qs.parse(omnitureData[omnitureData.length - 1].request.url);
-    //         //check the prop values
-    //         should.exist(propValues.pageName);
-    //         propValues.pageName.should.equal('member.webmd.com/signin-core')
-    //     });
-    // });
-
-    // describe('specify host or port', function () {
-    //     var browser2 = webdriverio.remote(options);
-    //     //this assumes you have a selenium running on port 4444 and a proxy running on 9090
-    //     var webmd_proxy2 = require('../../lib/wdio-browser-proxy')(browser2, { host: '127.0.0.1', port: 8080, selHost: '127.0.0.1', selPort: 4444 });
-
-    //     describe('basic test', function () {
-    //         this.timeout(30000);
-    //         var omnitureData;
-    //         before(function (done) {
-    //             browser2
-    //                 .enableProxy({})//.then(function () { console.log('finsihed enabling proxy'); })
-    //                 .addBlackList('https://.*doubleclick.net/.*')
-    //                 .url('http://www.webmd.com')
-    //                 .end()
-    //                 .getNetworkCalls('http://std.o.webmd.com').then(function (result) {
-    //                     omnitureData = result;
-    //                     done();
-    //                 });
-    //         });
-
-    //         it('it should make some calls to omniture', function () {
-    //             omnitureData.length.should.be.above(0);
-    //         });
-
-    //         it('should make omniture call with the expected prop values', function () {
-    //             //take the last omniture call
-    //             var propValues = qs.parse(omnitureData[omnitureData.length - 1].request.url);
-    //             //check the prop values
-    //             should.exist(propValues.pageName);
-    //             propValues.pageName.should.equal('webmd.com/')
-    //         });
-    //     });
-    // });
 }
 
 for (var i = 0; i < urls1.length; i++) {
