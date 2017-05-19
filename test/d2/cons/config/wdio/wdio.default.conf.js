@@ -34,6 +34,7 @@ exports.config = merge(wdioConf.config, {
             }
         }
     }],
+    logLevel: gulpFile.LogLevel,
     before: function () {
 
         var chai = require('chai');

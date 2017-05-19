@@ -19,22 +19,18 @@ args.option('env', 'Environment targetted', "dev01")
     .option('samplesize', 'Sample Size', "10")
     .option('conf', 'WebDriver IO Config file to run', "")
     .option('app', 'App', '')
-    .option('maxInstances', 'Maximum number of instances a browser can have', 1);
+    .option('maxInstances', 'Maximum number of instances a browser can have', 1)
+    .option('logLevel', 'Test runner logging level default error', 'error');
 
 var flags = args.parse(process.argv);
 
 var currentApp = flags.app;
-console.log('app: ' + currentApp);
-
 var conf = flags.conf;
 var testEnv = flags.env;
-
 var error = chalk.bold.red;
 var tests = [];
 var currentBranch;
-
 var appFolder;
-
 switch (currentApp) {
     case 'rt':
         appFolder = 'rt';
@@ -57,7 +53,9 @@ gulp.task('branch', function (cb) {
     return git.revParse({
         args: '--abbrev-ref HEAD'
     }, function (err, branch) {
-        console.log('current git branch: ' + branch);
+
+        console.log('app: ' + currentApp);
+        console.log('branch: ' + branch);
 
         if (branch === "HEAD" && flags.branch === undefined) {
             console.log(error('branch is required. Use --help to get detailed info'));
@@ -72,15 +70,15 @@ gulp.task('branch', function (cb) {
         var specBranch;
         if (currentBranch.indexOf('master') === 0) {
             specBranch = `test/${appFolder}/**/jira/**/*.js`;
-            console.log('master: ' + specBranch);
+            console.log('master specs: ' + specBranch);
         } else if (currentBranch.indexOf('release-') >= 0) {
             var testfile = currentBranch.toLowerCase().split("-");
             specBranch = `test/${appFolder}/**/${testfile[testfile.length-1]}/*.js`;
-            console.log('release: ' + specBranch);
+            console.log('release specs: ' + specBranch);
         } else if (currentBranch.indexOf('integration-') >= 0) {
             var testfile = currentBranch.toLowerCase().split("-");
             specBranch = `test/${appFolder}/**/${testfile[testfile.length-1]}/*.js`;
-            console.log('integration: ' + specBranch);
+            console.log('integration specs: ' + specBranch);
         }
 
         if (specBranch) {
@@ -108,8 +106,7 @@ gulp.task('branch', function (cb) {
             tests = results;
         }
 
-        console.log('specs: ' + tests.toString());
-
+        console.log('executing specs: ' + tests.toString());
         cb();
     });
 });
@@ -128,26 +125,28 @@ var deleteFolderRecursive = function (path) {
     }
 };
 
-gulp.task('allbranches', function (cb) {
+gulp.task('producttest', function (cb) {
     return git.revParse({
         args: '--abbrev-ref HEAD'
     }, function (err, branch) {
         console.log('current git branch: ' + branch);
-        tests.push(`baseline/*.js`);
-        tests.push(`jira/**/*.js`);
-        tests.push(`regression/*.js`);
-        tests.push(`smoke/*.js`);
+        tests.push(`test/${appFolder}/**/baseline/**/*.js`);
+        tests.push(`test/${appFolder}/**/jira/**/*.js`);
+        tests.push(`test/${appFolder}/**/regression/**/*.js`);
+        tests.push(`test/${appFolder}/**/smoke/**/*.js`);
         cb();
     });
 });
 
-gulp.task('webdriver', function (done) {
+gulp.task('webdriver', function () {
     releaseconfig.config = {
         specs: tests
     };
+    
     var wdio = new Launcher(path.join(__dirname, conf), releaseconfig.config);
     return wdio.run().then(function (code) {
-        console.log(code);
+        console.log('wdio run completed - code: ' + code);
+        process.exit(code);
     }, function (error) {
         console.error('Launcher failed to start the test', error.stacktrace);
         selenium.child.kill();
@@ -171,7 +170,6 @@ gulp.task('selenium', function (done) {
 
 gulp.task('clean', function () {
     var allure = rootPath = path.join(process.cwd(), "allure-results");
-
     console.log('remove folder: ' + allure);
     deleteFolderRecursive(allure);
 })
@@ -183,16 +181,17 @@ gulp.task('local', function (cb) {
     });
 });
 
-gulp.task('default', function () {
+gulp.task('default', function (done) {
     releaseconfig.config.host = '172.28.38.219';
     releaseconfig.config.port = 4444;
     gulpSequence(['clean'], 'branch', 'webdriver')(function (err) {
         if (err) console.log(err);
     });
+    done();
 });
 
 module.exports = {
-    TestEnv: testEnv,
-    MaxInstances: flags.maxInstances
-
+    TestEnv: testEnv.toLowerCase(),
+    MaxInstances: flags.maxInstances,
+    LogLevel: flags.logLevel
 }
