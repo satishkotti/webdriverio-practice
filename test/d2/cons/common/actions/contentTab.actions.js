@@ -53,6 +53,27 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.relatedLinksSetValue(data);
         contentTabObj.mModuleckEditorMenuClick(5);
-    }
+    },
+    Setimage: function(Imageloc,Imagetype){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.ImageClick(Imageloc);
+        contentTabObj.selectImageSearch(Imagetype);
+        browser.frameParent();
+       
+
+    },
+    selectImageSearch: function (searchimagetype) {
+        contentTabUI.setImageType("Image");
+        contentTabUI.setImageSearchValue(searchimagetype);
+        contentTabUI.clickImageSearchResult();
+        contentTabUI.selectImage();
+    },
+    ImagelinkVal: function(Imageloc){
+        contentTabUI.switchToExternalWidgetFrame();
+        var ImagelinkVal=contentTabUI.ImagelinkVal(Imageloc);
+
+        return ImagelinkVal;
+        browser.frameParent();
+    },
 }
 module.exports = contentTabObj;
