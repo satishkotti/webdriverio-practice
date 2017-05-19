@@ -245,6 +245,8 @@ module.exports.testSettings = {
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
             "FacebookCodeType": "Facebook",
             "LookupFolderPath": "webmddoc01/webmd/web_publisher_list/lookups/interactive_articles",
+            "USFolderpath": "webmddoc01/webmd/consumer_assets/editorial/articles",
+            "UKFolderpath": "webmddoc01/webmd_uk/consumer_assets/editorial/articles",
             "ShareableTitle":"Shareable Title Test",
             "ShareableDescription": "Shareable Description Test",
             "FeatureTemplate": 'Article / Feature Template',
