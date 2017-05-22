@@ -37,7 +37,7 @@ exports.config = {
             }
         }
     }],
-    reporters: ['allure'],
+    reporters: ['spec','dot','allure'],
     reporterOptions: {
         allure: {
             outputDir: 'allure-results'
