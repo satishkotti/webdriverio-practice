@@ -128,7 +128,7 @@ gulp.task('webdriver', function (done) {
     }, function (error) {
         console.error('Launcher failed to start the test', error.stacktrace);
         selenium.child.kill();
-        //process.exit(1);
+        process.exit(1);
     });
 });
 
@@ -159,13 +159,12 @@ gulp.task('local', function (cb) {
     });
 });
 
-gulp.task('default',['branch', 'webdriver'], function (done) {
+gulp.task('default', function (done) {
     conf.config.host = '172.28.38.219';
     conf.config.port = 4444;
     gulpSequence('branch', 'webdriver')(function (err) {
         if (err) console.log(err);
     });
-    done();
 });
 
 module.exports = {
