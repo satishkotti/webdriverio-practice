@@ -77,7 +77,7 @@ gulp.task('branch', function (cb) {
             console.log('release specs: ' + specBranch);
         } else if (currentBranch.indexOf('integration-') >= 0) {
             var testfile = currentBranch.toLowerCase().split("-");
-            specBranch = `test/${appFolder}/**/${testfile[testfile.length-1]}/*.js`;
+            specBranch = `test/${appFolder}/**/${testfile[testfile.length-1]}/ppe-98901.js`;
             console.log('integration specs: ' + specBranch);
         }
 
