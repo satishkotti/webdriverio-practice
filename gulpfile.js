@@ -125,12 +125,9 @@ gulp.task('webdriver', function (done) {
     var wdio = new Launcher(path.join(__dirname, confPath), conf.config);
     return wdio.run().then(function (code) {
         console.log('wdio exit code: ' + code);
-        done();
     }, function (error) {
         console.error('Launcher failed to start the test', error.stacktrace);
         selenium.child.kill();
-        
-        done(error);
         //process.exit(1);
     });
 });
