@@ -24,14 +24,8 @@ var BrandedCommonlocators = Object.create(Page, {
 
     // subsection 
     //li[@class="branded-left-nav-sub-list highlight-nav"] 
-    page_viewd:{ get: function () { return browser.element("//li[@class='branded-left-nav-sub-list highlight-nav']" ); } },
+    page_viewd:{ get: function () { return browser.element("//li[@class='branded-left-nav-sub-list highlight-nav']" ); } },   
 
-    
-
-
-
-
-   
 });
 
 

@@ -18,19 +18,8 @@ var socialshareIcons = Object.create(Page, {
     // Right AD
     RightAd: { get: function () { return browser.element(".//*[@id='rightAd_rdr']") } },
 
-    //Breadcrumb
-    Breadcrumb: { get: function () { return browser.element(".//*[@id='ContentPane10']/section/h6/span/a"); } },
-
-    //LOE
-    LOE: { get: function () { return browser.element(".//*[@id='ContentPane11']"); } },
-
     //Right Rail (Partial only)
     RRail: { get: function () { return browser.element(".//*[@id='ContentPane29']"); } },
-
-    //WebMD Logo and the Search Buttons
-
-    Search_Textbox: { get: function () { return browser.element('.//*[@class="masthead-search-input typeahead-search"]'); } },
-    WebMD_Logo: { get: function () { return browser.element(".//header[@id='masthead']//nav//div[2]/a/img"); } },
 
 
     //Brand attribution
@@ -80,51 +69,53 @@ var socialshareIcons = Object.create(Page, {
     paddle_next_page_title: { get: function () { return browser.element('.//*[@class="wbmd-paddles mlr"]/.//*[.="OTC Medicines for Cough: What You Need to Know"]'); } },
 
 
- //UP Next  Next and second navigations
+    //UP Next  Next and second navigations
     up_next: { get: function () { return browser.element('.//*[@class="wbmd-nav-links"]/.//*[.="OTC Medicines for Cough: What You Need to Know"]'); } },
     up_next_second: { get: function () { return browser.element('.//*[@class="wbmd-nav-links"]/.//*[.="8 Reasons Your Cough Is Not Improving"]'); } },
 
-    
+
 
     //ISI Module
 
     ISI_module_Normal: { get: function () { return browser.element('.//*[@class="isi mlr"]'); } },
     ISI_module_Full: { get: function () { return browser.element('.//*[@class="isi mlr open"]'); } },
     ISI_module_Hidden: { get: function () { return browser.element('.//*[@class="isi mlr hide"]'); } },
-//            ------------------ ISI contents----------------------
-//Important safety information
- ISI_Title_text: { get: function () { return browser.element('.//*[@id="ContentPane47"]/div/div[1]/div/ul/li[1]/a'); } },
-//PRescribing Information
- ISI_Prescribing_Text: { get: function () { return browser.element('.//*[@id="ContentPane47"]/div/div[1]/div/ul/li[2]/a'); } },
-//Third Link
- ISI_module_Third_Link: { get: function () { return browser.element('.//*[@id="ContentPane47"]/div/div[1]/div/ul/li[3]/a'); } }, 
+    //            ------------------ ISI contents----------------------
+    //Important safety information
+    ISI_Title_text: { get: function () { return browser.element('.//*[@id="ContentPane47"]/div/div[1]/div/ul/li[1]/a'); } },
+    //PRescribing Information
+    ISI_Prescribing_Text: { get: function () { return browser.element('.//*[@id="ContentPane47"]/div/div[1]/div/ul/li[2]/a'); } },
+    //Third Link
+    ISI_module_Third_Link: { get: function () { return browser.element('.//*[@id="ContentPane47"]/div/div[1]/div/ul/li[3]/a'); } },
 
 
-//     ------------------   Masthead Links---------------------------------
+    //     ------------------   Masthead Links---------------------------------
 
 
 
 
-A_Z:{ get: function () { return browser.element('.//*[@class="masthead-channel-link"]/.//*[contains(.,"HealthA-Z")]'); } },
-Drug:{ get: function () { return browser.element('.//*[@class="masthead-channel-link"]/.//*[contains(.,"Drug")]'); } },
-Living_Healthy:{ get: function () { return browser.element('.//*[@class="masthead-channel-link"]/.//*[contains(.,"Living")]'); } },
-Family_Module:{ get: function () { return browser.element('.//*[@class="masthead-channel-link"]/.//*[contains(.,"Family")]'); } },
-News_Module:{ get: function () { return browser.element('.//*[@class="masthead-channel-link"]/.//*[contains(.,"News")]'); } },
+    A_Z: { get: function () { return browser.element('.//*[@class="masthead-channel-link"]/.//*[contains(.,"HealthA-Z")]'); } },
+    Drug: { get: function () { return browser.element('.//*[@class="masthead-channel-link"]/.//*[contains(.,"Drug")]'); } },
+    Living_Healthy: { get: function () { return browser.element('.//*[@class="masthead-channel-link"]/.//*[contains(.,"Living")]'); } },
+    Family_Module: { get: function () { return browser.element('.//*[@class="masthead-channel-link"]/.//*[contains(.,"Family")]'); } },
+    News_Module: { get: function () { return browser.element('.//*[@class="masthead-channel-link"]/.//*[contains(.,"News")]'); } },
 
 
-//----------------------------------------------------
-//see more
-seemore:{ get: function () { return browser.element(".//*[@id='ContentPane29']/div[1]/div[4]/a"); } },
-//funded_segment1
-funded_segment2:{ get: function () { return browser.element(".//*[@id='ContentPane29']/div[2]/div[1]/div/a"); } },
-//funded_segment2
-funded_segment3:{ get: function () { return browser.element(".//*[@id='ContentPane29']/div[2]/div[2]/div/a"); } },
-    open: {
-        value: function () {
+    //----------------------------------------------------
+    //see more
+    seemore: { get: function () { return browser.element(".//*[@id='ContentPane29']/div[1]/div[4]/a"); } },
+    //funded_segment1
+    funded_segment2: { get: function () { return browser.element(".//*[@id='ContentPane29']/div[2]/div[1]/div/a"); } },
+    //funded_segment2
+    funded_segment3: { get: function () { return browser.element(".//*[@id='ContentPane29']/div[2]/div[2]/div/a"); } },
+    open: 
+    {
+        value: function () 
+        {
             Page.open.call(this, url);
         }
     },
-   
+
 
 });
 

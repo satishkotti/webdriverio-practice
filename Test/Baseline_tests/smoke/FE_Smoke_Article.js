@@ -4,14 +4,17 @@ var path = require('path');
 var rootPath = path.normalize(__dirname)
 var argv = require("yargs").argv;
 var Article_Actions = require('./../../../common/functions/FE_Smoke_Article_Actions');
+var common_Actions = require("./../../common/functions/common.actions");
 var Article_Elements = require('./../../../common/elements/FE_Smoke_Article_Elements');
-var Input = require('./../../../config/FE.testdata')[argv.env];
-var URL = Input.Article_url;
+var Input = require('./../../config/FE.testdata')[argv.env];
+var url = Input.Article_url;
 var actions;//Array for function return calls
+var common_Actions = require("./../../common/functions/common.actions");
+var Article_common_Elements = require('./../../common/elements/FE_Smoke_Toc_Elements');
 var Twitter_Page_Title = 'Post a Tweet on Twitter';
 var Facebook_Page_Title = 'Facebook';
 var Pintrest_Page_Title = 'Pinterest • The world’s catalog of ideas';
-
+browser.url(url);
 describe('Validation of elements on Article page ', function () {
   // Article_Elements.open();
   browser.url(URL);
@@ -21,27 +24,25 @@ describe('Validation of elements on Article page ', function () {
 
   it("Validation for elements visibile", function () {
     var elements_visible = {
-      "elements": [{ "locator": Article_Elements.Breadcrumb.selector, "scroll": Article_Elements.Breadcrumb.selector, "text": "Breadcrumb" },
-      { "locator": Article_Elements.LOE.selector, "scroll": Article_Elements.LOE.selector, "text": "LOE" },
-      { "locator": Article_Elements.masthead.selector, "scroll": Article_Elements.masthead.selector, "text": "masthead" },
-      { "locator": Article_Elements.Search_Textbox.selector, "scroll": Article_Elements.Search_Textbox.selector, "text": "Search textbox on masthead" },
-      { "locator": Article_Elements.WebMD_Logo.selector, "scroll": Article_Elements.WebMD_Logo.selector, "text": "webMD logo on masthead" },
-      { "locator": Article_Elements.Battribution_Sticky.selector, "scroll": Article_Elements.Battribution_Sticky.selector, "text": "Brand attribution logo in sticky masthead" },
-      { "locator": Article_Elements.RRail.selector, "scroll": Article_Elements.RRail.selector, "text": "Right rail section" },
-      { "locator": Article_Elements.TopAd.selector, "scroll": Article_Elements.TopAd.selector, "text": "Top banner Ad" },
-      { "locator": Article_Elements.RightAd.selector, "scroll": Article_Elements.RightAd.selector, "text": "Right  banner Ad" },
-      { "locator": Article_Elements.Pageheader.selector, "scroll": Article_Elements.Pageheader.selector, "text": "Page title" },
-      { "locator": Article_Elements.Paddles.selector, "scroll": Article_Elements.Paddles.selector, "text": "Paddles" },
-      { "locator": Article_Elements.A_Z.selector, "scroll": Article_Elements.A_Z.selector, "text": "Health A-Z Link" },
-      { "locator": Article_Elements.Drug.selector, "scroll": Article_Elements.Drug.selector, "text": "Drugs and Supplements Link" },
-      { "locator": Article_Elements.Living_Healthy.selector, "scroll": Article_Elements.Living_Healthy.selector, "text": "Living Healthy Link" },
-      { "locator": Article_Elements.Family_Module.selector, "scroll": Article_Elements.Family_Module.selector, "text": "Family and Pregnancy Link" },
-      { "locator": Article_Elements.News_Module.selector, "scroll": Article_Elements.News_Module.selector, "text": "News and Experts Link" },
-
-
+      "elements": [{ "locator": Article_Elements.Breadcrumb.selector, "scroll": Article_Elements.Breadcrumb.selector},
+      { "locator": Article_common_Elements.LOE.selector, "scroll": Article_Elements.LOE.selector},
+      { "locator": Article_Elements.masthead.selector, "scroll": Article_Elements.masthead.selector},
+      { "locator": Article_common_Elements.Search_Textbox.selector, "scroll": Article_Elements.Search_Textbox.selector},
+      { "locator": Article_common_Elements.WebMD_Logo.selector, "scroll": Article_Elements.WebMD_Logo.selector },
+      { "locator": Article_Elements.Battribution_Sticky.selector, "scroll": Article_Elements.Battribution_Sticky.selector },
+      { "locator": Article_Elements.RRail.selector, "scroll": Article_Elements.RRail.selector},
+      { "locator": Article_Elements.TopAd.selector, "scroll": Article_Elements.TopAd.selector },
+      { "locator": Article_Elements.RightAd.selector, "scroll": Article_Elements.RightAd.selector},
+      { "locator": Article_Elements.Pageheader.selector, "scroll": Article_Elements.Pageheader.selector },
+      { "locator": Article_Elements.Paddles.selector, "scroll": Article_Elements.Paddles.selector },
+      { "locator": Article_Elements.A_Z.selector, "scroll": Article_Elements.A_Z.selector },
+      { "locator": Article_Elements.Drug.selector, "scroll": Article_Elements.Drug.selector},
+      { "locator": Article_Elements.Living_Healthy.selector, "scroll": Article_Elements.Living_Healthy.selector},
+      { "locator": Article_Elements.Family_Module.selector, "scroll": Article_Elements.Family_Module.selector},
+      { "locator": Article_Elements.News_Module.selector, "scroll": Article_Elements.News_Module.selector },
       ]
     };
-    Article_Actions.Verify_ElementIsVisible(elements_visible);
+    common_Actions.Verify_ElementIsVisible(elements_visible);
   });
 
 
@@ -50,16 +51,10 @@ describe('Validation of elements on Article page ', function () {
   it.only("Validatig Masthead A-Z", function () 
   {
     var actions = Article_Actions.Click_MastHead(Article_Elements.A_Z.selector, Article_Elements.A_Z.selector);
-    console.log(actions.page_title);
-    //actions.page_title.should.containEql('A-Z');
+    actions.page_title.should.containEql('A-Z');
   });
 
-  /*
-   var actions = Article_Actions.Click_Elements(Article_Elements.A_Z.selector, Article_Elements.A_Z.selector);
-   actions.Page_title_Text.should.containEql('A-Z');
- });*/
-
-  it("Validatig Masthead Drug & Supplements ", function () {
+ it("Validatig Masthead Drug & Supplements ", function () {
 
     var actions = Article_Actions.Click_Elements(Article_Elements.Drug.selector, Article_Elements.Drug.selector);
     actions.Page_title_Text.should.containEql('Drugs & Medications');
@@ -87,7 +82,7 @@ describe('Validation of elements on Article page ', function () {
     //Verify the Breadcrumb linked when clicked navigates to TOC page
 
     var name1 = 'SEGMENT 1';
-    actions = Article_Actions.search(Article_Elements.Breadcrumb.selector, Article_Elements.Breadcrumb.selector).breadcrumb_text;
+    actions = common_Actions.Search(Article_Elements.Breadcrumb.selector, Article_Elements.Breadcrumb.selector).breadcrumb_text;
     actions.should.equal(name1);
     // var click_actions = Article_Actions.Click_Elements(Article_Elements.Breadcrumb.selector, Article_Elements.Breadcrumb.selector);
     browser.click(Article_Elements.Breadcrumb.selector);
@@ -103,7 +98,7 @@ describe('Validation of elements on Article page ', function () {
   it("Validation for LOE text", function () {
 
     var LOE_Name1 = 'This content is selected and controlled by WebMD\'s editorial staff and is brought to you by YourBrand.';
-    actions = Article_Actions.search(Article_Elements.LOE.selector, Article_Elements.LOE.selector).LOE_Text;
+    actions = Article_Actions.Search(Article_Elements.LOE.selector, Article_Elements.LOE.selector).LOE_Text;
     actions.should.equal(LOE_Name1);
   });
 
@@ -212,18 +207,6 @@ describe('Validation of elements on Article page ', function () {
     var actions = Article_Actions.Click_Elements(Article_Elements.sticky_Header_pintrest.selector, Article_Elements.sticky_Header_pintrest.selector);
     actions.Page_title_Text.should.equal(Pintrest_Page_Title);
   });
-  it("valudation of seemore", function () {
-    Article_Actions.see_more(Article_Elements.seemore.selector);
-    browser.back();
-  });
-  it("valudation of funded_segment2", function () {
-    Article_Actions.funded_segment2(Article_Elements.funded_segment2.selector);
-    browser.back();
-  });
-  it("valudation of funded_segment3", function () {
-    Article_Actions.funded_segment3(Article_Elements.funded_segment3.selector);
-    browser.back();
-  });
-
+ 
 });
 

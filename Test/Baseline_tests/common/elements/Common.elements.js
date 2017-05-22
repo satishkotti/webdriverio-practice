@@ -3,7 +3,7 @@ var path = require('path');
 var rootPath = path.normalize(__dirname)
 var Page = require('./../../../prdemo/page');
 var input = require('./../../config/PPE-102847.testdata')[argv.env];
-//var input = require('./../../config/PPE-101748.testdata')[argv.env];
+
 
 var url = input.environment;
 var Commonlocators = Object.create(Page, {
@@ -34,34 +34,37 @@ var Commonlocators = Object.create(Page, {
 
     //masth thead elements
 
-     HealthA_Z: { get: function () { return browser.element("//ul[@class='global-nav-links-container']/li[1]/a[1]"); } },
+    HealthA_Z: { get: function () { return browser.element("//ul[@class='global-nav-links-container']/li[1]/a[1]"); } },
     Drugs_Supplements: { get: function () { return browser.element("//ul[@class='global-nav-links-container']/li[2]/a[1]"); } },
     Living_healthy: { get: function () { return browser.element("//ul[@class='global-nav-links-container']/li[3]/a[1]"); } },
     Family_Pregnancy: { get: function () { return browser.element("//ul[@class='global-nav-links-container']/li[4]/a[1]"); } },
     News_Experts: { get: function () { return browser.element("//ul[@class='global-nav-links-container']/li[5]/a[1]"); } },
 
 
-//bread crumb
-Breadcrumb: { get: function () { return browser.element(".//*[@id='ContentPane28']/div[1]/ul"); } },
+    logo: { get: function () { return browser.element(".//*[@id='masthead']/nav/div[2]/a/img"); } },
+    //Search 
+    textelementforsearch: { get: function () { return browser.element(".//*[@id='masthead-search-wrapper']/input"); } },
+    //bread crumb
+    Breadcrumb: { get: function () { return browser.element(".//*[@id='ContentPane28']/div[1]/ul"); } },
 
-//line of entitlement
-LOE: { get: function () { return browser.element("//div[@class='ed_disclaimer']"); } },
-LOE_link :{ get: function () { return browser.element("//div[@class='ed_disclaimer']/a"); } },
-tooltip_imag :{ get: function () { return browser.element(".//*[@id='ContentPane']/div/div/div[1]/img"); } },
-tooltip_disclaimer:{ get: function () { return browser.element(".//*[@id='ContentPane']/div/div/div[2]"); } },
-tooltip_text:{ get: function () { return browser.element(".//*[@id='ContentPane']/div/div/div[3]"); } },
-tooltip_close:{ get: function () { return browser.element("//a[@class='wtip-close']"); } },
+    //line of entitlement
+    LOE: { get: function () { return browser.element("//div[@class='ed_disclaimer']"); } },
+    LOE_link: { get: function () { return browser.element("//div[@class='ed_disclaimer']/a"); } },
+    tooltip_imag: { get: function () { return browser.element(".//*[@id='ContentPane']/div/div/div[1]/img"); } },
+    tooltip_disclaimer: { get: function () { return browser.element(".//*[@id='ContentPane']/div/div/div[2]"); } },
+    tooltip_text: { get: function () { return browser.element(".//*[@id='ContentPane']/div/div/div[3]"); } },
+    tooltip_close: { get: function () { return browser.element("//a[@class='wtip-close']"); } },
 
 
-//Right aatribution
+    //Right aatribution
 
 
-Right_attribution: { get: function () { return browser.element(".//*[@id='ContentPane40']/div[1]"); } },
-Right_attribution_imag: { get: function () { return browser.element("//img[@alt='Your Brand']"); } },
-//img[@alt="Your Brand"]
-//div[@class='link_fmt']/img
+    Right_attribution: { get: function () { return browser.element(".//*[@id='ContentPane40']/div[1]"); } },
+    Right_attribution_imag: { get: function () { return browser.element("//img[@alt='Your Brand']"); } },
+    //img[@alt="Your Brand"]
+    //div[@class='link_fmt']/img
 
-//LeftRail
+    //LeftRail
 
 
     open: {
