@@ -42,10 +42,12 @@ describe('XML validations for Two column header Module', () => {
             expect(xml2['chronic_id']).to.be.true;
         });
         it('title of both xmls should be same', () => {
-            expect(xml1['title']).to.equal(xml2['title']);
+            expect(xml1['title'].length).to.not.eql(0);
+            expect(xml2['title'].length).to.not.eql(0);
         });
         it('object_name of both xmls should be same', () => {
-            expect(xml1['object_name']).to.equal(xml2['object_name']);
+            expect(xml1['object_name'].length).to.not.eql(0);
+            expect(xml2['object_name'].length).to.not.eql(0);
         });
 
         it('object_type of both xmls should be same', () => {
@@ -77,7 +79,8 @@ describe('XML validations for Two column header Module', () => {
         });
 
         it('wbmd_pb_cache_duration of both xmls should be same', () => {
-            expect(xml1['wbmd_pb_cache_duration']).to.equal(xml2['wbmd_pb_cache_duration']);
+            expect(xml1['wbmd_pb_cache_duration'].length).to.not.eql(0);
+            expect(xml2['wbmd_pb_cache_duration'].length).to.not.eql(0);
         });
 
         it('wbmd_c_channel_ids_group of both xmls should be same', () => {
@@ -88,7 +91,8 @@ describe('XML validations for Two column header Module', () => {
             expect(xml1['wbmd_program_group']).to.equal(xml2['wbmd_program_group']);
         });
         it('wbmd_pb_asset_css path of both xmls should be same', () => {
-            expect(xml1['wbmd_pb_asset_css_path']).to.equal(xml2['wbmd_pb_asset_css_path']);
+            expect(xml1['wbmd_pb_asset_css_path'].length).to.not.eql(0);
+            expect(xml2['wbmd_pb_asset_css_path'].length).to.not.eql(0);
         });
         it('wbmd_pb_asset_css object_type of both xmls should be same', () => {
             expect(xml1['wbmd_pb_asset_css_object_type']).to.equal(xml2['wbmd_pb_asset_css_object_type']);
@@ -101,7 +105,8 @@ describe('XML validations for Two column header Module', () => {
         });
 
         it('wbmd_pb_owner_page_id path object_type of both xmls should be same', () => {
-            expect(xml1['wbmd_pb_owner_page_id_path']).to.equal(xml2['wbmd_pb_owner_page_id_path']);
+            expect(xml1['wbmd_pb_owner_page_id_path'].length).to.not.eql(0);
+            expect(xml2['wbmd_pb_owner_page_id_path'].length).to.not.eql(0);
         });
         it('wbmd_pb_owner_page_id object_type object_type of both xmls should be same', () => {
             expect(xml1['wbmd_pb_owner_page_id_object_type']).to.equal(xml2['wbmd_pb_owner_page_id_object_type']);
@@ -115,9 +120,12 @@ describe('XML validations for Two column header Module', () => {
 
         //#region module data assertions
         it('Module data attributes of both xmls should be same', () => {
-            expect(xml1['moduleTitle']).to.equal(xml2['moduleTitle']);
-            expect(xml1['module_subtitle']).to.equal(xml2['module_subtitle']);
-            expect(xml1['attribution_link_text']).to.equal(xml2['attribution_link_text']);
+            expect(xml1['moduleTitle'].length).to.not.eql(0);
+            expect(xml2['moduleTitle'].length).to.not.eql(0);
+            expect(xml1['module_subtitle'].length).to.not.eql(0);
+            expect(xml2['module_subtitle'].length).to.not.eql(0);
+            expect(xml1['attribution_link_text'].length).to.not.eql(0);
+            expect(xml2['attribution_link_text'].length).to.not.eql(0);
 
             while (imagesCount > 0) {
                 expect(xml1['image_link_'+imagesCount]).to.be.true;

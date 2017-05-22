@@ -71,9 +71,12 @@ describe('XML validations for Edit Standard promo Module', () => {
             });
 
             it('Module data attributes of both xmls should be same', () => {
-                expect(xml1['moduleTitle']).to.equal(xml2['moduleTitle']);
-                expect(xml1['module_subtitle']).to.equal(xml2['module_subtitle']);
-                expect(xml1['attribution_link_text']).to.equal(xml2['attribution_link_text']);
+                expect(xml1['moduleTitle'].length).to.not.eql(0);
+                expect(xml2['moduleTitle'].length).to.not.eql(0);
+                expect(xml1['module_subtitle'].length).to.not.eql(0);
+                expect(xml2['module_subtitle'].length).to.not.eql(0);
+                expect(xml1['attribution_link_text'].length).to.not.eql(0);
+                expect(xml2['attribution_link_text'].length).to.not.eql(0);
 
                 while (imagesCount > 0) {
                     expect(xml1['image_link_' + imagesCount]).to.be.true;
