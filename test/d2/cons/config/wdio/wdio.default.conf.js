@@ -1,15 +1,18 @@
-var merge = require('deepmerge');
-var wdioConf = require('./../../../../../wdio.conf.js');
 var gulpFile = require('./../../../../../gulpfile.js');
 
-exports.config = merge(wdioConf.config, {
+exports.config = {
     debug: false,
     specs: [],
+    exclude: [],
+    coloredLogs: true,
+    baseUrl: 'http://localhost',
     waitforTimeout: 500000,
+    framework: 'mocha',
     mochaOpts: {
         ui: 'bdd',
         timeout: 500000
     },
+    logLevel: gulpFile.LogLevel,
     capabilities: [{
         maxInstances: gulpFile.MaxInstances,
         browserName: 'chrome',
@@ -34,7 +37,12 @@ exports.config = merge(wdioConf.config, {
             }
         }
     }],
-    logLevel: gulpFile.LogLevel,
+    reporters: ['spec', 'dot', 'allure'],
+    reporterOptions: {
+        allure: {
+            outputDir: 'allure-results'
+        }
+    },
     before: function () {
 
         var chai = require('chai');
@@ -51,4 +59,4 @@ exports.config = merge(wdioConf.config, {
         global.envSettings = config.EnvSettings.getEnvSettings(global.testEnv.toLowerCase());
         global.d2ConDataSettings = config.EnvSettings.getEnvData(global.testEnv.toLowerCase());
     }
-});
+};
