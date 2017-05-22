@@ -121,7 +121,13 @@ var CopyrightTabUIObj = {
         return browser.getValue("input#r_object_type");
     },
    
-
+    
+    publishingTabSelect: function(){
+        browser.click("//span[@text()='Publishing']")
+    },
+    otherTabSelect: function(){
+        browser.click("//span[@text()='Other']")
+    }
 
 
     

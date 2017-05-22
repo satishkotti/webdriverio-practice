@@ -236,6 +236,8 @@ module.exports.testSettings = {
             "bulletlistalignment": "Right,Left,Middle",
             "CodeTypes": "Facebook,Youtube,Twitter,Pinterest,Reddit,Imgur,Snapchat,Tumblr,Instagram",
             "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other",
+            "CopyrightTFolderPath": "webmddoc01/webmd/agreements/copyright",
+            "UKCopyrightTFolderPath": "webmddoc01/webmd_uk/agreements/copyright",
             "USFolderpath": "webmddoc01/webmd/consumer_assets/editorial/articles",
             "UKFolderpath": "webmddoc01/webmd_uk/consumer_assets/editorial/articles",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',

@@ -19,6 +19,7 @@ describe('Regression', function () {
     var AssetName;
     var cidName;
      var objName;
+     var CopyrightStatementText="";
     before(function () {
         login.loginWithNewWindow({
             url: functions.getEnvTestUrl(),
@@ -35,25 +36,27 @@ describe('Regression', function () {
             AssetName);
     });
 
-    it('Verify the checkout , cancel and checkin operation', function () {
+    
+     it('Verify the checkout , cancel and checkin operation', function () {
         documentListTab.selectAsset(AssetTitle);
         contentTab.checkOut();
         contentTab.cancel();
         contentTab.checkOut();
         contentTab.checkIn();
     });
+
     it('Verify the Mandatory fields, promote, demote and power promote', function () {
         documentListTab.selectAsset(AssetTitle);
         cidName = propertiesTab.getChronicleIdAndName();
         objName = cidName.objectName;
         chronicleId = cidName.chronicleId;
-        propertiesTab.setRequiredProperties(objName, 'News', objName, objName, objName, objName, 'WebMD Medical News', '2015 WebMD', 'ADD-ADHD (Adult)');
+        CopyrightTemplate.setRequiredPropertiesCpyRights(objName, 'WebMD', 'QA_TestPerson1234');
+        CopyrightTemplate.setRequiredPropertiesOthers('Testsubjct', 'en_US');
         contentTab.checkOut();
-        
+        CopyrightTemplate.CopyrightStatementText(CopyrightStatementText);
         browser.frameParent();
         contentTab.checkIn();
-        documentListTab.promoteAsset(AssetTitle);
-        documentListTab.demoteAsset(AssetTitle);
+        documentListTab.selectAsset(AssetTitle);
         documentListTab.powerPromoteAsset(AssetTitle);
         documentListTab.publishAssetToStaging(AssetTitle);
         browser.pause(5000);
@@ -74,27 +77,14 @@ describe('Regression', function () {
                         resultType: 'all'
                     });
 
-                     
-                    
-
                     expect(Asset[0].parent.metadata_section.i_chronicle_id).to.equal(chronicleId);
-                    expect(Content[0].parent.content_section.cons_news.thumbnail_image.$.path).to.equal(TImagelinkVal);
-                    expect(Content[0].parent.content_section.cons_news.media_asset.$.path).to.equal(MImagelinkVal);
+                    expect(Content[0].parent.content_section.wbmd_copyright.wbmd_copyright_statement).to.equal(CopyrightStatementText);
+                    
 
                       }));
         });
 
 
     });
-    it('Verify the Expire and delete operations', function () {
-        documentListTab.selectAsset(AssetTitle);
-        documentListTab.selectAsset(AssetTitle);
-        documentListTab.powerPromoteAsset(AssetTitle);
-        documentListTab.expireAsset(AssetTitle);
-        documentListTab.deleteArticle(objName,global.d2ConDataSettings.inputData.DeleteAllversions);
-        browser.pause(5000)
-        documentListTab.searchArticle(chronicleId);
-    });
-
     
 });
