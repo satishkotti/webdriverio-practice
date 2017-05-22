@@ -159,7 +159,7 @@ gulp.task('local', function (cb) {
     });
 });
 
-gulp.task('default', function (done) {
+gulp.task('default',['branch', 'webdriver'], function (done) {
     conf.config.host = '172.28.38.219';
     conf.config.port = 4444;
     gulpSequence(['clean'], 'branch', 'webdriver')(function (err) {
