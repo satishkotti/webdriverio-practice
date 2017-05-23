@@ -12,9 +12,7 @@ exports.config = {
         ui: 'bdd',
         timeout: 500000
     },
-    logLevel: gulpFile.LogLevel,
     capabilities: [{
-        maxInstances: gulpFile.MaxInstances,
         browserName: 'chrome',
         chromeOptions: {
             "args": [

@@ -79,6 +79,14 @@ gulp.task('branch', function (cb) {
             var testfile = currentBranch.toLowerCase().split("-");
             specBranch = `test/${appFolder}/**/${testfile[testfile.length-1]}/*.js`;
             console.log('integration specs: ' + specBranch);
+        } else if (currentBranch.indexOf('ppe-') >= 0) {
+            var branchArr = currentBranch.split('-');
+            var ppeIndex = branchArr.indexOf('ppe');
+            if (ppeIndex >= 0) {
+                var testfile = branchArr[ppeIndex] + '-' + tmpStr[ppeIndex + 1];
+                specBranch = `test/${appFolder}/**/${testfile}*.js`;
+                console.log('ppe specs: ' + specBranch);
+            }
         }
 
         if (specBranch) {
@@ -120,7 +128,11 @@ var deleteFolderRecursive = function (path) {
 
 gulp.task('webdriver', function (done) {
     conf.config.specs = tests;
+    conf.config.maxInstances = flags.maxInstances;
+    conf.config.logLevel = flags.logLevel;
     console.log('executing specs: ' + conf.config.specs.toString());
+    console.log('max instances: ' + conf.config.maxInstances);
+    console.log('log level: ' + conf.config.logLevel);
 
     var wdio = new Launcher(path.join(__dirname, confPath), conf.config);
     return wdio.run().then(function (code) {
