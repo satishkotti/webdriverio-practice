@@ -39,7 +39,7 @@ describe('XML validations for Navigation Module', () => {
                 }
             }
 
-         xml2 = test.GetXMLValues('navigation module', test.GetXML(chronid, 'live'));
+         xml2 = test.GetXMLValues('navigation module', test.GetXML(chronid, 'live'));        
     });
     
    

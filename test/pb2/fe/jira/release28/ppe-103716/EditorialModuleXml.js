@@ -74,11 +74,11 @@ describe('XML validations for Editorial Module With All Fields', () => {
         });
 
         it('wbmd_pb_module_label1 of both xmls should be same', () => {
-            expect(xml2['wbmd_pb_module_label1'].length).to.eql(0);
+            expect(xml2['wbmd_pb_module_label1'].includes('missed on xml')).to.eql(true);
         });
 
         it('wbmd_pb_module_label2 of both xmls should be same', () => {
-            expect(xml2['wbmd_pb_module_label2'].length).to.eql(0);
+            expect(xml2['wbmd_pb_module_label2'].includes('missed on xml')).to.eql(true);
         });
 
         it('wbmd_pb_module_sp_program of both xmls should be same', () => {

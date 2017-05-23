@@ -74,12 +74,12 @@ describe('XML validations for Sponsor box Module', () => {
 
         it('wbmd_pb_module_label1 of both xmls should be same', () => {
             expect(xml1['wbmd_pb_module_label1'].length).to.eql(0);
-            expect(xml2['wbmd_pb_module_label1'].length).to.eql(undefined); // Prove this tag is not present in XML
+            expect(xml2['wbmd_pb_module_label1'].includes('missed on xml')).to.eql(true); // Prove this tag is not present in XML
         });
 
         it('wbmd_pb_module_label2 of both xmls should be same', () => {
             expect(xml1['wbmd_pb_module_label2'].length).to.eql(0);
-            expect(xml2['wbmd_pb_module_label2'].length).to.eql(undefined);
+            expect(xml2['wbmd_pb_module_label2'].includes('missed on xml')).to.eql(true);
         });
 
         it('wbmd_pb_module_sp_program of both xmls should be same', () => {
@@ -270,11 +270,11 @@ describe('XML validations for Sponsor box Module', () => {
             expect(xml1['body_image_source_alt']).to.equal(xml2['body_image_source_alt']);
         });
         it('body_image_link directive of both xml should be same', () => {
-            expect(xml1['body_image_link_directive'].length).to.eql(undefined); //undefined
+            expect(xml1['body_image_link_directive'].includes('missed on xml')).to.eql(true); //undefined
             expect(xml2['body_image_link_directive'].length).to.not.eql(0);
         });
         it('body_image_link object_type of both xml should be same', () => {
-            expect(xml1['body_image_link_object_type'].length).to.eql(undefined); //undefined
+            expect(xml1['body_image_link_object_type'].includes('missed on xml')).to.eql(true); //undefined
             expect(xml2['body_image_link_object_type'].length).to.not.eql(0);
         });
         it('Verify body_image_source chronic_id exits in pb1 xml', () => {
@@ -296,14 +296,14 @@ describe('XML validations for Sponsor box Module', () => {
         });
         it('body_linka all attributes of both xml should be same', () => {
             while (bodylinkCount > 0) {
-                expect(xml1['body_link_body_link_text_' + bodylinkCount].length).to.eql(undefined); //body_link_text tag is not displayed in PB1.0 XML
+                expect(xml1['body_link_body_link_text_' + bodylinkCount].includes('missed on xml')).to.eql(true); //body_link_text tag is not displayed in PB1.0 XML
                 expect(xml2['body_link_body_link_text_' + bodylinkCount].length).to.not.eql(0);
                 expect(xml1['body_link_body_link_link_view_' + bodylinkCount]).to.equal(xml2['body_link_body_link_link_view_' + bodylinkCount]);
-                expect(xml1['body_link_link_directive_' + bodylinkCount].length).to.eql(undefined); //undefined
+                expect(xml1['body_link_link_directive_' + bodylinkCount].includes('missed on xml')).to.eql(true); //undefined
                 expect(xml2['body_link_link_directive_' + bodylinkCount].length).to.not.eql(0);
-                expect(xml1['body_link_link_object_type_' + bodylinkCount].length).to.eql(undefined);//undefined
+                expect(xml1['body_link_link_object_type_' + bodylinkCount].includes('missed on xml')).to.eql(true);//undefined in XML1
                 expect(xml2['body_link_link_object_type_' + bodylinkCount].length).to.not.eql(0);
-                expect(xml1['body_link_link_chronic_id_' + bodylinkCount]).to.be.false;
+                expect(xml1['body_link_link_chronic_id_' + bodylinkCount]).to.be.false; //undefined in XML1
                 expect(xml2['body_link_link_chronic_id_' + bodylinkCount]).to.be.true;
             }
 
@@ -337,14 +337,14 @@ describe('XML validations for Sponsor box Module', () => {
 
         it('lower_link lower_link_text of both xmls should be same', () => {
             while (lower_linksCount > 0) {
-                expect(xml1['lower_link_lower_link_lower_link_text_' + lower_linksCount].length).to.eql(0);
+                expect(xml1['lower_link_lower_link_lower_link_text_' + lower_linksCount].includes('missed on xml')).to.eql(true);
                 expect(xml2['lower_link_lower_link_lower_link_text_' + lower_linksCount].length).to.not.eql(0);
                 lower_linksCount = lower_linksCount - 1;
             }
         });
         it('lower_link lower_link_link_view of both xmls should be same', () => {
             while (lower_linksCount > 0) {
-                expect(xml1['lower_link_lower_link_lower_link_link_view_' + lower_linksCount].length).to.eql(undefined);
+                expect(xml1['lower_link_lower_link_lower_link_link_view_' + lower_linksCount].includes('missed on xml')).to.eql(true);
                 expect(xml2['lower_link_lower_link_lower_link_link_view_' + lower_linksCount].length).to.not.eql(0);
                 lower_linksCount = lower_linksCount - 1;
             }
@@ -374,7 +374,7 @@ describe('XML validations for Sponsor box Module', () => {
         });*/
         it('Verify lower_link_link chronic_id exits in pb2 xml', () => {
             while (lower_linksCount > 0) {
-                expect(xml2['lower_link_link_chronic_id_' + lower_linksCount].length).to.eql(0);
+                expect(xml2['lower_link_link_chronic_id_' + lower_linksCount]).to.be.true;
                 lower_linksCount = lower_linksCount - 1;
             }
         });

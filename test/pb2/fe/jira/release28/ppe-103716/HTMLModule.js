@@ -23,6 +23,7 @@ describe('XML validations for HTML Module', () => {
 
             var chronid = test.Create('Shared Module', testAssetProps);
             test.ConfigureModule('html module', testAssetProps);
+            browser.pause(2000);
             test.SaveOrPublishTheAsset('Publish to Live', 'Testing to compare renditions of PB1 & PB2');
             test.NavigatetoATSStatusCheckerPageOf(chronid, 'live');
             test.ClickButtonInATSPage('ATS Reprocess');
@@ -63,13 +64,13 @@ describe('XML validations for HTML Module', () => {
         });
 
         it('Verify wbmd_pb_module_label1 of both xmls should be same', () => {
+            expect(xml2['wbmd_pb_module_label1'].includes('missed on xml')).to.eql(true);
             expect(xml1['wbmd_pb_module_label1'].length).to.eql(0);
-            expect(xml2['wbmd_pb_module_label1'].length).to.eql(0);
         });
 
         it('Verify wbmd_pb_module_label2 of both xmls should be same', () => {
+            expect(xml2['wbmd_pb_module_label2'].includes('missed on xml')).to.eql(true);
             expect(xml1['wbmd_pb_module_label2'].length).to.eql(0);
-            expect(xml2['wbmd_pb_module_label2'].length).to.eql(0);
         });
 
         it('Verify wbmd_pb_module_sp_program of both xmls should be same', () => {
