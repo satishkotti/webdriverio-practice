@@ -29,7 +29,7 @@ describe('XML validations for Standard Promo Module', () => {
             xml2 = test.GetXMLValues('StandardPromomodule', test.GetXML(chronid, 'live'));
             for (var property in xml2) {
                 if (property.toString().startsWith('slide_name_')) {
-                    slidesCount = slidesCount + 1;
+                    slidesCount = slidesCount ;
                 }
             }
         });

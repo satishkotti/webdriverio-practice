@@ -305,6 +305,7 @@ describe('XML validations for Sponsor box Module', () => {
                 expect(xml2['body_link_link_object_type_' + bodylinkCount].length).to.not.eql(0);
                 expect(xml1['body_link_link_chronic_id_' + bodylinkCount]).to.be.false; //undefined in XML1
                 expect(xml2['body_link_link_chronic_id_' + bodylinkCount]).to.be.true;
+                bodylinkCount--;
             }
 
         });
@@ -344,7 +345,7 @@ describe('XML validations for Sponsor box Module', () => {
         });
         it('lower_link lower_link_link_view of both xmls should be same', () => {
             while (lower_linksCount > 0) {
-                expect(xml1['lower_link_lower_link_lower_link_link_view_' + lower_linksCount].includes('missed on xml')).to.eql(true);
+                expect(xml1['lower_link_lower_link_lower_link_link_view_' + lower_linksCount].length).to.not.eql(0);
                 expect(xml2['lower_link_lower_link_lower_link_link_view_' + lower_linksCount].length).to.not.eql(0);
                 lower_linksCount = lower_linksCount - 1;
             }
@@ -353,7 +354,7 @@ describe('XML validations for Sponsor box Module', () => {
         it('lower_link lower_link_link_directive_ of both xmls should be same', () => {
             while (lower_linksCount > 0) {
               //  expect(xml1['lower_link_lower_link_lower_lower_link_link_directive_' + lower_linksCount]).to.equal(xml2['lower_link_lower_link_lower_lower_link_link_directive_' + lower_linksCount]);
-               expect(xml2['lower_link_lower_link_lower_lower_link_link_directive_' + lower_linksCount].length).to.eql(0);
+               expect(xml2['lower_link_lower_link_lower_lower_link_link_directive_' + lower_linksCount].length).to.not.eql(0);
                 lower_linksCount = lower_linksCount - 1;
             }
         });
@@ -361,7 +362,7 @@ describe('XML validations for Sponsor box Module', () => {
         it('lower_link lower_link_link object_type of both xmls should be same', () => {
             while (lower_linksCount > 0) {
                // expect(xml1['lower_link_lower_link_lower_lower_link_link_object_type_' + lower_linksCount]).to.equal(xml2['lower_link_lower_link_lower_lower_link_link_object_type_' + lower_linksCount]);
-                expect(xml2['lower_link_lower_link_lower_lower_link_link_object_type_' + lower_linksCount].length).to.eql(0);
+                expect(xml2['lower_link_lower_link_lower_lower_link_link_object_type_' + lower_linksCount].length).to.not.eql(0);
                 lower_linksCount = lower_linksCount - 1;
             }
         });

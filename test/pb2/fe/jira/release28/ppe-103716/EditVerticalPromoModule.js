@@ -71,8 +71,8 @@ describe('XML validations for updated sponsorbox Module', () => {
                 expect(testAssetProps.iconicoverlays[0].iconicoverlaystitle).to.equal(updatedXml['iconic_overlay_title_1']);
                 expect(testAssetProps.iconicoverlays[0].iconicoverlayslinktext).to.equal(updatedXml['iconic_overlay_text_1']);
                 expect(testAssetProps.iconicoverlays[0].iconicoverlaysdescriptiontext).to.equal(xml2['iconic_overlay_description_text_1']);
-                expect(updatedXml['icon_chronic_id_1' + overlayCount]).to.be.true;
-                expect(updatedXml['link_chronic_id_1' + overlayCount]).to.be.true;
+                expect(updatedXml['icon_chronic_id_' + overlayCount]).to.be.true;
+                expect(updatedXml['link_chronic_id_' + overlayCount]).to.be.true;
 
                 expect(testAssetProps.iconicoverlays[1].iconicoverlaystitle).to.equal(updatedXml['iconic_overlay_title_' + overlayCount]);
                 expect(testAssetProps.iconicoverlays[1].iconicoverlayslinktext).to.equal(updatedXml['iconic_overlay_text_' + overlayCount]);

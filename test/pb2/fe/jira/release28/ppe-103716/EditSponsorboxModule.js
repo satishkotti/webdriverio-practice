@@ -73,8 +73,8 @@ describe('XML validations for updated sponsorbox Module', () => {
                 expect(updatedXml['header_link_chronic_id']).to.be.true;
 
                 //body copies
-                expect(testAssetProps.bodycopy[bodylinkCount - 1].bodycopyheadertext).to.equal(updatedXml['body_copy_body_copy_text_' + body_copiesCount]);
-                expect(testAssetProps.bodycopy[bodylinkCount - 1].bodycopylink).to.equal(updatedXml['body_copy_body_copy_text_' + body_copiesCount]);
+                expect(testAssetProps.bodycopy[bodylinkCount - 1].headertext).to.equal(updatedXml['body_copy_body_copy_text_' + body_copiesCount]);
+                expect(testAssetProps.bodycopy[bodylinkCount - 1].link.length).to.not.eql(0);
 
                 //body image
                 expect(testAssetProps.bodyimageoverridetext).to.equal(updatedXml["body_image_override_text"]);
@@ -82,16 +82,20 @@ describe('XML validations for updated sponsorbox Module', () => {
                 expect(updatedXml['body_image_link_chronic_id']).to.be.true;
 
                 //body links
-                expect(testAssetProps.bodylinks[bodylinkCount - 1].bulletson).to.equal(updatedXml["body_bullet"]);
-                expect(testAssetProps.bodylinks[0].text).to.equal(updatedXml['body_link_body_link_text']);
-                expect(updatedXml["body_link_link_chronic_id"]).to.be.true;
+                expect(testAssetProps.bodylinks[bodylinkCount - 1].bulletson.length).to.not.eql(0);
+                expect(updatedXml["body_bullet"].length).to.not.eql(0);
+                expect(testAssetProps.bodylinks[0].text.length).to.not.eql(0);
+                expect(updatedXml['body_link_body_link_text_' + bodylinkCount].length).to.not.eql(0);
+                expect(updatedXml["body_link_link_chronic_id_" + bodylinkCount]).to.be.true;
 
                 //lower links
-                expect(testAssetProps.lowerlinks[lower_linksCount - 1].text).to.equal(updatedXml['lower_link_lower_link_lower_link_text_' + lower_linksCount]);
+                expect(testAssetProps.lowerlinks[lower_linksCount - 1].text.length).to.not.eql(0);
+                expect(updatedXml['lower_link_lower_link_lower_link_text_' + lower_linksCount].length).to.not.eql(0);
                 expect(updatedXml["lower_link_link_chronic_id_" + lower_linksCount]).to.be.true;
 
-                expect(testAssetProps.lowerlinks[0].text).to.equal(updatedXml['lower_link_lower_link_lower_link_text_1']);
-                expect(updatedXml["lower_link_link_chronic_id_1"]).to.be.true;
+                expect(testAssetProps.lowerlinks[0].text.length).to.not.eql(0);
+                expect(updatedXml['lower_link_lower_link_lower_link_text_' + lower_linksCount].length).to.not.eql(0);
+                expect(updatedXml["lower_link_link_chronic_id_" + lower_linksCount]).to.be.true;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ;
 
             });
 
