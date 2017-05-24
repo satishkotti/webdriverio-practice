@@ -4,3 +4,5 @@
 **/**/allure-report/data/*
 **/**/errorShots/*
 npm-debug.log
+debug.log
+allure-report/
