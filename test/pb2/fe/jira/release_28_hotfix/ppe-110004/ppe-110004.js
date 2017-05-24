@@ -5,11 +5,11 @@ var relations = require('./../../../../../d2/cons/common/actions/relations.actio
 var repbrowser = require('./../../../../../d2/cons/common/actions/repositoryBrowserTab.actions');
 
 
-describe('PPE-110004', () => {
+describe('PPE-110004: PROD: Publishing UK article fails', () => {
 
     var testArticlePath = 'webmddoc01/webmd_uk/consumer_assets/editorial/articles/news/care_giving/caregiver_stress';
     var testArticle = 'cancer_carers_neglect_own_health.xml';
-    
+
     var SelectArticle = function (article) {
         var locator = '//div[@id="x3-docList-panel"]//span[@title="' + article + '"]';
         UntilVisible(locator);
@@ -72,7 +72,7 @@ describe('PPE-110004', () => {
         bottomwidgets.SwitchTo('Relations');
     });
 
-    it('Verify whether the relation "wcm_layout_template" exists only once', () => {
+    it('PPE-110004: Verify whether the relation "wcm_layout_template" exists only once', () => {
         //Validation
         var wcm_layout_template_relations = relations.getRelation('wcm_layout_template');
         expect(wcm_layout_template_relations.length).to.eql(1);
