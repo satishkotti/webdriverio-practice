@@ -39,7 +39,8 @@ exports.config = merge(wdioConf.config, {
     }],
     suites: {
         redirectTool: [
-            './test/pb2/**/PPE-101669.js'
+            './test/pb2/**/PPE-101669.js',
+            './test/pb2/**/PPE-93381.js'
         ]
     },
     capabilities: [{

@@ -1,7 +1,7 @@
 var util = require('util');
 var LoginPage = require('./../../common/pbLogin');
 var common = require('./../../common/commonLib');
-var smdb = require('./../../../common/smdb/siteManagementDb');
+//var smdb = require('./../../../common/smdb/siteManagementDb');
 
 describe('PB2 Site Node Create ScopeMap and Nav Map', function () {
 
@@ -47,6 +47,7 @@ console.log('is access'+ newScopeMapNodePath);
             browser.traverseScopeMapTreeSelectNode(browser, sourceNodes);
         });
 
+/*
         it('Should have db records for new nodes', function (){
             
             return Promise.resolve(smdb.getSitevieMapNodeLayoutByDisplayName(newNodeDisplayName)
@@ -59,6 +60,7 @@ console.log('is access'+ newScopeMapNodePath);
                     //console.log(reason);
                     expect.fail('DB fail', '', reason);
                 }));       
+*/
 
         it('should Publish new scopemap node to Live', function () {
             
@@ -98,4 +100,3 @@ console.log('is access'+ newScopeMapNodePath);
             password: common.getQAPublicationInfo().password
         });
     });
-});

@@ -1,6 +1,8 @@
 var page = require('./../../../common/page');
 var wdioConf = require('./../../../../wdio.conf.js');
 
+var selectDD = '//form[@id="pb-login"]/label[contains(.,"***:")]//select'; //Dropdown using Select
+
 var testUrl = 'http://genesys.dev01.webmd.com';
 
 var pbLoginPg = Object.create(page, {
@@ -22,6 +24,15 @@ var pbLoginPg = Object.create(page, {
     submit: { value: function() {
         this.form.submitForm();
     } },
+    select: {
+        value: (labelName, option) => {
+            
+            locator = selectDD.replace('***', labelName);
+            console.log(locator);
+            browser.selectByVisibleText(locator, option);
+            
+        }
+    },
 });
 
 module.exports = pbLoginPg

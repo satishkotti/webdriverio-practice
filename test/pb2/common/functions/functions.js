@@ -17,15 +17,15 @@ module.exports.LaunchApp = () => {
     app.LaunchApp();
 }
 
-module.exports.LaunchAppAndLogin = (user) => {
+module.exports.LaunchAppAndLogin = (user, site) => {
     switch (user) {
-        default: app.LaunchApp();app.Login(global.username, global.password);
+        default: app.LaunchApp();app.Login(global.username, global.password, site);
         break;
         case 'superuser':
-                app.LaunchApp();app.Login(user.superuser.username, user.superuser.password);
+                app.LaunchApp();app.Login(user.superuser.username, user.superuser.password, site);
             break;
         case 'superuser1':
-                app.LaunchApp();app.Login(user.superuser1.username, user.superuser1.password);
+                app.LaunchApp();app.Login(user.superuser1.username, user.superuser1.password, site);
             break;
     }
 
@@ -34,11 +34,11 @@ module.exports.LaunchAppAndLogin = (user) => {
 //Enter credentials in the login screen and click on the login button
 module.exports.Login = (user) => {
     switch (user) {
-        default: app.Login(global.username, global.password);
+        default: app.Login(global.username, global.password, site);
         case 'superuser':
-                app.Login(user.superuser.username, user.superuser.password);
+                app.Login(user.superuser.username, user.superuser.password, site);
         case 'superuser1':
-                app.Login(user.superuser1.username, user.superuser1.password);
+                app.Login(user.superuser1.username, user.superuser1.password, site);
     }
 }
 
@@ -132,6 +132,13 @@ Checkin or Publish the asset
 */
 module.exports.SaveOrPublishTheAsset = (action, comment) => {
     act.SavePublish(action, comment);
+}
+
+/*
+Save the changes made to module while creating a page
+*/
+module.exports.SaveModule = () => {
+    act.Save();
 }
 
 /*

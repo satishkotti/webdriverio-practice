@@ -18,12 +18,12 @@ module.exports.ClickOn = function (buttonText) {
 module.exports.WaitFor = (fileType) =>
 {   
     var atsUrl = browser.getUrl();
-    if(atsUrl.includes('preview') || atsUrl.includes('Preview'))
-    {
+    //if(atsUrl.includes('preview') || atsUrl.includes('Preview'))
+    //{
         ats.downloadLink(fileType, 10000);
-    }
-    else
-    {
-        ats.downloadLink(fileType, 30000);
-    }
+    //}
+    //else
+    //{
+        //ats.downloadLink(fileType, 30000);
+    //}
 }
