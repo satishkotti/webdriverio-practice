@@ -143,7 +143,7 @@ describe('PPE-101674: Ability to Search Existing Redirects', function () {
 
     });
 
-    it('Verify the functionality of Search button when user enters valid input in "From URL" field and leaves "To URL" field empty', function () {
+    it('Verify the functionality of Search button when user enters valid URL in "From URL" field and leaves "To URL" field empty', function () {
         from.setValue('');
         to.setValue(correctEnvUrlWithWildcard);
         search.click();
@@ -151,8 +151,7 @@ describe('PPE-101674: Ability to Search Existing Redirects', function () {
 
     });
 
-    it('Verify the functionality of Search button when user enters valid input in "To URL" field and leaves "From URL" field empty', function () {
-
+    it('Verify the functionality of Search button when user enters valid URL in "To URL" field and leaves "From URL" field empty', function () {
         if (field.link.get('Show Criteria')) {
             field.link.get('Show Criteria').click();
             browser.pause(500);
@@ -164,13 +163,49 @@ describe('PPE-101674: Ability to Search Existing Redirects', function () {
 
     });
 
-    it('Verify the functionality of Search button when user enters valid input in "From URL" & "To URL" fields', function () {
+    it('Verify the functionality of Search button when user enters valid URL in "From URL" & "To URL" fields', function () {
         if (field.link.get('Show Criteria')) {
             field.link.get('Show Criteria').click();
             browser.pause(500);
         }
         from.setValue(correctEnvUrlWithWildcard);
         to.setValue(correctEnvUrlWithWildcard);
+        search.click();
+        expect(resultsGridVisibility()).to.be.true;
+
+    });
+
+    it('Verify the functionality of Search button when user enters invalid URL in "From URL" field and leaves "To URL" field empty', function () {
+        if (field.link.get('Show Criteria')) {
+            field.link.get('Show Criteria').click();
+            browser.pause(500);
+        };
+        from.setValue('');
+        to.setValue('http://www.google.com');
+        search.click();
+        expect(resultsGridVisibility()).to.be.true;
+
+    });
+
+    it('Verify the functionality of Search button when user enters invalid URL in "To URL" field and leaves "From URL" field empty', function () {
+        if (field.link.get('Show Criteria')) {
+            field.link.get('Show Criteria').click();
+            browser.pause(500);
+        }
+        from.setValue('http://www.google.com');
+        to.setValue('');
+        search.click();
+        expect(resultsGridVisibility()).to.be.true;
+
+    });
+
+    it('Verify the functionality of Search button when user enters invalid URL in "From URL" & "To URL" fields', function () {
+        if (field.link.get('Show Criteria')) {
+            field.link.get('Show Criteria').click();
+            browser.pause(500);
+        }
+        from.setValue('http://www.google.com');
+        to.setValue('http://www.google.com');
         search.click();
         expect(resultsGridVisibility()).to.be.true;
 
