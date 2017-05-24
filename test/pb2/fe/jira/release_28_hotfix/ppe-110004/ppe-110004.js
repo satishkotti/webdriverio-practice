@@ -35,14 +35,14 @@ describe('PPE-110004: PROD: Publishing UK article fails', () => {
         //repbrowser.openFolder(testArticlePath);
 
         //Select the asset
-            SelectArticle(testArticle);
+        SelectArticle(testArticle);
 
         //Switch to Crosslink Tab
         bottomwidgets.SwitchTo('Crosslink');
 
         //Crosslink
         crosslinker.crosslinkArticle();
-        
+
         if (isExisting(crosslinked)) {
 
             browser.click(crosslinked);
