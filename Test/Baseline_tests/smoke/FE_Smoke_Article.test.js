@@ -19,6 +19,7 @@ describe('Validation of elements on Article page ', function () {
   // Article_Elements.open();
   browser.url(URL);
   
+  
   this.timeout(90000);
 
   /* This method passes  all the locators as an array object and validates if the element exists on the page */
