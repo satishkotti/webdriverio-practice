@@ -23,7 +23,7 @@ var Elements = Object.create(Page, {
 
 
     //LOE
-    LOE: { get: function () { return browser.element(".//*[@id='ContentPane11']"); } },
+    LOE: { get: function () { return browser.element("//div[@class='ed_disclaimer']"); } },
 
     //Header  sharebar
     twitter: { get: function () { return browser.element("//div[@id='fed-sharebar']//a[@class='plugin-socialshare-link plugin-socialshare-twitter']"); } },
@@ -36,9 +36,9 @@ var Elements = Object.create(Page, {
 
     //kabob
     kabob: { get: function () { return browser.element('//*[@id="ContentPane14"]/div[@class="wbmd-kabob"]'); } },
-    kabob_segment: { get: function () { return browser.element('//div[@class="wbmd-segment"]'); } },
-    kabob_subhead: { get: function () { return browser.element('//div[@class="wbmd-subhead"]'); } },
-    kabob_seeall: { get: function () { return browser.element('//div[@class="wbmd-see-all"]/a'); } },
+    kabob_segment: { get: function () { return browser.element('div.up-next-container.clone > div.wbmd-segment'); } },
+    kabob_subhead: { get: function () { return browser.element('div.up-next-container.clone > div.wbmd-subhead'); } },
+    kabob_seeall: { get: function () { return browser.element('div.up-next-container.clone > div.wbmd-see-all > a'); } },
     kabob_close: { get: function () { return browser.element('//div[@class="wbmd-menu-close"]'); } },
 
     //Footer sharebar
@@ -54,12 +54,12 @@ var Elements = Object.create(Page, {
     sticky_Header_email: { get: function () { return browser.element('//div[@class="share"]//a[@class="plugin-socialshare-link plugin-socialshare-email"]'); } },
     sticky_kabob: { get: function () { return browser.element('//*[@id="ContentPane14"]/div[1]//div[@class="wbmd-kabob"]'); } },
     //Sticky for scrolling
-    sticky_Header_Scroll: { get: function () { return browser.element('//*[@id="ContentPane64"]/div/div/div[1]/p'); } },
+    sticky_Header_Scroll: { get: function () { return browser.element("p:nth-child(6) > b"); } },
 
     //Paddle Next and previous navigations
-    paddle_next: { get: function () { return browser.element('.//*[@class="wbmd-paddles mlr"]/.//*[@class="article-nav show"]/.//*[@class="next "]'); } },
-    paddle_previous: { get: function () { return browser.element('.//*[@class="wbmd-paddles mlr"]/.//*[@class="article-nav show"]/.//*[@class="prev "]'); } },
-    paddle_previous_page_title: { get: function () { return browser.element('.//*[@class="wbmd-paddles mlr"]/.//*[.="8 Reasons Your Cough Is Not Improving"]'); } },
+    paddle_next: { get: function () { return browser.element("a.next > span"); } },
+    paddle_previous: { get: function () { return browser.element("a.prev > span"); } },
+    paddle_nav: { get: function () { return browser.element("//h3[@class='wbmd-moreabout-title']"); } },
     paddle_next_page_title: { get: function () { return browser.element('.//*[@class="wbmd-paddles mlr"]/.//*[.="OTC Medicines for Cough: What You Need to Know"]'); } },
 
     bottom_ad_rdr: { get: function () { return browser.element('//div[@class="ad_rdr bottom_ad_rdr"]'); } },
@@ -70,11 +70,12 @@ var Elements = Object.create(Page, {
     footer_reviewed: { get: function () { return browser.element('//*[@id="textArea"]/footer//p[@class="reviewed"]'); } },
     footer_sources: { get: function () { return browser.element('//*[@id="textArea"]/footer//p[@class="source_intro"]/a'); } },
     footer_copyright: { get: function () { return browser.element('//*[@id="textArea"]/footer//p[@class="copyright"]'); } },
-
+//footer scrolling
+footer_Scroll: { get: function () { return browser.element("//h3[@class='wbmd-moreabout-title']"); } },
     // hamburger links
     HealthA_Z: { get: function () { return browser.element('//li[@class="masthead-nav-channel masthead-channel-az"]/a/span[1]'); } },
     Drugs_Supplements: { get: function () { return browser.element('//li[@class="masthead-nav-channel masthead-channel-drugs"]/a/span[1]'); } },
-    Living_healthy: { get: function () { return browser.element('li[@class="masthead-nav-channel masthead-channel-lh"]/a/span[1]'); } },
+    Living_healthy: { get: function () { return browser.element('li.masthead-nav-channel.masthead-channel-lh > a > span.masthead-channel-name'); } },
     Family_Pregnancy: { get: function () { return browser.element('//li[@class="masthead-nav-channel masthead-channel-fp"]/a/span[1]'); } },
     News_Experts: { get: function () { return browser.element('//li[@class="masthead-nav-channel masthead-channel-news"]/a/span[1]'); } },
     Mobile_Apps: { get: function () { return browser.element('//li[@class="masthead-nav-channel masthead-nav-mobile-mobileapps-wrapper"]/a/span[1]'); } },

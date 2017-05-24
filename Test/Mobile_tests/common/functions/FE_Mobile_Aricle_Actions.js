@@ -16,6 +16,7 @@ module.exports = {
         for (i = 0; i < count; i++) {
             browser.scroll(elements.elements[i].scroll);
             var visible = browser.isExisting(elements.elements[i].locator);
+            console.log(elements.elements[i].locator);
             visible.should.equal(elements.elements[i].visibility);
         }
     },
@@ -23,23 +24,24 @@ module.exports = {
     //validates the links  on hamburger 
     burger_linksValidation: function (url, burger, link, linktext, newUrl) {
 
-        browser.url(url)
+        //browser.url(url)
         browser.pause(4000)
-        browser.scroll(burger)
-        browser.click(burger)
-        var text = browser.getText(link)
-        text.should.equal(linktext)
+        browser.scroll(burger);
+        browser.click(burger);
+        var text = browser.getText(link);
+        text.should.equal(linktext);
 
-        browser.click(link)
-        var url1 = browser.getUrl()
-        url1.should.equal(newUrl)
+        browser.click(link);
+        var url1 = browser.getUrl();
+        url1.should.equal(newUrl);
+        browser.back();
 
     },
 
     // validates the social share icons  functionlaity
-    Socialshare_validations: function (Icons, scroll_value) {
+    Socialshare_validations: function (scroll_value, Icons) {
 
-        browser.scroll(scroll_value)
+        browser.scroll(scroll_value);
         browser.pause(4000)
         //It will click on social share icons
         browser.waitForVisible(Icons)
@@ -61,20 +63,20 @@ module.exports = {
 
 
     //validates the paddle up next/prev  functionality
-    Paddle_Navigation: function (Icons, paddle_page_title, paddle) {
+    Paddle_Navigation: function (Icons, paddle) {
 
         browser.scroll(Icons)
         browser.waitForVisible(Icons)
-        var paddle_page_title_text = browser.getText(paddle_page_title)
+        
         browser.click(paddle)
         browser.pause(4000)
-        var Page_title_Text = browser.getTitle()
+        var Page_URL = browser.getUrl();
         browser.back()
         browser.pause(3000)
 
         var actions = {
-            Page_title_Text: Page_title_Text,
-            paddle_page_title_text: paddle_page_title_text,
+            Page_URL: Page_URL,
+            //paddle_page_title_text: paddle_page_title_text,
 
 
         }
