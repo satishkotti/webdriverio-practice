@@ -12,6 +12,7 @@ var legend = '//fieldset[legend[string()="***"]]';
 var position = '[position()=*]'
 var required = '//label[contains(.,"***:")]//span[@class="pb-field-required"]';
 var invalid = '//label[contains(.,"***:")]//span[@class="pb-field-invalid"]'
+var link = '//a[string()="***"]';
 var locator = '';
 
 
@@ -183,7 +184,7 @@ var props = Object.create(page, {
                 }
                 catch (err) {
                     browser.element(locator).scroll(0, 300);
-                     props.GetElement.click();
+                    props.GetElement.click();
                 }
 
             }
@@ -210,10 +211,10 @@ var props = Object.create(page, {
                     case 'WebMD Nickname': locator = invalid.replace('***:', labelName); break;
                     default: locator = invalid.replace('***', labelName); break;
                 }
-                try{
+                try {
                     let element = props.GetElement;
                     return element;
-                }catch(err){
+                } catch (err) {
                     return browser.isExisting(locator);
                 }
             }
@@ -228,6 +229,15 @@ var props = Object.create(page, {
                 }
                 props.UntilExist();
                 props.UntilVisible();
+                return props.GetElement;
+            }
+        }
+    },
+    link: {
+        value: {
+            get: (linkName) => {
+                locator = link.replace('***', linkName);
+                props.UntilExist();
                 return props.GetElement;
             }
         }
