@@ -25,11 +25,16 @@ var currentApp = flags.app;
 var conf = flags.conf;
 var testEnv = flags.env;
 var error = chalk.bold.red;
+var defaultWaitTimeout = 180000;
+var defaultMochaTestTimeout = 600000;
+var gridHost = '172.28.38.219';
+var gridPort = 4444;
+
 var tests = [];
 var currentBranch;
 var confPath;
 var appFolder;
-switch (currentApp) {
+switch (currentApp.toLowerCase()) {
     case 'rt':
         appFolder = 'rt';
         break;
@@ -58,6 +63,13 @@ gulp.task('branch', function (cb) {
         console.log('app: ' + currentApp);
         console.log('branch: ' + branch);
 
+        if(testEnv.toLowerCase().indexOf('prod') >= 0)
+        {
+            console.log('PROD RUN NOT SUPPORTED FOR DEFAULT TASK');
+            cb();
+            return;
+        }
+
         if (branch === "HEAD" && flags.branch === undefined) {
             console.log(error('branch is required. Use --help to get detailed info'));
             process.exit(-1);
@@ -83,7 +95,7 @@ gulp.task('branch', function (cb) {
             var branchArr = currentBranch.split('-');
             var ppeIndex = branchArr.indexOf('ppe');
             if (ppeIndex >= 0) {
-                var testfile = branchArr[ppeIndex] + '-' + tmpStr[ppeIndex + 1];
+                var testfile = branchArr[ppeIndex] + '-' + branchArr[ppeIndex + 1];
                 specBranch = `test/${appFolder}/**/${testfile}*.js`;
                 console.log('ppe specs: ' + specBranch);
             }
@@ -126,13 +138,52 @@ var deleteFolderRecursive = function (path) {
     }
 };
 
+gulp.task('prod', function (done) {
+    tests.push(`test/${appFolder}/**/prod/**/*.js`);
+    conf.config.host = gridHost;
+    conf.config.port = gridPort;
+    gulpSequence('webdriver')(function (err) {
+        if (err){ console.log('Failed: ' + err); }
+    });
+    done();
+});
+
+gulp.task('smoke', function (done) {
+    tests.push(`test/${appFolder}/**/smoke/**/*.js`);
+    conf.config.host = gridHost;
+    conf.config.port = gridPort;
+    gulpSequence('webdriver')(function (err) {
+        if (err){ console.log('Failed: ' + err); }
+    });
+    done();
+});
+
+gulp.task('all', function (done) {
+    tests.push(`test/${appFolder}/**/baseline/**/*.js`);
+    tests.push(`test/${appFolder}/**/jira/**/*.js`);
+    tests.push(`test/${appFolder}/**/regression/**/*.js`);
+    tests.push(`test/${appFolder}/**/smoke/**/*.js`);
+    conf.config.host = gridHost;
+    conf.config.port = gridPort;
+    gulpSequence('webdriver')(function (err) {
+        if (err){ console.log('Failed: ' + err); }
+    });
+    done();
+});
+
 gulp.task('webdriver', function (done) {
     conf.config.specs = tests;
     conf.config.maxInstances = flags.maxInstances;
     conf.config.logLevel = flags.logLevel;
+    conf.config.waitforTimeout = defaultWaitTimeout;
+    conf.config.mochaOpts.timeout = defaultMochaTestTimeout;
+
     console.log('executing specs: ' + conf.config.specs.toString());
     console.log('max instances: ' + conf.config.maxInstances);
     console.log('log level: ' + conf.config.logLevel);
+    console.log('waitTimeout: ' + conf.config.waitforTimeout);
+    console.log('mocha test timeout: ' + conf.config.mochaOpts.timeout);
+    console.log('executing specs: ' + conf.config.specs.toString());
 
     var wdio = new Launcher(path.join(__dirname, confPath), conf.config);
     return wdio.run().then(function (code) {
@@ -172,11 +223,12 @@ gulp.task('local', function (cb) {
 });
 
 gulp.task('default', function (done) {
-    conf.config.host = '172.28.38.219';
-    conf.config.port = 4444;
+    conf.config.host = gridHost;
+    conf.config.port = gridPort;
     gulpSequence('branch', 'webdriver')(function (err) {
-        if (err) console.log(err);
+        if (err){ console.log('Failed: ' + err); }
     });
+    done();
 });
 
 module.exports = {
