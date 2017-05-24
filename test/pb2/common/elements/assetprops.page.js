@@ -10,6 +10,9 @@ var checkbox = '//label[contains(.,"***")]//input'; //For Checkbox and Radio but
 var tab = '//uib-tab-heading[contains(.,"***")]'; //For Properties, Page Layout and Preview tabs
 var legend = '//fieldset[legend[string()="***"]]';
 var position = '[position()=*]'
+var required = '//label[contains(.,"***:")]//span[@class="pb-field-required"]';
+var invalid = '//label[contains(.,"***:")]//span[@class="pb-field-invalid"]'
+var link = '//a[string()="***"]';
 var locator = '';
 
 
@@ -181,7 +184,7 @@ var props = Object.create(page, {
                 }
                 catch (err) {
                     browser.element(locator).scroll(0, 300);
-                     props.GetElement.click();
+                    props.GetElement.click();
                 }
 
             }
@@ -201,6 +204,44 @@ var props = Object.create(page, {
             return props.GetElement;
         }
     },
+    invalid: {
+        value: {
+            get: (labelName) => {
+                switch (labelName) {
+                    case 'WebMD Nickname': locator = invalid.replace('***:', labelName); break;
+                    default: locator = invalid.replace('***', labelName); break;
+                }
+                try {
+                    let element = props.GetElement;
+                    return element;
+                } catch (err) {
+                    return browser.isExisting(locator);
+                }
+            }
+        }
+    },
+    required: {
+        value: {
+            get: (labelName) => {
+                switch (labelName) {
+                    case 'WebMD Nickname': locator = required.replace('***:', labelName); break;
+                    default: locator = required.replace('***', labelName); break;
+                }
+                props.UntilExist();
+                props.UntilVisible();
+                return props.GetElement;
+            }
+        }
+    },
+    link: {
+        value: {
+            get: (linkName) => {
+                locator = link.replace('***', linkName);
+                props.UntilExist();
+                return props.GetElement;
+            }
+        }
+    }
 
 });
 

@@ -1,6 +1,6 @@
 var menus = require('./menus.actions');
 
-var searchBtn = '[name="redirectSearchForm"] > div:nth-of-type(2) > div.floatright > button';
+var searchBtn = 'button.floatright';
 var createBtn = '[name="redirectForm"] > div:nth-of-type(2) > div.floatright > button';
 
 var searchFromUrl = '[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input';
@@ -53,8 +53,8 @@ module.exports.GetRedirectElement = function(option) {
             }
         case "searchBtn":
             {
-                if (browser.isVisible(createToUrl))
-                    return browser.getHTML(createToUrl);
+                if (browser.isVisible(searchBtn))
+                    return browser.getHTML(searchBtn);
                 else return null
             }
         case "createBtn":
@@ -88,10 +88,24 @@ module.exports.SearchFromUrl = function(option) {
     browser.click('button.floatright');
 }
 
+module.exports.SearchFromUrlNoClick = function(option) {
+    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
+    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
+    var url = option;
+    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', url);
+}
+
 module.exports.SearchToUrl = function(option) {
     browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
     browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
     var url = option;
     browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', url);
     browser.click('button.floatright');
+}
+
+module.exports.SearchToUrlNoClick = function(option) {
+    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
+    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
+    var url = option;
+    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', url);
 }
