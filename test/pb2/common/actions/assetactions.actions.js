@@ -33,7 +33,16 @@ module.exports.ClickShowExpired = () => {
 }
 
 module.exports.Save = () => {
-    acts.button.get('Save').click()
+    acts.button.get('Save').click();
+    browser.waitForVisible('//button[contains(@text(),"Asset Locked by")]', 10000, true);
+    browser.waitUntil( () => {
+        return browser.isExisting('//div[contains(@class,"pb-contentpane")]') == true;
+    }, 30000, "Module is not yet added to the content pane", 500);
+    
+    browser.waitUntil( () => {
+        return browser.isExisting('//i[contains(@class,"fa-pulse")]') == true;
+    }, 30000, "Module is not yet added to the content pane", 500);
+    
 }
 
 module.exports.SavePublish = (action, comment) => {
