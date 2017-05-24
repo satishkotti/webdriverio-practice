@@ -5,10 +5,13 @@ module.exports.LaunchApp = () =>
         LoginPage.open(global.appUrl);
 }
 
-module.exports.Login = (user, pass) => {
+module.exports.Login = (user, pass, website) => {
 
         LoginPage.username.setValue(user);
         LoginPage.password.setValue(pass);
+        if(website !=null){
+                LoginPage.select('Site',website);
+        }
         LoginPage.submit();
         LoginPage.browser.waitForVisible("#grid-favorites");
 }

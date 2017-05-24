@@ -136,6 +136,13 @@ module.exports.SaveOrPublishTheAsset = (action, comment) => {
 }
 
 /*
+Save the changes made to module while creating a page
+*/
+module.exports.SaveModule = () => {
+    act.Save();
+}
+
+/*
 Publish the asset from More Actions menu
 'action' can be 'Publish to Staging' or 'Publish to Live'
 'comment' can be user comment entered while saving/publishin the asset
@@ -354,7 +361,7 @@ module.exports.GetXML = (chronId, stage, inputType) => {
     var xml;
     browser.call(() => {
         return Promise.resolve(parseXml.getXmlFromUrl(xmlUrl, null, inputType))
-            .then(function (result) {
+            .then(function(result) {
                 xml = result;
             }).catch(err => {
                 console.log(err);
@@ -398,7 +405,6 @@ module.exports.GetXMLValues = (assetType, xml) => {
     }
 
 }
-
 
 module.exports.NavigateToRedirectToolPage = () => {
     rdt.GoToRedirectToolPage();

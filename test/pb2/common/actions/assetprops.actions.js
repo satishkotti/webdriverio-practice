@@ -151,11 +151,24 @@ module.exports.PopulateSMProps = (assetProps) =>
 
 module.exports.AddModule = (contentPane, assetProps) =>
 {
-    props.element('.fa-eye').click();
-    props.element('div[name="' + contentPane + '"').waitForVisible();
-    props.element('div[name="' + contentPane + '"').moveToObject();
-    props.element('div[name="' + contentPane + '"] .fa-plus.add-module').click();
-    props.element('.pb-add-module.section-open').waitForVisible();
+    props.element('button.button-small.button-link.toggleEmpty').waitForVisible();
+    props.element('button.button-small.button-link.toggleEmpty').click();
+
+
+	try{
+		props.element('div[name="' + contentPane + '"').waitForVisible();
+		props.element('div[name="' + contentPane + '"').moveToObject();
+		props.element('div[name="' + contentPane + '"] .fa-plus.add-module').click();
+		props.element('.pb-add-module.section-open').waitForVisible();
+	}
+	catch(err){
+		yloc = browser.getLocation('div[name="' + contentPane + '"','y');
+		props.element('div[name="' + contentPane + '"').waitForVisible();
+        browser.scroll(0,yloc-250);
+        props.element('div[name="' + contentPane + '"').moveToObject();
+        props.element('div[name="' + contentPane + '"] .fa-plus.add-module').click();
+        props.element('.pb-add-module.section-open').waitForVisible();
+    }
     props.input.get('Module Name').setValue(assetProps.moduleName);
     if ( assetProps.moduleName != null || assetProps.moduleName != '' ) { props.input.get('Module Display Name').setValue(assetProps.moduleDispName) };
     props.dropdown('Module Type', assetProps.moduleType);
