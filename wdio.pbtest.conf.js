@@ -5,7 +5,7 @@ var wdioConf = require('./wdio.conf.js');
 exports.config = merge(wdioConf.config, {
 
     debug: true,
-    //specs: ['./test/pb2/**.js'],
+    specs: ['./test/pb2/**.js'],
     capabilities: [{
         maxInstances: 1,
         browserName: 'chrome',
