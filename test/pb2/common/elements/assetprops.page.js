@@ -10,6 +10,8 @@ var checkbox = '//label[contains(.,"***")]//input'; //For Checkbox and Radio but
 var tab = '//uib-tab-heading[contains(.,"***")]'; //For Properties, Page Layout and Preview tabs
 var legend = '//fieldset[legend[string()="***"]]';
 var position = '[position()=*]'
+var required = '//label[contains(.,"***:")]//span[@class="pb-field-invalid"]';
+var invalid = '//label[contains(.,"***:")]//span[@class="pb-field-required"]'
 var locator = '';
 
 
@@ -201,6 +203,32 @@ var props = Object.create(page, {
             return props.GetElement;
         }
     },
+    invalid: {
+        value: {
+            get: (labelName) => {
+                switch (labelName) {
+                    case 'WebMD Nickname': locator = invalid.replace('***:', labelName); break;
+                    default: locator = invalid.replace('***', labelName); break;
+                }
+                props.UntilExist();
+                //props.UntilVisible();
+                return props.GetElement;
+            }
+        }
+    },
+    required: {
+        value: {
+            get: (labelName) => {
+                switch (labelName) {
+                    case 'WebMD Nickname': locator = required.replace('***:', labelName); break;
+                    default: locator = required.replace('***', labelName); break;
+                }
+                props.UntilExist();
+                props.UntilVisible();
+                return props.GetElement;
+            }
+        }
+    }
 
 });
 

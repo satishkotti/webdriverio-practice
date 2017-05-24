@@ -7,6 +7,7 @@ var menu = require('./../actions/menus.actions');
 var queue = require('./../actions/queue.actions');
 var assetxml = require('./../actions/assetxmlreaders.actions');
 var moduleConfigs = require('./../actions/moduleconfigs.actions');
+var rdt = require('./../actions/redirecttool.actions');
 var usersDetails = require('./../../config/users');
 var ats = require('./../actions/ats.actions');
 var user = usersDetails.users;
@@ -19,13 +20,13 @@ module.exports.LaunchApp = () => {
 
 module.exports.LaunchAppAndLogin = (user) => {
     switch (user) {
-        default: app.LaunchApp();app.Login(global.username, global.password);
-        break;
+        default: app.LaunchApp(); app.Login(global.username, global.password);
+            break;
         case 'superuser':
-                app.LaunchApp();app.Login(user.superuser.username, user.superuser.password);
+            app.LaunchApp(); app.Login(user.superuser.username, user.superuser.password);
             break;
         case 'superuser1':
-                app.LaunchApp();app.Login(user.superuser1.username, user.superuser1.password);
+            app.LaunchApp(); app.Login(user.superuser1.username, user.superuser1.password);
             break;
     }
 
@@ -36,9 +37,9 @@ module.exports.Login = (user) => {
     switch (user) {
         default: app.Login(global.username, global.password);
         case 'superuser':
-                app.Login(user.superuser.username, user.superuser.password);
+            app.Login(user.superuser.username, user.superuser.password);
         case 'superuser1':
-                app.Login(user.superuser1.username, user.superuser1.password);
+            app.Login(user.superuser1.username, user.superuser1.password);
     }
 }
 
@@ -353,7 +354,7 @@ module.exports.GetXML = (chronId, stage, inputType) => {
     var xml;
     browser.call(() => {
         return Promise.resolve(parseXml.getXmlFromUrl(xmlUrl, null, inputType))
-            .then(function(result) {
+            .then(function (result) {
                 xml = result;
             }).catch(err => {
                 console.log(err);
@@ -396,6 +397,10 @@ module.exports.GetXMLValues = (assetType, xml) => {
             break;
     }
 
+}
+
+module.exports.NavigateToRedirectToolPage = () => {
+    rdt.GoToRedirectToolPage();
 }
 
 //Navigates to the homepage
