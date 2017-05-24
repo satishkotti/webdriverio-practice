@@ -6,36 +6,35 @@ var Launcher = require('webdriverio').Launcher;
 var chalk = require('chalk');
 var git = require('gulp-git');
 var gulpSequence = require('gulp-sequence');
-var env = "";
 var args = require("args");
 var glob = require("glob");
 var _ = require("lodash");
-var releaseconfig = require('./wdio.conf.js');
 var glob = require("glob");
 var fs = require("fs");
 
 args.option('env', 'Environment targetted', "dev01")
     .option('branch', 'Master -- Will run all tests  branch/name (PPE-<branch name>) -- Will run branch tests  release release-sprint-<number>/integration runs sprint tests')
-    .option('samplesize', 'Sample Size', "10")
     .option('conf', 'WebDriver IO Config file to run', "")
-    .option('app', 'App', '')
-    .option('maxInstances', 'Maximum number of instances a browser can have', 1);
+    .option('app', 'App: rt, d2cons, d2prof, pb2', '')
+    .option('maxInstances', 'Maximum number of instances a browser can have', 1)
+    .option('logLevel', 'Test runner logging level default error', 'error');
 
 var flags = args.parse(process.argv);
 
 var currentApp = flags.app;
-console.log('app: ' + currentApp);
-
 var conf = flags.conf;
 var testEnv = flags.env;
-
 var error = chalk.bold.red;
+var defaultWaitTimeout = 180000;
+var defaultMochaTestTimeout = 600000;
+var gridHost = '172.28.38.219';
+var gridPort = 4444;
+
 var tests = [];
 var currentBranch;
-
+var confPath;
 var appFolder;
-
-switch (currentApp) {
+switch (currentApp.toLowerCase()) {
     case 'rt':
         appFolder = 'rt';
         break;
@@ -51,13 +50,25 @@ switch (currentApp) {
 }
 
 if (conf.length == 0) {
-    conf = `./test/${appFolder}/config/wdio/wdio.default.conf`;
+    confPath = `./test/${appFolder}/config/wdio/wdio.default.conf`;
+    conf = require(`./test/${appFolder}/config/wdio/wdio.default.conf`);
+    console.log('config: ' + confPath);
 }
+
 gulp.task('branch', function (cb) {
     return git.revParse({
         args: '--abbrev-ref HEAD'
     }, function (err, branch) {
-        console.log('current git branch: ' + branch);
+
+        console.log('app: ' + currentApp);
+        console.log('branch: ' + branch);
+
+        if(testEnv.toLowerCase().indexOf('prod') >= 0)
+        {
+            console.log('PROD RUN NOT SUPPORTED FOR DEFAULT TASK');
+            cb();
+            return;
+        }
 
         if (branch === "HEAD" && flags.branch === undefined) {
             console.log(error('branch is required. Use --help to get detailed info'));
@@ -66,37 +77,34 @@ gulp.task('branch', function (cb) {
         if (branch === "HEAD") {
             branch = flags.branch;
         }
-        currentBranch = branch;
-        
-        var testRunner = require(conf).config;
-        if (currentBranch.indexOf('master') === 0) {
-            console.log('master: ' + `test/${appFolder}/**/${testfile}/*.js`);
-            tests.push(`test/${appFolder}/**/${testfile}/*.js`);
-        } else if (currentBranch.indexOf('release-pb2-') >= 0) {
-            tests.push(`test/${appFolder}/**/jira/**/*.js`);
-        } else if (currentBranch.indexOf('release-pb2-') >= 0) {
-            var testfile = currentBranch.toLowerCase().split("release-pb2-")[1];
+        currentBranch = branch.toLowerCase();
 
-            console.log('release: ' + `test/${appFolder}/**/${testfile}/*.js`);
-            if (testfile) {
-                tests.push(`test/${appFolder}/**/${testfile}/*.js`);
-            } else {
-                tests.push('test/${appFolder}/**/jira/**/*.js');
+        var specBranch;
+        if (currentBranch.indexOf('master') === 0) {
+            specBranch = `test/${appFolder}/**/jira/**/*.js`;
+            console.log('master specs: ' + specBranch);
+        } else if (currentBranch.indexOf('release-') >= 0) {
+            var testfile = currentBranch.split("-");
+            specBranch = `test/${appFolder}/**/${testfile[testfile.length-1]}/*.js`;
+            console.log('release specs: ' + specBranch);
+        } else if (currentBranch.indexOf('integration-') >= 0) {
+            var testfile = currentBranch.split("-");
+            specBranch = `test/${appFolder}/**/${testfile[testfile.length-1]}/*.js`;
+            console.log('integration specs: ' + specBranch);
+        } else if (currentBranch.indexOf('ppe-') >= 0) {
+            var branchArr = currentBranch.split('-');
+            var ppeIndex = branchArr.indexOf('ppe');
+            if (ppeIndex >= 0) {
+                var testfile = branchArr[ppeIndex] + '-' + branchArr[ppeIndex + 1];
+                specBranch = `test/${appFolder}/**/${testfile}*.js`;
+                console.log('ppe specs: ' + specBranch);
             }
-        } else if (currentBranch.indexOf('integration-pb2-') >= 0) {
-            var testfile = currentBranch.toLowerCase().split("integration-pb2-")[1];
-            console.log('integration: ' + `test/${appFolder}/**/${testfile}/*.js`);
-            tests.push(`test/${appFolder}/**/${testfile}/*.js`);
-        } else if (currentBranch.indexOf('PPE-') >= 0) {
-            var testfile = currentBranch.toLowerCase().split("ppe-")[1].split("-")[0];
-            console.log('ppe tests: ' + `test/${appFolder}/**/jira/${testfile}/*.js`);
-            tests.push(`test/${appFolder}/**/jira/**/${testfile}.js`);
-        } else {
-            console.log('all tests: ' + `test/${appFolder}/**/jira/**/*.js`);
-            tests.push(`test/${appFolder}/**/jira/**/*.js`);
         }
 
-        testRunner.specs = tests;
+        if (specBranch) {
+            tests.push(specBranch);
+        }
+
         var results = [];
         _.forEach(tests, function (t) {
             if (!_.isEmpty(glob.sync(t))) {
@@ -105,20 +113,13 @@ gulp.task('branch', function (cb) {
         });
 
         if (results.length === 0) {
-            console.log("Found no pattern running all tests");
+            console.log("*** Found no pattern running all tests ***");
             tests = [];
             tests.push(`test/${appFolder}/**/baseline/**/*.js`);
             tests.push(`test/${appFolder}/**/jira/**/*.js`);
             tests.push(`test/${appFolder}/**/regression/**/*.js`);
             tests.push(`test/${appFolder}/**/smoke/**/*.js`);
-            var testRunner = require(conf).config;
-            testRunner.specs = tests;
-        } else {
-            tests = results;
         }
-
-        console.log('specs: ' + tests.toString());
-
         cb();
     });
 });
@@ -137,26 +138,56 @@ var deleteFolderRecursive = function (path) {
     }
 };
 
-gulp.task('allbranches', function (cb) {
-    return git.revParse({
-        args: '--abbrev-ref HEAD'
-    }, function (err, branch) {
-        console.log('current git branch: ' + branch);
-        tests.push(`baseline/*.js`);
-        tests.push(`jira/**/*.js`);
-        tests.push(`regression/*.js`);
-        tests.push(`smoke/*.js`);
-        cb();
+gulp.task('prod', function (done) {
+    tests.push(`test/${appFolder}/**/prod/**/*.js`);
+    conf.config.host = gridHost;
+    conf.config.port = gridPort;
+    gulpSequence('webdriver')(function (err) {
+        if (err){ console.log('Failed: ' + err); }
     });
+    done();
+});
+
+gulp.task('smoke', function (done) {
+    tests.push(`test/${appFolder}/**/smoke/**/*.js`);
+    conf.config.host = gridHost;
+    conf.config.port = gridPort;
+    gulpSequence('webdriver')(function (err) {
+        if (err){ console.log('Failed: ' + err); }
+    });
+    done();
+});
+
+gulp.task('all', function (done) {
+    tests.push(`test/${appFolder}/**/baseline/**/*.js`);
+    tests.push(`test/${appFolder}/**/jira/**/*.js`);
+    tests.push(`test/${appFolder}/**/regression/**/*.js`);
+    tests.push(`test/${appFolder}/**/smoke/**/*.js`);
+    conf.config.host = gridHost;
+    conf.config.port = gridPort;
+    gulpSequence('webdriver')(function (err) {
+        if (err){ console.log('Failed: ' + err); }
+    });
+    done();
 });
 
 gulp.task('webdriver', function (done) {
-    releaseconfig.config = {
-        specs: tests
-    };
-    var wdio = new Launcher(path.join(__dirname, conf), releaseconfig.config);
+    conf.config.specs = tests;
+    conf.config.maxInstances = flags.maxInstances;
+    conf.config.logLevel = flags.logLevel;
+    conf.config.waitforTimeout = defaultWaitTimeout;
+    conf.config.mochaOpts.timeout = defaultMochaTestTimeout;
+
+    console.log('executing specs: ' + conf.config.specs.toString());
+    console.log('max instances: ' + conf.config.maxInstances);
+    console.log('log level: ' + conf.config.logLevel);
+    console.log('waitTimeout: ' + conf.config.waitforTimeout);
+    console.log('mocha test timeout: ' + conf.config.mochaOpts.timeout);
+    console.log('executing specs: ' + conf.config.specs.toString());
+
+    var wdio = new Launcher(path.join(__dirname, confPath), conf.config);
     return wdio.run().then(function (code) {
-        console.log(code);
+        console.log('wdio exit code: ' + code);
     }, function (error) {
         console.error('Launcher failed to start the test', error.stacktrace);
         selenium.child.kill();
@@ -180,7 +211,6 @@ gulp.task('selenium', function (done) {
 
 gulp.task('clean', function () {
     var allure = rootPath = path.join(process.cwd(), "allure-results");
-
     console.log('remove folder: ' + allure);
     deleteFolderRecursive(allure);
 })
@@ -192,16 +222,17 @@ gulp.task('local', function (cb) {
     });
 });
 
-gulp.task('default', function () {
-    releaseconfig.config.host = '172.28.38.219';
-    releaseconfig.config.port = 4444;
-    gulpSequence(['clean'], 'branch', 'webdriver')(function (err) {
-        if (err) console.log(err);
+gulp.task('default', function (done) {
+    conf.config.host = gridHost;
+    conf.config.port = gridPort;
+    gulpSequence('branch', 'webdriver')(function (err) {
+        if (err){ console.log('Failed: ' + err); }
     });
+    done();
 });
 
 module.exports = {
-    TestEnv: testEnv,
-    MaxInstances: flags.maxInstances
-
+    TestEnv: testEnv.toLowerCase(),
+    MaxInstances: flags.maxInstances,
+    LogLevel: flags.logLevel
 }
