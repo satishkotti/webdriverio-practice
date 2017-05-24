@@ -18,10 +18,8 @@
             // This args config runs only the file that's open and displayed
             // (e.g., a file in test/spec/):
             "args": [
-                "wdio",
-                "wdio.pbtest.conf.js",
-                "--spec",
-                "${relativeFile}"
+                "wdio", "wdio.pbtest.conf.js",
+                "--spec","${relativeFile}"
             ]
         }
     ]

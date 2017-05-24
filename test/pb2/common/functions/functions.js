@@ -399,6 +399,7 @@ module.exports.GetXMLValues = (assetType, xml) => {
 
 }
 
+
 module.exports.NavigateToRedirectToolPage = () => {
     rdt.GoToRedirectToolPage();
 }
