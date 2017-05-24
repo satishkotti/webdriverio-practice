@@ -18,25 +18,33 @@
         "assert": "1.4.1",
         "bluebird": "3.4.7",
         "chai": "^3.5.0",
-        "deep-diff": "^0.3.4",
+        "cheerio": "^0.22.0",
+        "dotenv": "^4.0.0",
+        "glob": "^7.1.1",
         "gulp": "^3.9.1",
-        "gulp-webdriver": "1.0.3",
+        "gulp-webdriver": "2.0.3",
         "lodash": "^4.17.2",
         "mocha": "^3.0.2",
         "mssql": "3.3.0",
         "q": "1.4.1",
         "request": "2.80.0",
         "selenium-standalone": "^5.9.0",
+        "deep-diff": "^0.3.4",
         "supertest": "3.0.0",
+        "superagent": "^3.5.0",
+        "sync-request": "^4.0.1",
         "wdio-mocha-framework": "^0.4.0",
         "webdriverio": "^4.4.0",
+        "axios": "^0.15.3",
+        "xlsx": "^0.9.7",
         "xml2js": "^0.4.17",
         "deepmerge": "1.3.2",
         "randomstring": "1.1.5",
         "moment-timezone": "^0.5.13",
         "csv-parse": "^1.2.0",
         "xpath": "^0.0.24",
-        "xmldom": "^0.1.27"
+        "xmldom": "^0.1.27",
+        "wdio-allure-reporter": "^0.1.2"
     },
     "directories": {
         "test": "test"
@@ -44,6 +52,11 @@
     "devDependencies": {
         "karma-expect": "^1.1.3",
         "wdio-allure-reporter": "^0.1.2",
-        "wdio-spec-reporter": "0.0.3"
+        "wdio-spec-reporter": "0.0.3",
+        "args": "^2.6.0",
+        "chalk": "^1.1.3",
+        "gulp-git": "^2.2.0",
+        "gulp-sequence": "^0.4.6",
+        "gulp-webdriver": "^1.0.3"
     }
 }

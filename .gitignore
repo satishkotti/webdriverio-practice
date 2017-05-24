@@ -1,5 +1,9 @@
 **/node_modules/*
 **/**/node_modules/*
 **/**/allure-results/*
+**/**/allure-report/data/*
 **/**/errorShots/*
 npm-debug.log
+debug.log
+allure-report/
+
