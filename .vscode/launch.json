@@ -10,15 +10,16 @@
             "name": "WebdriverIO",
             "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
             "windows": {
-                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio.cmd"
+                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio"
             },
             "cwd": "${workspaceRoot}",
             "console": "integratedTerminal",
             // This args config runs only the file that's open and displayed
             // (e.g., a file in test/spec/):
-            "args": [
+            "args":[
                 "wdio", "wdio.pbtest.conf.js",
                 "--spec", "${relativeFile}"
+
             ]
         },
         {
