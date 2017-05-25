@@ -6,7 +6,7 @@ var path = require('path');
 var usersDetails = require('./../../../pb2/config/users');
 var smTestData = require('./../../config/api.config');
 
-var USERNAME = global.username//usersDetails.users.superuser1.username;
+var USERNAME = global.username
 var testAssetProps = smTestData.ApiTestData;
 var testurl=global.testapiurl
 var jsonData = {};
@@ -88,11 +88,11 @@ Redirectapi.prototype.PostResultsApi = function PostResultsApi(url, options,apip
     });
 };
 
-Redirectapi.prototype.PutResultsApi = function PutResultsApi(url, options) {
+Redirectapi.prototype.PutResultsApi = function PutResultsApi(url, options,apiparameters) {
  
     switch (url) {
-        case testurl + testAssetProps.Update_To_Url: jsonData = testAssetProps.updatetourl; break;
-        case testurl + testAssetProps.Replace_To_ChronicleID_for_All: jsonData = testAssetProps.replacetochronicleidforall; break;
+        case testurl + testAssetProps.Update_To_Url: jsonData = apiparameters[0]; break;
+        case testurl + testAssetProps.Replace_To_ChronicleID_for_All: jsonData = apiparameters[0]; break;
     }
 
     return new Promise(function (resolve, reject) {
@@ -127,11 +127,11 @@ Redirectapi.prototype.PutResultsApi = function PutResultsApi(url, options) {
     });
 };
 
-Redirectapi.prototype.DeleteResultsApi = function DeleteResultsApi(url, options) {
+Redirectapi.prototype.DeleteResultsApi = function DeleteResultsApi(url, options,apiparameters) {
 
 
     switch (url) {
-        case testurl + testAssetProps.Delete_One_or_more: jsonData = testAssetProps.DeleteOneormoreid; break;
+        case testurl + testAssetProps.Delete_One_or_more: jsonData = apiparameters[0]; break;
 
     }
 

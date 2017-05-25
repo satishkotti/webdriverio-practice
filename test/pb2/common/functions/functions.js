@@ -444,12 +444,12 @@ module.exports.PostResult = (appendurl,apiparameters) => {
 
 }
 
-module.exports.PutResult = (param) => {
+module.exports.PutResult = (appendurl,apiparameters) => {
 
-    apiUrl = global.testapiurl + param; 
+    apiUrl = global.testapiurl + appendurl; 
     var response;
     browser.call(() => {
-        return Promise.resolve(redirect.PutResultsApi(apiUrl, null)
+        return Promise.resolve(redirect.PutResultsApi(apiUrl, null,apiparameters)
             .then(function (result) {
                 response = result;
                 console.log(response.body);
@@ -461,12 +461,12 @@ module.exports.PutResult = (param) => {
 
 }
 
-module.exports.DeleteResult = (param) => {
+module.exports.DeleteResult = (appendurl,apiparameters) => {
 
-    apiUrl = global.testapiurl + param; 
+    apiUrl = global.testapiurl + appendurl; 
     var response;
     browser.call(() => {
-        return Promise.resolve(redirect.DeleteResultsApi(apiUrl, null)
+        return Promise.resolve(redirect.DeleteResultsApi(aapiUrl, null,apiparameters)
             .then(function (result) {
                 response = result;
                 console.log(response.body);

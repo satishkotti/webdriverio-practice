@@ -189,7 +189,7 @@ describe('PPE-81172:Get All Redirect To Url Pattern (must include the start of t
     describe('Get All Redirect To Url Pattern', () => {
         it('Get the Results from Api', () => {
 
-            GetAllRedirectToUrlPattern = test.GetResult(_GetAllRedirectToUrlPattern[0].apiGetAllRedirectToUrlPattern);
+            GetAllRedirectToUrlPattern = test.GetResult(testAssetProps.GetAll_RedirectToUrl_Pattern +_GetAllRedirectToUrlPattern[0].apiGetAllRedirectToUrlPattern+testAssetProps.IncludeDeleted);
 
         });
 
@@ -224,7 +224,7 @@ describe('PPE-81172:Get All Redirect From a ChronicleID', () => {
     describe('Get All Redirect From a ChronicleID', () => {
         it('Get the Results from Api', () => {
 
-            GetAllRedirectFromaChronicleID = test.GetResult(_GetAllRedirectFromaChronicleID[0].apiGetAllRedirectFromaChronicleID);
+            GetAllRedirectFromaChronicleID = test.GetResult(testAssetProps.GetAll_RedirectFroma_ChronicleID +_GetAllRedirectFromaChronicleID[0].apiGetAllRedirectFromaChronicleID);
 
         });
 
@@ -259,7 +259,8 @@ describe('PPE-81172:Get All Redirects Redirected to a ChronicleID', () => {
     describe('Get All Redirects Redirected to a ChronicleID', () => {
         it('Get the Results from Api', () => {
 
-            GetAllRedirectsRedirectedtoaChronicleID = test.GetResult(_GetAllRedirectsRedirectedtoaChronicleID[0].apiGetAllRedirectsRedirectedtoaChronicleID);
+            GetAllRedirectsRedirectedtoaChronicleID = test.GetResult(testAssetProps.GetAll_RedirectsRedirectedtoa_ChronicleID +_GetAllRedirectsRedirectedtoaChronicleID[0].apiGetAllRedirectsRedirectedtoaChronicleID);
+
 
         });
 
@@ -293,7 +294,7 @@ describe('PPE-81172:Get All Redirects To a Url', () => {
     describe('Get All Redirects To a Url', () => {
         it('Get the Results from Api', () => {
 
-            GetAllRedirectsToaUrl = test.GetResult(_GetAllRedirectsToaUrl[0].apiGetAllRedirectsToaUrl);
+            GetAllRedirectsToaUrl = test.GetResult(testAssetProps.GetAll_Redirects_ToaUrl +_GetAllRedirectsToaUrl[0].apiGetAllRedirectsToaUrl+testAssetProps.IncludeDeleted);
 
         });
 
@@ -388,6 +389,8 @@ describe('PPE-81172:Create Redirect on Urls', () => {
     var CreateRedirectonUrlsCreateByURL_ActivePage = {};
     var CreateByURLActivePage = {};
     var _CreateByURLActivePage = {};
+    var CreateByURLActivePageDomain = {};
+    var _CreateByURLActivePageDomain = {};
 
     var CreateRedirectonUrlsCreateByURL_DeletedPage = {};
     var CreateByURLDeletedPage = {};
@@ -429,6 +432,7 @@ describe('PPE-81172:Create Redirect on Urls', () => {
                 _CreateByURLInvalidURLCombination = records;
 
             })
+
                 .then(function () {
                     return manualRedirectSqlService.CreateByURLInvalidToURLInternal()
                 })
@@ -501,12 +505,22 @@ describe('PPE-81172:Create Redirect on Urls', () => {
 
                 })
                 .then(function () {
+                    return manualRedirectSqlService.CreateByURLActivePageDomain()
+
+                })
+                .then(function (records) {
+                    _CreateByURLActivePageDomain = records;
+
+                })
+                .then(function () {
                     return manualRedirectSqlService.CreateByURLActivePage()
+
                 })
                 .then(function (records) {
                     _CreateByURLActivePage = records;
 
                 })
+
 
                 .then(function () {
                     return manualRedirectSqlService.CreateByURLDeletedPage()
@@ -515,6 +529,7 @@ describe('PPE-81172:Create Redirect on Urls', () => {
                     _CreateByURLDeletedPage = records;
 
                 })
+
                 .then(function () {
                     return manualRedirectSqlService.CreateByURLNonExistantPage()
                 })
@@ -664,60 +679,119 @@ describe('PPE-81172:Create Redirect on Urls', () => {
         it('12)Verify Create By URL - Active Page to Active Page', () => {
             console.log(CreateRedirectonUrlsCreateByURL_ActivePage.body.Message);
             expect(CreateRedirectonUrlsCreateByURL_ActivePage.body.StatusCode).to.equal(1);
-            expect(CreateRedirectonUrlsCreateByURL_ActivePage.FromChronicId).to.equal(CreateRedirectonUrlsCreateByURL_ActivePage.FromPage_ChronicID);
-            expect(CreateRedirectonUrlsCreateByURL_ActivePage.FromSiteId).to.equal(CreateRedirectonUrlsCreateByURL_ActivePage.FromPage_SiteId);
-            expect(CreateRedirectonUrlsCreateByURL_ActivePage.FromPrefix).to.equal(CreateRedirectonUrlsCreateByURL_ActivePage.FromPage_Prefix);
-            expect(CreateRedirectonUrlsCreateByURL_ActivePage.FromUrl).to.equal(CreateRedirectonUrlsCreateByURL_ActivePage.FromPage_Url);
-            expect(CreateRedirectonUrlsCreateByURL_ActivePage.body.ToChronicId).to.equal(1);
-            expect(CreateRedirectonUrlsCreateByURL_ActivePage.body.ToUrl).to.equal('null');
+            expect(CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].FromChronicId).to.equal(CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].FromPage_ChronicID);
+            expect(CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].FromSiteId).to.equal(CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].FromPage_SiteId);
+            expect(CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].FromPrefix).to.equal(CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].FromPage_Prefix);
+            expect(CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].FromUrl).to.equal(CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].FromPage_Url);
+            console.log(CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].ToChronicId);
+            console.log(CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].ToUrl);
+            expect(CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].ToChronicId).to.not.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].ToUrl).to.equal(null);
+            console.log('http://' + CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].FromPrefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].FromPage_Url);
+            console.log(CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].FullFromUrl);
+            expect('http://' + CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].FromPrefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].FromPage_Url).to.equal(CreateRedirectonUrlsCreateByURL_ActivePage.body.Data[0].FullFromUrl);
 
         });
         it('13)Verify Create By URL - Deleted Page to Active Page', () => {
             console.log(CreateRedirectonUrlsCreateByURL_DeletedPage.body.Message);
-            expect(CreateRedirectonUrlsCreateByURL_DeletedPage.body.StatusCode).to.not.equal(1);
+            expect(CreateRedirectonUrlsCreateByURL_DeletedPage.body.StatusCode).to.equal(1);
+            expect(CreateRedirectonUrlsCreateByURL_DeletedPage.body.Data[0].FromPage_ChronicID).to.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_DeletedPage.body.Data[0].FromPage_SiteId).to.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_DeletedPage.body.Data[0].FromPage_Prefix).to.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_DeletedPage.body.Data[0].FromPage_Url).to.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_DeletedPage.body.Data[0].FromPage_Status).to.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_DeletedPage.body.Data[0].ToChronicId).to.not.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_DeletedPage.body.Data[0].ToUrl).to.equal(null);
+            console.log('http://' + CreateRedirectonUrlsCreateByURL_DeletedPage.body.Data[0].FromPrefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_DeletedPage.body.Data[0].FromUrl);
+            console.log(CreateRedirectonUrlsCreateByURL_DeletedPage.body.Data[0].FullFromUrl);
+            expect('http://' + CreateRedirectonUrlsCreateByURL_DeletedPage.body.Data[0].FromPrefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_DeletedPage.body.Data[0].FromUrl).to.equal(CreateRedirectonUrlsCreateByURL_DeletedPage.body.Data[0].FullFromUrl);
 
         });
         it('14)Verify Create By URL - Non Existant Page to Active Page', () => {
             console.log(CreateRedirectonUrlsCreateByURL_NonExistantPage.body.Message);
-            expect(CreateRedirectonUrlsCreateByURL_NonExistantPage.body.StatusCode).to.not.equal(1);
+            expect(CreateRedirectonUrlsCreateByURL_NonExistantPage.body.StatusCode).to.equal(1);
+            expect(CreateRedirectonUrlsCreateByURL_NonExistantPage.body.Data[0].FromPage_ChronicID).to.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_NonExistantPage.body.Data[0].FromPage_SiteId).to.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_NonExistantPage.body.Data[0].FromPage_Prefix).to.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_NonExistantPage.body.Data[0].FromPage_Url).to.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_NonExistantPage.body.Data[0].FromPage_Status).to.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_NonExistantPage.body.Data[0].ToChronicId).to.not.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_NonExistantPage.body.Data[0].ToUrl).to.equal(null);
+            console.log('http://' + CreateRedirectonUrlsCreateByURL_NonExistantPage.body.Data[0].FromPrefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_NonExistantPage.body.Data[0].FromUrl);
+            console.log(CreateRedirectonUrlsCreateByURL_NonExistantPage.body.Data[0].FullFromUrl);
+            expect('http://' + CreateRedirectonUrlsCreateByURL_NonExistantPage.body.Data[0].FromPrefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_NonExistantPage.body.Data[0].FromUrl).to.equal(CreateRedirectonUrlsCreateByURL_NonExistantPage.body.Data[0].FullFromUrl);
 
         });
         it('15)Verify Create By URL - To Non Existant Page', () => {
             console.log(CreateRedirectonUrlsCreateByURL_ToNonExistantPage.body.Message);
-            expect(CreateRedirectonUrlsCreateByURL_ToNonExistantPage.body.StatusCode).to.not.equal(1);
+            expect(CreateRedirectonUrlsCreateByURL_ToNonExistantPage.body.StatusCode).to.equal(1);
+            expect(CreateRedirectonUrlsCreateByURL_ToNonExistantPage.body.Data[0].ToPage_Url).to.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_ToNonExistantPage.body.Data[0].ToPage_Prefix).to.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_ToNonExistantPage.body.Data[0].ToPage_SiteID).to.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_ToNonExistantPage.body.Data[0].ToPage_Status).to.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_ToNonExistantPage.body.Data[0].ToChronicId).to.equal(null);
+            console.log(CreateRedirectonUrlsCreateByURL_ToNonExistantPage.body.Data[0].ToUrl);
+            console.log(CreateRedirectonUrlsCreateByURL_ToNonExistantPage.body.Data[0].FullToUrl);
+            expect(CreateRedirectonUrlsCreateByURL_ToNonExistantPage.body.Data[0].ToUrl).to.equal(CreateRedirectonUrlsCreateByURL_ToNonExistantPage.body.Data[0].FullToUrl);
 
         });
         it('16)Verify Create By URL - To External URL', () => {
             console.log(CreateRedirectonUrlsCreateByURL_ToExternalURL.body.Message);
-            expect(CreateRedirectonUrlsCreateByURL_ToExternalURL.body.StatusCode).to.not.equal(1);
+            expect(CreateRedirectonUrlsCreateByURL_ToExternalURL.body.StatusCode).to.equal(1);
+            expect(CreateRedirectonUrlsCreateByURL_ToExternalURL.body.Data[0].ToChronicId).to.equal(null);
+            expect(CreateRedirectonUrlsCreateByURL_ToExternalURL.body.Data[0].ToUrl).to.not.equal(null);
 
         });
         it('17)Create By URL - Confirm urls are trimmed', () => {
             console.log(CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.Message);
-            expect(CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.StatusCode).to.not.equal(1);
+            expect(CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.StatusCode).to.equal(1);
+            console.log('http://' + CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.Data[0].FromPrefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.Data[0].FromUrl);
+            console.log(CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.Data[0].FullFromUrl);
+            expect('http://' + CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.Data[0].FromPrefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.Data[0].FromUrl).to.equal(CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.Data[0].FullFromUrl);
+            console.log('http://' + CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.Data[0].ToPage_Prefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.Data[0].ToPage_Url);
+            console.log(CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.Data[0].FullToUrl);
+            expect('http://' + CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.Data[0].ToPage_Prefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.Data[0].ToPage_Url).to.equal(CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed.body.Data[0].FullToUrl);
 
         });
         it('18)Verify Create By URL- Test lowercasing', () => {
             console.log(CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Message);
-            expect(CreateRedirectonUrlsCreateByURL_Testlowercasing.body.StatusCode).to.not.equal(1);
+            expect(CreateRedirectonUrlsCreateByURL_Testlowercasing.body.StatusCode).to.equal(1);
+            console.log(CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Data[0].FullFromUrl);
+            console.log(CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Data[0].FullToUrl);
+            console.log('http://' + CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Data[0].FromPrefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Data[0].FromUrl);
+            console.log(CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Data[0].FullFromUrl);
+            expect('http://' + CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Data[0].FromPrefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Data[0].FromUrl).to.equal(CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Data[0].FullFromUrl);
+            console.log('http://' + CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Data[0].ToPage_Prefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Data[0].ToPage_Url);
+            console.log(CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Data[0].FullToUrl);
+            expect('http://' + CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Data[0].ToPage_Prefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Data[0].ToPage_Url).to.equal(CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Data[0].FullToUrl);
+
 
         });
         it('19)Verify Create By URL - Test To Querystring', () => {
-            console.log(CreateRedirectonUrlsCreateByURL_Testlowercasing.body.Message);
-            expect(CreateRedirectonUrlsCreateByURL_Testlowercasing.body.StatusCode).to.not.equal(1);
+            console.log(CreateRedirectonUrlsCreateByURL_TestToQuerystring.body.Message);
+            expect(CreateRedirectonUrlsCreateByURL_TestToQuerystring.body.StatusCode).to.equal(1);
+            console.log('http://' + CreateRedirectonUrlsCreateByURL_TestToQuerystring.body.Data[0].ToPage_Prefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_TestToQuerystring.body.Data[0].ToPage_Url + CreateRedirectonUrlsCreateByURL_TestToQuerystring.body.Data[0].ToQString);
+            console.log(CreateRedirectonUrlsCreateByURL_TestToQuerystring.body.Data[0].FullToUrl);
+            expect('http://' + CreateRedirectonUrlsCreateByURL_TestToQuerystring.body.Data[0].ToPage_Prefix + _CreateByURLActivePageDomain[0].domain + CreateRedirectonUrlsCreateByURL_TestToQuerystring.body.Data[0].ToPage_Url + CreateRedirectonUrlsCreateByURL_TestToQuerystring.body.Data[0].ToQString).to.equal(CreateRedirectonUrlsCreateByURL_TestToQuerystring.body.Data[0].FullToUrl);
 
         });
         it('20)Verify Create By URL - Test lowercasing with querystring', () => {
             console.log(CRU_CreateByURLTestlowercasingwithquerystring.body.Message);
-            expect(CRU_CreateByURLTestlowercasingwithquerystring.body.StatusCode).to.not.equal(1);
+            expect(CRU_CreateByURLTestlowercasingwithquerystring.body.StatusCode).to.equal(1);
+            console.log('http://' + CRU_CreateByURLTestlowercasingwithquerystring.body.Data[0].ToPage_Prefix + _CreateByURLActivePageDomain[0].domain + CRU_CreateByURLTestlowercasingwithquerystring.body.Data[0].ToPage_Url + CRU_CreateByURLTestlowercasingwithquerystring.body.Data[0].ToQString);
+            console.log(CRU_CreateByURLTestlowercasingwithquerystring.body.Data[0].FullToUrl);
+            expect('http://' + CRU_CreateByURLTestlowercasingwithquerystring.body.Data[0].ToPage_Prefix + _CreateByURLActivePageDomain[0].domain + CRU_CreateByURLTestlowercasingwithquerystring.body.Data[0].ToPage_Url + CRU_CreateByURLTestlowercasingwithquerystring.body.Data[0].ToQString).to.equal(CRU_CreateByURLTestlowercasingwithquerystring.body.Data[0].FullToUrl);
 
         });
         it('21)Verify Create By Url - Resurrect Deleted Redirect', () => {
             console.log(CRU_CreateByUrlResurrectDeletedRedirect.body.Message);
-            expect(CRU_CreateByUrlResurrectDeletedRedirect.body.StatusCode).to.not.equal(1);
+            expect(CRU_CreateByUrlResurrectDeletedRedirect.body.StatusCode).to.equal(1);
+            console.log('http://' + CRU_CreateByUrlResurrectDeletedRedirect.body.Data[0].FromPrefix + _CreateByURLActivePageDomain[0].domain + CRU_CreateByUrlResurrectDeletedRedirect.body.Data[0].FromUrl);
+            console.log(CRU_CreateByUrlResurrectDeletedRedirect.body.Data[0].FullFromUrl);
+            expect('http://' + CRU_CreateByUrlResurrectDeletedRedirect.body.Data[0].FromPrefix + _CreateByURLActivePageDomain[0].domain + CRU_CreateByUrlResurrectDeletedRedirect.body.Data[0].FromUrl).to.equal(CRU_CreateByUrlResurrectDeletedRedirect.body.Data[0].FullFromUrl);
 
         });
-    });
+     });
 
 });
 
@@ -727,9 +801,25 @@ describe('PPE-81172:Create Redirect on Chronicle IDS', () => {
     var ChronicleIDsSame = {};
     var _ChronicleIDsSame = {};
 
-    var CreateByIDChronicleIDsSame = {};
-    var ChronicleIDsSame = {};
-    var _ChronicleIDsSame = {};
+    var CreateByIDInvalidFromChroniclID = {};
+    var InvalidFromChroniclID = {};
+    var _InvalidFromChroniclID = {};
+
+    var CreateByIDInvalidToChroniclID = {};
+    var InvalidToChroniclID = {};
+    var _InvalidToChroniclID = {};
+
+    var CreateByID_A_B_whereB_C_exists = {};
+    var A_B_whereB_C_exists = {};
+    var _A_B_whereB_C_exists = {};
+
+    var CreateByIDCreateTwoRedirectswithOneCall = {};
+    var CreateTwoRedirectswithOneCall = {};
+    var _CreateTwoRedirectswithOneCall = {};
+
+    var CreateByID_B_C_Where_A_B_Exists = {};
+    var B_C_Where_A_B_Exists = {};
+    var _B_C_Where_A_B_Exists = {};
 
 
     before(() => {
@@ -740,8 +830,41 @@ describe('PPE-81172:Create Redirect on Chronicle IDS', () => {
                 _ChronicleIDsSame = records;
 
             })
-               
+                .then(function () {
+                    return manualRedirectSqlService.InvalidFromChroniclID()
+                })
+                .then(function (records) {
+                    _InvalidFromChroniclID = records;
 
+                })
+                .then(function () {
+                    return manualRedirectSqlService.InvalidToChroniclID()
+                })
+                .then(function (records) {
+                    _InvalidToChroniclID = records;
+
+                })
+                .then(function () {
+                    return manualRedirectSqlService.A_B_whereB_C_exists()
+                })
+                .then(function (records) {
+                    _A_B_whereB_C_exists = records;
+
+                })
+                .then(function () {
+                    return manualRedirectSqlService.CreateTwoRedirectswithOneCall()
+                })
+                .then(function (records) {
+                    _CreateTwoRedirectswithOneCall = records;
+
+                })
+                .then(function () {
+                    return manualRedirectSqlService.B_C_Where_A_B_Exists()
+                })
+                .then(function (records) {
+                    _B_C_Where_A_B_Exists = records;
+
+                })
 
             );
 
@@ -750,18 +873,49 @@ describe('PPE-81172:Create Redirect on Chronicle IDS', () => {
     describe('Create Redirect on Chronicle IDS', () => {
         it('Get the Results from Api', () => {
 
-           
-            CreateByIDChronicleIDsSame = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS,_ChronicleIDsSame);
+
+            CreateByIDChronicleIDsSame = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _ChronicleIDsSame);
+            CreateByIDInvalidFromChroniclID = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _InvalidFromChroniclID);
+            CreateByIDInvalidToChroniclID = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _InvalidToChroniclID);
+            CreateByID_A_B_whereB_C_exists = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _A_B_whereB_C_exists);
+            CreateByIDCreateTwoRedirectswithOneCall = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _CreateTwoRedirectswithOneCall);
+            CreateByID_B_C_Where_A_B_Exists = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _B_C_Where_A_B_Exists);
 
 
         });
 
-        it('1)Confirm Failure - ChronicleIDs Same', () => {
-            console.log(CreateByIDChronicleIDsSame.body.Message);
-            expect(CreateByIDChronicleIDsSame.body.StatusCode).to.not.equal(1);
+        it('1)Verify Failure - ChronicleIDs Same', () => {
+           console.log(CreateByIDChronicleIDsSame.body.Message);
+           expect(CreateByIDChronicleIDsSame.body.StatusCode).to.not.equal(1);
+
+        });
+         it('2)Verify Failure -  From Chronicle ID is invalid', () => {
+           console.log(CreateByIDInvalidFromChroniclID.body.Message);
+           expect(CreateByIDInvalidFromChroniclID.body.StatusCode).to.not.equal(1);
+
+        });
+        it('3)Verify Failure -  To Chronicle ID is invalid', () => {
+            console.log(CreateByIDInvalidToChroniclID.body.Message);
+            expect(CreateByIDInvalidToChroniclID.body.StatusCode).to.not.equal(1);
+
+        });
+        it('4)Verify Failure -   A->B where B->C exists', () => {
+            console.log(CreateByID_A_B_whereB_C_exists.body.Message);
+            expect(CreateByID_A_B_whereB_C_exists.body.StatusCode).to.not.equal(1);
+
+        });
+        it('4)Verify response contains at least 4 manual redirect items, one for each of the sites', () => {
+            console.log(CreateByIDCreateTwoRedirectswithOneCall.body.Message);
+            expect(CreateByIDCreateTwoRedirectswithOneCall.body.StatusCode).to.equal(1);
+
+        });
+        it('5)Verify that redirect A->B gets updated to A->C', () => {
+            console.log(CreateByID_B_C_Where_A_B_Exists.body.Message);
+            expect(CreateByID_B_C_Where_A_B_Exists.body.StatusCode).to.equal(1);
 
         });
 
     });
 });
+
 
