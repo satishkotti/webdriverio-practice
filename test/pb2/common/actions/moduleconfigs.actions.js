@@ -447,6 +447,7 @@ module.exports.ConfigureEditverticalpromomodule = (assetProps) => {
 module.exports.configureediteditorialmodule = (assetProps) => {
 
     if (assetProps.moduletitle != null) { props.input.get('Module Title').setValue(assetProps.moduletitle); }
+    $('(//fieldset[legend[string()="Module Title"]]//i[@class="fa fa-trash"])[1]').click();
     if (assetProps.link != null) { props.lookup('Link', assetProps.link); }
 
     //add module links
@@ -471,10 +472,11 @@ module.exports.configureediteditorialmodule = (assetProps) => {
 
         var linkCount = browser.elements('//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]').value.length;
         //for more than one link.     
-        if (browser.isExisting('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[0]') == true)
+      //  if (browser.isExisting('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[0]') == true)
+            
             $('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[1]').click();
         $('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Link")]//i[@class="fa fa-trash"])[1]').click();
-
+    
         if (assetProps.modulelinks[0].modulelinksimage != null) { props.lookup2('Module Links', 'Image', 1, assetProps.modulelinks[0].modulelinksimage); }
         if (assetProps.modulelinks[0].modulelinkslinktext != null) { props.input2.get('Module Links', 'Link Text', 1).setValue(assetProps.modulelinks[0].modulelinkslinktext); }
         if (assetProps.modulelinks[0].modulelinkslink != null) { props.lookup2('Module Links', 'Link', 1, assetProps.modulelinks[0].modulelinkslink); }
@@ -542,6 +544,8 @@ module.exports.configureediteditorialmodule = (assetProps) => {
     var imagesCount = browser.elements('//fieldset[legend[string()="Linked Images"]]//label[contains(.,"Link")]').value.length;
     if (assetProps.linkedimages.length > 1) {
         //for more than one link.
+       $('(//fieldset[legend[string()="Linked Images"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[1]').click();
+       $('(//fieldset[legend[string()="Linked Images"]]//label[contains(.,"Link")]//i[@class="fa fa-trash"])[1]').click();
         if (assetProps.linkedimages[0].linkedimagesimage != null) { props.lookup2('Linked Images', 'Image', 1, assetProps.linkedimages[0].linkedimagesimage); }
         if (assetProps.linkedimages[0].linkedimageslink != null) { props.lookup2('Linked Images', 'Link', 1, assetProps.linkedimages[0].linkedimageslink); }
         if (assetProps.linkedimages[0].OverrideText != null) { props.input2.get('Linked Images', 'Override Text', 1).setValue(assetProps.linkedimages[0].OverrideText); }

@@ -93,7 +93,8 @@ describe('XML validations for updated sponsorbox Module', () => {
 
             //module data
             it('module_title of both xmls should be same', () => {
-                expect(xml1['module_title']).to.equal(xml2['module_title']);
+                expect(xml1['module_title'].length).to.not.eql(0);
+                expect(xml2['module_title'].length).to.not.eql(0);
             });
             it('module_link_view of both xmls should be same', () => {
                 expect(xml1['module_link_view']).to.equal(xml2['module_link_view']);

@@ -149,7 +149,7 @@ module.exports.SponsorModuleLaunchXMLValues = (result) => {
         }, this);
     } else {
         obj['body_copy_body_copy_text_1'] = bodyCopies.body_copy.hasOwnProperty('body_copy_text') ? bodyCopies.body_copy.body_copy_text : 'body_copy_text missed on xml';
-        obj['body_copy_body_copy_link_view_'] = bodyCopies.body_copy.hasOwnProperty('body_copy_link_view') ? bodyCopies.body_copy.body_copy_link_view : 'body_copy_link_view missed on xml';
+        obj['body_copy_body_copy_link_view_1'] = bodyCopies.body_copy.hasOwnProperty('body_copy_link_view') ? bodyCopies.body_copy.body_copy_link_view : 'body_copy_link_view missed on xml';
         obj['body_copy_body_copy_link_directive_1'] = bodyCopies.body_copy.hasOwnProperty('body_copy_link') && (bodyCopies.body_copy.body_copy_link) ? bodyCopies.body_copy.body_copy_link.$.directive : 'body_copy_link missed on xml';
         obj['body_copy_body_copy_link_object_type_1'] = bodyCopies.body_copy.hasOwnProperty('body_copy_link') && (bodyCopies.body_copy.body_copy_link) ? bodyCopies.body_copy.body_copy_link.$.object_type : 'body_copy_link missed on xml';
     }
@@ -287,12 +287,12 @@ module.exports.NavigationModuleLaunchXMLValues = (result) => {
     }
     else {
         rowNumber = 1;
-        obj['group_name_1'] = groups.group.hasOwnProperty('group_name') && groups.group.module_title_text ? groups.group.group_name : 'group_name missed on xml';
-        obj['group_link_view_1'] = groups.group.hasOwnProperty('group_link_view') && groups.group.module_title_text ? groups.group.group_link_view : 'group_link_view missed on xml';
+        obj['group_name_1'] = groups.group.hasOwnProperty('group_name') && groups.group.group_name ? groups.group.group_name : 'group_name missed on xml';
+        obj['group_link_view_1'] = groups.group.hasOwnProperty('group_link_view') && groups.group.group_link_view ? groups.group.group_link_view : 'group_link_view missed on xml';
         obj['group_link_chronic_id_1'] = groups.group.hasOwnProperty('group_link') && groups.group.group_link.$.chronic_id ? true : false;
         obj['group_link_object_type_1'] = groups.group.hasOwnProperty('group_link') && groups.group.group_link ? groups.group.group_link.$.object_type : 'group_link object_type missed on xml';
 
-        var linkItems = element.link_items.link_item;
+        var linkItems =  groups.group.link_items.link_item;
         if (linkItems.length != undefined) {
             linkItems.forEach(function (linkelement) {
                 linkItemCount = linkItemCount + 1;
