@@ -1,7 +1,7 @@
 const test = require('./../../../../common/functions/functions');
 const field = require('./../../../../common/elements/assetprops.page');
 const action = require('./../../../../common/elements/actions.page');
-var testdata = require('./testdata.js');
+const testdata = require('./../../../../data/testdata/ppe-101674.testdata');
 var testEnv = global.testEnv;
 
 var validChronId = testdata.validChronId;
@@ -26,99 +26,102 @@ describe('PPE-101674: Ability to Search Existing Redirects', function () {
     before(() => {
         //Launch App
         test.LaunchAppAndLogin();
-    });
-
-    it('Go to Redirect Tool Page', function () {
         test.NavigateToRedirectToolPage();
     });
 
-    it('Verify the existence, visiblity and state of "From URL/ID" text field', function () {
+    it('Verify the existence, visibility and state of "From URL/ID" text field', function () {
         from = field.input.get('From URL');
         expect(from.isVisible()).to.be.true;
         expect(from.isEnabled()).to.be.true;
     });
 
-    it('Verify the existence, visiblity and state of "To URL/ID" text field', function () {
+    it('Verify the existence, visibility and state of "To URL/ID" text field', function () {
         to = field.input.get('To URL');
         expect(to.isVisible()).to.be.true;
         expect(to.isEnabled()).to.be.true;
     });
 
-    it('Verify the existence, visiblity and state of "Search" button', function () {
+    it('Verify the existence, visibility and state of "Search" button', function () {
         search = action.button.get('Search');
         expect(search.isVisible()).to.be.true;
         expect(search.isEnabled()).to.be.false;
     });
 
-    it('Verify the visibilty of "Invalid" message when the user inputs text in "From URL" field which either does not start with http or https or not a chronicle id', function () {
+    it('Verify the visibility of "Invalid" message when the user inputs text in "From URL" field which either does not start with http or https or not a chronicle id', function () {
         from.setValue('wrong text');
         expect(invalidMessageFor('From URL')).to.be.true;
         expect(invalidMessageFor('To URL')).to.be.false;
     });
 
-    it('Verify the visibilty of "Invalid" message when the user inputs text in "From URL" field which starts with http', function () {
-        from.setValue('https://www.google.com');
-        expect(invalidMessageFor('From URL')).to.be.false;
-        expect(invalidMessageFor('To URL')).to.be.false;
-    });
-
-    it('Verify the visibilty of "Invalid" message when the user inputs text in "From URL" field which starts with https', function () {
+    it('Verify the visibility of "Invalid" message when the user inputs text in "From URL" field which starts with http', function () {
         from.setValue('http://www.google.com');
         expect(invalidMessageFor('From URL')).to.be.false;
         expect(invalidMessageFor('To URL')).to.be.false;
     });
 
-    it('Verify the visibilty of "Invalid" message when the user inputs valid chronicle id in "From URL" field', function () {
+    it('Verify the visibility of "Invalid" message when the user inputs text in "From URL" field which starts with https', function () {
+        from.setValue('https://www.google.com');
+        expect(invalidMessageFor('From URL')).to.be.false;
+        expect(invalidMessageFor('To URL')).to.be.false;
+    });
+
+    it('Verify the visibility of "Invalid" message when the user inputs text in "From URL" field which starts with http but invalid', function () {
+        from.setValue('https://ww.google.com');
+        expect(invalidMessageFor('From URL')).to.be.false;
+        expect(invalidMessageFor('To URL')).to.be.false;
+    });
+
+    it('Verify the visibility of "Invalid" message when the user inputs valid chronicle id in "From URL" field', function () {
         from.setValue(validChronId);
         expect(invalidMessageFor('From URL')).to.be.false;
         expect(invalidMessageFor('To URL')).to.be.false;
     });
 
-    it('Verify the visibilty of "Invalid" message when the user inputs invalid chronicle id in "From URL" field', function () {
+    it('Verify the visibility of "Invalid" message when the user inputs invalid chronicle id in "From URL" field', function () {
         from.setValue(inValidChronId);
         expect(invalidMessageFor('From URL')).to.be.true;
         expect(invalidMessageFor('To URL')).to.be.false;
         from.setValue(validChronId);
     });
 
-    it('Verify the visibilty of "Invalid" message when the user inputs text in "To URL" field which either does not start with http or https or not a chronicle id', function () {
+    it('Verify the visibility of "Invalid" message when the user inputs text in "To URL" field which either does not start with http or https or not a chronicle id', function () {
         to.setValue('wrong text');
         expect(invalidMessageFor('From URL')).to.be.false;
         expect(invalidMessageFor('To URL')).to.be.true;
     });
 
-    it('Verify the visibilty of "Invalid" message when the user inputs text in "To URL" field which starts with http', function () {
+    it('Verify the visibility of "Invalid" message when the user inputs text in "To URL" field which starts with http', function () {
         to.setValue('http://www.google.com');
         expect(invalidMessageFor('From URL')).to.be.false;
         expect(invalidMessageFor('To URL')).to.be.false;
     });
 
-    it('Verify the visibilty of "Invalid" message when the user inputs text in "To URL" field which starts with https', function () {
+    it('Verify the visibility of "Invalid" message when the user inputs text in "To URL" field which starts with https', function () {
         to.setValue('https://www.google.com');
         expect(invalidMessageFor('From URL')).to.be.false;
         expect(invalidMessageFor('To URL')).to.be.false;
     });
 
-    it('Verify the visibilty of "Invalid" message when the user inputs valid chronicle id in "To URL" field', function () {
+    it('Verify the visibility of "Invalid" message when the user inputs valid chronicle id in "To URL" field', function () {
         to.setValue(validChronId);
         expect(invalidMessageFor('From URL')).to.be.false;
         expect(invalidMessageFor('To URL')).to.be.false;
     });
 
-    it('Verify the visibilty of "Invalid" message when the user inputs invalid chronicle id in "To URL" field', function () {
+    it('Verify the visibility of "Invalid" message when the user inputs invalid chronicle id in "To URL" field', function () {
         to.setValue(inValidChronId);
         expect(invalidMessageFor('From URL')).to.be.false;
         expect(invalidMessageFor('To URL')).to.be.true;
         to.setValue(validChronId);
     });
 
-    it('Verify the visibilty of "Invalid" message when the user inputs valid url with wildcard at the end in "From URL" field', function () {
+    it('Verify the visibility of "Invalid" message when the user inputs valid url with wildcard at the end in "From URL" field', function () {
         from.setValue(correctEnvUrlWithWildcard);
         expect(invalidMessageFor('From URL')).to.be.false;
         expect(invalidMessageFor('To URL')).to.be.false;
     });
 
-    it('Verify the visibilty of "Invalid" message when the user inputs valid url with wildcard at the end in "From URL" field', function () {
+    it('Verify the visibility of "Invalid" message when the user inputs valid url with wildcard at the end in "To URL" field', function () {
         to.setValue(correctEnvUrlWithWildcard);
         expect(invalidMessageFor('From URL')).to.be.false;
         expect(invalidMessageFor('To URL')).to.be.false;
@@ -136,7 +139,7 @@ describe('PPE-101674: Ability to Search Existing Redirects', function () {
         expect(action.button.get('Search').isEnabled()).to.be.true;
     });
 
-    it('Verify the state of Search button when user enters valid input in "To URL" & "From URL" fields', function () {
+    it('Verify the state of Search button when user enters valid input in "From URL" & "To URL" fields', function () {
         from.setValue(correctEnvUrlWithWildcard);
         to.setValue(correctEnvUrlWithWildcard);
         expect(action.button.get('Search').isEnabled()).to.be.true;

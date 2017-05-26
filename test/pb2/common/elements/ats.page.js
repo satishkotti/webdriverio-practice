@@ -23,7 +23,7 @@ var ats = Object.create(page, {
                     case 'QA02':
                     case 'Qa02':
                     if(stage.toLowerCase() != 'live')
-                    browser.url("http://ats." + stage + ".perf.webmd.com/StatusChecker.aspx?ID=" + chronID);
+                    browser.url("http://ats." + stage + "perf.webmd.com/StatusChecker.aspx?ID=" + chronID);
                     else
                     browser.url("http://ats.perf.webmd.com/StatusChecker.aspx?ID=" + chronID);
                     break;
@@ -31,7 +31,7 @@ var ats = Object.create(page, {
                     default:
                     if(stage.toLowerCase() != 'live')
                      //browser.url("http://ats." + global.testEnv + ".webmd.com/StatusChecker.aspx?ID=" + chronID);
-                    browser.url("http://ats." + stage + "." +global.testEnv + ".webmd.com/StatusChecker.aspx?ID=" + chronID);
+                    browser.url("http://ats." + stage + global.testEnv + ".webmd.com/StatusChecker.aspx?ID=" + chronID);
                     else
                     browser.url("http://ats." + global.testEnv + ".webmd.com/StatusChecker.aspx?ID=" + chronID); 
                     break;

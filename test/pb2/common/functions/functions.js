@@ -20,7 +20,8 @@ module.exports.LaunchApp = () => {
 
 module.exports.LaunchAppAndLogin = (user) => {
     switch (user) {
-        default: app.LaunchApp(); app.Login(global.username, global.password);
+        default:
+            app.LaunchApp(); app.Login(global.username, global.password);
             break;
         case 'superuser':
             app.LaunchApp(); app.Login(user.superuser.username, user.superuser.password);
@@ -29,7 +30,6 @@ module.exports.LaunchAppAndLogin = (user) => {
             app.LaunchApp(); app.Login(user.superuser1.username, user.superuser1.password);
             break;
     }
-
 }
 
 //Enter credentials in the login screen and click on the login button
@@ -37,9 +37,9 @@ module.exports.Login = (user) => {
     switch (user) {
         default: app.Login(global.username, global.password);
         case 'superuser':
-            app.Login(user.superuser.username, user.superuser.password);
+            app.Login(user.superuser.username, user.superuser.password); break;
         case 'superuser1':
-            app.Login(user.superuser1.username, user.superuser1.password);
+            app.Login(user.superuser1.username, user.superuser1.password); break;
     }
 }
 
@@ -133,13 +133,6 @@ Checkin or Publish the asset
 */
 module.exports.SaveOrPublishTheAsset = (action, comment) => {
     act.SavePublish(action, comment);
-}
-
-/*
-Save the changes made to module while creating a page
-*/
-module.exports.SaveModule = () => {
-    act.Save();
 }
 
 /*
@@ -361,7 +354,7 @@ module.exports.GetXML = (chronId, stage, inputType) => {
     var xml;
     browser.call(() => {
         return Promise.resolve(parseXml.getXmlFromUrl(xmlUrl, null, inputType))
-            .then(function(result) {
+            .then(function (result) {
                 xml = result;
             }).catch(err => {
                 console.log(err);
