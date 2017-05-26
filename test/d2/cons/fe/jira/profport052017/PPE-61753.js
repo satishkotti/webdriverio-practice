@@ -19,7 +19,8 @@ describe('Regression', function () {
     var AssetName;
     var cidName;
      var objName;
-     var CopyrightStatementText="";
+     var DQLQuery="";
+     var CopyrightStatementText="© 2017 WebMD, LLC. All rights reserved.";
     before(function () {
         login.loginWithNewWindow({
             url: functions.getEnvTestUrl(),
@@ -27,13 +28,15 @@ describe('Regression', function () {
             password: functions.getQAPublicationUser().password
         });
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
-        AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
-        AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
-        workspaceMenu.createContent(
-            global.d2ConDataSettings.inputData.ArticleProfileName,
-            global.d2ConDataSettings.inputData.ArticleTemplate,
-            AssetTitle,
-            AssetName);
+        // AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
+        // AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
+        // workspaceMenu.createContent(
+        //     global.d2ConDataSettings.inputData.ArticleProfileName,
+        //     global.d2ConDataSettings.inputData.ArticleTemplate,
+        //     AssetTitle,
+        //     AssetName);
+        AssetTitle="copyrighttttt";
+        
     });
 
     
@@ -84,6 +87,33 @@ describe('Regression', function () {
                       }));
         });
 
+
+    });
+
+
+
+     it('Should verify the data dictionary validations on Professional ProfOtherPg template PPE-111471', function () {
+        var response;
+        functions.SetAgentForDctmApi(functions.getDataApiUrl());
+        var accessToken = functions.GenerateApiAccessToken();
+        response = functions.ExecuteDQLusingDCTMAPI(accessToken,DQLQuery);
+        var j=0;
+        for(i=0; j < response.length; i++,j++){
+            if(i==0)
+                 metaobj.VerifyDropdownlistVal("wbmd_copyright_holder-input",response[i][1].wbmd_disp_nm);
+           
+        }
+        
+        response = functions.ExecuteDQLusingDCTMAPI(accessToken,DQLQuery);
+        j=0;
+        for(i=0; j < response.length; i++,j++){
+            if(i==0)
+                metaobj.VerifyDropdownlistVal("wbmd_legal_revr-input",response[i][1].wbmd_disp_nm);
+           
+        }
+
+
+           
 
     });
     

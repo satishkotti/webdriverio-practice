@@ -127,7 +127,16 @@ var CopyrightTabUIObj = {
     },
     otherTabSelect: function(){
         browser.click("//span[@text()='Other']")
-    }
+    },
+    dropdownlistSelect: function(ddlocator,data){
+        browser.click("//input[@id='"+ddlocator+"']//following-sibling::img");
+        browser.waitForVisible("//div[@title='"+data+"']",maxWaitTimeInMs);
+    },
+    verifyValue: function(data){
+        var isExisting;
+        isExisting = browser.isExisting("//div[@title='"+data+"']");
+       return isExisting;
+    },
 
 
     

@@ -1,5 +1,6 @@
 var CopyrightUI = require('./../ui/CopyrightTemplate');
 var contentTabUI = require('./../ui/contentTab');
+var propertiesTabUI = require('./../ui/propertiesTab');
 
 var CopyrightObj = {
    CopyrightStatementText: function(Textvalue){
@@ -27,9 +28,18 @@ var CopyrightObj = {
         CopyrightUI.TitleSet(subject);
         CopyrightUI.CopyrightHolderSet(languge_code);
         propertiesTabUI.save();
+    },
+
+    VerifyDropdownlistVal: function(Selector,responseval){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        CopyrightUI.dropdownlistSelect(Selector,responseval);
+        if (!responseval.includes("/"))
+             expect(CopyrightUI.verifyValue(responseval)).to.be.true;
+        propertiesTabUI.cancelEdit();
+
     }
 
-    
     
 }
 
