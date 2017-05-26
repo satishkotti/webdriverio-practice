@@ -921,5 +921,121 @@ WHERE R.status <> 'd'
             mssql.executeSql(sql)
             );
     },
+    Internal_Internal: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                            SELECT top 1 R.ID AS 'id',
+                            (SELECT top 1 'http://' + P.Prefix + '.' + D.domain + P.friendly_url
+                            FROM RT_PageUrlMap P
+                            INNER JOIN webmd_Domains D ON D.site_id = P.site_id
+                            AND D.is_core_site = 1
+                            WHERE P.Status <> 'd') AS 'toUrl'
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                            AND R.To_Site_Id = ToPage.site_id
+                            WHERE R.Status <> 'd'  
+
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+    Internal_External: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                           
+                              SELECT top 1 R.ID AS 'id',
+                            ('http://' + 'microsoft' + '.' + 'com' + '/' + (SELECT char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65))) AS 'toUrl'
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                            AND R.To_Site_Id = ToPage.site_id
+                            WHERE R.Status <> 'd'
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+    External_Internal: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                                                    SELECT top 1 R.ID AS id,
+
+                            (SELECT top 1 'http://' + P.Prefix + '.' + D.domain + P.friendly_url
+                            FROM RT_PageUrlMap P
+                            INNER JOIN webmd_Domains D ON D.site_id = P.site_id
+                            AND D.is_core_site = 1
+                            WHERE P.Status <> 'd')AS 'toUrl'
+                            FROM Manual_Redirect R
+                            WHERE R.Status <> 'd'
+                            AND IsnUll(R.To_Url, '') <> ''
+     
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+    Already_Redirected: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                                                        SELECT top 1 R.ID AS id,
+
+                                (SELECT top 1 'http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url
+                                FROM Manual_Redirect R
+                                INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                                INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
+                                AND FrompageDomain.is_core_site = 1
+                                LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                                AND R.To_Site_Id = ToPage.site_id
+                                WHERE FromPage.Status <> 'd'
+                                    AND R.Status <> 'd') AS 'toUrl'
+                                FROM Manual_Redirect R
+                                INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                                AND R.To_Site_Id = ToPage.site_id
+                                WHERE R.Status <> 'd'
+     
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+    SameasFromURL: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                            SELECT top 1 R.id AS id,
+                            'http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url AS 'FromUrl'
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                            INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
+                            AND FrompageDomain.is_core_site = 1
+                            LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                            AND R.To_Site_Id = ToPage.site_id
+                            WHERE FromPage.Status <> 'd'
+                            AND R.Status <> 'd'  
+     
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+    
     
 };

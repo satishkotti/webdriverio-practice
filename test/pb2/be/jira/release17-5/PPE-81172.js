@@ -884,22 +884,22 @@ describe('PPE-81172:Create Redirect on Chronicle IDS', () => {
 
         });
 
-        it('1)Verify Failure - ChronicleIDs Same', () => {
+        it('1)Verify From Chronicle ID is the same as the To Chronicle ID', () => {
            console.log(CreateByIDChronicleIDsSame.body.Message);
            expect(CreateByIDChronicleIDsSame.body.StatusCode).to.not.equal(1);
 
         });
-         it('2)Verify Failure -  From Chronicle ID is invalid', () => {
+         it('2)Verify No active pages found for from chronicleID', () => {
            console.log(CreateByIDInvalidFromChroniclID.body.Message);
            expect(CreateByIDInvalidFromChroniclID.body.StatusCode).to.not.equal(1);
 
         });
-        it('3)Verify Failure -  To Chronicle ID is invalid', () => {
+        it('3)Verify There is already 1 redirect from ChronicleID', () => {
             console.log(CreateByIDInvalidToChroniclID.body.Message);
             expect(CreateByIDInvalidToChroniclID.body.StatusCode).to.not.equal(1);
 
         });
-        it('4)Verify Failure -   A->B where B->C exists', () => {
+        it('4)Verify To Page is redirected', () => {
             console.log(CreateByID_A_B_whereB_C_exists.body.Message);
             expect(CreateByID_A_B_whereB_C_exists.body.StatusCode).to.not.equal(1);
 
@@ -918,4 +918,112 @@ describe('PPE-81172:Create Redirect on Chronicle IDS', () => {
     });
 });
 
+describe('PPE-81172:Update To Url', () => {
+
+    var UpdateToUrlInternal_Internal = {};
+    var Internal_Internal = {};
+    var _Internal_Internal = {};
+
+    var UpdateToUrlInternal_External = {};
+    var Internal_External = {};
+    var _Internal_External = {};
+
+    var UpdateToUrl_External_Internal = {};
+    var External_Internal = {};
+    var _External_Internal = {};
+
+    var UpdateToUrlAlready_Redirected = {};
+    var Already_Redirected = {};
+    var _Already_Redirected = {};
+
+    var UpdateToUrlSameasFromURL = {};
+    var SameasFromURL = {};
+    var _SameasFromURL = {};
+
+
+    before(() => {
+
+        return Promise.resolve
+            (
+            manualRedirectSqlService.Internal_Internal().then(function (records) {
+                _Internal_Internal = records;
+
+            })
+                .then(function () {
+                    return manualRedirectSqlService.Internal_External()
+                })
+                .then(function (records) {
+                    _Internal_External = records;
+
+                })
+                .then(function () {
+                    return manualRedirectSqlService.External_Internal()
+                })
+                .then(function (records) {
+                    _External_Internal = records;
+
+                })
+                .then(function () {
+                    return manualRedirectSqlService.Already_Redirected()
+                })
+                .then(function (records) {
+                    _Already_Redirected = records;
+
+                })
+                .then(function () {
+                    return manualRedirectSqlService.SameasFromURL()
+                })
+                .then(function (records) {
+                    _SameasFromURL = records;
+
+                })
+
+            );
+
+    });
+
+    describe('Update To Url', () => {
+        it('Get the Results from Api', () => {
+
+
+          UpdateToUrlInternal_Internal = test.PutResult(testAssetProps.Update_To_Url, _Internal_Internal);
+            UpdateToUrlInternal_External = test.PutResult(testAssetProps.Update_To_Url, _Internal_External);
+            UpdateToUrl_External_Internal = test.PutResult(testAssetProps.Update_To_Url, _External_Internal);
+            UpdateToUrlAlready_Redirected = test.PutResult(testAssetProps.Update_To_Url, _Already_Redirected);
+            UpdateToUrlSameasFromURL = test.PutResult(testAssetProps.Update_To_Url, _SameasFromURL);
+
+        });
+
+        it('1)Verify Update To Url - Internal -> Internal', () => {
+            console.log(UpdateToUrlInternal_Internal.body.Message);
+            expect(UpdateToUrlInternal_Internal.body.StatusCode).to.equal(1);
+
+        });
+        it('2)Verify Update To Url - Internal -> External', () => {
+            console.log(UpdateToUrlInternal_External.body.Message);
+            expect(UpdateToUrlInternal_External.body.StatusCode).to.equal(1);
+            expect(UpdateToUrlInternal_External.body.Data.ToPage_SiteID).to.equal(null);
+            expect(UpdateToUrlInternal_External.body.Data.ToPage_Prefix).to.equal(null);
+            expect(UpdateToUrlInternal_External.body.Data.ToChronicId).to.equal(null);
+            expect(UpdateToUrlInternal_External.body.Data.ToUrl).to.not.equal(null);
+
+        });
+        it('3)Verify Update To Url - External-> Internal', () => {
+            console.log(UpdateToUrl_External_Internal.body.Message);
+            expect(UpdateToUrl_External_Internal.body.StatusCode).to.equal(1);
+
+        });
+        it('4)Verify Update To Url - Already Redirected(To Page is redirected)', () => {
+            console.log(UpdateToUrlAlready_Redirected.body.Message);
+            expect(UpdateToUrlAlready_Redirected.body.StatusCode).to.not.equal(1);
+
+        });
+        it('5)Verify Update To Url - Same as From URL', () => {
+            console.log(UpdateToUrlSameasFromURL.body.Message);
+            expect(UpdateToUrlSameasFromURL.body.StatusCode).to.not.equal(1);
+
+        });
+
+    });
+});
 
