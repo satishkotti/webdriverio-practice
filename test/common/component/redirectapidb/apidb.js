@@ -192,23 +192,24 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                                SELECT TOP 1 'http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url AS 'FromUrl',
-                                (SELECT TOP 1 'http://' + ToPage.Prefix + '.' + ToDomain.domain + ToPage.friendly_url
-                                FROM Manual_Redirect R
-                                INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
-                                AND R.To_Site_Id = ToPage.site_id
-                                INNER JOIN webmd_Domains ToDomain ON ToDomain.site_id = r.To_Site_Id
+                                                            SELECT TOP 1 'http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url AS 'FromUrl',
+
+                                (SELECT TOP 1 'http://' + ToPage.prefix + '.' + ToDomain.domain + ToPage.friendly_url
+                                FROM manual_redirect R
+                                INNER JOIN rt_pageurlmap ToPage ON R.to_chronic_id = ToPage.content_chronic_id
+                                AND R.to_site_id = ToPage.site_id
+                                INNER JOIN webmd_domains ToDomain ON ToDomain.site_id = r.to_site_id
                                 AND ToDomain.is_core_site = 1
-                                WHERE R.Status = 'd'
-                                    AND ToPage.status = 'd') AS 'toUrl'
-                                FROM Manual_Redirect R
-                                INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
-                                INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
+                                WHERE R.status = 'd'
+                                    AND ToPage.status <> 'd') AS 'toUrl'
+                                FROM manual_redirect R
+                                INNER JOIN rt_pageurlmap FromPage ON FromPage.redirect_id = R.id
+                                INNER JOIN webmd_domains FromPageDomain ON FromPage.site_id = FromPagedomain.site_id
                                 AND FrompageDomain.is_core_site = 1
-                                LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
-                                AND R.To_Site_Id = ToPage.site_id
-                                WHERE FromPage.Status <> 'd'
-                                AND R.Status <> 'd'
+                                LEFT OUTER JOIN rt_pageurlmap ToPage ON R.to_chronic_id = ToPage.content_chronic_id
+                                AND R.to_site_id = ToPage.site_id
+                                WHERE FromPage.status <> 'd'
+                                AND R.status <> 'd'
                                                
                     `;
 
@@ -460,27 +461,31 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                            SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url AS 'ToUrl',
+                                     SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url AS 'FromUrl',
 
-                            (SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url
-                            FROM RT_PageUrlMap P
-                            INNER JOIN webmd_Domains D ON P.site_id = D.site_id
-                            AND d.is_core_site = 1
-                            LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
-                            AND P.prefix = RedirectOnUrl.From_Prefix
-                            AND P.friendly_url = RedirectOnUrl.From_Url
-                            WHERE RedirectOnUrl.ID IS NULL
-                                AND P.status = 'd')AS 'FromUrl'
-                            FROM RT_PageUrlMap P
-                            INNER JOIN webmd_Domains D ON P.site_id = D.site_id
-                            AND d.is_core_site = 1
-                            LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
-                            LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
-                            AND P.prefix = RedirectOnUrl.From_Prefix
-                            AND P.friendly_url = RedirectOnUrl.From_Url
-                            WHERE RedirectHard.id IS NULL
-                            AND RedirectOnUrl.ID IS NULL
-                            AND P.status <> 'd'                                     
+                                    (SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url
+                                    FROM RT_PageUrlMap P
+                                    INNER JOIN webmd_Domains D ON P.site_id = D.site_id
+                                    AND d.is_core_site = 1
+                                    LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
+                                    LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
+                                    AND P.prefix = RedirectOnUrl.From_Prefix
+                                    AND P.friendly_url = RedirectOnUrl.From_Url
+                                    WHERE RedirectHard.id IS NULL
+                                        AND RedirectOnUrl.ID IS NULL
+                                        AND P.status <> 'd'
+                                    ORDER BY P.redirect_id DESC)AS 'ToUrl'
+                                    FROM RT_PageUrlMap P
+                                    INNER JOIN webmd_Domains D ON P.site_id = D.site_id
+                                    AND d.is_core_site = 1
+                                    LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
+                                    LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
+                                    AND P.prefix = RedirectOnUrl.From_Prefix
+                                    AND P.friendly_url = RedirectOnUrl.From_Url
+                                    WHERE RedirectHard.id IS NULL
+                                    AND RedirectOnUrl.ID IS NULL
+                                    AND P.status <> 'd'
+                                    ORDER BY P.redirect_id                                 
                                                                         
                     `;
 
@@ -495,27 +500,43 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
                 var sql = `
-                                    SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url AS 'FromUrl',
+                                                                                          select top 1
+       'http://' + p.prefix + '.' + d.Domain + P.friendly_url AS 'FromUrl',
+	 (SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url 
+FROM RT_PageUrlMap P
+INNER JOIN webmd_Domains D ON P.site_id = D.site_id
+AND d.is_core_site = 1
+LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
+LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
+AND P.prefix = RedirectOnUrl.From_Prefix
+AND P.friendly_url = RedirectOnUrl.From_Url
+WHERE RedirectHard.id IS NULL
+  AND RedirectOnUrl.ID IS NULL
+  AND P.status <> 'd' order by P.redirect_id desc)AS 'ToUrl'
+FROM
+       RT_PageUrlMap P
+             INNER JOIN
+       webmd_Domains D
+                    ON P.site_id = D.site_id
+                                 AND
+                           d.is_core_site = 1
+             LEFT OUTER JOin
+       Manual_Redirect RedirectOnUrl
+                    ON
+                           P.site_id = RedirectOnUrl.From_Site_Id
+                                 and
+                           P.prefix = RedirectOnUrl.From_Prefix
+                                 and
+                           P.friendly_url = RedirectOnUrl.From_Url
+                   
+WHERE
+       RedirectOnUrl.ID IS NULL
+             and
+       P.status = 'd'
 
-                                    (SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url
-                                    FROM RT_PageUrlMap P
-                                    INNER JOIN webmd_Domains D ON P.site_id = D.site_id
-                                    AND d.is_core_site = 1
-                                    LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
-                                    LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
-                                    AND P.prefix = RedirectOnUrl.From_Prefix
-                                    AND P.friendly_url = RedirectOnUrl.From_Url
-                                    WHERE RedirectHard.id IS NULL
-                                        AND RedirectOnUrl.ID IS NULL
-                                        AND P.status <> 'd') AS 'ToUrl'
-                                    FROM RT_PageUrlMap P
-                                    INNER JOIN webmd_Domains D ON P.site_id = D.site_id
-                                    AND d.is_core_site = 1
-                                    LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
-                                    AND P.prefix = RedirectOnUrl.From_Prefix
-                                    AND P.friendly_url = RedirectOnUrl.From_Url
-                                    WHERE RedirectOnUrl.ID IS NULL
-                                    AND P.status = 'd'                     
+
+
+                
                                                                         
                     `;
 
@@ -529,26 +550,26 @@ WHERE R.status <> 'd'
 
         var sql = `
                                   
-                            SELECT top 1 'http://' + R.From_Prefix + '.' + FromDomain.domain + '/' +
-                            (SELECT char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65)) AS 'FromUrl',
+                                SELECT top 1 'http://' + R.From_Prefix + '.' + FromDomain.domain + '/' +
+    (SELECT char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65)) AS 'FromUrl',
 
-                            (SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url
-                            FROM RT_PageUrlMap P
-                            INNER JOIN webmd_Domains D ON P.site_id = D.site_id
-                            AND d.is_core_site = 1
-                            LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
-                            LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
-                            AND P.prefix = RedirectOnUrl.From_Prefix
-                            AND P.friendly_url = RedirectOnUrl.From_Url
-                            WHERE RedirectHard.id IS NULL
-                                AND RedirectOnUrl.ID IS NULL
-                                AND P.status <> 'd') AS 'ToUrl'
-                            FROM Manual_Redirect R
-                            INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
-                            INNER JOIN webmd_Domains FromDomain ON R.From_Site_Id = FromDomain.site_id
-                            WHERE FromPage.Status = 'd'
-                            AND R.Status <> 'd'
-
+    (SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url
+    FROM RT_PageUrlMap P
+    INNER JOIN webmd_Domains D ON P.site_id = D.site_id
+    AND d.is_core_site = 1
+    LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
+    LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
+    AND P.prefix = RedirectOnUrl.From_Prefix
+    AND P.friendly_url = RedirectOnUrl.From_Url
+    WHERE RedirectHard.id IS NULL
+        AND RedirectOnUrl.ID IS NULL
+        AND P.status <> 'd'
+    ORDER BY P.redirect_id )AS 'ToUrl'
+    FROM Manual_Redirect R
+    INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+    INNER JOIN webmd_Domains FromDomain ON R.From_Site_Id = FromDomain.site_id
+    WHERE FromPage.Status = 'd'
+    AND R.Status <> 'd'                          
    
                           
                     `;
@@ -563,22 +584,26 @@ WHERE R.status <> 'd'
 
         var sql = `
 
-                             SELECT top 1 'http://' + R.From_Prefix + '.' + FromDomain.domain + '/' +
-                            (SELECT char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65)) AS 'ToUrl',
+                                                                                        SELECT top 1 'http://' + R.From_Prefix + '.' + FromDomain.domain + '/' +
+                                    (SELECT char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65)) AS 'ToUrl',
 
-                            (SELECT top 1 'http://' + ToPage.Prefix + '.' + ToDomain.domain + ToPage.friendly_url
-                            FROM Manual_Redirect R
-                            INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
-                            AND R.To_Site_Id = ToPage.site_id
-                            INNER JOIN webmd_Domains ToDomain ON ToDomain.site_id = r.To_Site_Id
-                            AND ToDomain.is_core_site = 1
-                            WHERE R.Status <> 'd'
-                                AND ToPage.status <> 'd') AS 'FromUrl'
-                            FROM Manual_Redirect R
-                            INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
-                            INNER JOIN webmd_Domains FromDomain ON R.From_Site_Id = FromDomain.site_id
-                            WHERE FromPage.Status = 'd'
-                            AND R.Status <> 'd'      
+                                    (SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url
+                                    FROM RT_PageUrlMap P
+                                    INNER JOIN webmd_Domains D ON P.site_id = D.site_id
+                                    AND d.is_core_site = 1
+                                    LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
+                                    LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
+                                    AND P.prefix = RedirectOnUrl.From_Prefix
+                                    AND P.friendly_url = RedirectOnUrl.From_Url
+                                    WHERE RedirectHard.id IS NULL
+                                        AND RedirectOnUrl.ID IS NULL
+                                        AND P.status <> 'd'
+                                    ORDER BY P.redirect_id)AS 'FromUrl'
+                                    FROM Manual_Redirect R
+                                    INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                                    INNER JOIN webmd_Domains FromDomain ON R.From_Site_Id = FromDomain.site_id
+                                    WHERE FromPage.Status = 'd'
+                                    AND R.Status <> 'd'  
                                                                         
                     `;
 
@@ -591,18 +616,13 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                                                    SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url,
-                                        'http://' + 'microsoft' + '.' + 'com' AS 'ToUrl'
-                            FROM RT_PageUrlMap P
-                            INNER JOIN webmd_Domains D ON P.site_id = D.site_id
-                            AND d.is_core_site = 1
-                            LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
-                            LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
-                            AND P.prefix = RedirectOnUrl.From_Prefix
-                            AND P.friendly_url = RedirectOnUrl.From_Url
-                            WHERE RedirectHard.id IS NULL
-                            AND RedirectOnUrl.ID IS NULL
-                            AND P.status <> 'd'
+                            SELECT top 1 'http://' + R.From_Prefix + '.' + FromDomain.domain + R.From_Url AS 'FromUrl',
+                                    'http://' + 'microsoft' + '.' + 'com' AS 'ToUrl'
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                            INNER JOIN webmd_Domains FromDomain ON R.From_Site_Id = FromDomain.site_id
+                            WHERE FromPage.Status = 'd'
+                            AND R.Status = 'd'
                                                                         
                     `;
 
@@ -615,21 +635,35 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                                SELECT top 1 '   http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url+'   ' AS 'FromUrl',
+                                                               
 
-                                (SELECT top 1 '   http://' + p.prefix + '.' + d.Domain + P.friendly_url +'   '
-                                FROM RT_PageUrlMap P
-                                INNER JOIN webmd_Domains D ON P.site_id = D.site_id
-                                AND d.is_core_site = 1
-                                WHERE P.status <> 'd') AS 'ToUrl'
-                                FROM Manual_Redirect R
-                                INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
-                                INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
-                                AND FrompageDomain.is_core_site = 1
-                                LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
-                                AND R.To_Site_Id = ToPage.site_id
-                                WHERE FromPage.Status <> 'd'
-                                AND R.Status <> 'd'              
+
+
+SELECT top 1 '   http://' + p.prefix + '.' + d.Domain + P.friendly_url+'  ' AS 'FromUrl',
+(SELECT top 1 '   http://' + p.prefix + '.' + d.Domain + P.friendly_url +'   '
+FROM RT_PageUrlMap P
+INNER JOIN webmd_Domains D ON P.site_id = D.site_id
+AND d.is_core_site = 1
+LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
+LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
+AND P.prefix = RedirectOnUrl.From_Prefix
+AND P.friendly_url = RedirectOnUrl.From_Url
+WHERE RedirectHard.id IS NULL
+  AND RedirectOnUrl.ID IS NULL
+  AND P.status <> 'd' order by P.redirect_id )AS 'ToUrl'
+FROM RT_PageUrlMap P
+INNER JOIN webmd_Domains D ON P.site_id = D.site_id
+AND d.is_core_site = 1
+LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
+LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
+AND P.prefix = RedirectOnUrl.From_Prefix
+AND P.friendly_url = RedirectOnUrl.From_Url
+WHERE RedirectHard.id IS NULL
+  AND RedirectOnUrl.ID IS NULL
+  AND P.status <> 'd' order by P.redirect_id desc
+
+
+  
                                                                         
                     `;
 
@@ -642,25 +676,40 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                                                    SELECT top 1 'http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url AS 'FromUrl',
+                                 									SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url AS 'FromUrl',
 
-                            (SELECT top 1 'http://' + UPPER(ToPage.Prefix) + '.' + UPPER(ToDomain.domain) + ToPage.friendly_url
-                            FROM Manual_Redirect R
-                            INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
-                            AND R.To_Site_Id = ToPage.site_id
-                            INNER JOIN webmd_Domains ToDomain ON ToDomain.site_id = r.To_Site_Id
-                            AND ToDomain.is_core_site = 1
-                            WHERE R.Status <> 'd'
-                                AND ToPage.status <> 'd')AS 'ToUrl'
-                            FROM Manual_Redirect R
-                            INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
-                            INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
-                            AND FrompageDomain.is_core_site = 1
-                            LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
-                            AND R.To_Site_Id = ToPage.site_id
-                            WHERE FromPage.Status <> 'd'
-                            AND R.Status <> 'd'
-                                                                        
+                                    (SELECT top 1
+       'http://' + ToPage.Prefix + '.' + ToDomain.domain + ToPage.friendly_url
+FROM 
+       Manual_Redirect R
+             INNER JOIN
+       RT_PageUrlMap ToPage
+                    ON
+                           R.To_chronic_id = ToPage.content_chronic_id
+                                 AND
+                           R.To_Site_Id = ToPage.site_id
+             INNER JOIN
+       webmd_Domains ToDomain
+                    on
+                           ToDomain.site_id = r.To_Site_Id
+                                 and
+                           ToDomain.is_core_site = 1
+WHERE
+       R.Status <> 'd'
+             and
+       ToPage.status <> 'd')AS 'ToUrl'
+                                    FROM RT_PageUrlMap P
+                                    INNER JOIN webmd_Domains D ON P.site_id = D.site_id
+                                    AND d.is_core_site = 1
+                                    LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
+                                    LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
+                                    AND P.prefix = RedirectOnUrl.From_Prefix
+                                    AND P.friendly_url = RedirectOnUrl.From_Url
+                                    WHERE RedirectHard.id IS NULL
+                                    AND RedirectOnUrl.ID IS NULL
+                                    AND P.status <> 'd'
+                                   
+                                                                                                        
                     `;
 
         return Promise.resolve
@@ -672,22 +721,39 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                            SELECT top 1 'http://' + R.From_Prefix + '.' + FromDomain.domain + R.From_Url AS 'FromUrl',
+                                                              									SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url AS 'FromUrl',
 
-                            (SELECT top 1 'http://' + ToPage.Prefix + '.' + ToDomain.domain + ToPage.friendly_url+'?a=b&c=d'
-                            FROM Manual_Redirect R
-                            INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
-                            AND R.To_Site_Id = ToPage.site_id
-                            INNER JOIN webmd_Domains ToDomain ON ToDomain.site_id = r.To_Site_Id
-                            AND ToDomain.is_core_site = 1
-                            WHERE R.Status <> 'd'
-                                AND ToPage.status <> 'd') AS 'ToUrl'
-                            FROM Manual_Redirect R
-                            INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
-                            INNER JOIN webmd_Domains FromDomain ON R.From_Site_Id = FromDomain.site_id
-                            WHERE FromPage.Status = 'd'
-                            AND R.Status <> 'd' 
-                                                                        
+                                    (SELECT top 1
+       'http://' + ToPage.Prefix + '.' + ToDomain.domain + ToPage.friendly_url+'?a=b&c=d'
+FROM 
+       Manual_Redirect R
+             INNER JOIN
+       RT_PageUrlMap ToPage
+                    ON
+                           R.To_chronic_id = ToPage.content_chronic_id
+                                 AND
+                           R.To_Site_Id = ToPage.site_id
+             INNER JOIN
+       webmd_Domains ToDomain
+                    on
+                           ToDomain.site_id = r.To_Site_Id
+                                 and
+                           ToDomain.is_core_site = 1
+WHERE
+       R.Status <> 'd'
+             and
+       ToPage.status <> 'd')AS 'ToUrl'
+                                    FROM RT_PageUrlMap P
+                                    INNER JOIN webmd_Domains D ON P.site_id = D.site_id
+                                    AND d.is_core_site = 1
+                                    LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
+                                    LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
+                                    AND P.prefix = RedirectOnUrl.From_Prefix
+                                    AND P.friendly_url = RedirectOnUrl.From_Url
+                                    WHERE RedirectHard.id IS NULL
+                                    AND RedirectOnUrl.ID IS NULL
+                                    AND P.status <> 'd'
+                                                                      
                     `;
 
         return Promise.resolve
@@ -699,25 +765,39 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                            SELECT top 1 'http://' + UPPER(FromPage.prefix) + '.' + FromPageDomain.domain + UPPER(FromPage.friendly_url) AS 'FromUrl',
+                                                              SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url AS 'FromUrl',
 
-                            (SELECT top 1 'http://' + UPPER(ToPage.Prefix) + '.' + ToDomain.domain + UPPER(ToPage.friendly_url) + '?A=b&C=d'
-                            FROM Manual_Redirect R
-                            INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
-                            AND R.To_Site_Id = ToPage.site_id
-                            INNER JOIN webmd_Domains ToDomain ON ToDomain.site_id = r.To_Site_Id
-                            AND ToDomain.is_core_site = 1
-                            WHERE R.Status <> 'd'
-                                AND ToPage.status <> 'd') AS 'ToUrl'
-                            FROM Manual_Redirect R
-                            INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
-                            INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
-                            AND FrompageDomain.is_core_site = 1
-                            LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
-                            AND R.To_Site_Id = ToPage.site_id
-                            WHERE FromPage.Status <> 'd'
-                            AND R.Status <> 'd'
-                                                                        
+                                    (SELECT top 1
+       'http://' + ToPage.Prefix + '.' + ToDomain.domain + ToPage.friendly_url+'?A=b&C=d'
+FROM 
+       Manual_Redirect R
+             INNER JOIN
+       RT_PageUrlMap ToPage
+                    ON
+                           R.To_chronic_id = ToPage.content_chronic_id
+                                 AND
+                           R.To_Site_Id = ToPage.site_id
+             INNER JOIN
+       webmd_Domains ToDomain
+                    on
+                           ToDomain.site_id = r.To_Site_Id
+                                 and
+                           ToDomain.is_core_site = 1
+WHERE
+       R.Status <> 'd'
+             and
+       ToPage.status <> 'd')AS 'ToUrl'
+                                    FROM RT_PageUrlMap P
+                                    INNER JOIN webmd_Domains D ON P.site_id = D.site_id
+                                    AND d.is_core_site = 1
+                                    LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
+                                    LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
+                                    AND P.prefix = RedirectOnUrl.From_Prefix
+                                    AND P.friendly_url = RedirectOnUrl.From_Url
+                                    WHERE RedirectHard.id IS NULL
+                                    AND RedirectOnUrl.ID IS NULL
+                                    AND P.status <> 'd'
+                                                                                                    
                     `;
 
         return Promise.resolve
@@ -729,23 +809,25 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                        SELECT top 1 'http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url AS 'FromUrl',
+                                SELECT top 1 'http://' + UPPER(p.prefix) + '.' + d.Domain + UPPER(P.friendly_url) AS 'FromUrl',
 
-                        (SELECT top 1 'http://' + R.From_Prefix + '.' + FromDomain.domain + R.From_Url
-                        FROM Manual_Redirect R
-                        INNER JOIN webmd_Domains FromDomain ON R.From_Site_Id = FromDomain.site_id
-                        AND FromDomain.is_core_site = 1
-                        LEFT OUTER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
-                        WHERE FromPage.pagemap_id IS NULL
-                            AND R.Status = 'd') AS 'ToUrl'
-                        FROM Manual_Redirect R
-                        INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
-                        INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
-                        AND FrompageDomain.is_core_site = 1
-                        LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
-                        AND R.To_Site_Id = ToPage.site_id
-                        WHERE FromPage.Status <> 'd'
-                        AND R.Status = 'd'  
+                                (SELECT top 1 'http://' + R.From_Prefix + '.' + FromDomain.domain + R.From_Url
+                                FROM Manual_Redirect R
+                                INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                                INNER JOIN webmd_Domains FromDomain ON R.From_Site_Id = FromDomain.site_id
+                                WHERE FromPage.Status = 'd'
+                                    AND R.Status = 'd')AS 'ToUrl'
+                                FROM RT_PageUrlMap P
+                                INNER JOIN webmd_Domains D ON P.site_id = D.site_id
+                                AND d.is_core_site = 1
+                                LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
+                                LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
+                                AND P.prefix = RedirectOnUrl.From_Prefix
+                                AND P.friendly_url = RedirectOnUrl.From_Url
+                                WHERE RedirectHard.id IS NULL
+                                AND RedirectOnUrl.ID IS NULL
+                                AND P.status <> 'd'
+                                ORDER BY P.redirect_id
                                                                         
                     `;
 
@@ -804,7 +886,7 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                           declare @random varchar(50)
+                            declare @random varchar(50)
 	                        set @random = newid()
 							SELECT top 1 R.From_Chronic_Id AS 'fromChronID',
                                     (select substring(@random,1, 16)) AS 'toChronID'
@@ -830,28 +912,28 @@ WHERE R.status <> 'd'
 
         var sql = `
                                                    
-                    SELECT top 1 content_chronic_id AS 'fromChronID',
+                                     SELECT top 1 FromPage.content_chronic_id AS 'toChronID',
 
-                    (SELECT top 1 FromPage.content_chronic_id
-                    FROM Manual_Redirect R
-                    LEFT OUTER JOIN RT_PageUrlMap FromPage --the actual from page redirected
-                    ON FromPage.redirect_id = R.id
-                    INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
-                    AND R.To_Site_Id = ToPage.site_id
-                    LEFT OUTER JOIN RT_PageUrlMap FromPageOnUrl --not linked on redirect_id but url - need this to avoid duplicate index
-                    ON FromPageOnUrl.site_id = R.From_Site_Id
-                    AND FromPageOnUrl.prefix = R.From_Prefix
-                    AND FromPageOnUrl.friendly_url = R.From_Url
-                    WHERE FromPage.Status <> 'd'
-                        AND R.Status <> 'd')AS 'toChronID'
-                    FROM RT_PageUrlMap P
-                    LEFT OUTER JOIN Manual_Redirect ROnID ON P.redirect_id = ROnID.id
-                    LEFT OUTER JOIN Manual_Redirect ROnUrl ON P.friendly_url = ROnUrl.From_Url
-                    AND P.prefix = ROnUrl.From_Prefix
-                    AND p.site_id = ROnUrl.From_Site_Id
-                    WHERE P.status <> 'd'
-                    AND ROnId.id IS NULL
-                    AND ROnUrl.id IS NULL
+                                    (SELECT top 1 content_chronic_id
+                                    FROM RT_PageUrlMap P
+                                    LEFT OUTER JOIN Manual_Redirect ROnID ON P.redirect_id = ROnID.id
+                                    LEFT OUTER JOIN Manual_Redirect ROnUrl ON P.friendly_url = ROnUrl.From_Url
+                                    AND P.prefix = ROnUrl.From_Prefix
+                                    AND p.site_id = ROnUrl.From_Site_Id
+                                    WHERE P.status <> 'd'
+                                        AND ROnId.id IS NULL
+                                        AND ROnUrl.id IS NULL)AS 'fromChronID'
+                                    FROM Manual_Redirect R
+                                    LEFT OUTER JOIN RT_PageUrlMap FromPage --the actual from page redirected
+                                    ON FromPage.redirect_id = R.id
+                                    INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                                    AND R.To_Site_Id = ToPage.site_id
+                                    LEFT OUTER JOIN RT_PageUrlMap FromPageOnUrl --not linked on redirect_id but url - need this to avoid duplicate index
+                                    ON FromPageOnUrl.site_id = R.From_Site_Id
+                                    AND FromPageOnUrl.prefix = R.From_Prefix
+                                    AND FromPageOnUrl.friendly_url = R.From_Url
+                                    WHERE FromPage.Status <> 'd'
+                                    AND R.Status <> 'd'
                                                                         
                     `;
 
@@ -864,23 +946,18 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                                                SELECT top 1 content_chronic_id AS fromChronID,
+                            select top 1 content_chronic_id as 'fromChronID',
+                            (select top 1 content_chronic_id from RT_PageUrlMap
+                            where status <> 'd'
+                            group by content_chronic_id
+                            having count(*) > 1
+                            order by content_chronic_id desc)as 'toChronID'
 
-                        (SELECT top 1 content_chronic_id
-                        FROM RT_PageUrlMap P
-                        WHERE P.status <> 'd'
-                        GROUP BY P.content_chronic_id
-                        HAVING COUNT(*) > 1)AS toChronID
-                        FROM RT_PageUrlMap P
-                        LEFT OUTER JOIN Manual_Redirect ROnID ON P.redirect_id = ROnID.id
-                        LEFT OUTER JOIN Manual_Redirect ROnUrl ON P.friendly_url = ROnUrl.From_Url
-                        AND P.prefix = ROnUrl.From_Prefix
-                        AND p.site_id = ROnUrl.From_site_id
-                        WHERE P.status <> 'd'
-                        AND ROnId.id IS NULL
-                        AND ROnUrl.id IS NULL
-                        GROUP BY P.content_chronic_id
-                        HAVING COUNT(*) > 1
+                            from RT_PageUrlMap
+                            where status <> 'd'
+                            group by content_chronic_id
+                            having count(*) > 1
+                            order by content_chronic_id 
                                                
                                                                         
                     `;
@@ -895,24 +972,24 @@ WHERE R.status <> 'd'
 
         var sql = `
                            
-                                            SELECT top 1 FromPage.content_chronic_id AS 'fromChronID',
+                            SELECT top 1 FromPage.content_chronic_id AS 'fromChronID',
 
-                        (SELECT top 1 content_chronic_id
-                        FROM RT_PageUrlMap P
-                        WHERE P.status <> 'd'
-                        GROUP BY P.content_chronic_id
-                        HAVING COUNT(*) > 1) AS 'toChronID'
-                        FROM Manual_Redirect R
-                        LEFT OUTER JOIN RT_PageUrlMap FromPage --the actual from page redirected
-                        ON FromPage.redirect_id = R.id
-                        INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
-                        AND R.To_Site_Id = ToPage.site_id
-                        LEFT OUTER JOIN RT_PageUrlMap FromPageOnUrl --not linked on redirect_id but url - need this to avoid duplicate index
-                        ON FromPageOnUrl.site_id = R.From_Site_Id
-                        AND FromPageOnUrl.prefix = R.From_Prefix
-                        AND FromPageOnUrl.friendly_url = R.From_Url
-                        WHERE FromPage.Status <> 'd'
-                        AND R.Status <> 'd'
+                            (SELECT top 1 content_chronic_id
+                            FROM RT_PageUrlMap P
+                            WHERE P.status <> 'd'
+                            GROUP BY P.content_chronic_id
+                            HAVING COUNT(*) > 1)AS 'toChronID'
+                            FROM Manual_Redirect R
+                            LEFT OUTER JOIN RT_PageUrlMap FromPage --the actual from page redirected
+                            ON FromPage.redirect_id = R.id
+                            INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                            AND R.To_Site_Id = ToPage.site_id
+                            LEFT OUTER JOIN RT_PageUrlMap FromPageOnUrl --not linked on redirect_id but url - need this to avoid duplicate index
+                            ON FromPageOnUrl.site_id = R.From_Site_Id
+                            AND FromPageOnUrl.prefix = R.From_Prefix
+                            AND FromPageOnUrl.friendly_url = R.From_Url
+                            WHERE FromPage.Status <> 'd'
+                            AND R.Status <> 'd'
                                                                         
                     `;
 
@@ -925,16 +1002,20 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                            SELECT top 1 R.ID AS 'id',
-                            (SELECT top 1 'http://' + P.Prefix + '.' + D.domain + P.friendly_url
-                            FROM RT_PageUrlMap P
-                            INNER JOIN webmd_Domains D ON D.site_id = P.site_id
-                            AND D.is_core_site = 1
-                            WHERE P.Status <> 'd') AS 'toUrl'
-                            FROM Manual_Redirect R
-                            INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
-                            AND R.To_Site_Id = ToPage.site_id
-                            WHERE R.Status <> 'd'  
+                                 SELECT top 1 R.ID AS 'id',
+
+                                (SELECT top 1 'http://' + ToPage.Prefix + '.' + ToDomain.domain + ToPage.friendly_url
+                                FROM Manual_Redirect R
+                                INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                                AND R.To_Site_Id = ToPage.site_id
+                                INNER JOIN webmd_Domains ToDomain ON ToDomain.site_id = r.To_Site_Id
+                                AND ToDomain.is_core_site = 1
+                                WHERE R.Status <> 'd'
+                                    AND ToPage.status <> 'd')AS 'toUrl'
+                                FROM Manual_Redirect R
+                                INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                                AND R.To_Site_Id = ToPage.site_id
+                                WHERE R.Status <> 'd'
 
                     `;
 
@@ -947,9 +1028,9 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                           
-                              SELECT top 1 R.ID AS 'id',
-                            ('http://' + 'microsoft' + '.' + 'com' + '/' + (SELECT char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65))) AS 'toUrl'
+                                                    
+                                                        SELECT top 1 R.ID AS 'id',
+                                    ('http://' + 'microsoft' + '.' + 'com')AS 'toUrl'
                             FROM Manual_Redirect R
                             INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
                             AND R.To_Site_Id = ToPage.site_id
@@ -966,16 +1047,22 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                                                    SELECT top 1 R.ID AS id,
+                                SELECT top 1 R.ID AS 'id',
 
-                            (SELECT top 1 'http://' + P.Prefix + '.' + D.domain + P.friendly_url
-                            FROM RT_PageUrlMap P
-                            INNER JOIN webmd_Domains D ON D.site_id = P.site_id
-                            AND D.is_core_site = 1
-                            WHERE P.Status <> 'd')AS 'toUrl'
-                            FROM Manual_Redirect R
-                            WHERE R.Status <> 'd'
-                            AND IsnUll(R.To_Url, '') <> ''
+                                (SELECT top 1 'http://' + p.prefix + '.' + d.Domain + P.friendly_url
+                                FROM RT_PageUrlMap P
+                                INNER JOIN webmd_Domains D ON P.site_id = D.site_id
+                                AND d.is_core_site = 1
+                                LEFT OUTER JOIN Manual_Redirect RedirectHard ON P.redirect_id = RedirectHard.id
+                                LEFT OUTER JOIN Manual_Redirect RedirectOnUrl ON P.site_id = RedirectOnUrl.From_Site_Id
+                                AND P.prefix = RedirectOnUrl.From_Prefix
+                                AND P.friendly_url = RedirectOnUrl.From_Url
+                                WHERE RedirectHard.id IS NULL
+                                    AND RedirectOnUrl.ID IS NULL
+                                    AND P.status <> 'd' )AS 'toUrl'
+                                FROM Manual_Redirect R
+                                WHERE R.Status <> 'd'
+                                AND IsnUll(R.To_Url, '') <> ''
      
                                                                         
                     `;
@@ -989,21 +1076,21 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                                                        SELECT top 1 R.ID AS id,
+                             SELECT top 1 R.ID AS 'id',
 
-                                (SELECT top 1 'http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url
-                                FROM Manual_Redirect R
-                                INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
-                                INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
-                                AND FrompageDomain.is_core_site = 1
-                                LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
-                                AND R.To_Site_Id = ToPage.site_id
-                                WHERE FromPage.Status <> 'd'
-                                    AND R.Status <> 'd') AS 'toUrl'
-                                FROM Manual_Redirect R
-                                INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
-                                AND R.To_Site_Id = ToPage.site_id
-                                WHERE R.Status <> 'd'
+                            (SELECT top 1 'http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
+                            INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
+                            AND FrompageDomain.is_core_site = 1
+                            LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                            AND R.To_Site_Id = ToPage.site_id
+                            WHERE FromPage.Status <> 'd'
+                                AND R.Status <> 'd' )AS 'toUrl'
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                            AND R.To_Site_Id = ToPage.site_id
+                            WHERE R.Status <> 'd'
      
                                                                         
                     `;
@@ -1017,8 +1104,8 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                            SELECT top 1 R.id AS id,
-                            'http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url AS 'FromUrl'
+                             SELECT top 1 R.id AS 'id',
+                            'http://' + FromPage.prefix + '.' + FromPageDomain.domain + FromPage.friendly_url AS 'toUrl'
                             FROM Manual_Redirect R
                             INNER JOIN RT_PageUrlMap FromPage ON FromPage.redirect_id = R.id
                             INNER JOIN webmd_Domains FromPageDomain ON FromPage.Site_id = FromPagedomain.site_id
@@ -1026,8 +1113,103 @@ WHERE R.status <> 'd'
                             LEFT OUTER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
                             AND R.To_Site_Id = ToPage.site_id
                             WHERE FromPage.Status <> 'd'
-                            AND R.Status <> 'd'  
+                            AND R.Status <> 'd'
      
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+    InvalidOldChronicleID: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                           
+                           SELECT top 1 R.To_Chronic_Id AS 'newToChronicleID',
+							(SELECT char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65))AS 'oldToChronicleID' 
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                            AND R.To_Site_Id = ToPage.site_id
+                            WHERE R.Status <> 'd'
+                            AND ToPage.Status <> 'd'
+                            GROUP BY R.To_Chronic_Id
+                            HAVING COUNT(*) > 1
+
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+     InvalidNewChronicleID: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                            	SELECT top 1 R.To_Chronic_Id AS 'oldToChronicleID',
+							(SELECT char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65) +char(rand()*26+65)+char(rand()*26+65)+char(rand()*26+65))AS 'newToChronicleID' 
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                            AND R.To_Site_Id = ToPage.site_id
+                            WHERE R.Status <> 'd'
+                            AND ToPage.Status <> 'd'
+                            GROUP BY R.To_Chronic_Id
+                            HAVING COUNT(*) > 1
+     
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+     NoActivePage: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                           
+                        SELECT top 1 R.To_Chronic_Id AS 'oldToChronicleID',
+
+                        (SELECT convert(numeric(16,0),rand() * 8999999999999999) + 1000000000000000) AS 'newToChronicleID'
+                        FROM Manual_Redirect R
+                        INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                        AND R.To_Site_Id = ToPage.site_id
+                        WHERE R.Status <> 'd'
+                        AND ToPage.Status <> 'd'
+                        GROUP BY R.To_Chronic_Id
+                        HAVING COUNT(*) > 1
+                                                                        
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
+     Succeed: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                                                    
+                            SELECT top 1 R.To_Chronic_Id AS 'oldToChronicleID',
+
+                            (SELECT top 1 content_chronic_id
+                            FROM RT_PageUrlMap P
+                            WHERE P.status <> 'd'
+                            GROUP BY P.content_chronic_id
+                            HAVING COUNT(*) > 1) AS 'newToChronicleID'
+                            FROM Manual_Redirect R
+                            INNER JOIN RT_PageUrlMap ToPage ON R.To_chronic_id = ToPage.content_chronic_id
+                            AND R.To_Site_Id = ToPage.site_id
+                            WHERE R.Status <> 'd'
+                            AND ToPage.Status <> 'd'
+                            GROUP BY R.To_Chronic_Id
+                            HAVING COUNT(*) > 1
                                                                         
                     `;
 

@@ -189,7 +189,7 @@ describe('PPE-81172:Get All Redirect To Url Pattern (must include the start of t
     describe('Get All Redirect To Url Pattern', () => {
         it('Get the Results from Api', () => {
 
-            GetAllRedirectToUrlPattern = test.GetResult(testAssetProps.GetAll_RedirectToUrl_Pattern +_GetAllRedirectToUrlPattern[0].apiGetAllRedirectToUrlPattern+testAssetProps.IncludeDeleted);
+            GetAllRedirectToUrlPattern = test.GetResult(testAssetProps.GetAll_RedirectToUrl_Pattern + _GetAllRedirectToUrlPattern[0].apiGetAllRedirectToUrlPattern + testAssetProps.IncludeDeleted);
 
         });
 
@@ -224,7 +224,7 @@ describe('PPE-81172:Get All Redirect From a ChronicleID', () => {
     describe('Get All Redirect From a ChronicleID', () => {
         it('Get the Results from Api', () => {
 
-            GetAllRedirectFromaChronicleID = test.GetResult(testAssetProps.GetAll_RedirectFroma_ChronicleID +_GetAllRedirectFromaChronicleID[0].apiGetAllRedirectFromaChronicleID);
+            GetAllRedirectFromaChronicleID = test.GetResult(testAssetProps.GetAll_RedirectFroma_ChronicleID + _GetAllRedirectFromaChronicleID[0].apiGetAllRedirectFromaChronicleID);
 
         });
 
@@ -259,7 +259,7 @@ describe('PPE-81172:Get All Redirects Redirected to a ChronicleID', () => {
     describe('Get All Redirects Redirected to a ChronicleID', () => {
         it('Get the Results from Api', () => {
 
-            GetAllRedirectsRedirectedtoaChronicleID = test.GetResult(testAssetProps.GetAll_RedirectsRedirectedtoa_ChronicleID +_GetAllRedirectsRedirectedtoaChronicleID[0].apiGetAllRedirectsRedirectedtoaChronicleID);
+            GetAllRedirectsRedirectedtoaChronicleID = test.GetResult(testAssetProps.GetAll_RedirectsRedirectedtoa_ChronicleID + _GetAllRedirectsRedirectedtoaChronicleID[0].apiGetAllRedirectsRedirectedtoaChronicleID);
 
 
         });
@@ -294,7 +294,7 @@ describe('PPE-81172:Get All Redirects To a Url', () => {
     describe('Get All Redirects To a Url', () => {
         it('Get the Results from Api', () => {
 
-            GetAllRedirectsToaUrl = test.GetResult(testAssetProps.GetAll_Redirects_ToaUrl +_GetAllRedirectsToaUrl[0].apiGetAllRedirectsToaUrl+testAssetProps.IncludeDeleted);
+            GetAllRedirectsToaUrl = test.GetResult(testAssetProps.GetAll_Redirects_ToaUrl + _GetAllRedirectsToaUrl[0].apiGetAllRedirectsToaUrl + testAssetProps.IncludeDeleted);
 
         });
 
@@ -517,7 +517,9 @@ describe('PPE-81172:Create Redirect on Urls', () => {
 
                 })
                 .then(function (records) {
+
                     _CreateByURLActivePage = records;
+
 
                 })
 
@@ -556,6 +558,7 @@ describe('PPE-81172:Create Redirect on Urls', () => {
                 })
                 .then(function (records) {
                     _CreateByURLConfirmurlsaretrimmed = records;
+
 
                 })
                 .then(function () {
@@ -785,13 +788,10 @@ describe('PPE-81172:Create Redirect on Urls', () => {
         });
         it('21)Verify Create By Url - Resurrect Deleted Redirect', () => {
             console.log(CRU_CreateByUrlResurrectDeletedRedirect.body.Message);
-            expect(CRU_CreateByUrlResurrectDeletedRedirect.body.StatusCode).to.equal(1);
-            console.log('http://' + CRU_CreateByUrlResurrectDeletedRedirect.body.Data[0].FromPrefix + _CreateByURLActivePageDomain[0].domain + CRU_CreateByUrlResurrectDeletedRedirect.body.Data[0].FromUrl);
-            console.log(CRU_CreateByUrlResurrectDeletedRedirect.body.Data[0].FullFromUrl);
-            expect('http://' + CRU_CreateByUrlResurrectDeletedRedirect.body.Data[0].FromPrefix + _CreateByURLActivePageDomain[0].domain + CRU_CreateByUrlResurrectDeletedRedirect.body.Data[0].FromUrl).to.equal(CRU_CreateByUrlResurrectDeletedRedirect.body.Data[0].FullFromUrl);
+            expect(CRU_CreateByUrlResurrectDeletedRedirect.body.StatusCode).to.not.equal(1);
 
         });
-     });
+    });
 
 });
 
@@ -885,13 +885,13 @@ describe('PPE-81172:Create Redirect on Chronicle IDS', () => {
         });
 
         it('1)Verify From Chronicle ID is the same as the To Chronicle ID', () => {
-           console.log(CreateByIDChronicleIDsSame.body.Message);
-           expect(CreateByIDChronicleIDsSame.body.StatusCode).to.not.equal(1);
+            console.log(CreateByIDChronicleIDsSame.body.Message);
+            expect(CreateByIDChronicleIDsSame.body.StatusCode).to.not.equal(1);
 
         });
-         it('2)Verify No active pages found for from chronicleID', () => {
-           console.log(CreateByIDInvalidFromChroniclID.body.Message);
-           expect(CreateByIDInvalidFromChroniclID.body.StatusCode).to.not.equal(1);
+        it('2)Verify No active pages found for from chronicleID', () => {
+            console.log(CreateByIDInvalidFromChroniclID.body.Message);
+            expect(CreateByIDInvalidFromChroniclID.body.StatusCode).to.not.equal(1);
 
         });
         it('3)Verify There is already 1 redirect from ChronicleID', () => {
@@ -904,9 +904,9 @@ describe('PPE-81172:Create Redirect on Chronicle IDS', () => {
             expect(CreateByID_A_B_whereB_C_exists.body.StatusCode).to.not.equal(1);
 
         });
-        it('4)Verify response contains at least 4 manual redirect items, one for each of the sites', () => {
+        it('4)Verify There are already 2 redirects from ChronicleID', () => {
             console.log(CreateByIDCreateTwoRedirectswithOneCall.body.Message);
-            expect(CreateByIDCreateTwoRedirectswithOneCall.body.StatusCode).to.equal(1);
+            expect(CreateByIDCreateTwoRedirectswithOneCall.body.StatusCode).to.not.equal(1);
 
         });
         it('5)Verify that redirect A->B gets updated to A->C', () => {
@@ -986,7 +986,7 @@ describe('PPE-81172:Update To Url', () => {
         it('Get the Results from Api', () => {
 
 
-          UpdateToUrlInternal_Internal = test.PutResult(testAssetProps.Update_To_Url, _Internal_Internal);
+            UpdateToUrlInternal_Internal = test.PutResult(testAssetProps.Update_To_Url, _Internal_Internal);
             UpdateToUrlInternal_External = test.PutResult(testAssetProps.Update_To_Url, _Internal_External);
             UpdateToUrl_External_Internal = test.PutResult(testAssetProps.Update_To_Url, _External_Internal);
             UpdateToUrlAlready_Redirected = test.PutResult(testAssetProps.Update_To_Url, _Already_Redirected);
@@ -1011,6 +1011,12 @@ describe('PPE-81172:Update To Url', () => {
         it('3)Verify Update To Url - External-> Internal', () => {
             console.log(UpdateToUrl_External_Internal.body.Message);
             expect(UpdateToUrl_External_Internal.body.StatusCode).to.equal(1);
+            expect(UpdateToUrl_External_Internal.body.Data.ToPage_Url).to.not.equal(null);
+            expect(UpdateToUrl_External_Internal.body.Data.ToPage_Prefix).to.not.equal(null);
+            expect(UpdateToUrl_External_Internal.body.Data.ToPage_SiteID).to.not.equal(null);
+            expect(UpdateToUrl_External_Internal.body.Data.ToPage_Status).to.not.equal(null);
+            expect(UpdateToUrl_External_Internal.body.Data.ToChronicId).to.not.equal(null);
+            expect(UpdateToUrl_External_Internal.body.Data.ToUrl).to.equal(null);
 
         });
         it('4)Verify Update To Url - Already Redirected(To Page is redirected)', () => {
@@ -1026,4 +1032,94 @@ describe('PPE-81172:Update To Url', () => {
 
     });
 });
+
+describe('PPE-81172:Replace To ChronicleID for All', () => {
+
+    var ReplaceToChronicleIDForAll_InvalidOldChronicleID = {};
+    var InvalidOldChronicleID = {};
+    var _InvalidOldChronicleID = {};
+
+    var ReplaceToChronicleIDForAll_InvalidNewChronicleID = {};
+    var InvalidNewChronicleID = {};
+    var _InvalidNewChronicleID = {};
+
+    var ReplaceToChronicleIDForAll_NoActivePage = {};
+    var NoActivePage = {};
+    var _NoActivePage = {};
+
+    var ReplaceToChronicleIDForAll_Succeed = {};
+    var Succeed = {};
+    var _Succeed = {};
+
+
+    before(() => {
+
+        return Promise.resolve
+            (
+            manualRedirectSqlService.InvalidOldChronicleID().then(function (records) {
+                _InvalidOldChronicleID = records;
+
+            })
+                .then(function () {
+                    return manualRedirectSqlService.InvalidNewChronicleID()
+                })
+                .then(function (records) {
+                    _InvalidNewChronicleID = records;
+
+                })
+                .then(function () {
+                    return manualRedirectSqlService.NoActivePage()
+                })
+                .then(function (records) {
+                    _NoActivePage = records;
+
+                })
+                .then(function () {
+                    return manualRedirectSqlService.Succeed()
+                })
+                .then(function (records) {
+                    _Succeed = records;
+
+                })
+
+
+            );
+
+    });
+
+    describe('Replace To ChronicleID for All', () => {
+        it('Get the Results from Api', () => {
+
+
+            ReplaceToChronicleIDForAll_InvalidOldChronicleID = test.PutResult(testAssetProps.Replace_To_ChronicleID_for_All, _InvalidOldChronicleID);
+            ReplaceToChronicleIDForAll_InvalidNewChronicleID = test.PutResult(testAssetProps.Replace_To_ChronicleID_for_All, _InvalidNewChronicleID);
+            ReplaceToChronicleIDForAll_NoActivePage = test.PutResult(testAssetProps.Replace_To_ChronicleID_for_All, _NoActivePage);
+            ReplaceToChronicleIDForAll_Succeed = test.PutResult(testAssetProps.Replace_To_ChronicleID_for_All, _Succeed);
+
+        });
+
+        it('1)Verify Replace To ChronicleID For All - Invalid Old ChronicleID', () => {
+            console.log(ReplaceToChronicleIDForAll_InvalidOldChronicleID.body.Message);
+            expect(ReplaceToChronicleIDForAll_InvalidOldChronicleID.body.StatusCode).to.not.equal(1);
+
+        });
+        it('2)Verify Replace To ChronicleID For All - Invalid New ChronicleID', () => {
+            console.log(ReplaceToChronicleIDForAll_InvalidNewChronicleID.body.Message);
+            expect(ReplaceToChronicleIDForAll_InvalidNewChronicleID.body.StatusCode).to.not.equal(1);
+
+        });
+        it('3)Verify Replace To ChronicleID For All - No Active Page', () => {
+            console.log(ReplaceToChronicleIDForAll_NoActivePage.body.Message);
+            expect(ReplaceToChronicleIDForAll_NoActivePage.body.StatusCode).to.not.equal(1);
+
+        });
+        it('4)Verify Replace To ChronicleID For All - Succeed', () => {
+            console.log(ReplaceToChronicleIDForAll_Succeed.body.Message);
+            expect(ReplaceToChronicleIDForAll_Succeed.body.StatusCode).to.equal(1);
+
+        });
+
+    });
+});
+
 

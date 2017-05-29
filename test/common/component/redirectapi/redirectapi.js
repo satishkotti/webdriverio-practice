@@ -129,9 +129,10 @@ Redirectapi.prototype.PutResultsApi = function PutResultsApi(url, options,apipar
 
 Redirectapi.prototype.DeleteResultsApi = function DeleteResultsApi(url, options,apiparameters) {
 
+     var jsonData = {};
 
     switch (url) {
-        case testurl + testAssetProps.Delete_One_or_more: jsonData = apiparameters[0]; break;
+        case testurl + testAssetProps.Delete_One_or_more: jsonData = apiparameters; break;
 
     }
 
