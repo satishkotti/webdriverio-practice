@@ -86,5 +86,12 @@ module.exports = {
 
 //Add: assert set properties
 
-    }
+    },
+       getChronicleIdAndTitle: function(){
+        propertiesTabUI.propertiesTabSelect();
+        return {
+            chronicleId: propertiesTabUI.chronicleIdGet(),
+            objectName: propertiesTabUI.objectTitleGet()
+        };
+    },
 }

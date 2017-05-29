@@ -154,6 +154,10 @@ module.exports = {
         browser.click("//span/span[contains(.,'Auth & Rev')]");
         browser.click("//span/span[contains(.,'Publishing')]");
         browser.pause(1000);
-    }
+    },
+    objectTitleGet: function(){
+        return browser.getValue("input#title-input");
+    },
+    
 }
 

@@ -1,5 +1,6 @@
 var maxWaitTimeInMs = 50000;
-var CopyrightStatementSelector = ".form-control.ng-pristine.ng-valid.ng-scope.ng-touched";
+//var CopyrightStatementSelector = ".form-control.ng-pristine.ng-valid.ng-scope.ng-touched";
+var CopyrightStatementSelector = "//h2[contains(.,'Copyright Statement')]//following-sibling::div/input[@type='text']";
 
 var Helper = require('./../functions/functions');
 
@@ -37,26 +38,26 @@ var CopyrightTabUIObj = {
         return browser.getValue("wbmd_legal_revr-input");
     },
     CopyrightStartDateSet: function(){
-          browser.click("//div[@id='#wbmd_copyright_strt_dt']/img");
+          browser.click("//div[@id='wbmd_copyright_strt_dt']/img");
           browser.waitForVisible("//button[contains(.,'Now')]");
           browser.click("//button[contains(.,'Now')]");
           browser.pause(1000);
     },
     CopyrightEndDateSet: function(){
-          browser.click("//div[@id='#wbmd_copyright_end_dt']/img");
+          browser.click("//div[@id='wbmd_copyright_end_dt']/img");
           browser.waitForVisible("//button[contains(.,'Now')]");
           browser.click("//button[contains(.,'Now')]");
           browser.pause(1000);
     },
     LegalReviewDateSet: function(){
-          browser.click("//div[@id='#wbmd_legal_revw_dt']/img");
+          browser.click("//div[@id='wbmd_legal_revw_dt']/img");
           browser.waitForVisible("//button[contains(.,'Now')]");
           browser.click("//button[contains(.,'Now')]");
           browser.pause(1000);
     },
 
      RetentionDateSet: function(){
-          browser.click("//div[@id='#a_retention_date']/img");
+          browser.click("//div[@id='a_retention_date']/img");
           browser.waitForVisible("//button[contains(.,'Now')]");
           browser.click("//button[contains(.,'Now')]");
           browser.pause(1000);
@@ -127,10 +128,21 @@ var CopyrightTabUIObj = {
     },
     otherTabSelect: function(){
         browser.click("//span[@text()='Other']")
+    },
+      copyrightMandatoryfieldsValidation: function(){
+          var copyrightHolder =browser.isExisting("//span[contains(.,'Copyright Holder')]");
+          expect(copyrightHolder).to.be.true;
+          browser.click("//button[contains(.,'OK') and @aria-disabled=not('false')]");
+          browser.click("//button[contains(.,'Cancel Edit')]");
+    },
+     copyrightholderValidation: function(){
+        browser.waitForVisible("//div[@id='wbmd_copyright_holder']/img");
+        browser.click("//div[@id='wbmd_copyright_holder']/img");
+        browser.waitForVisible("//div[@role='listitem']");
+        var contenttype= browser.getText("//div[@role='listitem']");
+        console.log(contenttype);
+        return contenttype;
     }
-
-
-    
 
 }
 

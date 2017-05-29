@@ -187,7 +187,11 @@ var contentTabUIObj = {
         browser.waitForVisible(ImageSelector,maxWaitTimeInMs);
         var imagelinkval = browser.getText(ImageSelector);
         return imagelinkval;
-    }
+    },
+     cancelCheckout: function(){
+        browser.click("//button[contains(string(),'Cancel')]");
+        browser.frameParent();
+    },
 
 }
 
