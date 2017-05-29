@@ -28,15 +28,13 @@ describe('Regression', function () {
             password: functions.getQAPublicationUser().password
         });
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
-        // AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
-        // AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
-        // workspaceMenu.createContent(
-        //     global.d2ConDataSettings.inputData.ArticleProfileName,
-        //     global.d2ConDataSettings.inputData.ArticleTemplate,
-        //     AssetTitle,
-        //     AssetName);
-        AssetTitle="copyrighttttt";
-        
+        AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
+        AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
+        workspaceMenu.createContent(
+            global.d2ConDataSettings.inputData.ArticleProfileName,
+            global.d2ConDataSettings.inputData.ArticleTemplate,
+            AssetTitle,
+            AssetName);        
     });
 
     
@@ -48,7 +46,7 @@ describe('Regression', function () {
         contentTab.checkIn();
     });
 
-    it('Verify the Mandatory fields, promote, demote and power promote', function () {
+    it.skip('Verify the Mandatory fields, promote, demote and power promote', function () {
         documentListTab.selectAsset(AssetTitle);
         cidName = propertiesTab.getChronicleIdAndName();
         objName = cidName.objectName;
@@ -92,7 +90,7 @@ describe('Regression', function () {
 
 
 
-     it('Should verify the data dictionary validations on Professional ProfOtherPg template PPE-111471', function () {
+     it.skip('Should verify the data dictionary validations on  PropertiesTab  PPE-113311', function () {
         var response;
         functions.SetAgentForDctmApi(functions.getDataApiUrl());
         var accessToken = functions.GenerateApiAccessToken();
