@@ -33,19 +33,20 @@ describe('Copyright Template UK: PPE-61754', function () {
             password: functions.getQAPublicationUser().password
         });
         // repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UKCopyrightTFolderPath);
-        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UKtestFolderPath);
+     /*  repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UKtestFolderPath);
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
             global.d2ConDataSettings.inputData.UKCopyrightArticlePName,
             global.d2ConDataSettings.inputData.CopyrightArticleTemplate,
             AssetTitle,
-            AssetName);
+            AssetName);*/
     });
 
     it.skip('Verify Copyright- UK creation with only mandatory fields- PPE-113313 ,Verify the error messages when mandatory fields are left blank for Copyright- UK Template - PPE-113314', function () {
         documentListTab.selectAsset(AssetTitle);
         CopyrightTemplate.setRequiredPropertiesCpyRights();
+        CopyrightTemplate.copyright_Othertab_AttributesNames();
     });
     it.skip('Verify Checkout and checkin functionality on Copyright- UK Template -  PPE-113318,Verify Copyright- UK creation with all fields- PPE-113319,Verify Cancel Checkout functionality on Copyright- UK Template-PPE-113325 ', function () {
         documentListTab.selectAsset(AssetTitle);
@@ -57,7 +58,7 @@ describe('Copyright Template UK: PPE-61754', function () {
         contentTab.checkIn();
     });
 
-    it.skip('Verify Copyright- UK creation with all fields- PPE-113319 ,Verify Promote functionality on Copyright- UK Template-PPE-113323,Verify Power Promote functionality on Copyright- UK Template-PPE-113322,Verify Publish functionality on Copyright- UK Template-PPE-113320,Verify Expire functionality on Copyright- UK Template-PPE-113321,Verify Delete functionality on Copyright- UK Template-PPE-113330', function () {
+    it.skip('Verify Copyright- UK creation with all fields- PPE-113319 ,Verify Promote functionality on Copyright- UK Template-PPE-113323,Verify Power Promote functionality on Copyright- UK Template-PPE-113322,Verify Publish functionality on Copyright- UK Template-PPE-113320,Verify Expire functionality on Copyright- UK Template-PPE-113321,Verify Delete functionality on Copyright- UK Template-PPE-113330,Verify demote functionality on Copyright- UK Template-PPE-113326 ', function () {
         documentListTab.selectAsset(AssetTitle);
         cidName = propertiesTab.getChronicleIdAndTitle();
         objName = cidName.objectName;
@@ -99,27 +100,42 @@ describe('Copyright Template UK: PPE-61754', function () {
     });
 
 
-    it('Verify Data Dictionary validations on Copyright object-PPE-113331', function () {
+    it.skip('Verify Data Dictionary validations on Copyright object-PPE-113331', function () {
         test.SetAgentForDctmApi('http://DMWRS41D-CON-08.portal.webmd.com:8080/pbws/');
         var accessToken = test.GenerateApiAccessToken();
-        console.log(accessToken);
         var response = test.ExecuteDQLusingDCTMAPI(accessToken, "select i_chronicle_id, title from wbmd_company where any wbmd_site_only = '1006' and title != ' ' order by title");
-        console.log(response);
         documentListTab.selectAsset(AssetTitle);
         var j = 0;
         var dropdown = [];
         var dropdownUI = [];
         for (i = 0; j < response.length; i++ , j++) {
             dropdown.push(response[i][1].title);
-            console.log(dropdown);
         }
-        // dropdownUI.push(CopyrightTemplate.SQLCopyrightholderpropertiesValidation());
         var dropdownUI = CopyrightTemplate.SQLCopyrightholderpropertiesValidation();
-        var differencesUI = _.difference(dropdownUI, dropdown);
         var differencesAPI = _.difference(dropdown, dropdownUI);
-        console.log("EXTRA dropdown options present in the UI: " + differencesUI);
-        console.log("REQUIRED dropdown options not present in the UI: " + differencesAPI);
+        var requiredDD = "1";
+        expect(differencesAPI.length).to.equal.requiredDD;
+        var response2 = test.ExecuteDQLusingDCTMAPI(accessToken, "select i_chronicle_id, title from wbmd_person where any wbmd_person_role='7' and any wbmd_site_only = '1006' and title != ' ' order by title");
+        var n = 0;
+        var dropdown2 = [];
+        var dropdownUI2 = [];
+        for (i = 0; n < response2.length; i++ , n++) {
+            dropdown.push(response[i][1].title);
+        }
+        var dropdownUI2 = CopyrightTemplate.SQLLegalReviewerrpropertiesValidation();
+        var differencesAPI2 = _.difference(dropdown2, dropdownUI2);
+         var requiredDD2 = "1";
+        expect(differencesAPI2.length).to.equal.requiredDD2;
 
+    });
+      it('Verify Checkout and checkin functionality on Copyright- UK Template -  PPE-113318,Verify Copyright- UK creation with all fields- PPE-113319,Verify Cancel Checkout functionality on Copyright- UK Template-PPE-113325 ', function () {
+       browser.pause(10000);
+        findTab.findbyId("091e9c5e80330e29");
+        documentListTab.selectAsset("1996-2005 MedicineNet - UK");
+        contentTab.checkOut();
+        CopyrightTemplate.CopyrightStatementText("QATestCopyright");
+        browser.frameParent();
+        contentTab.checkIn();
     });
 
 

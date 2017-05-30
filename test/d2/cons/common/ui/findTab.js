@@ -15,6 +15,7 @@ module.exports = {
         browser.waitForVisible("//input[@placeholder='Enter text']");
         browser.setValue("//input[@placeholder='Enter text']",objChronicleId);
         browser.click("//span[contains(@class,'search')]");
+        browser.pause(2000);
     },
     findByText: function(objChronicleId){
         browser.waitForVisible("//input[@placeholder='Enter text']");

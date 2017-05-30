@@ -38,8 +38,14 @@ var CopyrightObj = {
      SQLCopyrightholderpropertiesValidation: function(){
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
-        return CopyrightUI.copyrightholderValidation()
-     }
+        return CopyrightUI.copyrightholderValidation();
+     },
+     SQLLegalReviewerrpropertiesValidation: function(){
+        return CopyrightUI.legalreviewerValidation();
+     },
+      copyright_Othertab_AttributesNames: function (){
+        CopyrightUI.copyright_Othertab_AttributesNames();
+      }
   
 }
 
