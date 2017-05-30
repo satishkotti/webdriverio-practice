@@ -1,6 +1,6 @@
 {
   "name": "webpage_test",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Webpage Tests",
   "main": "index.js",
   "scripts": {
@@ -36,7 +36,8 @@
     "xml2js": "^0.4.17",
     "deepmerge": "1.3.2",
     "randomstring": "1.1.5",
-    "moment-timezone": "^0.5.13"
+    "moment-timezone": "^0.5.13",
+	"supertest-as-promised":"4.0.2"
   },
   "directories": {
     "test": "test"
@@ -44,6 +45,11 @@
   "devDependencies": {
     "karma-expect": "^1.1.3",
     "wdio-allure-reporter": "^0.1.2",
-    "wdio-spec-reporter": "0.0.3"
+    "wdio-spec-reporter": "0.0.3",
+    "args": "^2.6.0",
+    "chalk": "^1.1.3",
+    "gulp-git": "^2.2.0",
+    "gulp-sequence": "^0.4.6",
+    "gulp-webdriver": "^1.0.3"
   }
 }

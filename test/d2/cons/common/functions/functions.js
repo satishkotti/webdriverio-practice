@@ -27,67 +27,36 @@ module.exports = {
 
 
     
-    SetAgentForDctmApi: function(agentBaseUrl){
+     SetAgentForDctmApi: function(agentBaseUrl){
 
-        d2api.SetAgent(agentBaseUrl);
-    },
-    GenerateApiAccessToken: function () {
-        var ticket;
-        browser.call(() => {
-            return d2api.GenerateAccessToken().then((response) => {
-                ticket = response.data.loginTicket;
-            });
+        d2api.SetAgent(agentBaseUrl);
+    },
+    GenerateApiAccessToken: function () {
+        var ticket;
+        browser.call(() => {
+            return d2api.GenerateAccessToken().then((response) => {
+                ticket = response.data.loginTicket;
+            });
 
-            browser.waitUntil(function () {
-                return ticket == undefined ? false : true;
-            },'Generating access token is taking longer than expected! Please increase timeouts if necessary and try again!', 500)
-        });
-        //console.log(ticket);
-        return ticket;
-    },
-    ExecuteDQLusingDCTMAPI: function (accessToken, dql) {
-        var response;
-        browser.call(() => {
-            return d2api.ExecuteDQLUsingApi(accessToken, dql).then((resp) => {
-                response = resp.data;
-            });
+            browser.waitUntil(function () {
+                return ticket == undefined ? false : true;
+            },'Generating access token is taking longer than expected! Please increase timeouts if necessary and try again!', 500)
+        });
+        //console.log(ticket);
+        return ticket;
+    },
+    ExecuteDQLusingDCTMAPI: function (accessToken, dql) {
+        var response;
+        browser.call(() => {
+            return d2api.ExecuteDQLUsingApi(accessToken, dql).then((resp) => {
+                response = resp.data;
+            });
 
-            browser.waitUntil(function () {
-                return response == undefined ? false : true;
-            },'Executing DQL is taking longer than expected! Please increase timeouts if necessary and try again!', 500)
-        });
-        //console.log(response);
-        return response;
-    },
-    getDataApiUrl: function() {
-        return global.envSettings.dctmApiConfig.url;
-    }, 
-    GenerateUSApiAccessToken: function () {
-        var ticket;
-        browser.call(() => {
-            return d2api.GenerateAccessToken().then((response) => {
-                ticket = response.data.loginTicket;
-            });
-
-            browser.waitUntil(function () {
-                return ticket == undefined ? false : true;
-            },'Generating access token is taking longer than expected! Please increase timeouts if necessary and try again!', 500)
-        });
-        //console.log(ticket);
-        return ticket;
-    },
-    ExecuteUSDQLusingDCTMAPI: function (accessToken, dql) {
-        var response;
-        browser.call(() => {
-            return d2api.ExecuteDQLUsingApi(accessToken, dql).then((resp) => {
-                response = resp.data;
-            });
-
-            browser.waitUntil(function () {
-                return response == undefined ? false : true;
-            },'Executing DQL is taking longer than expected! Please increase timeouts if necessary and try again!', 500)
-        });
-        //console.log(response);
-        return response;
-    },
+            browser.waitUntil(function () {
+                return response == undefined ? false : true;
+            },'Executing DQL is taking longer than expected! Please increase timeouts if necessary and try again!', 500)
+        });
+        //console.log(response);
+        return response;
+    }
 }

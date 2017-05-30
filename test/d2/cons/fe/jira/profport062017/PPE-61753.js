@@ -12,7 +12,7 @@ var CopyrightTemplate = require('./../../../common/actions/CopyrightTemplate.act
 var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
 var randomstring = require("randomstring");
 
-describe('Regression', function () {
+describe('Copyright Template US', function () {
 
     var chronicleId;
     var AssetTitle;
@@ -31,8 +31,8 @@ describe('Regression', function () {
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
-            global.d2ConDataSettings.inputData.ArticleProfileName,
-            global.d2ConDataSettings.inputData.ArticleTemplate,
+            global.d2ConDataSettings.inputData.USCopyrightArticlePName,
+            global.d2ConDataSettings.inputData.CopyrightArticleTemplate,
             AssetTitle,
             AssetName);        
     });
@@ -41,18 +41,19 @@ describe('Regression', function () {
      it('Verify the checkout , cancel and checkin operation', function () {
         documentListTab.selectAsset(AssetTitle);
         contentTab.checkOut();
-        contentTab.cancel();
-        contentTab.checkOut();
+        //contentTab.cancel();
+        //contentTab.checkOut();
+        browser.frameParent();
         contentTab.checkIn();
     });
 
-    it.skip('Verify the Mandatory fields, promote, demote and power promote', function () {
+    it('Verify the Mandatory fields and power promote', function () {
         documentListTab.selectAsset(AssetTitle);
-        cidName = propertiesTab.getChronicleIdAndName();
-        objName = cidName.objectName;
+        cidName = CopyrightTemplate.CpygetChronicleIdAndName();
         chronicleId = cidName.chronicleId;
-        CopyrightTemplate.setRequiredPropertiesCpyRights(objName, 'WebMD', 'QA_TestPerson1234');
-        CopyrightTemplate.setRequiredPropertiesOthers('Testsubjct', 'en_US');
+        CopyrightTemplate.setRequiredPropertiesCpyRights(AssetTitle, 'WebMD', 'QA_TestPerson1234');
+        // CopyrightTemplate.setRequiredPropertiesPublishngTab();
+        // CopyrightTemplate.setRequiredPropertiesOthers('Testsubjct', 'en_US');
         contentTab.checkOut();
         CopyrightTemplate.CopyrightStatementText(CopyrightStatementText);
         browser.frameParent();
@@ -90,25 +91,18 @@ describe('Regression', function () {
 
 
 
-     it.skip('Should verify the data dictionary validations on  PropertiesTab  PPE-113311', function () {
+     it('Should verify the data dictionary validations on  PropertiesTab  PPE-113311', function () {
+        documentListTab.selectAsset(AssetTitle);
         var response;
-        functions.SetAgentForDctmApi(functions.getDataApiUrl());
+        functions.SetAgentForDctmApi("http://DMWRS41D-CON-08.portal.webmd.com:8080/pbws/");
         var accessToken = functions.GenerateApiAccessToken();
-        response = functions.ExecuteDQLusingDCTMAPI(accessToken,DQLQuery);
-        var j=0;
-        for(i=0; j < response.length; i++,j++){
-            if(i==0)
-                 metaobj.VerifyDropdownlistVal("wbmd_copyright_holder-input",response[i][1].wbmd_disp_nm);
-           
-        }
+        response = functions.ExecuteDQLusingDCTMAPI(accessToken,"select i_chronicle_id, title from wbmd_company where any wbmd_site_only = '1001' and title != ' ' order by title");
+        CopyrightTemplate.VerifyDropdownlistVal("wbmd_copyright_holder-input",response);
         
-        response = functions.ExecuteDQLusingDCTMAPI(accessToken,DQLQuery);
-        j=0;
-        for(i=0; j < response.length; i++,j++){
-            if(i==0)
-                metaobj.VerifyDropdownlistVal("wbmd_legal_revr-input",response[i][1].wbmd_disp_nm);
+        response = functions.ExecuteDQLusingDCTMAPI(accessToken,"select i_chronicle_id, title from wbmd_person where any wbmd_person_role='7' and any wbmd_site_only = '1001' and title != ' ' order by title");
+        CopyrightTemplate.VerifyDropdownlistVal("wbmd_legal_revr-input",response);
            
-        }
+        
 
 
            

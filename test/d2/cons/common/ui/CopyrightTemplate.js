@@ -1,5 +1,5 @@
 var maxWaitTimeInMs = 50000;
-var CopyrightStatementSelector = ".form-control.ng-pristine.ng-valid.ng-scope.ng-touched";
+var CopyrightStatementSelector = "div > input.form-control.ng-pristine.ng-untouched.ng-valid.ng-scope";
 
 var Helper = require('./../functions/functions');
 
@@ -37,26 +37,33 @@ var CopyrightTabUIObj = {
         return browser.getValue("wbmd_legal_revr-input");
     },
     CopyrightStartDateSet: function(){
-          browser.click("//div[@id='#wbmd_copyright_strt_dt']/img");
+          browser.click("//div[@id='wbmd_copyright_strt_dt']/img");
           browser.waitForVisible("//button[contains(.,'Now')]");
           browser.click("//button[contains(.,'Now')]");
           browser.pause(1000);
     },
     CopyrightEndDateSet: function(){
-          browser.click("//div[@id='#wbmd_copyright_end_dt']/img");
+          browser.click("//div[@id='wbmd_copyright_end_dt']/img");
           browser.waitForVisible("//button[contains(.,'Now')]");
           browser.click("//button[contains(.,'Now')]");
           browser.pause(1000);
     },
     LegalReviewDateSet: function(){
-          browser.click("//div[@id='#wbmd_legal_revw_dt']/img");
+          browser.click("//div[@id='wbmd_legal_revw_dt']/img");
           browser.waitForVisible("//button[contains(.,'Now')]");
           browser.click("//button[contains(.,'Now')]");
           browser.pause(1000);
     },
 
-     RetentionDateSet: function(){
-          browser.click("//div[@id='#a_retention_date']/img");
+     EfectiveDateSet: function(){
+          browser.click("//div[@id='wbmd_eff_date']/img");
+          browser.waitForVisible("//button[contains(.,'Now')]");
+          browser.click("//button[contains(.,'Now')]");
+          browser.pause(1000);
+    },
+
+     ExpirationDateSet: function(){
+          browser.click("//div[@id='wbmd_exp_date']/img");
           browser.waitForVisible("//button[contains(.,'Now')]");
           browser.click("//button[contains(.,'Now')]");
           browser.pause(1000);
@@ -121,16 +128,23 @@ var CopyrightTabUIObj = {
         return browser.getValue("input#r_object_type");
     },
    
-    
-    publishingTabSelect: function(){
-        browser.click("//span[@text()='Publishing']")
+
+     publishingTabSelect: function(){
+        
+        browser.click("//span/span[contains(.,'Publishing')]");
+        browser.pause(1000);
     },
     otherTabSelect: function(){
-        browser.click("//span[@text()='Other']")
+        browser.click("//span/span[contains(.,'Other')]")
     },
-    dropdownlistSelect: function(ddlocator,data){
+    dropdownlistSelect: function(ddlocator){
+        var drpdwnvalues;
+        browser.setValue("//input[@id='"+ddlocator+"']","");
+        browser.pause(1000);
         browser.click("//input[@id='"+ddlocator+"']//following-sibling::img");
-        browser.waitForVisible("//div[@title='"+data+"']",maxWaitTimeInMs);
+        drpdwnvalues=browser.getText("//div[@class='x-combo-list-item ']");
+        return drpdwnvalues;
+
     },
     verifyValue: function(data){
         var isExisting;

@@ -7,6 +7,14 @@ var CopyrightObj = {
         contentTabUI.switchToExternalWidgetFrame();
         CopyrightUI.CopyrightStatementSetValue(Textvalue);
     },
+
+     CpygetChronicleIdAndName: function(){
+        propertiesTabUI.propertiesTabSelect();
+        return {
+            chronicleId: propertiesTabUI.chronicleIdGet()
+           
+        };
+    },
   setRequiredPropertiesCpyRights: function(Titlaval,Cpyrghthldr,Lglrvwrset){
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
@@ -16,26 +24,40 @@ var CopyrightObj = {
         CopyrightUI.CopyrightStartDateSet();
         CopyrightUI.CopyrightEndDateSet();
         CopyrightUI.LegalReviewDateSet();
-        CopyrightUI.publishingTabSelect();
-        CopyrightUI.RetentionDateSet();
         propertiesTabUI.save();
     },
 
-     setRequiredPropertiesOthr: function(subject,languge_code){
+     setRequiredPropertiesPublishngTab: function(){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        CopyrightUI.publishingTabSelect();
+        CopyrightUI.EfectiveDateSet();
+        CopyrightUI.ExpirationDateSet();
+        propertiesTabUI.save();
+    },
+        
+     setRequiredPropertiesOthers: function(subject,languge_code){
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
         CopyrightUI.otherTabSelect();
-        CopyrightUI.TitleSet(subject);
-        CopyrightUI.CopyrightHolderSet(languge_code);
+        CopyrightUI.SubjectSet(subject);
+        CopyrightUI.LanguagecodeSet(languge_code);
         propertiesTabUI.save();
     },
 
-    VerifyDropdownlistVal: function(Selector,responseval){
+    VerifyDropdownlistVal: function(Selector,response)
+    {
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
-        CopyrightUI.dropdownlistSelect(Selector,responseval);
-        if (!responseval.includes("/"))
-             expect(CopyrightUI.verifyValue(responseval)).to.be.true;
+         var existingval= CopyrightUI.dropdownlistSelect(Selector);
+
+         for(i=0; i < response.length; i++)
+        {
+         expect(existingval[i]).to.equal(response[i][1].title);
+        }
+    
+    
+       
         propertiesTabUI.cancelEdit();
 
     }
