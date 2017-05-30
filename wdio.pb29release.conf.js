@@ -5,11 +5,11 @@ var wdioConf = require('./wdio.conf.js');
 exports.config = merge(wdioConf.config, {
 
     debug: false,
-    specs: ['./test/pb2/**/PPE-101669.js', ],
-    waitforTimeout: 120000,
+    specs: ['./test/pb2/**/PPE-81172.js', ],
+    waitforTimeout: 1200000,
     mochaOpts: {
         ui: 'bdd',
-        timeout: 900000
+        timeout: 9000000
     },
     capabilities: [{
         maxInstances: 1,
@@ -81,6 +81,7 @@ exports.config = merge(wdioConf.config, {
         var appConfigFile = require('./test/pb2/config/test.config');
         var appConfig = appConfigFile.config;
         global.testEnv = appConfig.testEnv.dev03;
+        global.testapiurl= 'http://redirect.' + global.testEnv + '.webmd.com/api/redirect/'    
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
