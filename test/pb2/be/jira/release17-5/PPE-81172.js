@@ -522,8 +522,6 @@ describe('PPE-81172:Create Redirect on Urls', () => {
 
 
                 })
-
-
                 .then(function () {
                     return manualRedirectSqlService.CreateByURLDeletedPage()
                 })
@@ -1122,4 +1120,128 @@ describe('PPE-81172:Replace To ChronicleID for All', () => {
     });
 });
 
+describe('PPE-81172:Delete One or more (mark Deletd by id)', () => {
 
+    var Delete_OneBogusID = {};
+    var OneBogusID = {};
+    var _OneBogusID = {};
+
+    var Delete_MultipleBogusID = {};
+    var MultipleBogusID = {};
+    var _MultipleBogusID = {};
+
+    var Delete_OneValidID = {};
+    var OneValidID = {};
+    var _OneValidID = {};
+
+    var Delete_TwoValidIDS = {};
+    var TwoValidIDS = {};
+    var _TwoValidIDS = {};
+
+    var Delete_OneValidIDandoneBogusID = {};
+    var OneValidIDandoneBogusID = {};
+    var _OneValidIDandoneBogusID = {};
+
+
+    before(() => {
+
+        return Promise.resolve
+            (
+            manualRedirectSqlService.OneBogusID().then(function (records) {
+
+                _OneBogusID = {
+
+                    Ids: [records[0].Id1, records[0].Id2]
+
+                };
+
+            })
+                .then(function () {
+                    return manualRedirectSqlService.MultipleBogusID()
+                })
+                .then(function (records) {
+                    _MultipleBogusID = {
+
+                        Ids: [records[0].Id1, records[0].Id2]
+
+                    };
+
+                })
+                .then(function () {
+                    return manualRedirectSqlService.OneValidID()
+                })
+                .then(function (records) {
+                    _OneValidID = {
+
+                        Ids: [records[0].Id1, records[0].Id2]
+
+                    };
+                })
+                .then(function () {
+                    return manualRedirectSqlService.TwoValidIDS()
+                })
+                .then(function (records) {
+                    _TwoValidIDS = {
+
+                        Ids: [records[0].Id1, records[0].Id2]
+
+                    };
+
+                })
+                .then(function () {
+                    return manualRedirectSqlService.OneValidIDandoneBogusID()
+                })
+                .then(function (records) {
+                    _OneValidIDandoneBogusID = {
+
+                        Ids: [records[0].Id1, records[0].Id2]
+
+                    };
+
+                })
+
+
+            );
+
+    });
+
+    describe('Delete One or more (mark Deletd by id)', () => {
+        it('Get the Results from Api', () => {
+
+
+            Delete_OneBogusID = test.DeleteResult(testAssetProps.Delete_One_or_more, _OneBogusID);
+            Delete_MultipleBogusID = test.DeleteResult(testAssetProps.Delete_One_or_more, _MultipleBogusID);
+            Delete_OneValidID = test.DeleteResult(testAssetProps.Delete_One_or_more, _OneValidID);
+            Delete_TwoValidIDS = test.DeleteResult(testAssetProps.Delete_One_or_more, _TwoValidIDS);
+            Delete_OneValidIDandoneBogusID = test.DeleteResult(testAssetProps.Delete_One_or_more, _OneValidIDandoneBogusID);
+
+        });
+
+        it('1)Verify Invalid Manual Redirect ID: | Invalid Manual Redirect ID: ', () => {
+            console.log(Delete_OneBogusID.body.Message);
+            expect(Delete_OneBogusID.body.StatusCode).to.not.equal(1);
+
+        });
+        it('2)Verify Invalid Manual Redirect ID: | Invalid Manual Redirect ID:', () => {
+            console.log(Delete_MultipleBogusID.body.Message);
+            expect(Delete_MultipleBogusID.body.StatusCode).to.not.equal(1);
+
+        });
+        it('3)Verify Delete - One Valid ID', () => {
+            console.log(Delete_OneValidID.body.Message);
+            expect(Delete_OneValidID.body.StatusCode).to.equal(2);
+
+        });
+        it('4)Verify Delete - Two Valid IDS', () => {
+            console.log(Delete_TwoValidIDS.body.Message);
+            expect(Delete_TwoValidIDS.body.StatusCode).to.equal(1);
+
+        });
+        it('5)Verify Delete - One Valid ID and one Bogus ID', () => {
+            console.log(Delete_OneValidIDandoneBogusID.body.Message);
+            expect(Delete_OneValidIDandoneBogusID.body.StatusCode).to.equal(2);
+
+        });
+
+    });
+});

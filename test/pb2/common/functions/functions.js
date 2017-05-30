@@ -410,14 +410,14 @@ module.exports.NavigateToRedirectTool = () => {
 module.exports.GetResult = (param) => {
 
 
-    apiUrl = global.testapiurl + param; 
+    apiUrl = global.testapiurl + param;
 
     var response;
     browser.call(() => {
         return Promise.resolve(redirect.GetResultsApi(apiUrl, null)
             .then(function (result) {
                 response = result;
-               console.log(response.body);
+                console.log(response.body);
             }).catch(err => {
                 console.log(err);
             }));
@@ -427,12 +427,12 @@ module.exports.GetResult = (param) => {
 }
 
 
-module.exports.PostResult = (appendurl,apiparameters) => {
+module.exports.PostResult = (appendurl, apiparameters) => {
 
     apiUrl = global.testapiurl + appendurl;
     var response;
     browser.call(() => {
-        return Promise.resolve(redirect.PostResultsApi(apiUrl, null,apiparameters)
+        return Promise.resolve(redirect.PostResultsApi(apiUrl, null, apiparameters)
             .then(function (result) {
                 response = result;
                 console.log(response.body);
@@ -444,12 +444,12 @@ module.exports.PostResult = (appendurl,apiparameters) => {
 
 }
 
-module.exports.PutResult = (appendurl,apiparameters) => {
+module.exports.PutResult = (appendurl, apiparameters) => {
 
-    apiUrl = global.testapiurl + appendurl; 
+    apiUrl = global.testapiurl + appendurl;
     var response;
     browser.call(() => {
-        return Promise.resolve(redirect.PutResultsApi(apiUrl, null,apiparameters)
+        return Promise.resolve(redirect.PutResultsApi(apiUrl, null, apiparameters)
             .then(function (result) {
                 response = result;
                 console.log(response.body);
@@ -461,12 +461,12 @@ module.exports.PutResult = (appendurl,apiparameters) => {
 
 }
 
-module.exports.DeleteResult = (appendurl,apiparameters) => {
+module.exports.DeleteResult = (appendurl, apiparameters) => {
 
-    apiUrl = global.testapiurl + appendurl; 
+    apiUrl = global.testapiurl + appendurl;
     var response;
     browser.call(() => {
-        return Promise.resolve(redirect.DeleteResultsApi(aapiUrl, null,apiparameters)
+        return Promise.resolve(redirect.DeleteResultsApi(apiUrl, null, apiparameters)
             .then(function (result) {
                 response = result;
                 console.log(response.body);

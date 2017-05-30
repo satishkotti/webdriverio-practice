@@ -8,7 +8,7 @@ var smTestData = require('./../../config/api.config');
 
 var USERNAME = global.username
 var testAssetProps = smTestData.ApiTestData;
-var testurl=global.testapiurl
+var testurl = global.testapiurl
 var jsonData = {};
 
 
@@ -48,11 +48,11 @@ Redirectapi.prototype.GetResultsApi = function GetResultsApi(url, options) {
 };
 
 
-Redirectapi.prototype.PostResultsApi = function PostResultsApi(url, options,apiparameters) {
+Redirectapi.prototype.PostResultsApi = function PostResultsApi(url, options, apiparameters) {
 
 
     switch (url) {
-        case testurl + testAssetProps.Create_Redirect_on_Urls: jsonData =  apiparameters[0]; break;
+        case testurl + testAssetProps.Create_Redirect_on_Urls: jsonData = apiparameters[0]; break;
         case testurl + testAssetProps.Create_Redirect_on_ChronicleIDS: jsonData = apiparameters[0]; break;
     }
 
@@ -88,8 +88,8 @@ Redirectapi.prototype.PostResultsApi = function PostResultsApi(url, options,apip
     });
 };
 
-Redirectapi.prototype.PutResultsApi = function PutResultsApi(url, options,apiparameters) {
- 
+Redirectapi.prototype.PutResultsApi = function PutResultsApi(url, options, apiparameters) {
+
     switch (url) {
         case testurl + testAssetProps.Update_To_Url: jsonData = apiparameters[0]; break;
         case testurl + testAssetProps.Replace_To_ChronicleID_for_All: jsonData = apiparameters[0]; break;
@@ -127,9 +127,9 @@ Redirectapi.prototype.PutResultsApi = function PutResultsApi(url, options,apipar
     });
 };
 
-Redirectapi.prototype.DeleteResultsApi = function DeleteResultsApi(url, options,apiparameters) {
+Redirectapi.prototype.DeleteResultsApi = function DeleteResultsApi(url, options, apiparameters) {
 
-     var jsonData = {};
+    var jsonData = {};
 
     switch (url) {
         case testurl + testAssetProps.Delete_One_or_more: jsonData = apiparameters; break;
