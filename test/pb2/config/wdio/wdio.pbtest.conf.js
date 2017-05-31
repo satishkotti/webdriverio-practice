@@ -1,5 +1,5 @@
 var merge = require('deepmerge');
-var wdioConf = require('./wdio.conf.js');
+var wdioConf = require('./../../../../wdio.conf.js');
 
 // have main config file as default but overwrite environment specific information
 exports.config = merge(wdioConf.config, {
@@ -44,9 +44,9 @@ exports.config = merge(wdioConf.config, {
         should = chai.should();
         _ = require('lodash');
 
-        var appConfigFile = require('./test/pb2/config/test.config');
+        var appConfigFile = require('./../test.config');
         var appConfig = appConfigFile.config;
-        global.testEnv = appConfig.testEnv.qa;
+        global.testEnv = appConfig.testEnv.dev03;
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;

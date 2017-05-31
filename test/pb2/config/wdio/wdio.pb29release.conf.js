@@ -1,11 +1,11 @@
 var merge = require('deepmerge');
-var wdioConf = require('./wdio.conf.js');
+var wdioConf = require('./../../../../wdio.conf.js');
 
 // have main config file as default but overwrite environment specific information
 exports.config = merge(wdioConf.config, {
 
     debug: false,
-    specs: ['./test/pb2/**/PPE-101669.js', ],
+    specs: [],
     waitforTimeout: 120000,
     mochaOpts: {
         ui: 'bdd',
@@ -15,7 +15,6 @@ exports.config = merge(wdioConf.config, {
         maxInstances: 1,
         browserName: 'chrome',
         chromeOptions:
-        //args: ['window-size=1920,1080']
         {
             "args": [
                 "start-maximized",
@@ -28,6 +27,7 @@ exports.config = merge(wdioConf.config, {
                 "no-experiments",
                 "no-service-autorun",
                 "disable-infobars"
+                //'window-size=1920,1080'
             ],
             "prefs": {
                 "credentials_enable_service": false,
@@ -79,7 +79,7 @@ exports.config = merge(wdioConf.config, {
         should = chai.should();
         _ = require('lodash');
 
-        var appConfigFile = require('./test/pb2/config/test.config');
+        var appConfigFile = require('./../release29.config');
         var appConfig = appConfigFile.config;
         global.testEnv = appConfig.testEnv.dev03;
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
