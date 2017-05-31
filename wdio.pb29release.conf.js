@@ -5,8 +5,8 @@ var wdioConf = require('./wdio.conf.js');
 exports.config = merge(wdioConf.config, {
 
     debug: false,
-    specs: ['./test/pb2/**/PPE-81172.js', ],
-    waitforTimeout: 1200000,
+    specs: [],
+    waitforTimeout: 120000,
     mochaOpts: {
         ui: 'bdd',
         timeout: 9000000
