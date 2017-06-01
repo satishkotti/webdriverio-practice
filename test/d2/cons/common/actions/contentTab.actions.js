@@ -80,5 +80,9 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.cancelCheckout();
     },
+    contentHeaderGet:function()
+    {
+        return contentTabUI.contentHeaderGet();
+    },
 }
 module.exports = contentTabObj;

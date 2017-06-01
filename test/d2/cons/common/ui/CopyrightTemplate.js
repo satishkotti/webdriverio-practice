@@ -150,6 +150,8 @@ var CopyrightTabUIObj = {
         browser.waitForVisible("//div[@role='listitem']");
         var contenttype= browser.getText("//div[@role='listitem']");
         browser.click("//div[@id='wbmd_legal_revr']/img");
+        browser.click("//button[contains(.,'Cancel Edit')]");
+        browser.pause(2000);
         return contenttype;
     },
         copyright_Othertab_AttributesNames: function () {
@@ -190,6 +192,17 @@ var CopyrightTabUIObj = {
         expect(lastReviewDate).to.be.true;
         var accessed = browser.isExisting("//label[string()='Last Accessed On:']");
         expect(accessed).to.be.true;
+    },
+    copyrightPublicationFieldEdit: function(AssetName){
+        browser.waitForVisible("#i_chronicle_id");
+        browser.waitForVisible("//div[label[@for='wbmd_publ_cpyrt_id']]//div[@id='assistance']");
+        browser.click("//div[label[@for='wbmd_publ_cpyrt_id']]//div[@id='assistance']");
+        browser.pause(2000);
+        browser.waitForVisible("//input[@id='assistance-input-input']");
+        browser.setValue("//input[@id='assistance-input-input']",AssetName);
+        browser.waitForVisible("//div[@id='"+AssetName+"']");
+        browser.doubleClick("//div[@id='"+AssetName+"']");
+        browser.click("//button[contains(.,'OK') and @aria-disabled=not('false')]")
     },
 
 

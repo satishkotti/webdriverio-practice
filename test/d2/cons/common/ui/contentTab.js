@@ -9,6 +9,8 @@ var checkInButonSelector = "//button[contains(string(),'Check-in')]";
 var contentTabSelector = "//span[text()='Content']";
 var contentPaneFrameSelector = "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
 var Helper = require('./../functions/functions');
+var contentHeader="//div[@class='container']//center[@class='ng-binding']";
+
 
 var contentTabUIObj = {
     switchToMainFrame: function(){
@@ -192,6 +194,20 @@ var contentTabUIObj = {
         browser.click("//button[contains(string(),'Cancel')]");
         browser.frameParent();
     },
+    contentHeaderGet:function()
+    {
+        contentTabUIObj.switchToExternalWidgetFrame();
+        browser.waitForVisible(contentHeader,maxWaitTimeInMs);
+        var result=browser.getText(contentHeader);
+        browser.frameParent();
+        return result;
+
+    },
+     switchToExternalWidgetFrame: function(){
+       // browser.frame();
+        var contentWidgetIFrameElement = browser.element(contentPaneFrameSelector);
+        browser.frame(contentWidgetIFrameElement.value);
+    }
 
 }
 

@@ -29,7 +29,7 @@ var CopyrightObj = {
         CopyrightUI.CopyrightHolderSet(languge_code);
         propertiesTabUI.save();
     },
-     setRequiredPropertiesCpyRights: function(){
+     validateRequiredPropertiesCpyRights: function(){
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
        propertiesTabUI.save();
@@ -45,6 +45,14 @@ var CopyrightObj = {
      },
       copyright_Othertab_AttributesNames: function (){
         CopyrightUI.copyright_Othertab_AttributesNames();
+      },
+
+      copyrightPublicationModify: function(AssetName){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        CopyrightUI.copyrightPublicationFieldEdit(AssetName);
+        propertiesTabUI.save();
+
       }
   
 }

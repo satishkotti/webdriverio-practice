@@ -158,6 +158,15 @@ module.exports = {
     objectTitleGet: function(){
         return browser.getValue("input#title-input");
     },
-    
+     publishingTabSelect: function(){
+        browser.click("//span//span[contains(.,'Publishing')]");
+    },
+      systemPublishingDateSet:function(textValue){
+         browser.setValue("#wbmd_eff_date-input",textValue);
+    },
+     expirationDateSet:function(textValue){
+         return browser.setValue("#wbmd_exp_date-input",textValue);
+    },
+
 }
 
