@@ -315,7 +315,8 @@ module.exports.testSettings = {
             "jsAsset2Compare_uk":"webmd.m.slideshowDynamic.js - ( Ver. 3.1)",
              "jsCompareAttribute_uk": "7 differences",
              "jsCompareContent_uk":"Has differences",
-             "jsComparerendition_uk":"Matches"
+             "jsComparerendition_uk":"Matches",
+             "DeleteAllversions":"Delete all versions" 
 
         }      
     }

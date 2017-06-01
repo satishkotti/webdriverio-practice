@@ -65,6 +65,8 @@ describe('Copyright Template US', function () {
         browser.frameParent();
         contentTab.checkIn();
         documentListTab.selectAsset(AssetTitle);
+        documentListTab.promoteAsset(AssetTitle);
+        documentListTab.demoteAsset(AssetTitle);
         documentListTab.powerPromoteAsset(AssetTitle);
         documentListTab.publishAssetToStaging(AssetTitle);
         browser.pause(5000);
@@ -107,12 +109,17 @@ describe('Copyright Template US', function () {
         
         response = functions.ExecuteDQLusingDCTMAPI(accessToken,"select i_chronicle_id, title from wbmd_person where any wbmd_person_role='7' and any wbmd_site_only = '1001' and title != ' ' order by title");
         CopyrightTemplate.VerifyDropdownlistVal("wbmd_legal_revr-input",response);
-           
-        
-
-
-           
-
+      
     });
+
+    it.skip('Should Verify Expire functionality on Copyright- US Template PPE-113302 and PPE-113310 Should Verify Delete functionality on Copyright- US Template', function () {
+        documentListTab.selectAsset(AssetTitle);
+        documentListTab.powerPromoteAsset(AssetTitle);
+        documentListTab.expireAsset(AssetTitle);
+        documentListTab.deleteArticle(objName,global.d2ConDataSettings.inputData.DeleteAllversions);
+        browser.pause(5000)
+        documentListTab.searchArticle(chronicleId);
+    });
+
     
 });
