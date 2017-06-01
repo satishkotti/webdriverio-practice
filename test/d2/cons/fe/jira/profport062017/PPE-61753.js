@@ -37,17 +37,23 @@ describe('Copyright Template US', function () {
             AssetName);        
     });
 
+     it('Verify Copyright- US creation with only mandatory fields- PPE-113296 ,Verify the error messages when mandatory fields are left blank for Copyright- US Template - PPE-113297', function () {
+        documentListTab.selectAsset(AssetTitle);
+        CopyrightTemplate.copyrightMandatoryfieldsValidation();
+        CopyrightTemplate.copyright_Othertab_AttributesNames();
+    });
+
     
-     it('Verify the checkout , cancel and checkin operation', function () {
+     it.skip('Verify the checkout , cancel and checkin operation', function () {
         documentListTab.selectAsset(AssetTitle);
         contentTab.checkOut();
-        //contentTab.cancel();
-        //contentTab.checkOut();
+        contentTab.cancel();
+        contentTab.checkOut();
         browser.frameParent();
         contentTab.checkIn();
     });
 
-    it('Verify the Mandatory fields and power promote', function () {
+    it.skip('Verify the Mandatory fields and power promote', function () {
         documentListTab.selectAsset(AssetTitle);
         cidName = CopyrightTemplate.CpygetChronicleIdAndName();
         chronicleId = cidName.chronicleId;

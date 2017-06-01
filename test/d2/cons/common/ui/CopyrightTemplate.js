@@ -152,8 +152,50 @@ var CopyrightTabUIObj = {
        return isExisting;
     },
 
+    copyrightMandatoryfieldsValidation: function(){
+          var copyrightHolder =browser.isExisting("//span[contains(.,'Copyright Holder')]");
+          expect(copyrightHolder).to.be.true;
+          browser.click("//button[contains(.,'OK') and @aria-disabled=not('false')]");
+          browser.click("//button[contains(.,'Cancel Edit')]");
+    },
 
-    
+        copyright_Othertab_AttributesNames: function () {
+        browser.click("//span/span[string()='Other']");
+        var subject = browser.isExisting("//label[string()='Subject:']");
+        expect(subject).to.be.true;
+        var language = browser.isExisting("//label[string()='Language / Locale:']");
+        expect(language).to.be.true;
+        var status = browser.isExisting("//label[string()='Status:']");
+        expect(status).to.be.true;
+        var author = browser.isExisting("//label[string()='Authors:']");
+        expect(author).to.be.true;
+        var versionlabel = browser.isExisting("//label[string()='Version Label:']");
+        expect(versionlabel).to.be.true;
+        var modified = browser.isExisting("//label[string()='Modified:']");
+        expect(modified).to.be.true;
+        var modifiedby = browser.isExisting("//label[string()='Modified By:']");
+        expect(modifiedby).to.be.true;
+        var created = browser.isExisting("//label[string()='Created:']");
+        expect(created).to.be.true;
+        var creatorName = browser.isExisting("//label[string()='Creator Name:']");
+        expect(creatorName).to.be.true;
+        var checkoutDate = browser.isExisting("//label[string()='Checkout Date:']");
+        expect(checkoutDate).to.be.true;
+        var checkedOutBy = browser.isExisting("//label[string()='Checked Out By:']");
+        expect(checkedOutBy).to.be.true;
+        var ownerName = browser.isExisting("//label[string()='Owner:']");
+        expect(ownerName).to.be.true;
+        var type = browser.isExisting("//label[string()='Type:']");
+        expect(type).to.be.true;
+        var format = browser.isExisting("//label[string()='Format:']");
+        expect(format).to.be.true;
+        var fullContentSize = browser.isExisting("//label[string()='Full Content Size:']");
+        expect(fullContentSize).to.be.true;
+        var lastReviewDate = browser.isExisting("//label[string()='Last Reviewed On:']");
+        expect(lastReviewDate).to.be.true;
+        var accessed = browser.isExisting("//label[string()='Last Accessed On:']");
+        expect(accessed).to.be.true;
+    }
 
 }
 

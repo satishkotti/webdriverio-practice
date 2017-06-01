@@ -15,6 +15,17 @@ var CopyrightObj = {
            
         };
     },
+copyrightMandatoryfieldsValidation: function(){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+       propertiesTabUI.save();
+       CopyrightUI.copyrightMandatoryfieldsValidation();
+    },  
+
+    copyright_Othertab_AttributesNames: function (){
+        CopyrightUI.copyright_Othertab_AttributesNames();
+      },
+
   setRequiredPropertiesCpyRights: function(Titlaval,Cpyrghthldr,Lglrvwrset){
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
