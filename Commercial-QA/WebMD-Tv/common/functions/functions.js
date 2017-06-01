@@ -50,6 +50,13 @@ module.exports = {
       console.log('Element with selector: ' + objElement.selector + ' is not displayed');
     }
   },
+  get_LocationInView: function (objElement) {
+    try {
+      return (objElement.getLocationInView());
+    } catch (error) {
+      console.log('Element with selector: ' + objElement.selector + ' is not displayed');
+    }
+  },
   is_Existing: function (objElement) {
     try {
       return (objElement.isExisting());
@@ -87,4 +94,23 @@ module.exports = {
       console.log('Element height property can not be determined')
     }
   },
+ 
+cssProperties: function (objElement) {
+    var properties = [];
+    var fontSize = (objElement.getCssProperty('font-size').value);
+    properties['fontSize']=  fontSize ;
+    var fontColor = (objElement.getCssProperty('color').parsed.hex);
+    properties['fontColor'] =  fontColor ;
+    var fontFamily = (objElement.getCssProperty('font-family').value);
+    properties['fontFamily'] =  fontFamily;
+    var height = (objElement.getCssProperty('height').value);
+    properties['height'] = height;
+    var width = (objElement.getCssProperty('width').value);
+    properties['width'] = width;
+    var backgroundcolor = (objElement.getCssProperty('background').parsed.hex);
+    properties['backgroundcolor'] = backgroundcolor;
+    return properties;
+  },
+
+
 }

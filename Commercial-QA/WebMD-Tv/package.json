@@ -1,0 +1,39 @@
+{
+  "name": "Community_API_Tests",
+  "version": "0.0.0",
+  "description": "This File contains all the dependencies to test Community_API",
+  "main": "index.js",
+  "dependencies": {
+    "JSONPath": "^0.11.2",
+    "appium": "^1.6.4",
+    "chai": "^3.5.0",
+    "child-process": "^1.0.2",
+    "leche": "^2.1.2",
+    "mocha": "^2.5.3",
+    "mocha-parallel-tests": "^1.2.3",
+    "mochawesome": "^1.5.3",
+    "netstat": "0.0.2",
+    "path": "^0.12.7",
+    "q": "^1.4.1",
+    "should": "^11.1.0",
+    "supertest": "^2.0.0",
+    "wdio-appium-service": "^0.2.3",
+    "yargs": "^5.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.5.3",
+    "mocha-parallel-tests": "^1.2.3",
+    "wdio-appium-service": "^0.2.3"
+  },
+  "scripts": {
+    "staging": "node_modules\\.bin\\wdio wdio.conf.js --env=staging",
+    "preview": "node_modules\\.bin\\wdio wdio.conf.js --env=preview",
+    "Mobile": "node_modules\\.bin\\wdio wdio.confmob.js",
+    "clean": "rimraf ./allure-results",
+    "pretest": "npm run clean",
+    "report": "allure generate allure-results -o allure-report && allure report open -o allure-report",
+    "runTest": "gulp runTest"
+  },
+  "author": "Sasank",
+  "license": "ISC"
+}
