@@ -64,7 +64,7 @@ copyrightMandatoryfieldsValidation: function(){
 
          for(i=0; i < response.length; i++)
         {
-         expect(existingval[i]).to.equal(response[i][1].title);
+         expect(existingval[i].trim()).to.equal(response[i][1].title.trim());
         }
     
     

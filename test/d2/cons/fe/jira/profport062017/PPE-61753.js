@@ -44,22 +44,23 @@ describe('Copyright Template US', function () {
     });
 
     
-     it.skip('Verify the checkout , cancel and checkin operation', function () {
+     it('Verify the checkout , cancel and checkin operation', function () {
         documentListTab.selectAsset(AssetTitle);
         contentTab.checkOut();
+        CopyrightTemplate.CopyrightStatementText(CopyrightStatementText);
+        browser.frameParent();
         contentTab.cancel();
+        browser.frameParent();
         contentTab.checkOut();
         browser.frameParent();
         contentTab.checkIn();
     });
 
-    it.skip('Verify the Mandatory fields and power promote', function () {
+    it('Verify the Mandatory fields and power promote', function () {
         documentListTab.selectAsset(AssetTitle);
         cidName = CopyrightTemplate.CpygetChronicleIdAndName();
         chronicleId = cidName.chronicleId;
-        CopyrightTemplate.setRequiredPropertiesCpyRights(AssetTitle, 'WebMD', 'QA_TestPerson1234');
-        // CopyrightTemplate.setRequiredPropertiesPublishngTab();
-        // CopyrightTemplate.setRequiredPropertiesOthers('Testsubjct', 'en_US');
+        CopyrightTemplate.setRequiredPropertiesCpyRights(AssetTitle, 'WebMD', 'dummy');
         contentTab.checkOut();
         CopyrightTemplate.CopyrightStatementText(CopyrightStatementText);
         browser.frameParent();
@@ -74,7 +75,6 @@ describe('Copyright Template US', function () {
            browser.call(function () {
             return Promise.resolve(
                 parseXml.getXmlFromUrl(functions.getAtsScsFileUrl() + chronicleId, null).then(function (result) {
-                    var style = 'float:' + global.d2ConDataSettings.inputData.ShareableAlign.toLowerCase() + ';';
                     var Asset = JSONPath({
                         json: result,
                         path: "$..metadata_section",
@@ -87,7 +87,7 @@ describe('Copyright Template US', function () {
                         resultType: 'all'
                     });
 
-                    expect(Asset[0].parent.metadata_section.i_chronicle_id).to.equal(chronicleId);
+                    expect(Asset[0].parent.metadata_section.chronic_id).to.equal(chronicleId);
                     expect(Content[0].parent.content_section.wbmd_copyright.wbmd_copyright_statement).to.equal(CopyrightStatementText);
                     
 
@@ -99,27 +99,52 @@ describe('Copyright Template US', function () {
 
 
 
-     it('Should verify the data dictionary validations on  PropertiesTab  PPE-113311', function () {
+     it('Should verify the data dictionary validations on  PropertiesTab -Legal Reviewer:  PPE-113311', function () {
         documentListTab.selectAsset(AssetTitle);
         var response;
-        functions.SetAgentForDctmApi("http://DMWRS41D-CON-08.portal.webmd.com:8080/pbws/");
+        functions.SetAgentForDctmApi(functions.getDataApiUrl())
         var accessToken = functions.GenerateApiAccessToken();
         response = functions.ExecuteDQLusingDCTMAPI(accessToken,"select i_chronicle_id, title from wbmd_company where any wbmd_site_only = '1001' and title != ' ' order by title");
         CopyrightTemplate.VerifyDropdownlistVal("wbmd_copyright_holder-input",response);
-        
-        response = functions.ExecuteDQLusingDCTMAPI(accessToken,"select i_chronicle_id, title from wbmd_person where any wbmd_person_role='7' and any wbmd_site_only = '1001' and title != ' ' order by title");
-        CopyrightTemplate.VerifyDropdownlistVal("wbmd_legal_revr-input",response);
-      
     });
 
-    it.skip('Should Verify Expire functionality on Copyright- US Template PPE-113302 and PPE-113310 Should Verify Delete functionality on Copyright- US Template', function () {
+    
+     it('Should verify the data dictionary validations on  PropertiesTab-Copyright Holder:  PPE-113311', function () {
         documentListTab.selectAsset(AssetTitle);
-        documentListTab.powerPromoteAsset(AssetTitle);
+        var response;
+        functions.SetAgentForDctmApi(functions.getDataApiUrl())
+        var accessToken = functions.GenerateApiAccessToken();
+        response = functions.ExecuteDQLusingDCTMAPI(accessToken,"select i_chronicle_id, title from wbmd_person where any wbmd_person_role='7' and any wbmd_site_only = '1001' and title != ' ' order by title");
+        CopyrightTemplate.VerifyDropdownlistVal("wbmd_legal_revr-input",response);
+    });
+
+    it('Should Verify Expire functionality on Copyright- US Template PPE-113302 and PPE-113310 Should Verify Delete functionality on Copyright- US Template', function () {
+        documentListTab.selectAsset(AssetTitle);
         documentListTab.expireAsset(AssetTitle);
-        documentListTab.deleteArticle(objName,global.d2ConDataSettings.inputData.DeleteAllversions);
+        documentListTab.deleteArticle(AssetTitle,global.d2ConDataSettings.inputData.DeleteAllversions);
         browser.pause(5000)
         documentListTab.searchArticle(chronicleId);
     });
+
+    
+    it('Verify Copyright- US creation with all fields-PPE-114824', function () {
+
+        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+       var AssetTitle2 = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
+       var AssetName2 = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
+        workspaceMenu.createContent(
+            global.d2ConDataSettings.inputData.USCopyrightArticlePName,
+            global.d2ConDataSettings.inputData.CopyrightArticleTemplate,
+            AssetTitle2,
+            AssetName2);  
+        documentListTab.selectAsset(AssetTitle2);
+        cidName = CopyrightTemplate.CpygetChronicleIdAndName();
+        chronicleId = cidName.chronicleId;
+        CopyrightTemplate.setRequiredPropertiesCpyRights(AssetTitle2, 'WebMD', 'dummy');
+        CopyrightTemplate.setRequiredPropertiesPublishngTab();
+        CopyrightTemplate.setRequiredPropertiesOthers('Testsubjct', 'en_US');
+    });
+
 
     
 });

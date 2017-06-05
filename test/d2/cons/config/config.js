@@ -57,7 +57,7 @@ module.exports.testSettings = {
             "dctmUsername": "QAPublication",
             "dctmPassword": "QA-Doc#1",
             "dctmDocbase": "webmddoc01",
-            "url": "http://dmrest.dev04.webmd.com/pbws"
+            "url": "http://DMWRS41D-CON-08.portal.webmd.com:8080/pbws/"
         },
         "d2cons": {
             "url": "http://d2.dev04.webmd.com/D2/#d2",
@@ -97,7 +97,7 @@ module.exports.testSettings = {
             "dctmUsername": "QAPublication",
             "dctmPassword": "QA-Doc#1",
             "dctmDocbase": "webmddoc01",
-            "url": "http://dmrest.qa01.webmd.com/pbws"
+            "url": "http://DMWRS11Q-CON-08.portal.webmd.com:8080/pbws/"
         },
         "d2cons": {
             "url": "http://d2.qa01.webmd.com/D2/#d2",
@@ -246,7 +246,7 @@ module.exports.testSettings = {
             "ArticleTemplate": 'Article /  News Template',
             "CopyrightArticleTemplate": 'Copyright',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
-            "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
+            "ArticleDescription": "QATestAssetT" + exports.GenerateRandomString(5),
             "FacebookCodeType": "Facebook",
             "LookupFolderPath": "webmddoc01/webmd/web_publisher_list/lookups/interactive_articles",
             "ShareableTitle":"Shareable Title Test",
