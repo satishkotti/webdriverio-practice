@@ -10,8 +10,8 @@ var smdata = Object.create(page, {
             var webmdbootscom = 7;
             var mwebmdcom = 8;
             var mwebmdbootscom = 9;
-            var booltrue = 1;
-            var boolfalse = 0;
+            var booltrue = 'true';
+            var boolfalse = 'false';
 
             return smProps =
                 {

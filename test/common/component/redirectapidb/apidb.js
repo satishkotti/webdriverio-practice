@@ -73,28 +73,7 @@ AND R.To_Site_Id = ToPage.site_id
             mssql.executeSql(sql)
             );
     },
-    GetAllRedirectFromUrlPattern: function () {
-        mssql.connection = this.connection;
-
-        var sql = `
-               SELECT TOP 1 ('http://' + PFrom.Prefix + '.' + D.domain + PFrom.friendly_url ) AS apiGetAllRedirectFromUrlPattern
-FROM Manual_Redirect R
-INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
-INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
-AND R.To_Site_ID = PTo.Site_ID
-INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
-AND D.is_core_site = 1
-WHERE R.status <> 'd'
-  AND PFrom.Status <> 'd'
-  AND PTo.Status <> 'd'
-                      
-                    `;
-
-        return Promise.resolve
-            (
-            mssql.executeSql(sql)
-            );
-    },
+    
     GetAllRedirectToUrlPattern: function () {
         mssql.connection = this.connection;
 
@@ -121,9 +100,9 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                        SELECT TOP 1 (CAST(R.From_Chronic_Id AS varchar(100))) AS apiGetAllRedirectFromaChronicleID
+                        SELECT TOP 1 (CAST(R.From_Chronic_Id  AS varchar(100)))  AS apiGetAllRedirectFromaChronicleID
                         FROM Manual_Redirect R
-                        WHERE R.status <> 'd'
+                        WHERE R.status <> 'd' and NULLIF(R.From_Chronic_Id, '') IS NOT NULL
                       
                     `;
 
@@ -136,9 +115,9 @@ WHERE R.status <> 'd'
         mssql.connection = this.connection;
 
         var sql = `
-                         SELECT TOP 1 (CAST(R.To_Chronic_Id AS varchar(100))) AS apiGetAllRedirectsRedirectedtoaChronicleID
+                        SELECT TOP 1 (CAST(R.To_Chronic_Id AS varchar(100))) AS apiGetAllRedirectsRedirectedtoaChronicleID
                         FROM Manual_Redirect R
-                        WHERE R.status <> 'd' and R.To_Chronic_Id is not null
+                        WHERE R.status = 'a' and NULLIF(R.To_Chronic_Id, '') IS NOT NULL and NULLIF(R.To_Site_Id, '')IS NOT NULL
                       
                     `;
 

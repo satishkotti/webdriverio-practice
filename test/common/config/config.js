@@ -1,15 +1,15 @@
 module.exports = {
-    "dev01": 
+    "dev": //dev01
     {
         "dbRtLive": 
         {
             "user": "",
-            "password": "$",
+            "password": "",
             "server": "",
             "database": ""
         }
     },
-     "dev03": 
+     "dev03": //dev03
     {
         "dbRtLive": 
         {
@@ -19,6 +19,25 @@ module.exports = {
             "database": "Live_RT"
         }
     },
-
+     "qa": //qa02
+    {
+        "dbRtLive": 
+        {
+            "user": "",
+            "password": "",
+            "server": "",
+            "database": ""
+        }
+    },
+      "preprod": //qa00
+    {
+        "dbRtLive": 
+        {
+            "user": "",
+            "password": "",
+            "server": "",
+            "database": ""
+        }
+    },
 };
 
