@@ -23,7 +23,6 @@ describe('PPE-81172:Get All Redirects For Entire System (optionally include Dele
         expect(GetAllRedirectsForEntireSystem.statusCode).to.equal(200);
 
     });
-
 });
 
 describe('PPE-81172:Get All Redirects For Site ID (optionally include Deleted)', () => {
@@ -38,9 +37,7 @@ describe('PPE-81172:Get All Redirects For Site ID (optionally include Deleted)',
         expect(GetAllRedirectsForSiteID.statusCode).to.equal(200);
 
     });
-
 });
-
 
 describe('PPE-81172:Get One Redirect By ID', () => {
 
@@ -66,7 +63,6 @@ describe('PPE-81172:Get One Redirect By ID', () => {
             GetOneRedirectByID = test.GetResult(testAssetProps.GetOne_RedirectByID + _getByID[0].Id);
 
         });
-
 
         it('Verify Get One Redirect By ID', () => {
 
@@ -113,7 +109,6 @@ describe('PPE-81172:Get One Redirect By From Url', () => {
 
             })
             );
-
     });
 
     describe('Get One Redirect By From Url', () => {
@@ -148,7 +143,6 @@ describe('PPE-81172:Get All Redirect From Url Pattern (must include the start of
 
             })
             );
-
     });
 
     describe('Get All Redirect From Url Pattern', () => {
@@ -183,7 +177,6 @@ describe('PPE-81172:Get All Redirect To Url Pattern (must include the start of t
 
             })
             );
-
     });
 
     describe('Get All Redirect To Url Pattern', () => {
@@ -199,9 +192,7 @@ describe('PPE-81172:Get All Redirect To Url Pattern (must include the start of t
 
         });
     });
-
 });
-
 
 describe('PPE-81172:Get All Redirect From a ChronicleID', () => {
 
@@ -218,7 +209,6 @@ describe('PPE-81172:Get All Redirect From a ChronicleID', () => {
 
             })
             );
-
     });
 
     describe('Get All Redirect From a ChronicleID', () => {
@@ -236,7 +226,6 @@ describe('PPE-81172:Get All Redirect From a ChronicleID', () => {
     });
 
 });
-
 
 describe('PPE-81172:Get All Redirects Redirected to a ChronicleID', () => {
 
@@ -337,11 +326,10 @@ describe('PPE-81172:Export All Redirects For Site To Csv File', () => {
 
 });
 
+
 describe('PPE-81172:Create Redirect on Urls', () => {
 
     var CreateRedirectonUrlsInvalidURLCombination = {};
-    var CreateByURLInvalidURLCombination = {};
-    var _CreateByURLInvalidURLCombination = {};
 
     var CreateRedirectonUrlsInvalidToURLInternal = {};
     var CreateByURLInvalidToURLInternal = {};
@@ -405,229 +393,561 @@ describe('PPE-81172:Create Redirect on Urls', () => {
     var _CreateByURLToNonExistantPage = {};
 
     var CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed = {};
-    var CreateByURLConfirmurlsaretrimmed = {};
-    var _CreateByURLConfirmurlsaretrimmed = {};
 
     var CreateRedirectonUrlsCreateByURL_Testlowercasing = {};
-    var CreateByURLTestlowercasing = {};
-    var _CreateByURLTestlowercasing = {};
 
     var CreateRedirectonUrlsCreateByURL_TestToQuerystring = {};
-    var CreateByURLTestToQuerystring = {};
-    var _CreateByURLTestToQuerystring = {};
-
 
     var CRU_CreateByUrlResurrectDeletedRedirect = {};
     var CreateByUrlResurrectDeletedRedirect = {};
     var _CreateByUrlResurrectDeletedRedirect = {};
 
+    describe('Create By URL - Invalid URL Combination', () => {
 
+        before(() => {
 
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLActivePage().then(function (records) {
 
-    before(() => {
+                    _CreateByURLActivePage = {
 
-        return Promise.resolve
-            (
-            manualRedirectSqlService.CreateByURLInvalidURLCombination().then(function (records) {
-                _CreateByURLInvalidURLCombination = records;
+                        FromUrl: records[0].Url, toUrl: records[0].Url
 
-            })
-
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLInvalidToURLInternal()
-                })
-                .then(function (records) {
-                    _CreateByURLInvalidToURLInternal = records;
+                    };
 
                 })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLInvalidFormToURL()
-                })
-                .then(function (records) {
-                    _CreateByURLInvalidFormToURL = records;
+                );
+        });
 
-                })
-
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLInvalidAnotherLifecyleToURL()
-                })
-                .then(function (records) {
-                    _CreateByURLInvalidAnotherLifecyleToURL = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLInvalidExtraSlashToURL()
-                })
-                .then(function (records) {
-                    _CreateByURLInvalidExtraSlashToURL = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLInvalidDoesNoStartWithhttpToURL()
-                })
-                .then(function (records) {
-                    _CreateByURLInvalidDoesNoStartWithhttpToURL = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLInvalidExtraSlashFromURL()
-                })
-                .then(function (records) {
-                    _CreateByURLInvalidExtraSlashFromURL = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLInvalidDoesNoStartWithhttpFormURL()
-                })
-                .then(function (records) {
-                    _CreateByURLInvalidDoesNoStartWithhttpFormURL = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLInvalidAnotherLifecyleFromURL()
-                })
-                .then(function (records) {
-                    _CreateByURLInvalidAnotherLifecyleFromURL = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLRedirectExists()
-                })
-                .then(function (records) {
-                    _CreateByURLRedirectExists = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateExists()
-                })
-                .then(function (records) {
-                    _CreateExists = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLActivePageDomain()
-
-                })
-                .then(function (records) {
-                    _CreateByURLActivePageDomain = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLActivePage()
-
-                })
-                .then(function (records) {
-
-                    _CreateByURLActivePage = records;
-
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLDeletedPage()
-                })
-                .then(function (records) {
-                    _CreateByURLDeletedPage = records;
-
-                })
-
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLNonExistantPage()
-                })
-                .then(function (records) {
-                    _CreateByURLNonExistantPage = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLToNonExistantPage()
-                })
-                .then(function (records) {
-                    _CreateByURLToNonExistantPage = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLToExternalURL()
-                })
-                .then(function (records) {
-                    _CreateByURLToExternalURL = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLConfirmurlsaretrimmed()
-                })
-                .then(function (records) {
-                    _CreateByURLConfirmurlsaretrimmed = records;
-
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLTestlowercasing()
-                })
-                .then(function (records) {
-                    _CreateByURLTestlowercasing = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLTestToQuerystring()
-                })
-                .then(function (records) {
-                    _CreateByURLTestToQuerystring = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByURLTestlowercasingwithquerystring()
-                })
-                .then(function (records) {
-                    _CreateByURLTestlowercasingwithquerystring = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateByUrlResurrectDeletedRedirect()
-                })
-                .then(function (records) {
-                    _CreateByUrlResurrectDeletedRedirect = records;
-
-                })
-
-
-
-            );
-
-    });
-
-    describe('Create Redirect on Urls', () => {
         it('Get the Results from Api', () => {
 
-            CreateRedirectonUrlsInvalidURLCombination = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidURLCombination);
-            CreateRedirectonUrlsInvalidToURLInternal = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidToURLInternal);
-            CreateRedirectonUrlsInvalidFormToURL = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidFormToURL);
-            CreateRedirectonUrlsInvalidAnotherLifecyle = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidAnotherLifecyleToURL);
-            CreateRedirectonUrlsInvalidExtraSlash = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidExtraSlashToURL);
-            CreateRedirectonUrlsDoesNoStartWithhttp = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidDoesNoStartWithhttpToURL);
-            CreateRedirectonUrlsInvalidFromExtraSlash = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidExtraSlashFromURL);
-            CreateRedirectonUrlsFormDoesNoStartWithhttp = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidDoesNoStartWithhttpFormURL);
-            CreateRedirectonUrlsFromInvalidAnotherLifecyle = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidAnotherLifecyleFromURL);
-            CreateByURLRedirectExists_CreateaRedirectwhereanotherredirect = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLRedirectExists);
-            CreateRedirectonUrlsCreateByURL_CreateExists = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateExists);
-            CreateRedirectonUrlsCreateByURL_ActivePage = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLActivePage);
-            CreateRedirectonUrlsCreateByURL_DeletedPage = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLDeletedPage);
-            CreateRedirectonUrlsCreateByURL_NonExistantPage = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLNonExistantPage);
-            CreateRedirectonUrlsCreateByURL_ToNonExistantPage = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLToNonExistantPage);
-            CreateRedirectonUrlsCreateByURL_ToExternalURL = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLToExternalURL);
-            CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLConfirmurlsaretrimmed);
-            CreateRedirectonUrlsCreateByURL_Testlowercasing = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLTestlowercasing);
-            CreateRedirectonUrlsCreateByURL_TestToQuerystring = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLTestToQuerystring);
-            CRU_CreateByURLTestlowercasingwithquerystring = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLTestlowercasingwithquerystring);
-            CRU_CreateByUrlResurrectDeletedRedirect = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByUrlResurrectDeletedRedirect);
+            CreateRedirectonUrlsInvalidURLCombination = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLActivePage);
 
         });
 
+    });
+    describe('Create By URL - Invalid To URL ', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLInvalidToURLInternal().then(function (records) {
+
+                    _CreateByURLInvalidToURLInternal = {
+
+                        FromUrl: records[0].FromUrl, toUrl: records[0].ToUrl
+
+                    };
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsInvalidToURLInternal = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidToURLInternal);
+
+        });
+
+    });
+    describe('Create By URL - Invalid To URL', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLInvalidFormToURL().then(function (records) {
+
+                    _CreateByURLInvalidFormToURL = {
+
+                        FromUrl: records[0].FromUrl, toUrl: records[0].ToUrl
+
+                    };
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsInvalidFormToURL = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidFormToURL);
+
+        });
+
+    });
+    describe('Create By URL - Invalid To URL', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLInvalidAnotherLifecyleToURL().then(function (records) {
+
+                    _CreateByURLInvalidAnotherLifecyleToURL = {
+
+                        FromUrl: records[0].FromUrl, toUrl: records[0].ToUrl
+
+                    };
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsInvalidAnotherLifecyle = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidAnotherLifecyleToURL);
+
+        });
+
+    });
+    describe('Create By URL - Invalid To URL', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLInvalidExtraSlashToURL().then(function (records) {
+
+                    _CreateByURLInvalidExtraSlashToURL = {
+
+                        FromUrl: records[0].FromUrl, toUrl: records[0].ToUrl
+
+                    };
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsInvalidExtraSlash = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidExtraSlashToURL);
+
+        });
+
+    });
+    describe('Create By URL - Invalid To URL', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLInvalidDoesNoStartWithhttpToURL().then(function (records) {
+
+                    _CreateByURLInvalidDoesNoStartWithhttpToURL = {
+
+                        FromUrl: records[0].FromUrl, toUrl: records[0].ToUrl
+
+                    };
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsDoesNoStartWithhttp = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidDoesNoStartWithhttpToURL);
+
+        });
+
+    });
+    describe('Create By URL - Invalid From URL', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLInvalidExtraSlashFromURL().then(function (records) {
+
+                    _CreateByURLInvalidExtraSlashFromURL = {
+
+                        FromUrl: records[0].FromUrl, toUrl: records[0].ToUrl
+
+                    };
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsInvalidFromExtraSlash = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidExtraSlashFromURL);
+
+        });
+
+    });
+    describe('Create By URL - Invalid From URL', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLInvalidDoesNoStartWithhttpFormURL().then(function (records) {
+
+                    _CreateByURLInvalidDoesNoStartWithhttpFormURL = {
+
+                        FromUrl: records[0].FromUrl, toUrl: records[0].ToUrl
+
+                    };
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsFormDoesNoStartWithhttp = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidDoesNoStartWithhttpFormURL);
+
+        });
+
+    });
+    describe('Create By URL - Invalid From URL', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLInvalidAnotherLifecyleFromURL().then(function (records) {
+
+                    _CreateByURLInvalidAnotherLifecyleFromURL = {
+
+                        FromUrl: records[0].FromUrl, toUrl: records[0].ToUrl
+
+                    };
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsFromInvalidAnotherLifecyle = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLInvalidAnotherLifecyleFromURL);
+
+        });
+
+    });
+    describe('Create By URL - Redirect Exists', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLRedirectExists().then(function (records) {
+
+                    _CreateByURLRedirectExists = {
+
+                        FromUrl: records[0].Url, toUrl: records[1].Url
+
+                    };
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateByURLRedirectExists_CreateaRedirectwhereanotherredirect = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLRedirectExists);
+
+        });
+
+    });
+    describe('Create By URL - Create A->B When B->C Exists ', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateExists().then(function (records) {
+
+                    _CreateExists = {
+
+                        FromUrl: records[0].FromUrl, toUrl: records[0].ToUrl
+
+                    };
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsCreateByURL_CreateExists = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateExists);
+
+        });
+
+    });
+    describe('Create By URL - Active Page to Active Page', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLActivePage().then(function (records) {
+
+                    _CreateByURLActivePage = {
+
+                        FromUrl: records[0].Url, toUrl: records[1].Url
+
+                    };
+
+                })
+                    .then(function () {
+                        return manualRedirectSqlService.CreateByURLActivePageDomain()
+
+                    })
+                    .then(function (records) {
+                        _CreateByURLActivePageDomain = records;
+
+                    })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsCreateByURL_ActivePage = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLActivePage);
+
+        });
+
+    });
+    describe('Create By URL - Deleted Page to Active Page', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLDeletedPage().then(function (records) {
+
+                    _CreateByURLDeletedPage = {
+
+                        FromUrl: records[0].FromUrl, toUrl: records[0].ToUrl
+
+                    };
+
+                })
+
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsCreateByURL_DeletedPage = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLDeletedPage);
+
+        });
+
+    });
+    describe('Create By URL - Non Existant Page to Active Page', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLNonExistantPage().then(function (records) {
+
+                    _CreateByURLNonExistantPage = {
+
+                        FromUrl: records[0].FromUrl, toUrl: records[0].ToUrl
+
+                    };
+
+                })
+
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsCreateByURL_NonExistantPage = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLNonExistantPage);
+
+        });
+
+    });
+    describe('Create By URL - To Non Existant Page', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLToNonExistantPage().then(function (records) {
+
+                    _CreateByURLToNonExistantPage = {
+
+                        FromUrl: records[0].FromUrl, toUrl: records[0].ToUrl
+
+                    };
+
+                })
+
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsCreateByURL_ToNonExistantPage = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLToNonExistantPage);
+
+        });
+
+    });
+    describe('Create By URL - To External URL', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLToExternalURL().then(function (records) {
+
+                    _CreateByURLToExternalURL = {
+
+                        FromUrl: records[0].FromUrl, toUrl: records[0].ToUrl
+
+                    };
+
+                })
+
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsCreateByURL_ToExternalURL = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLToExternalURL);
+
+        });
+
+    });
+    describe('Create By URL - Confirm urls are trimmed', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLActivePage().then(function (records) {
+
+                    _CreateByURLActivePage = {
+
+                        FromUrl: '     ' + records[0].Url + '     ', toUrl: '     ' + records[1].Url + '     '
+
+                    };
+
+                })
+
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsCreateByURL_Confirmurlsaretrimmed = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLActivePage);
+
+        });
+
+    });
+    describe('Create By URL- Test lowercasing', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLActivePage().then(function (records) {
+
+                    _CreateByURLActivePage = {
+
+                        FromUrl: records[0].Url.toUpperCase(), toUrl: records[1].Url.toUpperCase()
+
+                    };
+
+                })
+
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsCreateByURL_Testlowercasing = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLActivePage);
+
+        });
+
+    });
+    describe('Create By URL - Test To Querystring', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLActivePage().then(function (records) {
+
+                    _CreateByURLActivePage = {
+
+                        FromUrl: records[0].Url, toUrl: records[1].Url + '?a=b&c=d'
+
+                    };
+
+                })
+
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateRedirectonUrlsCreateByURL_TestToQuerystring = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLActivePage);
+
+        });
+
+    });
+    describe('Create By URL - Test lowercasing with querystring', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLActivePage().then(function (records) {
+
+                    _CreateByURLActivePage = {
+
+                        FromUrl: records[0].Url, toUrl: records[1].Url.toUpperCase() + '?A=b&C=d'
+
+                    };
+
+                })
+
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CRU_CreateByURLTestlowercasingwithquerystring = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByURLActivePage);
+
+        });
+
+    });
+    describe('Create By Url ', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateByURLActivePage().then(function (records) {
+
+                    _CreateByURLActivePage = {
+
+                        FromUrl: records[0].Url, toUrl: records[1].Url
+
+                    };
+
+                })
+
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CRU_CreateByUrlResurrectDeletedRedirect = test.PostResult(testAssetProps.Create_Redirect_on_Urls, _CreateByUrlResurrectDeletedRedirect);
+
+        });
         it('1)Verify From Url is the same as To Url', () => {
             console.log(CreateRedirectonUrlsInvalidURLCombination.body.Message);
             expect(CreateRedirectonUrlsInvalidURLCombination.body.StatusCode).to.not.equal(1);
 
         });
-
-        it('2)Verify There is already a redirect ID ', () => {
+        it('2)Verify To Page is redirected', () => {
             console.log(CreateRedirectonUrlsInvalidToURLInternal.body.Message);
             expect(CreateRedirectonUrlsInvalidToURLInternal.body.StatusCode).to.not.equal(1);
 
@@ -637,7 +957,7 @@ describe('PPE-81172:Create Redirect on Urls', () => {
             expect(CreateRedirectonUrlsInvalidFormToURL.body.StatusCode).to.not.equal(1);
 
         });
-        it('4)Verify There is already a redirect', () => {
+        it('4)Verify To Page cannot point to another WebMD Environment or another Documentum Lifecycle', () => {
             console.log(CreateRedirectonUrlsInvalidAnotherLifecyle.body.Message);
             expect(CreateRedirectonUrlsInvalidAnotherLifecyle.body.StatusCode).to.not.equal(1);
 
@@ -657,7 +977,7 @@ describe('PPE-81172:Create Redirect on Urls', () => {
             expect(CreateRedirectonUrlsInvalidFromExtraSlash.body.StatusCode).to.not.equal(1);
 
         });
-        it('8)From URL must start with http:// or https://', () => {
+        it('8)Verify From URL must start with http:// or https://', () => {
             console.log(CreateRedirectonUrlsFormDoesNoStartWithhttp.body.Message);
             expect(CreateRedirectonUrlsFormDoesNoStartWithhttp.body.StatusCode).to.not.equal(1);
 
@@ -790,8 +1110,8 @@ describe('PPE-81172:Create Redirect on Urls', () => {
 
         });
     });
-
 });
+
 
 describe('PPE-81172:Create Redirect on Chronicle IDS', () => {
 
@@ -819,69 +1139,127 @@ describe('PPE-81172:Create Redirect on Chronicle IDS', () => {
     var B_C_Where_A_B_Exists = {};
     var _B_C_Where_A_B_Exists = {};
 
+    describe('Create By ID - ChronicleIDs Same', () => {
 
-    before(() => {
+        before(() => {
 
-        return Promise.resolve
-            (
-            manualRedirectSqlService.ChronicleIDsSame().then(function (records) {
-                _ChronicleIDsSame = records;
-
-            })
-                .then(function () {
-                    return manualRedirectSqlService.InvalidFromChroniclID()
-                })
-                .then(function (records) {
-                    _InvalidFromChroniclID = records;
+            return Promise.resolve
+                (
+                manualRedirectSqlService.ChronicleIDsSame().then(function (records) {
+                    _ChronicleIDsSame = records;
 
                 })
-                .then(function () {
-                    return manualRedirectSqlService.InvalidToChroniclID()
-                })
-                .then(function (records) {
-                    _InvalidToChroniclID = records;
+                );
+        });
 
-                })
-                .then(function () {
-                    return manualRedirectSqlService.A_B_whereB_C_exists()
-                })
-                .then(function (records) {
-                    _A_B_whereB_C_exists = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.CreateTwoRedirectswithOneCall()
-                })
-                .then(function (records) {
-                    _CreateTwoRedirectswithOneCall = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.B_C_Where_A_B_Exists()
-                })
-                .then(function (records) {
-                    _B_C_Where_A_B_Exists = records;
-
-                })
-
-            );
-
-    });
-
-    describe('Create Redirect on Chronicle IDS', () => {
         it('Get the Results from Api', () => {
 
-
             CreateByIDChronicleIDsSame = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _ChronicleIDsSame);
-            CreateByIDInvalidFromChroniclID = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _InvalidFromChroniclID);
-            CreateByIDInvalidToChroniclID = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _InvalidToChroniclID);
-            CreateByID_A_B_whereB_C_exists = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _A_B_whereB_C_exists);
-            CreateByIDCreateTwoRedirectswithOneCall = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _CreateTwoRedirectswithOneCall);
-            CreateByID_B_C_Where_A_B_Exists = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _B_C_Where_A_B_Exists);
-
 
         });
 
+    });
+
+    describe('Create By ID - Invalid From ChroniclID', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.InvalidFromChroniclID().then(function (records) {
+                    _InvalidFromChroniclID = records;
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateByIDInvalidFromChroniclID = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _InvalidFromChroniclID);
+
+        });
+
+    });
+    describe('Create By ID - Invalid To ChroniclID', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.InvalidToChroniclID().then(function (records) {
+                    _InvalidToChroniclID = records;
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateByIDInvalidToChroniclID = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _InvalidToChroniclID);
+
+        });
+
+    });
+
+    describe('Create By ID - A->B where B->C exists ', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.A_B_whereB_C_exists().then(function (records) {
+                    _A_B_whereB_C_exists = records;
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateByID_A_B_whereB_C_exists = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _A_B_whereB_C_exists);
+
+        });
+
+    });
+
+    describe('Create By ID - Create 2 Redirects with One Call', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.CreateTwoRedirectswithOneCall().then(function (records) {
+                    _CreateTwoRedirectswithOneCall = records;
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateByIDCreateTwoRedirectswithOneCall = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _CreateTwoRedirectswithOneCall);
+
+        });
+
+    });
+    describe('Create By ID ', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.B_C_Where_A_B_Exists().then(function (records) {
+                    _B_C_Where_A_B_Exists = records;
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            CreateByID_B_C_Where_A_B_Exists = test.PostResult(testAssetProps.Create_Redirect_on_ChronicleIDS, _B_C_Where_A_B_Exists);
+
+        });
         it('1)Verify From Chronicle ID is the same as the To Chronicle ID', () => {
             console.log(CreateByIDChronicleIDsSame.body.Message);
             expect(CreateByIDChronicleIDsSame.body.StatusCode).to.not.equal(1);
@@ -912,9 +1290,9 @@ describe('PPE-81172:Create Redirect on Chronicle IDS', () => {
             expect(CreateByID_B_C_Where_A_B_Exists.body.StatusCode).to.equal(1);
 
         });
-
     });
 });
+
 
 describe('PPE-81172:Update To Url', () => {
 
@@ -938,60 +1316,107 @@ describe('PPE-81172:Update To Url', () => {
     var SameasFromURL = {};
     var _SameasFromURL = {};
 
+    describe('Update To Url - Internal -> Internal', () => {
 
-    before(() => {
+        before(() => {
 
-        return Promise.resolve
-            (
-            manualRedirectSqlService.Internal_Internal().then(function (records) {
-                _Internal_Internal = records;
-
-            })
-                .then(function () {
-                    return manualRedirectSqlService.Internal_External()
-                })
-                .then(function (records) {
-                    _Internal_External = records;
+            return Promise.resolve
+                (
+                manualRedirectSqlService.Internal_Internal().then(function (records) {
+                    _Internal_Internal = records;
 
                 })
-                .then(function () {
-                    return manualRedirectSqlService.External_Internal()
-                })
-                .then(function (records) {
-                    _External_Internal = records;
+                );
+        });
 
-                })
-                .then(function () {
-                    return manualRedirectSqlService.Already_Redirected()
-                })
-                .then(function (records) {
-                    _Already_Redirected = records;
-
-                })
-                .then(function () {
-                    return manualRedirectSqlService.SameasFromURL()
-                })
-                .then(function (records) {
-                    _SameasFromURL = records;
-
-                })
-
-            );
-
-    });
-
-    describe('Update To Url', () => {
         it('Get the Results from Api', () => {
 
-
             UpdateToUrlInternal_Internal = test.PutResult(testAssetProps.Update_To_Url, _Internal_Internal);
-            UpdateToUrlInternal_External = test.PutResult(testAssetProps.Update_To_Url, _Internal_External);
-            UpdateToUrl_External_Internal = test.PutResult(testAssetProps.Update_To_Url, _External_Internal);
-            UpdateToUrlAlready_Redirected = test.PutResult(testAssetProps.Update_To_Url, _Already_Redirected);
-            UpdateToUrlSameasFromURL = test.PutResult(testAssetProps.Update_To_Url, _SameasFromURL);
 
         });
 
+    });
+
+    describe('Update To Url - Internal -> External', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.Internal_External().then(function (records) {
+                    _Internal_External = records;
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            UpdateToUrlInternal_External = test.PutResult(testAssetProps.Update_To_Url, _Internal_External);
+
+        });
+
+    });
+    describe('Update To Url - External-> Internal', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.External_Internal().then(function (records) {
+                    _External_Internal = records;
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            UpdateToUrl_External_Internal = test.PutResult(testAssetProps.Update_To_Url, _External_Internal);
+
+        });
+
+    });
+
+    describe('Update To Url - Already Redirected ', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.Already_Redirected().then(function (records) {
+                    _Already_Redirected = records;
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            UpdateToUrlAlready_Redirected = test.PutResult(testAssetProps.Update_To_Url, _Already_Redirected);
+
+        });
+
+    });
+
+    describe('Update To Url ', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.SameasFromURL().then(function (records) {
+                    _SameasFromURL = records;
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            UpdateToUrlSameasFromURL = test.PutResult(testAssetProps.Update_To_Url, _SameasFromURL);
+
+        });
         it('1)Verify Update To Url - Internal -> Internal', () => {
             console.log(UpdateToUrlInternal_Internal.body.Message);
             expect(UpdateToUrlInternal_Internal.body.StatusCode).to.equal(1);
@@ -1029,6 +1454,7 @@ describe('PPE-81172:Update To Url', () => {
         });
 
     });
+
 });
 
 describe('PPE-81172:Replace To ChronicleID for All', () => {
@@ -1049,49 +1475,83 @@ describe('PPE-81172:Replace To ChronicleID for All', () => {
     var Succeed = {};
     var _Succeed = {};
 
+    describe('Replace To ChronicleID For All - Invalid Old ChronicleID', () => {
 
-    before(() => {
+        before(() => {
 
-        return Promise.resolve
-            (
-            manualRedirectSqlService.InvalidOldChronicleID().then(function (records) {
-                _InvalidOldChronicleID = records;
-
-            })
-                .then(function () {
-                    return manualRedirectSqlService.InvalidNewChronicleID()
-                })
-                .then(function (records) {
-                    _InvalidNewChronicleID = records;
+            return Promise.resolve
+                (
+                manualRedirectSqlService.InvalidOldChronicleID().then(function (records) {
+                    _InvalidOldChronicleID = records;
 
                 })
-                .then(function () {
-                    return manualRedirectSqlService.NoActivePage()
-                })
-                .then(function (records) {
-                    _NoActivePage = records;
+                );
+        });
 
-                })
-                .then(function () {
-                    return manualRedirectSqlService.Succeed()
-                })
-                .then(function (records) {
-                    _Succeed = records;
+        it('Get the Results from Api', () => {
 
-                })
+            ReplaceToChronicleIDForAll_InvalidOldChronicleID = test.PutResult(testAssetProps.Replace_To_ChronicleID_for_All, _InvalidOldChronicleID);
 
-
-            );
+        });
 
     });
 
-    describe('Replace To ChronicleID for All', () => {
+    describe('Replace To ChronicleID For All - Invalid New ChronicleID', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.InvalidNewChronicleID().then(function (records) {
+                    _InvalidNewChronicleID = records;
+
+                })
+                );
+        });
+
         it('Get the Results from Api', () => {
 
-
-            ReplaceToChronicleIDForAll_InvalidOldChronicleID = test.PutResult(testAssetProps.Replace_To_ChronicleID_for_All, _InvalidOldChronicleID);
             ReplaceToChronicleIDForAll_InvalidNewChronicleID = test.PutResult(testAssetProps.Replace_To_ChronicleID_for_All, _InvalidNewChronicleID);
+
+        });
+
+    });
+    describe('Replace To ChronicleID For All - No Active Page', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.NoActivePage().then(function (records) {
+                    _NoActivePage = records;
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
             ReplaceToChronicleIDForAll_NoActivePage = test.PutResult(testAssetProps.Replace_To_ChronicleID_for_All, _NoActivePage);
+
+        });
+
+    });
+
+    describe('Replace To ChronicleID For All  ', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.Succeed().then(function (records) {
+                    _Succeed = records;
+
+                })
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
             ReplaceToChronicleIDForAll_Succeed = test.PutResult(testAssetProps.Replace_To_ChronicleID_for_All, _Succeed);
 
         });
@@ -1118,6 +1578,8 @@ describe('PPE-81172:Replace To ChronicleID for All', () => {
         });
 
     });
+
+
 });
 
 describe('PPE-81172:Delete One or more (mark Deletd by id)', () => {
@@ -1142,24 +1604,38 @@ describe('PPE-81172:Delete One or more (mark Deletd by id)', () => {
     var OneValidIDandoneBogusID = {};
     var _OneValidIDandoneBogusID = {};
 
+    describe('Delete - 1 Bogus ID', () => {
 
-    before(() => {
+        before(() => {
 
-        return Promise.resolve
-            (
-            manualRedirectSqlService.OneBogusID().then(function (records) {
+            return Promise.resolve
+                (
+                manualRedirectSqlService.OneBogusID().then(function (records) {
+                    _OneBogusID = {
 
-                _OneBogusID = {
+                        Ids: [records[0].Id1, records[0].Id2]
 
-                    Ids: [records[0].Id1, records[0].Id2]
+                    };
 
-                };
-
-            })
-                .then(function () {
-                    return manualRedirectSqlService.MultipleBogusID()
                 })
-                .then(function (records) {
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            Delete_OneBogusID = test.DeleteResult(testAssetProps.Delete_One_or_more, _OneBogusID);
+
+        });
+
+    });
+
+    describe('Delete - Multiple Bogus ID', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.MultipleBogusID().then(function (records) {
                     _MultipleBogusID = {
 
                         Ids: [records[0].Id1, records[0].Id2]
@@ -1167,20 +1643,47 @@ describe('PPE-81172:Delete One or more (mark Deletd by id)', () => {
                     };
 
                 })
-                .then(function () {
-                    return manualRedirectSqlService.OneValidID()
-                })
-                .then(function (records) {
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            Delete_MultipleBogusID = test.DeleteResult(testAssetProps.Delete_One_or_more, _MultipleBogusID);
+
+        });
+
+    });
+    describe('Delete - One Valid ID', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.OneValidID().then(function (records) {
                     _OneValidID = {
 
                         Ids: [records[0].Id1, records[0].Id2]
 
                     };
+
                 })
-                .then(function () {
-                    return manualRedirectSqlService.TwoValidIDS()
-                })
-                .then(function (records) {
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            Delete_OneValidID = test.DeleteResult(testAssetProps.Delete_One_or_more, _OneValidID);
+
+        });
+
+    });
+    describe('Delete - Two Valid IDS', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.TwoValidIDS().then(function (records) {
                     _TwoValidIDS = {
 
                         Ids: [records[0].Id1, records[0].Id2]
@@ -1188,10 +1691,24 @@ describe('PPE-81172:Delete One or more (mark Deletd by id)', () => {
                     };
 
                 })
-                .then(function () {
-                    return manualRedirectSqlService.OneValidIDandoneBogusID()
-                })
-                .then(function (records) {
+                );
+        });
+
+        it('Get the Results from Api', () => {
+
+            Delete_TwoValidIDS = test.DeleteResult(testAssetProps.Delete_One_or_more, _TwoValidIDS);
+
+        });
+
+    });
+
+    describe('Delete ', () => {
+
+        before(() => {
+
+            return Promise.resolve
+                (
+                manualRedirectSqlService.OneValidIDandoneBogusID().then(function (records) {
                     _OneValidIDandoneBogusID = {
 
                         Ids: [records[0].Id1, records[0].Id2]
@@ -1199,20 +1716,11 @@ describe('PPE-81172:Delete One or more (mark Deletd by id)', () => {
                     };
 
                 })
+                );
+        });
 
-
-            );
-
-    });
-
-    describe('Delete One or more (mark Deletd by id)', () => {
         it('Get the Results from Api', () => {
 
-
-            Delete_OneBogusID = test.DeleteResult(testAssetProps.Delete_One_or_more, _OneBogusID);
-            Delete_MultipleBogusID = test.DeleteResult(testAssetProps.Delete_One_or_more, _MultipleBogusID);
-            Delete_OneValidID = test.DeleteResult(testAssetProps.Delete_One_or_more, _OneValidID);
-            Delete_TwoValidIDS = test.DeleteResult(testAssetProps.Delete_One_or_more, _TwoValidIDS);
             Delete_OneValidIDandoneBogusID = test.DeleteResult(testAssetProps.Delete_One_or_more, _OneValidIDandoneBogusID);
 
         });
@@ -1244,4 +1752,6 @@ describe('PPE-81172:Delete One or more (mark Deletd by id)', () => {
         });
 
     });
+
+
 });

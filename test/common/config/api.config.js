@@ -15,7 +15,7 @@ var smdata = Object.create(page, {
 
             return smProps =
                 {
-
+                     
                     "GetAll_Redirects_For_EntireSystem": "get-all?&includeDeleted=" + booltrue,
                     "GetAll_Redirects_ForSiteID": "get-all-for-site?siteID=" + webmdcom + "&includeDeleted=" + booltrue,
                     "GetOne_RedirectByID": "get-by-id?id=",

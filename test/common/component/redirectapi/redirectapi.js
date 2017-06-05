@@ -52,7 +52,7 @@ Redirectapi.prototype.PostResultsApi = function PostResultsApi(url, options, api
 
 
     switch (url) {
-        case testurl + testAssetProps.Create_Redirect_on_Urls: jsonData = apiparameters[0]; break;
+        case testurl + testAssetProps.Create_Redirect_on_Urls: jsonData = apiparameters; break;
         case testurl + testAssetProps.Create_Redirect_on_ChronicleIDS: jsonData = apiparameters[0]; break;
     }
 
