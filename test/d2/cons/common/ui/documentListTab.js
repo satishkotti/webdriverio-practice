@@ -46,7 +46,7 @@ var documentListUIObj = {
         documentListUIObj.contextualMenuLifeCycleSelect();
         documentListUIObj.lifeCyclePublishSelect();
         documentListUIObj.publishToDialogueOkSelect('Staging');
-        browser.pause(4000);
+        browser.pause(6000);
     },
     contextualMenuActivate: function (assetName) {
         browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);

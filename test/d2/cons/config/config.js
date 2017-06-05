@@ -357,7 +357,10 @@ module.exports.testSettings = {
              "PBSharedModule_uk": "module_1215_QATestSM_091e9c5e8131aa3e.xml",
              "DeleteAllversions":"Delete all versions", 
              "testFolderPath_uk": "webmddoc01/webmd_uk/consumer_assets/editorial/articles/Others",
-             "ArticleProfileName_uk": 'Consumer Portal UK / Article Templates'
+             "ArticleProfileName_uk": 'Consumer Portal UK / Article Templates',
+             "existingCopyrightID": "091e9c5e80330e29",
+             "existingCopyrightTitle":"1996-2005 MedicineNet - UK",
+             "copyrightTitle": "QATestCopyright"
 
 
         }      

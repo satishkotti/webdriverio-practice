@@ -15,8 +15,8 @@ exports.config = {
     specs: ['./test/d2/cons/fe/jira/profport062017/*.js'],
     // Patterns to exclude.
     exclude: [
-        './test/d2/prof/config/**/*.*',
-        './test/d2/prof/common/**/*.*',
+        './test/d2/cons/config/**/*.*',
+        './test/d2/cons/common/**/*.*',
     ],
     //
     // ============
@@ -157,7 +157,7 @@ exports.config = {
     // variables like `browser`. It is the perfect place to define custom commands.
     before: function () {
 
-        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'dev04';
+        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : "qa01";
 
         var chai = require('chai');
         chai.config.includeStack = true;
