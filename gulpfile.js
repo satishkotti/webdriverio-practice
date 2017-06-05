@@ -95,8 +95,8 @@ gulp.task('branch', function (cb) {
             var branchArr = currentBranch.split('-');
             var ppeIndex = branchArr.indexOf('ppe');
             if (ppeIndex >= 0) {
-                var testfile = branchArr[ppeIndex] + '-' + branchArr[ppeIndex + 1];
-                specBranch = `test/${appFolder}/**/${testfile}*.js`;
+				var testfile = branchArr[ppeIndex + 1];
+                specBranch = `test/${appFolder}/**/*${testfile}*.js`;
                 console.log('ppe specs: ' + specBranch);
             }
         }
