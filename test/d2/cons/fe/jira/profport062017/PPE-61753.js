@@ -43,6 +43,7 @@ describe('Copyright Template US', function () {
     });
 
      it('Verify Copyright- US creation with only mandatory fields- PPE-113296 ,Verify the error messages when mandatory fields are left blank for Copyright- US Template - PPE-113297', function () {
+        console.log(AssetName);
         documentListTab.selectAsset(AssetTitle);
         CopyrightTemplate.copyrightMandatoryfieldsValidation();
         CopyrightTemplate.copyright_Othertab_AttributesNames();
@@ -65,7 +66,7 @@ describe('Copyright Template US', function () {
         documentListTab.selectAsset(AssetTitle);
         cidName = CopyrightTemplate.CpygetChronicleIdAndName();
         chronicleId = cidName.chronicleId;
-        CopyrightTemplate.setRequiredPropertiesCpyRights(AssetTitle, 'WebMD', 'dummy');
+        CopyrightTemplate.setRequiredPropertiesCpyRights(AssetName, 'WebMD', 'dummy');
         contentTab.checkOut();
         CopyrightTemplate.CopyrightStatementText(CopyrightStatementText);
         browser.frameParent();
