@@ -318,7 +318,7 @@ describe('PPE-81172:Export All Redirects To Csv File', () => {
     });
 
     it('Verify Export All Redirects To Csv File', () => {
-        expect(ExportAllRedirectsToCsvFile.body.Status).to.equal('Success');
+        
         expect(ExportAllRedirectsToCsvFile.statusCode).to.equal(200);
     });
 
@@ -333,7 +333,7 @@ describe('PPE-81172:Export All Redirects For Site To Csv File', () => {
     });
 
     it('Verify Export All Redirects For Site To Csv File', () => {
-        expect(ExportAllRedirectsForSiteToCsvFile.body.Status).to.equal('Success');
+       
         expect(ExportAllRedirectsForSiteToCsvFile.statusCode).to.equal(200);
     });
 
@@ -1118,9 +1118,9 @@ describe('PPE-81172:Create Redirect on Urls', () => {
 
             return Promise.resolve
                 (
-                manualRedirectSqlService.CreateByURLActivePage().then(function (records) {
+                manualRedirectSqlService.CreateByUrlResurrectDeletedRedirect().then(function (records) {
 
-                    _CreateByURLActivePage = {
+                    _CreateByUrlResurrectDeletedRedirect = {
 
                         FromUrl: records[0].Url, toUrl: records[1].Url
 
@@ -1140,8 +1140,8 @@ describe('PPE-81172:Create Redirect on Urls', () => {
 
         it('21)Verify Create By Url - Resurrect Deleted Redirect', () => {
             console.log(CRU_CreateByUrlResurrectDeletedRedirect.body.Message);
-            expect(CRU_CreateByURLTestlowercasingwithquerystring.body.Status).to.equal('Success');
-            expect(CRU_CreateByUrlResurrectDeletedRedirect.body.StatusCode).to.equal(1);
+            expect(CRU_CreateByUrlResurrectDeletedRedirect.body.Status).to.equal('Failure');
+            expect(CRU_CreateByUrlResurrectDeletedRedirect.body.StatusCode).to.not.equal(1);
 
         });
     });
