@@ -106,7 +106,7 @@ module.exports = {
     },
     save: function(){
          browser.click("//div[@tag_id='Properties-widget']//button[text()='Save']");
-         browser.pause(5000);
+         browser.pause(6000);
     },
     cancelEdit: function(){
          browser.click("//div[@tag_id='Properties-widget']//button[text()='Cancel Edit']");
@@ -154,6 +154,19 @@ module.exports = {
         browser.click("//span/span[contains(.,'Auth & Rev')]");
         browser.click("//span/span[contains(.,'Publishing')]");
         browser.pause(1000);
-    }
+    },
+    objectTitleGet: function(){
+        return browser.getValue("input#title-input");
+    },
+     publishingTabSelect: function(){
+        browser.click("//span//span[contains(.,'Publishing')]");
+    },
+      systemPublishingDateSet:function(textValue){
+         browser.setValue("#wbmd_eff_date-input",textValue);
+    },
+     expirationDateSet:function(textValue){
+         return browser.setValue("#wbmd_exp_date-input",textValue);
+    },
+
 }
 

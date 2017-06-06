@@ -235,7 +235,9 @@ module.exports.testSettings = {
             "middlealignent": "Middle",
             "bulletlistalignment": "Right,Left,Middle",
             "CodeTypes": "Facebook,Youtube,Twitter,Pinterest,Reddit,Imgur,Snapchat,Tumblr,Instagram",
-            "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other",
+           "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other",
+            "CopyrightTFolderPath": "webmddoc01/webmd/agreements/copyright",
+            "UKCopyrightTFolderPath": "webmddoc01/webmd_uk/agreements/copyright",
             "USFolderpath": "webmddoc01/webmd/consumer_assets/editorial/articles",
             "UKFolderpath": "webmddoc01/webmd_uk/consumer_assets/editorial/articles",
             "UKtestFolderPath": "webmddoc01/webmd_uk/consumer_assets/editorial/articles/Others",
@@ -243,6 +245,9 @@ module.exports.testSettings = {
             "UkArticleProfileName": 'Consumer Portal UK / Article Templates',
              "HelathRefArticleTemplate":'Article / Health Reference Template',
             "ArticleTemplate": 'Article /  News Template',
+            "USCopyrightArticlePName": 'Consumer Portal US / Copyright Disclaimer Templates',
+            "UKCopyrightArticlePName": 'Consumer Portal UK / Copyright Disclaimer Templates',
+            "CopyrightArticleTemplate": 'Copyright',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
             "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
             "FacebookCodeType": "Facebook",
@@ -352,7 +357,10 @@ module.exports.testSettings = {
              "PBSharedModule_uk": "module_1215_QATestSM_091e9c5e8131aa3e.xml",
              "DeleteAllversions":"Delete all versions", 
              "testFolderPath_uk": "webmddoc01/webmd_uk/consumer_assets/editorial/articles/Others",
-             "ArticleProfileName_uk": 'Consumer Portal UK / Article Templates'
+             "ArticleProfileName_uk": 'Consumer Portal UK / Article Templates',
+             "existingCopyrightID": "091e9c5e80330e29",
+             "existingCopyrightTitle":"1996-2005 MedicineNet - UK",
+             "copyrightTitle": "QATestCopyright"
 
 
         }      
