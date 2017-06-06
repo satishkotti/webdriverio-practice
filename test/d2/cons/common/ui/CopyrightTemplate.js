@@ -229,10 +229,14 @@ var CopyrightTabUIObj = {
         browser.waitForVisible("//div[label[@for='wbmd_publ_cpyrt_id']]//div[@id='assistance']");
         browser.click("//div[label[@for='wbmd_publ_cpyrt_id']]//div[@id='assistance']");
         browser.pause(2000);
+        browser.waitForVisible("//*[@id='allLeft-button']");
+        browser.click("//*[@id='allLeft-button']");
+        browser.pause(5000);
         browser.waitForVisible("//input[@id='assistance-input-input']");
         browser.setValue("//input[@id='assistance-input-input']",AssetName);
         browser.waitForVisible("//div[@id='"+AssetName+"']");
         browser.doubleClick("//div[@id='"+AssetName+"']");
+        browser.pause(2000);
         browser.click("//button[contains(.,'OK') and @aria-disabled=not('false')]")
     },
 

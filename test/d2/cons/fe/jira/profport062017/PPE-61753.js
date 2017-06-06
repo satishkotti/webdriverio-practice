@@ -142,6 +142,7 @@ describe('Copyright Template US', function () {
         objName2 = cidName.objectName;
         chronicleId = cidName.chronicleId;
         propertiesTab.setRequiredProperties(objName2, 'News', objName2, objName2, objName2, objName2, 'ThinkStock',AssetTitle, 'ADD-ADHD (Adult)');
+        documentListTab.selectAsset(AssetTitle);
         documentListTab.expireAsset(AssetTitle);
         documentListTab.deleteArticle(AssetTitle, global.d2ConDataSettings.inputData.DeleteAllversions);
         findTab.searchTextDeleteValidation(AssetTitle);
