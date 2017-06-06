@@ -45,7 +45,7 @@ describe('Copyright Template UK- PPE-61754', function () {
     it('Verify Copyright- UK creation with only mandatory fields- PPE-113313 ,Verify the error messages when mandatory fields are left blank for Copyright- UK Template - PPE-113314', function () {
         documentListTab.selectAsset(AssetTitle);
         CopyrightTemplate.validateRequiredPropertiesCpyRights();
-        //CopyrightTemplate.copyright_Othertab_AttributesNames();
+        CopyrightTemplate.copyright_Othertab_AttributesNames();
     });
     it('Verify Data Dictionary validations on Copyright object-PPE-113331', function () {
         test.SetAgentForDctmApi('http://DMWRS11Q-CON-08.portal.webmd.com:8080/pbws/');
@@ -122,19 +122,15 @@ describe('Copyright Template UK- PPE-61754', function () {
              
 
 });
-        documentListTab.expireAsset(AssetTitle);
-        documentListTab.deleteArticle(AssetTitle, global.d2ConDataSettings.inputData.DeleteAllversions);
-        findTab.searchTextDeleteValidation(AssetName);
+      
 
     });
 
 
     it('Verify created copyright is displayed in article-PPE-114663 ', function () {
-        /*Below code is for future use
-        
         findTab.findbyId("091e9c5e80330d37");
         documentListTab.selectAsset("UK WebMD Medical News");
-        CopyrightTemplate.copyrightPublicationModify(AssetName);*/
+        CopyrightTemplate.copyrightPublicationModify(AssetName);
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath_uk);
         AssetTitle2 = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName2 = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
@@ -147,9 +143,11 @@ describe('Copyright Template UK- PPE-61754', function () {
         cidName = propertiesTab.getChronicleIdAndName();
         objName2 = cidName.objectName;
         chronicleId = cidName.chronicleId;
-        propertiesTab.setRequiredProperties(objName2, 'Audio - Narrative', objName2, objName2, objName2, objName2, 'UK WebMD Medical News', global.d2ConDataSettings.inputData.copyrightTitle, 'ADD-ADHD (Adult)');
+        propertiesTab.setRequiredProperties(objName2, 'Audio - Narrative', objName2, objName2, objName2, objName2, 'UK WebMD Medical News',AssetName, 'ADD-ADHD (Adult)');
 
-
+        documentListTab.expireAsset(AssetName);
+        documentListTab.deleteArticle(AssetTitle, global.d2ConDataSettings.inputData.DeleteAllversions);
+        findTab.searchTextDeleteValidation(AssetName);
         
     });
 
