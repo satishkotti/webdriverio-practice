@@ -66,7 +66,7 @@ describe('Copyright Template US', function () {
         documentListTab.selectAsset(AssetTitle);
         cidName = CopyrightTemplate.CpygetChronicleIdAndName();
         chronicleId = cidName.chronicleId;
-        CopyrightTemplate.setRequiredPropertiesCpyRights(AssetName, 'WebMD', 'dummy');
+        CopyrightTemplate.setRequiredPropertiesCpyRights(AssetTitle, 'WebMD', 'dummy');
         contentTab.checkOut();
         CopyrightTemplate.CopyrightStatementText(CopyrightStatementText);
         browser.frameParent();
@@ -128,7 +128,7 @@ describe('Copyright Template US', function () {
    it('Verify created copyright is displayed in article-PPE-114663 ', function () {
         findTab.findbyId("091e9c5e807ae1dc");
         documentListTab.selectAsset("ThinkStock");
-        CopyrightTemplate.copyrightPublicationModify(AssetName);
+        CopyrightTemplate.copyrightPublicationModify(AssetTitle);
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
         AssetTitle2 = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName2 = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
@@ -141,10 +141,10 @@ describe('Copyright Template US', function () {
         cidName = propertiesTab.getChronicleIdAndName();
         objName2 = cidName.objectName;
         chronicleId = cidName.chronicleId;
-        propertiesTab.setRequiredProperties(objName2, 'News', objName2, objName2, objName2, objName2, 'ThinkStock',AssetName, 'ADD-ADHD (Adult)');
-        documentListTab.expireAsset(AssetName);
+        propertiesTab.setRequiredProperties(objName2, 'News', objName2, objName2, objName2, objName2, 'ThinkStock',AssetTitle, 'ADD-ADHD (Adult)');
+        documentListTab.expireAsset(AssetTitle);
         documentListTab.deleteArticle(AssetTitle, global.d2ConDataSettings.inputData.DeleteAllversions);
-        findTab.searchTextDeleteValidation(AssetName);
+        findTab.searchTextDeleteValidation(AssetTitle);
         
     });
 
