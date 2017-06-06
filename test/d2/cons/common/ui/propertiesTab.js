@@ -154,6 +154,23 @@ module.exports = {
         browser.click("//span/span[contains(.,'Auth & Rev')]");
         browser.click("//span/span[contains(.,'Publishing')]");
         browser.pause(1000);
+    },
+
+    
+     publishingTabSelect: function(){
+        
+        browser.click("//span/span[contains(.,'Publishing')]");
+        browser.pause(1000);
+    },
+    otherTabSelect: function(){
+        browser.click("//span/span[contains(.,'Other')]")
+    },
+      systemPublishingDateSet:function(textValue){
+         browser.setValue("#wbmd_eff_date-input",textValue);
+    },
+     expirationDateSet:function(textValue){
+         return browser.setValue("#wbmd_exp_date-input",textValue);
     }
+
 }
 

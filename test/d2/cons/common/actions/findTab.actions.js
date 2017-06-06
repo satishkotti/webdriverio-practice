@@ -16,6 +16,17 @@ module.exports = {
         findTabUI.findByText();
         browser.frameParent();
         findTabUI.verifyNoMatchingMessage();
-    }
+    },
+      searchTextDeleteValidation: function(AssetName){
+        findTabUI.switchToExternalWidget0Frame();
+        findTabUI.Searchtext(AssetName);
+        browser.frameParent();
+        findTabUI.DeleteValidation();
+    },
+    findbyId: function(chronicleId){
+        findTabUI.switchToExternalWidget0Frame();
+        findTabUI.findByChronicleId(chronicleId);
+        browser.frameParent();
+    },
 
 }

@@ -75,5 +75,9 @@ var contentTabObj = {
         return ImagelinkVal;
         browser.frameParent();
     },
+     contentHeaderGet:function()
+    {
+        return contentTabUI.contentHeaderGet();
+    },
 }
 module.exports = contentTabObj;

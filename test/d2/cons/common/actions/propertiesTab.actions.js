@@ -86,5 +86,15 @@ module.exports = {
 
 //Add: assert set properties
 
+    },
+    setRequiredPropertiesforPublish: function(systempubdate,expdate){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        browser.pause(2000);
+        propertiesTabUI.publishingTabSelect();
+        browser.waitForVisible("#wbmd_eff_date-input",maxWaitTimeInMs);
+        propertiesTabUI.systemPublishingDateSet(systempubdate);
+        propertiesTabUI.expirationDateSet(expdate);
+        propertiesTabUI.save();
     }
 }

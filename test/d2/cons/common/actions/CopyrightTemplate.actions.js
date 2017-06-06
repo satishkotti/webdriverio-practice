@@ -71,7 +71,17 @@ copyrightMandatoryfieldsValidation: function(){
        
         propertiesTabUI.cancelEdit();
 
-    }
+   
+
+    },
+
+      copyrightPublicationModify: function(AssetName){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        CopyrightUI.copyrightPublicationFieldEdit(AssetName);
+        propertiesTabUI.save();
+
+      }
 
     
 }

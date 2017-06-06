@@ -179,9 +179,9 @@ var CopyrightTabUIObj = {
         expect(created).to.be.true;
         var creatorName = browser.isExisting("//label[string()='Creator Name:']");
         expect(creatorName).to.be.true;
-        var checkoutDate = browser.isExisting("//label[string()='Checkout Date:']");
+        var checkoutDate = browser.isExisting("//label[string()='Lock Date:']");
         expect(checkoutDate).to.be.true;
-        var checkedOutBy = browser.isExisting("//label[string()='Checked Out By:']");
+        var checkedOutBy = browser.isExisting("//label[string()='Lock Owner:']");
         expect(checkedOutBy).to.be.true;
         var ownerName = browser.isExisting("//label[string()='Owner:']");
         expect(ownerName).to.be.true;
@@ -195,7 +195,19 @@ var CopyrightTabUIObj = {
         expect(lastReviewDate).to.be.true;
         var accessed = browser.isExisting("//label[string()='Last Accessed On:']");
         expect(accessed).to.be.true;
-    }
+    
+    },
+    copyrightPublicationFieldEdit: function(AssetName){
+        browser.waitForVisible("#i_chronicle_id");
+        browser.waitForVisible("//div[label[@for='wbmd_publ_cpyrt_id']]//div[@id='assistance']");
+        browser.click("//div[label[@for='wbmd_publ_cpyrt_id']]//div[@id='assistance']");
+        browser.pause(2000);
+        browser.waitForVisible("//input[@id='assistance-input-input']");
+        browser.setValue("//input[@id='assistance-input-input']",AssetName);
+        browser.waitForVisible("//div[@id='"+AssetName+"']");
+        browser.doubleClick("//div[@id='"+AssetName+"']");
+        browser.click("//button[contains(.,'OK') and @aria-disabled=not('false')]")
+    },
 
 }
 
