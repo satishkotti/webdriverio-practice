@@ -128,8 +128,8 @@ describe('Copyright Template UK- PPE-61754', function () {
 
 
     it('Verify created copyright is displayed in article-PPE-114663 ', function () {
-        findTab.findbyId("091e9c5e80330d37");
-        documentListTab.selectAsset("UK WebMD Medical News");
+        findTab.findbyId("091e9c5e8162aaa6");
+        documentListTab.selectAsset("UK WebMD News Brief");
         CopyrightTemplate.copyrightPublicationModify(AssetName);
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath_uk);
         AssetTitle2 = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
@@ -143,7 +143,7 @@ describe('Copyright Template UK- PPE-61754', function () {
         cidName = propertiesTab.getChronicleIdAndName();
         objName2 = cidName.objectName;
         chronicleId = cidName.chronicleId;
-        propertiesTab.setRequiredProperties(objName2, 'Audio - Narrative', objName2, objName2, objName2, objName2, 'UK WebMD Medical News',AssetName, 'ADD-ADHD (Adult)');
+        propertiesTab.setRequiredProperties(objName2, 'Audio - Narrative', objName2, objName2, objName2, objName2, 'UK WebMD News Brief',AssetName, 'ADD-ADHD (Adult)');
 
         documentListTab.expireAsset(AssetName);
         documentListTab.deleteArticle(AssetTitle, global.d2ConDataSettings.inputData.DeleteAllversions);
