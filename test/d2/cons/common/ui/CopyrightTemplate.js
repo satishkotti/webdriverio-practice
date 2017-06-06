@@ -1,5 +1,7 @@
 var maxWaitTimeInMs = 50000;
-var CopyrightStatementSelector = "div > input.form-control.ng-pristine.ng-untouched.ng-valid.ng-scope";
+
+var CopyrightStatementSelector = "//h2[contains(.,'Copyright Statement')]//following-sibling::div/input[@type='text']";
+
 
 var Helper = require('./../functions/functions');
 
@@ -55,6 +57,7 @@ var CopyrightTabUIObj = {
           browser.pause(1000);
     },
 
+
      EfectiveDateSet: function(){
           browser.click("//div[@id='wbmd_eff_date']/img");
           browser.waitForVisible("//button[contains(.,'Now')]");
@@ -64,6 +67,10 @@ var CopyrightTabUIObj = {
 
      ExpirationDateSet: function(){
           browser.click("//div[@id='wbmd_exp_date']/img");
+     },
+     RetentionDateSet: function(){
+          browser.click("//div[@id='a_retention_date']/img");
+
           browser.waitForVisible("//button[contains(.,'Now')]");
           browser.click("//button[contains(.,'Now')]");
           browser.pause(1000);
@@ -129,14 +136,6 @@ var CopyrightTabUIObj = {
     },
    
 
-     publishingTabSelect: function(){
-        
-        browser.click("//span/span[contains(.,'Publishing')]");
-        browser.pause(1000);
-    },
-    otherTabSelect: function(){
-        browser.click("//span/span[contains(.,'Other')]")
-    },
     dropdownlistSelect: function(ddlocator){
         var drpdwnvalues;
         browser.setValue("//input[@id='"+ddlocator+"']","");
@@ -152,11 +151,40 @@ var CopyrightTabUIObj = {
        return isExisting;
     },
 
-    copyrightMandatoryfieldsValidation: function(){
+  
+    
+    publishingTabSelect: function(){
+        browser.click("//span[@text()='Publishing']")
+    },
+    otherTabSelect: function(){
+        browser.click("//span[@text()='Other']")
+    },
+      copyrightMandatoryfieldsValidation: function(){
+
           var copyrightHolder =browser.isExisting("//span[contains(.,'Copyright Holder')]");
           expect(copyrightHolder).to.be.true;
           browser.click("//button[contains(.,'OK') and @aria-disabled=not('false')]");
           browser.click("//button[contains(.,'Cancel Edit')]");
+    },
+
+     copyrightholderValidation: function(){
+        browser.waitForVisible("//div[@id='wbmd_copyright_holder']/img");
+        browser.click("//div[@id='wbmd_copyright_holder']/img");
+        browser.waitForVisible("//div[@role='listitem']");
+        var contenttype= browser.getText("//div[@role='listitem']");
+        browser.click("//div[@id='wbmd_copyright_holder']/img");
+        return contenttype;
+    },
+      legalreviewerValidation: function(){
+        browser.pause(2000);
+        browser.waitForVisible("//div[@id='wbmd_legal_revr']/img");
+        browser.click("//div[@id='wbmd_legal_revr']/img");
+        browser.waitForVisible("//div[@role='listitem']");
+        var contenttype= browser.getText("//div[@role='listitem']");
+        browser.click("//div[@id='wbmd_legal_revr']/img");
+        browser.click("//button[contains(.,'Cancel Edit')]");
+        browser.pause(2000);
+        return contenttype;
     },
 
         copyright_Othertab_AttributesNames: function () {
@@ -195,7 +223,6 @@ var CopyrightTabUIObj = {
         expect(lastReviewDate).to.be.true;
         var accessed = browser.isExisting("//label[string()='Last Accessed On:']");
         expect(accessed).to.be.true;
-    
     },
     copyrightPublicationFieldEdit: function(AssetName){
         browser.waitForVisible("#i_chronicle_id");

@@ -12,9 +12,10 @@ module.exports.GenerateAccessToken = function () {
             .post("dctm/auth/login")
             .set("Content-Type", "application/json")
             .send({
-                "userName": "QAPublication",
-                "repoName": "webmddoc01",
-                "password": "QA-Doc#1"
+
+                "userName": global.username,
+                "repoName": global.repo,
+                "password": global.password
             })
             .expect(200, (err, res) => {
                 if (err)
@@ -119,8 +120,8 @@ module.exports.ExecuteDQLUsingApi = function (ticket, dql) {
         server
             .post('dctm/dql/execute')
             .set("Content-Type", "application/json")
-            .set("WBMD-USERNAME", "QAPublication")
-            .set("WBMD-REPOSITORY", "webmddoc01")
+            .set("WBMD-USERNAME", global.username)
+            .set("WBMD-REPOSITORY", global.repo)
             .set('WBMD-LOGIN-TICKET', ticket)
             .set("Authorization", "bearer P8Z/0jXAhIFR8GfjDuiSmYgvjCKmReJ6mP34ZUqwGfAlR5v3")
             .send({

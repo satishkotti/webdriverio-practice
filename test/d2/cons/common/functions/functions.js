@@ -28,7 +28,7 @@ module.exports = {
  getDataApiUrl: function() {
         return global.envSettings.dctmApiConfig.url;
     }, 
-    
+
      SetAgentForDctmApi: function(agentBaseUrl){
 
         d2api.SetAgent(agentBaseUrl);

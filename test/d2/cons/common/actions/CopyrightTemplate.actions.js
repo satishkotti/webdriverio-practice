@@ -8,6 +8,7 @@ var CopyrightObj = {
         CopyrightUI.CopyrightStatementSetValue(Textvalue);
     },
 
+
      CpygetChronicleIdAndName: function(){
         propertiesTabUI.propertiesTabSelect();
         return {
@@ -35,6 +36,7 @@ copyrightMandatoryfieldsValidation: function(){
         CopyrightUI.CopyrightStartDateSet();
         CopyrightUI.CopyrightEndDateSet();
         CopyrightUI.LegalReviewDateSet();
+
         propertiesTabUI.save();
     },
 
@@ -75,6 +77,34 @@ copyrightMandatoryfieldsValidation: function(){
 
     },
 
+
+     setRequiredPropertiesOthr: function(subject,languge_code){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        CopyrightUI.otherTabSelect();
+        CopyrightUI.TitleSet(subject);
+        CopyrightUI.CopyrightHolderSet(languge_code);
+        propertiesTabUI.save();
+    },
+     validateRequiredPropertiesCpyRights: function(){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+       propertiesTabUI.save();
+       CopyrightUI.copyrightMandatoryfieldsValidation();
+    },  
+     SQLCopyrightholderpropertiesValidation: function(){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        return CopyrightUI.copyrightholderValidation();
+     },
+     SQLLegalReviewerrpropertiesValidation: function(){
+        return CopyrightUI.legalreviewerValidation();
+     },
+      copyright_Othertab_AttributesNames: function (){
+        CopyrightUI.copyright_Othertab_AttributesNames();
+      },
+
+
       copyrightPublicationModify: function(AssetName){
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
@@ -83,7 +113,6 @@ copyrightMandatoryfieldsValidation: function(){
 
       }
 
-    
 }
 
 module.exports = CopyrightObj;

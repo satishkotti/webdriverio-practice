@@ -59,7 +59,6 @@ var documentListObj = {
         documentListUI.publishToStaging(assetName);
     },
     deleteArticle: function(assetName,DeleteVersionType){
-        
          documentListUI.deleteArticle(assetName,DeleteVersionType);
      },
      searchArticle: function(title)

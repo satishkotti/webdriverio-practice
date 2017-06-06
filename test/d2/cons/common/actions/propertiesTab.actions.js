@@ -1,4 +1,5 @@
 var propertiesTabUI = require('./../ui/propertiesTab');
+var maxWaitTimeInMs = 20000;
 
 module.exports = {
     
@@ -14,7 +15,6 @@ module.exports = {
         
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
-
         propertiesTabUI.friendlyNameSet(friendlyName);
         propertiesTabUI.busRefNameSet(busRef);
         propertiesTabUI.userDescriptionNameSet(userDescr);
@@ -87,6 +87,15 @@ module.exports = {
 //Add: assert set properties
 
     },
+
+       getChronicleIdAndTitle: function(){
+        propertiesTabUI.propertiesTabSelect();
+        return {
+            chronicleId: propertiesTabUI.chronicleIdGet(),
+            objectName: propertiesTabUI.objectTitleGet()
+        };
+    },
+
     setRequiredPropertiesforPublish: function(systempubdate,expdate){
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();

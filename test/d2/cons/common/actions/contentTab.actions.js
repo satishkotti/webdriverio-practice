@@ -75,7 +75,13 @@ var contentTabObj = {
         return ImagelinkVal;
         browser.frameParent();
     },
-     contentHeaderGet:function()
+
+    cancelcheckout: function(){
+        contentTabUI.selectContenTab();
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.cancelCheckout();
+    },
+    contentHeaderGet:function()
     {
         return contentTabUI.contentHeaderGet();
     },

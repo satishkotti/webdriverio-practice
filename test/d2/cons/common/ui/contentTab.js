@@ -189,6 +189,12 @@ var contentTabUIObj = {
         var imagelinkval = browser.getText(ImageSelector);
         return imagelinkval;
     },
+
+     cancelCheckout: function(){
+        browser.click("//button[contains(string(),'Cancel')]");
+        browser.frameParent();
+    },
+
     contentHeaderGet:function()
     {
         contentTabUIObj.switchToExternalWidgetFrame();
@@ -198,6 +204,12 @@ var contentTabUIObj = {
         return result;
 
     },
+
+     switchToExternalWidgetFrame: function(){
+        var contentWidgetIFrameElement = browser.element(contentPaneFrameSelector);
+        browser.frame(contentWidgetIFrameElement.value);
+    }
+
 
 }
 
