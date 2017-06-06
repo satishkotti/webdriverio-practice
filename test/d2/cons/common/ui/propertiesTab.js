@@ -106,7 +106,7 @@ module.exports = {
     },
     save: function(){
          browser.click("//div[@tag_id='Properties-widget']//button[text()='Save']");
-         browser.pause(6000);
+         browser.pause(8000);
     },
     cancelEdit: function(){
          browser.click("//div[@tag_id='Properties-widget']//button[text()='Cancel Edit']");
