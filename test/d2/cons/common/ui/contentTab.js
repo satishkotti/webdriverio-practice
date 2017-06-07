@@ -11,7 +11,6 @@ var contentPaneFrameSelector = "iframe[id*='oam_id==ExternalWidget-3!!oam_target
 var Helper = require('./../functions/functions');
 var contentHeader="//div[@class='container']//center[@class='ng-binding']";
 
-
 var contentTabUIObj = {
     switchToMainFrame: function(){
         browser.frame();
@@ -190,10 +189,12 @@ var contentTabUIObj = {
         var imagelinkval = browser.getText(ImageSelector);
         return imagelinkval;
     },
+
      cancelCheckout: function(){
         browser.click("//button[contains(string(),'Cancel')]");
         browser.frameParent();
     },
+
     contentHeaderGet:function()
     {
         contentTabUIObj.switchToExternalWidgetFrame();
@@ -203,11 +204,12 @@ var contentTabUIObj = {
         return result;
 
     },
+
      switchToExternalWidgetFrame: function(){
-       // browser.frame();
         var contentWidgetIFrameElement = browser.element(contentPaneFrameSelector);
         browser.frame(contentWidgetIFrameElement.value);
     }
+
 
 }
 

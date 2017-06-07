@@ -87,6 +87,7 @@ module.exports = {
 //Add: assert set properties
 
     },
+
        getChronicleIdAndTitle: function(){
         propertiesTabUI.propertiesTabSelect();
         return {
@@ -94,6 +95,7 @@ module.exports = {
             objectName: propertiesTabUI.objectTitleGet()
         };
     },
+
     setRequiredPropertiesforPublish: function(systempubdate,expdate){
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
@@ -101,7 +103,6 @@ module.exports = {
         propertiesTabUI.publishingTabSelect();
         browser.waitForVisible("#wbmd_eff_date-input",maxWaitTimeInMs);
         propertiesTabUI.systemPublishingDateSet(systempubdate);
-      //  browser.click("//label[text()='Expiration Date']");
         propertiesTabUI.expirationDateSet(expdate);
         propertiesTabUI.save();
     }

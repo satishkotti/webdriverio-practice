@@ -75,6 +75,7 @@ var contentTabObj = {
         return ImagelinkVal;
         browser.frameParent();
     },
+
     cancelcheckout: function(){
         contentTabUI.selectContenTab();
         contentTabUI.switchToExternalWidgetFrame();

@@ -1,6 +1,7 @@
 var maxWaitTimeInMs = 50000;
-//var CopyrightStatementSelector = ".form-control.ng-pristine.ng-valid.ng-scope.ng-touched";
+
 var CopyrightStatementSelector = "//h2[contains(.,'Copyright Statement')]//following-sibling::div/input[@type='text']";
+
 
 var Helper = require('./../functions/functions');
 
@@ -56,8 +57,20 @@ var CopyrightTabUIObj = {
           browser.pause(1000);
     },
 
+
+     EfectiveDateSet: function(){
+          browser.click("//div[@id='wbmd_eff_date']/img");
+          browser.waitForVisible("//button[contains(.,'Now')]");
+          browser.click("//button[contains(.,'Now')]");
+          browser.pause(1000);
+    },
+
+     ExpirationDateSet: function(){
+          browser.click("//div[@id='wbmd_exp_date']/img");
+     },
      RetentionDateSet: function(){
           browser.click("//div[@id='a_retention_date']/img");
+
           browser.waitForVisible("//button[contains(.,'Now')]");
           browser.click("//button[contains(.,'Now')]");
           browser.pause(1000);
@@ -122,6 +135,23 @@ var CopyrightTabUIObj = {
         return browser.getValue("input#r_object_type");
     },
    
+
+    dropdownlistSelect: function(ddlocator){
+        var drpdwnvalues;
+        browser.setValue("//input[@id='"+ddlocator+"']","");
+        browser.pause(1000);
+        browser.click("//input[@id='"+ddlocator+"']//following-sibling::img");
+        drpdwnvalues=browser.getText("//div[@class='x-combo-list-item ']");
+        return drpdwnvalues;
+
+    },
+    verifyValue: function(data){
+        var isExisting;
+        isExisting = browser.isExisting("//div[@title='"+data+"']");
+       return isExisting;
+    },
+
+  
     
     publishingTabSelect: function(){
         browser.click("//span[@text()='Publishing']")
@@ -130,11 +160,13 @@ var CopyrightTabUIObj = {
         browser.click("//span[@text()='Other']")
     },
       copyrightMandatoryfieldsValidation: function(){
+
           var copyrightHolder =browser.isExisting("//span[contains(.,'Copyright Holder')]");
           expect(copyrightHolder).to.be.true;
           browser.click("//button[contains(.,'OK') and @aria-disabled=not('false')]");
           browser.click("//button[contains(.,'Cancel Edit')]");
     },
+
      copyrightholderValidation: function(){
         browser.waitForVisible("//div[@id='wbmd_copyright_holder']/img");
         browser.click("//div[@id='wbmd_copyright_holder']/img");
@@ -154,6 +186,7 @@ var CopyrightTabUIObj = {
         browser.pause(2000);
         return contenttype;
     },
+
         copyright_Othertab_AttributesNames: function () {
         browser.click("//span/span[string()='Other']");
         var subject = browser.isExisting("//label[string()='Subject:']");
@@ -162,8 +195,6 @@ var CopyrightTabUIObj = {
         expect(language).to.be.true;
         var status = browser.isExisting("//label[string()='Status:']");
         expect(status).to.be.true;
-        //var WPstatus = browser.isExisting("//label[string()='WP Status:']");
-      //  expect(WPstatus).to.be.true;
         var author = browser.isExisting("//label[string()='Authors:']");
         expect(author).to.be.true;
         var versionlabel = browser.isExisting("//label[string()='Version Label:']");
@@ -205,9 +236,9 @@ var CopyrightTabUIObj = {
         browser.setValue("//input[@id='assistance-input-input']",AssetName);
         browser.waitForVisible("//div[@id='"+AssetName+"']");
         browser.doubleClick("//div[@id='"+AssetName+"']");
+        browser.pause(2000);
         browser.click("//button[contains(.,'OK') and @aria-disabled=not('false')]")
     },
-
 
 }
 
