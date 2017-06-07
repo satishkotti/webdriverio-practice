@@ -1,11 +1,9 @@
 var merge = require('deepmerge');
-var wdioConf = require('./../../../../wdio.conf.js');
-var gulpFile = require('./../../../../gulpfile.js');
-var path = require('path');
+var wdioConf = require('./wdio.conf.js');
 
 exports.config = merge(wdioConf.config, {
 
-    debug: false,
+    debug: true,
     specs: [],
     waitforTimeout: 120000,
     mochaOpts: {
@@ -13,7 +11,7 @@ exports.config = merge(wdioConf.config, {
         timeout: 900000
     },
     capabilities: [{
-        maxInstances: gulpFile.MaxInstances,
+        maxInstances: 1,
         browserName: 'chrome',
         chromeOptions:
         {
@@ -33,10 +31,11 @@ exports.config = merge(wdioConf.config, {
                 "credentials_enable_service": false,
                 "profile": {
                     password_manager_enabled: false
-                },                
+                },
 				download: { 
-                    default_directory: path.join(process.cwd(), "/test/common/browserDownloads"),
+                    default_directory: "E:/CodeReview/cms-test/test/pb2/data",
                     prompt_for_download: false,
+
                 }
             }
         }
@@ -53,12 +52,13 @@ exports.config = merge(wdioConf.config, {
         should = chai.should();
         _ = require('lodash');
 
-        var appConfigFile = require('./../release29.config');
+        var appConfigFile = require('./test/pb2/config/release29.config');
         var appConfig = appConfigFile.config;
-        global.testEnv = gulpFile.TestEnv;
+        global.testEnv = 'dev03';
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
-        global.browserDownloadPath = gulpFile.DownloadPath;
-    }
+
+    },
+
 });

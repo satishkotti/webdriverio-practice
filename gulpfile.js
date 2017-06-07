@@ -55,6 +55,8 @@ if (conf.length == 0) {
     console.log('config: ' + confPath);
 }
 
+var downloadFolderPath = path.join(process.cwd(), "/test/common/browserDownloads");
+
 gulp.task('branch', function (cb) {
     return git.revParse({
         args: '--abbrev-ref HEAD'
@@ -96,8 +98,12 @@ gulp.task('branch', function (cb) {
             var ppeIndex = branchArr.indexOf('ppe');
             if (ppeIndex >= 0) {
                 var testfile = branchArr[ppeIndex + 1];
-                specBranch = `test/${appFolder}/**/*${testfile}*.js`;
-                console.log('ppe specs: ' + specBranch);
+                specFiles = `test/${appFolder}/**/*${testfile}*.js`;
+				specFileFolder = `test/${appFolder}/**/*${testfile}*/*.js`;
+				tests.push(specFiles);
+				tests.push(specFileFolder);
+                console.log('feature ppe file specs: ' + specFiles);
+                console.log('feature ppe folder specs: ' + specFileFolder);
             }
         }
 
@@ -234,5 +240,6 @@ gulp.task('default', function (done) {
 module.exports = {
     TestEnv: testEnv.toLowerCase(),
     MaxInstances: flags.maxInstances,
-    LogLevel: flags.logLevel
+    LogLevel: flags.logLevel,
+	DownloadPath: downloadFolderPath
 }
