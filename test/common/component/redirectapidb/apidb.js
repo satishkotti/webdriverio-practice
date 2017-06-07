@@ -73,12 +73,34 @@ AND R.To_Site_Id = ToPage.site_id
             mssql.executeSql(sql)
             );
     },
+    GetAllRedirectFromUrl: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                        SELECT TOP 1 'http://' + PFrom.Prefix + '.' + D.domain  AS 'apiGetAllRedirectFromUrl'
+                        FROM Manual_Redirect R
+                        INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
+                        INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
+                        AND R.To_Site_ID = PTo.Site_ID
+                        INNER JOIN webmd_Domains D ON PFrom.site_id = D.site_id
+                        AND D.is_core_site = 1
+                        WHERE R.status <> 'd'
+                        AND PFrom.Status <> 'd'
+                        AND PTo.Status <> 'd'
+                      
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+            );
+    },
     
     GetAllRedirectToUrlPattern: function () {
         mssql.connection = this.connection;
 
         var sql = `
-                SELECT TOP 1 ('http://' + PTo.Prefix + '.' + D.Domain + PTo.friendly_url ) AS apiGetAllRedirectToUrlPattern
+                SELECT TOP 1 ('http://' + PTo.Prefix + '.' + D.Domain  ) AS apiGetAllRedirectToUrlPattern
                 FROM Manual_Redirect R
                 INNER JOIN RT_PageUrlMap PFrom ON R.ID = PFrom.redirect_ID
                 INNER JOIN RT_PageUrlMap PTo ON R.To_Chronic_ID = PTo.content_chronic_id
@@ -132,7 +154,7 @@ AND R.To_Site_Id = ToPage.site_id
         var sql = `
                             SELECT TOP 1 ( R.To_URL ) AS apiGetAllRedirectsToaUrl
                             FROM Manual_Redirect R WHERE R.To_URL IS NOT NULL and  R.status <> 'd'
-                            order by id
+                          
                       
                     `;
 
