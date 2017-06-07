@@ -50,7 +50,28 @@ describe('Copyright Template US', function () {
     });
 
     
-     it('Verify the checkout , cancel and checkin operation', function () {
+    it('Should verify the data dictionary validations on  PropertiesTab -Legal Reviewer:  PPE-113311', function () {
+        documentListTab.selectAsset(AssetTitle);
+        var response;
+        functions.SetAgentForDctmApi(functions.getDataApiUrl())
+        var accessToken = functions.GenerateApiAccessToken();
+        response = functions.ExecuteDQLusingDCTMAPI(accessToken,"select i_chronicle_id, title from wbmd_company where any wbmd_site_only = '1001' and title != ' ' order by title");
+        CopyrightTemplate.VerifyDropdownlistVal("wbmd_copyright_holder-input",response);
+    });
+
+    
+     it('Should verify the data dictionary validations on  PropertiesTab-Copyright Holder:  PPE-113311', function () {
+        documentListTab.selectAsset(AssetTitle);
+        var response;
+        functions.SetAgentForDctmApi(functions.getDataApiUrl())
+        var accessToken = functions.GenerateApiAccessToken();
+        response = functions.ExecuteDQLusingDCTMAPI(accessToken,"select i_chronicle_id, title from wbmd_person where any wbmd_person_role='7' and any wbmd_site_only = '1001' and title != ' ' order by title");
+        CopyrightTemplate.VerifyDropdownlistVal("wbmd_legal_revr-input",response);
+        
+    });
+
+
+    it('Verify the checkout , cancel and checkin operation', function () {
         documentListTab.selectAsset(AssetTitle);
         contentTab.checkOut();
         CopyrightTemplate.CopyrightStatementText(CopyrightStatementText);
@@ -58,6 +79,7 @@ describe('Copyright Template US', function () {
         contentTab.cancel();
         browser.frameParent();
         contentTab.checkOut();
+        CopyrightTemplate.CopyrightStatementText(CopyrightStatementText);
         browser.frameParent();
         contentTab.checkIn();
     });
@@ -67,10 +89,6 @@ describe('Copyright Template US', function () {
         cidName = CopyrightTemplate.CpygetChronicleIdAndName();
         chronicleId = cidName.chronicleId;
         CopyrightTemplate.setRequiredPropertiesCpyRights(AssetTitle, 'WebMD', 'dummy');
-        contentTab.checkOut();
-        CopyrightTemplate.CopyrightStatementText(CopyrightStatementText);
-        browser.frameParent();
-        contentTab.checkIn();
         documentListTab.selectAsset(AssetTitle);
         documentListTab.promoteAsset(AssetTitle);
         documentListTab.demoteAsset(AssetTitle);
@@ -105,25 +123,7 @@ describe('Copyright Template US', function () {
 
 
 
-     it('Should verify the data dictionary validations on  PropertiesTab -Legal Reviewer:  PPE-113311', function () {
-        documentListTab.selectAsset(AssetTitle);
-        var response;
-        functions.SetAgentForDctmApi(functions.getDataApiUrl())
-        var accessToken = functions.GenerateApiAccessToken();
-        response = functions.ExecuteDQLusingDCTMAPI(accessToken,"select i_chronicle_id, title from wbmd_company where any wbmd_site_only = '1001' and title != ' ' order by title");
-        CopyrightTemplate.VerifyDropdownlistVal("wbmd_copyright_holder-input",response);
-    });
-
-    
-     it('Should verify the data dictionary validations on  PropertiesTab-Copyright Holder:  PPE-113311', function () {
-        documentListTab.selectAsset(AssetTitle);
-        var response;
-        functions.SetAgentForDctmApi(functions.getDataApiUrl())
-        var accessToken = functions.GenerateApiAccessToken();
-        response = functions.ExecuteDQLusingDCTMAPI(accessToken,"select i_chronicle_id, title from wbmd_person where any wbmd_person_role='7' and any wbmd_site_only = '1001' and title != ' ' order by title");
-        CopyrightTemplate.VerifyDropdownlistVal("wbmd_legal_revr-input",response);
-        
-    });
+     
 
    it('Verify created copyright is displayed in article-PPE-114663 ', function () {
         findTab.findbyId("091e9c5e807ae1dc");
@@ -142,7 +142,6 @@ describe('Copyright Template US', function () {
         objName2 = cidName.objectName;
         chronicleId = cidName.chronicleId;
         propertiesTab.setRequiredProperties(objName2, 'News', objName2, objName2, objName2, objName2, 'ThinkStock',AssetTitle, 'ADD-ADHD (Adult)');
-        documentListTab.selectAsset(AssetTitle);
         documentListTab.expireAsset(AssetTitle);
         documentListTab.deleteArticle(AssetTitle, global.d2ConDataSettings.inputData.DeleteAllversions);
         findTab.searchTextDeleteValidation(AssetTitle);
