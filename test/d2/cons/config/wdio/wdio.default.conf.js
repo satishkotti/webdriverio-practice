@@ -1,6 +1,8 @@
 var gulpFile = require('./../../../../../gulpfile.js');
+var merge = require('deepmerge');
+var wdioConf = require('./../../../../wdio.conf.js');
 
-exports.config = {
+exports.config = merge(wdioConf.config,{
     debug: false,
     specs: [],
     exclude: [],
@@ -57,4 +59,4 @@ exports.config = {
         global.envSettings = config.EnvSettings.getEnvSettings(global.testEnv.toLowerCase());
         global.d2ConDataSettings = config.EnvSettings.getEnvData(global.testEnv.toLowerCase());
     }
-};
+});
