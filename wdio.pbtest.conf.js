@@ -1,5 +1,6 @@
 var merge = require('deepmerge');
 var wdioConf = require('./wdio.conf.js');
+var path = require('path');
 
 exports.config = merge(wdioConf.config, {
 
@@ -13,8 +14,7 @@ exports.config = merge(wdioConf.config, {
     capabilities: [{
         maxInstances: 1,
         browserName: 'chrome',
-        chromeOptions:
-        {
+        chromeOptions: {
             "args": [
                 "start-maximized",
                 "no-proxy-server",
@@ -32,16 +32,17 @@ exports.config = merge(wdioConf.config, {
                 "profile": {
                     password_manager_enabled: false
                 },
-				download: { 
-                    default_directory: "E:/CodeReview/cms-test/test/pb2/data",
+                download: {
+
+                    default_directory: path.join(process.cwd(), "/test/common/browserDownloads"),
                     prompt_for_download: false,
 
                 }
             }
         }
     }],
-	
-    before: function () {
+
+    before: function() {
 
         var chai = require('chai');
         chai.config.includeStack = true;
@@ -58,6 +59,7 @@ exports.config = merge(wdioConf.config, {
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
+        global.browserDownloadPath = path.join(process.cwd(), "/test/common/browserDownloads");
 
     },
 
