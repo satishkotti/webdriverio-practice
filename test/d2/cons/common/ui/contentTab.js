@@ -10,6 +10,7 @@ var contentTabSelector = "//span[text()='Content']";
 var contentPaneFrameSelector = "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
 var Helper = require('./../functions/functions');
 var contentHeader="//div[@class='container']//center[@class='ng-binding']";
+var SectionHeader="//h2[span[contains(.,'Section Header')]]//following-sibling::div//div";
 
 
 var contentTabUIObj = {
