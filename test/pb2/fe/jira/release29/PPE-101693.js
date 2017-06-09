@@ -6,8 +6,6 @@ var fs = require('fs'),
 
 var test = require('./../../../common/functions/functions');
 var redirectActions = require("./../../../common/actions/redirecttool.actions");
-
-var websites = [3, 8, 7, , 9];
 var browserDownloadPath = global.browserDownloadPath;
 
 function getLine(filename, line_no, callback) {
@@ -76,7 +74,6 @@ describe('PPE-101693: Ability to Export all Redirects', function() {
 
         //cleanup the download folder
         rmDir(browserDownloadPath, false);
-        randomeSite = websites[Math.floor(Math.random() * websites.length)];
     });
 
     it('Go to Redirect Tool Page', function() {
@@ -84,7 +81,7 @@ describe('PPE-101693: Ability to Export all Redirects', function() {
     });
 
     it('Export redircet file', function() {
-        browser.selectByValue("span.pb-buttongroup.floatright > select", randomeSite);
+        browser.selectByValue("span.pb-buttongroup.floatright > select", 3);
         browser.waitForVisible("section.pb-notification-container.success");
 
         return Promise.resolve(
