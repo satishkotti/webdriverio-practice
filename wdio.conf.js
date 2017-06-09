@@ -23,15 +23,15 @@ exports.config = {
         ui: 'bdd',
         timeout: 2400000
     },
-    onPrepare: function () {
+    onPrepare: function() {
         var defered = Q.defer();
         var selenium = require('selenium-standalone');
         selenium.install({
-            logger: function (message) {}
-        }, function (err) {
+            logger: function(message) {}
+        }, function(err) {
 
             if (err) return defered.reject(err);
-            selenium.start(function (err, child) {
+            selenium.start(function(err, child) {
                 if (err) return defered.reject(err);
                 selenium.child = child;
 
@@ -40,7 +40,7 @@ exports.config = {
         });
         return defered.promise;
     },
-    before: function () {
+    before: function() {
 
         var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : 'dev01';
         var testApp = process.env.npm_config_testApp ? process.env.npm_config_testApp : 'pb2';
@@ -55,6 +55,6 @@ exports.config = {
         _ = require('lodash');
 
     },
-    after: function (failures, pid) {},
-    onComplete: function () {}
+    after: function(failures, pid) {},
+    onComplete: function() {}
 };

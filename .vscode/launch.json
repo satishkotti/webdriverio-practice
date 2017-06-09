@@ -4,22 +4,22 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [{
-            "type": "node",
-            "request": "launch",
-            "port": 5859,
-            "name": "WebdriverIO",
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
-            "windows": {
-                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio"
-            },
-            "cwd": "${workspaceRoot}",
-            "console": "integratedTerminal",
-            // This args config runs only the file that's open and displayed
-            // (e.g., a file in test/spec/):
-            "args": [
-                "wdio", "wdio.pbtest.conf.js",
-                "--spec","${relativeFile}"
-            ]
-        }
-    ]
+        "type": "node",
+        "request": "launch",
+        "port": 5859,
+        "name": "WebdriverIO",
+        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
+        "windows": {
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio"
+        },
+        "cwd": "${workspaceRoot}",
+        "console": "integratedTerminal",
+        "timeout": 10000,
+        // This args config runs only the file that's open and displayed
+        // (e.g., a file in test/spec/):
+        "args": [
+            "wdio", "wdio.pbtest.conf.js",
+            "--spec", "${relativeFile}"
+        ]
+    }]
 }
