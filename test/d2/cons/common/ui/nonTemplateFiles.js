@@ -51,9 +51,6 @@ var nonTemplateFiles = {
         propertiesTabUI.publicationSet(publication);
         propertiesTabUI.primaryTopicIdSet(primaryTopicId);
         browser.click('//button[contains(text(),"Next")]');
-        /* while (loadingresult) {
-             loadingresult = nonTemplateFiles.fileloading();
-         }*/
         browser.pause(18000);
 
     },
