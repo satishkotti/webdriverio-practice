@@ -9,7 +9,7 @@ exports.config = merge(wdioConf.config, {
     waitforTimeout: 120000,
     mochaOpts: {
         ui: 'bdd',
-        timeout: 900000
+        timeout: 9000000
     },
     capabilities: [{
         maxInstances: 1,
@@ -82,6 +82,7 @@ exports.config = merge(wdioConf.config, {
         var appConfigFile = require('./../release29.config');
         var appConfig = appConfigFile.config;
         global.testEnv = appConfig.testEnv.dev03;
+        global.testapiurl= 'http://redirect.' + global.testEnv + '.webmd.com/api/redirect/'    
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
