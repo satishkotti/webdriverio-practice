@@ -12,6 +12,7 @@ module.exports.GenerateAccessToken = function () {
             .post("dctm/auth/login")
             .set("Content-Type", "application/json")
             .send({
+
                 "userName": global.username,
                 "repoName": global.repo,
                 "password": global.password

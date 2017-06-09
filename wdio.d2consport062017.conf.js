@@ -1,7 +1,7 @@
 var Q = require("q");
 
 exports.config = {
-    debug: true,
+    debug: false,
     maxInstances: 1,
     //
     // ==================
