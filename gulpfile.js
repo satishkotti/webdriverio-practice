@@ -55,7 +55,8 @@ if (conf.length == 0) {
     console.log('config: ' + confPath);
 }
 
-var downloadFolderPath = path.join(process.cwd(), "/test/common/browserDownloads");
+//temp path added until nas share path ready w/perm
+var downloadFolderPath = "\\\\nasfs21d-ops-08.portal.webmd.com\\devbuildhome\\cmstest\\download";
 
 gulp.task('branch', function (cb) {
     return git.revParse({
