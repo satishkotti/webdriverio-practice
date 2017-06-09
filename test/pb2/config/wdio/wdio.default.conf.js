@@ -35,7 +35,8 @@ exports.config = merge(wdioConf.config, {
                     password_manager_enabled: false
                 },                
 				download: { 
-                    default_directory: path.join(process.cwd(), "/test/common/browserDownloads"),
+                    //temp path added until nas share path ready w/perm
+                    default_directory: "\\\\nasfs21d-ops-08.portal.webmd.com\\devbuildhome\\cmstest\\download",
                     prompt_for_download: false,
                 }
             }

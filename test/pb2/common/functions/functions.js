@@ -12,6 +12,7 @@ var usersDetails = require('./../../config/users');
 var ats = require('./../actions/ats.actions');
 var user = usersDetails.users;
 var parseXml = require('./../../../common/xml/parseXml');
+var fs = require("fs");
 
 //Launch App and login
 module.exports.LaunchApp = () => {
@@ -20,14 +21,13 @@ module.exports.LaunchApp = () => {
 
 module.exports.LaunchAppAndLogin = (user) => {
     switch (user) {
-        default:
-            app.LaunchApp(); app.Login(global.username, global.password);
-            break;
+        default: app.LaunchApp();app.Login(global.username, global.password);
+        break;
         case 'superuser':
-            app.LaunchApp(); app.Login(user.superuser.username, user.superuser.password);
+                app.LaunchApp();app.Login(user.superuser.username, user.superuser.password);
             break;
         case 'superuser1':
-            app.LaunchApp(); app.Login(user.superuser1.username, user.superuser1.password);
+                app.LaunchApp();app.Login(user.superuser1.username, user.superuser1.password);
             break;
     }
 }
@@ -37,9 +37,11 @@ module.exports.Login = (user) => {
     switch (user) {
         default: app.Login(global.username, global.password);
         case 'superuser':
-            app.Login(user.superuser.username, user.superuser.password); break;
+                app.Login(user.superuser.username, user.superuser.password);
+            break;
         case 'superuser1':
-            app.Login(user.superuser1.username, user.superuser1.password); break;
+                app.Login(user.superuser1.username, user.superuser1.password);
+            break;
     }
 }
 
@@ -354,7 +356,7 @@ module.exports.GetXML = (chronId, stage, inputType) => {
     var xml;
     browser.call(() => {
         return Promise.resolve(parseXml.getXmlFromUrl(xmlUrl, null, inputType))
-            .then(function (result) {
+            .then(function(result) {
                 xml = result;
             }).catch(err => {
                 console.log(err);
@@ -406,4 +408,29 @@ module.exports.NavigateToRedirectToolPage = () => {
 //Navigates to the homepage
 module.exports.NavigateToRedirectTool = () => {
     menu.GoHome();
+}
+
+module.exports.CreateFolderPath = (path) => {
+    try {
+        if (!fs.existsSync(path)) {
+            var folderPath = '';
+            _.each(path.split("/"), function(folder) {
+                folderPath += folder;
+
+                console.log('path: ' + folderPath);
+
+                if (!fs.existsSync(folderPath)) {
+                    fs.mkdirSync(folderPath);
+
+                    console.log('create path: ' + folderPath);
+
+                }
+                folderPath += '/';
+            });
+        }
+    } catch (e) {
+        console.log(e);
+        return;
+    }
+    return;
 }

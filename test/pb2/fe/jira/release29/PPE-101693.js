@@ -74,6 +74,7 @@ describe('PPE-101693: Ability to Export all Redirects', function() {
 
         //cleanup the download folder
         rmDir(browserDownloadPath, false);
+        browser.pause(2000);
     });
 
     it('Go to Redirect Tool Page', function() {
