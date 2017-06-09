@@ -44,7 +44,8 @@
         "csv-parse": "^1.2.0",
         "xpath": "^0.0.24",
         "xmldom": "^0.1.27",
-        "wdio-allure-reporter": "^0.1.2"
+        "wdio-allure-reporter": "^0.1.2",
+		"request-promise": "^4.2.1"
     },
     "directories": {
         "test": "test"
