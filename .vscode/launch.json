@@ -40,8 +40,8 @@
             // (e.g., a file in test/spec/):
             "args":[
                 "wido","wdio.d2consport062017.conf",
-                "--spec", "${workspaceRoot}/test/d2/cons/fe/jira/profport062017/PPE-61754.js",
-                "--testEnv=dev04",
+                "--spec", "${workspaceRoot}",
+                "--testEnv=qa01",
                 "--testApp=d2cons"
                 // To run a specific file, you can also do:
                 //"--spec", "test/specs/foo.spec.js"

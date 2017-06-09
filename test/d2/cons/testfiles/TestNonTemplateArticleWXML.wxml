@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><wbmd_asset id="091e9c5e814ae655" object_type="wbmd_cons_article" xmlns:xalan="http://xml.apache.org/xalan" xmlns:java="http://xml.apache.org/xslt/java" xmlns:xalan-nodeset="org.apache.xalan.xslt.extensions.Nodeset">
+    <metadata_section>
+<i_chronicle_id>091e9c5e814ae02c</i_chronicle_id>
+<r_object_id>091e9c5e814ae655</r_object_id>
+<title>TestAZProduct01</title>
+<object_name>TestAZProduct01</object_name>
+
+<content_template>consumer_article_a-z_Products.xml</content_template>
+<r_object_id>091e9c5e814ae655</r_object_id>
+        <wbmd_archive_bool>0</wbmd_archive_bool>
+        <wbmd_bus_ref/>
+        <wbmd_cpyrt/>
+        <wbmd_ext_id/>
+        <wbmd_med_ref_type/>
+        <wbmd_wdw_ttl/>
+        <wbmd_site_archv_ovrd_dt>nulldate</wbmd_site_archv_ovrd_dt>
+        <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+        <wbmd_publ/>
+        <wbmd_prim_subj_cd/>
+        <wbmd_desc_meta/>
+        <wbmd_orig_pub_dt>nulldate</wbmd_orig_pub_dt>
+        <wbmd_desc_user/>
+        <wbmd_lk_ttl/>
+        <wbmd_disclmr/>
+        <wbmd_prim_med_revr/>
+        <wbmd_keywords/>
+        <wbmd_relv1_subj_cd_group/>
+        <wbmd_authr_prim_group/>
+        <wbmd_relv2_subj_cd_group/>
+        <wbmd_relv3_subj_cd_group>
+            <wbmd_relv3_subj_cd>0</wbmd_relv3_subj_cd>
+        </wbmd_relv3_subj_cd_group>
+        <r_object_id>091e9c5e814ae655</r_object_id>
+        <wbmd_c_cons_edtr/>
+        <wbmd_c_cons_cpy_edtr/>
+        <wbmd_c_cons_revw_dt>nulldate</wbmd_c_cons_revw_dt>
+        <wbmd_c_sec_med_revw_dt>nulldate</wbmd_c_sec_med_revw_dt>
+        <wbmd_c_sec_med_revr/>
+        <wbmd_c_prim_top_id/>
+        <wbmd_c_edtr_revr_dt>nulldate</wbmd_c_edtr_revr_dt>
+        <wbmd_c_stg_of_cond/>
+        <wbmd_c_sec_authr_group/>
+        <wbmd_c_audnc_age_group/>
+        <wbmd_c_audnc_geo_group/>
+        <wbmd_c_sec_top_id_group/>
+        <wbmd_c_audnc_gndr_group/>
+        <wbmd_c_audnc_lfstyl_group/>
+        <wbmd_c_audnc_read_lvl_group/>
+        <wbmd_c_audnc_ethn_group/>
+        <wbmd_c_tm_of_yr_group/>
+        <wbmd_c_clncl_tgt_pop_group/>
+<wbmd_c_art_thmbnl directive="imageurl" chronic_id="091e9c5e80799ac4" path="/webmd/consumer_assets/site_images/article_thumbnails/quizzes/mens_health_rmq/thumbnails/110x70_mens_health_rmq.jpg" object_type="wbmd_cons_img" wbmd_c_alt_tag="man running" wbmd_c_width="" wbmd_c_ht=""/>
+<wbmd_c_channel_id/>
+<wbmd_c_frnd_nm/>
+<wbmd_c_asset_name/>
+<wbmd_c_teaser/>
+<wbmd_c_mini_article chronic_id="0000000000000000" directive="expand" object_type="wbmd_cons_shrt_txt"/>
+<wbmd_prog_col/>
+
+</metadata_section>
+    <content_section>
+        <cons_product>
+<title>TestAZProduct01</title>
+<subheadline/>
+<thumbnail_image directive="imageurl" chronic_id="091e9c5e80799ac4" path="/webmd/consumer_assets/site_images/article_thumbnails/quizzes/mens_health_rmq/thumbnails/110x70_mens_health_rmq.jpg" object_type="wbmd_cons_img"/>
+<media_asset directive="friendlyurl" chronic_id="091e9c5e800077fc" path="/webmd/consumer_assets/site_images/articles/health_and_medical_reference/healthy_living/health_risks_being_overweight_weight_for_height_chart.jpg" object_type="wbmd_cons_img">
+                <i_chronicle_id>091e9c5e800077fc</i_chronicle_id>
+                <r_object_id>091e9c5e800077fc</r_object_id>
+                <r_object_type>wbmd_cons_img</r_object_type>
+                <title>health-risks-being-overweight-weight-for-height-chart</title>
+                <wbmd_wdw_ttl>error_left_blank</wbmd_wdw_ttl>
+                <wbmd_lk_ttl/>
+                <wbmd_publ>0000000000000000</wbmd_publ>
+                <wbmd_desc_meta/>
+                <wbmd_desc_user>error_left_blank</wbmd_desc_user>
+                <wbmd_keywords>error_left_blank</wbmd_keywords>
+                <wbmd_cpyrt>0000000000000000</wbmd_cpyrt>
+                <wbmd_disclmr>0000000000000000</wbmd_disclmr>
+                <wbmd_c_prim_top_id>1680</wbmd_c_prim_top_id>
+                <wbmd_c_sec_top_id/>
+                <wbmd_orig_pub_dt>01/01/1900 00:00:00</wbmd_orig_pub_dt>
+                <wbmd_prim_revw_dt>nulldate</wbmd_prim_revw_dt>
+                <wbmd_prim_med_revr>0000000000000000</wbmd_prim_med_revr>
+                <wbmd_c_alt_tag/>
+                <wbmd_c_width>0</wbmd_c_width>
+                <wbmd_c_ht>0</wbmd_c_ht>
+            </media_asset>
+<section_groups>
+<section_group>
+<section_header/>
+<section_text/>
+<highlights/>
+<pull_quotes/>
+</section_group>
+</section_groups>
+<conditions>
+<condition/>
+</conditions>
+<exercise_types>
+<exercise_type/>
+</exercise_types>
+<preferences>
+<preference/>
+</preferences>
+<intensity_lvls>
+<intensity_lvl/>
+</intensity_lvls>
+<target-areas>
+<target-area/>
+</target-areas>
+<prog_features>
+<prog_feature/>
+</prog_features>
+<exclusions>
+<exclusion/>
+</exclusions>
+<citations/>
+<related_links_type/>
+<related_links_header/>
+<related_links_text/>
+</cons_product>
+    </content_section>
+</wbmd_asset>

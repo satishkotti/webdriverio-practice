@@ -103,6 +103,7 @@ module.exports = {
     edit: function(){
         browser.waitForVisible("//div[@tag_id='Properties-widget']//button[text()='Edit']", maxWaitTimeInMs);
         browser.click("//div[@tag_id='Properties-widget']//button[text()='Edit']");
+        browser.pause(5000);
     },
     save: function(){
          browser.click("//div[@tag_id='Properties-widget']//button[text()='Save']");
