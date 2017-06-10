@@ -42,11 +42,31 @@ IHealthrefMandatoryfieldsValidation: function(){
     {
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
-         var existingval= CopyrightUI.dropdownlistSelect(Selector);
+         var existingval= IHealthrefUI.dropdownlistSelect(Selector);
 
          for(i=0; i < response.length; i++)
         {
-         expect(existingval[i].trim()).to.equal(response[i][1].title.trim());
+         expect(existingval[i+1].trim()).to.equal(response[i][1].title.trim());
+        }
+    
+    
+       
+        propertiesTabUI.cancelEdit();
+
+   
+
+    },
+
+
+     VerifyDispnmDropdownlistVal: function(Selector,response)
+    {
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+         var existingval= IHealthrefUI.dropdownlistSelect(Selector);
+         
+         for(i=0; i < response.length; i++)
+        {
+         expect(existingval[i+1].trim()).to.equal(response[i][0].wbmd_disp_nm.trim());
         }
     
     
@@ -91,7 +111,17 @@ IHealthrefMandatoryfieldsValidation: function(){
         CopyrightUI.copyrightPublicationFieldEdit(AssetName);
         propertiesTabUI.save();
 
-      }
+      },
+       propertyLabelValidation: function () {
+        
+        propertiesTabUI.propertiesTabSelect();
+        IHealthrefUI.article_Articletab_AttributesNames();
+        IHealthrefUI.article_Othertab_AttributesNames();
+        IHealthrefUI.article_AuthRevtab_AttributesNames();
+        IHealthrefUI.article_AudChartab_AttributesNames();
+        IHealthrefUI.article_SponsorMLRtab_AttributesNames();
+
+    }
 
 }
 

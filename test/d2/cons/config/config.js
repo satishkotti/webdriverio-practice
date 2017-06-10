@@ -57,7 +57,7 @@ module.exports.testSettings = {
             "dctmUsername": "QAPublication",
             "dctmPassword": "QA-Doc#1",
             "dctmDocbase": "webmddoc01",
-            "url": "http://dmrest.dev04.webmd.com/pbws"
+            "url": "http://DMWRS41D-CON-08.portal.webmd.com:8080/pbws/"
         },
         "d2cons": {
             //"url": "http://d2.dev04.webmd.com/D2/#d2",
@@ -93,11 +93,11 @@ module.exports.testSettings = {
             "server": "",
             "database": "Pagebuilder_SiteManagement"
         },
-        "dctmApiConfig": {
+       "dctmApiConfig": {
             "dctmUsername": "QAPublication",
             "dctmPassword": "QA-Doc#1",
             "dctmDocbase": "webmddoc01",
-            "url": "http://dmrest.qa01.webmd.com/pbws"
+            "url": "http://DMWRS11Q-CON-08.portal.webmd.com:8080/pbws/"
         },
         "d2cons": {
             "url": "http://d2.qa01.webmd.com/D2/#d2",
