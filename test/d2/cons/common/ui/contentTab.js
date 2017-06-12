@@ -13,7 +13,6 @@ var contentHeader="//div[@class='container']//center[@class='ng-binding']";
 var SectionHeader="//h2[span[contains(.,'Section Header')]]//following-sibling::div//input";
 var RelatedLinksHeader="//h2[span[contains(.,'Related Links Header')]]//following-sibling::div//input";
 var Titleinput="//h2[span[contains(.,'Title')]]//following-sibling::div//input";
-
 var contentTabUIObj = {
     switchToMainFrame: function(){
         browser.frame();
