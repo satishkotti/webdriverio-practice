@@ -109,3 +109,21 @@ module.exports.SearchToUrlNoClick = function(option) {
     var url = option;
     browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', url);
 }
+
+module.exports.createRedirect = function(fromUrl, toUrl) {
+    if(!(browser.isVisible("//form[@name='redirectForm']")))
+        browser.element("//button[contains(text(),'Create Redirect')]").click();
+    browser.waitForVisible("//form[@name='redirectForm']");
+    browser.setValue("//form[@name='redirectForm']/div/div[1]/label/input", fromUrl);
+    browser.setValue("//form[@name='redirectForm']/div/div[2]/label/input", toUrl);
+    browser.element("//form[@name='redirectForm']/button").click();
+    browser.waitForVisible("section.pb-notification-container.success");
+}
+
+module.exports.createRedirectNoClick = function(fromUrl, toUrl) {
+    if(!(browser.isVisible("//form[@name='redirectForm']")))
+        browser.element("//button[contains(text(),'Create Redirect')]").click();
+    browser.waitForVisible("//form[@name='redirectForm']");
+    browser.setValue("//form[@name='redirectForm']/div/div[1]/label/input", fromUrl);
+    browser.setValue("//form[@name='redirectForm']/div/div[2]/label/input", toUrl);
+}
