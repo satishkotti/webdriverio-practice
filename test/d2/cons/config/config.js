@@ -133,8 +133,8 @@ module.exports.testSettings = {
             "database": "Pagebuilder_SiteManagement"
         },
         "dctmApiConfig": {
-            "dctmUsername": "QAPublication",
-            "dctmPassword": "QA-Doc#1",
+            "dctmUsername": "qaautomation1",
+            "dctmPassword": "qaautomation1",
             "dctmDocbase": "webmddoc01",
             "url": "http://dmrest.qa00.webmd.com/pbws"
         },
@@ -246,6 +246,9 @@ module.exports.testSettings = {
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
             "UkArticleProfileName": 'Consumer Portal UK / Article Templates',
              "HelathRefArticleTemplate":'Article / Health Reference Template',
+             "USImportHelathRefProfileName":'Consumer Portal US / Controlled Content Templates',
+             "UKImportHelathRefProfileName":'Consumer Portal UK / Controlled Content Templates',
+             "ImportHelathArticleTemplate":'Import Health Ref Template',
             "ArticleTemplate": 'Article /  News Template',
             "CopyrightArticleTemplate": 'Copyright',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
