@@ -28,10 +28,19 @@ var contentTabObj = {
          contentTabUI.switchToExternalWidgetFrame();
          contentTabUI.clearSectionTextValue();
     },
+    Titleinputsetvalue:function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.Titleinputsetvalue(data);
+    },
     sectionTextSetValue: function(data){
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.sectionTextSetValue(data);
     },
+     sectionHeaderSetValue: function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.sectionHeaderSetValue(data);
+    },
+    
     contenttabframeswitching: function(){
         contentTabUI.switchToExternalWidgetFrame();
     },
@@ -39,6 +48,15 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.highlightsSetValue(data);
     },
+    pullQuotesSetValue: function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.pullQuotesSetValue(data);
+    },
+     citationsSetValue: function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.citationsSetValue(data);
+    },
+    
     pullQuotesSetValueAndClickmModuleMenu: function(data){
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.pullQuotesSetValue(data);
@@ -48,6 +66,18 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.citationsSetValue(data);
         contentTabObj.mModuleckEditorMenuClick(4);
+    },
+
+     relatedLinksSetValue: function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.relatedLinksSetValue(data);
+        
+    },
+
+     RelatedLinkHeaderSetValue: function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.RelatedLinkHeaderSetValue(data);
+        
     },
     relatedLinksAndClickmModuleMenu: function(data){
         contentTabUI.switchToExternalWidgetFrame();

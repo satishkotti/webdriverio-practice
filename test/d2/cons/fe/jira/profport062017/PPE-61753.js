@@ -160,7 +160,7 @@ describe.skip('Copyright Template US- PPE-61754- Scheduling tasks', function () 
             username: functions.getQAPublicationUser().username,
             password: functions.getQAPublicationUser().password
         });
-        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UKtestFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
@@ -191,12 +191,12 @@ describe.skip('Copyright Template US- PPE-61754- Scheduling tasks', function () 
         expect(status).to.contains("Approved");
         browser.pause(300000);
         browser.refresh();
-        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UStestFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
         documentListTab.selectAsset(AssetName);
         expect(contentTab.contentHeaderGet()).to.contains("Active");
         browser.pause(540000);
         browser.refresh();
-        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UStestFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
         documentListTab.selectAsset(AssetName);
         expect(contentTab.contentHeaderGet()).to.contains("Expire");
     });
