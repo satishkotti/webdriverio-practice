@@ -133,8 +133,8 @@ module.exports.testSettings = {
             "database": "Pagebuilder_SiteManagement"
         },
         "dctmApiConfig": {
-            "dctmUsername": "QAPublication",
-            "dctmPassword": "QA-Doc#1",
+            "dctmUsername": "qaautomation1",
+            "dctmPassword": "qaautomation1",
             "dctmDocbase": "webmddoc01",
             "url": "http://dmrest.qa00.webmd.com/pbws"
         },
