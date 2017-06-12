@@ -13,7 +13,7 @@ var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
 var findTab = require('./../../../common/actions/findTab.actions');
 var test = require("./../../../common/functions/functions.js");
 var randomstring = require("randomstring");
-var _ = require('underscore');
+var _ = require('underscore')
 var moment = require('moment-timezone');
 
 describe('Import Health Reference template- PPE-76804', function () {
@@ -32,11 +32,11 @@ describe('Import Health Reference template- PPE-76804', function () {
             password: functions.getQAPublicationUser().password
         });
        
-         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UKtestFolderPath);
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
-            global.d2ConDataSettings.inputData.USImportHelathRefProfileName,
+            global.d2ConDataSettings.inputData.UKImportHelathRefProfileName,
             global.d2ConDataSettings.inputData.ImportHelathArticleTemplate,
             AssetTitle,
             AssetName);
@@ -54,7 +54,7 @@ describe('Import Health Reference template- PPE-76804', function () {
         var response;
         functions.SetAgentForDctmApi(functions.getDataApiUrl())
         var accessToken = functions.GenerateApiAccessToken();
-        response = functions.ExecuteDQLusingDCTMAPI(accessToken,"Select wbmd_disp_nm, wbmd_storage_val from wbmd_lookup where wbmd_lookup_type = 'business_reference' and wbmd_active=TRUE and ANY wbmd_site_only = '1001' order by wbmd_disp_nm");
+        response = functions.ExecuteDQLusingDCTMAPI(accessToken,"Select wbmd_disp_nm, wbmd_storage_val from wbmd_lookup where wbmd_lookup_type = 'business_reference' and wbmd_active=TRUE and ANY wbmd_site_only = '1006' order by wbmd_disp_nm");
         HealthTemplate.VerifyDispnmDropdownlistVal("wbmd_bus_ref-input",response);
     });
 
@@ -63,7 +63,7 @@ describe('Import Health Reference template- PPE-76804', function () {
         var response;
         functions.SetAgentForDctmApi(functions.getDataApiUrl())
         var accessToken = functions.GenerateApiAccessToken();
-        response = functions.ExecuteDQLusingDCTMAPI(accessToken,"Select wbmd_disp_nm, wbmd_storage_val from wbmd_lookup where wbmd_lookup_type = 'health_ref_type' and wbmd_active=TRUE and ANY wbmd_site_only = '1001' order by wbmd_disp_nm");
+        response = functions.ExecuteDQLusingDCTMAPI(accessToken,"Select wbmd_disp_nm, wbmd_storage_val from wbmd_lookup where wbmd_lookup_type = 'health_ref_type' and wbmd_active=TRUE and ANY wbmd_site_only = '1006' order by wbmd_disp_nm");
         HealthTemplate.VerifyDispnmDropdownlistVal("wbmd_med_ref_type-input",response);
         
     });
@@ -74,7 +74,7 @@ describe('Import Health Reference template- PPE-76804', function () {
         var response;
         functions.SetAgentForDctmApi(functions.getDataApiUrl())
         var accessToken = functions.GenerateApiAccessToken();
-        response = functions.ExecuteDQLusingDCTMAPI(accessToken,"select i_chronicle_id, title from wbmd_publication where title  != ' ' and any wbmd_site_only  = '1001' and r_object_id not in (select r_object_id from wbmd_publication where  title  != ' ' and any wbmd_site_only =  '1001' and any r_version_label = 'Expired') order by title");
+        response = functions.ExecuteDQLusingDCTMAPI(accessToken,"select i_chronicle_id, title from wbmd_publication where title  != ' ' and any wbmd_site_only  = '1006' and r_object_id not in (select r_object_id from wbmd_publication where  title  != ' ' and any wbmd_site_only =  '1001' and any r_version_label = 'Expired') order by title");
         HealthTemplate.VerifyDropdownlistVal("wbmd_publ-input",response);
         
     });
@@ -112,14 +112,14 @@ describe('Import Health Reference template- PPE-76804', function () {
         contentTab.checkIn();
     });
 
-   it('Verify the Health Reference Template - Promote ,demote ,Power Promote,Publish functionality and Verify Import Health Ref  rendition with WP renditions', function () {
+   it('Verify the Health Reference Template - Promote ,demote ,Power Promote,Publish functionality and Verify Import health Ref  rendition with WP renditions', function () {
         browser.pause(5000);
         documentListTab.selectAsset(AssetTitle);
         cidName = propertiesTab.getChronicleIdAndName();
         objName = cidName.objectName;
         chronicleId = cidName.chronicleId;
         browser.pause(5000);
-        propertiesTab.setRequiredProperties(objName, 'Audio - Event', objName, objName, objName, objName, 'WebMD Health Poll', '2015 WebMD', 'ADD-ADHD (Adult)');
+        propertiesTab.setRequiredProperties(objName, 'Audio - Narrative', objName, objName, objName, objName, 'American Council on Excercise', '2006 American Council on Exercise', 'ADD-ADHD (Adult)');
         documentListTab.selectAsset(AssetTitle);
         documentListTab.promoteAsset(AssetTitle);
         documentListTab.demoteAsset(AssetTitle);
@@ -144,9 +144,8 @@ describe('Import Health Reference template- PPE-76804', function () {
                     });
 
                      
-                    var thumbimg="/webmd"+Content[0].parent.content_section.cons_import_health_ref.thumbnail_image;
-                    
-                   
+                   var thumbimg="/webmd_uk"+Content[0].parent.content_section.cons_import_health_ref.thumbnail_image;
+
                     expect(Asset[0].parent.metadata_section.i_chronicle_id).to.equal(chronicleId);
                     expect(thumbimg).to.equal(TImagelinkVal);
                     expect(Content[0].parent.content_section.cons_import_health_ref.media_asset.$.path).to.equal(MImagelinkVal);
@@ -174,16 +173,16 @@ describe.skip('Import Health Reference template- PPE-76804 - Scheduling tasks', 
             username: functions.getQAPublicationUser().username,
             password: functions.getQAPublicationUser().password
         });
-        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UKtestFolderPath);
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
-             global.d2ConDataSettings.inputData.USImportHelathRefProfileName,
+             global.d2ConDataSettings.inputData.UKImportHelathRefProfileName,
             global.d2ConDataSettings.inputData.ImportHelathArticleTemplate,
             AssetTitle,
             AssetName);
         documentListTab.selectAsset(AssetTitle);
-        propertiesTab.setRequiredProperties(objName, 'Audio - Event', objName, objName, objName, objName, 'WebMD Health Poll', '2015 WebMD', 'ADD-ADHD (Adult)');
+        propertiesTab.setRequiredProperties(objName, 'Audio - Narrative', objName, objName, objName, objName, 'American Council on Excercise', '2006 American Council on Exercise', 'ADD-ADHD (Adult)');
     });
 
 
@@ -205,12 +204,12 @@ describe.skip('Import Health Reference template- PPE-76804 - Scheduling tasks', 
         expect(status).to.contains("Approved");
         browser.pause(300000);
         browser.refresh();
-        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UKtestFolderPath);
         documentListTab.selectAsset(AssetName);
         expect(contentTab.contentHeaderGet()).to.contains("Active");
         browser.pause(540000);
         browser.refresh();
-        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UKtestFolderPath);
         documentListTab.selectAsset(AssetName);
         expect(contentTab.contentHeaderGet()).to.contains("Expire");
     });

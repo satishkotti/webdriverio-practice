@@ -72,7 +72,7 @@ IHealthrefMandatoryfieldsValidation: function(){
     
        
         propertiesTabUI.cancelEdit();
-
+        browser.pause(5000);
    
 
     },
