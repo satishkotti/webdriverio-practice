@@ -92,6 +92,7 @@ describe('PPE-101693: Ability to Export all Redirects', function() {
     });
     var fileHeader = "";
     it("Verify that the file exists in the download folder", function() {
+        browser.pause(5000);
         assert.equal(csvFiles.length, 1);
     });
     var filelines = null;

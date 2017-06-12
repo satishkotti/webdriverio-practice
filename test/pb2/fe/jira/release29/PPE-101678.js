@@ -4,7 +4,7 @@ var test = require('./../../../common/functions/functions');
 var redirectActions = require("./../../../common/actions/redirecttool.actions")
 var testEnv = global.testEnv;
 var correctEnvUrl = "http://www." + testEnv + ".webmd.com/food-recipes/guide/health-cooking*";
-var correctEnvUrl2 = "http://www." + testEnv + ".webmd.com/food-recipes/guide*";
+var correctEnvUrl2 = "http://www." + testEnv + ".webmd.com/food*";
 var invalidEnvUrlProd = "http://www.webmd.com/food-recipes/guide/health-cooking*";
 var invalidEnvUrlProdPreview = "http://www.preview." + testEnv + ".webmd.com/food-recipes/guide/health-cooking*";
 var invalidEnvUrlProdStaging = "http://www.staging." + testEnv + ".webmd.com/food-recipes/guide/health-cooking*";
@@ -24,13 +24,13 @@ describe('PPE-101678: Redirect Search Results', function() {
         //this url is pointing to prod                
         redirectActions.SearchFromUrl(invalidEnvUrlProd);
         browser.pause(4000);
-        var result = (browser.isVisible('thead > tr:first-child > th:first-child') || browser.isVisible("div.k-grid-norecords-template"));
-        assert.equal(result, false);
+        var result = (browser.isVisible('div.k-grid-norecords-template'));
+        assert.equal(result, true);
         browser.refresh();
         //to        
         redirectActions.SearchToUrl(invalidEnvUrlProd);
         browser.pause(4000);
-        var result = (!browser.isVisible('thead > tr:first-child > th:first-child') || browser.isVisible("div.k-grid-norecords-template"));
+        var result = (browser.isVisible('div.k-grid-norecords-template'));
         assert.equal(result, true);
     });
 
@@ -39,13 +39,13 @@ describe('PPE-101678: Redirect Search Results', function() {
         //this url has preview        
         redirectActions.SearchFromUrl(invalidEnvUrlProdPreview);
         browser.pause(4000);
-        var result = (!browser.isVisible('thead > tr:first-child > th:first-child') || browser.isVisible("div.k-grid-norecords-template"));
+        var result = (browser.isVisible('div.k-grid-norecords-template'));
         assert.equal(result, true);
         browser.refresh();
         //this url has staging        
         redirectActions.SearchFromUrl(invalidEnvUrlProdStaging);
         browser.pause(4000);
-        var result = (!browser.isVisible('thead > tr:first-child > th:first-child') || browser.isVisible("div.k-grid-norecords-template"));
+        var result = (browser.isVisible('div.k-grid-norecords-template'));
         assert.equal(result, true);
 
         //To url search
@@ -54,13 +54,13 @@ describe('PPE-101678: Redirect Search Results', function() {
         browser.refresh();
         redirectActions.SearchToUrl(invalidEnvUrlProdPreview);
         browser.pause(4000);
-        var result = (!browser.isVisible('thead > tr:first-child > th:first-child') || browser.isVisible("div.k-grid-norecords-template"));
+        var result = (browser.isVisible('div.k-grid-norecords-template'));
         assert.equal(result, true);
         browser.refresh();
         //this url has staging                
         redirectActions.SearchToUrl(invalidEnvUrlProdStaging);
         browser.pause(4000);
-        var result = (!browser.isVisible('thead > tr:first-child > th:first-child') || browser.isVisible("div.k-grid-norecords-template"));
+        var result = (browser.isVisible('div.k-grid-norecords-template'));
         assert.equal(result, true);
     });
 
@@ -72,7 +72,7 @@ describe('PPE-101678: Redirect Search Results', function() {
         assert.equal(result, true);
         browser.refresh();
         //to
-        redirectActions.SearchToUrl(correctEnvUrl);
+        redirectActions.SearchToUrl("http://www." + global.testEnv + ".webmd.com/food-r*");
         browser.pause(5000);
         var result = (browser.isVisible('tbody > tr:first-child > td:first-child > input.pb-checkbox'));
         assert.equal(result, true);
@@ -97,7 +97,7 @@ describe('PPE-101678: Redirect Search Results', function() {
 
         browser.refresh();
         //to
-        redirectActions.SearchToUrl(correctEnvUrl);
+        redirectActions.SearchToUrl("http://www." + global.testEnv + ".webmd.com/food-r*");
         browser.pause(5000);
         var result = (browser.isVisible('tbody > tr:first-child > td:first-child > input.pb-checkbox'));
         assert.equal(result, true);
