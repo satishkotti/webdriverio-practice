@@ -67,7 +67,7 @@ describe('Copyright Template UK- PPE-61754', function () {
         var dropdown2 = [];
         var dropdownUI2 = [];
         for (i = 0; n < response2.length; i++ , n++) {
-            dropdown.push(response[i][1].title);
+            dropdown.push(response2[i][1].title);
         }
         var dropdownUI2 = CopyrightTemplate.SQLLegalReviewerrpropertiesValidation();
         var differencesAPI2 = _.difference(dropdown2, dropdownUI2);
@@ -142,12 +142,12 @@ describe('Copyright Template UK- PPE-61754', function () {
         documentListTab.selectAsset(AssetTitle2);
         cidName = propertiesTab.getChronicleIdAndName();
         objName2 = cidName.objectName;
-        chronicleId = cidName.chronicleId;
+        chronicleId2 = cidName.chronicleId;
         propertiesTab.setRequiredProperties(objName2, 'Audio - Narrative', objName2, objName2, objName2, objName2, 'UK WebMD News Brief',AssetName, 'ADD-ADHD (Adult)');
 
         documentListTab.expireAsset(AssetName);
         documentListTab.deleteArticle(AssetTitle, global.d2ConDataSettings.inputData.DeleteAllversions);
-        findTab.searchTextDeleteValidation(AssetName);
+        findTab.searchTextDeleteValidation(chronicleId);
         
     });
 

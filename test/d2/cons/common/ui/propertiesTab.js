@@ -103,6 +103,7 @@ module.exports = {
     edit: function(){
         browser.waitForVisible("//div[@tag_id='Properties-widget']//button[text()='Edit']", maxWaitTimeInMs);
         browser.click("//div[@tag_id='Properties-widget']//button[text()='Edit']");
+        browser.pause(5000);
     },
     save: function(){
          browser.click("//div[@tag_id='Properties-widget']//button[text()='Save']");
@@ -155,18 +156,29 @@ module.exports = {
         browser.click("//span/span[contains(.,'Publishing')]");
         browser.pause(1000);
     },
+ publishingTabSelect: function(){
+        
+        browser.click("//span/span[contains(.,'Publishing')]");
+        browser.pause(1000);
+    },
+    otherTabSelect: function(){
+        browser.click("//span/span[contains(.,'Other')]")
+    },
     objectTitleGet: function(){
         return browser.getValue("input#title-input");
     },
      publishingTabSelect: function(){
         browser.click("//span//span[contains(.,'Publishing')]");
+
     },
       systemPublishingDateSet:function(textValue){
          browser.setValue("#wbmd_eff_date-input",textValue);
     },
      expirationDateSet:function(textValue){
          return browser.setValue("#wbmd_exp_date-input",textValue);
+
     },
+
 
 }
 

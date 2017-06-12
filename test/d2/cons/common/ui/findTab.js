@@ -47,5 +47,6 @@ module.exports = {
             return browser.isExisting(locator) == true
         });
        expect(browser.isVisible(locator)).to.be.true;
+       browser.pause(2000);
     },
 }

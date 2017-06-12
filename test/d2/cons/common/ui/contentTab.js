@@ -15,7 +15,6 @@ var RelatedLinksHeader="//h2[span[contains(.,'Related Links Header')]]//followin
 var Titleinput="//h2[span[contains(.,'Title')]]//following-sibling::div//input";
 
 
-
 var contentTabUIObj = {
     switchToMainFrame: function(){
         browser.frame();
@@ -210,10 +209,12 @@ var contentTabUIObj = {
         var imagelinkval = browser.getText(ImageSelector);
         return imagelinkval;
     },
+
      cancelCheckout: function(){
         browser.click("//button[contains(string(),'Cancel')]");
         browser.frameParent();
     },
+
     contentHeaderGet:function()
     {
         contentTabUIObj.switchToExternalWidgetFrame();
@@ -223,11 +224,12 @@ var contentTabUIObj = {
         return result;
 
     },
+
      switchToExternalWidgetFrame: function(){
-       // browser.frame();
         var contentWidgetIFrameElement = browser.element(contentPaneFrameSelector);
         browser.frame(contentWidgetIFrameElement.value);
     }
+
 
 }
 
