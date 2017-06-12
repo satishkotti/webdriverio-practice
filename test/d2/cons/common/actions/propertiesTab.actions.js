@@ -105,5 +105,24 @@ module.exports = {
         propertiesTabUI.systemPublishingDateSet(systempubdate);
         propertiesTabUI.expirationDateSet(expdate);
         propertiesTabUI.save();
-    }
+    },
+    setRequiredPropertiesDisclaimer: function(friendlyName, busRef, userDescr, keywords, lnkTtl, windowTtl, publication,
+    copyright,disclaimer,primaryTopicId){
+        
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.friendlyNameSet(friendlyName);
+        propertiesTabUI.busRefNameSet(busRef);
+        propertiesTabUI.userDescriptionNameSet(userDescr);
+        propertiesTabUI.keywordsNameSet(keywords);
+        propertiesTabUI.linkTitleSet(lnkTtl);
+        propertiesTabUI.windowTitleSet(windowTtl);
+        propertiesTabUI.publicationSet(publication);
+        propertiesTabUI.copyrightSet(copyright);
+        propertiesTabUI.disclaimerSet(disclaimer);
+        propertiesTabUI.primaryTopicIdSet(primaryTopicId);
+        propertiesTabUI.originalPublishDateSet();
+        propertiesTabUI.save();
+
+    },
 }

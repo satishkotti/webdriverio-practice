@@ -94,8 +94,8 @@ module.exports.testSettings = {
             "database": "Pagebuilder_SiteManagement"
         },
         "dctmApiConfig": {
-            "dctmUsername": "QAPublication",
-            "dctmPassword": "QA-Doc#1",
+            "dctmUsername": "qaautomation1",
+            "dctmPassword": "qaautomation1",
             "dctmDocbase": "webmddoc01",
             "url": "http://DMWRS11Q-CON-08.portal.webmd.com:8080/pbws/"
         },
@@ -361,7 +361,13 @@ module.exports.testSettings = {
              "ArticleProfileName_uk": 'Consumer Portal UK / Article Templates',
              "existingCopyrightID": "091e9c5e80330e29",
              "existingCopyrightTitle":"1996-2005 MedicineNet - UK",
-             "copyrightTitle": "QATestCopyright"
+             "copyrightTitle": "QATestCopyright",
+             "USDisclaimerPName": 'Consumer Portal US / Copyright Disclaimer Templates',
+             "disclaimerTemplate": 'Disclaimer',
+             "disclaimerTitle":"QATestDisclaimer",
+             "diclaimerTitlewxml": "\nQATestDisclaimer\n",
+             "existingDisclaimerID": "091e9c5e803e3f40",
+             "existingDisclaimeritle":"WebMD Ask the Specialist Transcript Disclaimer",
 
         }      
     }
