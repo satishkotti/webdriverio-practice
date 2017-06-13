@@ -47,7 +47,7 @@ describe('Copyright Template UK- PPE-61754', function () {
         CopyrightTemplate.validateRequiredPropertiesCpyRights();
         CopyrightTemplate.copyright_Othertab_AttributesNames();
     });
-    it('Verify Data Dictionary validations on Copyright object-PPE-113331', function () {
+    it.skip('Verify Data Dictionary validations on Copyright object-PPE-113331', function () {
         test.SetAgentForDctmApi('http://DMWRS11Q-CON-08.portal.webmd.com:8080/pbws/');
         var accessToken = test.GenerateApiAccessToken();
         var response = test.ExecuteDQLusingDCTMAPI(accessToken, "select i_chronicle_id, title from wbmd_company where any wbmd_site_only = '1006' and title != ' ' order by title");
