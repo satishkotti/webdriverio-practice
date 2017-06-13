@@ -50,7 +50,7 @@ describe('Copyright Template US', function () {
     });
 
     
-    it('Should verify the data dictionary validations on  PropertiesTab -Legal Reviewer:  PPE-113311', function () {
+    it.skip('Should verify the data dictionary validations on  PropertiesTab -Legal Reviewer:  PPE-113311', function () {
         documentListTab.selectAsset(AssetTitle);
         var response;
         functions.SetAgentForDctmApi(functions.getDataApiUrl())
@@ -60,7 +60,7 @@ describe('Copyright Template US', function () {
     });
 
     
-     it('Should verify the data dictionary validations on  PropertiesTab-Copyright Holder:  PPE-113311', function () {
+     it.skip('Should verify the data dictionary validations on  PropertiesTab-Copyright Holder:  PPE-113311', function () {
         documentListTab.selectAsset(AssetTitle);
         var response;
         functions.SetAgentForDctmApi(functions.getDataApiUrl())

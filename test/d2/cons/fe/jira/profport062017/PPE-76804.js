@@ -49,7 +49,7 @@ describe('Import Health Reference template- PPE-76804', function () {
     });
 
 
-     it('Should verify the data dictionary validations on  PropertiesTab -Content Classification:  PPE-115496', function () {
+     it.skip('Should verify the data dictionary validations on  PropertiesTab -Content Classification:  PPE-115496', function () {
         documentListTab.selectAsset(AssetTitle);
         var response;
         functions.SetAgentForDctmApi(functions.getDataApiUrl())
@@ -58,7 +58,7 @@ describe('Import Health Reference template- PPE-76804', function () {
         HealthTemplate.VerifyDispnmDropdownlistVal("wbmd_bus_ref-input",response);
     });
 
-    it('Should verify the data dictionary validations on  PropertiesTab--Health Reference:  PPE-115496', function () {
+    it.skip('Should verify the data dictionary validations on  PropertiesTab--Health Reference:  PPE-115496', function () {
         documentListTab.selectAsset(AssetTitle);
         var response;
         functions.SetAgentForDctmApi(functions.getDataApiUrl())
