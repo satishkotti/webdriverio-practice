@@ -59,8 +59,7 @@ exports.config = merge(wdioConf.config, {
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
+        global.testapiurl = "http://redirect." + global.testEnv + ".webmd.com/api/redirect/";
         global.browserDownloadPath = path.join(process.cwd(), "/test/common/browserDownloads");
-
     },
-
 });
