@@ -85,12 +85,13 @@ module.exports.SearchFromUrl = function(option) {
     browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
     var url = option;
     browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', url);
+    browser.element("//form[@name='redirectSearchForm']/div/div[1]//input").setValue(url);
     browser.click('button.floatright');
 }
 
 module.exports.SearchFromUrlNoClick = function(option) {
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
+    //browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
+    //browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
     var url = option;
     browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', url);
 }

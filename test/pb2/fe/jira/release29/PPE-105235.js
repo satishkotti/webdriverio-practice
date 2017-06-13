@@ -1,9 +1,10 @@
 var test = require('./../../../common/functions/functions');
 var redirectActions = require("./../../../common/actions/redirecttool.actions")
-var data =getValidRedirect();
+var info =getValidRedirect();
 
 
 function deleteRedirects(from){
+    console.log(from);
     redirectActions.SearchFromUrl(from);
     browser.element("//tbody[@role='rowgroup']//td[1]").click();
     if(browser.isVisible("/html/body/main/section[1]/button")){
@@ -16,7 +17,7 @@ function deleteRedirects(from){
 }
 
 function getValidRedirect() {
-    var info= [];
+    var data= [];
     var fromUrlPattern  = "http://www."+global.testEnv+".webmd.com/food-recipes/healthy*";
     redirectActions.SearchFromUrl(fromUrlPattern);
     browser.waitForVisible("//tbody[@role='rowgroup']//td[3]/a")
@@ -25,16 +26,14 @@ function getValidRedirect() {
     var fromID = browser.getText("//tbody[@role='rowgroup']//td[4]/a");
     var toUrl = browser.getText("//tbody[@role='rowgroup']//td[6]/a");
     var toID = browser.getText("//tbody[@role='rowgroup']//td[7]/a");
-    info.push(fromUrl);info.push(fromID);info.push(toUrl);info.push(toID);
-    return info;
+    data.push(fromUrl);data.push(fromID);data.push(toUrl);data.push(toID);
+    return data;
 }
-
 
 describe('PPE-105235: Create Redirects', function() {
     before(() => {
         //Launch App
         test.LaunchAppAndLogin();
-        
     });
     
 
@@ -42,7 +41,7 @@ describe('PPE-105235: Create Redirects', function() {
         redirectActions.GoToRedirectToolPage();
         var validFromUrl = info[0];
         var validToUrl = info[1];
-        deleteRedirects(validfromUrl);
+        deleteRedirects(validFromUrl);
         redirectActions.createRedirect(validFromUrl, validToUrl);
         //Search using from URL
         redirectActions.SearchFromUrl(validFromUrl);
@@ -139,6 +138,3 @@ describe('PPE-105235: Create Redirects', function() {
     });
 
 });
-
-
-
