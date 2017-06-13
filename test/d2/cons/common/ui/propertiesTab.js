@@ -178,6 +178,12 @@ module.exports = {
          return browser.setValue("#wbmd_exp_date-input",textValue);
 
     },
+     disclaimerSet: function(textValue){
+         browser.click("//div[@id='wbmd_disclmr']/img")
+          browser.pause(1000);  
+          browser.click("//div[@title='"+textValue+"']")
+          browser.pause(1000);
+    },
 
 
 }
