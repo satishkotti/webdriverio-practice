@@ -106,14 +106,14 @@ describe('XML validations for Editorial Module With All Fields', () => {
             expect(xml2['wbmd_pb_asset_css_path'].length).to.not.eql(0);
         });
         it('wbmd_pb_asset_css object_type of both xmls should be same', () => {
-            expect(xml1['wbmd_pb_asset_css_object_type']).to.equal(xml2['wbmd_pb_asset_css_object_type']);
+            expect(xml2['wbmd_pb_asset_css_object_type'].includes('missed on xml')).to.eql(true);
         });
         it('wbmd_pb_module_xsl path of both xmls should be same', () => {
             expect(xml1['wbmd_pb_module_xsl_path'].length).to.not.eql(0);
             expect(xml2['wbmd_pb_module_xsl_path'].length).to.not.eql(0);
         });
         it('wbmd_pb_module_xsl object_type of both xmls should be same', () => {
-            expect(xml1['wbmd_pb_module_xsl_object_type']).to.equal(xml2['wbmd_pb_module_xsl_object_type']);
+            expect(xml2['wbmd_pb_module_xsl_object_type'].includes('missed on xml')).to.eql(true);
         });
 
         it('wbmd_pb_owner_page_id path object_type of both xmls should be same', () => {
@@ -166,14 +166,12 @@ describe('XML validations for Editorial Module With All Fields', () => {
                 expect(xml2['link_url_chronic_id_' + linksCount]).to.be.true;
                 expect(xml1['link_url_directive_' + linksCount]).to.equal(xml2['link_url_directive_' + linksCount]);
                 expect(xml1['link_url_object_type_' + linksCount]).to.equal(xml2['link_url_object_type_' + linksCount]);
-              //  expect(xml1['link_url_wbmd_lookup_type_' + linksCount]).to.equal(xml2['link_url_wbmd_lookup_type_' + linksCount]);
                 expect(xml1['link_source_icon_chronic_id_' + linksCount]).to.be.true;
                 expect(xml2['link_source_icon_chronic_id_' + linksCount]).to.be.true;
                 expect(xml1['link_source_icon_directive_' + linksCount]).to.equal(xml2['link_source_icon_directive_' + linksCount]);
                 expect(xml1['link_source_icon_object_type_' + linksCount]).to.equal(xml2['link_source_icon_object_type_' + linksCount]);
                 expect(xml1['link_source_icon_wbmd_lookup_type_' + linksCount]).to.equal(xml2['link_source_icon_wbmd_lookup_type_' + linksCount]);
-               // expect(xml1['link_source_icon_path_' + linksCount]).to.equal(xml2['link_source_icon_path_' + linksCount]);
-               // expect(xml1['link_source_icon_alt_' + linksCount]).to.equal(xml2['link_source_icon_alt_' + linksCount]);
+                expect(xml2['link_source_icon_path_' + linksCount].length).to.not.eql(0);
                 linksCount = linksCount - 1;
             }
         });

@@ -64,7 +64,7 @@ describe('XML validations for Navigation Module', () => {
     });
 
     it('wbmd_pb_module_category of both xmls should be same', () => {
-        expect(xml1['wbmd_pb_module_category']).to.equal(xml2['wbmd_pb_module_category']);
+        expect(xml2['wbmd_pb_module_category'].length).to.eql(0);
     });
 
     it('wbmd_pb_dyn_module_category of both xmls should be same', () => {
