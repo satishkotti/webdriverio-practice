@@ -1,47 +1,15 @@
 var merge = require('deepmerge');
-var wdioConf = require('./../../../../wdio.conf.js');
+var wdioConf = require('./wdio.conf.js');
+var path = require('path');
 
-// have main config file as default but overwrite environment specific information
 exports.config = merge(wdioConf.config, {
 
-    debug: false,
+    debug: true,
     specs: [],
     waitforTimeout: 120000,
     mochaOpts: {
         ui: 'bdd',
-        timeout: 9000000
-    },
-    capabilities: [{
-        maxInstances: 1,
-        browserName: 'chrome',
-        chromeOptions:
-        {
-            "args": [
-                "start-maximized",
-                "no-proxy-server",
-                "no-default-browser-check",
-                "no-first-run",
-                "disable-boot-animation",
-                "disable-default-apps",
-                "disable-extensions",
-                "no-experiments",
-                "no-service-autorun",
-                "disable-infobars"
-                //'window-size=1920,1080'
-            ],
-            "prefs": {
-                "credentials_enable_service": false,
-                "profile": {
-                    password_manager_enabled: false
-                }
-            }
-        }
-    }],
-    suites: {
-        redirectTool: [
-            './test/pb2/**/PPE-101669.js',
-            './test/pb2/**/PPE-93381.js'
-        ]
+        timeout: 900000
     },
     capabilities: [{
         maxInstances: 1,
@@ -63,6 +31,12 @@ exports.config = merge(wdioConf.config, {
                 "credentials_enable_service": false,
                 "profile": {
                     password_manager_enabled: false
+                },
+                download: {
+
+                    default_directory: path.join(process.cwd(), "/test/common/browserDownloads"),
+                    prompt_for_download: false,
+
                 }
             }
         }
@@ -79,14 +53,13 @@ exports.config = merge(wdioConf.config, {
         should = chai.should();
         _ = require('lodash');
 
-        var appConfigFile = require('./../release29.config');
+        var appConfigFile = require('./test/pb2/config/release29.config');
         var appConfig = appConfigFile.config;
-        global.testEnv = appConfig.testEnv.dev03;
-        global.testapiurl= 'http://redirect.' + global.testEnv + '.webmd.com/api/redirect/'    
+        global.testEnv = 'dev03';
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
-
+        global.testapiurl = "http://redirect." + global.testEnv + ".webmd.com/api/redirect/";
+        global.browserDownloadPath = path.join(process.cwd(), "/test/common/browserDownloads");
     },
-
 });

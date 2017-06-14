@@ -1,9 +1,8 @@
 var merge = require('deepmerge');
 var wdioConf = require('./../../../../wdio.conf.js');
 var gulpFile = require('./../../../../gulpfile.js');
+var path = require('path');
 
-
-// have main config file as default but overwrite environment specific information
 exports.config = merge(wdioConf.config, {
 
     debug: false,
@@ -17,7 +16,6 @@ exports.config = merge(wdioConf.config, {
         maxInstances: gulpFile.MaxInstances,
         browserName: 'chrome',
         chromeOptions:
-        //args: ['window-size=1920,1080']
         {
             "args": [
                 "start-maximized",
@@ -35,36 +33,16 @@ exports.config = merge(wdioConf.config, {
                 "credentials_enable_service": false,
                 "profile": {
                     password_manager_enabled: false
+                },                
+				download: { 
+                    //temp path added until nas share path ready w/perm
+                    default_directory: "\\\\nasfs21d-ops-08.portal.webmd.com\\devbuildhome\\cmstest\\download",
+                    prompt_for_download: false,
                 }
             }
         }
     }],
-
-    capabilities: [{
-        maxInstances: gulpFile.MaxInstances,
-        browserName: 'chrome',
-        chromeOptions: {
-            "args": [
-                "start-maximized",
-                "no-proxy-server",
-                "no-default-browser-check",
-                "no-first-run",
-                "disable-boot-animation",
-                "disable-default-apps",
-                "disable-extensions",
-                "no-experiments",
-                "no-service-autorun",
-                "disable-infobars"
-            ],
-            "prefs": {
-                "credentials_enable_service": false,
-                "profile": {
-                    password_manager_enabled: false
-                }
-            }
-        }
-    }],
-
+	
     before: function () {
 
         var chai = require('chai');
@@ -82,7 +60,6 @@ exports.config = merge(wdioConf.config, {
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
-
-    },
-
+        global.browserDownloadPath = gulpFile.DownloadPath;
+    }
 });
