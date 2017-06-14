@@ -50,7 +50,7 @@ exports.config = merge(wdioConf.config, {
 
         var appConfigFile = require('./../test.config');
         var appConfig = appConfigFile.config;
-        global.testEnv = appConfig.testEnv.dev03;
+        global.testEnv = 'dev03';
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.testapiurl= 'http://redirect.' + global.testEnv + '.webmd.com/api/redirect/'    
         global.username = appConfig.appAccess.users.default.username;
