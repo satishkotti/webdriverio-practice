@@ -33,6 +33,10 @@ exports.config = merge(wdioConf.config, {
                 "credentials_enable_service": false,
                 "profile": {
                     password_manager_enabled: false
+                },                
+				download: { 
+                    default_directory: "\\\\nasfs21d-ops-08.portal.webmd.com\\cms_test\\downloads",
+                    prompt_for_download: false,
                 }
             }
         }
@@ -86,6 +90,7 @@ exports.config = merge(wdioConf.config, {
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
+        global.browserDownloadPath = "\\\\nasfs21d-ops-08.portal.webmd.com\\cms_test\\downloads";
 
     },
 
