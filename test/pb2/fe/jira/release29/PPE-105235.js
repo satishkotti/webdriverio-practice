@@ -3,12 +3,6 @@ var redirectActions = require("./../../../common/actions/redirecttool.actions")
 var randomstring = require("randomstring");
 var info = null;
 
-var fromUrlList = ["", ""];
-var toUrlList = ["", ""];
-var fromIdList = ["", ""];
-var toIdList = ["", ""];
-
-
 function deleteRedirects(from) {
     if (browser.element("//a[text()='Show Criteria']").isVisible())
         browser.click("//a[text()='Show Criteria']");
