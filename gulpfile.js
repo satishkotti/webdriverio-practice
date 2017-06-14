@@ -17,13 +17,15 @@ args.option('env', 'Environment targetted', "dev01")
     .option('conf', 'WebDriver IO Config file to run', "")
     .option('app', 'App: rt, d2cons, d2prof, pb2', '')
     .option('maxInstances', 'Maximum number of instances a browser can have', 1)
-    .option('logLevel', 'Test runner logging level default error', 'error');
+    .option('logLevel', 'Test runner logging level default error', 'error')
+    .option('selectTests', 'Tests to execute seperated by comma', '');
 
 var flags = args.parse(process.argv);
 
 var currentApp = flags.app;
 var conf = flags.conf;
 var testEnv = flags.env;
+var selectTests = flags.selectTests;
 var error = chalk.bold.red;
 var defaultWaitTimeout = 180000;
 var defaultMochaTestTimeout = 600000;
@@ -56,7 +58,7 @@ if (conf.length == 0) {
 }
 
 //temp path added until nas share path ready w/perm
-var downloadFolderPath = "\\\\nasfs21d-ops-08.portal.webmd.com\\devbuildhome\\cmstest\\download";
+var downloadFolderPath = "\\\\nasfs21d-ops-08.portal.webmd.com\\cms_test\\downloads";
 
 gulp.task('branch', function (cb) {
     return git.revParse({
@@ -144,6 +146,30 @@ var deleteFolderRecursive = function (path) {
         fs.rmdirSync(path);
     }
 };
+
+gulp.task('selected', function (done) {
+
+    console.log('selectTests: '+ selectTests);
+    if (selectTests.length > 0) {
+            _.each(selectTests.split(","), function (testId) {
+                var specFiles = `test/${appFolder}/**/*${testId.trim()}*.js`;
+                var specFileFolder = `test/${appFolder}/**/*${testId.trim()}*/*.js`;
+                tests.push(specFiles);
+                tests.push(specFileFolder);
+                console.log('selected file specs: ' + specFiles);
+                console.log('selected folder specs: ' + specFileFolder);
+            });
+    }
+    
+    conf.config.host = gridHost;
+    conf.config.port = gridPort;
+    gulpSequence('webdriver')(function (err) {
+        if (err) {
+            console.log('Failed: ' + err);
+        }
+    });
+    done();
+});
 
 gulp.task('prod', function (done) {
     tests.push(`test/${appFolder}/**/prod/**/*.js`);
