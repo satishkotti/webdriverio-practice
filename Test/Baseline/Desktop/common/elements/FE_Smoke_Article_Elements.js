@@ -1,10 +1,9 @@
 var argv = require("yargs").argv;
 var path = require('path');
 var rootPath = path.normalize(__dirname)
-//var Page = require('./../../../prdemo');
 var Page = require('./../../page');
 var input = require('./../../config/FE.testdata')[argv.env];
-var url = input.Article_url;
+//var url = input.Article_url;
 
 var socialshareIcons = Object.create(Page, {
     /**
@@ -40,7 +39,7 @@ var socialshareIcons = Object.create(Page, {
     Paddles: { get: function () { return browser.element(".//*[@class='wbmd-paddles mlr'] ") } },
     //     -- .//*[@id='ContentPane66']/div/div"
     //Header  sharebar
-    twitter: { get: function () { return browser.element("//div[@id='fed-sharebar']//a[@class='plugin-socialshare-link plugin-socialshare-twitter']"); } },
+    twitter: { get: function () { return browser.element('.//*[@id="fed-sharebar"]/div[1]/a[1]'); } },
     pintrest: { get: function () { return browser.element('//div[@id="fed-sharebar"]//a[@class="plugin-socialshare-link plugin-socialshare-pinterest"]'); } },
     facebook: { get: function () { return browser.element('//div[@id="fed-sharebar"]//a[@class="plugin-socialshare-link plugin-socialshare-facebook"]'); } },
     email: { get: function () { return browser.element('//div[@id="fed-sharebar"]//a[@class="plugin-socialshare-link plugin-socialshare-email"]'); } },
@@ -54,24 +53,26 @@ var socialshareIcons = Object.create(Page, {
     footer_email: { get: function () { return browser.element("//*[@id='fed-sharebar-btm']/div[1]/a[4]"); } },
 
     //Sticky header socialshareIcons
-    sticky_Header_twitter: { get: function () { return browser.element("//div[@class='share']//a[@class='plugin-socialshare-link plugin-socialshare-twitter']"); } },
-    sticky_Header_pintrest: { get: function () { return browser.element('//div[@class="share"]//a[@class="plugin-socialshare-link plugin-socialshare-pinterest"]'); } },
-    sticky_Header_facebook: { get: function () { return browser.element('//div[@class="share"]//a[@class="plugin-socialshare-link plugin-socialshare-facebook"]'); } },
-    sticky_Header_email: { get: function () { return browser.element('//div[@class="share"]//a[@class="plugin-socialshare-link plugin-socialshare-email"]'); } },
+    sticky_Header_twitter: { get: function () { return browser.element('.//*[@id="ContentPane14"]/div[1]/div/div[3]/div/div/a[1]'); } },   
+    sticky_Header_pintrest: { get: function () { return browser.element('.//*[@id="ContentPane14"]/div[1]/div/div[3]/div/div/a[2]'); } },
+    sticky_Header_facebook: { get: function () { return browser.element('.//*[@id="ContentPane14"]/div[1]/div/div[3]/div/div/a[3]'); } },
+    sticky_Header_email: { get: function () { return browser.element('//div [@id="fed-sharebar"]//div [@class="plugin plugin-socialshare"]//a [@class="plugin-socialshare-link plugin-socialshare-email"]'); } },
 
     //Sticky for scrolling
     sticky_Header_Scroll: { get: function () { return browser.element('//*[@id="ContentPane64"]/div/div/div[1]/p'); } },
 
     //Paddle Next and previous navigations
-    paddle_next: { get: function () { return browser.element('.//*[@class="wbmd-paddles mlr"]/.//*[@class="article-nav show"]/.//*[@class="next "]'); } },
-    paddle_previous: { get: function () { return browser.element('.//*[@class="wbmd-paddles mlr"]/.//*[@class="article-nav show"]/.//*[@class="prev "]'); } },
-    paddle_previous_page_title: { get: function () { return browser.element('.//*[@class="wbmd-paddles mlr"]/.//*[.="8 Reasons Your Cough Is Not Improving"]'); } },
-    paddle_next_page_title: { get: function () { return browser.element('.//*[@class="wbmd-paddles mlr"]/.//*[.="OTC Medicines for Cough: What You Need to Know"]'); } },
-
+    paddle_next: { get: function () { return browser.element('.//*[@class="wbmd-paddles mlr"]/.//*[@class="next "]/.//*[contains(.,"Next")]/span[2]'); } },
+    paddle_previous: { get: function () { return browser.element('.//*[@class="wbmd-paddles mlr"]/.//*[@class="prev "]/.//*[contains(.,"Prev")]/span[2]'); } },
+    paddle_previous_page_title: { get: function () { return browser.element('.//*[@id="ContentPane29"]/.//*[@class="wbmd-nav-links"]//*[contains(.,"OTC Medicines for Cough: What You Need to Know")]/a'); } },
+    //paddle_next_page_title: { get: function () { return browser.element('.//*[@id="ContentPane29"]/.//*[@class="wbmd-nav-links"]//*[contains(.,"8 Tips for Nighttime Cough Relief")]/a'); } },
+    paddle_next_page_title: { get: function () { return browser.element('.//*[@id="ContentPane66"]/div/div/a[2]/span/span[2]'); } },
 
     //UP Next  Next and second navigations
-    up_next: { get: function () { return browser.element('.//*[@class="wbmd-nav-links"]/.//*[.="OTC Medicines for Cough: What You Need to Know"]'); } },
-    up_next_second: { get: function () { return browser.element('.//*[@class="wbmd-nav-links"]/.//*[.="8 Reasons Your Cough Is Not Improving"]'); } },
+  //  Up_next: { get: function () { return browser.element('.//*[@class="wbmd-nav-links"]/.//*[.="8 Tips for Nighttime Cough Relief"]'); } },
+  Up_next: { get: function () { return browser.element('.//*[@id="ContentPane29"]/div[1]/div[3]/div[1]/a'); } },
+    
+    Up_next_second: { get: function () { return browser.element('.//*[@id="ContentPane29"]/div[1]/div[3]/div[1]/a'); } },
 
 
 

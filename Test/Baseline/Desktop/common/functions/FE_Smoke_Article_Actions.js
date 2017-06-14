@@ -4,7 +4,8 @@ var assert = require('assert');
 var path = require('path');
 var rootPath = path.normalize(__dirname)
 var article_pageobjects = require('./../../common/elements/FE_Smoke_Article_Elements');
-article_pageobjects.open();
+//var article_test = require('./../../Smoke/FE_Smoke_Article');
+//article_pageobjects.open();
 
 module.exports = {
 
@@ -15,36 +16,37 @@ module.exports = {
     browser.windowHandleMaximize();
     browser.scroll(Scroll_value);
     browser.click(Icons);
-    browser.pause(3000);
-    browser.refresh();
-    browser.pause(5000);
-    var page_title = browser.title();
+    //browser.pause(3000);
+   browser.refresh();
+    //browser.pause(5000);
+    var page_title = browser.getTitle();
     var actions =
       {
         page_title: page_title,
 
       }
+      console.log(page_title);
     browser.back();
     return actions;
   },
   //This Method will click an Icon that opens up a new child Window and return the Title of the child Window 
   Click_Elements: function (Icons, scroll_value) {
 
-    browser.windowHandleMaximize();
+    //browser.pause(2000);
     browser.scroll(scroll_value);
-    browser.pause(4000);
-
+    
     // This will click on icons
     browser.waitForVisible(Icons);
+    //browser.moveToObject(Icons).click;
     browser.click(Icons);
-    browser.pause(4000);
+    browser.pause(2000);
 
     var handle = browser.windowHandles();
     browser.window(handle.value[1]);
 
     var Page_title_Text = browser.getTitle();
     browser.close(handle[1]);
-
+    
     var actions = {
       Page_title_Text: Page_title_Text,
 
@@ -57,15 +59,23 @@ module.exports = {
 
   Paddle_Navigation: function (Icons, scroll_value) {
 
-    browser.scroll(scroll_value);
-    browser.waitForVisible(Icons);
+    //browser.waitForVisible(Icons);
+     console.log(browser.getViewportSize);
+      browser.scroll(0,1900);
+    browser.moveToObject('.//*[@id="ContentPane66"]/div [@class="wbmd-paddles mlr"]');
+   // browser.waitForExist(Icons);
     var paddle_previous_page_title_text = browser.getText(article_pageobjects.paddle_previous_page_title.selector);
-    browser.click(article_pageobjects.paddle_previous.selector);
-    browser.pause(4000);
-    var Page_title_Text = browser.getTitle();
+    browser.pause(2000);
+   // browser.moveToObject(Icons).click;
+    browser.click(Icons);
+    //browser.click(Icons);
+    //browser.pause(2000);
+      var Page_title_Text = browser.getTitle();
     browser.back();
-    browser.pause(3000);
-
+   // browser.url(article_test.url);
+    //browser.pause(3000);
+    console.log(paddle_previous_page_title_text);
+     console.log(Page_title_Text);
     var actions = {
       Page_title_Text: Page_title_Text,
       paddle_previous_page_title_text: paddle_previous_page_title_text,
@@ -79,12 +89,22 @@ module.exports = {
 
   Paddle_Navigation_Next: function (Icons, scroll_value) {
 
-    browser.scroll(scroll_value);
-    browser.waitForVisible(Icons);
+     //browser.scroll(0,1900);
+    browser.moveToObject('.//*[@id="ContentPane66"]/div [@class="wbmd-paddles mlr"]');
+   //  browser.waitForExist(Icons);
     var paddle_next_page_title_text = browser.getText(article_pageobjects.paddle_next_page_title.selector);
-    browser.click(article_pageobjects.paddle_next.selector);
-    var Page_title_Text_Next = browser.getTitle();
+    browser.pause(2000);
+   // browser.moveToObject(Icons).click;
+   // browser.click(article_pageobjects.paddle_next.selector);
+   browser.click(Icons);
+   //browser.moveToObject(Icons).click;
+
+     //browser.pause(2000);
+     var Page_title_Text_Next = browser.getTitle();
+     console.log(paddle_next_page_title_text);
+     console.log(Page_title_Text_Next);
     browser.back();
+browser.pause(3000);
     var actions =
       {
 
@@ -103,14 +123,16 @@ module.exports = {
 
   UP_Next_Navigation: function (Icons, scroll_value) {
 
+    
+    //browser.scroll(Icons);
+    //browser.waitForVisible(Icons);
+    var Up_next_page_title_text = browser.getText(article_pageobjects.Up_next.selector);
     browser.scroll(scroll_value);
-    browser.waitForVisible(Icons);
-    var Up_next_page_title_text = browser.getText(article_pageobjects.up_next.selector);
-    browser.click(article_pageobjects.up_next.selector);
-    browser.pause(4000);
+    browser.moveToObject(article_pageobjects.Up_next.selector).click;
+    //browser.pause(2000);
     var Page_title_Text = browser.getTitle();
-    browser.back();
-    browser.pause(3000);
+   // browser.back();
+    //browser.pause(2000);
 
     var actions =
       {
@@ -133,6 +155,7 @@ module.exports = {
     browser.click(article_pageobjects.up_next_second.selector);
     var Page_title_Text = browser.getTitle();
     browser.back();
+    //browser.pause(2000);
     var actions =
       {
 
