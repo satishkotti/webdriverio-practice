@@ -55,7 +55,10 @@ exports.config = merge(wdioConf.config, {
         global.testapiurl= 'http://redirect.' + global.testEnv + '.webmd.com/api/redirect/'    
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
+        global.site = appConfig.site.webmd.desktop;
+        global.sslevel = appConfig.siteStructureLevel(global.site);
         global.browserDownloadPath = "\\\\nasfs21d-ops-08.portal.webmd.com\\cms_test\\downloads";
+
 
     },
 

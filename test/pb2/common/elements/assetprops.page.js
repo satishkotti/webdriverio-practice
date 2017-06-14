@@ -1,5 +1,5 @@
 
-var page = require('./../../../common/page');
+const page = require('./../../../common/page');
 
 var input = '//label[contains(.,"***:")]//input'; //Input Fields
 var textarea = '//label[contains(.,"***:")]//textarea'; //Textarea fields (Keyword(s), User Description, Meta Description)
@@ -10,9 +10,6 @@ var checkbox = '//label[contains(.,"***")]//input'; //For Checkbox and Radio but
 var tab = '//uib-tab-heading[contains(.,"***")]'; //For Properties, Page Layout and Preview tabs
 var legend = '//fieldset[legend[string()="***"]]';
 var position = '[position()=*]'
-var required = '//label[contains(.,"***:")]//span[@class="pb-field-required"]';
-var invalid = '//label[contains(.,"***:")]//span[@class="pb-field-invalid"]'
-var link = '//a[string()="***"]';
 var locator = '';
 
 
@@ -21,19 +18,16 @@ var props = Object.create(page, {
     UntilExist: { value: () => { browser.waitForExist(locator, 30000); } },
     UntilVisible: { value: () => { browser.waitForVisible(locator, 30000); } },
     UntilEnabled: { value: () => { browser.waitForEnabled(locator, 30000); } },
-    Scroll: { value: () => { browser.element(locator).scroll(); } },
+    Scroll: {value: () => { browser.element(locator).scroll(); } },
     GetElement: { get: () => { return browser.element(locator); } },
 
     input: {
         value: {
             get: (labelName) => {
                 switch (labelName) {
-                    case 'WebMD Nickname': locator = input.replace('***:', labelName); break;
-                    default: locator = input.replace('***', labelName); break;
+                    case 'WebMD Nickname': locator = input.replace('***:', labelName); return props.GetElement; break;
+                    default: locator = input.replace('***', labelName); return props.GetElement; break;
                 }
-                props.UntilExist();
-                props.UntilVisible();
-                return props.GetElement;
             }
         }
     },
@@ -147,6 +141,11 @@ var props = Object.create(page, {
             props.UntilExist();
             props.UntilVisible();
             props.GetElement.click();
+            browser.pause(3000);
+            let pointerYes = '//button[string()="Yes"]';
+            if(browser.isVisible(pointerYes)){
+                browser.click(pointerYes);
+            }
             locator = locator.replace('fa-search', 'fa-trash');
             browser.waitUntil(() => {
                 return browser.isExisting(locator) == true;
@@ -162,31 +161,24 @@ var props = Object.create(page, {
             props.UntilExist();
             props.UntilVisible();
             props.GetElement.setValue(dctmIdOrUrl);
-            locator = input.replace('***', labelName);
             locator = locator + '//following-sibling::button//i[contains(@class, "fa-search")]';
             props.UntilExist();
             props.UntilVisible();
-            try {
+            try{
                 //props.Scroll();
                 props.GetElement.click();
             }
-            catch (err) {
-
-                //props.Scroll();
-                //var topBarSize = browser.getElementSize('.pb-topbar-nav', 'height');
-                //var buttonSize = browser.getElementSize(locator, 'height');
-                //var y = topBarSize + buttonSize;
+            catch(err)
+            {
                 browser.execute(() => {
                     $('i.fa.fa-search').get(0).scrollIntoView();
                 });
-                try {
-                    props.GetElement.click();
-                }
-                catch (err) {
-                    browser.element(locator).scroll(0, 300);
-                    props.GetElement.click();
-                }
-
+                props.GetElement.click();
+            }
+            browser.pause(3000);
+            let pointerYes = '//button[string()="Yes"]';
+            if(browser.isVisible(pointerYes)){
+                browser.click(pointerYes);
             }
             locator = locator.replace('fa-search', 'fa-trash');
             browser.waitUntil(() => {
@@ -204,44 +196,6 @@ var props = Object.create(page, {
             return props.GetElement;
         }
     },
-    invalid: {
-        value: {
-            get: (labelName) => {
-                switch (labelName) {
-                    case 'WebMD Nickname': locator = invalid.replace('***:', labelName); break;
-                    default: locator = invalid.replace('***', labelName); break;
-                }
-                try {
-                    let element = props.GetElement;
-                    return element;
-                } catch (err) {
-                    return browser.isExisting(locator);
-                }
-            }
-        }
-    },
-    required: {
-        value: {
-            get: (labelName) => {
-                switch (labelName) {
-                    case 'WebMD Nickname': locator = required.replace('***:', labelName); break;
-                    default: locator = required.replace('***', labelName); break;
-                }
-                props.UntilExist();
-                props.UntilVisible();
-                return props.GetElement;
-            }
-        }
-    },
-    link: {
-        value: {
-            get: (linkName) => {
-                locator = link.replace('***', linkName);
-                props.UntilExist();
-                return props.GetElement;
-            }
-        }
-    }
 
 });
 

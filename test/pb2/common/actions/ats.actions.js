@@ -4,11 +4,14 @@ module.exports.Navigate = function (chronID, stage) {
     return ats.gotoURL(chronID, stage);
 }
 module.exports.ClickOn = function (buttonText) {
-    switch (buttonText) {
-        case 'Preview':
-        case 'Staging':
-        case 'Live':
+    switch (buttonText.toLowerCase()) {
+        case 'preview':
+        case 'staging':
+        case 'live':
             ats.stage(buttonText).click();
+            break;
+        case 'show asset info':
+            ats.assetInfo.click();
             break;
         default:
             ats.button.get(buttonText).click();
@@ -18,12 +21,12 @@ module.exports.ClickOn = function (buttonText) {
 module.exports.WaitFor = (fileType) =>
 {   
     var atsUrl = browser.getUrl();
-    //if(atsUrl.includes('preview') || atsUrl.includes('Preview'))
-    //{
+    if(atsUrl.includes('preview') || atsUrl.includes('Preview'))
+    {
         ats.downloadLink(fileType, 10000);
-    //}
-    //else
-    //{
-        //ats.downloadLink(fileType, 30000);
-    //}
+    }
+    else
+    {
+        ats.downloadLink(fileType, 30000);
+    }
 }
