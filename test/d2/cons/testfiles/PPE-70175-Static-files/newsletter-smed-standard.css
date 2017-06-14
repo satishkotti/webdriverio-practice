@@ -1,0 +1,72 @@
+.smEditorial_right_fmt {
+	display: none;
+}
+/*=================================================
+  =START Small editorial styles
+=================================================*/
+.smEditorial_right_fmt {
+	background-color: #d9d0b8;
+	border-top: none;
+	margin: 0;
+	padding: 0;	
+  	width:308px;	
+}
+.smEditorial_right_fmt .smEditorial_rightB_rdr {
+  background:#f8f5ec;
+  border: 1px solid #9e956a;
+  margin: 0px 0px 0px 4px;
+  width: 298px;
+}
+.smEditorial_right_fmt .smEditorial_rightB_rdr img {
+  margin: 0px 5px 0px 0px;
+  float: left;
+}
+.smEditorial_right_fmt .smEditorial_rightB_rdr .link_fmt {
+  color: #016798;
+  float: none;
+  font-size: 90%;
+  font-weight: bold;
+  margin: 0px;
+  padding: 5px 0px 0px 0px;
+  width: 290px;
+}
+/* IE6 Hack */
+*html .smEditorial_right_fmt .smEditorial_rightB_rdr .link_fmt {
+  width: 255px;
+}
+/* IE7 Hack */
+*+html .smEditorial_right_fmt .smEditorial_rightB_rdr .link_fmt {
+  width: 255px;
+}
+.smEditorial_right_fmt .smEditorial_rightB_rdr .blurb_fmt {
+  float: none; 
+  font-size:90%;
+  margin:0px 0px 3px 3px; 
+  padding: 0px;
+  width: 290px;
+}
+/* IE6 Hack */
+*html .smEditorial_right_fmt .smEditorial_rightB_rdr .blurb_fmt {
+  width: 255px;
+}
+/* IE7 Hack */
+*+html .smEditorial_right_fmt .smEditorial_rightB_rdr .blurb_fmt {
+  padding-top: 6px;
+  width: 255px;
+}
+.smEditorial_rightB_rdr .blurb_fmt a {
+ 	color: #000000;
+}
+.smEditorial_rightB_rdr .clearboth_fmt {
+  clear:both;  
+}  
+* + html .smEditorial_right_fmt .smEditorial_rightB_rdr .blurb_fmt{
+margin-top: -7px;
+}
+/*=================================================
+  =START Hot Topics styles
+=================================================*/
+.hotTopics_right_rdr{
+  background-color: #D9D0B8;
+  padding-bottom: 6px;
+}

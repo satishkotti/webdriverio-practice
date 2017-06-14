@@ -16,5 +16,9 @@ module.exports = {
     },
     expireversionValidation: function(){
         versionTabUI.expireversionValidation();
+    },
+
+    WipversionValidation: function(){
+        versionTabUI.WipversionValidation();
     }
 }

@@ -92,7 +92,8 @@ module.exports = {
         propertiesTabUI.propertiesTabSelect();
         return {
             chronicleId: propertiesTabUI.chronicleIdGet(),
-            objectName: propertiesTabUI.objectTitleGet()
+            objectName: propertiesTabUI.objectTitleGet(),
+            Name: propertiesTabUI.objectNameGet()
         };
     },
 
