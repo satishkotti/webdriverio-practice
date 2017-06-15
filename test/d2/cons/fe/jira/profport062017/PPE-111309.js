@@ -40,7 +40,7 @@ describe('Regression', function () {
         documentListTab.selectAsset(AssetTitle);
         relationsTab.relations();
     });
-    it('Verify the checkout , cancel and checkin operation', function () {
+    it.skip('Verify the checkout , cancel and checkin operation', function () {
         documentListTab.selectAsset(AssetTitle);
         contentTab.checkOut();
         contentTab.cancel();
@@ -56,6 +56,8 @@ describe('Regression', function () {
         contentTab.checkOut();
         contentTab.Setimage("Thumbnail Image", "Heart");
         var TImagelinkVal = contentTab.ImagelinkVal("Thumbnail Image");
+        console.log(TImagelinkVal);
+        browser.frameParent();
         contentTab.Setimage("Media Asset", "Heart");
         var MImagelinkVal = contentTab.ImagelinkVal("Media Asset");
         browser.frameParent();
