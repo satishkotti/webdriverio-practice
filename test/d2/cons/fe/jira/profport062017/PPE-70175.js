@@ -49,7 +49,7 @@ describe('Working with Static files -PPE-70175', function () {
         documentListTab.publishAssetToStaging(objName);
         browser.pause(2000);
         documentListTab.expireAsset(objName);
-        
+        browser.pause(5000);
     });
 
 
@@ -74,7 +74,7 @@ describe('Working with Static files -PPE-70175', function () {
         documentListTab.publishAssetToStaging(objName);
         browser.pause(2000);
         documentListTab.expireAsset(objName);
-        
+        browser.pause(5000);
     });
 
 
@@ -102,7 +102,7 @@ describe('Working with Static files -PPE-70175', function () {
         documentListTab.publishAssetToStaging(objName);
         browser.pause(2000);
         documentListTab.expireAsset(objName);
-        
+        browser.pause(5000);
     });
 
 
@@ -127,7 +127,7 @@ describe('Working with Static files -PPE-70175', function () {
         documentListTab.publishAssetToStaging(objName);
         browser.pause(2000);
         documentListTab.expireAsset(objName);
-        
+        browser.pause(5000);
     });
    
 
@@ -153,7 +153,7 @@ describe('Working with Static files -PPE-70175', function () {
         documentListTab.publishAssetToStaging(objName);
         browser.pause(2000);
         documentListTab.expireAsset(objName);
-        
+        browser.pause(5000);
     });
     
      it('Verify user is able to checkout,cancel checkout, checkin,Promote,Demote,Power Promote,Publish,Expire and Wip version checking functionality on Working with Static files -PPE-70175(wbmd_pb_js)', function () {
@@ -177,7 +177,7 @@ describe('Working with Static files -PPE-70175', function () {
         documentListTab.publishAssetToStaging(objName);
         browser.pause(2000);
         documentListTab.expireAsset(objName);
-        
+        browser.pause(5000);
     });
 });
 

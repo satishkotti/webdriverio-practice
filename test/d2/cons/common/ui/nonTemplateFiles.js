@@ -282,6 +282,10 @@ var nonTemplateFiles = {
         var SponsorInternalMLRDate = browser.isExisting("//label[string()='Sponsor Internal MLR Date:']");
         expect(SponsorInternalMLRDate).to.be.true;
     },
+      Nontemplatecheckoutwihoutsave:function () {
+        browser.pause(5000);
+        browser.click("//div[@class='modal-content']//div[@class='modal-footer']//button[@ng-click='$cancel()']");
+    }
 }
 
 module.exports = nonTemplateFiles;

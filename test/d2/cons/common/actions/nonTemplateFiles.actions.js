@@ -54,6 +54,19 @@ var nonTemplateFilesObj = {
         nonTemplateFiles.article_AudChartab_AttributesNames();
         nonTemplateFiles.article_SponsorMLRtab_AttributesNames();
 
+    },
+
+    NontemplateCheckout: function (assetName) {
+        nonTemplateFiles.selectItemByName(assetName);
+        nonTemplateFiles.checkout(assetName);
+    },
+
+    NontemplateCancelCheckout: function (assetName) {
+        nonTemplateFiles.selectItemByName(assetName);
+        nonTemplateFiles.cancelCheckout(assetName);
+    },
+    Nontemplatecheckoutwihoutsave: function (assetName) {
+        nonTemplateFiles.Nontemplatecheckoutwihoutsave();
     }
 }
 module.exports = nonTemplateFilesObj;
