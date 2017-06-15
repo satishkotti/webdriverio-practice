@@ -12,7 +12,8 @@ exports.config = {
     //
     specs: [
       // './test/profile&revenue/prdemo/fe/jira/PPE-101748/PPE-103377.js'
-    './smoke/FE_Smoke_Article.js'
+    //'./Test//smoke/FE_Smoke_Article.test.js'
+    './Test/Baseline/Desktop/smoke/FE_Smoke_Article.test.js'
      //'./test/profile&revenue/prdemo/fe/jira/smoke/FE_Smoke_SS.js'
      // './test/profile&revenue/prdemo/fe/jira/smoke/FE_Smoke_ISI_Module.js'
      //  './test/profile&revenue/prdemo/fe/jira/Archived/FE_Smoke_TOC_Module.js'

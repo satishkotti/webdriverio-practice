@@ -7,15 +7,15 @@ var should = require('should');
 var path = require('path');
 var rootPath = path.normalize(__dirname)
 var socialshareIcons = require('./../elements/Common.elements');
-var input = require('./../../config/PPE-101748.testdata');
+//var input = require('./../../config/PPE-101748.testdata');
 
 module.exports = {
 
 /* Searching for Breadcrumb test to be visible */
     Search: function (Icons, scroll_value) {
 
-            ssElements.open();
-            var breadcrumb_text = ssElements.Breadcrumb.getText();
+           // ssElements.open();
+            var breadcrumb_text = socialshareIcons.Breadcrumb.getText();
             var flag_visible = browser.isVisible(Icons);
             browser.pause(4000);
 

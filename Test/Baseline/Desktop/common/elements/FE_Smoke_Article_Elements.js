@@ -1,7 +1,7 @@
 var argv = require("yargs").argv;
 var path = require('path');
 var rootPath = path.normalize(__dirname)
-var Page = require('./../../page');
+var Page = require('./../../../../../page');
 var input = require('./../../config/FE.testdata')[argv.env];
 //var url = input.Article_url;
 
