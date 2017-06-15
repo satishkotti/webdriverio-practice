@@ -6,4 +6,7 @@
 npm-debug.log
 debug.log
 allure-report/
+.vscode/*
+.idea/*
+test/common/browserDownloads/*
 
