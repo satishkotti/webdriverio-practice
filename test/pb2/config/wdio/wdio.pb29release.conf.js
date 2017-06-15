@@ -35,7 +35,7 @@ exports.config = merge(wdioConf.config, {
                     password_manager_enabled: false
                 },                
 				download: { 
-                    default_directory: "\\\\nasfs21d-ops-08.portal.webmd.com\\cms_test\\downloads",
+                    default_directory: "Z:\\downloads",
                     prompt_for_download: false,
                 }
             }

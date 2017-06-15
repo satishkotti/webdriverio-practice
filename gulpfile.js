@@ -56,7 +56,7 @@ if (conf.length == 0) {
 }
 
 //temp path added until nas share path ready w/perm
-var downloadFolderPath = "\\\\nasfs21d-ops-08.portal.webmd.com\\cms_test\\downloads";
+var downloadFolderPath = "Z:\\downloads";
 
 gulp.task('branch', function (cb) {
     return git.revParse({
