@@ -42,6 +42,7 @@ exports.config = merge(wdioConf.config, {
             }
         }
     }],
+    onPrepare: function() {},
     before: function () {
 
         var chai = require('chai');
