@@ -35,13 +35,13 @@ exports.config = merge(wdioConf.config, {
                     password_manager_enabled: false
                 },                
 				download: { 
+                    //temp path added until nas share path ready w/perm
                     default_directory: "Z:\\downloads",
                     prompt_for_download: false,
                 }
             }
         }
     }],
-	onPrepare: function() {},
     before: function () {
 
         var chai = require('chai');
