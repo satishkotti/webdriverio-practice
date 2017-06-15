@@ -31,14 +31,13 @@ function _Fn(val,val1) {
 
         this.timeout(0);
         var Addata1,Addata2,omnituredata1,omnituredata2;
-        var qs1,qs2,os1,os2;
+        var qs1,qs2,os1,os2,custparams,custparamsp;
 
 
         before(function (done) {
         var x = browser.enableProxy({})//.then(function () { console.log('finsihed enabling proxy'); })
             
             .url(stagingurl)
-               
                 .end()
                 .getNetworkCalls('https://securepubads.g.doubleclick.net/gampad').then(function (result) {
                     Addata1 = result;
@@ -78,20 +77,52 @@ function _Fn(val,val1) {
                 if (qs1[x].name == 'cust_params') {
                     var temp = qs1[x].value;
                     console.log(temp);
-                    temp1 = temp.split('&');
+                    custparams = temp.split('&');
                     //console.log(temp1);
                 }
             }
 
-            for (var s=0;s<temp1.length;s++) {
-                if(temp1[s].includes("pvid=")) {
-                    DFPpvid = temp1[s];
+            for (var s=0;s<custparams.length;s++) {
+                if(custparams[s].includes("pvid=")) {
+                    DFPpvid = custparams[s];
                     DFPpvid = DFPpvid.substring(5);
                     console.log(DFPpvid);
                 }
             }
             c24l.should.equal(DFPpvid);
            // console.log("Console"+c24l.equal(DFPpvid));
+        });
+
+        it(" pt Validation ", function () { 
+            var temp, DFPpts,DFptp;            
+      
+            for (var x = 0; x < qs1.length || qs2.length; x++) {
+                if (qs1[x].name == 'cust_params') {
+                    var temp = qs1[x].value;
+                    console.log(temp);
+                    custparams = temp.split('&');
+                }
+                if (qs2[x].name == 'cust_params') {
+                    var temp = qs2[x].value;
+                    console.log(temp);
+                    custparamsp = temp.split('&');
+                }
+            }
+
+            for (var s = 0; s < custparams.length || custparamsp.length; s++) {
+                if (custparams[s].includes("pt=")) {
+                    DFPpts = custparams[s];
+                    DFPpts = DFPpts.substring(3);
+                    console.log(DFPpts);
+                }
+
+                 if (custparamsp[s].includes("pt=")) {
+                    DFPptp = custparamsp[s];
+                    DFPptp = DFPptp.substring(3);
+                    console.log(DFPptp);
+                }
+            }
+            console.log(DFPpts==DFptp);
 
         });
 
