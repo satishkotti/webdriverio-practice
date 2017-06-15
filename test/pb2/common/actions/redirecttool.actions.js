@@ -1,4 +1,8 @@
-var menus = require('./menus.actions');
+const menus = require('./menus.actions');
+const props = require('./../elements/assetprops.page');
+const action = require('./../elements/actions.page');
+const search = require('./../elements/search.page');
+const fs = require('fs');
 
 var searchBtn = 'button.floatright';
 var createBtn = '[name="redirectForm"] > div:nth-of-type(2) > div.floatright > button';
@@ -9,11 +13,11 @@ var createFromUrl = '[name="redirectForm"] > div:nth-of-type(1) > div:nth-of-typ
 var createToUrl = '[name="redirectForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input';
 
 var chooseFile = '#bulkRedirect';
-module.exports.GoToRedirectToolPage = function(option) {
+module.exports.GoToRedirectToolPage = function (option) {
     menus.GoToRedirectTool()
 }
 
-module.exports.GetPageTitle = function(option) {
+module.exports.GetPageTitle = function (option) {
     if (option.target == 'Search') {
         return browser.getText("div.row > div:nth-of-type(1) > section.pb-module > header > h3");
     } else if (option.target == 'Create') {
@@ -25,7 +29,7 @@ module.exports.GetPageTitle = function(option) {
     }
 }
 
-module.exports.GetRedirectElement = function(option) {
+module.exports.GetRedirectElement = function (option) {
     switch (option.element) {
         case "searchFromUrl":
             {
@@ -72,40 +76,68 @@ module.exports.GetRedirectElement = function(option) {
     }
 }
 
-module.exports.GoToBulkImport = function(option) {
-    browser.click("a.pb-redirect-nav-link.floatright");
+module.exports.BulkImport = function (option) {
+    action.button.get('Bulk Import').click();
 }
 
-module.exports.GoToBulkImport = function(option) {
-    browser.click("a.pb-redirect-nav-link.floatright");
+module.exports.CreateRedirects = function(props){
+    action.button.get('Create Reditrect').click();
 }
 
-module.exports.SearchFromUrl = function(option) {
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
-    var url = option;
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', url);
-    browser.click('button.floatright');
+module.exports.Search = function (searchParams) {
+    let from = searchParams.from;
+    let to = searchParams.to;
+    
+    if(from != null) { props.input.get('From URL').setValue(from) };
+    if(to != null) { props.input.get('To URL').setValue() };
+    action.button.get('Search').click();
+    search.resultsGrid('Redirects Search').waitForVisible();
 }
 
-module.exports.SearchFromUrlNoClick = function(option) {
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
-    var url = option;
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', url);
+module.exports.ExportRedirects = function (site) {
+
+    let selectBulkExportSite = function(siteId){
+        browser.selectByValue('select[title="Select Site for Bulk Export"]', siteId);
+    }
+    switch(site.toLowerCase()){
+        case 'webmd desktop': selectBulkExportSite('3'); break;
+        case 'webmd mobile': selectBulkExportSite('8'); break;
+        case 'boots desktop': selectBulkExportSite('7'); break;
+        case 'boots mobile': selectBulkExportSite('9'); break;
+        case 'search results':
+        action.button.get('Export to Excel').click();
+        break;
+    }
 }
 
-module.exports.SearchToUrl = function(option) {
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
-    var url = option;
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', url);
-    browser.click('button.floatright');
+module.exports.VerifyFile = function (filepath) {
+    let isPresent = null;
+    return new Promise(function(resolve, reject){
+        fs.stat(filepath, function (err, stat) {
+        if (err == null) {
+            isPresent = true;
+            return resolve(isPresent);
+        } else if (err.code == 'ENOENT') {
+            isPresent = false;
+            return resolve(isPresent);
+        } else {
+            isPresent = 'error: ' + err.code + ' - ' + err.message;
+            return reject(isPresent);
+        }
+    });
+        
+    });
 }
 
-module.exports.SearchToUrlNoClick = function(option) {
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
-    var url = option;
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', url);
+module.exports.IsFile = function(filepath) 
+{
+    return fs.statSync(filepath).isFile();
+}
+
+module.exports.DeleteFile = function(filepath){
+    fs.unlinkSync(filepath);
+}
+
+module.exports.ReadDirectory = function(filepath){
+    return fs.readdirSync(filepath);
 }

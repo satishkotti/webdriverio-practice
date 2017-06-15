@@ -8,7 +8,16 @@ module.exports.EnterIWC = function(menu, option)
 
 module.exports.TraverseSS = function(level)
 {
-    var nodes = level.split('/');
+    let nodes, sslevel;
+
+    switch(level)
+    {
+        case undefined: sslevel = global.sslevel; break;
+        default: sslevel = level; break;
+    }
+
+    nodes = sslevel.split('/');
+
     for ( var i = 0; i < nodes.length; i++)
     {
         switch (i)
@@ -17,8 +26,6 @@ module.exports.TraverseSS = function(level)
             default: IWC.nodeExpand.get(nodes[i]).click(); break;
         }
     }
-
-    return IWC.browser;
 }
 
 module.exports.AddToNode = function(assetType)
