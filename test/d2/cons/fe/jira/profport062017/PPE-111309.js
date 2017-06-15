@@ -11,6 +11,7 @@ var ckEditorMenu = require('./../../../common/actions/ckEditor.actions');
 var relationsTab = require('./../../../common/actions/relationTab.actions');
 var mModuleBulletOption = require('./../../../common/actions/mModuleBullet.actions');
 var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
+var findTab = require('./../../../common/actions/findTab.actions');
 var randomstring = require("randomstring");
 
 describe('Regression', function () {
@@ -40,7 +41,7 @@ describe('Regression', function () {
         documentListTab.selectAsset(AssetTitle);
         relationsTab.relations();
     });
-    it.skip('Verify the checkout , cancel and checkin operation', function () {
+    it('Verify the checkout , cancel and checkin operation', function () {
         documentListTab.selectAsset(AssetTitle);
         contentTab.checkOut();
         contentTab.cancel();
@@ -105,6 +106,6 @@ describe('Regression', function () {
         documentListTab.expireAsset(AssetTitle);
         documentListTab.deleteArticle(objName, global.d2ConDataSettings.inputData.DeleteAllversions);
         browser.pause(5000)
-        documentListTab.searchArticle(chronicleId);
+        findTab.searchTextDeleteValidation(chronicleId);
     });
 });
