@@ -18,14 +18,14 @@ args.option('env', 'Environment targetted', "dev01")
     .option('app', 'App: rt, d2cons, d2prof, pb2', '')
     .option('maxInstances', 'Maximum number of instances a browser can have', 1)
     .option('logLevel', 'Test runner logging level default error', 'error')
-    .option('selectTests', 'Tests to execute seperated by comma', '');
+    .option('selectTests', 'Tests to execute seperated by comma', 'not-selected');
 
 var flags = args.parse(process.argv);
 
 var currentApp = flags.app;
 var conf = flags.conf;
 var testEnv = flags.env;
-var selectTests = flags.selectTests;
+var selectTest = flags.selectTests;
 var error = chalk.bold.red;
 var defaultWaitTimeout = 180000;
 var defaultMochaTestTimeout = 600000;
@@ -58,7 +58,7 @@ if (conf.length == 0) {
 }
 
 //temp path added until nas share path ready w/perm
-var downloadFolderPath = "\\\\nasfs21d-ops-08.portal.webmd.com\\cms_test\\downloads";
+var downloadFolderPath = "Z:\\downloads";
 
 gulp.task('branch', function (cb) {
     return git.revParse({
@@ -149,9 +149,15 @@ var deleteFolderRecursive = function (path) {
 
 gulp.task('selected', function (done) {
 
-    console.log('selectTests: '+ selectTests);
-    if (selectTests.length > 0) {
-            _.each(selectTests.split(","), function (testId) {
+    console.log('selectTest: '+ selectTest);
+    if (selectTest.length > 0) {
+
+        if(selectTest.indexOf("," == 0))
+        {
+            selectTest += ",endtest";
+        }
+
+            _.each(selectTest.split(","), function (testId) {
                 var specFiles = `test/${appFolder}/**/*${testId.trim()}*.js`;
                 var specFileFolder = `test/${appFolder}/**/*${testId.trim()}*/*.js`;
                 tests.push(specFiles);
