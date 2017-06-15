@@ -81,7 +81,7 @@ module.exports.GoToBulkImport = function(option) {
 }
 
 module.exports.SearchFromUrl = function(option) {
-    if(browser.element("//a[text()='Show Criteria']").isVisible())
+    if (browser.element("//a[text()='Show Criteria']").isVisible())
         browser.click("//a[text()='Show Criteria']");
     browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
     browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
@@ -91,7 +91,7 @@ module.exports.SearchFromUrl = function(option) {
 }
 
 module.exports.SearchFromUrlNoClick = function(option) {
-    if(browser.element("//a[text()='Show Criteria']").isVisible())
+    if (browser.element("//a[text()='Show Criteria']").isVisible())
         browser.click("//a[text()='Show Criteria']");
     browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
     browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
@@ -115,19 +115,19 @@ module.exports.SearchToUrlNoClick = function(option) {
 }
 
 module.exports.createRedirect = function(fromUrl, toUrl) {
-    if(!(browser.isVisible("//form[@name='redirectForm']")))
-        browser.element("//button[contains(text(),'Create Redirect')]").click();
+    if (!(browser.isVisible("//form[@name='redirectForm']")))
+        browser.element("span.pb-buttongroup.floatright > button:nth-of-type(1)").click();
     browser.waitForVisible("//form[@name='redirectForm']");
-    browser.setValue("//form[@name='redirectForm']/div/div[1]/label/input", fromUrl);
-    browser.setValue("//form[@name='redirectForm']/div/div[2]/label/input", toUrl);
-    browser.element("//form[@name='redirectForm']/button").click();
+    browser.setValue('[name="redirectForm"] > div.row > div:nth-of-type(1) > label.pb-label > input', fromUrl);
+    browser.setValue('[name="redirectForm"] > div.row > div:nth-of-type(2) > label.pb-label > input', toUrl);
+    browser.element('[name="redirectForm"] > button.floatright').click();
     browser.waitForVisible("section.pb-notification-container.success");
 }
 
 module.exports.createRedirectNoClick = function(fromUrl, toUrl) {
-    if(!(browser.isVisible("//form[@name='redirectForm']")))
-        browser.element("//button[contains(text(),'Create Redirect')]").click();
+    if (!(browser.isVisible("//form[@name='redirectForm']")))
+        browser.element("span.pb-buttongroup.floatright > button:nth-of-type(1)").click();
     browser.waitForVisible("//form[@name='redirectForm']");
-    browser.setValue("//form[@name='redirectForm']/div/div[1]/label/input", fromUrl);
-    browser.setValue("//form[@name='redirectForm']/div/div[2]/label/input", toUrl);
+    browser.setValue('[name="redirectForm"] > div.row > div:nth-of-type(1) > label.pb-label > input', fromUrl);
+    browser.setValue('[name="redirectForm"] > div.row > div:nth-of-type(2) > label.pb-label > input', toUrl);
 }

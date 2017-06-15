@@ -51,29 +51,30 @@ describe('PPE-105235: Create Redirects', function() {
 
     it('Verify User is able to create redirects with valid URLs', function() {
         redirectActions.GoToRedirectToolPage();
-        info = getValidRedirect();
-        var validFromUrl = info[0];
-        var validToUrl = info[2];
+        var validFromUrl = "http://www." + global.testEnv + ".webmd.com/food-recipes/nutrition-labels-10/trans-fats";
+        var validToUrl = "http://www." + global.testEnv + ".webmd.com/redirecttooltesturl123";
         deleteRedirects(validFromUrl);
         browser.pause(4000);
         redirectActions.createRedirect(validFromUrl, validToUrl);
+        browser.pause(4000);
         //Search using from URL
         if (browser.element("//a[text()='Show Criteria']").isVisible())
             browser.click("//a[text()='Show Criteria']");
         redirectActions.SearchFromUrl(validFromUrl);
-        browser.waitForVisible("//tbody[@role='rowgroup']//td[3]/a")
-        browser.waitForVisible("//tbody[@role='rowgroup']//td[6]/a")
-        expect(browser.getText("//tbody[@role='rowgroup']//td[3]/a")).to.equal(validFromUrl);
-        expect(browser.getText("//tbody[@role='rowgroup']//td[6]/a")).to.equal(validToUrl);
+        browser.waitForVisible("tbody > tr:first-child > td:nth-of-type(3) > a")
+        browser.waitForVisible("tbody > tr:first-child > td:nth-of-type(6) > a")
+        expect(browser.getText("tbody > tr:first-child > td:nth-of-type(3) > a")).to.equal(validFromUrl);
+        expect(browser.getText("tbody > tr:first-child > td:nth-of-type(6) > a")).to.equal(validToUrl);
         //Search using to URL
-        //defect: PPE-116468
+        //defect: PPE-116468: fixed
         if (browser.element("//a[text()='Show Criteria']").isVisible())
             browser.click("//a[text()='Show Criteria']");
         redirectActions.SearchToUrl(validToUrl);
-        browser.waitForVisible("//tbody[@role='rowgroup']//td[3]/a")
-        browser.waitForVisible("//tbody[@role='rowgroup']//td[6]/a")
-        expect(browser.getText("//tbody[@role='rowgroup']//td[3]/a")).to.equal(validFromUrl);
-        expect(browser.getText("//tbody[@role='rowgroup']//td[6]/a")).to.equal(validToUrl);
+        browser.waitForVisible("tbody > tr:first-child > td:nth-of-type(3) > a")
+        browser.waitForVisible("tbody > tr:first-child > td:nth-of-type(6) > a");
+        //from url might be different if there are multiple 
+        expect(browser.getText("tbody > tr:first-child > td:nth-of-type(3) > a")).to.equal(validFromUrl);
+        expect(browser.getText("tbody > tr:first-child > td:nth-of-type(6) > a")).to.equal(validToUrl);
     });
 
 
@@ -85,21 +86,22 @@ describe('PPE-105235: Create Redirects', function() {
         browser.pause(4000);
         redirectActions.createRedirect(validFromCID, validToCID);
         //Search using from URL
+        browser.pause(4000);
         if (browser.element("//a[text()='Show Criteria']").isVisible())
             browser.click("//a[text()='Show Criteria']");
         redirectActions.SearchFromUrl(validFromCID);
-        browser.waitForVisible("//tbody[@role='rowgroup']//td[3]/a")
-        browser.waitForVisible("//tbody[@role='rowgroup']//td[6]/a")
-        expect(browser.getText("//tbody[@role='rowgroup']//td[3]/a")).to.equal(validFromID);
-        expect(browser.getText("//tbody[@role='rowgroup']//td[6]/a")).to.equal(validToID);
+        browser.waitForVisible("tbody > tr:first-child > td:nth-of-type(4) > span > a.pb-chron")
+        browser.waitForVisible("tbody > tr:first-child > td:nth-of-type(7) > span > a.pb-chron")
+        expect(browser.getText("tbody > tr:first-child > td:nth-of-type(4) > span > a.pb-chron")).to.equal(validFromID);
+        expect(browser.getText("tbody > tr:first-child > td:nth-of-type(7) > span > a.pb-chron")).to.equal(validToID);
         //Search using to URL
         if (browser.element("//a[text()='Show Criteria']").isVisible())
             browser.click("//a[text()='Show Criteria']");
         redirectActions.SearchToUrl(validToCID);
-        browser.waitForVisible("//tbody[@role='rowgroup']//td[4]/a")
-        browser.waitForVisible("//tbody[@role='rowgroup']//td[7]/a")
-        expect(browser.getText("//tbody[@role='rowgroup']//td[4]/a")).to.equal(validFromCID);
-        expect(browser.getText("//tbody[@role='rowgroup']//td[7]/a")).to.equal(validToCID);
+        browser.waitForVisible("tbody > tr:first-child > td:nth-of-type(4) > span > a.pb-chron")
+        browser.waitForVisible("tbody > tr:first-child > td:nth-of-type(7) > span > a.pb-chron")
+        expect(browser.getText("tbody > tr:first-child > td:nth-of-type(4) > span > a.pb-chron")).to.equal(validFromCID);
+        expect(browser.getText("tbody > tr:first-child > td:nth-of-type(7) > span > a.pb-chron")).to.equal(validToCID);
     });
 
     it('Verify user is not able to create redirect with mix of both url and chornicle ID', function() {
@@ -145,7 +147,7 @@ describe('PPE-105235: Create Redirects', function() {
         deleteRedirects(validFromUrl);
         browser.pause(4000);
         redirectActions.createRedirect(validFromUrl, validToUrl);
-        browser.pause(3000);
+        browser.pause(4000);
         redirectActions.createRedirectNoClick(validFromUrl, validToUrl);
         browser.element("//form[@name='redirectForm']/button").click();
         //div[@class='modal-dialog']//div[contains(@class, 'pb-overlay-content')]/div
