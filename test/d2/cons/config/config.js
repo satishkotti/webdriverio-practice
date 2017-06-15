@@ -371,6 +371,9 @@ module.exports.testSettings = {
              "diclaimerTitlewxml": "\nQATestDisclaimer\n",
              "existingDisclaimerID": "091e9c5e803e3f40",
              "existingDisclaimeritle":"WebMD Ask the Specialist Transcript Disclaimer",
+             "UKDisclaimerPName": 'Consumer Portal UK / Copyright Disclaimer Templates',
+             "existingDisclaimerID_uk": "091e9c5e80330eb4",
+             "existingDisclaimeritle_uk":"diet center health tools",
 
         }      
     }
