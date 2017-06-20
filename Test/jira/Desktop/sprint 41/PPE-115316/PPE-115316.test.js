@@ -33,7 +33,6 @@ describe("FE smoke test for Slideshow Module", function() {
             slider[i].image.should.equal(true);
             slider[i].title.should.equal(true);
             slider[i].description.should.equal(true);
-
         }
     });
 
@@ -67,16 +66,29 @@ describe("FE smoke test for Slideshow Module", function() {
         }
     });
 
-    // it("Should validate Slider Image, Slider title and slider description being visible for all slides while cliking on image", function() {
-    //     browser.refresh();
-    //     browser.pause(2000);
-    //     var slider = slideShow_functions.next_slide(slideShow_elements.primary_controls_next.selector);
-    //     for (var i = 0; i < slider.length; i++) {
-    //         slider[i].image.should.equal(true);
-    //         slider[i].title.should.equal(true);
-    //         slider[i].description.should.equal(true);
-    //     }
-    // });
+    it("Should validate Slider Image, Slider title and slider description being visible for all slides while cliking on secondary control Previous button", function() {
+        var slider = slideShow_functions.previous_slide(slideShow_elements.primary_controls_next.selector);
+        for (var i = 0; i < slider.length; i++) {
+            slider[i].image.should.equal(true);
+            slider[i].title.should.equal(true);
+            slider[i].description.should.equal(true);
+        }
+    });
+
+    it("Should validate slider count while clicking on Secondary controls next button", function() {
+        browser.refresh();
+        browser.pause(2000);
+        var slider = slideShow_functions.next_slide(slideShow_elements.secondary_controls_next.selector);
+        for (var i = 0; i < slider.length; i++) {
+            var count = 1;
+            if (slider[i].current == null) {
+                console.log("This slide " + slider[i] + "Dosen't have the count.");
+            } else {
+                should.equal(parseInt(slider[i].current), count);
+                count = count + 1;
+            }
+        }
+    });
 
     it("Should validate primary Controlls Previous and Next arrows icons", function() {
         browser.refresh();

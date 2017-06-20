@@ -21,42 +21,48 @@ module.exports = {
                     slideShow.title = actions.is_Visible(slideShow_elements.all_slider_small_image_title(i));
                     slideShow.getTitle = actions.get_Text(slideShow_elements.all_slider_small_image_title(i));
                     slideShow.description = actions.is_Visible(slideShow_elements.all_slider_small_image_description(i));
+                    slideShow.current = actions.get_Text(slideShow_elements.all_slider_small_image_current(i));
                 } else if (actions.is_Visible(slideShow_elements.all_slider_image(i))) {
                     // Image overlaped text on large image
                     slideShow.image = actions.is_Visible(slideShow_elements.all_slider_image(i));
                     slideShow.title = actions.is_Visible(slideShow_elements.all_slider_image_title(i));
                     slideShow.getTitle = actions.get_Text(slideShow_elements.all_slider_image_title(i));
                     slideShow.description = actions.is_Visible(slideShow_elements.all_slider_image_description(i));
+                    slideShow.current = actions.get_Text(slideShow_elements.all_slider_image_current(i));
                 } else if (actions.is_Visible(slideShow_elements.all_slider_sponsored_ad(i))) {
                     //Sponsored ad
                     slideShow.image = actions.is_Visible(slideShow_elements.all_slider_sponsored_ad(i));
                     slideShow.title = actions.is_Visible(slideShow_elements.all_slider_sponsored_ad_title(i));
                     slideShow.getTitle = actions.get_Text(slideShow_elements.all_slider_sponsored_ad_title(i));
                     slideShow.description = actions.is_Visible(slideShow_elements.all_slider_sponsored_ad_description(i));
+                    slideShow.current = actions.get_Text(slideShow_elements.all_slider_sponsored_ad_current(i));
                 } else if (actions.is_Visible(slideShow_elements.all_slider_sponsored_int_ad(i))) {
                     //Interstitial ad
                     slideShow.image = actions.is_Visible(slideShow_elements.all_slider_sponsored_int_ad(i));
                     slideShow.title = true;
                     slideShow.getTitle = "No Title";
                     slideShow.description = true;
+                    slideShow.current = null;
                 } else if (actions.is_Visible(slideShow_elements.slider_no_image(i))) {
                     // No Image
                     slideShow.image = actions.is_Visible(slideShow_elements.slider_no_image(i));
                     slideShow.title = actions.is_Visible(slideShow_elements.all_slider_no_image_title(i));
                     slideShow.getTitle = actions.get_Text(slideShow_elements.all_slider_no_image_title(i));
                     slideShow.description = actions.is_Visible(slideShow_elements.all_slider_no_image_description(i));
+                    slideShow.current = actions.get_Text(slideShow_elements.all_slider_no_image_current(i));
                 } else if (actions.is_Visible(slideShow_elements.all_slider_large_image(i))) {
                     //Large Image
                     slideShow.image = actions.is_Visible(slideShow_elements.all_slider_large_image(i));
                     slideShow.title = actions.is_Visible(slideShow_elements.all_slider_large_image_title(i));
                     slideShow.getTitle = actions.get_Text(slideShow_elements.all_slider_large_image_title(i));
                     slideShow.description = actions.is_Visible(slideShow_elements.all_slider_large_image_description(i));
+                    slideShow.current = actions.get_Text(slideShow_elements.all_slider_large_image_current(i));
                 } else {
 
                 }
                 sliderArr.push(slideShow);
 
-
+                //console.log(slideShow.current);
                 if (slides_length > i) {
                     browser.click(btn);
                     // slideShow_elements.primary_controls_next.click();
@@ -74,6 +80,7 @@ module.exports = {
                 slideShow.title = actions.is_Visible(slideShow_elements.slide_title(i));
                 slideShow.getTitle = actions.get_Text(slideShow_elements.slide_title(i));
                 slideShow.description = actions.is_Visible(slideShow_elements.slide_description(i));
+                slideShow.current = actions.get_Text(slideShow_elements.all_slider_no_image_current(i));
                 slideShow.primary_next = slideShow_elements.primary_controls_next.getCssProperty("font-family");
                 slideShow.primary_previous = slideShow_elements.primary_controls_previous.getCssProperty("font-family");
                 slideShow.secondary_next = slideShow_elements.secondary_controls_next.getCssProperty("font-family");
