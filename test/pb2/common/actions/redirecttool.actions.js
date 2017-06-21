@@ -14,7 +14,7 @@ var createToUrl = '[name="redirectForm"] > div:nth-of-type(1) > div:nth-of-type(
 
 var chooseFile = '#bulkRedirect';
 module.exports.GoToRedirectToolPage = function (option) {
-    menus.GoToRedirectTool()
+    menus.GoToRedirectTool();
 }
 
 module.exports.GetPageTitle = function (option) {
@@ -78,6 +78,12 @@ module.exports.GetRedirectElement = function (option) {
 
 module.exports.BulkImport = function (option) {
     action.button.get('Bulk Import').click();
+}
+
+module.exports.UploadRedirects = function (filePath){
+     browser.chooseFile(chooseFile, filePath);
+     action.button.get('Upload files').waitForVisible();
+     action.button.get('Upload files').click();
 }
 
 module.exports.CreateRedirects = function(props){
