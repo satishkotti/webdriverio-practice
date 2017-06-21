@@ -26,24 +26,6 @@ module.exports.ConfigureMultipleVideoLaunchModule = (assetProps) => {
     }
 }
 
-module.exports.ConfigureUpdateMultipleVideoLaunchModule = (assetProps) => {
-
-    if (assetProps.brand != "None") { props.dropdown('Brand', assetProps.brand); }
-    if (assetProps.moduleTitle != null) { props.input.get('Module Title').setValue(assetProps.moduleTitle); }
-    if (assetProps.moduleDesc != null) { props.input.get('Module Description').setValue(assetProps.moduleDesc); }
-    if (assetProps.videos.length > 2) {
-        //for more than one link.
-    }
-    else {
-      //  $('//label[contains(.," Add Links")]//i[@class="fa fa-plus"]').click();
-        $('(//i[@class="fa fa-trash"])[2]').click();
-        if (assetProps.videos[0].videoObject != null) { props.lookup('Video Object', assetProps.videos[0].videoObject); }
-        if (assetProps.videos[0].videoTitleOverride != null) { props.input.get('Video Title Override').setValue(assetProps.videos[0].videoTitleOverride); }
-        if (assetProps.videos[0].videoDescOverride != null) { props.input.get('Video Description Override').setValue(assetProps.videos[0].videoDescOverride); }
-    }
-}
-
-
 module.exports.ConfigureSponsorBoxModule = (assetProps) => {
     if (assetProps.logo != null) { props.lookup2('Sponsor Logo', 'Logo', 1, assetProps.logo); }
     if (assetProps.overridetext != null) { props.input2.get('Sponsor Logo', 'Override Text', 1).setValue(assetProps.overridetext); }
@@ -569,206 +551,40 @@ module.exports.configureHtmlModule = (assetProps) => {
 module.exports.EditconfigureHtmlModule = (assetProps) => {
     if (assetProps.ModuleHTML) { props.textarea.get('Module HTML').setValue(assetProps.ModuleHTMLEdit); }
 }
-module.exports.configureStandardPromomodule = (assetProps) => {
-    if (assetProps.ModuleTitle) { props.input.get("Module Title").setValue(assetProps.ModuleTitle); }
-    if (assetProps.Link) { props.lookup2("Module Title", "Link", 1, assetProps.Link); }
-    if (assetProps.logo) { props.lookup2("Logo", "Image", 1, assetProps.logo); }
-    if (assetProps.LogoTitle) { props.input.get("Logo Title").setValue(assetProps.LogoTitle); }
-    if (assetProps.logolink) { props.lookup2("Logo", "Link", 1, assetProps.logolink); }
 
+module.exports.ConfigureLinkListModule = (assetProps) => {
 
-    if (assetProps.Slides.length > 1) {
+    //Populate Module Title Section
+    let moduleTitleSection = assetProps.moduleTitle;
+    if (moduleTitleSection.moduleTile != null) { props.input.get('Module Title').setValue(moduleTitleSection.moduleTile); }
+    if (moduleTitleSection.link != null) { props.input.get('Link').setValue(moduleTitleSection.link); }
 
-    }
-    else {
-        try {
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
-        }
-        catch (err) {
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').scroll(0, 500);
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
-        }
-        if (assetProps.Slides[0].Image) { props.lookup2("Slides", "Image", 1, assetProps.Slides[0].Image); }
-        if (assetProps.Slides[0].SlideHeaderText) { props.input2.get("Slides", "Slide Header Text", 1).setValue(assetProps.Slides[0].SlideHeaderText); }
-        if (assetProps.Slides[0].SlideHeaderLink) { props.lookup2("Slides", "Slide Header Link", 1, assetProps.Slides[0].SlideHeaderLink); }
-        if (assetProps.Slides[0].SlideTitle) { props.input2.get("Slides", "Slide Title", 1).setValue(assetProps.Slides[0].SlideTitle); }
-        if (assetProps.Slides[0].SlideEmphasizedText) { props.input2.get("Slides", "Slide Emphasized Text", 1).setValue(assetProps.Slides[0].SlideEmphasizedText); }
-        if (assetProps.Slides[0].SlideSubText) { props.input2.get("Slides", "Slide Sub Text", 1).setValue(assetProps.Slides[0].SlideSubText); }
+    let moduleLinksSection = assetProps.moduleLinks;
+    let moduleLinksCount = moduleLinksSection.length;
 
+    //Add more links if necessary
+    if (moduleLinksCount > 1) {
+        props.element('//label[contains(.,"Add Links:")]//input').setValue(moduleLinksCount - 1)
+        props.element('//label[contains(.,"Add Links:")]//button').click();
     }
 
-}
+    //Populate Module Links section
+    for(let i = 1; i <= moduleLinksCount; i++)
+    {
+        let linkText = moduleLinksSection[i-1].linkText;
+        let link = moduleLinksSection[i-1].link;
+        let icon = moduleLinksSection[i-1].icon;
 
-module.exports.configureEditStandardPromoModule = (assetProps) => {
-    $('//fieldset[legend[string()="Module Title"]]//i[@class="fa fa-trash"]').click();
-    if (assetProps.ModuleTitle) { props.input.get("Module Title").setValue(assetProps.ModuleTitle); }
-    if (assetProps.Link) { props.lookup2("Module Title", "Link", 1, assetProps.Link); }
-    $('(//fieldset[legend[string()="Logo"]]//i[@class="fa fa-trash"])[1]').click();
-    $('(//fieldset[legend[string()="Logo"]]//i[@class="fa fa-trash"])[1]').click();
-    if (assetProps.logo) { props.lookup2("Logo", "Image", 1, assetProps.logo); }
-    if (assetProps.LogoTitle) { props.input.get("Logo Title").setValue(assetProps.LogoTitle); }
-    if (assetProps.logolink) { props.lookup2("Logo", "Link", 1, assetProps.logolink); }
-
-    try {
-        $('//label[contains(.,"Add Slides:")]//i[@class="fa fa-plus"]').click();
-        browser.execute(() => {
-            var height = $(window).scrollTop() + 200;
-            // console.log(height);
-            window.scrollTo(100, height);
-        });
-    }
-    catch (err) {
-        browser.execute(() => {
-            var height = $(window).scrollTop() + 500;
-            // console.log(height);
-            window.scrollTo(100, height);
-        });
-        $('//label[contains(.,"Add Slides:")]//i[@class="fa fa-plus"]').click();
-    }
-    if (assetProps.Slides.length > 1) {
-        try {
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
-        }
-        catch (err) {
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').scroll(0, 500);
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
-        }
-        $('(//fieldset[legend[string()="Slides"]]//i[@class="fa fa-trash"])[1]').click();
-        $('(//fieldset[legend[string()="Slides"]]//i[@class="fa fa-trash"])[1]').click();
-
-        if (assetProps.Slides[0].Image) { props.lookup2("Slides", "Image", 1, assetProps.Slides[0].Image); }
-        if (assetProps.Slides[0].SlideHeaderText) { props.input2.get("Slides", "Slide Header Text", 1).setValue(assetProps.Slides[0].SlideHeaderText); }
-        if (assetProps.Slides[0].SlideHeaderLink) { props.lookup2("Slides", "Slide Header Link", 1, assetProps.Slides[0].SlideHeaderLink); }
-        if (assetProps.Slides[0].SlideTitle) { props.input2.get("Slides", "Slide Title", 1).setValue(assetProps.Slides[0].SlideTitle); }
-        if (assetProps.Slides[0].SlideEmphasizedText) { props.input2.get("Slides", "Slide Emphasized Text", 1).setValue(assetProps.Slides[0].SlideEmphasizedText); }
-        if (assetProps.Slides[0].SlideSubText) { props.input2.get("Slides", "Slide Sub Text", 1).setValue(assetProps.Slides[0].SlideSubText); }
-
-        var count = browser.elements('//span[contains(@class,"pb-accordian-toggle")]').value.length;
-        try {
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[' + count + ']').click();
-        }
-        catch (err) {
-            browser.execute(() => {
-                var height = $(window).scrollTop() + 500;
-                // console.log(height);
-                window.scrollTo(100, height);
-            });
-            //   props.element('(//span[contains(@class,"pb-accordian-toggle")])[' + count + ']').scroll(0, 500);
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[' + count + ']').click();
-        }
-
-        if (assetProps.Slides[1].Image) { props.lookup2("Slides", "Image", count, assetProps.Slides[1].Image); }
-        if (assetProps.Slides[1].SlideHeaderText) { props.input2.get("Slides", "Slide Header Text", count).setValue(assetProps.Slides[1].SlideHeaderText); }
-        if (assetProps.Slides[1].SlideHeaderLink) { props.lookup2("Slides", "Slide Header Link", count, assetProps.Slides[1].SlideHeaderLink); }
-        if (assetProps.Slides[1].SlideTitle) { props.input2.get("Slides", "Slide Title", count).setValue(assetProps.Slides[1].SlideTitle); }
-        if (assetProps.Slides[1].SlideEmphasizedText) { props.input2.get("Slides", "Slide Emphasized Text", count).setValue(assetProps.Slides[1].SlideEmphasizedText); }
-        if (assetProps.Slides[1].SlideSubText) { props.input2.get("Slides", "Slide Sub Text", count).setValue(assetProps.Slides[1].SlideSubText); }
-
-    }
-    else {
-        try {
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
-        }
-        catch (err) {
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').scroll(0, 500);
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
-        }
-        if (assetProps.Slides[0].Image) { props.lookup2("Slides", "Image", 1, assetProps.Slides[0].Image); }
-        if (assetProps.Slides[0].SlideHeaderText) { props.input2.get("Slides", "Slide Header Text", 1).setValue(assetProps.Slides[0].SlideHeaderText); }
-        if (assetProps.Slides[0].SlideHeaderLink) { props.lookup2("Slides", "Slide Header Link", 1, assetProps.Slides[0].SlideHeaderLink); }
-        if (assetProps.Slides[0].SlideTitle) { props.input2.get("Slides", "Slide Title", 1).setValue(assetProps.Slides[0].SlideTitle); }
-        if (assetProps.Slides[0].SlideEmphasizedText) { props.input2.get("Slides", "Slide Emphasized Text", 1).setValue(assetProps.Slides[0].SlideEmphasizedText); }
-        if (assetProps.Slides[0].SlideSubText) { props.input2.get("Slides", "Slide Sub Text", 1).setValue(assetProps.Slides[0].SlideSubText); }
-
+        if(linkText != null) { props.input2.get('Module Links', 'Link Text', i).setValue(moduleLinksSection[i-1].linkText); }
+        if(link != null) { props.lookup2('Module Links', 'Link', i, link); }
+        if(icon != null) { props.lookup2('Module Links', 'Icon', i, link); }
     }
 
-}
-
-module.exports.ConfigureTwoColumnHeaderModule = (assetProps) => {
-    if (assetProps.TitleText) { props.input.get("Title Text").setValue(assetProps.TitleText); }
-    if (assetProps.SubtitleText) { props.input.get("Subtitle Text").setValue(assetProps.SubtitleText); }
-    if (assetProps.HeaderURL) { props.lookup2("Header", "Header URL", 1, assetProps.HeaderURL); }
-
-    if (assetProps.AttributionText) { props.input2.get("Attribution", "Text", 1).setValue(assetProps.AttributionText); }
-
-    if (assetProps.Images.length > 1) {
-
-    }
-    else {
-        try {
-            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
-        }
-        catch (err) {
-            browser.execute(() => {
-                var height = $(window).scrollTop() + 500;
-                // console.log(height);
-                window.scrollTo(100, height);
-            });
-            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
-
-        }
-        if (assetProps.Images[0].Image) { props.lookup2("Images", "Image", 1, assetProps.Images[0].Image); }
-
-    }
-
-}
-module.exports.ConfigureEditColumnHeaderModule = (assetProps) => {
-
-    if (assetProps.TitleText) { props.input.get("Title Text").setValue(assetProps.TitleText); }
-    if (assetProps.SubtitleText) { props.input.get("Subtitle Text").setValue(assetProps.SubtitleText); }
-    try {
-        $('//label[contains(.,"Header URL:")]//i[@class="fa fa-trash"]').click();
-    }
-    catch (err) {
-        $('//label[contains(.,"Header URL:")]//i[@class="fa fa-trash"]').scroll(0, 300);
-        $('//label[contains(.,"Header URL:")]//i[@class="fa fa-trash"]').click();
-    }
-    if (assetProps.HeaderURL) { props.lookup2("Header", "Header URL", 1, assetProps.HeaderURL); }
-
-    if (assetProps.AttributionText) { props.input2.get("Attribution", "Text", 1).setValue(assetProps.AttributionText); }
-    try {
-        $('//label[contains(.,"Link:")]//i[@class="fa fa-trash"]').click();
-    }
-    catch (err) {
-        $('//label[contains(.,"Link:")]//i[@class="fa fa-trash"]').scroll(0, 600);
-        $('//label[contains(.,"Link:")]//i[@class="fa fa-trash"]').click();
-    }
-    $('//label[contains(.,"Image:")]//i[@class="fa fa-trash"]').click();
-
-    $('//label[contains(.,"Add Links:")]//i[@class="fa fa-plus"]').click();
-
-    if (assetProps.Images.length > 1) {
-        try {
-            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
-        }
-        catch (err) {
-            browser.execute(() => {
-                var height = $(window).scrollTop() + 500;
-                // console.log(height);
-                window.scrollTo(100, height);
-            });
-            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
-
-        }
-        if (assetProps.Images[0].Image) { props.lookup2("Images", "Image", 1, assetProps.Images[0].Image); }
-        if (assetProps.Images[1].Link) { props.lookup2("Images", "Link", 2, assetProps.Images[1].Link); }
-        if (assetProps.Images[1].Image) { props.lookup2("Images", "Image", 2, assetProps.Images[1].Image); }
-
-    }
-    else {
-        try {
-            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
-        }
-        catch (err) {
-            browser.execute(() => {
-                var height = $(window).scrollTop() + 500;
-                // console.log(height);
-                window.scrollTo(100, height);
-            });
-            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
-
-        }
-        if (assetProps.Images[0].Image) { props.lookup2("Images", "Image", 1, assetProps.Images[0].Image); }
-
-    }
+    //Populate Emphasized Links Section
+    let emphasizedLinksSection = assetProps.emphasizedLinks;
+    let linkText = emphasizedLinksSection.linkText;
+    let link = emphasizedLinksSection.link;
+    
+    if(linkText != null) { props.input2.get('Emphasized Link', 'Link Text', 1).setValue(linkText); }
+    if(link != null) { props.lookup2('Emphasized Link', 'Link Text', 1, linkText); }
 }

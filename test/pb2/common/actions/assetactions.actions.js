@@ -28,8 +28,11 @@ module.exports.ClickShowEmptyContentPanes = () => {
 }
 
 module.exports.ClickShowExpired = () => {
-
     acts.splbutton.get('Expired').click();
+}
+
+module.exports.ClickSaveButton = () => {
+    acts.button.get('Save').click();
 }
 
 module.exports.SavePublish = (action, comment) => {

@@ -36,13 +36,13 @@ exports.config = merge(wdioConf.config, {
                 },                
 				download: { 
                     //temp path added until nas share path ready w/perm
-                    default_directory: "\\\\nasfs21d-ops-08.portal.webmd.com\\devbuildhome\\cmstest\\download",
+                    default_directory: "Z:\\downloads",
                     prompt_for_download: false,
                 }
             }
         }
     }],
-	
+    onPrepare: function() {},
     before: function () {
 
         var chai = require('chai');
