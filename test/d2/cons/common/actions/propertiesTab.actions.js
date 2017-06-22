@@ -1,4 +1,5 @@
 var propertiesTabUI = require('./../ui/propertiesTab');
+var maxWaitTimeInMs = 20000;
 
 module.exports = {
     
@@ -14,7 +15,6 @@ module.exports = {
         
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();
-
         propertiesTabUI.friendlyNameSet(friendlyName);
         propertiesTabUI.busRefNameSet(busRef);
         propertiesTabUI.userDescriptionNameSet(userDescr);
@@ -86,5 +86,43 @@ module.exports = {
 
 //Add: assert set properties
 
-    }
+    },
+
+       getChronicleIdAndTitle: function(){
+        propertiesTabUI.propertiesTabSelect();
+        return {
+            chronicleId: propertiesTabUI.chronicleIdGet(),
+            objectName: propertiesTabUI.objectTitleGet()
+        };
+    },
+
+    setRequiredPropertiesforPublish: function(systempubdate,expdate){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        browser.pause(2000);
+        propertiesTabUI.publishingTabSelect();
+        browser.waitForVisible("#wbmd_eff_date-input",maxWaitTimeInMs);
+        propertiesTabUI.systemPublishingDateSet(systempubdate);
+        propertiesTabUI.expirationDateSet(expdate);
+        propertiesTabUI.save();
+    },
+    setRequiredPropertiesDisclaimer: function(friendlyName, busRef, userDescr, keywords, lnkTtl, windowTtl, publication,
+    copyright,disclaimer,primaryTopicId){
+        
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.friendlyNameSet(friendlyName);
+        propertiesTabUI.busRefNameSet(busRef);
+        propertiesTabUI.userDescriptionNameSet(userDescr);
+        propertiesTabUI.keywordsNameSet(keywords);
+        propertiesTabUI.linkTitleSet(lnkTtl);
+        propertiesTabUI.windowTitleSet(windowTtl);
+        propertiesTabUI.publicationSet(publication);
+        propertiesTabUI.copyrightSet(copyright);
+        propertiesTabUI.disclaimerSet(disclaimer);
+        propertiesTabUI.primaryTopicIdSet(primaryTopicId);
+        propertiesTabUI.originalPublishDateSet();
+        propertiesTabUI.save();
+
+    },
 }

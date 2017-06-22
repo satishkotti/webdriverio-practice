@@ -1,15 +1,18 @@
 var maxWaitTimeInMs = 50000;
-var sectionTextSelector = "//h2[span[contains(.,'Section Text')]]//following-sibling::div//div";
-var highlightsSelector = "//h2[span[contains(.,'Highlights')]]//following-sibling::div//div";
-var pullQuotesSelector = "//h2[span[contains(.,'Pull Quotes')]]//following-sibling::div//div";
-var citationsSelector = "//h2[span[contains(.,'Citations')]]//following-sibling::div//div";
-var relatedLinksTextSelector = "//h2[span[contains(.,'Related Links Text')]]//following-sibling::div//div";
+var sectionTextSelector = "//h2[span[contains(.,'Section Text')]]//following-sibling::div//div[text()='Enter text here']";
+var highlightsSelector = "//h2[span[contains(.,'Highlights')]]//following-sibling::div//div[text()='Enter text here']";
+var pullQuotesSelector = "//h2[span[contains(.,'Pull Quotes')]]//following-sibling::div//div[text()='Enter text here']";
+var citationsSelector = "//h2[span[contains(.,'Citations')]]//following-sibling::div//div[text()='Enter text here']";
+var relatedLinksTextSelector = "//h2[span[contains(.,'Related Links Text')]]//following-sibling::div//div[text()='Enter text here']";
 var checkoutButtonSelector = "//button[contains(string(),'Check-out')]";
 var checkInButonSelector = "//button[contains(string(),'Check-in')]";
 var contentTabSelector = "//span[text()='Content']";
 var contentPaneFrameSelector = "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
 var Helper = require('./../functions/functions');
-
+var contentHeader="//div[@class='container']//center[@class='ng-binding']";
+var SectionHeader="//h2[span[contains(.,'Section Header')]]//following-sibling::div//input";
+var RelatedLinksHeader="//h2[span[contains(.,'Related Links Header')]]//following-sibling::div//input";
+var Titleinput="//h2[span[contains(.,'Title')]]//following-sibling::div//input";
 var contentTabUIObj = {
     switchToMainFrame: function(){
         browser.frame();
@@ -80,25 +83,41 @@ var contentTabUIObj = {
             console.log('Fail to clear Section Text' + err)
         }
     },
+    Titleinputsetvalue:function (Titleinputvalue) {
+        browser.setValue(Titleinput, Titleinputvalue);
+    },
+    sectionHeaderSetValue: function (sectionHeaderVal) {
+        browser.scroll(SectionHeader);
+        browser.setValue(SectionHeader, sectionHeaderVal);
+
+    },
     sectionTextSetValue: function (sectionTextVal) {
         browser.setValue(sectionTextSelector, sectionTextVal);
     },
     highlightsSetValue: function (highlightsValue) {
-        browser.scroll(highlightsSelector);
+        
         browser.setValue(highlightsSelector, highlightsValue);
     },
     pullQuotesSetValue: function (pullQuotesValue) {
-        browser.scroll(pullQuotesSelector);
+        
         browser.setValue(pullQuotesSelector, pullQuotesValue);
     },
     citationsSetValue: function (citationValue) {
         browser.scroll(citationsSelector);
-        browser.setValue(citationsSelector, pullQuotesValue);
+        browser.setValue(citationsSelector, citationValue);
     },
     relatedLinksSetValue: function (relatedLinksValue) {
         browser.scroll(relatedLinksTextSelector);
-        browser.setValue(relatedLinksTextSelector, pullQuotesValue);
+        browser.setValue(relatedLinksTextSelector, relatedLinksValue);
     },
+
+    RelatedLinkHeaderSetValue: function (RelatedLinksHeaderVal) {
+        
+        browser.setValue(RelatedLinksHeader, RelatedLinksHeaderVal);
+
+    },
+
+    
     mModuleckEditorMenuClick: function (sectionIndex) {
         browser.moveToObject("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])[" + sectionIndex + "]");
         browser.click("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])[" + sectionIndex + "]");
@@ -180,14 +199,35 @@ var contentTabUIObj = {
     selectImage: function () {
         browser.click("//div[@class='modal-footer']//button[contains(string(),'Select')]");
         browser.pause(1000);
-        
+       
     },
     ImagelinkVal:function (Imagemodule) {
         var ImageSelector= "//h2[span[contains(.,'"+Imagemodule+"')]]//following-sibling::div//div//div//div[@class='ng-binding']";
         browser.waitForVisible(ImageSelector,maxWaitTimeInMs);
         var imagelinkval = browser.getText(ImageSelector);
         return imagelinkval;
+    },
+
+     cancelCheckout: function(){
+        browser.click("//button[contains(string(),'Cancel')]");
+        browser.frameParent();
+    },
+
+    contentHeaderGet:function()
+    {
+        contentTabUIObj.switchToExternalWidgetFrame();
+        browser.waitForVisible(contentHeader,maxWaitTimeInMs);
+        var result=browser.getText(contentHeader);
+        browser.frameParent();
+        return result;
+
+    },
+
+     switchToExternalWidgetFrame: function(){
+        var contentWidgetIFrameElement = browser.element(contentPaneFrameSelector);
+        browser.frame(contentWidgetIFrameElement.value);
     }
+
 
 }
 

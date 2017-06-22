@@ -57,11 +57,11 @@ module.exports.testSettings = {
             "dctmUsername": "QAPublication",
             "dctmPassword": "QA-Doc#1",
             "dctmDocbase": "webmddoc01",
-            "url": "http://dmrest.dev04.webmd.com/pbws"
+            "url": "http://DMWRS41D-CON-08.portal.webmd.com:8080/pbws/"
         },
         "d2cons": {
-            //"url": "http://d2.dev04.webmd.com/D2/#d2",
-            "url": "http://dmd241d-con-08.portal.webmd.com:8080/D2/#d2",
+            "url": "http://d2.dev04.webmd.com/D2/#d2",
+           // "url": "http://dmd241d-con-08.portal.webmd.com:8080/D2/#d2",
             "users": [{
                     "id": "1",
                     "username": "QAPublication",
@@ -94,10 +94,10 @@ module.exports.testSettings = {
             "database": "Pagebuilder_SiteManagement"
         },
         "dctmApiConfig": {
-            "dctmUsername": "QAPublication",
-            "dctmPassword": "QA-Doc#1",
+            "dctmUsername": "qaautomation1",
+            "dctmPassword": "qaautomation1",
             "dctmDocbase": "webmddoc01",
-            "url": "http://dmrest.qa01.webmd.com/pbws"
+            "url": "http://DMWRS11Q-CON-08.portal.webmd.com:8080/pbws/"
         },
         "d2cons": {
             "url": "http://d2.qa01.webmd.com/D2/#d2",
@@ -133,7 +133,7 @@ module.exports.testSettings = {
             "database": "Pagebuilder_SiteManagement"
         },
         "dctmApiConfig": {
-            "dctmUsername": "QAPublication",
+            "dctmUsername": "QAPublication1",
             "dctmPassword": "QA-Doc#1",
             "dctmDocbase": "webmddoc01",
             "url": "http://dmrest.qa00.webmd.com/pbws"
@@ -236,15 +236,23 @@ module.exports.testSettings = {
             "bulletlistalignment": "Right,Left,Middle",
             "CodeTypes": "Facebook,Youtube,Twitter,Pinterest,Reddit,Imgur,Snapchat,Tumblr,Instagram",
             "testFolderPath": "webmddoc01/webmd/consumer_assets/editorial/articles/other",
+            "CopyrightTFolderPath": "webmddoc01/webmd/agreements/copyright",
+            "UKCopyrightTFolderPath": "webmddoc01/webmd_uk/agreements/copyright",
             "USFolderpath": "webmddoc01/webmd/consumer_assets/editorial/articles",
             "UKFolderpath": "webmddoc01/webmd_uk/consumer_assets/editorial/articles",
+            "USCopyrightArticlePName": 'Consumer Portal US / Copyright Disclaimer Templates',
+            "UKCopyrightArticlePName": 'Consumer Portal UK / Copyright Disclaimer Templates',
             "UKtestFolderPath": "webmddoc01/webmd_uk/consumer_assets/editorial/articles/Others",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
             "UkArticleProfileName": 'Consumer Portal UK / Article Templates',
              "HelathRefArticleTemplate":'Article / Health Reference Template',
+             "USImportHelathRefProfileName":'Consumer Portal US / Controlled Content Templates',
+             "UKImportHelathRefProfileName":'Consumer Portal UK / Controlled Content Templates',
+             "ImportHelathArticleTemplate":'Import Health Ref Template',
             "ArticleTemplate": 'Article /  News Template',
+            "CopyrightArticleTemplate": 'Copyright',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
-            "ArticleDescription": "QATestAsset" + exports.GenerateRandomString(5),
+            "ArticleDescription": "QATestAssetT" + exports.GenerateRandomString(5),
             "FacebookCodeType": "Facebook",
             "LookupFolderPath": "webmddoc01/webmd/web_publisher_list/lookups/interactive_articles",
             "ShareableTitle":"Shareable Title Test",
@@ -314,6 +322,7 @@ module.exports.testSettings = {
              "jsCompareAttribute_uk": "6 differences",
              "jsCompareContent_uk":"Has differences",
              "jsComparerendition_uk":"Matches",
+             "DeleteAllversions":"Delete all versions" ,
              "PBPagesPath": "webmddoc01/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Pages/0 0 Enlarged Prostate TOC",
              "PBPage":"page_0 0 Enlarged Prostate TOC_091e9c5e802098d6.xml",
              "PBTemplatePath":"webmddoc01/webmd/PageBuilder_Assets/scopemaps/WebMD Consumer/Templates/02 TOC Template Diabetes Kitchen_091e9c5e815c91da",
@@ -352,8 +361,19 @@ module.exports.testSettings = {
              "PBSharedModule_uk": "module_1215_QATestSM_091e9c5e8131aa3e.xml",
              "DeleteAllversions":"Delete all versions", 
              "testFolderPath_uk": "webmddoc01/webmd_uk/consumer_assets/editorial/articles/Others",
-             "ArticleProfileName_uk": 'Consumer Portal UK / Article Templates'
-
+             "ArticleProfileName_uk": 'Consumer Portal UK / Article Templates',
+             "existingCopyrightID": "091e9c5e80330e29",
+             "existingCopyrightTitle":"1996-2005 MedicineNet - UK",
+             "copyrightTitle": "QATestCopyright",
+             "USDisclaimerPName": 'Consumer Portal US / Copyright Disclaimer Templates',
+             "disclaimerTemplate": 'Disclaimer',
+             "disclaimerTitle":"QATestDisclaimer",
+             "diclaimerTitlewxml": "\nQATestDisclaimer\n",
+             "existingDisclaimerID": "091e9c5e803e3f40",
+             "existingDisclaimeritle":"WebMD Ask the Specialist Transcript Disclaimer",
+             "UKDisclaimerPName": 'Consumer Portal UK / Copyright Disclaimer Templates',
+             "existingDisclaimerID_uk": "091e9c5e80330eb4",
+             "existingDisclaimeritle_uk":"diet center health tools",
 
         }      
     }
