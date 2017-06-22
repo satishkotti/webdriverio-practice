@@ -15,31 +15,76 @@ describe('PPE-105234: Verify Bulk Import functionality', function() {
     it('Go to Redirect Tool Page', function() {
         redirectActions.GoToRedirectToolPage();
     }); 
+        /**
+         * This test covers the following tests.
+         * Verify user is not able to create redirects with loop redirects
+         * Verify user is not able to create redirects with multihop redirects
+         * Verify user is not able to create redirects with wrongly formatted data
+         * Verify user is able to edit the form accordingly
+         * Verify user is able to delete a row from the form
+         * Verify user is able to submit the form after deleting a row
+         * Verify the form shows API errors(if any) apprpriately after the submission.
+         */
 
-    it("Verify user is not able to create multi hops and loops", function() {
+    it("Verify import form validation", function() {
        test.ImportRedirects("test\\pb2\\fe\\jira\\release29\\ppe-105234\\dev03_bulkimport_invalid.xlsx");
        expect(browser.element("//button[contains(text(),'Create')]").isEnabled()).to.be.false;
-       //section/ul/li[4]/div/div[3]/span/span[contains(text(),'Multi-hop redirects are not allowed')];
-       //span[contains(text(),'All from values must be unique')];
        expect(browser.element("//section/ul/li[4]/div/div[3]/span/span[contains(text(),'Multi-hop redirects are not allowed')]").isVisible()).to.be.true;
        expect(browser.element("//section/ul/li[5]/div/div[3]/span/span[contains(text(),'Multi-hop redirects are not allowed')]").isVisible()).to.be.true;
-       expect(browser.element("//section/ul/li[7]/div/div[3]/span/span[contains(text(),'All from values must be unique')]").isVisible()).to.be.true;
-       expect(browser.element("//section/ul/li[8]/div/div[3]/span/span[contains(text(),'Multi-hop redirects are not allowed')]").isVisible()).to.be.true;
+       expect(browser.element("//section/ul/li[7]/div/div[3]/span/span").isVisible()).to.be.true;
+       expect(browser.element("//section/ul/li[7]/div/div[3]/span/span").getText()).to.equal('All from values must be unique');
        expect(browser.element("//section/ul/li[9]/div/div[3]/span/span[contains(text(),'Multi-hop redirects are not allowed')]").isVisible()).to.be.true;
-       expect(browser.element("//section/ul/li[10]/div/div[3]/span/span[contains(text(),'Multi-hop redirects are not allowed')]").isVisible()).to.be.true;
-       expect(browser.element("//section/ul/li[11]/div/div[3]/span/span[contains(text(),'All from values must be unique')]").isVisible()).to.be.true;
-       //Modify the values to remove hops and loops
-       //Delete the invalid rows (Chronicle IDs, invalid urls)
-       var toUrl = browser.element("//section/ul/li[5]/div/div/label/input").getText();
+       expect(browser.element("//section/ul/li[9]/div/div[3]/span/span[contains(text(),'Multi-hop redirects are not allowed')]").isVisible()).to.be.true;
+       expect(browser.element("//section/ul/li[10]/div/div[3]/span/span").isVisible()).to.be.true;
+       expect(browser.element("//section/ul/li[10]/div/div[3]/span/span").getText()).to.equal('All from values must be unique');
+
+       //Delete wrongly formatted data
+       let location = browser.element("//section/ul/li[12]/button").getLocation('y');
+       browser.element("//section/ul/li[12]/button").scroll(0, parseInt(location) - 200);
+       browser.element("//section/ul/li[11]/button").click();
+       browser.element("//section/ul/li[11]/button").click();
        //Update the multihop url
+       var toUrl = browser.element("//section/ul/li[5]/div/div/label/input").getValue();
        browser.element("//section/ul/li[5]/div/div/label/input").setValue(toUrl+"/test");
+       //Update loop redirect
+       toUrl = browser.element("//section/ul/li[8]/div/div/label/input").getValue();
+       browser.element("//section/ul/li[8]/div/div/label/input").setValue(toUrl+"/test");
+       toUrl = browser.element("//section/ul/li[9]/div/div/label/input").getValue();
+       browser.element("//section/ul/li[9]/div/div/label/input").setValue(toUrl+"/test");
+       //Delete duplicate row
+       toUrl = browser.element("//section/ul/li[7]/div/div/label/input").getValue();
        browser.element("//section/ul/li[7]/button").click();
-       //Delete the loop redirect row
-       browser.element("//section/ul/li[10]/button").click();
+       //expect(browser.element("//section/ul/li[10]/div/div[3]/span/span").isVisible()).to.be.false;
+       browser.element("//section/ul/li[9]/div/div/label/input").setValue(toUrl);
+       //Check that Create Redirects button is enabled once the form is Valid
        expect(browser.element("//button[contains(text(),'Create')]").isEnabled()).to.be.true;
-       console.log("Completed");
-       browser.pause(30000);
+       //Submit the form
+       browser.element("//button[contains(text(),'Create')]").click();
+       expect(browser.element("//button[contains(text(),'Create')]").isEnabled()).to.be.false;
+       browser.pause(120000);
+       browser.element("//div[@class='modal-content']/div[@class='pb-overlay-content ng-scope']").waitForVisible();
+       expect(browser.element("//div[@class='modal-content']/div[@class='pb-overlay-content ng-scope']/div").getText()).to.equal("Redirect Import Failure");
+       browser.element("#modal-ok").click();
+       browser.element("//section[@class='pb-module pb-module-bottom-pad ng-scope']/ul/li").waitForVisible();
     });
+    
+    it("Verify user is able to submit the form after resolving API errors", function() {
+       //section/ul/li[8]/div/div[1]/label/input"
+       //section/ul/li[8]/div/div[2]/label/input"
+        for (i=1;i<10;i++){
+            console.log(i);
+            var fromUrl = browser.element("//section/ul/li[" + i + "]/div/div[1]/label/input").getValue();
+            console.log(fromUrl);
+            browser.element("//section/ul/li[" + i +"]/div/div/label/input").setValue(fromUrl+"/testing_purpose");
+            var toUrl = browser.element("//section/ul/li[" + i + "]/div/div[2]/label/input").getValue();
+            console.log(toUrl);
+            browser.element("//section/ul/li[" + i +"]/div/div/label/input").setValue(toUrl+"/test_purpose");
+        }
+        browser.element("//button[contains(text(),'Create')]").click();
+        expect(browser.element("//button[contains(text(),'Create')]").isEnabled()).to.be.false;
+        browser.element("//div[@class='modal-content']/div[@class='pb-overlay-content ng-scope']").waitForVisible();
+    });
+
 
     /*
     it("Verify user is not able to create redirects with bulk import", function() {
