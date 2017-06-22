@@ -51,6 +51,14 @@ var versionTabUIObj = {
         expect(version).to.be.true;
         browser.pause(1000);
     },
+     WipStagingversionValidation: function () {
+        browser.waitForVisible("//span[string()='Versions']", maxWaitTimeInMs);
+        browser.click("//span[string()='Versions']");
+        browser.pause(2000);
+        var version = browser.isExisting("//span[contains(.,'CURRENT, WIP')]");
+        expect(version).to.be.true;
+        browser.pause(1000);
+    },
 
 }
 

@@ -11,7 +11,7 @@ var versionTab = require('./../../../common/actions/versionTab.action');
 var randomstring = require("randomstring");
 
 
-describe('Working with Static files -PPE-70175', function () {
+describe('Working with Static files -PPE-70175 and ', function () {
    
     var filetoupload = './test/d2/cons/testfiles/PPE-70175-Static-files/';
     var assetTitle;
@@ -179,6 +179,35 @@ describe('Working with Static files -PPE-70175', function () {
         documentListTab.expireAsset(objName);
         browser.pause(5000);
     });
+
+
+   
+     it('Verify WIP label should be applied to latest version and object should be in WIP state to be able to promote it to Staging functionality on Can not update PB objects in D2', function () {
+        findTab.findbyId("091e9c5e80c9ba67");
+        browser.pause(5000);
+        cidName = propertiesTab.getChronicleIdAndTitle();
+        chronicleId = cidName.chronicleId;
+        objName=cidName.Name;
+        browser.pause(5000);
+        nonTemplateFiles.fileOperations(objName, filetoupload+"wallpaper.css");
+        browser.pause(5000);
+        versionTab.WipversionValidation();
+        browser.pause(5000);
+        documentListTab.selectAsset(objName);
+        documentListTab.promoteAsset(objName);
+        versionTab.WipversionValidation();
+        browser.pause(5000);
+        documentListTab.selectAsset(objName);
+        documentListTab.demoteAsset(objName);
+        browser.pause(2000);
+        documentListTab.powerPromoteAsset(objName);
+        browser.pause(2000);
+        documentListTab.publishAssetToStaging(objName);
+        browser.pause(2000);
+        documentListTab.expireAsset(objName);
+        browser.pause(5000);
+    });
+    
 });
 
 

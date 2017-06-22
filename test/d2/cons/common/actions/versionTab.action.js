@@ -20,5 +20,9 @@ module.exports = {
 
     WipversionValidation: function(){
         versionTabUI.WipversionValidation();
+    },
+
+    WipStagingversionValidation:  function(){
+        versionTabUI.WipStagingversionValidation();
     }
 }
