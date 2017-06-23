@@ -14,6 +14,13 @@ var relationTabUIObj = {
         expect(layout_template).to.be.true;
         var rules_template = browser.isExisting("//span[contains(.,'wcm_rules_template')]");
         expect(rules_template).to.be.true;
+    },
+    layout_template_relation: function(){
+        browser.waitForVisible("//span[string()='Relations']", maxWaitTimeInMs);
+        browser.click("//span[string()='Relations']");
+        browser.waitForVisible("//span[contains(.,'wcm_layout_template')]",maxWaitTimeInMs);
+        var layout_template = browser.isExisting("//span//span[contains(.,'wcm_layout_template')]/../../..//following-sibling::td//span//span[contains(.,'wxml.WebMD XML')]");
+        expect(layout_template).to.be.true;
     }
 }
 
