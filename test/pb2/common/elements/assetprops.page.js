@@ -41,7 +41,16 @@ var props = Object.create(page, {
             }
         }
     },
-
+    input3: {
+        value: {
+            get: (labelName, itemNumber) => {
+                switch (labelName) {
+                    case 'WebMD Nickname': '(' + input.replace('***:', labelName) + ')[' + itemNumber + ']'; return props.GetElement; break;
+                    default: locator = '(' + input.replace('***', labelName) + ')[' + itemNumber + ']'; return props.GetElement; break;
+                }
+            }
+        }
+    },
     textarea: {
         value: {
             get: (labelName) => {

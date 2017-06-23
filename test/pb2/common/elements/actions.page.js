@@ -19,10 +19,10 @@ var acts = Object.create(page, {
         value: {
             get: (buttonText) => {
                 switch (buttonText) {
-                    case 'View Read-Only': locator = button2.replace('***', 'View Read-Only'); acts.UntilExist; acts.UntilVisible; return acts.GetElement; break;
-                    case 'Edit': locator = button2.replace('***', 'Edit'); acts.UntilExist; acts.UntilVisible; return acts.GetElement; break;
-                    case 'Export to Excel': locator = button4.replace('***', 'Export to Excel'); acts.UntilExist; acts.UntilVisible; return acts.GetElement; break;
-                    case 'Update Redirect': locator = button3.replace('***', 'Edit'); acts.UntilExist; acts.UntilVisible; return acts.GetElement; break;
+                    case 'View Read-Only': locator = button2.replace('***', 'View Read-Only'); acts.UntilExist(); acts.UntilVisible(); return acts.GetElement; break;
+                    case 'Edit': locator = button2.replace('***', 'Edit'); acts.UntilExist(); acts.UntilVisible(); return acts.GetElement; break;
+                    case 'Export to Excel': locator = button4.replace('***', 'Export to Excel'); acts.UntilExist(); acts.UntilVisible(); return acts.GetElement; break;
+                    case 'Update Redirect': locator = button3.replace('***', 'Update Redirect'); acts.UntilExist(); acts.UntilVisible(); return acts.GetElement; break;
                     default: locator = button.replace('***', buttonText); acts.UntilExist(); acts.UntilVisible(); return acts.GetElement; break;
                 }
             }
