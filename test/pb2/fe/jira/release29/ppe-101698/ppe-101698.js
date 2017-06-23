@@ -352,7 +352,7 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
 
     describe.skip('PPE-117163: Verify the single-hop functionality', function () {
 
-        before(function () {
+        it('Verify the value present in the DB column when hop scenario is replicated', function () {
 
             //Replicate the Hop Scenario
 
@@ -367,20 +367,16 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
             //Click Update button
             updateRedirectButton.click();
 
-        })
-
-        it('Verify the value present in the DB column when hop scenario is replicated', function () {
-
             //Wait for the status message
             let status = WaitForStatus();
 
-            //Validation: The value present in the DB Column must be the updated value if the operation is successful or previous value (value present before update operation) if the operation fails
+            //Validation: User must be able to replicate the scenario successfully without any issues
             if (!status.success) {
-                expect('').to.be.true; // <--- Replace with DB code --->
+                expect(VerifyThePresenceOfRedirectPair(fromUrlVal, updatedToUrlVal)).to.be.false;
                 okayButton.click();
             }
             else {
-                expect('').to.be.true; // <--- Replace with DB code --->
+                expect(VerifyThePresenceOfRedirectPair(fromUrlVal, updatedToUrlVal)).to.be.true;
             }
         })
 
