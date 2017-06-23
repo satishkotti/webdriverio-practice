@@ -17,6 +17,85 @@ module.exports.GoToRedirectToolPage = function (option) {
     menus.GoToRedirectTool();
 }
 
+// B U L K  R E D I R E C T  A C T I O N S
+
+module.exports.DeleteImportRow = function(rowNumber) {
+    let location = browser.element("//section/ul/li["+rowNumber+"]/button").getLocation('y');
+    browser.element("//section/ul/li["+rowNumber+"]/button").scroll(0, parseInt(location) - 200);
+    browser.element("//section/ul/li["+rowNumber+"]/button").click();
+}
+
+module.exports.CheckImportError = function(error, rowNumber) {
+    let location = browser.element("//section/ul/li["+rowNumber+"]/button").getLocation('y');
+    browser.element("//section/ul/li["+rowNumber+"]/button").scroll(0, parseInt(location) - 200);
+    switch(error){
+        case "unique":
+            {
+                let ele = browser.element("//section/ul/li["+rowNumber+"]/div/div[3]/span/span");
+                if (!(ele.isExisting() && ele.isVisible()))
+                    return false;
+                let eletext = ele.getText();
+                if(eletext === 'All from values must be unique')
+                    return true;
+                else
+                    return false;
+            }
+            case "multihop":
+            {
+                let ele = browser.element("//section/ul/li["+rowNumber+"]/div/div[3]/span/span");
+                if (!(ele.isExisting() && ele.isVisible()))
+                    return false;
+                let eletext = ele.getText();
+                if(eletext === 'Multi-hop redirects are not allowed')
+                    return true;
+                else
+                    return false;
+            }
+            case "invalid":
+            {
+                let ele = browser.element("//section/ul/li["+rowNumber+"]/div/div[3]/span/span");
+                if (!(ele.isExisting() && ele.isVisible()))
+                    return false;
+                let eletext = ele.getText();
+                if(eletext === 'Invalid Format Data')
+                    return true;
+                else
+                    return false;
+            }
+    }
+}
+
+module.exports.CheckCreateButtonEnabled = function(){
+    return browser.element("//button[contains(text(),'Create')]").isEnabled();
+}
+
+module.exports.ModifyImportRow = function(rowNumber, data) {
+    let location = browser.element("//section/ul/li["+rowNumber+"]/button").getLocation('y');
+    browser.element("//section/ul/li["+rowNumber+"]/button").scroll(0, parseInt(location) - 200);
+
+    if(data.from != null)
+        browser.element("//section/ul/li[" + rowNumber +"]/div/div[1]/label/input").setValue(data.from);
+    if(data.to != null)
+        browser.element("//section/ul/li[" + rowNumber +"]/div/div[2]/label/input").setValue(data.to);
+
+}
+
+module.exports.GetImportRow = function(rowNumber) {
+    if(!(browser.element("//section/ul/li["+rowNumber+"]")).isExisting())
+        return false;
+    let location = browser.element("//section/ul/li["+rowNumber+"]").getLocation('y');
+    browser.element("//section/ul/li["+rowNumber+"]").scroll(0, parseInt(location) - 200);
+
+    var data = {};
+    data.from = browser.element("//section/ul/li[" + rowNumber +"]/div/div[1]/label/input").getValue();
+    data.to = browser.element("//section/ul/li[" + rowNumber +"]/div/div[2]/label/input").getValue();
+    return data;
+}
+
+module.exports.SubmitBulkRedirect = function() {
+    browser.element("//button[contains(text(),'Create')]").click();
+}
+
 module.exports.GetPageTitle = function (option) {
     if (option.target == 'Search') {
         return browser.getText("div.row > div:nth-of-type(1) > section.pb-module > header > h3");
@@ -27,6 +106,15 @@ module.exports.GetPageTitle = function (option) {
     } else {
         return browser.getTitle();
     }
+}
+
+module.exports.GetRowFromResultGrid = function (rowNumber) {
+    data={}
+    data.fromUrl = browser.getText("//tbody[@role='rowgroup']/tr["+rowNumber+"]/td[3]/a");
+    data.fromId = browser.getText("//tbody[@role='rowgroup']/tr["+rowNumber+"]/td[4]/span/a");
+    data.toUrl = browser.getText("//tbody[@role='rowgroup']/tr["+rowNumber+"]/td[6]/a");
+    data.toId = browser.getText("//tbody[@role='rowgroup']/tr["+rowNumber+"]/td[7]/span/a");
+    return data;
 }
 
 module.exports.GetRedirectElement = function (option) {
@@ -90,14 +178,19 @@ module.exports.CreateRedirects = function(props){
     action.button.get('Create Reditrect').click();
 }
 
+module.exports.ShowCriteria = function() {
+    if(browser.element("=Search Criteria").isVisible())
+        browser.element("=Search Criteria").click();
+}
+
 module.exports.Search = function (searchParams) {
     let from = searchParams.from;
     let to = searchParams.to;
-    
     if(from != null) { props.input.get('From URL').setValue(from) };
-    if(to != null) { props.input.get('To URL').setValue() };
+    if(to != null) { props.input.get('To URL').setValue(to) };
     action.button.get('Search').click();
     search.resultsGrid('Redirects Search').waitForVisible();
+    browser.pause(3000);
 }
 
 module.exports.ExportRedirects = function (site) {
