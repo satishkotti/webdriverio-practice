@@ -106,7 +106,8 @@ module.exports.SearchFromUrlNoClick = function(option) {
 module.exports.Search = function (searchParams) {
     let from = searchParams.from;
     let to = searchParams.to;
-    
+    if (browser.element("//a[text()='Show Criteria']").isVisible())
+            browser.click("//a[text()='Show Criteria']");
     if(from != null) { props.input.get('From URL').setValue(from) };
     if(to != null) { props.input.get('To URL').setValue(to) };
     action.button.get('Search').click();
