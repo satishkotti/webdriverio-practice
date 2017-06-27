@@ -15,7 +15,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './jira/Mobile/sprint 41/PPE-115316/PPE-115316.test.js'
+        './Baseline/Mobiles/smoke/FE_Smoke_ICM.test.js'
     ],
     // Patterns to exclude.
     exclude: [],
