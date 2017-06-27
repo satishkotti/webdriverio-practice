@@ -7,8 +7,6 @@ var invalidbulkfile = "test\\pb2\\fe\\jira\\release29\\ppe-105234\\"+ global.tes
 var bulk300file = "test\\pb2\\fe\\jira\\release29\\ppe-105234\\"+global.testEnv+"_bulk_300.xls"
 var bulkimportvalid = "test\\pb2\\fe\\jira\\release29\\ppe-105234\\"+global.testEnv+"_bulkimport.xlsx"
 
-
-var numberOfRows = 0;
 describe('PPE-105234: Verify Bulk Import functionality', function() {
     before(() => {
         //Launch App
@@ -16,7 +14,7 @@ describe('PPE-105234: Verify Bulk Import functionality', function() {
     });
 
     it('Go to Redirect Tool Page', function() {
-        redirectActions.GoToRedirectToolPage();
+        test.NavigateToRedirectToolPage();
     }); 
 
     it("Verify the application accepts only xls and xlsx files", function() {
@@ -104,7 +102,7 @@ describe('PPE-105234: Verify Bulk Import functionality', function() {
     it("Verify bulk upload for 300 redirects", function() {
         var fromUrlList = [];
         var toUrlList=[];
-        redirectActions.GoToRedirectToolPage();
+        test.NavigateToRedirectToolPage();
         redirectActions.BulkImport();
         redirectActions.UploadRedirects(bulk300file);
         browser.element("//section/ul/li").waitForVisible();
@@ -122,15 +120,13 @@ describe('PPE-105234: Verify Bulk Import functionality', function() {
         }
     });
 
-    it.only("Verify redirect form updates automatically if few redirects are submitted succesfully and few have errors ", function() {
-        redirectActions.GoToRedirectToolPage();
+    it("Verify redirect form updates automatically if few redirects are submitted succesfully and few have errors ", function() {
+        test.NavigateToRedirectToolPage();
         redirectActions.BulkImport();
         redirectActions.UploadRedirects(bulkimportvalid);
         browser.pause(3000);
         var fromUrl = redirectActions.GetImportRow(1).from;
-        redirectActions.GoToRedirectToolPage();
-        //browser.refresh();
-        //browser.pause()
+        test.NavigateToRedirectToolPage();
         redirectActions.Search({'from':fromUrl, 'to':null});
         var rstring = randomstring.generate(7);
         browser.pause(3000);
