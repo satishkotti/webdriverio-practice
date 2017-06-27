@@ -3,6 +3,7 @@ var should = require('should');
 var path = require('path');
 var rootPath = path.normalize(__dirname)
 var socialshareIcons = require('./../elements/Common.elements');
+
 var input = require('./../../config/FE.testdata');
 
 module.exports = {
@@ -129,6 +130,7 @@ returns: width - width , height - height*/
         var count = elements.elements.length;
         for (i = 0; i < count; i++) {
             var visible = browser.isExisting(elements.elements[i].locator);
+            console.log();
             visible.should.equal(true);
 
         }
