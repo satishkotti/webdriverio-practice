@@ -24,7 +24,7 @@ function deleteRedirects(from) {
 function getValidRedirect() {
     var data = [];
     var fromUrlPattern = "http://www." + global.testEnv + ".webmd.com/food*";
-    //redirectActions.GoToRedirectToolPage();
+    test.NavigateToRedirectToolPage();
     redirectActions.SearchFromUrl(fromUrlPattern);
     browser.waitForVisible("//tbody[@role='rowgroup']/tr[1]/td[3]/a")
     browser.waitForVisible("//tbody[@role='rowgroup']/tr[1]/td[6]/a")
@@ -44,13 +44,13 @@ describe('PPE-105235: Create Redirects', function() {
     before(() => {
         //Launch App
         test.LaunchAppAndLogin();
-        redirectActions.GoToRedirectToolPage();
+        test.NavigateToRedirectToolPage();
         info = getValidRedirect();
     });
 
 
     it('Verify User is able to create redirects with valid URLs', function() {
-        redirectActions.GoToRedirectToolPage();
+        test.NavigateToRedirectToolPage()
         var validFromUrl = "http://www." + global.testEnv + ".webmd.com/food-recipes/nutrition-labels-10/trans-fats";
         var validToUrl = "http://www." + global.testEnv + ".webmd.com/redirecttooltesturl123";
         deleteRedirects(validFromUrl);
