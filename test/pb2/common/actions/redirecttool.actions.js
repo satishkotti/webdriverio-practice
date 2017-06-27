@@ -57,7 +57,7 @@ module.exports.CheckImportError = function(error, rowNumber) {
                 if (!(ele.isExisting() && ele.isVisible()))
                     return false;
                 let eletext = ele.getText();
-                if(eletext === 'Invalid Format Data')
+                if(eletext === 'To and from fields must be valid URLs')
                     return true;
                 else
                     return false;

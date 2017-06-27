@@ -74,7 +74,7 @@ describe('PPE-101694: Redirect Search Results', function() {
         }
     });
 
-    it.only("User should be able to delete multiple records from the result", function() {
+    it("User should be able to delete multiple records from the result", function() {
          browser.refresh();
          test.NavigateToRedirectToolPage();
         //from
