@@ -108,7 +108,7 @@ module.exports.Search = function (searchParams) {
     let to = searchParams.to;
     
     if(from != null) { props.input.get('From URL').setValue(from) };
-    if(to != null) { props.input.get('To URL').setValue() };
+    if(to != null) { props.input.get('To URL').setValue(to) };
     action.button.get('Search').click();
     search.resultsGrid('Redirects Search').waitForVisible();
 }
