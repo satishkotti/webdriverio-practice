@@ -79,6 +79,23 @@ var contentTabObj = {
         contentTabUI.RelatedLinkHeaderSetValue(data);
         
     },
+
+     QuestionTextSetValue: function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.QuestionTextSetValue(data);
+        
+    },
+    QuestiontypeSelectText:function()
+    {
+      contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.QuestiontypeSelectText("3");
+
+    },
+     ResultTextSetValue: function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.ResultTextSetValue(data);
+        
+    },
     relatedLinksAndClickmModuleMenu: function(data){
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.relatedLinksSetValue(data);
@@ -115,5 +132,6 @@ var contentTabObj = {
     {
         return contentTabUI.contentHeaderGet();
     },
+   
 }
 module.exports = contentTabObj;

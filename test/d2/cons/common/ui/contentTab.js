@@ -4,6 +4,8 @@ var highlightsSelector = "//h2[span[contains(.,'Highlights')]]//following-siblin
 var pullQuotesSelector = "//h2[span[contains(.,'Pull Quotes')]]//following-sibling::div//div[text()='Enter text here']";
 var citationsSelector = "//h2[span[contains(.,'Citations')]]//following-sibling::div//div[text()='Enter text here']";
 var relatedLinksTextSelector = "//h2[span[contains(.,'Related Links Text')]]//following-sibling::div//div[text()='Enter text here']";
+var QuestionTextSelector = "//h2[span[contains(.,'Question Text')]]//following-sibling::div//div[text()='Enter text here']";
+var ResultsSelector = "//h2[span[contains(.,'Results Text')]]//following-sibling::div//div[text()='Enter text here']";
 var checkoutButtonSelector = "//button[contains(string(),'Check-out')]";
 var checkInButonSelector = "//button[contains(string(),'Check-in')]";
 var contentTabSelector = "//span[text()='Content']";
@@ -13,6 +15,7 @@ var contentHeader="//div[@class='container']//center[@class='ng-binding']";
 var SectionHeader="//h2[span[contains(.,'Section Header')]]//following-sibling::div//input";
 var RelatedLinksHeader="//h2[span[contains(.,'Related Links Header')]]//following-sibling::div//input";
 var Titleinput="//h2[span[contains(.,'Title')]]//following-sibling::div//input";
+var selectBox = "//h2[span[contains(.,'Question Type')]]//following-sibling::div//div[@ng-if='configitem.selectOptions']//select[@ng-model='itemnode[configitem.nodeName]']";
 var contentTabUIObj = {
     switchToMainFrame: function(){
         browser.frame();
@@ -117,6 +120,24 @@ var contentTabUIObj = {
 
     },
 
+    QuestionTextSetValue:function(Data)
+    {
+       browser.scroll(QuestionTextSelector);
+       browser.setValue(QuestionTextSelector, Data);
+    },
+     QuestiontypeSelectText:function(Value)
+    {
+       
+        browser.selectByValue(selectBox,Value);
+        
+    },
+
+     ResultTextSetValue:function(Data)
+    {
+       browser.scroll(ResultsSelector);
+       browser.setValue(ResultsSelector, Data);
+    },
+    
     
     mModuleckEditorMenuClick: function (sectionIndex) {
         browser.moveToObject("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])[" + sectionIndex + "]");
