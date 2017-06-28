@@ -14,7 +14,6 @@ const usersDetails = require('./../../config/users');
 const ats = require('./../actions/ats.actions');
 const user = usersDetails.users;
 const parseXml = require('./../../../common/xml/parseXml');
-const redirect = require('./../actions/redirecttool.actions');
 
 
 /*----------------------------------------------------------------------------------------------------- */
@@ -382,6 +381,23 @@ module.exports.SearchForRedirects = (params) => {
 */
 module.exports.ExportRedirectsToCsvFileForSite = (site) => {
     rdt.ExportRedirects(site);
+}
+
+/* -----------------------------------------------
+** I M P O R T  R E D I R E C T S
+** -----------------------------------------------
+** Description:
+** Imports the excel file with redirects
+**
+** Function accepts 1 argument:
+** 1. Path of file to import
+*/
+module.exports.ImportRedirects = function (path) {
+    rdt.BulkImport();
+    if(rdt.IsFile(path)){
+        rdt.UploadRedirects(path);
+        browser.element("//section/ul/li").waitForVisible();
+    }
 }
 
 /* ---------------------------------------------------------------------------------
@@ -925,22 +941,4 @@ module.exports.CancelCheckoutAssetUsingApi = function (ticket, payload) {
         return response == undefined ? false : true;
     }, 120000, 'Cancel Checking-out the asset is taking longer than expected! Please increase timeouts if necessary and try again!', 500);
     return response;
-}
-
-
-/* -----------------------------------------------
-** I M P O R T  R E D I R E C T S
-** -----------------------------------------------
-** Description:
-** Imports the excel file with redirects
-**
-** Function accepts 1 argument:
-** 1. Path of file to import
-*/
-module.exports.ImportRedirects = function (path) {
-    redirect.BulkImport();
-    if(redirect.IsFile(path)){
-        redirect.UploadRedirects(path);
-        browser.element("//section/ul/li").waitForVisible();
-    }
 }
