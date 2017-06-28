@@ -84,23 +84,13 @@ module.exports.CreateRedirects = function(props){
     action.button.get('Create Reditrect').click();
 }
 
-module.exports.SearchFromUrl = function(option) {
+module.exports.SearchNoClick = function(searchParams) {
+    let from = searchParams.from;
+    let to = searchParams.to;
     if (browser.element("//a[text()='Show Criteria']").isVisible())
-        browser.click("//a[text()='Show Criteria']");
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
-    var url = option;
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', url);
-    browser.click('button.floatright');
-}
-
-module.exports.SearchFromUrlNoClick = function(option) {
-    if (browser.element("//a[text()='Show Criteria']").isVisible())
-        browser.click("//a[text()='Show Criteria']");
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
-    var url = option;
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', url);
+            browser.click("//a[text()='Show Criteria']");
+    if(from != null) { props.input.get('From URL').setValue(from) };
+    if(to != null) { props.input.get('To URL').setValue(to) };
 }
 
 module.exports.Search = function (searchParams) {
@@ -156,13 +146,6 @@ module.exports.IsFile = function(filepath) {
 
 module.exports.DeleteFile = function(filepath){
     fs.unlinkSync(filepath);
-}
-
-module.exports.SearchToUrlNoClick = function(option) {
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(1) > label.pb-label > input', "");
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', "");
-    var url = option;
-    browser.setValue('[name="redirectSearchForm"] > div:nth-of-type(1) > div:nth-of-type(2) > label.pb-label > input', url);
 }
 
 module.exports.createRedirect = function(fromUrl, toUrl) {

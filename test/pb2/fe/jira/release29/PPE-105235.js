@@ -7,7 +7,7 @@ if(testEnv==='qa02')
     testEnv= 'perf';
 
 function deleteRedirects(from) {
-    redirectActions.Search({'from':from, 'to': null});
+    redirectActions.Search({'from':from, 'to': ''});
     browser.element("//table[@role='grid']").waitForVisible();
     browser.pause(4000);
     if (browser.element("//tbody[@role='rowgroup']/tr[1]/td[1]").isVisible()) {
@@ -26,7 +26,7 @@ function getValidRedirect() {
     var data = [];
     var fromUrlPattern = "http://www." + testEnv + ".webmd.com/food*";
     test.NavigateToRedirectToolPage();
-    redirectActions.Search({'from':fromUrlPattern, 'to': null});
+    redirectActions.Search({'from':fromUrlPattern, 'to': ''});
     browser.waitForVisible("//tbody[@role='rowgroup']/tr[1]/td[3]/a")
     browser.waitForVisible("//tbody[@role='rowgroup']/tr[1]/td[6]/a")
     var fromUrl = browser.getText("//tbody[@role='rowgroup']/tr[1]/td[3]/a");
@@ -59,7 +59,7 @@ describe('PPE-105235: Create Redirects', function() {
         redirectActions.createRedirect(validFromUrl, validToUrl);
         browser.pause(4000);
         //Search using from URL
-        redirectActions.Search({'from':validFromUrl, 'to':null});
+        redirectActions.Search({'from':validFromUrl, 'to':''});
         browser.waitForVisible("tbody > tr:first-child > td:nth-of-type(3) > a")
         browser.waitForVisible("tbody > tr:first-child > td:nth-of-type(6) > a")
         expect(browser.getText("tbody > tr:first-child > td:nth-of-type(3) > a")).to.equal(validFromUrl);
@@ -84,7 +84,7 @@ describe('PPE-105235: Create Redirects', function() {
         redirectActions.createRedirect(validFromCID, validToCID);
         //Search using from URL
         browser.pause(4000);
-        redirectActions.Search({'from':validFromCID, 'to':null});
+        redirectActions.Search({'from':validFromCID, 'to':''});
         browser.waitForVisible("tbody > tr:first-child > td:nth-of-type(4) > span > a.pb-chron")
         browser.waitForVisible("tbody > tr:first-child > td:nth-of-type(7) > span > a.pb-chron")
         expect(browser.getText("tbody > tr:first-child > td:nth-of-type(4) > span > a.pb-chron")).to.equal(validFromCID);
@@ -172,13 +172,13 @@ describe('PPE-105235: Create Redirects', function() {
         browser.pause(3000);
         redirectActions.createRedirect(validToUrl, toUrl);
         browser.pause(3000);
-        redirectActions.Search({'from':validToUrl, 'to':null});
+        redirectActions.Search({'from':validToUrl, 'to':''});
         browser.pause(3000);
         browser.waitForVisible("//tbody[@role='rowgroup']//td[3]/a")
         browser.waitForVisible("//tbody[@role='rowgroup']//td[6]/a")
         expect(browser.getText("//tbody[@role='rowgroup']//td[3]/a")).to.equal(validToUrl);
         expect(browser.getText("//tbody[@role='rowgroup']//td[6]/a")).to.equal(toUrl);
-        redirectActions.Search({'from':validFromUrl, 'to': null});
+        redirectActions.Search({'from':validFromUrl, 'to': ''});
         browser.pause(3000);
         browser.waitForVisible("//tbody[@role='rowgroup']//td[3]/a")
         browser.waitForVisible("//tbody[@role='rowgroup']//td[6]/a")
