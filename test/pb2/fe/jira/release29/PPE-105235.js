@@ -2,6 +2,9 @@ var test = require('./../../../common/functions/functions');
 var redirectActions = require("./../../../common/actions/redirecttool.actions")
 var randomstring = require("randomstring");
 var info = null;
+var testEnv = global.testEnv;
+if(testEnv==='qa02')
+    testEnv= 'perf';
 
 function deleteRedirects(from) {
     redirectActions.Search({'from':from, 'to': null});
@@ -21,7 +24,7 @@ function deleteRedirects(from) {
 
 function getValidRedirect() {
     var data = [];
-    var fromUrlPattern = "http://www." + global.testEnv + ".webmd.com/food*";
+    var fromUrlPattern = "http://www." + testEnv + ".webmd.com/food*";
     test.NavigateToRedirectToolPage();
     redirectActions.Search({'from':fromUrlPattern, 'to': null});
     browser.waitForVisible("//tbody[@role='rowgroup']/tr[1]/td[3]/a")
@@ -49,8 +52,8 @@ describe('PPE-105235: Create Redirects', function() {
 
     it('Verify User is able to create redirects with valid URLs', function() {
         test.NavigateToRedirectToolPage()
-        var validFromUrl = "http://www." + global.testEnv + ".webmd.com/food-recipes/nutrition-labels-10/trans-fats";
-        var validToUrl = "http://www." + global.testEnv + ".webmd.com/redirecttooltesturl123";
+        var validFromUrl = "http://www." + testEnv + ".webmd.com/food-recipes/nutrition-labels-10/trans-fats";
+        var validToUrl = "http://www." + testEnv + ".webmd.com/redirecttooltesturl123";
         deleteRedirects(validFromUrl);
         browser.pause(4000);
         redirectActions.createRedirect(validFromUrl, validToUrl);
@@ -124,7 +127,7 @@ describe('PPE-105235: Create Redirects', function() {
     it('Verify user is not able create redirect with invalid urls', function() {
         browser.refresh();
         var validFromUrl = "http://www.cnn.com/testpage";
-        var validToUrl = "http://www." + global.testEnv + ".webmd.com/food-recipes/healthy-recipe-finder/testFrom";
+        var validToUrl = "http://www." + testEnv + ".webmd.com/food-recipes/healthy-recipe-finder/testFrom";
         redirectActions.createRedirectNoClick(validFromUrl, validToUrl);
         expect(browser.element("//form[@name = 'redirectForm']/div/div[1]/label/span[@class='pb-field-invalid']").isVisible()).to.be.true;
         expect(browser.element("//form[@name='redirectForm']/button").isEnabled()).to.be.false;
