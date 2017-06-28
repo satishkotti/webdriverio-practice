@@ -1,11 +1,14 @@
 var test = require('./../../../../common/functions/functions');
 var redirectActions = require("./../../../../common/actions/redirecttool.actions")
 randomstring = require('randomstring');
+var testEnv = global.testEnv;
+if (testEnv === 'qa02')
+    testEnv = 'perf';
 
 var invalidformatfile = "test\\pb2\\fe\\jira\\release29\\ppe-105234\\test.txt";
-var invalidbulkfile = "test\\pb2\\fe\\jira\\release29\\ppe-105234\\"+ global.testEnv+"_bulkimport_invalid.xlsx";
-var bulk300file = "test\\pb2\\fe\\jira\\release29\\ppe-105234\\"+global.testEnv+"_bulk_300.xls"
-var bulkimportvalid = "test\\pb2\\fe\\jira\\release29\\ppe-105234\\"+global.testEnv+"_bulkimport.xlsx"
+var invalidbulkfile = "test\\pb2\\fe\\jira\\release29\\ppe-105234\\"+ testEnv+"_bulkimport_invalid.xlsx";
+var bulk300file = "test\\pb2\\fe\\jira\\release29\\ppe-105234\\"+testEnv+"_bulk_300.xls"
+var bulkimportvalid = "test\\pb2\\fe\\jira\\release29\\ppe-105234\\"+testEnv+"_bulkimport.xlsx"
 
 describe('PPE-105234: Verify Bulk Import functionality', function() {
     before(() => {
@@ -99,7 +102,39 @@ describe('PPE-105234: Verify Bulk Import functionality', function() {
         expect(redirectActions.GetRowFromResultGrid(1).toUrl).to.equal(toUrlList[0].toLowerCase());
     });
 
-    it("Verify bulk upload for 300 redirects", function() {
+    it.only("Verify redirect form updates automatically if few redirects are submitted succesfully and few have errors ", function() {
+        test.NavigateToRedirectToolPage();
+        redirectActions.BulkImport();
+        redirectActions.UploadRedirects(bulkimportvalid);
+        browser.pause(3000);
+        var fromUrl = redirectActions.GetImportRow(1).from;
+        test.NavigateToRedirectToolPage();
+        redirectActions.Search({'from':fromUrl, 'to':null});
+        var rstring = randomstring.generate(7);
+        browser.pause(3000);
+        if(!(browser.element("//tbody[@role='rowgroup']//td[3]/a").isVisible())){
+            redirectActions.CreateRedirects();
+            browser.element("//form[@name= 'redirectForm']/div/div[1]/label/input").setValue(fromUrl);
+            browser.element("//form[@name= 'redirectForm']/div/div[2]/label/input").setValue(fromUrl+"/"+rstring);
+            browser.element("//form[@name= 'redirectForm']//button").click();
+            browser.waitForVisible("section.pb-notification-container.success", 40000);
+            browser.pause(4000);
+        }
+            redirectActions.BulkImport();
+            redirectActions.UploadRedirects(bulkimportvalid);
+            browser.element("//section/ul/li").waitForVisible();
+            var fromUrl1 = redirectActions.GetImportRow(1).from;
+            var toUrl1 = redirectActions.GetImportRow(1).to;
+            redirectActions.ModifyImportRow(2, {'from':fromUrl1+"/"+rstring, 'to': toUrl1+"/"+rstring});
+            redirectActions.SubmitBulkRedirect();
+            browser.element("//div[@class='modal-content']/div[@class='pb-overlay-content ng-scope']").waitForVisible();
+            expect(browser.element("//div[@class='modal-content']/div[@class='pb-overlay-content ng-scope']/div").getText()).to.equal("Redirect Import Failure");
+            browser.element("#modal-ok").click();
+            expect(redirectActions.GetImportRow(2)).to.be.false;
+            expect(redirectActions.GetImportRow(1).from).to.equal(fromUrl);
+        });
+
+        it("Verify bulk upload for 300 redirects", function() {
         var fromUrlList = [];
         var toUrlList=[];
         test.NavigateToRedirectToolPage();
@@ -119,32 +154,4 @@ describe('PPE-105234: Verify Bulk Import functionality', function() {
             expect(redirectActions.GetRowFromResultGrid(1).toUrl).to.equal(toUrlList[i].toLowerCase());
         }
     });
-
-    it("Verify redirect form updates automatically if few redirects are submitted succesfully and few have errors ", function() {
-        test.NavigateToRedirectToolPage();
-        redirectActions.BulkImport();
-        redirectActions.UploadRedirects(bulkimportvalid);
-        browser.pause(3000);
-        var fromUrl = redirectActions.GetImportRow(1).from;
-        test.NavigateToRedirectToolPage();
-        redirectActions.Search({'from':fromUrl, 'to':null});
-        var rstring = randomstring.generate(7);
-        browser.pause(3000);
-        if(!(browser.element("//tbody[@role='rowgroup']//td[3]/a").isVisible())){
-            redirectActions.CreateRedirects();
-            browser.element("//form[@name= 'redirectForm']/div/div[1]/label/input").setValue(fromUrl);
-            browser.element("//form[@name= 'redirectForm']/div/div[2]/label/input").setValue(fromUrl+"/"+rstring);
-            browser.element("//form[@name= 'redirectForm']//button").click();
-            browser.waitForVisible("section.pb-notification-container.success", 40000);
-        }
-            redirectActions.BulkImport();
-            redirectActions.UploadRedirects(bulkimportvalid);
-            browser.element("//section/ul/li").waitForVisible();
-            redirectActions.SubmitBulkRedirect();
-            browser.element("//div[@class='modal-content']/div[@class='pb-overlay-content ng-scope']").waitForVisible();
-            expect(browser.element("//div[@class='modal-content']/div[@class='pb-overlay-content ng-scope']/div").getText()).to.equal("Redirect Import Failure");
-            browser.element("#modal-ok").click();
-            expect(redirectActions.GetImportRow(2)).to.be.false;
-            expect(redirectActions.GetImportRow(1).from).to.equal(fromUrl);
-        });
 });

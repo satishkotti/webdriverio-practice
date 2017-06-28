@@ -175,7 +175,7 @@ module.exports.UploadRedirects = function (filePath){
 }
 
 module.exports.CreateRedirects = function(props){
-    action.button.get('Create Reditrect').click();
+    action.button.get('Create Redirect').click();
 }
 
 module.exports.ShowCriteria = function() {
