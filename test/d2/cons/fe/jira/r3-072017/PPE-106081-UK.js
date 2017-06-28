@@ -14,7 +14,7 @@ var findTab = require('./../../../common/actions/findTab.actions');
 var test = require("./../../../common/functions/functions.js");
 var randomstring = require("randomstring");
 
-describe('RMQ - Save as you go-US- PPE-106081', function () {
+describe('RMQ - Save as you go-UK- PPE-106081', function () {
 
     var chronicleId;
     var AssetTitle;
@@ -30,11 +30,11 @@ describe('RMQ - Save as you go-US- PPE-106081', function () {
             password: functions.getQAPublicationUser().password
         });
        
-         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UKtestFolderPath);
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
-            global.d2ConDataSettings.inputData.ArticleProfileName,
+            global.d2ConDataSettings.inputData.UkArticleProfileName,
             global.d2ConDataSettings.inputData.QUizAritcleTemplate,
             AssetTitle,
             AssetName);
@@ -60,7 +60,7 @@ describe('RMQ - Save as you go-US- PPE-106081', function () {
         cidName = propertiesTab.getChronicleIdAndName();
         objName = cidName.objectName;
         chronicleId = cidName.chronicleId;
-        propertiesTab.setRequiredProperties(objName, 'ZZ - Dummy Content Classification', objName, objName, objName, objName, 'No URL dummy publication', '2015 WebMD', 'ADD-ADHD (Adult)')
+        propertiesTab.setRequiredProperties(objName, 'ZZ - Dummy Content Classification', objName, objName, objName, objName, 'UK WebMD Medical News', '2015 WebMD', 'ADD-ADHD (Adult)')
         documentListTab.assetPowerPromotePublishToStaging(objName);
         browser.pause(5000);
         browser.call( function()
