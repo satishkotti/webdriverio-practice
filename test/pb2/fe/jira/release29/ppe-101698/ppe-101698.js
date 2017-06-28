@@ -53,7 +53,7 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
 
     var IsInvalidMessageVisible = function (fieldName) {
         browser.pause(500);
-        return browser.isVisible('//label[contains(.,"' + fieldName + '")]//span[@class="pb-field-invalid"]')
+        return field.invalid.get(fieldName).isVisible();
     }
 
     var IsSuccessNotificationDisplayed = function () {
@@ -103,7 +103,7 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
 
         //Search for redirects
         test.SearchForRedirects({
-            from: testdata.search.from,
+            from: testdata.search.from.replace('qa02', 'perf'),
             to: null
         });
     })
@@ -156,7 +156,7 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
         it("Verify whether user is displayed with an error when user enters the value thats present in 'From URL' in 'To URL' field", function () {
 
             //Enter the url in 'To URL' field, which is same as the one present in 'From URL' field
-            toUrlField.setValue(fromUrlVal);
+            toUrlField.setValue(fromUrlVal.replace('qa02', 'perf'));
 
             //Validation: User must be displayed with an error when attempted to add same value in the From and To URL fields
             expect(IsInvalidMessageVisible('To URL')).to.be.true;
@@ -165,7 +165,7 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
         it("Verify whether user is displayed with an error if the URL does not start with 'HTTP'", function () {
 
             //Enter url in 'To URL' that doesn't start with HTTP
-            toUrlField.setValue(urls.doesNotStartWithHttp);
+            toUrlField.setValue(urls.doesNotStartWithHttp.replace('qa02', 'perf'));
 
             //Validation: User must be displayed with an error, if the value populated in the To URL field does not start with HTTP
             expect(IsInvalidMessageVisible('To URL')).to.be.true;
@@ -174,7 +174,7 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
         it("Verify whether user is displayed with an error if the URL does not start with 'HTTPS'", function () {
 
             //Enter url in 'To URL' that doesn't start with HTTPS
-            toUrlField.setValue(urls.doesNotStartWithHttps);
+            toUrlField.setValue(urls.doesNotStartWithHttps.replace('qa02', 'perf'));
 
             //Validation: User must be displayed with an error, if the value populated in the To URL field does not start with HTTPS
             expect(IsInvalidMessageVisible('To URL')).to.be.true;
@@ -183,7 +183,7 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
         it("Verify whether error is not displayed when user populates To URL field with value that starts with 'HTTP'", function () {
 
             //Enter url in 'To URL' that starts with HTTP
-            toUrlField.setValue(urls.startsWithHttp);
+            toUrlField.setValue(urls.startsWithHttp.replace('qa02', 'perf'));
 
             //Validation: User must be not displayed with any error when To URL field is populated with a value that starts with HTTP
             expect(IsInvalidMessageVisible('To URL')).to.be.false;
@@ -192,7 +192,7 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
         it("Verify whether error is not displayed when user populates To URL field with value that starts with 'HTTPS'", function () {
 
             //Enter url in 'To URL' that starts with HTTPS
-            toUrlField.setValue(urls.startsWithHttps);
+            toUrlField.setValue(urls.startsWithHttps.replace('qa02', 'perf'));
 
             //Validation: User must be not displayed with any error when To URL field is populated with a value that starts with HTTPS
             expect(IsInvalidMessageVisible('To URL')).to.be.false;
@@ -201,7 +201,7 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
         it("Verify whether user is able to enter a url that goes thru/click. Example: http://www.webmd.com/click?url=http://www.cnn.com", function () {
 
             //Enter url in 'To URL' field that goes thru/click
-            toUrlField.setValue(urls.goesThruOrClick);
+            toUrlField.setValue(urls.goesThruOrClick.replace('qa02', 'perf'));
 
             //Validation: User must not be displayed with error when To URL field is populated with a URL that goes thru/click
             expect(IsInvalidMessageVisible('To URL')).to.be.false;
@@ -225,7 +225,7 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
         it('Verify whether user is taken back to redirect search results screen after the update operation is successful', function () {
 
             //Populate the 'To URL' field with a valid url
-            toUrlField.setValue(urls.startsWithHttp + '-' + randomstring.generate(7));
+            toUrlField.setValue(urls.startsWithHttp.replace('qa02', 'perf') + '-' + randomstring.generate(7));
 
             //Click Update button
             updateRedirectButton.click();
@@ -262,7 +262,7 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
             it('Verify whether user is displayed with a status message when user clicks on Update after populating the "To URL" field with a valid URL', function () {
 
                 //Populate the 'To URL' field with a valid url
-                toUrlField.setValue(urls.startsWithHttp + '-' + randomstring.generate(7));
+                toUrlField.setValue(urls.startsWithHttp.replace('qa02', 'perf')+ '-' + randomstring.generate(7));
 
                 //Click Update button
                 updateRedirectButton.click();
@@ -288,7 +288,7 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
 
                 //Populate the 'To URL' field with a valid url that goes thru/click
                 toUrlField = field.input3.get('To URL', 2);
-                toUrlField.setValue(urls.goesThruOrClick);
+                toUrlField.setValue(urls.goesThruOrClick.replace('qa02', 'perf'));
 
                 //Click Update button
                 updateRedirectButton = action.button.get('Update Redirect');
@@ -335,7 +335,7 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
             SelectSearchResult(firstSearchResult);
 
             //Populate the 'To URL' field with a valid url
-            let updatedToUrlVal = urls.startsWithHttp;
+            let updatedToUrlVal = urls.startsWithHttp.replace('qa02', 'perf');
             toUrlField = field.input3.get('To URL', 2);
             toUrlField.setValue(updatedToUrlVal);
 
@@ -391,7 +391,7 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
             SelectSearchResult(firstSearchResult);
 
             //Populate the 'To URL' field with a valid url
-            let updatedToUrlVal = urls.startsWithHttp;
+            let updatedToUrlVal = urls.startsWithHttp.replace('qa02', 'perf');
             toUrlField = field.input3.get('To URL', 2);
             toUrlField.setValue(updatedToUrlVal);
 

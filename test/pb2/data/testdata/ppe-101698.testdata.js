@@ -9,7 +9,7 @@ module.exports = {
         startsWithHttp: `http://www.${global.testEnv}.webmd.com/mental-health/ptsd-directory`,
         startsWithHttps: `https://www.${global.testEnv}.webmd.com/mental-health/ptsd-directory`,
         goesThruOrClick: `http://www.cnn.com`,
-        hopscenario:`http://www.${global.testEnv}.webmd.com/fitness-exercise/features/tired-of-exercise`
+        hopscenario:`http://www.${global.testEnv}.webmd.com/cancer/tc/post-traumatic-stress-disorder-pdq-supportive-care---health-professional-information-nci-current-clinical-trials`
     },
     chronicleIds:{
         valid: '091e9c5e806f2169'
