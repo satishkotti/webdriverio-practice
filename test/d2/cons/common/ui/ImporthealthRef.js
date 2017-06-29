@@ -1,123 +1,37 @@
-var maxWaitTimeInMs = 30000;
-var propertiesTabUI = require('./../ui/propertiesTab');
-var loadingresult = true;
+var maxWaitTimeInMs = 50000;
 
 
-var nonTemplateFiles = {
-    importConsumerArticle: function (filetoupload) {
+var ImporthealthrefTabUIObj = {
 
-        browser.waitForVisible("//button[contains(text(),'IMPORT')]")
-        browser.click('//button[contains(text(),"IMPORT")]');
-        browser.waitForVisible("//a[contains(.,'WBMD Consumer Article')]");
-        browser.click("//a[contains(.,'WBMD Consumer Article')]");
-        browser.waitForVisible("#MultiImportDialog");
-        browser.chooseFile('#importFiles-input-file', filetoupload);
-        browser.click('//button[contains(text(),"Next")]');
+    ImportHealthrefMandatoryfieldsValidation: function(){
+        var Frndlyname = browser.isExisting("//span[contains(., 'Friendly Name')]");
+        var ContentClassiification = browser.isExisting("//span[contains(., 'Content Classification')]");
+        var UserDescription = browser.isExisting("//span[contains(., 'User Description')]");
+        var WebmdKeywords = browser.isExisting("//span[contains(., 'WebMD Keywords')]");
+        var WindowTitle = browser.isExisting("//span[contains(., 'Window Title')]");
+        var Publication = browser.isExisting("//span[contains(., 'Publication')]");
+        var PrimaryTopicid = browser.isExisting("//span[contains(., 'Primary Topic ID')]");
+        expect(Frndlyname).to.be.true;
+        expect(ContentClassiification).to.be.true;
+        expect(UserDescription).to.be.true;
+        expect(WebmdKeywords).to.be.true;
+        expect(WindowTitle).to.be.true;
+        expect(Publication).to.be.true;
+        expect(PrimaryTopicid).to.be.true;
+        browser.click("//button[contains(.,'OK') and @aria-disabled=not('false')]");
+        browser.click("//button[contains(.,'Cancel Edit')]");
     },
-    importConsumerArticleProfile: function (profile) {
-        browser.waitForVisible("//div[@id='creationProfileChooser']//img");
-        browser.click("//div[@id='creationProfileChooser']//img");
-        browser.waitForVisible("//div[string()='" + profile + "']")
-        browser.click("//div[string()='" + profile + "']");
-        browser.waitForVisible("//div[starts-with(@id,'combo')]//img");
-        browser.click("//div[starts-with(@id,'combo')]//img");
-        browser.waitForVisible("//div[@title='Consumer Article']");
-        browser.click("//div[@title='Consumer Article']");
-        browser.click('//button[contains(text(),"Next")]');
-    },
-    importMultipleConsumerArticle: function (filetoupload, filetoupload2) {
-        browser.waitForVisible("//button[contains(text(),'IMPORT')]")
-        browser.click('//button[contains(text(),"IMPORT")]');
-        browser.waitForVisible("//a[contains(.,'WBMD Consumer Article')]");
-        browser.click("//a[contains(.,'WBMD Consumer Article')]");
-        browser.waitForVisible("#MultiImportDialog");
-        browser.chooseFile('#importFiles-input-file', filetoupload);
-        browser.chooseFile('#importFiles-input-file', filetoupload2);
-        browser.waitForVisible("//div[@id='same_properties']//input[@type='checkbox']")
-        browser.click("//div[@id='same_properties']//input[@type='checkbox']");
-        browser.click('//button[contains(text(),"Next")]');
-    },
-    setMandatoryProperties: function (objName, descName, friendlyName, busRef, userDescr, keywords, windowTtl, publication,
-        primaryTopicId) {
-        browser.waitForVisible("#object_name-input");
-        browser.setValue('#object_name-input', objName);
-        browser.waitForVisible("#title-input");
-        browser.setValue('#title-input', descName);
-        propertiesTabUI.friendlyNameSet(friendlyName);
-        propertiesTabUI.busRefNameSet(busRef);
-        propertiesTabUI.userDescriptionNameSet(userDescr);
-        propertiesTabUI.keywordsNameSet(keywords);
-        propertiesTabUI.windowTitleSet(windowTtl);
-        propertiesTabUI.publicationSet(publication);
-        propertiesTabUI.primaryTopicIdSet(primaryTopicId);
-        browser.click('//button[contains(text(),"Next")]');
-        browser.pause(18000);
-
-    },
-    fileloading: function () {
-        return browser.isVisible("//div[@class='ext-el-mask-msg x3-loading-medium']");
-    },
-
-    unSelectFile: function (filetoupload, filetoupload) {
-        browser.waitForVisible("//button[contains(text(),'IMPORT')]")
-        browser.click('//button[contains(text(),"IMPORT")]');
-        browser.waitForVisible("//a[contains(.,'WBMD Consumer Article')]");
-        browser.click("//a[contains(.,'WBMD Consumer Article')]");
-        browser.waitForVisible("#MultiImportDialog");
-        browser.chooseFile('#importFiles-input-file', filetoupload);
-        browser.chooseFile('#importFiles-input-file', filetoupload);
-        browser.waitForVisible("//div[@id='TestNonArticleTXT.txt']");
-        browser.click("//div[@id='TestNonArticleTXT.txt']");
-        browser.click("//div[@id='remove']");
-        browser.click('//button[contains(text(),"Cancel") and @type="button"]');
-    },
-    checkout: function (assetName) {
-        browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
-        browser.rightClick("//span[@title='" + assetName + "']");
+     dropdownlistSelect: function(ddlocator){
+        var drpdwnvalues;
+        browser.setValue("//input[@id='"+ddlocator+"']","");
         browser.pause(1000);
-        browser.waitForVisible("div.x-menu-list", maxWaitTimeInMs);
-        browser.waitForVisible("//a[contains(.,'Checkout')]");
-        browser.click("//a[contains(.,'Checkout')]");
-        browser.pause(4000);
-    },
-    cancelCheckout: function (assetName) {
-        browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
-        browser.rightClick("//span[@title='" + assetName + "']");
-        browser.pause(2000);
-        browser.waitForVisible("div.x-menu-list", maxWaitTimeInMs);
-        browser.waitForVisible("//a[contains(.,'Cancel checkout')]");
-        browser.click("//a[contains(.,'Cancel checkout')]");
-        browser.pause(4000);
-    },
-    checkin: function (assetName, filetoupload) {
-        browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
-        browser.rightClick("//span[@title='" + assetName + "']");
-        browser.pause(2000);
-        browser.waitForVisible("div.x-menu-list", maxWaitTimeInMs);
-        browser.waitForVisible("//a[contains(.,'Check in')]");
-        browser.click("//a[contains(.,'Check in')]");
-        browser.pause(4000);
-        browser.waitForVisible("//span//span[contains(.,'Options')]");
-        browser.click("//span//span[contains(.,'Options')]");
-        browser.chooseFile('#checkinFromFile-input-file', filetoupload);
-        browser.waitForVisible("//button[string()='OK' and @type='submit']");
-        browser.click("//button[string()='OK' and @type='submit']");
-        browser.pause(2000);
-    },
-    selectItemByName: function (assetName) {
-        browser.pause(1000);
-        browser.waitForVisible("//span[@title='" + assetName + "']", maxWaitTimeInMs);
-        browser.click("//span[@title='" + assetName + "']");
-        browser.pause(1000);
+        browser.click("//input[@id='"+ddlocator+"']//following-sibling::img");
+        browser.waitForVisible("//div[@role='listitem']");
+        drpdwnvalues= browser.getText("//div[@role='listitem']");
+        return drpdwnvalues;
+
     },
 
-    validationArticleProperties: function () {
-        browser.pause(4000);
-        browser.click('//button[contains(text(),"Next")]');
-        var vad = browser.isExisting("//span[contains(.,'Descriptive Name') and contains(.,'Friendly Name') and contains(.,'Content Classification') and contains(.,'User Description') and contains(.,'WebMD Keywords') and contains(.,'Window Title') and contains(.,'Publication') and contains(.,'Primary Topic ID')]");
-        browser.click('//button[contains(text(),"OK") and @aria-disabled=not("false")]');
-        expect(vad).to.be.true;
-    },
     article_Othertab_AttributesNames: function () {
         browser.click("//span/span[string()='Other']");
         var language = browser.isExisting("//label[string()='Language / Locale:']");
@@ -282,6 +196,7 @@ var nonTemplateFiles = {
         var SponsorInternalMLRDate = browser.isExisting("//label[string()='Sponsor Internal MLR Date:']");
         expect(SponsorInternalMLRDate).to.be.true;
     },
+
 }
 
-module.exports = nonTemplateFiles;
+module.exports = ImporthealthrefTabUIObj;

@@ -8,7 +8,6 @@ module.exports = {
         return browser.isExisting("//div[@id='border-layout-container-1']//span[text()='Find']/parent::*");
     },
      switchToExternalWidget0Frame: function(){
-         browser.pause(5000);
         var contentWidgetIFrameElement = browser.element(externalWidget0Selector);
         browser.frame(contentWidgetIFrameElement.value);
     },

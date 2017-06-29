@@ -12,7 +12,7 @@ exports.config = {
     // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
-    specs: ['./test/d2/cons/fe/jira/profport062017/PPE-70175-PB.js'],
+    specs: ['./test/d2/cons/fe/jira/r3-072017/PPE-70175-PB.js'],
     // Patterns to exclude.
     exclude: [
         './test/d2/cons/config/**/*.*',
@@ -75,7 +75,7 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-    waitforTimeout: 50000,
+    waitforTimeout: 500000,
 
 
     //
@@ -157,7 +157,7 @@ exports.config = {
     // variables like `browser`. It is the perfect place to define custom commands.
     before: function () {
 
-        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : "dev04";
+        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : "qa01";
 
         var chai = require('chai');
         chai.config.includeStack = true;

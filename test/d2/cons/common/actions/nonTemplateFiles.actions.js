@@ -1,6 +1,7 @@
 var nonTemplateFiles = require('./../ui/nonTemplateFiles');
 var propertiesTabUI = require('./../ui/propertiesTab');
 var versionTabUI = require('./../ui/versionTab');
+var workspaceMenuUI = require('./../ui/workspace.menu.js');
 
 var nonTemplateFilesObj = {
 
@@ -32,8 +33,12 @@ var nonTemplateFilesObj = {
     fileOperations: function (assetName, filetoupload) {
         nonTemplateFiles.selectItemByName(assetName);
         nonTemplateFiles.checkout(assetName);
+        browser.pause(5000);       
         nonTemplateFiles.cancelCheckout(assetName);
+        browser.pause(5000);
+        nonTemplateFiles.selectItemByName(assetName);
         nonTemplateFiles.checkout(assetName);
+        browser.pause(5000);
         nonTemplateFiles.checkin(assetName, filetoupload);
     },
     validationProperties: function (assetName, linkTitle, copyright) {

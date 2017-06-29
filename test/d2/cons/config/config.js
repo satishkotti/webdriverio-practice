@@ -94,8 +94,8 @@ module.exports.testSettings = {
             "database": "Pagebuilder_SiteManagement"
         },
         "dctmApiConfig": {
-            "dctmUsername": "QAPublication",
-            "dctmPassword": "QA-Doc#1",
+            "dctmUsername": "qaautomation1",
+            "dctmPassword": "qaautomation1",
             "dctmDocbase": "webmddoc01",
             "url": "http://DMWRS11Q-CON-08.portal.webmd.com:8080/pbws/"
         },
@@ -103,7 +103,7 @@ module.exports.testSettings = {
             "url": "http://d2.qa01.webmd.com/D2/#d2",
             "users": [{
                     "id": "1",
-                    "username": "QAPublication",
+                    "username": "QAPublication1",
                     "password": "QA-Doc#1",
                     "type": "user"
                 },
@@ -133,7 +133,7 @@ module.exports.testSettings = {
             "database": "Pagebuilder_SiteManagement"
         },
         "dctmApiConfig": {
-            "dctmUsername": "QAPublication",
+            "dctmUsername": "QAPublication1",
             "dctmPassword": "QA-Doc#1",
             "dctmDocbase": "webmddoc01",
             "url": "http://dmrest.qa00.webmd.com/pbws"
@@ -245,7 +245,11 @@ module.exports.testSettings = {
             "UKtestFolderPath": "webmddoc01/webmd_uk/consumer_assets/editorial/articles/Others",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
             "UkArticleProfileName": 'Consumer Portal UK / Article Templates',
+            "QUizAritcleTemplate":'Article / Quiz',
              "HelathRefArticleTemplate":'Article / Health Reference Template',
+             "USImportHelathRefProfileName":'Consumer Portal US / Controlled Content Templates',
+             "UKImportHelathRefProfileName":'Consumer Portal UK / Controlled Content Templates',
+             "ImportHelathArticleTemplate":'Import Health Ref Template',
             "ArticleTemplate": 'Article /  News Template',
             "CopyrightArticleTemplate": 'Copyright',
             "ArticleObjectName": "QATestAsset" + exports.GenerateRandomString(5),
@@ -361,7 +365,16 @@ module.exports.testSettings = {
              "ArticleProfileName_uk": 'Consumer Portal UK / Article Templates',
              "existingCopyrightID": "091e9c5e80330e29",
              "existingCopyrightTitle":"1996-2005 MedicineNet - UK",
-             "copyrightTitle": "QATestCopyright"
+             "copyrightTitle": "QATestCopyright",
+             "USDisclaimerPName": 'Consumer Portal US / Copyright Disclaimer Templates',
+             "disclaimerTemplate": 'Disclaimer',
+             "disclaimerTitle":"QATestDisclaimer",
+             "diclaimerTitlewxml": "\nQATestDisclaimer\n",
+             "existingDisclaimerID": "091e9c5e803e3f40",
+             "existingDisclaimeritle":"WebMD Ask the Specialist Transcript Disclaimer",
+             "UKDisclaimerPName": 'Consumer Portal UK / Copyright Disclaimer Templates',
+             "existingDisclaimerID_uk": "091e9c5e80330eb4",
+             "existingDisclaimeritle_uk":"diet center health tools",
 
         }      
     }

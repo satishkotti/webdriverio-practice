@@ -18,12 +18,6 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.cancelCheckoutConfirmYes();
     },
-
-    AssetcheckOut: function(){
-        contentTabUI.selectContenTab();
-        contentTabUI.switchToExternalWidgetFrame();
-        contentTabUI.checkOut();
-    },
     edit: function(){},
     spell: function(){},
     find: function(){},
@@ -34,10 +28,19 @@ var contentTabObj = {
          contentTabUI.switchToExternalWidgetFrame();
          contentTabUI.clearSectionTextValue();
     },
+    Titleinputsetvalue:function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.Titleinputsetvalue(data);
+    },
     sectionTextSetValue: function(data){
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.sectionTextSetValue(data);
     },
+     sectionHeaderSetValue: function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.sectionHeaderSetValue(data);
+    },
+    
     contenttabframeswitching: function(){
         contentTabUI.switchToExternalWidgetFrame();
     },
@@ -45,6 +48,15 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.highlightsSetValue(data);
     },
+    pullQuotesSetValue: function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.pullQuotesSetValue(data);
+    },
+     citationsSetValue: function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.citationsSetValue(data);
+    },
+    
     pullQuotesSetValueAndClickmModuleMenu: function(data){
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.pullQuotesSetValue(data);
@@ -54,6 +66,35 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.citationsSetValue(data);
         contentTabObj.mModuleckEditorMenuClick(4);
+    },
+
+     relatedLinksSetValue: function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.relatedLinksSetValue(data);
+        
+    },
+
+     RelatedLinkHeaderSetValue: function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.RelatedLinkHeaderSetValue(data);
+        
+    },
+
+     QuestionTextSetValue: function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.QuestionTextSetValue(data);
+        
+    },
+    QuestiontypeSelectText:function()
+    {
+      contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.QuestiontypeSelectText("3");
+
+    },
+     ResultTextSetValue: function(data){
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.ResultTextSetValue(data);
+        
     },
     relatedLinksAndClickmModuleMenu: function(data){
         contentTabUI.switchToExternalWidgetFrame();
@@ -91,5 +132,6 @@ var contentTabObj = {
     {
         return contentTabUI.contentHeaderGet();
     },
+   
 }
 module.exports = contentTabObj;
