@@ -3,6 +3,8 @@ const Promise = require('bluebird');
 var test = require('./../../../common/functions/functions');
 var redirectActions = require("./../../../common/actions/redirecttool.actions")
 var testEnv = global.testEnv;
+if(testEnv === 'qa02')
+    testEnv = 'perf';
 var correctEnvUrl = "http://www." + testEnv + ".webmd.com/food-recipes/guide/health-cooking*";
 var correctEnvUrl2 = "http://www." + testEnv + ".webmd.com/food*";
 var invalidEnvUrlProd = "http://www.webmd.com/food-recipes/guide/health-cooking*";
@@ -16,19 +18,19 @@ describe('PPE-101678: Redirect Search Results', function() {
     });
 
     it('Go to Redirect Tool Page', function() {
-        redirectActions.GoToRedirectToolPage();
+        test.NavigateToRedirectToolPage();
     });
 
     it("User should not get a result if they put in URLs that don't match current environment", function() {
         //from search
         //this url is pointing to prod                
-        redirectActions.SearchFromUrl(invalidEnvUrlProd);
+        redirectActions.Search({'from':invalidEnvUrlProd, 'to': ''});
         browser.pause(4000);
         var result = (browser.isVisible('div.k-grid-norecords-template'));
         assert.equal(result, true);
         browser.refresh();
         //to        
-        redirectActions.SearchToUrl(invalidEnvUrlProd);
+        redirectActions.Search({'from':'', 'to':invalidEnvUrlProd});
         browser.pause(4000);
         var result = (browser.isVisible('div.k-grid-norecords-template'));
         assert.equal(result, true);
@@ -37,13 +39,13 @@ describe('PPE-101678: Redirect Search Results', function() {
     it("User should not get a result if they put in URLs that have .preview. or .staging. in them", function() {
         //from url search
         //this url has preview        
-        redirectActions.SearchFromUrl(invalidEnvUrlProdPreview);
+        redirectActions.Search({'from':invalidEnvUrlProdPreview, 'to':''});
         browser.pause(4000);
         var result = (browser.isVisible('div.k-grid-norecords-template'));
         assert.equal(result, true);
         browser.refresh();
         //this url has staging        
-        redirectActions.SearchFromUrl(invalidEnvUrlProdStaging);
+        redirectActions.Search({'from':invalidEnvUrlProdStaging, 'to':''});
         browser.pause(4000);
         var result = (browser.isVisible('div.k-grid-norecords-template'));
         assert.equal(result, true);
@@ -52,13 +54,13 @@ describe('PPE-101678: Redirect Search Results', function() {
         //this url is pointing to prod
         //this url has preview
         browser.refresh();
-        redirectActions.SearchToUrl(invalidEnvUrlProdPreview);
+        redirectActions.Search({'from':'', 'to':invalidEnvUrlProdPreview});
         browser.pause(4000);
         var result = (browser.isVisible('div.k-grid-norecords-template'));
         assert.equal(result, true);
         browser.refresh();
         //this url has staging                
-        redirectActions.SearchToUrl(invalidEnvUrlProdStaging);
+        redirectActions.Search({'from':'', 'to':invalidEnvUrlProdStaging});
         browser.pause(4000);
         var result = (browser.isVisible('div.k-grid-norecords-template'));
         assert.equal(result, true);
@@ -66,13 +68,13 @@ describe('PPE-101678: Redirect Search Results', function() {
 
     it("User should get results if the search criteria (including wildcards) match anything in the redirect database on any site", function() {
         //from
-        redirectActions.SearchFromUrl(correctEnvUrl);
+        redirectActions.Search({'from':correctEnvUrl, 'to':''});
         browser.pause(5000);
         var result = (browser.isVisible('tbody > tr:first-child > td:first-child > input.pb-checkbox'));
         assert.equal(result, true);
         browser.refresh();
         //to
-        redirectActions.SearchToUrl("http://www." + global.testEnv + ".webmd.com/food-r*");
+        redirectActions.Search({'from':'', 'to':"http://www." + testEnv + ".webmd.com/food-r*"});
         browser.pause(5000);
         var result = (browser.isVisible('tbody > tr:first-child > td:first-child > input.pb-checkbox'));
         assert.equal(result, true);
@@ -80,7 +82,7 @@ describe('PPE-101678: Redirect Search Results', function() {
 
     it('All matching redirects should be listed in the UI with columns for "From URL," "From ID," "Status" "To URL," "To ID" and "Status"', function() {
         browser.refresh();
-        redirectActions.SearchFromUrl(correctEnvUrl);
+        redirectActions.Search({'from':correctEnvUrl, 'to':''});
         browser.pause(5000);
         var result = (browser.isVisible('tbody > tr:first-child > td:first-child > input.pb-checkbox'));
         assert.equal(result, true);
@@ -97,7 +99,7 @@ describe('PPE-101678: Redirect Search Results', function() {
 
         browser.refresh();
         //to
-        redirectActions.SearchToUrl("http://www." + global.testEnv + ".webmd.com/food-r*");
+        redirectActions.Search({'from':'', 'to':"http://www." + testEnv + ".webmd.com/food-r*"});
         browser.pause(5000);
         var result = (browser.isVisible('tbody > tr:first-child > td:first-child > input.pb-checkbox'));
         assert.equal(result, true);
@@ -117,7 +119,7 @@ describe('PPE-101678: Redirect Search Results', function() {
     it('Each result should include a status for the to URL/ID combination and from URL/ID combination "', function() {
         //(Active/Expired) - this is so users can re-associate expired IDs if needed
         browser.refresh();
-        redirectActions.SearchFromUrl(correctEnvUrl);
+        redirectActions.Search({'from':correctEnvUrl, 'to':''});
         browser.pause(5000);
         var fromStatus = browser.getText("//tr[@role='row'][1]/td[@role='gridcell'][5]");
         var toStatus = browser.getText("//tr[@role='row'][1]/td[@role='gridcell'][8]");
@@ -130,7 +132,7 @@ describe('PPE-101678: Redirect Search Results', function() {
 
     it("Results should be paginated after 100 results '", function() {
         browser.refresh();
-        redirectActions.SearchToUrl(correctEnvUrl2);
+        redirectActions.Search({'from':'', 'to':correctEnvUrl2});
         browser.pause(5000);
         var elements = browser.getElementSize('//input[@type="checkbox"]')
         console.log(elements.length - 1);

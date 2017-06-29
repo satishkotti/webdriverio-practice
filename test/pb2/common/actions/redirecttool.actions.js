@@ -183,9 +183,20 @@ module.exports.ShowCriteria = function() {
         browser.element("=Search Criteria").click();
 }
 
+module.exports.SearchNoClick = function(searchParams) {
+    let from = searchParams.from;
+    let to = searchParams.to;
+    if (browser.element("//a[text()='Show Criteria']").isVisible())
+            browser.click("//a[text()='Show Criteria']");
+    if(from != null) { props.input.get('From URL').setValue(from) };
+    if(to != null) { props.input.get('To URL').setValue(to) };
+}
+
 module.exports.Search = function (searchParams) {
     let from = searchParams.from;
     let to = searchParams.to;
+    if (browser.element("//a[text()='Show Criteria']").isVisible())
+            browser.click("//a[text()='Show Criteria']");
     if(from != null) { props.input.get('From URL').setValue(from) };
     if(to != null) { props.input.get('To URL').setValue(to) };
     action.button.get('Search').click();
@@ -228,13 +239,31 @@ module.exports.VerifyFile = function (filepath) {
     });
 }
 
-module.exports.IsFile = function(filepath) 
-{
+module.exports.IsFile = function(filepath) {
     return fs.statSync(filepath).isFile();
+
 }
 
 module.exports.DeleteFile = function(filepath){
     fs.unlinkSync(filepath);
+}
+
+module.exports.createRedirect = function(fromUrl, toUrl) {
+    if (!(browser.isVisible("//form[@name='redirectForm']")))
+        browser.element("span.pb-buttongroup.floatright > button:nth-of-type(1)").click();
+    browser.waitForVisible("//form[@name='redirectForm']");
+    browser.setValue('[name="redirectForm"] > div.row > div:nth-of-type(1) > label.pb-label > input', fromUrl);
+    browser.setValue('[name="redirectForm"] > div.row > div:nth-of-type(2) > label.pb-label > input', toUrl);
+    browser.element('[name="redirectForm"] > button.floatright').click();
+    browser.waitForVisible("section.pb-notification-container.success");
+}
+
+module.exports.createRedirectNoClick = function(fromUrl, toUrl) {
+    if (!(browser.isVisible("//form[@name='redirectForm']")))
+        browser.element("span.pb-buttongroup.floatright > button:nth-of-type(1)").click();
+    browser.waitForVisible("//form[@name='redirectForm']");
+    browser.setValue('[name="redirectForm"] > div.row > div:nth-of-type(1) > label.pb-label > input', fromUrl);
+    browser.setValue('[name="redirectForm"] > div.row > div:nth-of-type(2) > label.pb-label > input', toUrl);
 }
 
 module.exports.ReadDirectory = function(filepath){
