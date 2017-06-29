@@ -85,7 +85,7 @@ describe('XML validations for updated sponsorbox Module', () => {
                 expect(testAssetProps.bodylinks[bodylinkCount - 1].bulletson.length).to.not.eql(0);
                 expect(updatedXml["body_bullet"].length).to.not.eql(0);
                 expect(testAssetProps.bodylinks[0].text.length).to.not.eql(0);
-                expect(updatedXml['body_link_body_link_text_' + bodylinkCount].length).to.not.eql(0);
+                expect(updatedXml['body_link_body_link_text_' + bodylinkCount].length).to.eql(0);
                 expect(updatedXml["body_link_link_chronic_id_" + bodylinkCount]).to.be.true;
 
                 //lower links
@@ -219,8 +219,8 @@ describe('XML validations for updated sponsorbox Module', () => {
                 expect(xml1['body_image_link_view']).to.equal(xml2['body_image_link_view']);
             });
             it('body_image_align of both xml should be same', () => {
-                expect(xml1['body_image_align'].length).to.eql(0);
-                expect(xml2['body_image_align'].length).to.eql(0);
+                expect(xml1['body_image_align'].length).to.not.eql(0);
+                expect(xml2['body_image_align'].length).to.not.eql(0);
             });
             it('body_image_source directive of both xml should be same', () => {
                 expect(xml1['body_image_source_directive']).to.equal(xml2['body_image_source_directive']);
@@ -269,8 +269,7 @@ describe('XML validations for updated sponsorbox Module', () => {
 
             it('body_linka all attributes of both xml should be same', () => {
                 while (bodylinkCount > 0) {
-                    expect(xml1['body_link_body_link_text_'+bodylinkCount].length).to.not.eql(0);
-                    expect(xml2['body_link_body_link_text_'+bodylinkCount].length).to.not.eql(0);
+                    expect(xml1['body_link_body_link_text_'+bodylinkCount]).to.equal(xml2['body_link_body_link_text_'+bodylinkCount]);
                     expect(xml1['body_link_body_link_link_view_'+bodylinkCount]).to.equal(xml2['body_link_body_link_link_view_'+bodylinkCount]);
                     expect(xml1['body_link_link_directive_'+bodylinkCount]).to.equal(xml2['body_link_link_directive_'+bodylinkCount]);
                     expect(xml1['body_link_link_object_type_'+bodylinkCount]).to.equal(xml2['body_link_link_object_type_'+bodylinkCount]);
