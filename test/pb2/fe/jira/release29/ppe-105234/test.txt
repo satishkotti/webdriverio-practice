@@ -1,0 +1,6 @@
+from to
+http://www.dev03.webmd.com/fitness-exercise/features/tired-of-exercise	http://www.dev03.webmd.com/men/stick-with-fitness-plan
+http://www.dev03.webmd.com/children/environmental-exposure-head2toe/asthma	http://www.dev03.webmd.com/children/asthma
+http://www.dev03.webmd.com/video/behind-scenes-clinical-trials	http://www.dev03.webmd.com/a-to-z-guides/tc/clinical-trials-related-information
+http://www.dev03.webmd.com/video/back-to-grind	http://www.dev03.webmd.com/balance/video/stress-back-to-school
+http://www.dev03.webmd.com/cancer/tc/post-traumatic-stress-disorder-pdq-supportive-care---health-professional-information-nci-current-clinical-trials	http://www.dev03.webmd.com/mental-health/ptsd-directory
