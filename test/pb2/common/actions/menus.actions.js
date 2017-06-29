@@ -23,6 +23,12 @@ module.exports.GoHome = () =>
     homepage.favoritesDB.waitForVisible();
 }
 
+module.exports.GoToRedirectTool = () =>
+{
+    homepage.hamburger.click();
+    browser.click("ul.pb-menu.tools > menu-item:nth-of-type(3) > li");
+}
+
 module.exports.SortColumn = (table, column, sortType) =>
 {
     homepage.tableColumnSort.get(table, column, sortType);
