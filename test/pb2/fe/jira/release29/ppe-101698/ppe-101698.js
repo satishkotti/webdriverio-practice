@@ -350,38 +350,6 @@ describe('PPE-101698: Ability to Edit Existing Redirects', function () {
 
     })
 
-    describe.skip('PPE-117163: Verify the single-hop functionality', function () {
-
-        it('Verify the value present in the DB column when hop scenario is replicated', function () {
-
-            //Replicate the Hop Scenario
-
-            //Select a redirect search result
-            SelectSearchResult(firstSearchResult);
-
-            //Populate the 'To URL' field with a valid url
-            let updatedToUrlVal = urls.hopscenario;
-            toUrlField = field.input3.get('To URL', 2);
-            toUrlField.setValue(updatedToUrlVal);
-
-            //Click Update button
-            updateRedirectButton.click();
-
-            //Wait for the status message
-            let status = WaitForStatus();
-
-            //Validation: User must be able to replicate the scenario successfully without any issues
-            if (!status.success) {
-                expect(VerifyThePresenceOfRedirectPair(fromUrlVal, updatedToUrlVal)).to.be.false;
-                okayButton.click();
-            }
-            else {
-                expect(VerifyThePresenceOfRedirectPair(fromUrlVal, updatedToUrlVal)).to.be.true;
-            }
-        })
-
-    })
-
     describe('PPE-117164: When search operation is performed, verify whether the updated redirect pair is visible / invisible in the redirect search results, depending on the status of the update operation', function () {
 
 
