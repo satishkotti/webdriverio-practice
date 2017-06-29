@@ -7,7 +7,7 @@ if (testEnv === 'qa02')
 
 var invalidformatfile = "test\\pb2\\fe\\jira\\release29\\ppe-105234\\test.txt";
 var invalidbulkfile = "test\\pb2\\fe\\jira\\release29\\ppe-105234\\"+ testEnv+"_bulkimport_invalid.xlsx";
-var bulk300file = "test\\pb2\\fe\\jira\\release29\\ppe-105234\\"+testEnv+"_bulk_300.xls"
+var bulk100file = "test\\pb2\\fe\\jira\\release29\\ppe-105234\\"+testEnv+"_bulk_100.xls"
 var bulkimportvalid = "test\\pb2\\fe\\jira\\release29\\ppe-105234\\"+testEnv+"_bulkimport.xlsx"
 
 describe('PPE-105234: Verify Bulk Import functionality', function() {
@@ -102,7 +102,7 @@ describe('PPE-105234: Verify Bulk Import functionality', function() {
         expect(redirectActions.GetRowFromResultGrid(1).toUrl).to.equal(toUrlList[0].toLowerCase());
     });
 
-    it.only("Verify redirect form updates automatically if few redirects are submitted succesfully and few have errors ", function() {
+    it("Verify redirect form updates automatically if few redirects are submitted succesfully and few have errors ", function() {
         test.NavigateToRedirectToolPage();
         redirectActions.BulkImport();
         redirectActions.UploadRedirects(bulkimportvalid);
@@ -134,19 +134,19 @@ describe('PPE-105234: Verify Bulk Import functionality', function() {
             expect(redirectActions.GetImportRow(1).from).to.equal(fromUrl);
         });
 
-        it("Verify bulk upload for 300 redirects", function() {
+        it("Verify bulk upload for 100 redirects", function() {
         var fromUrlList = [];
         var toUrlList=[];
         test.NavigateToRedirectToolPage();
         redirectActions.BulkImport();
-        redirectActions.UploadRedirects(bulk300file);
+        redirectActions.UploadRedirects(bulk100file);
         browser.element("//section/ul/li").waitForVisible();
         fromUrlList.push(redirectActions.GetImportRow(1).from);
         toUrlList.push(redirectActions.GetImportRow(1).to);
         fromUrlList.push(redirectActions.GetImportRow(2).from);
         toUrlList.push(redirectActions.GetImportRow(2).from);
         redirectActions.SubmitBulkRedirect();
-        browser.waitForVisible("section.pb-notification-container.success", 1000000);
+        browser.waitForVisible("section.pb-notification-container.success", 60000);
         for(i=0; i<2; i++){
             redirectActions.ShowCriteria();
             redirectActions.Search({'from':fromUrlList[i], 'to':null});
