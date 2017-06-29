@@ -6,7 +6,8 @@ describe('XML validations for updated sponsorbox Module', () => {
 
     var testAssetProps = smTestData.editverticalpromoModule;
     // var testAssetName = testAssetProps.moduleName;
-    var chronid = '091e9c5e803755d3';
+   // var chronid = '091e9c5e803755d3';
+    var chronid = '091e9c5e815c6344';
     var xml2 = {};
     var xml1 = {};
     var updatedXml = {};
@@ -39,6 +40,7 @@ describe('XML validations for updated sponsorbox Module', () => {
             before(() => {
                 test.LaunchApp();
                 test.SearchFor(null, chronid, 'Global Search', null);
+                browser.pause(3000);
                 test.SelectMoreActionsMenuItem('Asset History');
                 test.CheckoutAndEditTheAsset();
                 test.SaveOrPublishTheAsset('Publish to Live', 'Reinstate - testing to compare renditions of PB1 & PB2');
@@ -69,8 +71,8 @@ describe('XML validations for updated sponsorbox Module', () => {
                 expect(testAssetProps.iconicoverlays[0].iconicoverlaystitle).to.equal(updatedXml['iconic_overlay_title_1']);
                 expect(testAssetProps.iconicoverlays[0].iconicoverlayslinktext).to.equal(updatedXml['iconic_overlay_text_1']);
                 expect(testAssetProps.iconicoverlays[0].iconicoverlaysdescriptiontext).to.equal(xml2['iconic_overlay_description_text_1']);
-                expect(updatedXml['icon_chronic_id_1' + overlayCount]).to.be.true;
-                expect(updatedXml['link_chronic_id_1' + overlayCount]).to.be.true;
+                expect(updatedXml['icon_chronic_id_' + overlayCount]).to.be.true;
+                expect(updatedXml['link_chronic_id_' + overlayCount]).to.be.true;
 
                 expect(testAssetProps.iconicoverlays[1].iconicoverlaystitle).to.equal(updatedXml['iconic_overlay_title_' + overlayCount]);
                 expect(testAssetProps.iconicoverlays[1].iconicoverlayslinktext).to.equal(updatedXml['iconic_overlay_text_' + overlayCount]);

@@ -4,7 +4,7 @@ var smTestData = require('./../../../../data/sm.assets');
 describe('XML validations for updated HTML Module', () => {
 
     var testAssetProps = smTestData.HTMLModule;
-    var chronid = '091e9c5e8158dee5';
+    var chronid = '091e9c5e81561ea2';
     // var chronid = '091e9c5e809a2677';
     var xml2 = {};
     var xml1 = {};

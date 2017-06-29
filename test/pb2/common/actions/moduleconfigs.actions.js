@@ -82,12 +82,12 @@ module.exports.ConfigureNavigationModule = (assetProps) => {
         if (assetProps.groupheadersection[0].groups[0].grouplink != null) { props.lookup2('Group Header Section', 'Link', 1, assetProps.groupheadersection[0].groups[0].grouplink); }
         if (assetProps.groupheadersection[0].groups[0].groupitemlinks[0].grouplinkitemtext != null) { props.input2.get('Group Link Items', 'Text', 1).setValue(assetProps.groupheadersection[0].groups[0].groupitemlinks[0].grouplinkitemtext); }
         if (assetProps.groupheadersection[0].groups[0].groupitemlinks[0].grouplinkitemlink != null) { props.lookup2('Group Link Items', 'Link', 1, assetProps.groupheadersection[0].groups[0].groupitemlinks[0].grouplinkitemlink); }
-        props.element('(//span[contains(@class,"pb-accordian-toggle")])[2]').click();
+      /*  props.element('(//span[contains(@class,"pb-accordian-toggle")])[2]').click();
         if (assetProps.groupheadersection[0].groups[1].grouptext != null) { props.input2.get('Group Header Section', 'Text', 3).setValue(assetProps.groupheadersection[0].groups[1].grouptext); }
         if (assetProps.groupheadersection[0].groups[1].grouplink != null) { props.lookup2('Group Header Section', 'Link', 3, assetProps.groupheadersection[0].groups[1].grouplink); }
         if (assetProps.groupheadersection[0].groups[1].groupitemlinks[0].grouplinkitemtext != null) { props.input2.get('Group Link Items', 'Text', 2).setValue(assetProps.groupheadersection[0].groups[1].groupitemlinks[0].grouplinkitemtext); }
         if (assetProps.groupheadersection[0].groups[1].groupitemlinks[0].grouplinkitemlink != null) { props.lookup2('Group Link Items', 'Link', 2, assetProps.groupheadersection[0].groups[1].groupitemlinks[0].grouplinkitemlink); }
-    }
+   */ }
 
 
 }
@@ -100,10 +100,10 @@ module.exports.ConfigureEditorialModule = (assetProps) => {
         //for more than one link.
     }
     else {
-        if (assetProps.modulelinks[0].modulelinksimage != null) { props.lookup('Image', assetProps.modulelinksimage); }
-        if (assetProps.modulelinks[0].modulelinkslinktext != null) { props.input.get('Link Text').setValue(assetProps.modulelinkslinktext); }
+        if (assetProps.modulelinks[0].modulelinksimage != null) { props.lookup('Image', assetProps.modulelinks[0].modulelinksimage); }
+        if (assetProps.modulelinks[0].modulelinkslinktext != null) { props.input.get('Link Text').setValue(assetProps.modulelinks[0].modulelinkslinktext); }
         if (assetProps.modulelinks[0].modulelinkslink != null) { props.lookup2('Module Links', 'Link', 1, assetProps.modulelinks[0].modulelinkslink); }
-        if (assetProps.modulelinks[0].modulelinksactiontext != null) { props.input.get('Action Text').setValue(assetProps.modulelinksactiontext); }
+        if (assetProps.modulelinks[0].modulelinksactiontext != null) { props.input.get('Action Text').setValue(assetProps.modulelinks[0].modulelinksactiontext); }
 
     }
     if (assetProps.descriptions.length > 1) {
@@ -119,6 +119,7 @@ module.exports.ConfigureEditorialModule = (assetProps) => {
     else {
         if (assetProps.linkedimages[0].linkedimagesimage != null) { props.lookup2('Linked Images', 'Image', 1, assetProps.linkedimages[0].linkedimagesimage); }
         if (assetProps.linkedimages[0].linkedimageslink != null) { props.lookup2('Linked Images', 'Link', 1, assetProps.linkedimages[0].linkedimageslink); }
+        if (assetProps.linkedimages[0].linkedimagesoverridetext != null) { props.input.get('Override Text').setValue(assetProps.linkedimages[0].linkedimagesoverridetext); }
     }
 
     if (assetProps.importarticlecontent != null) { props.input.get('Import Article Content').setValue(assetProps.importarticlecontent); }
@@ -428,6 +429,7 @@ module.exports.ConfigureEditverticalpromomodule = (assetProps) => {
 module.exports.configureediteditorialmodule = (assetProps) => {
 
     if (assetProps.moduletitle != null) { props.input.get('Module Title').setValue(assetProps.moduletitle); }
+    $('(//fieldset[legend[string()="Module Title"]]//i[@class="fa fa-trash"])[1]').click();
     if (assetProps.link != null) { props.lookup('Link', assetProps.link); }
 
     //add module links
@@ -452,10 +454,11 @@ module.exports.configureediteditorialmodule = (assetProps) => {
 
         var linkCount = browser.elements('//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]').value.length;
         //for more than one link.     
-        if (browser.isExisting('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[0]') == true)
+      //  if (browser.isExisting('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[0]') == true)
+            
             $('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[1]').click();
         $('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Link")]//i[@class="fa fa-trash"])[1]').click();
-
+    
         if (assetProps.modulelinks[0].modulelinksimage != null) { props.lookup2('Module Links', 'Image', 1, assetProps.modulelinks[0].modulelinksimage); }
         if (assetProps.modulelinks[0].modulelinkslinktext != null) { props.input2.get('Module Links', 'Link Text', 1).setValue(assetProps.modulelinks[0].modulelinkslinktext); }
         if (assetProps.modulelinks[0].modulelinkslink != null) { props.lookup2('Module Links', 'Link', 1, assetProps.modulelinks[0].modulelinkslink); }
@@ -523,6 +526,8 @@ module.exports.configureediteditorialmodule = (assetProps) => {
     var imagesCount = browser.elements('//fieldset[legend[string()="Linked Images"]]//label[contains(.,"Link")]').value.length;
     if (assetProps.linkedimages.length > 1) {
         //for more than one link.
+       $('(//fieldset[legend[string()="Linked Images"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[1]').click();
+       $('(//fieldset[legend[string()="Linked Images"]]//label[contains(.,"Link")]//i[@class="fa fa-trash"])[1]').click();
         if (assetProps.linkedimages[0].linkedimagesimage != null) { props.lookup2('Linked Images', 'Image', 1, assetProps.linkedimages[0].linkedimagesimage); }
         if (assetProps.linkedimages[0].linkedimageslink != null) { props.lookup2('Linked Images', 'Link', 1, assetProps.linkedimages[0].linkedimageslink); }
         if (assetProps.linkedimages[0].OverrideText != null) { props.input2.get('Linked Images', 'Override Text', 1).setValue(assetProps.linkedimages[0].OverrideText); }

@@ -17,7 +17,8 @@ describe('XML validations for Multiple Video Launch Module', () => {
         var xml2 = {}; //pb2 xml
         var xml1 = {};
         var xml3 = {};
-        var chronid = '091e9c5e815cadf2';
+     //   var chronid = '091e9c5e815cadf2';
+        var chronid = '091e9c5e815e4c3f';
 
         before(() => {
 
