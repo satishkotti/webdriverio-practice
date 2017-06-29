@@ -925,3 +925,7 @@ module.exports.CancelCheckoutAssetUsingApi = function (ticket, payload) {
     }, 120000, 'Cancel Checking-out the asset is taking longer than expected! Please increase timeouts if necessary and try again!', 500);
     return response;
 }
+
+/*--------------------------------------------------------------------------------------------------- */
+/**************************************** D A T A B A S E S *****************************************/
+/*--------------------------------------------------------------------------------------------------- */

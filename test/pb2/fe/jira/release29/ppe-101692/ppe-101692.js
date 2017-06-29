@@ -22,7 +22,7 @@ describe('PPE-101692: Verify the ability to Export Redirect Search Results', () 
 
         //Perfrom search operation
         test.SearchForRedirects({
-            from: testdata.from,
+            from: testdata.from.replace('qa02', "perf"),
             to: null
         });
 
