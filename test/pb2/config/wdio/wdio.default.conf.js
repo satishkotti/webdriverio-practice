@@ -60,6 +60,8 @@ exports.config = merge(wdioConf.config, {
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
+        global.site = appConfig.site.webmd.desktop;
+        global.sslevel = appConfig.siteStructureLevel(global.site);
         global.browserDownloadPath = gulpFile.DownloadPath;
     }
 });
