@@ -4,8 +4,8 @@ var fs = require('fs'),
     path = require('path'),
     _ = require('underscore');
 
-var test = require('./../../../common/functions/functions');
-var redirectActions = require("./../../../common/actions/redirecttool.actions");
+var test = require('./../../../../common/functions/functions');
+var redirectActions = require("./../../../../common/actions/redirecttool.actions");
 var browserDownloadPath = global.browserDownloadPath;
 
 function getLine(filename, line_no, callback) {

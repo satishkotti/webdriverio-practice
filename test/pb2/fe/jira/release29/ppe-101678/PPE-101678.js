@@ -1,7 +1,7 @@
 var assert = require('assert');
 const Promise = require('bluebird');
-var test = require('./../../../common/functions/functions');
-var redirectActions = require("./../../../common/actions/redirecttool.actions")
+var test = require('./../../../../common/functions/functions');
+var redirectActions = require("./../../../../common/actions/redirecttool.actions")
 var testEnv = global.testEnv;
 if(testEnv === 'qa02')
     testEnv = 'perf';
