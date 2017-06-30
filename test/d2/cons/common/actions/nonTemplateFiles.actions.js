@@ -41,6 +41,14 @@ var nonTemplateFilesObj = {
         browser.pause(5000);
         nonTemplateFiles.checkin(assetName, filetoupload);
     },
+
+     CheckoutCheckinOperations: function (assetName, filetoupload) {
+        nonTemplateFiles.selectItemByName(assetName);
+        nonTemplateFiles.checkout(assetName);
+        browser.pause(5000);
+        nonTemplateFiles.checkin(assetName, filetoupload);
+    },
+
     validationProperties: function (assetName, linkTitle, copyright) {
         nonTemplateFiles.selectItemByName(assetName);
         propertiesTabUI.propertiesTabSelect();
@@ -73,5 +81,6 @@ var nonTemplateFilesObj = {
     Nontemplatecheckoutwihoutsave: function (assetName) {
         nonTemplateFiles.Nontemplatecheckoutwihoutsave();
     }
+    
 }
 module.exports = nonTemplateFilesObj;

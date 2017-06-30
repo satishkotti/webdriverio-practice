@@ -24,5 +24,9 @@ module.exports = {
 
     WipStagingversionValidation:  function(){
         versionTabUI.WipStagingversionValidation();
-    }
+    },
+
+    CancelchekoutcversionValidation: function(){
+        versionTabUI.CancelchekoutcversionValidation();
+    },
 }

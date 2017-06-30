@@ -92,11 +92,18 @@ module.exports = {
         propertiesTabUI.propertiesTabSelect();
         return {
             chronicleId: propertiesTabUI.chronicleIdGet(),
-            objectName: propertiesTabUI.objectTitleGet(),
-            Name:propertiesTabUI.objectNameGet()
+            objectName: propertiesTabUI.objectTitleGet()
+           
         };
-    },
 
+     
+    },
+   getChronicleName: function(){
+        propertiesTabUI.propertiesTabSelect();
+        return {
+        Name:propertiesTabUI.objectNameGet()
+        };
+   },
     setRequiredPropertiesforPublish: function(systempubdate,expdate){
         propertiesTabUI.propertiesTabSelect();
         propertiesTabUI.edit();

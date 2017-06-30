@@ -3,7 +3,6 @@ var login = require('./../../../common/actions/login.actions');
 var workspaceMenu = require('./../../../common/actions/workspace.menu.actions');
 var documentListTab = require('./../../../common/actions/documentListTab.actions');
 var contentTab = require('./../../../common/actions/contentTab.actions');
-var repositoryBrowserTab = require('./../../../common/actions/repositoryBrowserTab.actions');
 var ckEditorMenu = require('./../../../common/actions/ckEditor.actions');
 var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
 var nonTemplateFiles = require('./../../../common/actions/nonTemplateFiles.actions');
@@ -25,20 +24,21 @@ describe('Working with Static files -PPE-87572 and 114688 ', function () {
             password: functions.getQAPublicationUser().password
         });
         
-        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+        browser.pause(20000);
     });
    
-     it('Verify WIP label should be applied to latest version and object should be in WIP state to be able to promote it to Staging functionality on Can not update PB objects in D2', function () {
+
+     it('Verify WIP label should be applied to latest version and object should be in WIP state to be able to promote it to Staging functionality on Can not update PB objects in D2- PPE-114688', function () {
         workspaceMenu.IncludeExpiredFilterVersions();
         browser.pause(5000);
         findTab.findbyId("091e9c5e80c9ba67");
         browser.pause(5000);
-        cidName = propertiesTab.getChronicleIdAndTitle();
-        chronicleId = cidName.chronicleId;
+        cidName = propertiesTab.getChronicleName();
         objName=cidName.Name;
         browser.pause(5000);
-        nonTemplateFiles.fileOperations(objName, filetoupload+"wallpaper.css");
+        nonTemplateFiles.CheckoutCheckinOperations(objName, filetoupload+"wallpaper.css");
         browser.pause(5000);
+        documentListTab.selectAsset(objName);
         versionTab.WipversionValidation();
         browser.pause(5000);
         documentListTab.selectAsset(objName);
@@ -47,34 +47,32 @@ describe('Working with Static files -PPE-87572 and 114688 ', function () {
         browser.pause(5000);
         documentListTab.selectAsset(objName);
         documentListTab.powerPromoteAsset(objName);
-        browser.pause(2000);
-        documentListTab.expireAsset(objName);
+        browser.pause(5000);
+       
+    });
+
+    it.skip('Verify  Staging Labels Removed when Upon Checkout and Cancel Checkout-PPE-87572', function () {
+       
+        browser.pause(5000);
+        findTab.findbyId("091e9c5e807cfa8a");
+        browser.pause(5000);
+        cidName = propertiesTab.getChronicleName();
+        objName=cidName.Name;
+        browser.pause(5000);
+        nonTemplateFiles.NontemplateCheckout(objName);
+        browser.pause(5000);
+        documentListTab.selectAsset(objName);
+        versionTab.WipversionValidation();
+        browser.pause(5000);
+        documentListTab.selectAsset(objName);
+        nonTemplateFiles.NontemplateCancelCheckout(objName);
+        documentListTab.selectAsset(objName);
+        versionTab.CancelchekoutcversionValidation();
         browser.pause(5000);
     });
 
-     it('Verify  Staging Labels Removed when Upon Checkout and Cancel Checkout', function () {
-        workspaceMenu.IncludeExpiredFilterVersions();
-        browser.pause(5000);
-        findTab.findbyId("091e9c5e80c9ba67");
-        browser.pause(5000);
-        cidName = propertiesTab.getChronicleIdAndTitle();
-        chronicleId = cidName.chronicleId;
-        objName=cidName.Name;
-        browser.pause(5000);
-        nonTemplateFiles.fileOperations(objName, filetoupload+"wallpaper.css");
-        browser.pause(5000);
-        versionTab.WipversionValidation();
-        browser.pause(5000);
-        documentListTab.selectAsset(objName);
-        documentListTab.promoteAsset(objName);
-        versionTab.WipStagingversionValidation();
-        browser.pause(5000);
-        documentListTab.selectAsset(objName);
-        documentListTab.powerPromoteAsset(objName);
-        browser.pause(2000);
-        documentListTab.expireAsset(objName);
-        browser.pause(5000);
-    });
+
+    
     
 });
 

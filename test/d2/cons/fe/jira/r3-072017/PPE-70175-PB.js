@@ -3,7 +3,6 @@ var login = require('./../../../common/actions/login.actions');
 var workspaceMenu = require('./../../../common/actions/workspace.menu.actions');
 var documentListTab = require('./../../../common/actions/documentListTab.actions');
 var contentTab = require('./../../../common/actions/contentTab.actions');
-var repositoryBrowserTab = require('./../../../common/actions/repositoryBrowserTab.actions');
 var ckEditorMenu = require('./../../../common/actions/ckEditor.actions');
 var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
 var nonTemplateFiles = require('./../../../common/actions/nonTemplateFiles.actions');
@@ -25,18 +24,18 @@ describe('Working with Static files -PPE-70175 and ', function () {
             password: functions.getQAPublicationUser().password
         });
         
-        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+        browser.pause(30000);
     });
 
     it('Verify user is able to checkout,cancel checkout, checkin,Promote,Demote,Power Promote,Publish,Expire and Wip version checking functionality on Working with Static files -PPE-70175(wbmd_pb_asset)', function () {
         browser.pause(5000);
         findTab.findbyId("091e9c5e8064a135");
         browser.pause(5000);
-        cidName = propertiesTab.getChronicleIdAndTitle();
-        chronicleId = cidName.chronicleId;
+        cidName = propertiesTab.getChronicleName();
+        
         objName=cidName.Name;
         browser.pause(5000);
-        nonTemplateFiles.fileOperations(objName, filetoupload+"arrow-up.jpg");
+        nonTemplateFiles.CheckoutCheckinOperations(objName, filetoupload+"arrow-up.jpg");
         browser.pause(5000);
         documentListTab.selectAsset(objName);
         documentListTab.promoteAsset(objName);
@@ -52,11 +51,11 @@ describe('Working with Static files -PPE-70175 and ', function () {
         browser.pause(5000);
         findTab.findbyId("091e9c5e802d7217");
         browser.pause(5000);
-        cidName = propertiesTab.getChronicleIdAndTitle();
-        chronicleId = cidName.chronicleId;
+        cidName = propertiesTab.getChronicleName();
+        
         objName=cidName.Name;
         browser.pause(5000);
-        nonTemplateFiles.fileOperations(objName, filetoupload+"newsletter-smed-standard.css");
+        nonTemplateFiles.CheckoutCheckinOperations(objName, filetoupload+"newsletter-smed-standard.css");
         browser.pause(5000);
         documentListTab.selectAsset(objName);
         documentListTab.promoteAsset(objName);
@@ -73,19 +72,22 @@ describe('Working with Static files -PPE-70175 and ', function () {
 
      it('Verify user is able to checkout,cancel checkout, checkin,Promote,Demote,Power Promote,Publish,Expire and Wip version checking functionality on Working with Static files -PPE-70175(wbmd_pb_schemas)', function () {
         browser.pause(5000);
-        findTab.findbyId("091e9c5e80005128");
+        var chronicid="091e9c5e80005128";
+        findTab.findbyId(chronicid);
         browser.pause(5000);
-        cidName = propertiesTab.getChronicleIdAndTitle();
-        chronicleId = cidName.chronicleId;
+        cidName = propertiesTab.getChronicleName();
+        
         objName=cidName.Name;
         browser.pause(5000);
-        nonTemplateFiles.fileOperations(objName, filetoupload+"TopicArticle.xsd");
-        browser.pause(5000);
+        nonTemplateFiles.CheckoutCheckinOperations(objName, filetoupload+"TopicArticle.xsd");
         documentListTab.selectAsset(objName);
         documentListTab.promoteAsset(objName);
         browser.pause(2000);
+         findTab.findbyId(chronicid);
+        documentListTab.selectAsset(objName);
         documentListTab.demoteAsset(objName);
         browser.pause(2000);
+        findTab.findbyId(chronicid);
         documentListTab.powerPromoteAsset(objName);
         browser.pause(5000);
     });
@@ -96,11 +98,11 @@ describe('Working with Static files -PPE-70175 and ', function () {
         browser.pause(5000);
         findTab.findbyId("091e9c5e800b3a02");
         browser.pause(5000);
-        cidName = propertiesTab.getChronicleIdAndTitle();
-        chronicleId = cidName.chronicleId;
+        cidName = propertiesTab.getChronicleName();
+        
         objName=cidName.Name;
         browser.pause(5000);
-        nonTemplateFiles.fileOperations(objName, filetoupload+"VideoSearch.xsl");
+        nonTemplateFiles.CheckoutCheckinOperations(objName, filetoupload+"VideoSearch.xsl");
         browser.pause(5000);
         documentListTab.selectAsset(objName);
         documentListTab.promoteAsset(objName);
@@ -118,11 +120,11 @@ describe('Working with Static files -PPE-70175 and ', function () {
         browser.pause(5000);
         findTab.findbyId("091e9c5e81192cee");
         browser.pause(5000);
-        cidName = propertiesTab.getChronicleIdAndTitle();
-        chronicleId = cidName.chronicleId;
+        cidName = propertiesTab.getChronicleName();
+        
         objName=cidName.Name;
         browser.pause(5000);
-        nonTemplateFiles.fileOperations(objName, filetoupload+"index.html");
+        nonTemplateFiles.CheckoutCheckinOperations(objName, filetoupload+"index.html");
         browser.pause(5000);
         documentListTab.selectAsset(objName);
         documentListTab.promoteAsset(objName);
@@ -137,11 +139,11 @@ describe('Working with Static files -PPE-70175 and ', function () {
         browser.pause(5000);
         findTab.findbyId("091e9c5e800563e0");
         browser.pause(5000);
-        cidName = propertiesTab.getChronicleIdAndTitle();
-        chronicleId = cidName.chronicleId;
+        cidName = propertiesTab.getChronicleName();
+        
         objName=cidName.Name;
         browser.pause(5000);
-        nonTemplateFiles.fileOperations(objName, filetoupload+"wellness_BMI.js");
+        nonTemplateFiles.CheckoutCheckinOperations(objName, filetoupload+"wellness_BMI.js");
         browser.pause(5000);
         documentListTab.selectAsset(objName);
         documentListTab.promoteAsset(objName);
@@ -154,29 +156,7 @@ describe('Working with Static files -PPE-70175 and ', function () {
 
 
    
-     it('Verify WIP label should be applied to latest version and object should be in WIP state to be able to promote it to Staging functionality on Can not update PB objects in D2', function () {
-        browser.pause(5000);
-        findTab.findbyId("091e9c5e80c9ba67");
-        browser.pause(5000);
-        cidName = propertiesTab.getChronicleIdAndTitle();
-        chronicleId = cidName.chronicleId;
-        objName=cidName.Name;
-        browser.pause(5000);
-        nonTemplateFiles.fileOperations(objName, filetoupload+"wallpaper.css");
-        browser.pause(5000);
-        versionTab.WipversionValidation();
-        browser.pause(5000);
-        documentListTab.selectAsset(objName);
-        documentListTab.promoteAsset(objName);
-        versionTab.WipStagingversionValidation();
-        browser.pause(5000);
-        documentListTab.selectAsset(objName);
-        documentListTab.powerPromoteAsset(objName);
-        // browser.pause(2000);
-        // documentListTab.expireAsset(objName);
-         browser.pause(5000);
-    });
-    
+  
 });
 
 
