@@ -17,24 +17,28 @@ args.option('env', 'Environment targetted', "dev01")
     .option('conf', 'WebDriver IO Config file to run', "")
     .option('app', 'App: rt, d2cons, d2prof, pb2', '')
     .option('maxInstances', 'Maximum number of instances a browser can have', 1)
-    .option('logLevel', 'Test runner logging level default error', 'error');
+    .option('logLevel', 'Test runner logging level default error', 'error')
+    .option('selectTests', 'Tests to execute seperated by comma', '');
 
 var flags = args.parse(process.argv);
 
 var currentApp = flags.app;
 var conf = flags.conf;
 var testEnv = flags.env;
+var selectTest = flags.selectTests;
 var error = chalk.bold.red;
-var defaultWaitTimeout = 120000;
+var defaultWaitTimeout = 300000;
 var defaultMochaTestTimeout = 500000;
-var gridHost = '172.28.38.219';
+
+//cms grid
+var gridHost = '172.28.36.18';
 var gridPort = 4444;
 
 var tests = [];
 var currentBranch;
 var confPath;
 var appFolder;
-switch (currentApp) {
+switch (currentApp.toLowerCase()) {
     case 'rt':
         appFolder = 'rt';
         break;
@@ -63,8 +67,7 @@ gulp.task('branch', function (cb) {
         console.log('app: ' + currentApp);
         console.log('branch: ' + branch);
 
-        if(testEnv.toLowerCase().indexOf('prod') >= 0)
-        {
+        if (testEnv.toLowerCase().indexOf('prod') >= 0) {
             console.log('PROD RUN NOT SUPPORTED FOR DEFAULT TASK');
             cb();
             return;
@@ -95,9 +98,13 @@ gulp.task('branch', function (cb) {
             var branchArr = currentBranch.split('-');
             var ppeIndex = branchArr.indexOf('ppe');
             if (ppeIndex >= 0) {
-				var testfile = branchArr[ppeIndex + 1];
-                specBranch = `test/${appFolder}/**/*${testfile}*.js`;
-                console.log('ppe specs: ' + specBranch);
+                var testfile = branchArr[ppeIndex + 1];
+                specFiles = `test/${appFolder}/**/*${testfile}*.js`;
+                specFileFolder = `test/${appFolder}/**/*${testfile}*/*.js`;
+                tests.push(specFiles);
+                tests.push(specFileFolder);
+                console.log('feature ppe file specs: ' + specFiles);
+                console.log('feature ppe folder specs: ' + specFileFolder);
             }
         }
 
@@ -138,12 +145,42 @@ var deleteFolderRecursive = function (path) {
     }
 };
 
+gulp.task('selected', function (done) {
+    
+    console.log('selectTest: '+ selectTest);
+    if (selectTest.length > 0) {
+
+        if(selectTest.indexOf("," == 0))
+        {
+            selectTest += ",endtest";
+        }
+
+            _.each(selectTest.split(","), function (testId) {
+                var specFiles = `test/${appFolder}/**/*${testId.trim()}*.js`;
+                var specFileFolder = `test/${appFolder}/**/*${testId.trim()}*/*.js`;
+                tests.push(specFiles);
+                tests.push(specFileFolder);
+                console.log('selected file specs: ' + specFiles);
+                console.log('selected folder specs: ' + specFileFolder);
+            });
+    }
+    
+    conf.config.host = gridHost;
+    conf.config.port = gridPort;
+    gulpSequence('webdriver')(function (err) {
+        if (err){ console.log('Failed: ' + err); }
+    });
+    done();
+});
+
 gulp.task('prod', function (done) {
     tests.push(`test/${appFolder}/**/prod/**/*.js`);
     conf.config.host = gridHost;
     conf.config.port = gridPort;
     gulpSequence('webdriver')(function (err) {
-        if (err){ console.log('Failed: ' + err); }
+        if (err) {
+            console.log('Failed: ' + err);
+        }
     });
     done();
 });
@@ -153,7 +190,9 @@ gulp.task('smoke', function (done) {
     conf.config.host = gridHost;
     conf.config.port = gridPort;
     gulpSequence('webdriver')(function (err) {
-        if (err){ console.log('Failed: ' + err); }
+        if (err) {
+            console.log('Failed: ' + err);
+        }
     });
     done();
 });
@@ -166,7 +205,9 @@ gulp.task('all', function (done) {
     conf.config.host = gridHost;
     conf.config.port = gridPort;
     gulpSequence('webdriver')(function (err) {
-        if (err){ console.log('Failed: ' + err); }
+        if (err) {
+            console.log('Failed: ' + err);
+        }
     });
     done();
 });
@@ -226,7 +267,9 @@ gulp.task('default', function (done) {
     conf.config.host = gridHost;
     conf.config.port = gridPort;
     gulpSequence('branch', 'webdriver')(function (err) {
-        if (err){ console.log('Failed: ' + err); }
+        if (err) {
+            console.log('Failed: ' + err);
+        }
     });
     done();
 });
