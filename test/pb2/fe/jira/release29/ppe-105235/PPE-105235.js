@@ -1,5 +1,5 @@
-var test = require('./../../../common/functions/functions');
-var redirectActions = require("./../../../common/actions/redirecttool.actions")
+var test = require('./../../../../common/functions/functions');
+var redirectActions = require("./../../../../common/actions/redirecttool.actions")
 var randomstring = require("randomstring");
 var info = null;
 var testEnv = global.testEnv;

@@ -19,7 +19,7 @@ var search = Object.create(page, {
             }
         }
     },
-    waitForAssetScreen: { value: () => { browser.waitForVisible('div.tab-pane.active'); browser.waitForVisible('a.pb-chron'); browser.waitForVisible('.pb-node-breadcrumb'); } },
+    waitForAssetScreen: { value: () => { browser.waitForVisible('div.tab-pane.active'); browser.waitForVisible('a.pb-chron'); browser.pause(2000); } },
     resultsGrid: {
         value: (grid) => {
             let element;
