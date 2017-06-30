@@ -11,7 +11,7 @@ var versionTab = require('./../../../common/actions/versionTab.action');
 var randomstring = require("randomstring");
 
 
-describe('Working with Static files -PPE-87572 and 114688 ', function () {
+describe('Working with Static files -PPE- 114688 ', function () {
    
     var filetoupload = './test/d2/cons/testfiles/PPE-70175-Static-files/';
     var assetTitle;
@@ -51,25 +51,6 @@ describe('Working with Static files -PPE-87572 and 114688 ', function () {
        
     });
 
-    it.skip('Verify  Staging Labels Removed when Upon Checkout and Cancel Checkout-PPE-87572', function () {
-       
-        browser.pause(5000);
-        findTab.findbyId("091e9c5e807cfa8a");
-        browser.pause(5000);
-        cidName = propertiesTab.getChronicleName();
-        objName=cidName.Name;
-        browser.pause(5000);
-        nonTemplateFiles.NontemplateCheckout(objName);
-        browser.pause(5000);
-        documentListTab.selectAsset(objName);
-        versionTab.WipversionValidation();
-        browser.pause(5000);
-        documentListTab.selectAsset(objName);
-        nonTemplateFiles.NontemplateCancelCheckout(objName);
-        documentListTab.selectAsset(objName);
-        versionTab.CancelchekoutcversionValidation();
-        browser.pause(5000);
-    });
 
 
     
