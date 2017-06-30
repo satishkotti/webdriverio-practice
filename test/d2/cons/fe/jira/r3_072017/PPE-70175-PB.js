@@ -23,8 +23,9 @@ describe('Working with Static files -PPE-70175 and ', function () {
             username: functions.getQAPublicationUser().username,
             password: functions.getQAPublicationUser().password
         });
-        
-        browser.pause(30000);
+  
+        browser.pause(20000);
+
     });
 
     it('Verify user is able to checkout,cancel checkout, checkin,Promote,Demote,Power Promote,Publish,Expire and Wip version checking functionality on Working with Static files -PPE-70175(wbmd_pb_asset)', function () {

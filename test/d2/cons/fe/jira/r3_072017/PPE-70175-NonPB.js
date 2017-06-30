@@ -23,8 +23,9 @@ describe('Working with Static files -PPE-70175', function () {
             username: functions.getQAPublicationUser().username,
             password: functions.getQAPublicationUser().password
         });
-        
-         browser.pause(30000);
+  
+         browser.pause(20000);
+
 
     });
 
