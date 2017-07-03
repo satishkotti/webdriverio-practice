@@ -1,6 +1,7 @@
 var nonTemplateFiles = require('./../ui/nonTemplateFiles');
 var propertiesTabUI = require('./../ui/propertiesTab');
 var versionTabUI = require('./../ui/versionTab');
+var workspaceMenuUI = require('./../ui/workspace.menu.js');
 
 var nonTemplateFilesObj = {
 
@@ -32,10 +33,22 @@ var nonTemplateFilesObj = {
     fileOperations: function (assetName, filetoupload) {
         nonTemplateFiles.selectItemByName(assetName);
         nonTemplateFiles.checkout(assetName);
+        browser.pause(5000);       
         nonTemplateFiles.cancelCheckout(assetName);
+        browser.pause(5000);
+        nonTemplateFiles.selectItemByName(assetName);
         nonTemplateFiles.checkout(assetName);
+        browser.pause(5000);
         nonTemplateFiles.checkin(assetName, filetoupload);
     },
+
+     CheckoutCheckinOperations: function (assetName, filetoupload) {
+        nonTemplateFiles.selectItemByName(assetName);
+        nonTemplateFiles.checkout(assetName);
+        browser.pause(5000);
+        nonTemplateFiles.checkin(assetName, filetoupload);
+    },
+
     validationProperties: function (assetName, linkTitle, copyright) {
         nonTemplateFiles.selectItemByName(assetName);
         propertiesTabUI.propertiesTabSelect();
@@ -54,6 +67,20 @@ var nonTemplateFilesObj = {
         nonTemplateFiles.article_AudChartab_AttributesNames();
         nonTemplateFiles.article_SponsorMLRtab_AttributesNames();
 
+    },
+
+    NontemplateCheckout: function (assetName) {
+        nonTemplateFiles.selectItemByName(assetName);
+        nonTemplateFiles.checkout(assetName);
+    },
+
+    NontemplateCancelCheckout: function (assetName) {
+        nonTemplateFiles.selectItemByName(assetName);
+        nonTemplateFiles.cancelCheckout(assetName);
+    },
+    Nontemplatecheckoutwihoutsave: function (assetName) {
+        nonTemplateFiles.Nontemplatecheckoutwihoutsave();
     }
+    
 }
 module.exports = nonTemplateFilesObj;

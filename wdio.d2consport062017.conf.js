@@ -75,7 +75,7 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitForXXX commands.
-    waitforTimeout: 500000,
+    waitforTimeout: 50000,
 
 
     //
@@ -157,7 +157,7 @@ exports.config = {
     // variables like `browser`. It is the perfect place to define custom commands.
     before: function () {
 
-        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : "qa01";
+        var testEnv = (process.env.npm_config_testEnv) ? process.env.npm_config_testEnv : "dev04";
 
         var chai = require('chai');
         chai.config.includeStack = true;

@@ -16,5 +16,17 @@ module.exports = {
     },
     expireversionValidation: function(){
         versionTabUI.expireversionValidation();
-    }
+    },
+
+    WipversionValidation: function(){
+        versionTabUI.WipversionValidation();
+    },
+
+    WipStagingversionValidation:  function(){
+        versionTabUI.WipStagingversionValidation();
+    },
+
+    CancelchekoutcversionValidation: function(){
+        versionTabUI.CancelchekoutcversionValidation();
+    },
 }
