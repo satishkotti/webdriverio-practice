@@ -18,6 +18,12 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.cancelCheckoutConfirmYes();
     },
+
+     AssetcheckOut: function(){
+        contentTabUI.selectContenTab();
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.checkOut();
+    },
     edit: function(){},
     spell: function(){},
     find: function(){},

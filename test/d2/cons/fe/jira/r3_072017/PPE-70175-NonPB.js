@@ -154,7 +154,7 @@ describe('Working with Static files -PPE-70175', function () {
         browser.pause(5000);
         nonTemplateFiles.CheckoutCheckinOperations(objName, filetoupload+"nbhc_main.swf");
         browser.pause(5000);
-       documentListTab.selectAsset(objName);
+        documentListTab.selectAsset(objName);
         documentListTab.promoteAsset(objName);
         browser.pause(2000);
         documentListTab.demoteAsset(objName);
