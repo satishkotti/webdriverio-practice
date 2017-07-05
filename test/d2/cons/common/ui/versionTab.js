@@ -64,7 +64,7 @@ var versionTabUIObj = {
         browser.waitForVisible("//span[string()='Versions']", maxWaitTimeInMs);
         browser.click("//span[string()='Versions']");
         browser.pause(2000);
-        var version = browser.isExisting("//span[contains(.,'Live, Approved, Active, CURRENT, WIP')]");
+        var version = browser.isExisting("//span[contains(.,'Live, Approved, Active, Staging, CURRENT, WIP')]");
         expect(version).to.be.true;
         browser.pause(1000);
     },
