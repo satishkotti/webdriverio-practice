@@ -60,13 +60,24 @@ var versionTabUIObj = {
         browser.pause(1000);
     },
 
-    CancelchekoutcversionValidation: function () {
+    PowerpromoteversionValidation: function () {
+        browser.waitForVisible("//span[string()='Versions']", maxWaitTimeInMs);
+        browser.click("//span[string()='Versions']");
+        browser.pause(2000);
+        var version = browser.isExisting("//span[contains(.,'CURRENT, WIP, Staging, Live, Approved, Active')]");
+        expect(version).to.be.true;
+        browser.pause(1000);
+        
+    },
+
+      CancelchekoutcversionValidation: function () {
         browser.waitForVisible("//span[string()='Versions']", maxWaitTimeInMs);
         browser.click("//span[string()='Versions']");
         browser.pause(2000);
         var version = browser.isExisting("//span[contains(.,'Live, Approved, Active, Staging, CURRENT, WIP')]");
         expect(version).to.be.true;
         browser.pause(1000);
+        
     },
 
 }

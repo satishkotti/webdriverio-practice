@@ -26,7 +26,13 @@ module.exports = {
         versionTabUI.WipStagingversionValidation();
     },
 
+    PowerpromoteversionValidation: function(){
+        versionTabUI.PowerpromoteversionValidation();
+    },
+    
+    
     CancelchekoutcversionValidation: function(){
         versionTabUI.CancelchekoutcversionValidation();
     },
+    
 }
