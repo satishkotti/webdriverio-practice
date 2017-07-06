@@ -2,12 +2,9 @@ var webdriverio = require('webdriverio');
 var should = require('should');
 var path = require('path');
 var rootPath = path.normalize(__dirname);
-
 module.exports = {
-
     // Verifies the element is exist on the page or not
-
-    Verify_ElementIsVisible: function(elements) {
+    Verify_ElementIsVisible: function (elements) {
         var count = elements.elements.length;
         for (i = 0; i < count; i++) {
             browser.scroll(0, 0);
@@ -23,64 +20,73 @@ module.exports = {
             }
         }
     },
-
     //validates the links  on hamburger 
-    burger_linksValidation: function(url, burger, link, linktext, newUrl) {
-
+    burger_linksValidation: function (url, burger, link, linktext, newUrl) {
         browser.url(url)
         browser.pause(4000)
         browser.scroll(burger)
         browser.click(burger)
+        browser.pause(4000)
         var text = browser.getText(link)
         text.should.equal(linktext)
-
         browser.click(link)
         var url1 = browser.getUrl()
+        console.log(url1);
         url1.should.equal(newUrl)
+        browser.back();
+        browser.pause(2000);
     },
-
     // validates the social share icons  functionlaity
-    Socialshare_validations: function(Icons, scroll_value) {
-
+    Socialshare_validations: function (Icons, scroll_value) {
         browser.scroll(scroll_value)
         browser.pause(4000)
-            //It will click on social share icons
-        browser.waitForVisible(Icons)
+        //It will click on social share icons
+        //browser.waitForVisible(Icons)
         browser.click(Icons)
-        browser.pause(4000)
-
+        browser.pause(6000)
         var handle = browser.windowHandles()
         browser.window(handle.value[1])
-
         var Page_title_Text = browser.getTitle()
         browser.close(handle[1])
-
         var actions = {
             Page_title_Text: Page_title_Text,
 
         }
         return actions
     },
-
-
     //validates the paddle up next/prev  functionality
-    Paddle_Navigation: function(Icons, paddle_page_title, paddle) {
-
-        browser.scroll(Icons)
-        browser.waitForVisible(Icons)
+    Paddle_Navigation: function (Icons, paddle, paddle_page_title) {
+        browser.scroll(0, 2800)
+        browser.pause(4000)
+        browser.moveToObject('.//*[@id="ContentPane66"]/div [@class="wbmd-paddles mlr"]');
+        //browser.waitForVisible(Icons)
         var paddle_page_title_text = browser.getText(paddle_page_title)
         browser.click(paddle)
         browser.pause(4000)
         var Page_title_Text = browser.getTitle()
         browser.back()
         browser.pause(3000)
-
         var actions = {
             Page_title_Text: Page_title_Text,
             paddle_page_title_text: paddle_page_title_text,
-
-
         }
         return actions
+    },
+    Click_Elements: function (Icons, scroll_value) {
+        //browser.pause(2000);
+        browser.scroll(scroll_value);
+        // This will click on icons
+        browser.waitForVisible(Icons);
+        //browser.moveToObject(Icons).click;
+        browser.click(Icons);
+        browser.pause(4000);
+        var handle = browser.windowHandles();
+        browser.window(handle.value[1]);
+        var Page_title_Text = browser.getTitle();
+        browser.close(handle[1]);
+        var actions = {
+            Page_title_Text: Page_title_Text,
+        }
+        return actions;
     },
 }
