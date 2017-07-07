@@ -34,5 +34,9 @@ module.exports = {
     CancelchekoutcversionValidation: function(){
         versionTabUI.CancelchekoutcversionValidation();
     },
+
+    CancelchekoutStaginglableValidation: function(){
+        versionTabUI.StaginglableValidation();
+    },
     
 }
