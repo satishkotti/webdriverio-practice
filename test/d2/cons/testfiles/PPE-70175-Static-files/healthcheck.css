@@ -1,0 +1,42 @@
+body {
+margin : 10px;
+color : #666666;
+background: #fff;
+font-family: Chevin;
+font-size: 24pt;
+}
+
+p {
+color: #666666;
+font-family: Chevin;
+font-size: 24pt;
+}
+
+a:link {
+  color: #006699;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #006699;
+  text-decoration: underline;
+}
+
+a:visited {
+ color: #006699;
+ text-decoration: none;
+}
+
+.header {
+  font-size: 28pt;
+  color: #333333;
+font-family: Chevin;
+}
+
+.subheader {
+  font-size: 20pt;
+  color: #01C99A;
+font-family: Chevin;
+  font-weight: bold;
+}
+

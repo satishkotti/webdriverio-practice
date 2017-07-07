@@ -33,7 +33,7 @@ describe('Working with Static files -PPE-70175', function () {
 
       it('Verify user is able to checkout,cancel checkout, checkin,Promote,Demote,Power Promote,Publish,Expire and Wip version checking functionality on Working with Static files -PPE-70175(wbmd_cons_article)', function () {
         findTab.findbyId("091e9c5e8001978d");
-        browser.pause(5000);
+        browser.pause(10000);
         cidName = propertiesTab.getChronicleName();
         objName=cidName.Name;
         browser.pause(5000);
