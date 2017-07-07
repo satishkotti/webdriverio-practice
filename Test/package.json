@@ -1,43 +1,35 @@
 {
-    "name": "webpage_test",
-    "version": "0.0.1",
-    "description": "Webpage Tests",
-    "main": "index.js",
-    "scripts": {
-        "staging": "node_modules\\.bin\\wdio wdio.conf.js --env=staging",
-        "mstaging": "node_modules\\.bin\\wdio wdio.conf-mobile.js --env=staging",
-        "qa00": "node_modules\\.bin\\wdio wdio.conf.js --env=qa00",
-        "mqa00": "node_modules\\.bin\\wdio wdio.conf-mobile.js --env=qa00",
-        "preview": "node_modules\\.bin\\wdio wdio.conf.js --env=preview",
-        "mpreview": "node_modules\\.bin\\wdio wdio.conf-mobile.js --env=preview",
-        "clean": "rimraf ./allure-results",
-        "pretest": "npm run clean",
-        "report": "allure generate allure-results -o allure-report && allure report open -o allure-report",
-        "runTest": "gulp runTest"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "appium": "^1.6.4",
-        "chai": "^3.5.0",
-        "gulp": "^3.9.1",
-        "gulp-webdriver": "2.0.3",
-        "lodash": "^4.17.2",
-        "mocha": "^3.2.0",
-        "q": "^1.4.1",
-        "selenium-standalone": "^6.0.1",
-        "should": "^11.2.1",
-        "wdio-mocha-framework": "^0.4.0",
-        "webdriverio": "^4.4.0",
-        "yargs": "^7.0.2"
-    },
-    "directories": {
-        "test": "mocha --debug-brk"
-    },
-    "devDependencies": {
-        "allure-commandline": "^1.4.23",
-        "wdio-allure-reporter": "^0.1.2",
-        "wdio-spec-reporter": "0.0.3"
-    }
+  "name": "wdio-browser-proxys",
+  "version": "1.0.3",
+  "description": "this is a module that will add a proxy to webdriverio tests to capture network traffic",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "PPE108660": "mocha ./test/unit-test/Jira/omnitute.test.js --env=PPE108660",
+    "PPE113334": "mocha ./test/Jira/Desktop/Sprint42/PPE-113334/PPE-113334.metrics.test.js --env=PPE113334"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@stash.portal.webmd.com:7999/conapps/wdio-browser-proxy.git"
+  },
+  "keywords": [
+    "webdriverio"
+  ],
+  "author": "Zhi Deng",
+  "license": "ISC",
+  "dependencies": {
+    "browsermob-proxy": "^1.0.9",
+    "lodash": "^4.17.4",
+    "q": "^1.4.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "proxyquire": "^1.7.11",
+    "sinon": "^1.17.7",
+    "webdriverio": "^4.6.2"
+  }
 }
