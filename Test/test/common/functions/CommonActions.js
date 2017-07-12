@@ -14,6 +14,7 @@ var self = module.exports = {
     stdCallVerification: function (Calltype, Actual, Expected) {
 
         var count = 0;
+        var currentcal;
         var pev2 = Expected.pev2;
         for (var i = 0; i < Actual.length; i++) {
                  
@@ -22,8 +23,11 @@ var self = module.exports = {
             if (Calltype == "Pageviewcall" && Propvalues.c66) {
                     // console.log("i"+i);
                 if (count == 0) {
+                    currentcal=i
                     self.verifyOmnitureParams(Propvalues, Expected);
                 }
+               // count++;
+                if((currentcal++)==i)
                 count++;
 
             }
@@ -32,6 +36,8 @@ var self = module.exports = {
                 if (count == 0) {
                     self.verifyOmnitureParams(Propvalues, Expected);
                 }
+                //count++;
+               // if((currentcal++)==i)
                 count++;
             }
 
@@ -55,6 +61,7 @@ var self = module.exports = {
             for (var pvkey in Propvalues) {
                 if (pvkey == expeckey) {
                     Expected[expeckey].should.equal(Propvalues[pvkey]);
+                    console.log(pvkey +":" +Expected[expeckey]);
                         exist = 1;
 
                 }

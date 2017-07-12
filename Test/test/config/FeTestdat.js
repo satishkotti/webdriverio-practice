@@ -15,48 +15,48 @@ module.exports = {
         module1:
         [{ "locator": "//div[@class='icm_body']//li[2]/a" },
         {
-           "pev2":	"icm-harmony-test_2",
+            "pev2": "icm-harmony-test_2",
             "mpage": "preview.webmd.com/zztest/fed2/standard/",
             "mmodule": "icm-harmony-test",
             "mlink": "2"
-            
+
         }
 
         ],
-    module2:
-    [{ "locator": "//div[@class='icm_lower_links']//li[1]/a" },
-    {
-        "pev2":	"icm-harmony-test_med",
-        "mpage": "preview.webmd.com/zztest/fed2/standard/",
-        "mmodule": "icm-harmony-test",
-        "mlink": "med"
-    }
+        module2:
+        [{ "locator": "//div[@class='icm_lower_links']//li[1]/a" },
+        {
+            "pev2": "icm-harmony-test_med",
+            "mpage": "preview.webmd.com/zztest/fed2/standard/",
+            "mmodule": "icm-harmony-test",
+            "mlink": "med"
+        }
 
-    ],
-     module3:
-    [{ "locator": "//div[@class='icm_lower_links']//li[2]/a" },
-    {
-        "pev2":	"icm-harmony-test_pi",
-        "mpage": "preview.webmd.com/zztest/fed2/standard/",
-        "mmodule": "icm-harmony-test",
-        "mlink": "pi"
-    }
+        ],
+        module3:
+        [{ "locator": "//div[@class='icm_lower_links']//li[2]/a" },
+        {
+            "pev2": "icm-harmony-test_pi",
+            "mpage": "preview.webmd.com/zztest/fed2/standard/",
+            "mmodule": "icm-harmony-test",
+            "mlink": "pi"
+        }
 
-    ],
-     module4:
-    [{ "locator": "//div[@class='icm_lower_links']//li[3]/a" },
-    {
-        "pev2":	"icm-harmony-test_ll-3",
-        "mpage": "preview.webmd.com/zztest/fed2/standard/",
-        "mmodule": "icm-harmony-test",
-        "mlink": "ll-3"
-    }
+        ],
+        module4:
+        [{ "locator": "//div[@class='icm_lower_links']//li[3]/a" },
+        {
+            "pev2": "icm-harmony-test_ll-3",
+            "mpage": "preview.webmd.com/zztest/fed2/standard/",
+            "mmodule": "icm-harmony-test",
+            "mlink": "ll-3"
+        }
 
-    ]
-},
+        ]
+    },
 
 
-PPE113334: {
+    PPE113334: {
         "URL": "http://www.preview.qa00.webmd.com/zztest/fed2/standard/household-mold-test",
         Pageview:
         {
@@ -73,6 +73,37 @@ PPE113334: {
             "c66": "D=aid"
 
         },
+        module_facebook:
+        [{ "locator": '//div [@class="ia-social-share-1"]//div [@class="plugin plugin-socialshare"]//a [@class="plugin-socialshare-link plugin-socialshare-facebook"]' },
+        {
+            "pev2": "ia-img-soc_face",
+            "mpage": "preview.qa00.webmd.com/zztest/fed2/standard/household-mold-test",
+            "mmodule": "ia-img-soc",
+            "mlink": "face"
+        }
+
+
+        ],
+        module_twitter:
+        [{ "locator": '//div [@class="ia-social-share-1"]//div [@class="plugin plugin-socialshare"]//a [@class="plugin-socialshare-link plugin-socialshare-twitter"]' },
+        {
+            "pev2": "ia-img-soc_twit",
+            "mpage": "preview.qa00.webmd.com/zztest/fed2/standard/household-mold-test",
+            "mmodule": "ia-img-soc",
+            "mlink": "twit"
+        }
+
+        ],
+        module_pintrest:
+        [{ "locator": '//div [@class="ia-social-share-1"]//div [@class="plugin plugin-socialshare"]//a [@class="plugin-socialshare-link plugin-socialshare-pinterest"]' },
+        {
+            "pev2": "ia-img-soc_pin",
+            "mpage": "preview.qa00.webmd.com/zztest/fed2/standard/household-mold-test",
+            "mmodule": "ia-img-soc",
+            "mlink": "pin"
+        }
+
+        ]
 
 
 
