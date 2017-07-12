@@ -14,6 +14,7 @@ const usersDetails = require('./../../config/users');
 const ats = require('./../actions/ats.actions');
 const user = usersDetails.users;
 const parseXml = require('./../../../common/xml/parseXml');
+const redirect = require('./../../../common/component/redirectapi/redirectapi');
 
 
 /*----------------------------------------------------------------------------------------------------- */
@@ -505,6 +506,77 @@ module.exports.DeleteAllFilesIn = (filepath, contains) => {
             }
         }
     }
+}
+
+module.exports.GetResult = (param) => {
+
+
+    apiUrl = global.testapiurl + param;
+
+    var response;
+    browser.call(() => {
+        return Promise.resolve(redirect.GetResultsApi(apiUrl, null)
+            .then(function (result) {
+                response = result;
+                console.log(response.body);
+            }).catch(err => {
+                console.log(err);
+            }));
+    });
+    return response;
+
+}
+
+
+module.exports.PostResult = (appendurl, apiparameters) => {
+
+    apiUrl = global.testapiurl + appendurl;
+    var response;
+    browser.call(() => {
+        return Promise.resolve(redirect.PostResultsApi(apiUrl, null, apiparameters)
+            .then(function (result) {
+                response = result;
+                console.log(response.body);
+            }).catch(err => {
+                console.log(err);
+            }));
+    });
+    return response;
+
+}
+
+module.exports.PutResult = (appendurl, apiparameters) => {
+
+    apiUrl = global.testapiurl + appendurl;
+    var response;
+    browser.call(() => {
+        return Promise.resolve(redirect.PutResultsApi(apiUrl, null, apiparameters)
+            .then(function (result) {
+                response = result;
+                console.log(response.body);
+            }).catch(err => {
+                console.log(err);
+            }));
+    });
+    return response;
+
+}
+
+module.exports.DeleteResult = (appendurl, apiparameters) => {
+
+    apiUrl = global.testapiurl + appendurl;
+    var response;
+    browser.call(() => {
+        return Promise.resolve(redirect.DeleteResultsApi(apiUrl, null, apiparameters)
+            .then(function (result) {
+                response = result;
+                console.log(response.body);
+            }).catch(err => {
+                console.log(err);
+            }));
+    });
+    return response;
+
 }
 
 

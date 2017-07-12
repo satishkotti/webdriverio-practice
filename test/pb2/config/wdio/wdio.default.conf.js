@@ -63,5 +63,6 @@ exports.config = merge(wdioConf.config, {
         global.site = appConfig.site.webmd.desktop;
         global.sslevel = appConfig.siteStructureLevel(global.site);
         global.browserDownloadPath = gulpFile.DownloadPath;
+        global.testapiurl= 'http://redirect.' + global.testEnv + '.webmd.com/api/redirect/';
     }
 });
