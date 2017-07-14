@@ -1,0 +1,38 @@
+{
+  "name": "webpage_test",
+  "version": "0.0.1",
+  "description": "Webpage Tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/wdio wdio.conf.js",
+    "staging": "node_modules\\.bin\\wdio wdio.conf.js --env=staging",
+    "perf": "node_modules\\.bin\\wdio wdio.conf.js --env=perf",
+    "prod": "node_modules\\.bin\\wdio wdio.conf.js --env=prod",
+    "reports": "./node_modules/.bin/allure generate allure-results/",
+    "report-view": "./node_modules/.bin/allure generate allure-results/ && allure report open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-webdriver": "2.0.3",
+    "lodash": "^4.17.2",
+    "mocha": "^3.2.0",
+    "q": "^1.4.1",
+    "selenium-standalone": "^6.0.1",
+    "should": "^11.2.1",
+    "wdio-mocha-framework": "^0.4.0",
+    "webdriverio": "^4.4.0",
+    "yargs": "^7.1.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "allure-commandline": "^1.4.23",
+    "wdio-allure-reporter": "^0.1.2",
+    "wdio-spec-reporter": "0.0.3"
+  }
+}

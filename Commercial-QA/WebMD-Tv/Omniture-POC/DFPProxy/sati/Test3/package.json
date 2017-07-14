@@ -1,0 +1,32 @@
+{
+  "name": "webdriverio-standalone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "gulp": "./node_modules/.bin/gulp",
+    "gulpStart": "gulp runTest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "browsermob-proxy": "^1.0.9",
+    "child_process": "^1.0.2",
+    "gulp": "^3.9.1",
+    "gulp-webdriver": "^1.0.3",
+    "mocha": "^3.4.2",
+    "path": "^0.12.7",
+    "q": "^1.5.0",
+    "querystring": "^0.2.0",
+    "selenium-standalone": "^6.5.0",
+    "wdio-browser-proxy": "git+ssh://git@stash.portal.webmd.com:7999/conapps/wdio-browser-proxy.git",
+    "webdriverio": "^4.8.0"
+  },
+  "devDependencies": {
+    "wdio-mocha-framework": "^0.5.10",
+    "wdio-selenium-standalone-service": "0.0.9"
+  }
+}
