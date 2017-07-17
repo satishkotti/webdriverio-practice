@@ -1,9 +1,9 @@
 var assert = require('assert');
-var test = require('./../../../common/functions/functions');
-var pageTestData = require('./../../../data/page.assets');
-var templateTestData = require('./../../../data/template.assets');
-var moduleTestData = require('./../../../data/pagemodule.assets');
-var act = require('./../../../common/actions/assetactions.actions');
+var test = require('./../../../../common/functions/functions');
+var pageTestData = require('./../../../../data/page.assets');
+var templateTestData = require('./../../../../data/template.assets');
+var moduleTestData = require('./../../../../data/pagemodule.assets');
+var act = require('./../../../../common/actions/assetactions.actions');
 
 var testEnv = global.testEnv;
 if (testEnv === 'qa02')
