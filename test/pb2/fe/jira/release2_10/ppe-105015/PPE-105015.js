@@ -1,9 +1,9 @@
 var assert = require('assert');
-var test = require('./../../../../common/functions/functions');
-var pageTestData = require('./../../../../data/page.assets');
-var templateTestData = require('./../../../../data/template.assets');
-var moduleTestData = require('./../../../../data/pagemodule.assets');
-var act = require('./../../../../common/actions/assetactions.actions');
+var test = require('./../../../common/functions/functions');
+var pageTestData = require('./../../../data/page.assets');
+var templateTestData = require('./../../../data/template.assets');
+var moduleTestData = require('./../../../data/pagemodule.assets');
+var act = require('./../../../common/actions/assetactions.actions');
 
 var testEnv = global.testEnv;
 if (testEnv === 'qa02')
@@ -16,6 +16,9 @@ var cssATSname = '';
 
 var cssContent = " body {background-color: yellow;}"
 var modifiedcssContent = " body  {background-color: red;}"
+
+var yellow = "rgba(255,255,0,1)";
+var red = "rgba(255,0,0,1)";
 
 var pagecssreference = '<link rel="stylesheet" href="http://css.' + testEnv + '.webmd.com/dtmcms/live/webmd/PageBuilder_Assets/CSS/Page/';
 var templatecssreference = '<link rel="stylesheet" href="http://css.' + testEnv + '.webmd.com/dtmcms/live/webmd/PageBuilder_Assets/CSS/Template/';
@@ -38,42 +41,41 @@ function addModule(index){
 
 function createAssets(){
 
-        //Creating a standalone page
-        var assetDetails = pageTestData.normalStandalonePage;
-        test.EnterIWC('Create', 'Templates & Pages');
-        test.TraverseSS('Level 0/zzTest/QA and Dev');
-        var chronID = test.Create("Page",assetDetails);
-        addModule(1);
-        test.SaveOrPublishTheAsset('publish to live', 'Test');
-        assets.standalonepage = [chronID];
+    //Creating a standalone page
+    var assetDetails = pageTestData.normalStandalonePage;
+    test.EnterIWC('Create', 'Templates & Pages');
+    test.TraverseSS('Level 0/zzTest/QA and Dev');
+    var chronID = test.Create("Page",assetDetails);
+    addModule(1);
+    test.SaveOrPublishTheAsset('publish to live', 'Test');
+    assets.standalonepage = [chronID];
 
-        //Creating a standalone Templates
-        test.EnterIWC('Create', 'Templates & Pages');
-        test.TraverseSS('Level 0/zzTest/QA and Dev')
-        var satemplateData = templateTestData.normalStandaloneTemplate;
-        var saTemplateName = satemplateData.templateName;
-        var saTemplateLayout = satemplateData.layout;
-        var saTemplateLayoutCSS = satemplateData.layoutCSS;
-        var satemplateToInheritFrom = saTemplateName + ' [' + saTemplateLayout + 'Layout' + ' - ' + saTemplateLayoutCSS + ']';
-        var samoduleDetails = moduleTestData.htmlModule.get('HTMLModuleOnContentPane0');
-        chronID = test.Create("Template",satemplateData);
-        addModule(1);
-        test.SaveOrPublishTheAsset('publish to live', 'Test');
-        assets.standaloneTemplate = [chronID];
+    //Creating a standalone Templates
+    test.EnterIWC('Create', 'Templates & Pages');
+    test.TraverseSS('Level 0/zzTest/QA and Dev')
+    var satemplateData = templateTestData.normalStandaloneTemplate;
+    var saTemplateName = satemplateData.templateName;
+    var saTemplateLayout = satemplateData.layout;
+    var saTemplateLayoutCSS = satemplateData.layoutCSS;
+    var satemplateToInheritFrom = saTemplateName + ' [' + saTemplateLayout + 'Layout' + ' - ' + saTemplateLayoutCSS + ']';
+    var samoduleDetails = moduleTestData.htmlModule.get('HTMLModuleOnContentPane0');
+    chronID = test.Create("Template",satemplateData);
+    addModule(1);
+    test.SaveOrPublishTheAsset('publish to live', 'Test');
+    assets.standaloneTemplate = [chronID];
 
-        //Creating an Page from template
-        test.EnterIWC('Create', 'Templates & Pages');
-        test.TraverseSS('Level 0/zzTest/QA and Dev')
-        assetDetails = pageTestData.normalInheritedPage.get(satemplateToInheritFrom);
-        chronID = test.Create("Page",assetDetails);
-        //addModule(2);
-        test.SaveOrPublishTheAsset('publish to live', 'Test');
-        if(chronID.constructor === Array){
-            assets.inheritedpage = chronID;
-        }
-        else{
-            assets.inheritedpage = [chronID];
-        }
+    //Creating an Page from template
+    test.EnterIWC('Create', 'Templates & Pages');
+    test.TraverseSS('Level 0/zzTest/QA and Dev')
+    assetDetails = pageTestData.normalInheritedPage.get(satemplateToInheritFrom);
+    chronID = test.Create("Page",assetDetails);
+    test.SaveOrPublishTheAsset('publish to live', 'Test');
+    if(chronID.constructor === Array){
+        assets.inheritedpage = chronID;
+    }
+    else{
+        assets.inheritedpage = [chronID];
+    }
 }
 
 function checkATSStatus(chronID){
@@ -96,13 +98,12 @@ function setcssNames(){
 function handleRuntimeValidation(type){
     var handles = browser.windowHandles();
     browser.switchTab(handles.value[1]);
-    var pagesource = browser.getSource();
-    if(type === 'page'){
-        expect(pagesource.includes(pagecssreference + cssATSname)).to.be.true;
-    }
-    else{
-        expect(pagesource.includes(templatecssreference + cssATSname)).to.be.true;
-    }
+    var css = browser.element("//body").getCssProperty('background-color');
+    console.log(css);
+    if(type === 'edit')
+        expect(css.value === red).to.be.true;
+    else
+        expect(css.value === yellow).to.be.true;
     browser.close();
     browser.switchTab(handles.value[0]);
     browser.url(global.appUrl);
@@ -142,11 +143,8 @@ describe('PPE-105015: Verify the file naming convention for PB page/template CSS
         //Validation to CSS in Runtime
         browser.pause(200000);
         checkATSStatus(assets.standalonepage[0]);
-        checkATSStatus(csschronID);
-        setcssNames();
-        checkATSStatus(assets.standalonepage[0]);
         test.ClickButtonInATSPage("Redirect to URL");
-        handleRuntimeValidation('page');
+        handleRuntimeValidation('create');
     });
 
     it("Verify the name of css added on a template", function() {
@@ -168,11 +166,8 @@ describe('PPE-105015: Verify the file naming convention for PB page/template CSS
         //Runtime Validation
         browser.pause(200000);
         checkATSStatus(assets.inheritedpage[0]);
-        checkATSStatus(csschronID);
-        setcssNames();
-        checkATSStatus(assets.inheritedpage[0]);
         test.ClickButtonInATSPage("Redirect to URL");
-        handleRuntimeValidation('template');
+        handleRuntimeValidation('create');
     });
 
 
@@ -196,11 +191,8 @@ describe('PPE-105015: Verify the file naming convention for PB page/template CSS
         //Runtime Validaiton
         browser.pause(400000);
         checkATSStatus(assets.standalonepage[0]);
-        checkATSStatus(csschronID);
-        setcssNames();
-        checkATSStatus(assets.standalonepage[0]);
         test.ClickButtonInATSPage("Redirect to URL");
-        handleRuntimeValidation('page');
+        handleRuntimeValidation('edit');
 
     });
 
@@ -221,12 +213,9 @@ describe('PPE-105015: Verify the file naming convention for PB page/template CSS
 
         //Runtime Validation
         browser.pause(400000);
-        checkATSStatus(assets.inheritedpage[0]);
-        checkATSStatus(csschronID);
-        setcssNames();
-        checkATSStatus(assets.inheritedpage[0]);
+        checkATSStatus(assets.inheritedpage[0])
         test.ClickButtonInATSPage("Redirect to URL");
-        handleRuntimeValidation('template');
+        handleRuntimeValidation('edit');
     });
 
     it("Verify User is able to modify the existing css on page with old format", function() {
@@ -257,11 +246,11 @@ describe('PPE-105015: Verify the file naming convention for PB page/template CSS
         setcssNames();
         checkATSStatus(pageChronicID);
         test.ClickButtonInATSPage("Redirect to URL");
-        handleRuntimeValidation('page');
+        handleRuntimeValidation('edit');
     });
 
-    it("Verify User is able to modify the existing css on template with old format", function() {
-        var templateChronicID = "091e9c5e8012bc38";
+    it.only("Verify User is able to modify the existing css on template with old format", function() {
+        var templateChronicID = "091e9c5e800c31c2";
         searchAndEditAsset(templateChronicID);
 
         var cssChronicID =  browser.element("//form[@label= 'Template CSS']/label/a").getText()
