@@ -249,7 +249,7 @@ describe('PPE-105015: Verify the file naming convention for PB page/template CSS
         handleRuntimeValidation('edit');
     });
 
-    it.only("Verify User is able to modify the existing css on template with old format", function() {
+    it("Verify User is able to modify the existing css on template with old format", function() {
         var templateChronicID = "091e9c5e800c31c2";
         searchAndEditAsset(templateChronicID);
 
