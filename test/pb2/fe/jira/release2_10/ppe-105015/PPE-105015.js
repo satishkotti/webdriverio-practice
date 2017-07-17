@@ -142,6 +142,9 @@ describe('PPE-105015: Verify the file naming convention for PB page/template CSS
         //Validation to CSS in Runtime
         browser.pause(200000);
         checkATSStatus(assets.standalonepage[0]);
+        checkATSStatus(csschronID);
+        setcssNames();
+        checkATSStatus(assets.standalonepage[0]);
         test.ClickButtonInATSPage("Redirect to URL");
         handleRuntimeValidation('page');
     });
@@ -164,6 +167,9 @@ describe('PPE-105015: Verify the file naming convention for PB page/template CSS
 
         //Runtime Validation
         browser.pause(200000);
+        checkATSStatus(assets.inheritedpage[0]);
+        checkATSStatus(csschronID);
+        setcssNames();
         checkATSStatus(assets.inheritedpage[0]);
         test.ClickButtonInATSPage("Redirect to URL");
         handleRuntimeValidation('template');
@@ -190,6 +196,9 @@ describe('PPE-105015: Verify the file naming convention for PB page/template CSS
         //Runtime Validaiton
         browser.pause(400000);
         checkATSStatus(assets.standalonepage[0]);
+        checkATSStatus(csschronID);
+        setcssNames();
+        checkATSStatus(assets.standalonepage[0]);
         test.ClickButtonInATSPage("Redirect to URL");
         handleRuntimeValidation('page');
 
@@ -212,7 +221,10 @@ describe('PPE-105015: Verify the file naming convention for PB page/template CSS
 
         //Runtime Validation
         browser.pause(400000);
-        checkATSStatus(assets.inheritedpage[0])
+        checkATSStatus(assets.inheritedpage[0]);
+        checkATSStatus(csschronID);
+        setcssNames();
+        checkATSStatus(assets.inheritedpage[0]);
         test.ClickButtonInATSPage("Redirect to URL");
         handleRuntimeValidation('template');
     });
@@ -240,6 +252,9 @@ describe('PPE-105015: Verify the file naming convention for PB page/template CSS
         expect(cssATSname.includes(cssChronicID)).to.be.true;
 
         browser.pause(200000);
+        checkATSStatus(pageChronicID);
+        checkATSStatus(cssChronicID);
+        setcssNames();
         checkATSStatus(pageChronicID);
         test.ClickButtonInATSPage("Redirect to URL");
         handleRuntimeValidation('page');
