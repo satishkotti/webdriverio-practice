@@ -239,6 +239,49 @@ module.exports.EditTheAsset = () => {
 module.exports.CheckoutAndEditTheAsset = () => {
     act.ClickCheckoutAndEditButton();
 }
+/* ---------------------------------------------
+** A D D  C S S  O N  A N  A S S E T
+** ---------------------------------------------
+** Description:
+** Adds CSS on an asset
+** Funtion accepts 1 argument:
+**      1. 'cssContent' can be the css content to be added on asset
+**      2. 'type' can be the page or template
+*/
+module.exports.AddCSSOnAsset = (cssContent, type) => {
+
+    if(type === 'page'){
+        act.ToggleAdditionalProperties();
+    }
+    act.ClickAddCSS(type);
+    act.AddCSSContent(cssContent);
+    act.SaveCSS();
+    cssChronID = act.GetCSSChronID(type);
+    return cssChronID;
+}
+
+/* ---------------------------------------------
+** M O D I F Y  C S S  O N  A N  A S S E T
+** ---------------------------------------------
+** Description:
+** Modifies CSS on an asset
+** Funtion accepts 2 argument:
+**      1. 'cssContent' can be the css content to be added on asset
+**      2. 'type' can be the page or template
+*/
+module.exports.ModifyCSSOnAsset = (cssContent, type) => {
+    if(type === 'page'){
+        act.ToggleAdditionalProperties();
+    }
+    act.ClickAddCSS(type);
+    browser.pause(5000);
+    act.EditCSS();
+    act.AddCSSContent(cssContent);
+    act.SaveCSS();
+    cssChronID = act.GetCSSChronID(type);
+    return cssChronID;
+}
+
 
 /* -------------------------------
 ** S W I T C H  A S S E T  T A B S 
