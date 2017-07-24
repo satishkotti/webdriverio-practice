@@ -1787,7 +1787,6 @@ describe('PPE-81172:Delete One or more (mark Deletd by id)', () => {
             console.log(Delete_TwoValidIDS.body.Message);
             expect(Delete_TwoValidIDS.body.Status).to.equal('Success');
             expect(Delete_TwoValidIDS.body.StatusCode).to.equal(1);
-
         });
 
     });
