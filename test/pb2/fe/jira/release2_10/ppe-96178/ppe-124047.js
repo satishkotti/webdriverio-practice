@@ -4,7 +4,7 @@ const iwcActs = require('./../../../../common/actions/iwc.actions.js');
 const acts = require('./../../../../common/actions/assetactions.actions.js')
 const field = require('./../../../../common/elements/actions.page.js');
 const button = require('./../../../../common/elements/assetprops.page.js');
-const testdata = require('./../../../../data/testdata/ppe-96178.testdata').TestData.ppe_124045;
+const testdata = require('./../../../../data/testdata/ppe-96178.testdata').TestData.ppe_124047;
 
 
 describe('PPE-96178: Verify the various conditions set on Page Title input field'
@@ -30,7 +30,7 @@ describe('PPE-96178: Verify the various conditions set on Page Title input field
             test.TraverseSS();
 
             //Click Add to Node button and then select Page
-            iwcActs.AddToNode('Page');
+            iwcActs.AddToNode('Template');
 
             //Select the type of the page
             field.checkbox.get('New Standalone').click();

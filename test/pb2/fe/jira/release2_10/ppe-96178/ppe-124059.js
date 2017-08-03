@@ -4,7 +4,7 @@ const iwcActs = require('./../../../../common/actions/iwc.actions.js');
 const acts = require('./../../../../common/actions/assetactions.actions.js')
 const field = require('./../../../../common/elements/actions.page.js');
 const button = require('./../../../../common/elements/assetprops.page.js');
-const testdata = require('./../../../../data/testdata/ppe-96178.testdata').TestData.ppe_124045;
+const testdata = require('./../../../../data/testdata/ppe-96178.testdata').TestData.ppe_124059;
 
 
 describe('PPE-96178: Verify the various conditions set on Page Title input field'
@@ -23,30 +23,32 @@ describe('PPE-96178: Verify the various conditions set on Page Title input field
             //Launch app and login
             test.LaunchAppAndLogin();
 
-            //Enter IWC
-            test.EnterIWC('Create', 'Templates & Pages');
+            //Search for the existing asset
+            test.SearchFor(null, testdata.assetChronId, 'Global Search', null);
 
-            //Traverse SS
-            test.TraverseSS();
-
-            //Click Add to Node button and then select Page
-            iwcActs.AddToNode('Page');
-
-            //Select the type of the page
-            field.checkbox.get('New Standalone').click();
-
-            //Select page layout
-            field.dropdown('Layout', testdata.layout);
-
-            //Select layout css
-            field.dropdown('CSS Option', testdata.layoutCSS);
-
-            //Click Continue button
-            acts.ClickModalContinueButton();
+            //Enter the edit mode of the asset
+            test.EditTheAsset();
 
         });
 
         //Tests
+        it("If the Page Title is >65 characters long,"
+            + "user must be displayed with 'Invalid' message above the field", () => {
+
+                //Verify the presence of 'Invalid' message field - message should be displayed
+                _InvalidMessage = field.invalid.get('Title');
+                expect(_InvalidMessage).to.be.true;
+
+            });
+
+        it("If the Page Title is >65 characters long,"
+            + "'Save/Publish' button must be disabled", () => {
+
+                //Verify the state of 'Save/Publish' button - button must be enabled
+                _SavePublishButton = button.get('Save/Publish');
+                expect(_SavePublishButton.isEnabled()).to.be.false;
+            });
+
         it("When user enters page title which is 64 characters long,"
             + "user must not be displayed with 'Invalid' message for Page Title Input Field", () => {
 
@@ -55,7 +57,6 @@ describe('PPE-96178: Verify the various conditions set on Page Title input field
                 _TitleInputField.setValue(testdata._64CharsLong);
 
                 //Verify the presence of 'Invalid' message field - message should not displayed
-                _InvalidMessage = field.invalid.get('Title');
                 expect(_InvalidMessage).to.be.false;
 
             });
