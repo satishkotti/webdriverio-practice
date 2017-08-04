@@ -6,7 +6,7 @@ var argv = require("yargs").argv;
 var dataentrymodule = require('./../elements/webmdtvpage');
 var functions = require('./../functions/functions');
 var input = require('./../../config/Webmd-tv')[argv.env];
-var url = input.splash;
+//var url = input.splash;
 var email = 'testinvalid';
 var dataentry = {};
 
