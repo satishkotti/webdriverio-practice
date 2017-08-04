@@ -56,7 +56,7 @@ gulp.task('branch', function (cb) {
         args: '--abbrev-ref HEAD'
     }, function (err, branch) {
 
-        console.log('app: ' + currentApp);
+        //console.log('app: ' + currentApp);
         console.log('branch: ' + branch);
 
         if(testEnv.toLowerCase().indexOf('prod') >= 0)
