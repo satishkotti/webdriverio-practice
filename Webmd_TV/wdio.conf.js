@@ -135,6 +135,7 @@ exports.config = {
     //
     // Gets executed before all workers get launched.
     onPrepare: function() {
+	/*
         var defered = Q.defer();
         // do something
 		var selenium = require('selenium-standalone');
@@ -151,6 +152,7 @@ exports.config = {
 		});
     });
     return defered.promise;
+	*/
     },
     //
     // Gets executed before test execution begins. At this point you will have access to all global
