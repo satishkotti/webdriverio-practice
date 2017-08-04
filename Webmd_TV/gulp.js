@@ -49,6 +49,8 @@ switch (currentApp.toLowerCase()) {
     confPath = `./wdio.conf.conf`;
     conf = require(`./wdio.conf.conf`);
 
+    testEnv = "production";
+
 gulp.task('branch', function (cb) {
     return git.revParse({
         args: '--abbrev-ref HEAD'
