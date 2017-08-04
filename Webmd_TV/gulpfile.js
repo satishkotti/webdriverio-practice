@@ -10,7 +10,7 @@ var env = "";
 var args = require("args");
 var glob = require("glob");
 var _ = require("lodash");
-//var releaseconfig = require('./release.conf.js');
+var releaseconfig = require('./wdio.conf.js');
 var glob = require("glob");
 
 
