@@ -105,7 +105,7 @@ gulp.task('allbranchs', function(cb) {
 gulp.task('webdriver', function(done) {
     releaseconfig.config.specs = tests;
     releaseconfig.config.exclude = excludeTests;
-    var wdio = new Launcher(path.join(__dirname, 'release.conf.js'), releaseconfig.config);
+    var wdio = new Launcher(path.join(__dirname, 'wdio.conf.js'), releaseconfig.config);
     return wdio.run().then(function(code) {
         console.log(code);
     }, function(error) {
