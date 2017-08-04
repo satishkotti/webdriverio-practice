@@ -49,8 +49,6 @@ var appFolder;
     confPath = `./wdio.conf.js`;
     conf = require(`./wdio.conf.js`);
 
-    testEnv = "PRODSEA1";
-
 gulp.task('branch', function (cb) {
     return git.revParse({
         args: '--abbrev-ref HEAD'

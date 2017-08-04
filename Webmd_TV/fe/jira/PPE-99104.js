@@ -31,7 +31,7 @@ describe('PPE-99104 UGC Data Entry Module', function () {
       dataentrymodule = dataentry.ugcdataentry(youtube, name);
       dataentrymodule.maintext.should.equal(true);
       dataentrymodule.closebuttonnotvisible.should.equal(false);
-      dataentrymodule.invalidemail.should.equal("Please enter a valid email");  
+      dataentrymodule.invalidemail.should.containEql("Please enter a valid email");  
       dataentrymodule.maintext.should.equal(true);
       console.log("sasank"+dataentrymodule.textvalidation);
 	  dataentrymodule.textvalidation.should.equal("Help others find inspiration and guidance");
@@ -70,22 +70,22 @@ describe('PPE-99104 UGC Data Entry Module', function () {
     });
 
     it('verify Age fields allows the user to provide only positive numbers for ' + Input.apps[i], function () {
-      dataentrymodule.entervalidage.should.equal("Please enter a valid age");
+      dataentrymodule.entervalidage.should.containEql("Please enter a valid age");
     });
 
     it('verify maintext field with no text for ' + Input.apps[i], function () {
-      dataentrymodule.enterstory.should.equal("Please enter your story");
+      dataentrymodule.enterstory.should.containEql("Please enter your story");
     });
 
     it('verify Name field accepts character data for ' + Input.apps[i], function () {
-      dataentrymodule.invalidname.should.equal("Please enter a valid name");
+      dataentrymodule.invalidname.should.containEql("Please enter a valid name");
     });
     it('verify Phone number field for in valid number ' + Input.apps[i], function () {
-      dataentrymodule.invalidnumber.should.equal("Please enter a valid phone number");
+      dataentrymodule.invalidnumber.should.containEql("Please enter a valid phone number");
     });
 
     it('verify Video url field for invalid url ' + Input.apps[i], function () {
-      dataentrymodule.invalidvideourl.should.equal("Please enter a valid web address");
+      dataentrymodule.invalidvideourl.should.containEql("Please enter a valid web address");
     });
 
     it('verify color for input text entered for all the data fields ' + Input.apps[i], function () {
