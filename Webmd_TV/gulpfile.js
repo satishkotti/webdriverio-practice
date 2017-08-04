@@ -77,7 +77,7 @@ gulp.task('branch', function (cb) {
 
         var specBranch;
         if (currentBranch.indexOf('master') === 0) {
-            specBranch = './fe/jira/PPE-99104.js --env=testEnv';
+            specBranch = './fe/jira/PPE-99104.js';
             console.log('master specs: ' + specBranch);
         } 
         else if (currentBranch.indexOf('release-') >= 0) {
@@ -265,4 +265,5 @@ module.exports = {
     TestEnv: testEnv.toLowerCase(),
     MaxInstances: flags.maxInstances,
     LogLevel: flags.logLevel,
+	
 }
