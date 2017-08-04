@@ -46,8 +46,8 @@ var appFolder;
         appFolder = 'pb2';
         break;
 }*/
-    confPath = `./wdio.conf.conf`;
-    conf = require(`./wdio.conf.conf`);
+    confPath = `./wdio.conf.js`;
+    conf = require(`./wdio.conf.js`);
 
     testEnv = "PRODSEA1";
 
