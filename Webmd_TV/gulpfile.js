@@ -12,7 +12,7 @@ var _ = require("lodash");
 var glob = require("glob");
 var fs = require("fs");
 
-args.option('env', 'Environment targetted', "production")
+args.option('env', 'Environment targetted', "PRODSEA1")
     .option('branch', 'Master -- Will run all tests  branch/name (PPE-<branch name>) -- Will run branch tests  release release-sprint-<number>/integration runs sprint tests')
     .option('maxInstances', 'Maximum number of instances a browser can have', 1)
     .option('logLevel', 'Test runner logging level default error', 'error')
@@ -49,7 +49,7 @@ switch (currentApp.toLowerCase()) {
     confPath = `./wdio.conf.conf`;
     conf = require(`./wdio.conf.conf`);
 
-    testEnv = "production";
+    testEnv = "PRODSEA1";
 
 gulp.task('branch', function (cb) {
     return git.revParse({
