@@ -10,6 +10,13 @@ module.exports.GetSSLConfig = () => {
     return browser.element(sslconfig).isSelected();
 }
 
+module.exports.SetSSLConfig = (value) => {
+    if(!(browser.element(sslconfig).isSelected() && value) || (browser.element(sslconfig).isSelected() && value))
+        return;
+    else
+        browser.element(sslconfig).click();
+}
+
 module.exports.ToggleAdditionalProperties = () => {
     if(page.link.get('Additional Properties').isVisible())
         page.link.get('Additional Properties').click();

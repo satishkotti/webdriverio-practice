@@ -44,17 +44,32 @@ describe('PPE-105015: Verify the file naming convention for PB page/template CSS
         handleRuntimeValidation('https');
     });
 
-    it.only("Verify the SSL configuration for existing pages remain unchanged", function() {
-        var chronID = '091e9c5e800d3b2d';
+    it("Verify the SSL configuration for existing pages remain unchanged", function() {
+        var chronID = '091e9c5e80051fcc';
         test.SearchFor(null, chronID, 'global search');
         browser.pause(4000);
         test.EditTheAsset();
         act.ToggleAdditionalProperties();
         var sslconfig = act.GetSSLConfig();
+        console.log("SSLConfig is ", sslconfig);
         expect(sslconfig).to.be.false;
         browser.pause(4000);
         test.SaveOrPublishTheAsset('publish to live', 'Test');
-        browser.pause(10000);
+        browser.pause(30000);
+        checkATSStatus(chronID);
+        test.ClickButtonInATSPage("Redirect to URL");
+        handleRuntimeValidation('http');
+    });
+
+    it("Verify user is able to modify the SSL configuration for existing pages", function() {
+        var assetDetails = pageTestData.normalStandalonePage;
+        test.EnterIWC('Create', 'Templates & Pages');
+        test.TraverseSS('Level 0/zzTest/QA and Dev');
+        iwc.AddToNode("Page"); 
+        act.SetSSLConfig(false);
+        expect(sslconfig).to.be.true;
+        assetChronID = props.PopulatePageProps(assetDetails);
+        test.SaveOrPublishTheAsset('publish to live', 'Test');
         checkATSStatus(assetChronID);
         test.ClickButtonInATSPage("Redirect to URL");
         handleRuntimeValidation('http');
