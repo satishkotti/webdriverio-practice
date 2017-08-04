@@ -5,7 +5,8 @@ var rootPath = path.normalize(__dirname)
 var argv = require("yargs").argv;
 var splashpage = require('./../elements/splashpage');
 var functions = require('./../functions/functions');
-var input = require('./../../config/Webmd-tv')[argv.env];
+var env = require('./../../gulpfile.js').TestEnv;
+var input = require('./../../config/Webmd-tv')[env];
 var url = input.splashpage;
 var splashgrid = {};
 

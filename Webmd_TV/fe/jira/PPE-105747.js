@@ -5,7 +5,8 @@ var rootPath = path.normalize(__dirname)
 var argv = require("yargs").argv;
 var adlayout = require('./../../common/actions/PPE-105747.actions');
 var rootPath = path.normalize(__dirname)
-var Input = require('./../../config/Webmd-tv')[argv.env];
+var env = require('./../../gulpfile.js').TestEnv;
+var Input = require('./../../config/Webmd-tv')[env];
 var url = Input.adlayout;
 var url2 = Input.layout;
 var adposition;

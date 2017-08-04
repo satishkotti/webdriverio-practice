@@ -3,7 +3,8 @@ var should = require('should');
 var path = require('path');
 var argv = require("yargs").argv;
 var splashpage = require('./../../common/actions/PPE-99100.actions')
-var Input = require('./../../config/Webmd-tv')[argv.env];
+var env = require('./../../gulpfile.js').TestEnv;
+var Input = require('./../../config/Webmd-tv')[env];
 var url = Input.article;
 var webmdurl = Input.webmdurl;
 var splashgrids;

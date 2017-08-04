@@ -2,7 +2,8 @@ var webdriverio = require('webdriverio');
 var should = require('should');
 var argv = require("yargs").argv;
 var screens = require('./../../common/actions/PPE-101411.actions');
-var Input = require('./../../config/Webmd-tv')[argv.env];
+var env = require('./../../gulpfile.js').TestEnv;
+var Input = require('./../../config/Webmd-tv')[env];
 var about;
 
 

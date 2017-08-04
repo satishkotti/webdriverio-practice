@@ -6,7 +6,8 @@ var argv = require("yargs").argv;
 var assetpage = require('./../../common/actions/PPE-100761.actions');
 var rootPath = path.normalize(__dirname)
 console.log(__dirname);
-var Input = require('./../../config/Webmd-tv')[argv.env];
+var env = require('./../../gulpfile.js').TestEnv;
+var Input = require('./../../config/Webmd-tv')[env];
 var url = Input.marqueeheader;
 var title;
 
