@@ -26,6 +26,7 @@
     "randomstring": "1.1.5",
     "request": "2.80.0",
     "selenium-standalone": "^5.11.1",
+    "should": "^11.2.1",
     "supertest": "3.0.0",
     "wdio-allure-reporter": "^0.1.2",
     "wdio-mocha-framework": "^0.4.0",
