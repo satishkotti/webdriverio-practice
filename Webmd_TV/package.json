@@ -36,7 +36,7 @@
   },
   "scripts": {
     "staging": "node_modules\\.bin\\wdio wdio.conf.js --env=staging",
-	"production": "node_modules\\.bin\\wdio wdio.conf.js --env=production",
+	"production": "node_modules\\.bin\\wdio wdio.conf.js --env=PRODSEAD1",
     "preview": "node_modules\\.bin\\wdio wdio.conf.js --env=preview",
     "Mobile": "node_modules\\.bin\\wdio wdio.confmob.js",
     "clean": "rimraf ./allure-results",
