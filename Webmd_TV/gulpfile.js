@@ -77,7 +77,7 @@ gulp.task('branch', function (cb) {
 
         var specBranch;
         if (currentBranch.indexOf('master') === 0) {
-            specBranch = './Webmd_TV/fe/jira/*.js';
+            specBranch = './webmd_tv_test_trail/Webmd_TV/fe/jira/*.js';
             console.log('master specs: ' + specBranch);
         } 
         else if (currentBranch.indexOf('release-') >= 0) {
