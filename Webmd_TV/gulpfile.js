@@ -59,12 +59,12 @@ gulp.task('branch', function (cb) {
         //console.log('app: ' + currentApp);
         console.log('branch: ' + branch);
 
-        if(testEnv.toLowerCase().indexOf('prod') >= 0)
+     /*   if(testEnv.toLowerCase().indexOf('prod') >= 0)
         {
             console.log('PROD RUN NOT SUPPORTED FOR DEFAULT TASK');
             cb();
             return;
-        }
+        }*/
 
         if (branch === "HEAD" && flags.branch === undefined) {
             console.log(error('branch is required. Use --help to get detailed info'));
