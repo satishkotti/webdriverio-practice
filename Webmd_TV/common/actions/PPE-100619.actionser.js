@@ -6,10 +6,8 @@ var rootPath = path.normalize(__dirname)
 //var webmdtvpage = require('./../elements/webmdtvpage');
 var webmdtvpage = require('./../elements/webmdtvpage');
 var argv = require("yargs").argv;
-//var input = require('./../../config/Webmd-tv')[argv.env];
-var env = require('./../../gulpfile.js').TestEnv;
-var input = require('./../../config/Webmd-tv')[env];
-//var url = input.filmstrip;
+var input = require('./../../config/Webmd-tv')[argv.env];
+var url = input.filmstrip;
 var functions = require('./../functions/functions');
 var filmstrip = {};
 var sasanks = [];
@@ -155,38 +153,7 @@ module.exports = {
     }
     return filmstrip2;
   },
-  filmstripvalidation: function () {
 
-    browser.pause(10000);
-    var videoTitlefont = webmdtvpage.videoTitleflim.getCssProperty('font-size');
-    var videoTitlecolor = webmdtvpage.videoTitleflim.getCssProperty('color');
-    var videoTitlefmaily = webmdtvpage.videoTitleflim.getCssProperty('font-family');
-    var next = browser.getText("//div[@class='owl-item active'][2]//div[@class='video']//h4");
-    browser.click("//div[@class='owl-item active'][2]//div[@class='video']//h4");
-    browser.pause(20000);
-    var next1 = browser.getText("//div[@class='owl-item active'][1]//div[@class='video']//h4");
-    var current = browser.getText("div.title-section > div.title2");
-    console.log(next);
-    console.log(next1);
-    console.log(current);
-    browser.refresh();
-
-    var filmstripvalue = {
-      videoTitlefont : videoTitlefont,
-      videoTitlecolor : videoTitlecolor,
-      videoTitlefmaily : videoTitlefmaily,
-      next : next,
-      next1 : next1,
-      current : current,
-
-
-     // playiconsheight: playiconsheight,
-      //playiconswidth: playiconswidth,
-     // playiconscolor: playiconscolor
-
-    }
-    return filmstripvalue;
-  },
 
 
 }

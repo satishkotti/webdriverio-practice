@@ -216,6 +216,8 @@ Standupvideologo: { get: function () { return browser.element("//div[@class='mas
     ugcmodule     : {get :function(){return browser.element('//div[@id="ugc-widget"]//div[@class="owl-stage"]');}},
     image         : {get :function(){return browser.element('//*[@id="ugc-widget"]/div[1]/div/div[3]/div/div/section[2]/div/img');}},
     user_info     : {get :function(){return browser.element('//div[@class="owl-item active"]//div[@class="user-info"]/span[2]');}},
+	
+	videoTitleflim : { get: function () { return browser.element("//div[@class='title2']"); } },
     /**
 * define or overwrite page methods
 */
