@@ -103,7 +103,7 @@ module.exports.testSettings = {
             "url": "http://d2.qa01.webmd.com/D2/#d2",
             "users": [{
                     "id": "1",
-                    "username": "QAPublication",
+                    "username": "QAPublication1",
                     "password": "QA-Doc#1",
                     "type": "user"
                 },
@@ -245,6 +245,7 @@ module.exports.testSettings = {
             "UKtestFolderPath": "webmddoc01/webmd_uk/consumer_assets/editorial/articles/Others",
             "ArticleProfileName": 'Consumer Portal US / Article Templates',
             "UkArticleProfileName": 'Consumer Portal UK / Article Templates',
+            "QUizAritcleTemplate":'Article / Quiz',
              "HelathRefArticleTemplate":'Article / Health Reference Template',
              "USImportHelathRefProfileName":'Consumer Portal US / Controlled Content Templates',
              "UKImportHelathRefProfileName":'Consumer Portal UK / Controlled Content Templates',

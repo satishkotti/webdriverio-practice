@@ -16,5 +16,27 @@ module.exports = {
     },
     expireversionValidation: function(){
         versionTabUI.expireversionValidation();
-    }
+    },
+
+    WipversionValidation: function(){
+        versionTabUI.WipversionValidation();
+    },
+
+    WipStagingversionValidation:  function(){
+        versionTabUI.WipStagingversionValidation();
+    },
+
+    PowerpromoteversionValidation: function(){
+        versionTabUI.PowerpromoteversionValidation();
+    },
+    
+    
+    CancelchekoutcversionValidation: function(){
+        versionTabUI.CancelchekoutcversionValidation();
+    },
+
+    CancelchekoutStaginglableValidation: function(){
+        versionTabUI.StaginglableValidation();
+    },
+    
 }
