@@ -15,7 +15,7 @@ exports.config = {
     // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
-    specs: ['./fe/jira/**.js'],
+    specs: ['./fe/jira/PPE-113556.js'],
     // Patterns to exclude.
     exclude: [
     ],

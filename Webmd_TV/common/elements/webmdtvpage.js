@@ -133,6 +133,89 @@ var webmdtvpage = Object.create(Page, {
     gridtitleN: { value: function (n) { return browser.element("div:nth-child("+n+") > a > div.inner-2.art-title1 > h5 > span"); } },
     gridImageN: { value: function (n) { return browser.element("div:nth-child("+n+") > a > div.inner-1 > img"); } },
     gridcount:{ get: function (n) { return browser.element("div.inner-2.art-title1 > h5 > span"); } },
+	
+	//Splash Header locators
+	
+	    sponsortext: { get: function () { return browser.element("//section[@id='s1']//span[@class='sponsored']"); } },
+    Videolabel: { get: function () { return browser.element("//div[@class='multimedia-grid']/div[@class='item-duo-wrapper']/div[1]/a/div[@class='overlay']/p/span[1]"); } },    
+    Webmdlogo: { get: function () { return browser.element("//section[@id='s1']//img[@class='wmd-white-logo']"); } }, 
+    Migranelogo: { get: function () { return browser.element("//section[@id='s1']//span[@class='emp']"); } }, 
+     Webmdhome: { get: function () { return browser.element("//*[@id='ContentPane1']//img[@class='global-nav-logo']"); } }, 
+    Standuplogo: { get: function () { return browser.element("//section[@id='s1']//span[contains(.,'Stand up to')]"); } }, 
+Migranevideologo: { get: function () { return browser.element("//div[@class='masthead-stretch']//span[@class='emp']"); } },   
+Standupvideologo: { get: function () { return browser.element("//div[@class='masthead-stretch']//span[contains(.,'Stand up to')]"); } }, 
+
+//Splash page elements
+
+  Videoplayer: { get: function () { return browser.element("//video[@class='akamai-html5 akamai-media-element']"); } },
+   Videosponsor: { get: function () { return browser.element("//div[@class='masthead-right clearfix sponsor-info']/div[@class='sponsor-logo']/div[@class='marquee_ed_disclaimer']"); } },
+   Videomasterhead: { get: function () { return browser.element("//div[@class='masthead-stretch']//div[@class='masthead-wrapper clearfix']"); } },
+  
+   Filmstrip: { get: function () { return browser.element("//div[@id='webmd-tv-playlists']"); } },   
+    Ugcmodule: { get: function () { return browser.element("//*[@id='ugc-widget']/div[1]/div"); } },    
+    Assetgrid: { get: function () { return browser.element("//div[@class='list-container']"); } },
+    Surveyclose: { get: function () { return browser.element("//div[contains(@onclick,'sw(1);')]"); } },
+     Videotime: { get: function () { return browser.element("//div[@class='vjs-current-time-display']"); } },
+     Videoplaying: { get: function () { return browser.element("//div [@class='dyn-controlbar']/div[@class='vjs-play-control vjs-control vjs-playing']"); } },
+     Videopause: { get: function () { return browser.element("//div [@class='dyn-controlbar']/div[@class='vjs-play-control vjs-control vjs-paused']"); } },
+     Videocard: { get: function () { return browser.element("//div[@class='multimedia-grid']/div[@class='item-duo-wrapper']/div[1]/a/div[@class='overlay']"); } },
+     Videocardimg: { get: function () { return browser.element("//div[@class='multimedia-grid']/div[@class='item-duo-wrapper']/div[1]/a/img"); } },
+     Videocardplaybtn: { get: function () { return browser.element("//div[@class='multimedia-grid']/div[@class='item-duo-wrapper']/div[1]/a/div[@class='overlay']/div[@class='button']/span[@class='icon']"); } },
+     Videocardvideolabel: { get: function () { return browser.element("//div[@class='multimedia-grid']/div[@class='item-duo-wrapper']/div[1]/a/div[@class='overlay']/p/span"); } },
+     Videocardsponsorcontentlabel: { get: function () { return browser.element("//div[@class='multimedia-grid']//div[@class='overlay']//span[contains(text(),'Sponsor Content')]"); } },
+  Videocardsponsorcontentplaybtn: { get: function () { return browser.element("//div[@class='multimedia-grid']/div[@class='item-duo-wrapper']/div[4]/a/div[@class='overlay']/div[@class='button']/span[@class='icon']"); } },
+  Videocardsponsorcontentimg: { get: function () { return browser.element("//div[@class='multimedia-grid']/div[@class='item-duo-wrapper']/div[4]/a/img"); } },
+	
+     Videocardquotead: { get: function () { return browser.element("//div[@class='multimedia-grid']/div/div[@class='grid-item type-ad type-quote']"); } },
+     Videocardquoteadcntname: { get: function () { return browser.element("//div[@class='multimedia-grid']/div/div[@class='grid-item type-ad type-quote']/div/div[@class='quote-next-to-ad']/div/p[@class='quote-attr']/span[@class='name']"); } },
+     Videocardquoteadcntlocation: { get: function () { return browser.element("//div[@class='multimedia-grid']/div/div[@class='grid-item type-ad type-quote']/div/div[@class='quote-next-to-ad']/div/p[@class='quote-attr']/span[@class='city']"); } },
+     
+     Videocardquotewithoutad: { get: function () { return browser.element("//div[@class='multimedia-grid']/div/div[@class='grid-item type-quote']"); } },
+     Videocardquotewithoutadcntname: { get: function () { return browser.element("//div[@class='multimedia-grid']/div/div[@class='grid-item type-quote']/div/div/p[@class='quote-attr']/span[@class='name']"); } },
+     Videocardquotewithoutadcntocation: { get: function () { return browser.element("//div[@class='multimedia-grid']/div/div[@class='grid-item type-quote']/div/div/p[@class='quote-attr']/span[@class='city']"); } },
+     Filmstripplaybtn: { get: function () { return browser.element("//div[@id='webmd-tv-playlists']/div[@class='more-videos']/div[@class='playlist filmstrip visually-hidden owl-carousel owl-loaded owl-drag']/div[@class='owl-stage-outer']/div/div[5]/div/a/div[@class='thumb']/div"); } },
+     Filmstripplaybtnimg: { get: function () { return browser.element("//div[@id='webmd-tv-playlists']/div[@class='more-videos']/div[@class='playlist filmstrip visually-hidden owl-carousel owl-loaded owl-drag']/div[@class='owl-stage-outer']/div/div[5]/div/a/div[@class='thumb']/img"); } },
+     Assetgridelements: { get: function () { return browser.element("//div[@class='pane art-list-grid']/div[@class='list-container']"); } },
+     Assetgridad: { get: function () { return browser.element("//*[@id='rightAd_rdr_webmdtv']"); } },
+     Assetgridlabel: { get: function () { return browser.element("//div[@class='list-item Video']//h4"); } },
+     Assetgridheader: { get: function () { return browser.element("//div[@class='list-container']//div[@class='list-header']"); } },
+     Assetgridvideolabel: { get: function () { return browser.element("//div[@class='list-item Video']//h4[contains(.,'Video')]"); } },
+    Assetgridsponsorlabel: { get: function () { return browser.element("//div[@class='list-item Video']//h4[contains(.,'from our sponsor')]"); } },
+    Assetgridepisodelabel: { get: function () { return browser.element("//div[@class='list-item Video']//h4[contains(.,'Episode')]"); } },
+
+    Assetgridslideshowlabel: { get: function () { return browser.element("//div[@class='pane art-list-grid']/div[@class='list-container']/div[@class='list-header']"); } },
+    Splashpollpresence: { get: function () { return browser.element("//div[@id='poll-module-placeholder']/div"); } },
+    Splashpollallelm: { get: function () { return browser.element("//div[@id='poll-module-placeholder']/div//div[@class='content']/div[@class='options-wrapper']/div[@class='option answer']/p"); } },
+    Splashpolltotvote: { get: function () { return browser.element("//div[@id='totalVote']/span"); } },
+     Splashpollvoteinc: { get: function () { return browser.element("//div[@class='option answer selected']/p/em"); } }, 
+    Splashpollvotebef: { value: function (i) { return browser.element("//div[@class='options-wrapper']["+i+"]/div/p"); } },
+
+	
+	//Jagan 
+	
+	heading: { get: function () { return browser.element('//h6[contains(text(),"Lorem Ipsum Identifier")]'); } },
+    elem : { get: function () { return browser.element('//div[@id="ugc-widget"]/div[1]/div/div[4]/div/div/section[1]/div[2]'); } },
+    title: { get: function () { return browser.element('//header[@class="page-header"]//h1[contains(text(),"Signs and Symptoms of Cancer")]'); } },
+    twitter: { get: function () { return browser.element('//div[@id="fed-sharebar"]/div[1]/a[1]'); } },
+    pinterest: { get: function () { return browser.element('//div[@id="fed-sharebar"]/div[1]/a[2]'); } },
+    facebook1: { get: function () { return browser.element('//div[@id="fed-sharebar"]/div[1]/a[3]'); } },
+    logo: { get: function () { return browser.element('//div[@id="logo"]'); } },
+    presentstxt: { get: function () { return browser.element('//div[@id="ContentPane2"]/header[1]/div[1]/div/div[1]/div[1]/small'); } },
+    heading1: { get: function () { return browser.element('//span[text()="Stand up for"]'); } },
+    heading2: { get: function () { return browser.element('//span[text()="Migraines"]'); } },
+    transcriptimage: { get: function () { return browser.element('//div[@id="marquee-video-instance"]/div[2]/div/div/div[2]/div[1]/img'); } },
+    transcripttext: { get: function () { return browser.element('//div[@id="marquee-video-instance"]/div[2]/div/div/div[2]/div[1]/span'); } },
+    transcriptoverlayheading: { get: function () { return browser.element('//div[@id="marquee-video"]/div/div[3]/div[1]/span[1]'); } },
+    transcriptoverlayclose: { get: function () { return browser.element('//span[@class="close-icon"]'); } },
+    video : {get: function() { return browser.element('//div[@class="akamai-video akamai-layer"]');}},
+    ugcmoduleTitle: {get: function(){return browser.element('//div[@id="ugc-wrapper"]/h3');}},
+    previcon      : {get :function(){return browser.element('//div[@id="ugc-widget"]/div[2]/a[1]/div/span[@class="icon"]');}},
+    nexticon      : {get :function(){return browser.element('//div[@class="owl-next"]//span[@class="icon"]');}},
+    quotetitle    : {get :function(){return browser.element('//*[@id="ContentPane2"]/header[2]');}},
+    quoteauthor   : {get :function(){return browser.element('//div[@class="owl-item active"][1]//div[@class="user-info"]/span[1]');}},
+    ugcmodule     : {get :function(){return browser.element('//div[@id="ugc-widget"]//div[@class="owl-stage"]');}},
+    image         : {get :function(){return browser.element('//*[@id="ugc-widget"]/div[1]/div/div[3]/div/div/section[2]/div/img');}},
+    user_info     : {get :function(){return browser.element('//div[@class="owl-item active"]//div[@class="user-info"]/span[2]');}},
     /**
 * define or overwrite page methods
 */
