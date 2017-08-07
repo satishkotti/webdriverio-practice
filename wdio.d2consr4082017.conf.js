@@ -13,7 +13,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
 
-    specs: ['./test/d2/cons/fe/jira/r3_072017/*.js'],
+    specs: ['./test/d2/cons/fe/jira/r4_082017/*.js'],
 
     // Patterns to exclude.
     exclude: [

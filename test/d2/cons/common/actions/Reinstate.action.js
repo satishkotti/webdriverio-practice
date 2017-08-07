@@ -1,16 +1,34 @@
 var maxWaitTimeInMs = 50000;
+var ReinstateTabUI = require('./../ui/ReinstateTab');
+var propertiesTabUI = require('./../ui/propertiesTab');
 
 var ReinstateTabUIObj = {
 
-    selectReinstate: function (assetName, assetVersion) {
-        browser.waitForVisible("//span[string()='Versions']", maxWaitTimeInMs);
-        browser.click("//span[string()='Versions']");
-        browser.waitForVisible("//td[contains(.,'" + assetName + "')]//following-sibling::td[contains(.,'" + assetVersion + "')]");
-        browser.click("//td[contains(.,'" + assetName + "')]//following-sibling::td[contains(.,'" + assetVersion + "')]");
-        browser.pause(1000);
-        browser.rightClick("//td[contains(.,'" + assetName + "')]//following-sibling::td[contains(.,'" + assetVersion + "')]");
-        browser.pause(1000);
+ 
+     selectReinstate:  function(assetName, assetVersion){
+        ReinstateTabUI.selectReinstate(assetName, assetVersion);
     },
+
+    setRequiredProperties: function(friendlyName, Collectiontype, userDescr, keywords, lnkTtl, windowTtl, primaryTopicId){
+        
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.friendlyNameSet(friendlyName);
+        propertiesTabUI.CollectionTypeSet(Collectiontype);
+        propertiesTabUI.userDescriptionNameSet(userDescr);
+        propertiesTabUI.keywordsNameSet(keywords);
+        propertiesTabUI.linkTitleSet(lnkTtl);
+        propertiesTabUI.windowTitleSet(windowTtl);
+        propertiesTabUI.primaryTopicIdSet(primaryTopicId);
+        propertiesTabUI.originalPublishDateSet();
+        
+        propertiesTabUI.save();
+
+
+//Add: assert set properties
+
+    },
+
 
 }
 
