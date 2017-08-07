@@ -3,8 +3,8 @@ var path = require('path');
 var rootPath = path.normalize(__dirname)
 var Page = require('./../../page');
 var rootPath = path.normalize(__dirname)
-var input = require('./../../config/Webmd-tv')[argv.env];
-var url = input.splash;
+//var input = require('./../../config/Webmd-tv')[argv.env];
+//var url = input.splash;
 var splashpage = Object.create(Page, {
     /**
      * define elements

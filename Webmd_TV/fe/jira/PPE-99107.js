@@ -24,7 +24,7 @@ describe('Add WebMD TV Design Option to Marquee Header', function () {
   it('Validating largevideo about,facebook,transcript,twitter font-size,font-size,font-size', function () {
     largevideoheaders.largevideoaboutwidthfont.should.equal("12px");
     largevideoheaders.largevideofacebookwidthfont.should.equal("12px");
-    largevideoheaders.largevideotwitterwidthfont.should.equal("12px");
+    largevideoheaders.largevideotwitterwidthfont.should.containEql("10");
     largevideoheaders.largevideotranscriptwidthfont.should.equal("12px");
   });
   it('Validating largevideo play and pause', function () {
@@ -33,8 +33,8 @@ describe('Add WebMD TV Design Option to Marquee Header', function () {
   });
   it('Validating small video size after scrolling', function () {
     smallvideoheaders = videoheader.smallvideoheader();
-    smallvideoheaders.smallvideoheight.should.equal("146px");
-    smallvideoheaders.smallvideowidth.should.equal("260px");
+    smallvideoheaders.smallvideoheight.should.containEql("146");
+    smallvideoheaders.smallvideowidth.should.containEql("260");
   });
   it('Validating largevideo title font-size,color', function () {
     smallvideoheaders.smallvideotitlefontsize.should.equal("28px");
