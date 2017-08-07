@@ -1,0 +1,56 @@
+<script type="text/javascript">
+        $(document).ready(function() {
+        function logStatus(e) {
+            console.log(e.success,e.ref);
+            // GONNA HAVE TO KICK OFF SCREEN WIDTH TEST HERE BASED ON SUCCESS
+            if (e.success) {
+                 var iFrame = '<iframe src="http://img.webmd.com/fit/blastoff/BlastOff_Game.html" width="818" height="618" margin="0" frameborder="0" scrolling="no" title="Game Loading Area"></iframe>';
+                    if ($(window).width() < 818) {
+                        console.log('screen small');
+                        var errorScreen = '<div class="non-flash-overlay2"><h4>Were sorry, the screen is too small for this game.</h4><button class="non-game-ok">OK</button></div>';
+                        //$('.non-flash-overlay2').css('display', 'block');
+                        $('object#myID').remove();
+                        $('#game_ctr').append(errorScreen);
+                        $('button.non-game-ok').on('click touchend', function() {
+                             window.history.back(); });
+                            } else {
+                                console.log('screen not small');
+                                // MAKE ANY NECESSARY CHROME WIDTH ADJUSTMENTS HERE
+                                        }
+            }
+        }
+            var flashvars = {};
+            var params = {};
+            var attributes = {};
+            swfobject.embedSWF("BlastOff_Online.swf", "myID", "818", "618", "13.0.0", false, flashvars, params, attributes,logStatus);
+
+            $('button.non-game-ok').on('click touchend', function() {
+                window.history.back();
+                });
+            });
+        </script>
+         <div class="content-positioner clearfix">
+                        <div class="gameWrapper">
+                            <h1>Stuff We Like: Games</h1>
+                            <div id="game_ctr" class="inner_ctr">
+                                <div id="game">
+                                    <h2>MyPlate Blast Off Game</h2>
+                                    <div class="moduleSpacer_rdr"></div>
+                                    <div class="description">
+                                        <p>Your Mission: Fuel up your MyPlate spaceship with healthy food choices and 60 minutes of physical activity to see if you can fly to Planet Power. Ready? Blast off in 5-4-3-2-1 …</p>
+                                    </div>
+                                    <div id="flash-ctr">
+
+                                    </div>
+                                </div>
+                                 <div id="myID">
+                                <div class="non-flash-overlay2">
+                                    <h4>We're sorry. You need Flash Player to play this game. You may need to enable or install it.<br />Flash doesn't work on a lot of phones and tablets, so you might want to try playing this game on a computer.</h4>
+                                    <button class="non-game-ok">BACK</button>
+                                </div>
+        </div>
+                            </div>
+                        </div>
+                        <!-- gameWrapper -->
+
+                    </div>
