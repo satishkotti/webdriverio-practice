@@ -5,7 +5,8 @@ module.exports.config = {
         dev01: 'dev01',
         dev03: 'dev03',
         qa02: 'qa02',
-        qa00: 'qa00'
+        qa00: 'qa00',
+        qa01: 'qa01'
     },
     appAccess: {
         users: {

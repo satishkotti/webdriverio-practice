@@ -5,6 +5,9 @@ var props = require('./../../../../common/actions/assetprops.actions');
 var pageTestData = require('./../../../../data/page.assets');
 var act = require('./../../../../common/actions/assetactions.actions');
 
+var supertest = require('supertest-as-promised');
+var server = supertest.agent("https://deploy.webmd.net/cli/environment/");
+
 var testEnv = global.testEnv;
 if (testEnv === 'qa02')
     testEnv = 'perf';
@@ -25,10 +28,12 @@ function handleRuntimeValidation(expected_protocol){
 }
 
 describe('PPE-105015: Verify the file naming convention for PB page/template CSS', function() {
+    /*
     before(() => {
         //Launch App
         test.LaunchAppAndLogin();
     });
+    */
 
     it("Verify the SSL configuration is set to true by default", function() {
         var assetDetails = pageTestData.normalStandalonePage;
@@ -74,4 +79,47 @@ describe('PPE-105015: Verify the file naming convention for PB page/template CSS
         test.ClickButtonInATSPage("Redirect to URL");
         handleRuntimeValidation('http');
     });
+
+
+    it.only("Verify ssl in udeploy", function(){
+        var data;
+        console.log(testEnv)
+        let create = new Promise(function (resolve, reject) {
+        server
+            .get("componentProperties?environment="+testEnv.toUpperCase()+"&application=ConsumerGenesys&component=ConsumerGenesys")
+            .set("Content-Type", "application/json")
+            .set("Authorization","Basic <Need to add test account>")
+            .send()
+            .expect(200, function (err, res) {
+                if (!err && res.body) {
+                    data = res.body;
+                    return resolve(res.body);
+                }
+                else {
+                    return reject(
+                        {
+                            error: err,
+                            response: res.body
+                        });
+                }
+            })
+      });
+
+    browser.waitUntil(function() {
+        return data === undefined ? false :true;
+    }, 60000, "Getting response", 500)
+    for(i = 0; i<data.length; i++){
+        ele = data[i];
+        if(ele.name === 'SSL_REQD_DEFAULT'){
+            console.log(ele);
+            expect(ele.value === '1').to.be.true;
+        }
+        else{
+            //console.log("Searching for SSL Config property");
+        }
+    }
+});
+
+
+
 });
