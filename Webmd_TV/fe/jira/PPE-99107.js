@@ -43,7 +43,7 @@ describe('Add WebMD TV Design Option to Marquee Header', function () {
   it('Validating largevideo about,facebook,transcript,twitter font-size,font-size,font-size', function () {
     smallvideoheaders.smallvideoaboutwidthfont.should.equal("12px");
     smallvideoheaders.smallvideofacebookwidthfont.should.equal("12px");
-    smallvideoheaders.smallvideotwitterwidthfont.should.equal("12px");
+    smallvideoheaders.smallvideotwitterwidthfont.should.equal("10px");
     smallvideoheaders.smallvideotranscriptwidthfont.should.equal("12px");
   });
   it('Validating smallvideo play and pause', function () {

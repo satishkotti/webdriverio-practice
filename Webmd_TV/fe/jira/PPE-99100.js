@@ -14,7 +14,7 @@ describe('Splash Page Validations', function () {
   this.timeout(100000);
   it('Validation for videos Grid', function () {
     splashgrids = splashpage.splashpagegrids();
-    splashgrids.gridcssProperties.height.should.containEql('320');
+    splashgrids.gridcssProperties.height.should.containEql('321');
     splashgrids.gridcssProperties.width.should.containEql('595');
   });
   it('Validation for video overlay', function () {
