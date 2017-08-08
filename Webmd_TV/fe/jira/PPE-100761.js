@@ -29,28 +29,59 @@ describe('PPE-100761 Build the WebMD TV Content Grids', function () {
     }
   });
 
-    it("Validate font size , font family and color of grid names", function () {
+    it("Validate font size , font family and color of grid names fontsize ", function () {
     //title = assetpage.grid1();  
       for (var i = 0; i < title.gridtypefsize.length; i++) {
       title.gridtitlefsize[i].value.should.equal("33px");
+      
+    }
+  });
+  it("Validate font size , font family and color of grid names gridtypeofsize", function () {
+    //title = assetpage.grid1();  
+      for (var i = 0; i < title.gridtypefsize.length; i++) {
+      
       title.gridtitleffamily[i].value.should.equal("source sans pro");
+      
+    }
+  });
+it("Validate font size , font family and color of grid names color", function () {
+    //title = assetpage.grid1();  
+      for (var i = 0; i < title.gridtypefsize.length; i++) {
+      
       title.gridtitlecolor[i].parsed.hex.should.equal("#2b2c34");
     }
   });
-
-      it("Validate for height and width of grid images", function () {
+      it("Validate for height  of grid images", function () {
     //title = assetpage.grid1();
     //console.log(title.gridtypefsize);
       for (var i = 0; i < title.gridtypefsize.length; i++) {
-      title.gridimageheight[i].value.should.equal("180px");
+    
+      title.gridimagewidth[i].value.should.equal("190px");
+      //title.gridtitlecolor[i].parsed.hex.should.equal("#2b2c34");
+    }
+  });
+   it("Validate for width of grid images", function () {
+    
+      for (var i = 0; i < title.gridtypefsize.length; i++) {
+    
       title.gridimagewidth[i].value.should.equal("190px");
       //title.gridtitlecolor[i].parsed.hex.should.equal("#2b2c34");
     }
   });
 
-      it("Validate grid title properties", function () {
+      it("Validate grid title properties font-size", function () {
       title.titleproperties.fontSize.should.equal("22px");
+      
+      
+   
+  });
+   it("Validate grid title properties fontcolor", function () {
+      
       title.titleproperties.fontColor.should.equal("#554c57");
+        
+  });
+   it("Validate grid title properties font family", function () {
+      
       title.titleproperties.fontFamily.should.equal("source sans pro");
       
    

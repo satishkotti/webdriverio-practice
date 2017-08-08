@@ -17,29 +17,52 @@ describe('Add WebMD TV Design Option to About and Transcript Screens', function 
     about.abouttitlecssProperties.fontFamily.should.equal("source sans pro");
 
   });
-  it('Validation for time displayed in about section', function () {
+  it('Validation for time displayed in about section font-size', function () {
     about.abouttimecssProperties.fontSize.should.equal("20px");
+  });
+  it('Validation for time displayed in about section font-color', function () {
     about.abouttimecssProperties.fontColor.should.equal("#00d5e0");
+  });
+  it('Validation for time displayed in about section font-family', function () {
     about.abouttimecssProperties.fontFamily.should.equal("source sans pro");
   });
-  it('Validation for sources text in about section', function () {
+  it('Validation for sources text in about section font-size', function () {
     about.sourcestextcssProperties.fontSize.should.equal("14px");
+  });
+  it('Validation for sources text in about section font-family', function () {
     about.sourcestextcssProperties.fontFamily.should.equal("roboto condensed");
+
+  });
+  it('Validation for sources text in about section font-color', function () {
     about.sourcestextcssProperties.fontColor.should.equal("#00d5e0");
   });
-  it('Validation for synopsistext in about section', function () {
+  it('Validation for synopsistext in about section font-size', function () {
     about.synopsistextcssProperties.fontSize.should.equal("17px");
-    about.synopsistextcssProperties.fontFamily.should.equal("source sans pro");
+   
+  });
+   it('Validation for synopsistext in about section font-color', function () {
     about.synopsistextcssProperties.fontColor.should.equal("#ffffff");
+  });
+   it('Validation for synopsistext in about section Sources Text', function () {
     about.sourcestext.should.equal("SOURCES");
+  });
+  it('Validation for synopsistext in about section font-family', function () {
+    about.synopsistextcssProperties.fontFamily.should.equal("source sans pro");
   });
   it('Validation for synopsistext in about section', function () {
     about.abouttitle.should.containEql(about.titletext);
+  });
+   it('Validation for synopsistext in about section', function () {
     about.copyrightis.should.equal(true);
+  });
+   it('Validation for synopsistext in about section', function () {
     about.time.should.equal(true);
+  });
+   it('Validation for synopsistext in about section', function () {
     about.synopsistext.should.equal(true);
+  });
+   it('Validation for synopsistext in about section', function () {
     about.close.should.equal(false);
-
   });
   it('Validation for transcript section in article', function () {
     var transcripts = screens.Transcriptscreen();
