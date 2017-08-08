@@ -15,7 +15,7 @@ var ReinstateTab = require('./../../../common/actions/Reinstate.action');
 var test = require("./../../../common/functions/functions.js");
 var randomstring = require("randomstring");
 
-describe('D2: No option to reinstate Collection objects- PPE-81507', function () {
+describe('D2: No option to reinstate Collection objects- PPE-81507-UK', function () {
 
     var chronicleId;
     var AssetTitle;
@@ -31,11 +31,11 @@ describe('D2: No option to reinstate Collection objects- PPE-81507', function ()
             password: functions.getQAPublicationUser().password
         });
        
-         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UKtestFolderPath);
          AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
          AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
          workspaceMenu.createContent(
-         global.d2ConDataSettings.inputData.USCollectionArticleProfileName,
+         global.d2ConDataSettings.inputData.UKCollectionArticleProfileName,
             global.d2ConDataSettings.inputData.CollectionArticleTemplate,
             AssetTitle,
             AssetName);
