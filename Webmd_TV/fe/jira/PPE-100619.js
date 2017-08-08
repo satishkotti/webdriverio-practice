@@ -15,8 +15,9 @@ var title;
 
 describe('Style WebMD TV Carousel/Filmstrip', function () {
   this.timeout(100000);
+  browser.url(url);
   it("Validate Left arrow height and width validations", function () {
-    browser.url(url);
+
     filmstrip = filmstripfunction.filmstrip();
     if (filmstrip.leftarrowcssProperties.width == '41px') {
       filmstrip.leftarrowcssProperties.width.should.equal("41px");
@@ -47,22 +48,38 @@ describe('Style WebMD TV Carousel/Filmstrip', function () {
     filmstrip.rightnavigationarrowcssProperties.height.should.containEql("30");
 
   });
-  /*it("Font size validations for title", function () {
-   browser.url(url);
-     title = filmstripfunction.episode();
-     for (var i = 0; i < title.fontsize.length; i++) {
-       title.fontsize[i].value.should.equal("17px");
- 
-     }
- 
-   });*/
-  /*it("Font color validations for title", function () {
-    for (var i = 0; i < title.fontcolor.length; i++) {
-      title.fontcolor[i].parsed.hex.should.equal("#f2eef3");
-	  console.log("veera"+title.alltitles[i]);
-    }
+
+
+  it("Font size validations for title", function () {
+    browser.url(url);
+    filmstripv = filmstripfunction.filmstripvalidation();
+    filmstripv.videoTitlefont.value.should.equal("18px");
+    //  for (var i = 0; i < title.fontsize.length; i++) {
+    //    title.fontsize[i].value.should.equal("17px");
+
+    //  }
+
   });
-  it("fontfamily,fontcolor,fontsize validations for episode title", function () {
+  it("Font color validations for title", function () {
+    filmstripv.videoTitlecolor.parsed.hex.should.equal("#ffffff");
+    // for (var i = 0; i < title.fontcolor.length; i++) {
+    //   title.fontcolor[i].parsed.hex.should.equal("#f2eef3");
+    // console.log("veera"+title.alltitles[i]);
+    // }
+  });
+  it("Font family validations for title", function () {
+    filmstripv.videoTitlefmaily.value.should.equal("source sans pro");
+    //  for (var i = 0; i < title.fontsize.length; i++) {
+    //    title.fontsize[i].value.should.equal("17px");
+
+    //  }
+
+  });
+  it("verifying image width and height", function () {
+    filmstripv.imageheight.value.should.containEql("148");
+    filmstripv.imagewidth.value.should.containEql("154");
+  });
+  /*it("fontfamily,fontcolor,fontsize validations for episode title", function () {
     for (var i = 0; i < title.episodefontfamily.length; i++) {
       title.episodefontfamily[i].value.should.equal("source sans pro");
       title.episodefontcolor[i].parsed.hex.should.equal("#00d5e0");
@@ -73,6 +90,11 @@ describe('Style WebMD TV Carousel/Filmstrip', function () {
 
 
     }
+  });*/
+  it("verifying image width and height", function () {
+    filmstripv.filmstriptcolor.parsed.hex.should.equal("#f2eef3");
+    filmstripv.filmstriptsize.value.should.equal("13px");
+    filmstripv.filmstriptfamily.value.should.equal("source sans pro");
   });
   /*it("Play icon css validations for all the videos", function () {
   for (var i = 0; i < title.playiconsheight.length; i++) {
@@ -81,13 +103,8 @@ describe('Style WebMD TV Carousel/Filmstrip', function () {
   
   }
   });*/
-  /*it("Image is existing", function () {
-    for (var i = 0; i < title.image[i].length; i++) {
-      title.image[i].should.equal('true');
 
-
-    }
-  });
+  /*
   it("css_validation for episode and videoTitle icons",function(){
   browser.url(url);
   var properties=filmstripfunction.css_validation();
@@ -101,7 +118,7 @@ describe('Style WebMD TV Carousel/Filmstrip', function () {
 });*/
 
   it("validating next video in Filmstrip", function () {
-    filmstripv = filmstripfunction.filmstripvalidation();
+
     filmstripv.next.should.equal(filmstripv.next1);
     filmstripv.current.should.equal(filmstripv.next1);
 

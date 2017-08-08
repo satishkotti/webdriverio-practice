@@ -90,15 +90,15 @@ module.exports = {
     for (var i = 1; i <= j.value.length; i++) {
 
       widthheight.push(webmdtvpage.filmstripN(i).getCssProperty('width'));
-      console.log("sasank1");
+      //console.log("sasank1");
       titleheight.push(webmdtvpage.filmstripN(i).getCssProperty('height'));
-      console.log("sasank2");
+      //console.log("sasank2");
       fontsize.push(webmdtvpage.filmstripN(i).getCssProperty('font-size'));
-      console.log("sasank3");
+      //console.log("sasank3");
       fontcolor.push(webmdtvpage.filmstripN(i).getCssProperty('color'));
-      console.log("sasank4");
+      //console.log("sasank4");
       fontfamily.push(webmdtvpage.filmstripN(i).getCssProperty('font-family'));
-      console.log("sasank6");
+      //console.log("sasank6");
 
       //Image validations
       image.push(webmdtvpage.imagethumnailN(i).isExisting());
@@ -115,21 +115,21 @@ module.exports = {
 
 
     }
-   /* for (i = 1; i <= 3; i++) {
-      playiconsheight.push(webmdtvpage.playicons(i).getCssProperty('height'));
-      playiconswidth.push(webmdtvpage.playicons(i).getCssProperty('width'));
-      playiconscolor.push(webmdtvpage.playicons(i).getCssProperty('color'));
-    }*/
-    browser.pause(2000);
-    //var titletext=webmdtvpage.filmstripN(1).getText();
-    var titletext = browser.getText('//*[@id="webmd-tv-playlists"]/div[2]/div[1]/div[1]/div/div[11]/div/a/div[2]/h4');
+    /* for (i = 1; i <= 3; i++) {
+       playiconsheight.push(webmdtvpage.playicons(i).getCssProperty('height'));
+       playiconswidth.push(webmdtvpage.playicons(i).getCssProperty('width'));
+       playiconscolor.push(webmdtvpage.playicons(i).getCssProperty('color'));
+     }*/
+    // browser.pause(2000);
+    // //var titletext=webmdtvpage.filmstripN(1).getText();
+    // var titletext = browser.getText('//*[@id="webmd-tv-playlists"]/div[2]/div[1]/div[1]/div/div[11]/div/a/div[2]/h4');
 
-    browser.click('//*[@id="webmd-tv-playlists"]/div[2]/div[1]/div[1]/div/div[5]/div/a/div[2]/h4');
-    browser.pause(2000);
-    browser.scroll(0, 190);
-    browser.scroll("//div[@class='title-section']/div[@class='title2']");
-    browser.waitForVisible("//div[@class='title-section']/div[@class='title2']", 4000);
-    var texttitle = browser.getText("//div[@class='title-section']/div[@class='title2']");
+    // browser.click('//*[@id="webmd-tv-playlists"]/div[2]/div[1]/div[1]/div/div[5]/div/a/div[2]/h4');
+    // browser.pause(2000);
+    // browser.scroll(0, 190);
+    // browser.scroll("//div[@class='title-section']/div[@class='title2']");
+    // browser.waitForVisible("//div[@class='title-section']/div[@class='title2']", 4000);
+    // var texttitle = browser.getText("//div[@class='title-section']/div[@class='title2']");
 
 
 
@@ -145,22 +145,27 @@ module.exports = {
       image: image,
       imageheight: imageheight,
       imagewidth: imagewidth,
-      titletext: titletext,
-      texttitle: texttitle,
-      alltitles: alltitles,
-     // playiconsheight: playiconsheight,
+      // titletext: titletext,
+      // texttitle: texttitle,
+      // alltitles: alltitles,
+      // playiconsheight: playiconsheight,
       //playiconswidth: playiconswidth,
-     // playiconscolor: playiconscolor
+      // playiconscolor: playiconscolor
 
     }
     return filmstrip2;
   },
   filmstripvalidation: function () {
 
+    var imageheight = webmdtvpage.filmimage.getCssProperty('height');
+    var imagewidth = webmdtvpage.filmimage.getCssProperty('width');
     browser.pause(10000);
     var videoTitlefont = webmdtvpage.videoTitleflim.getCssProperty('font-size');
     var videoTitlecolor = webmdtvpage.videoTitleflim.getCssProperty('color');
     var videoTitlefmaily = webmdtvpage.videoTitleflim.getCssProperty('font-family');
+    var filmstriptcolor =  webmdtvpage.filmname.getCssProperty('color');
+    var filmstriptsize =  webmdtvpage.filmname.getCssProperty('font-size');
+    var filmstriptfamily =  webmdtvpage.filmname.getCssProperty('font-family');
     var next = browser.getText("//div[@class='owl-item active'][2]//div[@class='video']//h4");
     browser.click("//div[@class='owl-item active'][2]//div[@class='video']//h4");
     browser.pause(20000);
@@ -172,17 +177,22 @@ module.exports = {
     browser.refresh();
 
     var filmstripvalue = {
-      videoTitlefont : videoTitlefont,
-      videoTitlecolor : videoTitlecolor,
-      videoTitlefmaily : videoTitlefmaily,
-      next : next,
-      next1 : next1,
-      current : current,
+      videoTitlefont: videoTitlefont,
+      videoTitlecolor: videoTitlecolor,
+      videoTitlefmaily: videoTitlefmaily,
+      next: next,
+      next1: next1,
+      current: current,
+      imageheight : imageheight,
+      imagewidth : imagewidth,
+      filmstriptcolor : filmstriptcolor,
+      filmstriptsize : filmstriptsize,
+      filmstriptfamily : filmstriptfamily,
 
 
-     // playiconsheight: playiconsheight,
+      // playiconsheight: playiconsheight,
       //playiconswidth: playiconswidth,
-     // playiconscolor: playiconscolor
+      // playiconscolor: playiconscolor
 
     }
     return filmstripvalue;
@@ -190,3 +200,4 @@ module.exports = {
 
 
 }
+

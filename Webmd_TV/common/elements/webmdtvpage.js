@@ -218,6 +218,9 @@ Standupvideologo: { get: function () { return browser.element("//div[@class='mas
     user_info     : {get :function(){return browser.element('//div[@class="owl-item active"]//div[@class="user-info"]/span[2]');}},
 	
 	videoTitleflim : { get: function () { return browser.element("//div[@class='title2']"); } },
+    //subbu
+    filmimage : { get: function () { return browser.element("//div[@class='owl-item active'][2]//div[@class='video']//img"); } },
+    filmname : { get: function () { return browser.element("//div[@class='owl-item active'][2]//div[@class='video']//h4"); } },
     /**
 * define or overwrite page methods
 */
