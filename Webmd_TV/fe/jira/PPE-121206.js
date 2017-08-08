@@ -24,6 +24,8 @@ describe('PPE-121206 Make Article Page Asset Grid Call out "Videos"', function (
 
    browser.url(articleurl)
    browser.scroll(500,500);
+   
+   browser.scroll("//div[@class='pane art-list-grid']/div[@class='list-container']/div[@class='list-header']",100,100);
    //assetpage.close_Overlay();
    if (browser.isExisting('#webmdHoverClose')) {
         browser.click('#webmdHoverClose');
@@ -69,10 +71,11 @@ result=true;
 
  browser.url(slideurl);  
     browser.pause(700); 
+	var Assetgridsponsorlabel = splashelement.Assetgridsponsorlabel.selector;
  browser.scroll(100,100);
   var Assetgridheader  = splashelement. Assetgridslideshowlabel.selector;
    var Assetgridvideolabel = splashelement.Assetgridvideolabel.selector;
-   var Assetgridsponsorlabel = splashelement.Assetgridsponsorlabel.selector;
+//   var Assetgridsponsorlabel = splashelement.Assetgridsponsorlabel.selector;
    var Assetgridlabel = splashelement.Assetgridlabel.selector;
    browser.waitForVisible(Assetgridheader,4000);
    
