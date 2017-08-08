@@ -62,8 +62,9 @@ staging: {
     withrightad:["http://www.staging.webmd.com/zztest/webmd-tv/video-cancer-treat-whole-you-robin-roberts-with-ad","http://www.staging.webmd.com/zztest/webmd-tv/video-targeted-cancer-therapy-robin-roberts","https://www.staging.webmd.com/zztest/webmd-tv/video-early-cancer-detection-robin-roberts-splash","http://www.staging.webmd.com/zztest/webmd-tv/webmd-tv-article2"],
     apps:["withad","withoutad","splash","article"],
     //99107
-    article:"https://www.staging.webmd.com/zztest/webmd-tv/splash-lazyload-video",
-    splashpage:"https://www.staging.webmd.com/zztest/webmd-tv/splash-lazyload-video"
+    article:"https://www.staging.webmd.com/multiple-sclerosis/be-empowered-ms-17/career",
+    splashpage:"https://www.staging.webmd.com/zztest/webmd-tv/splash-lazyload-video",
+    splashpageheaderslide: "https://www.staging.webmd.com/multiple-sclerosis/be-empowered-ms-17/slideshow-ms-brain-games"
   
 },
 
@@ -86,7 +87,8 @@ prodsea1: {
     apps:["splash"],
     //99107
     article:"https://www.webmd.com/multiple-sclerosis/be-empowered-ms-17/career",//99107
-    splashpage:"https://www.webmd.com/multiple-sclerosis/be-empowered-ms-17/default.htm"//99100
+    splashpage:"https://www.webmd.com/multiple-sclerosis/be-empowered-ms-17/default.htm",//99100
+    splashpageheaderslide: "https://www.webmd.com/multiple-sclerosis/be-empowered-ms-17/slideshow-ms-brain-games",
   
 }
 }
