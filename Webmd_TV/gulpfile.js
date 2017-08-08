@@ -27,7 +27,7 @@ var defaultWaitTimeout = 180000;
 var defaultMochaTestTimeout = 600000;
 var gridHost = '172.28.38.219';
 var gridPort = 4444;
-var testEnv='prodsea1';
+//var testEnv='prodsea1';
 var tests = [];
 var currentBranch;
 var confPath;

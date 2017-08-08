@@ -44,7 +44,7 @@ module.exports = {
     }
 }
   },
-staging: {
+qa01: {
     environment: "https://www.staging.webmd.com/zztest/webmd-tv/splash-lazyload-video",
     filmstrip:"https://www.staging.webmd.com/zztest/webmd-tv/video-targeted-cancer-therapy-robin-roberts",
     gridurl1: "http://www.staging.webmd.com/zztest/webmd-tv/cancer-custom-genetic-treatment",
