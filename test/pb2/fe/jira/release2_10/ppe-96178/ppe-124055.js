@@ -9,7 +9,7 @@ const menu = require('./../../../../common/actions/menus.actions.js');
 
 
 describe('PPE-96178: Verify the various conditions set on Shared Module input field'
-    + 'with respect to the number of characters that the field can accept for a new module', () => {
+    + 'with respect to the number of characters that the field can accept for a new shared module', () => {
 
         let _InvalidMessage, _TitleInputField, _SavePublishButton;
 

@@ -6,8 +6,8 @@ const field = require('./../../../../common/elements/assetprops.page.js');
 const testdata = require('./../../../../data/testdata/ppe-96178.testdata').TestData.ppe_124056;
 
 
-describe('PPE-96178: Verify the various conditions set on Page Title input field'
-    + 'with respect to the number of characters that the field can accept for a new page', () => {
+describe('PPE-96178: Verify the various conditions set on Page Module Title input field'
+    + 'with respect to the number of characters that the field can accept for a new page module', () => {
 
         let _InvalidMessage, _TitleInputField, _SavePublishButton;
 
