@@ -19,7 +19,7 @@ describe('Add WebMD TV Design Option to Video Player Info Bar with Video + Ad La
     adposition = adlayout.adposition();
     console.log(adposition);
     expect(adposition.adpositioned.x > adposition.videoposition.x).to.be.true;
-    if (adposition.adheight == "250.4px") {
+    if (adposition.adheight == "250px") {
       adposition.adwidth.should.equal("300px");
       adposition.adheight.should.containEql("250");
     } else {
@@ -28,7 +28,7 @@ describe('Add WebMD TV Design Option to Video Player Info Bar with Video + Ad La
     }
   });
   it('Validate with ad we are able to get small video', function () {
-    adposition.advideocssProperties.width.should.containEql("979");
+    adposition.advideocssProperties.width.should.containEql("1073");
     adposition.advideocssProperties.height.should.containEql("550");
   });
   it('Validate with ad we are able to get small video about', function () {
