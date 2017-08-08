@@ -29,7 +29,7 @@ describe('Add WebMD TV Design Option to Video Player Info Bar with Video + Ad La
   });
   it('Validate with ad we are able to get small video', function () {
     adposition.advideocssProperties.width.should.containEql("1073");
-    adposition.advideocssProperties.height.should.containEql("550");
+    adposition.advideocssProperties.height.should.containEql("603");
   });
   it('Validate with ad we are able to get small video about', function () {
     adposition.abouttextcssProperties.fontSize.should.equal("12px");
