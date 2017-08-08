@@ -23,7 +23,7 @@ describe('PPE-121206 Make Article Page Asset Grid Call out "Videos"', function (
     
 
    browser.url(articleurl)
-   browser.scroll(500,500);
+   browser.scroll("//div[@class='pane art-list-grid']/div[@class='list-container']/div[@class='list-header']",100,100);
    
    //browser.scroll("//div[@class='pane art-list-grid']/div[@class='list-container']/div[@class='list-header']",100,100);
    //assetpage.close_Overlay();
