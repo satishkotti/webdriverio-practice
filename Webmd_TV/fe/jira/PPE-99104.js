@@ -36,8 +36,8 @@ describe('PPE-99104 UGC Data Entry Module', function () {
     //  dataentrymodule.textvalidation.should.equal("Help others find inspiration and guidance");
       dataentrymodule.closebuttonnotvisible.should.equal(false);
       //dataentrymodule.thankyoutext.should.containEql(name + ", THANK YOU FOR SHARING YOUR STORY");
-      dataentrymodule.thankyoufont.should.containEql("22");
-      dataentrymodule.thankyoucolor.should.equal("#554c57");
+      //dataentrymodule.thankyoufont.should.containEql("22");
+    //  dataentrymodule.thankyoucolor.should.equal("#554c57");
       dataentrymodule.closebutton.should.equal(false);
     });
     it(' Please Enter valid email',function(){
@@ -45,6 +45,12 @@ dataentrymodule.invalidemail.should.containEql("Please enter a valid email");
     });
     it('Thank you message Va;lidation',function(){
 dataentrymodule.thankyoutext.should.containEql(name + ", THANK YOU FOR SHARING YOUR STORY");
+    });
+      it('Thank you message Va;lidation',function(){
+ dataentrymodule.thankyoufont.should.containEql("22");
+    });
+      it('Thank you message Va;lidation',function(){
+dataentrymodule.thankyoucolor.should.equal("#554c57");
     });
     it('Validation for Help others find inspiration and guidance with right Rail ad ' + Input.apps[i], function () {
       dataentrymodule.textvalidation.should.equal("Help others find inspiration and guidance");
@@ -103,27 +109,34 @@ dataentrymodule.thankyoutext.should.containEql(name + ", THANK YOU FOR SHARING Y
       dataentrymodule.invalidvideourl.should.containEql("Please enter a valid web address");
     });
 
-    it('verify color for input text entered for all the data fields ' + Input.apps[i], function () {
+    it('verify color for input text entered for all the data fields font color ' + Input.apps[i], function () {
       dataentrymodule.namecssProperties.fontColor.should.equal("#358997");
       dataentrymodule.emailcssProperties.fontColor.should.equal("#358997");
       dataentrymodule.phonecssProperties.fontColor.should.equal("#358997");
       dataentrymodule.videourlcssProperties.fontColor.should.equal("#358997");
 
+
+    });
+     it('verify color for input text entered for all the data fields fontsize' + Input.apps[i], function () {
+
       dataentrymodule.namecssProperties.fontSize.should.containEql("20");
       dataentrymodule.emailcssProperties.fontSize.should.containEql("20");
       dataentrymodule.phonecssProperties.fontSize.should.containEql("20");
       dataentrymodule.videourlcssProperties.fontSize.should.containEql("20");
+    });
+     it('verify color for input text entered for all the data fields gender font size' + Input.apps[i], function () {
 
       dataentrymodule.gendercssproperties.fontSize.should.containEql("20");
       dataentrymodule.gendercssproperties.fontColor.should.containEql("#ffffff");
+    });
 
+     it('verify color for input text entered for all the data fields gender background color' + Input.apps[i], function () {
       dataentrymodule.genderboxcssproperties.backgroundcolor.should.containEql("#43b2c4");//displayed #43b2c4 as per mocks #02b8c2
-
+    });
+     it('verify color for input text entered for all the data fields email css font-color' + Input.apps[i], function () {
       dataentrymodule.emailcss.fontColor.should.equal('#9b9b9b');
       dataentrymodule.emailcss.fontFamily.should.containEql('source sans pro');
       dataentrymodule.emailcss.fontSize.should.containEql('14');
-
-
     });
   }
   for (var i = 0; i < rightad.length; i++) {
