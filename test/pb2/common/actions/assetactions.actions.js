@@ -11,11 +11,21 @@ module.exports.GetSSLConfig = () => {
 }
 
 module.exports.SetSSLConfig = (value) => {
-    if(!(browser.element(sslconfig).isSelected() && value) || (browser.element(sslconfig).isSelected() && value))
-        return;
-    else
-        browser.element(sslconfig).click();
-}
+    if(value){
+        if(browser.element(sslconfig).isSelected())
+            return;
+        else{
+            browser.element(sslconfig).click();
+        }
+    }
+    else{
+        if(browser.element(sslconfig).isSelected()){
+            browser.element(sslconfig).click();
+        }
+        else
+            return;
+        }
+    }
 
 module.exports.ToggleAdditionalProperties = () => {
     if(page.link.get('Additional Properties').isVisible())
