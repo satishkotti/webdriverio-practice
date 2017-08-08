@@ -204,7 +204,7 @@ Standupvideologo: { get: function () { return browser.element("//div[@class='mas
     heading1: { get: function () { return browser.element('//span[text()="Stand up for"]'); } },
     heading2: { get: function () { return browser.element('//span[text()="Migraines"]'); } },
     transcriptimage: { get: function () { return browser.element('//div[@id="marquee-video-instance"]/div[2]/div/div/div[2]/div[1]/img'); } },
-    transcripttext: { get: function () { return browser.element('//div[@id="marquee-video-instance"]/div[2]/div/div/div[2]/div[1]/span'); } },
+    transcripttext: { get: function () { return browser.element("//div[@class='cmd-section']/div[@class='cmd-transcripts btn btn-default']/span"); } },
     transcriptoverlayheading: { get: function () { return browser.element('//div[@id="marquee-video"]/div/div[3]/div[1]/span[1]'); } },
     transcriptoverlayclose: { get: function () { return browser.element('//span[@class="close-icon"]'); } },
     video : {get: function() { return browser.element('//div[@class="akamai-video akamai-layer"]');}},
