@@ -80,6 +80,7 @@ var auditTabUIObj = {
     },
     promoteEvent: function () {
         browser.click("//span[text()='Audit' and @aria-hidden=not('true')]");
+        browser.pause(5000);
         var loading = true;
         while (loading) {
             loading = auditTabUIObj.widgetloading();
@@ -89,6 +90,7 @@ var auditTabUIObj = {
     },
     demoteEvent: function () {
         browser.click("//span[text()='Audit' and @aria-hidden=not('true')]");
+        browser.pause(5000);
         var loading = true;
         while (loading) {
             loading = auditTabUIObj.widgetloading();
@@ -98,6 +100,7 @@ var auditTabUIObj = {
     },
     powerpromoteEvent: function () {
         browser.click("//span[text()='Audit' and @aria-hidden=not('true')]");
+        browser.pause(5000);
         var loading = true;
         while (loading) {
             loading = auditTabUIObj.widgetloading();
@@ -105,16 +108,15 @@ var auditTabUIObj = {
         var powerpromote = browser.isExisting("//tr[contains(.,'Promote to Lifecycle State') and contains(.,'" + functions.getQAPublicationUser().username + "') and contains(.,'Staging') and contains(.,'Approved')]");
         expect(powerpromote).to.be.true;
     },
-    expireEvent: function (ver) {
+    expireEvent: function () {
         browser.click("//span[text()='Audit' and @aria-hidden=not('true')]");
+        browser.pause(5000);
         var loading = true;
         while (loading) {
             loading = auditTabUIObj.widgetloading();
         }
         var expire = browser.isExisting("//tr[contains(.,'Add Version Label') and contains(.,'Expired')]");
         expect(expire).to.be.true;
-        var save = browser.isExisting("//tr[contains(.,'Save Object') and contains(.,'Save') and contains(.,'" + ver + "')]");
-        expect(save).to.be.true;
     },
     saveEvent: function (ver) {
         var save = browser.isExisting("//tr[contains(.,'Save Object') and contains(.,'" + functions.getQAPublicationUser().username + "') and contains(.,'Save') and contains(.,'" + ver + "')]");

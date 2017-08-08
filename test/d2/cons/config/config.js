@@ -375,6 +375,8 @@ module.exports.testSettings = {
              "UKDisclaimerPName": 'Consumer Portal UK / Copyright Disclaimer Templates',
              "existingDisclaimerID_uk": "091e9c5e80330eb4",
              "existingDisclaimeritle_uk":"diet center health tools",
+             "auditExistingChronicleId":"091e9c5e80096101",
+             "auditExisitingAssetTitle":"anemia.xml"
 
         }      
     }

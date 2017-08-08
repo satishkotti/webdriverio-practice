@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 50000;
+var maxWaitTimeInMs = 500000;
 var contentTab = require('./../../common/actions/contentTab.actions');
 
 var ppModalLabel = "Power Promote Confirmation Message";
