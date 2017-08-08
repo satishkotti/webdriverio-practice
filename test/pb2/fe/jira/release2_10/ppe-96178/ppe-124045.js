@@ -2,8 +2,8 @@
 const test = require('./../../../../common/functions/functions');
 const iwcActs = require('./../../../../common/actions/iwc.actions.js');
 const acts = require('./../../../../common/actions/assetactions.actions.js')
-const field = require('./../../../../common/elements/actions.page.js');
-const button = require('./../../../../common/elements/assetprops.page.js');
+const button = require('./../../../../common/elements/actions.page.js');
+const field = require('./../../../../common/elements/assetprops.page.js');
 const testdata = require('./../../../../data/testdata/ppe-96178.testdata').TestData.ppe_124045;
 
 
@@ -14,7 +14,7 @@ describe('PPE-96178: Verify the various conditions set on Page Title input field
 
         //Function to execute javascript and obtain the value present in the title field
         let GetTheValuePresentInField = function (fieldName) {
-            return browser.execute(`return $("label:contains('${fieldName}') input").get(0).value`);
+            return browser.execute(`return $("label:contains('${fieldName}') input").get(0).value`).value;
         }
 
         //Pre-test steps
@@ -51,21 +51,14 @@ describe('PPE-96178: Verify the various conditions set on Page Title input field
             + "user must not be displayed with 'Invalid' message for Page Title Input Field", () => {
 
                 //Enter 64 chars long valid text in Page Title field
-                _TitleInputField = field.input.get('Title');
+                _TitleInputField = field.input.get('Page Name');
                 _TitleInputField.setValue(testdata._64CharsLong);
 
                 //Verify the presence of 'Invalid' message field - message should not displayed
-                _InvalidMessage = field.invalid.get('Title');
-                expect(_InvalidMessage).to.be.false;
+                _InvalidMessage = field.invalid.get('Page Name');
+                expect(_InvalidMessage.state).to.equal('failure');
+                expect(_InvalidMessage.type).to.equal('NoSuchElement');
 
-            });
-
-        it("When user enters page title which is 64 characters long,"
-            + "'Save/Publish' button must be enabled", () => {
-
-                //Verify the state of 'Save/Publish' button - button must be enabled
-                _SavePublishButton = button.get('Save/Publish');
-                expect(_SavePublishButton.isEnabled()).to.be.true;
             });
 
         it("When user enters page title which is 65 characters long,"
@@ -75,15 +68,8 @@ describe('PPE-96178: Verify the various conditions set on Page Title input field
                 _TitleInputField.setValue(testdata._65CharsLong);
 
                 //Verify the presence of 'Invalid' message field - message should not displayed
-                expect(_InvalidMessage).to.be.false;
-
-            });
-
-        it("When user enters page title which is 65 characters long,"
-            + "'Save/Publish' button must be enabled", () => {
-
-                //Verify the state of 'Save/Publish' button - button must be enabled
-                expect(_SavePublishButton.isEnabled()).to.be.true;
+                expect(_InvalidMessage.state).to.equal('failure');
+                expect(_InvalidMessage.type).to.equal('NoSuchElement');
 
             });
 
@@ -94,7 +80,7 @@ describe('PPE-96178: Verify the various conditions set on Page Title input field
                 _TitleInputField.setValue(testdata._66CharsLong);
 
                 //Verify the text present in Page Title field - text should be of length 65 and NOT 66
-                expect(GetTheValuePresentInField('Title')).to.have.length(65);
+                expect(GetTheValuePresentInField('Page Name')).to.have.length(65);
 
             });
     });

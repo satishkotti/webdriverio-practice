@@ -28,6 +28,19 @@ var acts = Object.create(page, {
             }
         }
     },
+    button2: {
+        value: {
+            get: (buttonText, itemNumber) => {
+                switch (buttonText) {
+                    case 'View Read-Only': locator = "(" + button2.replace('***', 'View Read-Only') + ")[" + itemNumber + "]"; acts.UntilExist(); acts.UntilVisible(); return acts.GetElement; break;
+                    case 'Edit': locator =  "(" + button2.replace('***', 'Edit') + ")[" + itemNumber + "]"; acts.UntilExist(); acts.UntilVisible(); return acts.GetElement; break;
+                    case 'Export to Excel': locator = "(" + button4.replace('***', 'Export to Excel') + ")[" + itemNumber + "]"; acts.UntilExist(); acts.UntilVisible(); return acts.GetElement; break;
+                    case 'Update Redirect': locator = "(" + button3.replace('***', 'Update Redirect') + ")[" + itemNumber + "]"; acts.UntilExist(); acts.UntilVisible(); return acts.GetElement; break;
+                    default: locator = "(" + button.replace('***', buttonText) + ")[" + itemNumber + "]"; acts.UntilExist(); acts.UntilVisible(); return acts.GetElement; break;
+                }
+            }
+        }
+    },
     splbutton: {
         value: {
             get: (buttonText) => {
@@ -57,21 +70,21 @@ var acts = Object.create(page, {
         value:
         {
             get:
-                (buttonText, menuItem) =>
-                {
-                    acts.button.get(buttonText).click();
-                    locator = '//li[string()="' + menuItem + '"]';
-                    acts.GetElement.waitForVisible();
-                    acts.GetElement.click();
-                }
+            (buttonText, menuItem) => {
+                acts.button.get(buttonText).click();
+                locator = '//li[string()="' + menuItem + '"]';
+                acts.GetElement.waitForVisible();
+                acts.GetElement.click();
+            }
         }
     },
-   element: { value: (eleLocator) => 
-        { 
+    element: {
+        value: (eleLocator) => {
             locator = eleLocator;
             props.UntilExist();
             return props.GetElement;
-        }},
+        }
+    },
 
 });
 
