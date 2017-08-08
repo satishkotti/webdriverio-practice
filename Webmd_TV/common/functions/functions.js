@@ -31,6 +31,17 @@ module.exports = {
       console.log('Element with selector: ' + objElement.selector + ' is not displayed');
     }
   },
+   arraysAreEqual: function (array1, array2) {
+    if (array1.length !== array1.length)
+      return false;
+    for (var i = 0, len = array1.length; i < len; i++) {
+      if (array1[i] !== array2[i]) {
+        console.log('mismatch at ' + array1[i] + ' to : ' + array2[i]);
+        return false;
+      }
+    }
+    return true;
+  },
 
   get_cssValue: function (objElement, property) {
     try {

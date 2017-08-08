@@ -208,7 +208,7 @@ Standupvideologo: { get: function () { return browser.element("//div[@class='mas
     transcriptoverlayheading: { get: function () { return browser.element('//div[@id="marquee-video"]/div/div[3]/div[1]/span[1]'); } },
     transcriptoverlayclose: { get: function () { return browser.element('//span[@class="close-icon"]'); } },
     video : {get: function() { return browser.element('//div[@class="akamai-video akamai-layer"]');}},
-    ugcmoduleTitle: {get: function(){return browser.element('//div[@id="ugc-wrapper"]/h3');}},
+    ugcmoduleTitle: {get: function(){return browser.element("//div[@id='ugc-all-modules-wrapper']//div[@id='ugc-wrapper']/h3");}},
     previcon      : {get :function(){return browser.element('//div[@id="ugc-widget"]/div[2]/a[1]/div/span[@class="icon"]');}},
     nexticon      : {get :function(){return browser.element('//div[@class="owl-next"]//span[@class="icon"]');}},
     quotetitle    : {get :function(){return browser.element('//*[@id="ContentPane2"]/header[2]');}},
