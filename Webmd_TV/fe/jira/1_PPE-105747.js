@@ -57,7 +57,7 @@ describe('Add WebMD TV Design Option to Video Player Info Bar with Video + Ad La
     adposition.titlecssProperties.fontColor.should.equal("#ffffff");
   });
 
-  it('Validate without ad we are able to get full video', function () {
+  /*it('Validate without ad we are able to get full video', function () {
     browser.url(url2);
     browser.pause(2000);
     fullvideo = adlayout.fullvideo();
@@ -89,5 +89,5 @@ describe('Add WebMD TV Design Option to Video Player Info Bar with Video + Ad La
     fullvideo.titlecssProperties.fontSize.should.equal("20px");
     fullvideo.titlecssProperties.fontFamily.should.equal("source sans pro");//--need to confirm on this
     fullvideo.titlecssProperties.fontColor.should.equal("#ffffff");
-  });
+  });*/
 });
