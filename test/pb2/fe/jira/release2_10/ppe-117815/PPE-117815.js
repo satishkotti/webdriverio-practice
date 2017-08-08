@@ -28,12 +28,10 @@ function handleRuntimeValidation(expected_protocol){
 }
 
 describe('PPE-105015: Verify the file naming convention for PB page/template CSS', function() {
-    /*
     before(() => {
         //Launch App
         test.LaunchAppAndLogin();
     });
-    */
 
     it("Verify the SSL configuration is set to true by default", function() {
         var assetDetails = pageTestData.normalStandalonePage;
@@ -81,9 +79,8 @@ describe('PPE-105015: Verify the file naming convention for PB page/template CSS
     });
 
 
-    it.only("Verify ssl in udeploy", function(){
+    it("Verify ssl in udeploy is set to true", function(){
         var data;
-        console.log(testEnv)
         let create = new Promise(function (resolve, reject) {
         server
             .get("componentProperties?environment="+testEnv.toUpperCase()+"&application=ConsumerGenesys&component=ConsumerGenesys")
