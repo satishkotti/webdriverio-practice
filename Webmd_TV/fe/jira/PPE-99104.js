@@ -31,26 +31,41 @@ describe('PPE-99104 UGC Data Entry Module', function () {
       dataentrymodule = dataentry.ugcdataentry(youtube, name);
       dataentrymodule.maintext.should.equal(true);
       dataentrymodule.closebuttonnotvisible.should.equal(false);
-      dataentrymodule.invalidemail.should.containEql("Please enter a valid email");  
+     // dataentrymodule.invalidemail.should.containEql("Please enter a valid email");
       dataentrymodule.maintext.should.equal(true);
-      console.log("sasank"+dataentrymodule.textvalidation);
-	  dataentrymodule.textvalidation.should.equal("Help others find inspiration and guidance");
+    //  dataentrymodule.textvalidation.should.equal("Help others find inspiration and guidance");
       dataentrymodule.closebuttonnotvisible.should.equal(false);
-      dataentrymodule.thankyoutext.should.containEql(name + ", THANK YOU FOR SHARING YOUR STORY");
+      //dataentrymodule.thankyoutext.should.containEql(name + ", THANK YOU FOR SHARING YOUR STORY");
       dataentrymodule.thankyoufont.should.containEql("22");
       dataentrymodule.thankyoucolor.should.equal("#554c57");
       dataentrymodule.closebutton.should.equal(false);
     });
+    it(' Please Enter valid email',function(){
+dataentrymodule.invalidemail.should.containEql("Please enter a valid email");
+    });
+    it('Thank you message Va;lidation',function(){
+dataentrymodule.thankyoutext.should.containEql(name + ", THANK YOU FOR SHARING YOUR STORY");
+    });
+    it('Validation for Help others find inspiration and guidance with right Rail ad ' + Input.apps[i], function () {
+      dataentrymodule.textvalidation.should.equal("Help others find inspiration and guidance");
+    });
 
-    it('Validation for Email css validations with ' + Input.apps[i], function () {
+    it('Validation for Email css validations for font color ' + Input.apps[i], function () {
       dataentrymodule.emailcss.fontColor.should.equal('#9b9b9b');
+    });
+    it('Validation for Email css validations for fontfamily with' + Input.apps[i], function () {
       dataentrymodule.emailcss.fontFamily.should.containEql('source sans pro');
+    });
+    it('Validation for Email css validations for font-size ' + Input.apps[i], function () {
       dataentrymodule.emailcss.fontSize.should.containEql('14');
     });
-    it('Validation for closebutton css validations with ' + Input.apps[i], function () {
-
+    it('Validation for closebutton css validations for font-color ' + Input.apps[i], function () {
       dataentrymodule.closebuttons.fontColor.should.equal('#222222');//should be #00000
+    });
+       it('Validation for closebutton css validations for height ' + Input.apps[i], function () {
       dataentrymodule.closebuttons.height.should.containEql('20');//should be #24.4px
+    });
+       it('Validation for closebutton css validations for width ' + Input.apps[i], function () {
       dataentrymodule.closebuttons.width.should.containEql('20');//should be #24.4px
     });
 
