@@ -27,7 +27,7 @@ var defaultWaitTimeout = 180000;
 var defaultMochaTestTimeout = 600000;
 var gridHost = '172.28.38.219';
 var gridPort = 4444;
-var testEnv='qa01';
+//var testEnv='qa01';
 var tests = [];
 var currentBranch;
 var confPath;
@@ -76,7 +76,7 @@ gulp.task('branch', function (cb) {
         var specBranch;
         if (currentBranch.indexOf('master') === 0) {
             //specBranch = './fe/jira/*.js';
-			specBranch = './fe/jira/1_PPE-105747.js';
+			specBranch = './fe/jira/**.js';
             console.log('master specs: ' + specBranch);
         } 
         else if (currentBranch.indexOf('release-') >= 0) {
