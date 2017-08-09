@@ -138,6 +138,11 @@ var contentTabObj = {
     {
         return contentTabUI.contentHeaderGet();
     },
+     Assetcheckin: function(){
+        contentTabUI.selectContenTab();
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.checkIn();
+    },
    
 }
 module.exports = contentTabObj;
