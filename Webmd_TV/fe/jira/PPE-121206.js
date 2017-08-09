@@ -23,6 +23,7 @@ describe('PPE-121206 Make Article Page Asset Grid Call out "Videos"', function (
     
 
    browser.url(articleurl)
+   console.log(articleurl);
    browser.pause(2000);
    browser.scroll(1500,1500);
    browser.pause(2000);
