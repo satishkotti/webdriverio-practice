@@ -68,7 +68,7 @@ qa01: {
   
 },
 
-prodsea1: {
+Aubagio: {
     environment: "https://www.webmd.com/multiple-sclerosis/be-empowered-ms-17/video-ms-build-strength-balance",
     filmstrip:"https://www.webmd.com/multiple-sclerosis/be-empowered-ms-17/video-ms-build-strength-balance",
     gridurl1: "http://www.staging.webmd.com/zztest/webmd-tv/cancer-custom-genetic-treatment",
@@ -89,6 +89,29 @@ prodsea1: {
     article:"https://www.webmd.com/multiple-sclerosis/be-empowered-ms-17/career",//99107
     splashpage:"https://www.webmd.com/multiple-sclerosis/be-empowered-ms-17/default.htm",//99100
     splashpageheaderslide: "https://www.webmd.com/multiple-sclerosis/be-empowered-ms-17/slideshow-ms-brain-games",
+  
+},
+prodsea1: {
+    environment: "https://www.webmd.com/bipolar-disorder/bipolar-life-17/video-bipolar-married-mania",
+    filmstrip:"https://www.webmd.com/bipolar-disorder/bipolar-life-17/video-bipolar-married-mania",
+    gridurl1: "http://www.staging.webmd.com/zztest/webmd-tv/cancer-custom-genetic-treatment",
+    gridurl2: "http://www.staging.webmd.com/oral-health/rm-quiz-know-jaw-pain",
+      webmdurl:"http://www.webmd.com/default.htm",
+    gridurl3: "http://www.staging.webmd.com/zztest/webmd-tv/cancer-custom-genetic-treatment",
+    gridurl5: "http://www.staging.webmd.com/oral-health/rm-quiz-know-jaw-pain",
+    gridurl4: "http://www.staging.webmd.com/diet/ss/slideshow-bad-foods-that-are-good-for-weight-loss",
+    gridurl6: "http://www.preview.webmd.com/eye-health/eye-vision-tv/video-the-aging-eye",
+    layout:"https://www.webmd.com/bipolar-disorder/bipolar-life-17/video-bipolar-married-mania",
+    adlayout:"https://www.webmd.com/bipolar-disorder/bipolar-life-17/video-bipolar-married-mania",
+    splash:'https://www.webmd.com/bipolar-disorder/bipolar-life-17/video-bipolar-married-mania',//99104
+
+    //PPE-99104 URLS GIVEN IN Jira
+    withrightad:["https://www.webmd.com/bipolar-disorder/bipolar-life-17/video-bipolar-married-mania"],
+    apps:["splash"],
+    //99107
+    article:"https://www.webmd.com/bipolar-disorder/bipolar-life-17/bipolar-disorder-managing-mania",//99107
+    splashpage:"https://www.webmd.com/bipolar-disorder/bipolar-life-17/default.htm",//99100
+    splashpageheaderslide: "https://www.webmd.com/bipolar-disorder/bipolar-life-17/slideshow-bipolar-triggers",
   
 }
 }
