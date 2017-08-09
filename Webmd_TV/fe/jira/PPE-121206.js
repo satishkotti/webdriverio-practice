@@ -44,7 +44,7 @@ describe('PPE-121206 Make Article Page Asset Grid Call out "Videos"', function (
    var Assetgridsponsorlabel = splashelement.Assetgridsponsorlabel.selector;
    
     
-   browser.waitForVisible(Assetgridheader,4000);   
+   //browser.waitForVisible(Assetgridheader,4000);   
    
    //browser.scroll(Assetgridheader,600,600);    
    
