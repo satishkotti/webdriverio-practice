@@ -90,6 +90,13 @@ module.exports = {
           //browser.setValue("input#wbmd_bus_ref-input", textValue);
           browser.pause(1000);
     },
+     CollectionTypeSet: function(textValue){
+         
+           browser.click("//div[@id='wbmd_col_type']/img")
+          browser.pause(1000);  
+          browser.click("//div[@title='"+textValue+"']")
+          browser.pause(1000);
+    },
 
     articleTabSelect: function(){
         browser.click("//span[@text()='Article']")
