@@ -75,8 +75,8 @@ gulp.task('branch', function (cb) {
 
         var specBranch;
         if (currentBranch.indexOf('master') === 0) {
-            //specBranch = './fe/jira/*.js';
-			specBranch = './fe/jira/PPE-121206.js';
+            specBranch = './fe/jira/*.js';
+			//specBranch = './fe/jira/PPE-121206.js';
             console.log('master specs: ' + specBranch);
         } 
         else if (currentBranch.indexOf('release-') >= 0) {
