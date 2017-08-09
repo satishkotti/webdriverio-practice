@@ -24,8 +24,9 @@ describe('PPE-121206 Make Article Page Asset Grid Call out "Videos"', function (
 
    browser.url(articleurl)
    browser.pause(2000);
-   browser.scroll(1400,1400);
+   browser.scroll(1500,1500);
    browser.pause(2000);
+   //browser.scroll(200,200);
    //browser.scroll("//article[@id='textArea']//footer",100,100);
     //browser.pause(2000);
    
@@ -36,12 +37,12 @@ describe('PPE-121206 Make Article Page Asset Grid Call out "Videos"', function (
 
     }
     browser.pause(2000);
- 
+ var Assetgridlabel = splashelement.Assetgridlabel.selector;
    var Assetgridheader  = splashelement.Assetgridheader.selector;
-   browser.scroll(200,200);
+   //browser.scroll(200,200);
    var Assetgridvideolabel = splashelement.Assetgridvideolabel.selector;
    var Assetgridsponsorlabel = splashelement.Assetgridsponsorlabel.selector;
-   var Assetgridlabel = splashelement.Assetgridlabel.selector;
+   
     
    browser.waitForVisible(Assetgridheader,4000);   
    
