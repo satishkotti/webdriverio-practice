@@ -77,7 +77,7 @@ describe('Style WebMD TV Carousel/Filmstrip', function () {
   });
   it("verifying image width and height", function () {
     filmstripv.imageheight.value.should.containEql("164");
-    filmstripv.imagewidth.value.should.containEql("154");
+    filmstripv.imagewidth.value.should.containEql("170");
   });
   /*it("fontfamily,fontcolor,fontsize validations for episode title", function () {
     for (var i = 0; i < title.episodefontfamily.length; i++) {
