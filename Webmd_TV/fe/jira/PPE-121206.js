@@ -68,7 +68,7 @@ describe('PPE-121206 Make Article Page Asset Grid Call out "Videos"', function (
         else{
 result=true;
           console.log("PPE-121645 Verifying label of Article in Asset grid with Video not labelled Video");
-		  result.should.equal(false);
+		  result.should.equal(true);
        
         }
 

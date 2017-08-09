@@ -208,10 +208,11 @@ describe('PPE-107627-QA and Support: Build Responsive UGC Module', function () {
     console.log('Verifying that location consists of town and state');
     var towns = [];
     //var town_expected = ['New York', 'Trenton', 'New York', 'Redbank'];
-   var town_expected =[ 'Seattle', 'New Orleans', '', 'Oak Park' ];
+   //var town_expected =[ 'Seattle', 'New Orleans', '', 'Oak Park' ];-aubagio
+    var town_expected =[ 'Seattle', 'New Orleans', '', 'Oak Park' ];
     var states = [];
 //    var states_expected = [' NY', ' NY', ' NY', ' NJ'];
-var states_expected=[ ' WA', ' LA', undefined, ' IL' ];
+var states_expected=[ ' British Columbia', ' CA', ' IL', ' British Columbia' ];
     for (var i = 1; i <= 4; i++) {
       if (i == 4) {
         var next_icon = elements.nexticon;

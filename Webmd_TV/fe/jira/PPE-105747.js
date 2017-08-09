@@ -19,7 +19,7 @@ describe('Add WebMD TV Design Option to Video Player Info Bar with Video + Ad La
     adposition = adlayout.adposition();
     console.log(adposition);
     expect(adposition.adpositioned.x > adposition.videoposition.x).to.be.true;
-    if (adposition.adheight == "250.4px") {
+    if (adposition.adheight == "250px") {
       adposition.adwidth.should.equal("300px");
       adposition.adheight.should.containEql("250");
     } else {
@@ -28,7 +28,7 @@ describe('Add WebMD TV Design Option to Video Player Info Bar with Video + Ad La
     }
   });
   it('Validate with ad we are able to get small video', function () {
-    adposition.advideocssProperties.width.should.containEql("979");
+    adposition.advideocssProperties.width.should.containEql("1073");
     adposition.advideocssProperties.height.should.containEql("550");
   });
   it('Validate with ad we are able to get small video about', function () {
@@ -61,7 +61,7 @@ describe('Add WebMD TV Design Option to Video Player Info Bar with Video + Ad La
     browser.url(url2);
     browser.pause(2000);
     fullvideo = adlayout.fullvideo();
-    fullvideo.videocssProperties.height.should.containEql("697");
+    fullvideo.videocssProperties.height.should.containEql("603");
     fullvideo.videocssProperties.width.should.equal("1240px");
   });
 
@@ -86,7 +86,7 @@ describe('Add WebMD TV Design Option to Video Player Info Bar with Video + Ad La
     fullvideo.facebookcssProperties.fontSize.should.equal("10px");
   });
   it('Validate with ad we are able to get small video titletext', function () {
-    fullvideo.titlecssProperties.fontSize.should.equal("20px");
+    fullvideo.titlecssProperties.fontSize.should.equal("18px");
     fullvideo.titlecssProperties.fontFamily.should.equal("source sans pro");//--need to confirm on this
     fullvideo.titlecssProperties.fontColor.should.equal("#ffffff");
   });
