@@ -28,6 +28,7 @@ describe('PPE-99104 UGC Data Entry Module', function () {
 
     it('Validation for Main Text with right Rail ad ' + Input.apps[i], function () {
       browser.url(Input.withrightad[i]);
+	  console.log("url"+Input.withrightad[i]);
       dataentrymodule = dataentry.ugcdataentry(youtube, name);
       dataentrymodule.maintext.should.equal(true);
       dataentrymodule.closebuttonnotvisible.should.equal(false);
