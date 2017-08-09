@@ -119,10 +119,14 @@ describe('Style WebMD TV Carousel/Filmstrip', function () {
 
 
   it("validating current video in Filmstrip for initial page load", function () {
-
-    filmstripv.next1.should.equal(filmstripv.current);
-
-
+    if(filmstripv.next1==filmstripv.current1){
+	filmstripv.next1.should.equal(filmstripv.current);
+	}
+	else{
+	result=false;
+	console.log("Filmstrip thumbnail is not to the left most");
+	result.should.equal(true);
+	}
   });
 
   it("validating next video in Filmstrip", function () {
