@@ -166,6 +166,8 @@ module.exports = {
     var filmstriptcolor =  webmdtvpage.filmname.getCssProperty('color');
     var filmstriptsize =  webmdtvpage.filmname.getCssProperty('font-size');
     var filmstriptfamily =  webmdtvpage.filmname.getCssProperty('font-family');
+	var next2 = browser.getText("//div[@class='owl-item active'][1]//div[@class='video']//h4");
+    var current1 = browser.getText("div.title-section > div.title2");
     var next = browser.getText("//div[@class='owl-item active'][2]//div[@class='video']//h4");
     browser.click("//div[@class='owl-item active'][2]//div[@class='video']//h4");
     browser.pause(20000);
@@ -183,6 +185,8 @@ module.exports = {
       next: next,
       next1: next1,
       current: current,
+	  next2: next2,
+      current1: current1,
       imageheight : imageheight,
       imagewidth : imagewidth,
       filmstriptcolor : filmstriptcolor,

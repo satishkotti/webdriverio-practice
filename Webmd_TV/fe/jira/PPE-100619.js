@@ -117,6 +117,14 @@ describe('Style WebMD TV Carousel/Filmstrip', function () {
   //}
 });*/
 
+
+  it("validating current video in Filmstrip for initial page load", function () {
+
+    filmstripv.next1.should.equal(filmstripv.current);
+
+
+  });
+
   it("validating next video in Filmstrip", function () {
 
     filmstripv.next.should.equal(filmstripv.next1);
