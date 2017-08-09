@@ -19,7 +19,7 @@ var Surveyclose=  splashelement.Surveyclose.selector;
 
 describe('PPE-121206 Make Article Page Asset Grid Call out "Videos"', function () {
   
-  it.only(' PPE-121644 Verify label of Asset grid with Video is labelled Video ', function () {
+  it.only(' PPE-121644 Verify label of Asset grid with Video is labelled Videos ', function () {
     
 
    browser.url(articleurl)
