@@ -19,11 +19,15 @@ var Surveyclose=  splashelement.Surveyclose.selector;
 
 describe('PPE-121206 Make Article Page Asset Grid Call out "Videos"', function () {
   
-  it(' PPE-121644 Verify label of Asset grid with Video is labelled Video ', function () {
+  it.only(' PPE-121644 Verify label of Asset grid with Video is labelled Video ', function () {
     
 
    browser.url(articleurl)
-   browser.scroll("//div[@class='pane art-list-grid']/div[@class='list-container']/div[@class='list-header']",100,100);
+   browser.pause(2000);
+   browser.scroll(400,400);
+   browser.pause(2000);
+   browser.scroll("//article[@id='textArea']//footer",100,100);
+    browser.pause(2000);
    
    //browser.scroll("//div[@class='pane art-list-grid']/div[@class='list-container']/div[@class='list-header']",100,100);
    //assetpage.close_Overlay();
@@ -40,7 +44,7 @@ describe('PPE-121206 Make Article Page Asset Grid Call out "Videos"', function (
     
    browser.waitForVisible(Assetgridheader,4000);   
    
-   browser.scroll(Assetgridheader,600,600);    
+   //browser.scroll(Assetgridheader,600,600);    
    
         browser.pause(1200); 
 
