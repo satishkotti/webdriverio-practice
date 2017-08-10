@@ -4,6 +4,28 @@ var page = require('./../elements/assetprops.page');
 var cssChronIDPage = "//form[@label= 'Page CSS']/label/a";
 var cssChronIDTemplate = "//form[@label= 'Template CSS']/label/a"
 var csstextarea = "//*[@class = 'pb-modal-content pb-grid-fixed']//textarea";
+var sslconfig = "//label[contains(., 'SSL Required?')]/input";
+
+module.exports.GetSSLConfig = () => {
+    return browser.element(sslconfig).isSelected();
+}
+
+module.exports.SetSSLConfig = (value) => {
+    if(value){
+        if(browser.element(sslconfig).isSelected())
+            return;
+        else{
+            browser.element(sslconfig).click();
+        }
+    }
+    else{
+        if(browser.element(sslconfig).isSelected()){
+            browser.element(sslconfig).click();
+        }
+        else
+            return;
+        }
+    }
 
 module.exports.ToggleAdditionalProperties = () => {
     if(page.link.get('Additional Properties').isVisible())
