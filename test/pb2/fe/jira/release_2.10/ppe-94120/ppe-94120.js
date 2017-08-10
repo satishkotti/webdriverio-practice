@@ -7,14 +7,19 @@ describe('PPE-94120: Ability to Create/Edit Site XSL/CSS outside of PB', () => {
 
     //Re-usable functions
     var assetExists = function (assetName) {
-        let locator = `td[contains(.,${assetName})]`;
+        let locator = `(//td[contains(.,'${assetName}')])[1]`;
         return browser.isExisting(locator);
     }
 
-    var assetVisible = function (locator) {
-        let locator = `td[contains(.,${assetName})]`;
+    var assetVisible = function (assetName) {
+        let locator = `(//td[contains(.,'${assetName}')])[1]`;
         return browser.isVisible(locator);
     }
+
+    before(() => {
+        //Launch PB2 app and login
+        test.LaunchAppAndLogin();
+    });
 
     describe('PPE-120822: Verify whether XSL is versioned up and Published to Staging'
         + 'when changes made to an existing XSL are committed and build is generated'
@@ -23,15 +28,10 @@ describe('PPE-94120: Ability to Create/Edit Site XSL/CSS outside of PB', () => {
             var assetVersionAndStage;
             var existing_xsl = testdata.ppe_120822;
 
-            before(() => {
-                //Launch PB2 app and login
-                test.LaunchAppAndLogin();
+            it('Verify whether XSL exists and is visible in PB2', () => {
 
                 //Search for the required XSL using global search
                 test.SearchFor('XSL', existing_xsl.xsl_name, 'Global Search', null);
-            });
-
-            it('Verify whether XSL exists and is visible in PB2', () => {
 
                 expect(assetExists(existing_xsl.xsl_name)).to.be.true;
                 expect(assetVisible(existing_xsl.xsl_name)).to.be.true;
@@ -53,7 +53,7 @@ describe('PPE-94120: Ability to Create/Edit Site XSL/CSS outside of PB', () => {
 
         });
 
-    describe('PPE-120823: Verify whether appropriate relations are updated when existing XSL'
+    describe.skip('PPE-120823: Verify whether appropriate relations are updated when existing XSL'
         + 'is successfully published to Staging', () => {
 
             var resp;
@@ -76,7 +76,7 @@ describe('PPE-94120: Ability to Create/Edit Site XSL/CSS outside of PB', () => {
 
         });
 
-    describe('PPE-120824: Verify whether XSL is versioned up and Published to Staging'
+    describe('PPE-120824: Verify whether new XSL is created and Published to Staging'
         + 'when new XSL is committed and build is generated and deployed successfully', () => {
 
             var assetVersionAndStage;
@@ -109,7 +109,7 @@ describe('PPE-94120: Ability to Create/Edit Site XSL/CSS outside of PB', () => {
 
         });
 
-    describe('PPE-120825: Verify whether appropriate relations are created when new XSL'
+    describe.skip('PPE-120825: Verify whether appropriate relations are created when new XSL'
         + 'is successfully published to Staging', () => {
 
             var resp;
@@ -312,13 +312,13 @@ describe('PPE-94120: Ability to Create/Edit Site XSL/CSS outside of PB', () => {
         it('Verify whether XSL is not versioned up when JS files are not changed', () => {
 
             assetVersionAndStage = test.GetAssetVersionAndStage('', 'Search Results');
-            expect(assetVersionAndStage.version).to.equal(existing_xsl_valid.expected_stage);
+            expect(assetVersionAndStage.stage).to.equal(existing_xsl_valid.expected_stage);
 
         });
 
         it('Verify whether XSL stage is not disturbed when JS files are not changed', () => {
 
-            expect(assetVersionAndStage.stage).to.equal(existing_xsl_valid.expected_version);
+            expect(assetVersionAndStage.version).to.equal(existing_xsl_valid.expected_version);
 
         });
 
@@ -330,7 +330,7 @@ describe('PPE-94120: Ability to Create/Edit Site XSL/CSS outside of PB', () => {
 
         before(() => {
             //Search for the required XSL using global search
-            test.SearchFor('XSL', existing_xsl_invalid, 'Global Search', null);
+            test.SearchFor('XSL', existing_xsl_invalid.xsl_name, 'Global Search', null);
         });
 
         it('Verify whether XSL does not exist PB2', () => {
@@ -360,6 +360,7 @@ describe('PPE-94120: Ability to Create/Edit Site XSL/CSS outside of PB', () => {
 
         before(() => {
             //Search for the required XSL using global search
+            test.NavigateToHomepage();
             test.SearchFor('XSL', existing_xsl_invalid.xsl_name, 'Global Search', null);
         });
 
@@ -375,6 +376,7 @@ describe('PPE-94120: Ability to Create/Edit Site XSL/CSS outside of PB', () => {
 
         before(() => {
             //Search for the required XSL using global search
+            test.NavigateToHomepage();
             test.SearchFor('XSL', existing_xsl_invalid.xsl_name, 'Global Search', null);
         });
 
