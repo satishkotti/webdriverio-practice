@@ -5,6 +5,8 @@ var wdioConf = require('./../../../../wdio.conf.js');
 exports.config = merge(wdioConf.config, {
 
     debug: true,
+    sourceMaps: true,
+    retainLines: true,
     specs: ['./test/pb2/**.js'],
     capabilities: [{
         maxInstances: 1,
@@ -28,8 +30,8 @@ exports.config = merge(wdioConf.config, {
                 "credentials_enable_service": false,
                 "profile": {
                     password_manager_enabled: false
-                },                
-				download: { 
+                },
+                download: {
                     default_directory: "\\\\nasfs21d-ops-08.portal.webmd.com\\cms_test\\downloads",
                     prompt_for_download: false,
                 }
@@ -37,7 +39,7 @@ exports.config = merge(wdioConf.config, {
         }
     }],
 
-    before: function() {
+    before: function () {
 
         var chai = require('chai');
         chai.config.includeStack = true;
@@ -50,9 +52,9 @@ exports.config = merge(wdioConf.config, {
 
         var appConfigFile = require('./../test.config');
         var appConfig = appConfigFile.config;
-        global.testEnv = appConfig.testEnv.qa02;
+        global.testEnv = appConfig.testEnv.qa01;
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
-        global.testapiurl= 'http://redirect.' + global.testEnv + '.webmd.com/api/redirect/'    
+        global.testapiurl = 'http://redirect.' + global.testEnv + '.webmd.com/api/redirect/'
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
         global.site = appConfig.site.webmd.desktop;

@@ -4,7 +4,7 @@ var randomstring = require("randomstring");
 var pagedata = Object.create(page, {
 
     normalStandalonePage : {get : () => {
-        var assetName = "QAPage-ActivityQueue-" + randomstring.generate(5);
+        var assetName = "QAPage-" + randomstring.generate(5);
         var pageProps = {};
         return pageProps  = 
         {
