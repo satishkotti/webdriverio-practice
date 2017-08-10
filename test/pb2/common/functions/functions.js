@@ -985,6 +985,29 @@ module.exports.CancelCheckoutAssetUsingApi = function (ticket, payload) {
     }, 120000, 'Cancel Checking-out the asset is taking longer than expected! Please increase timeouts if necessary and try again!', 500);
     return response;
 }
+
+/* --------------------------------------
+** E X E C U T E  D Q L  E N D P O I N T
+** --------------------------------------
+** Description:
+** Execute DQL using DCTM API
+**
+** Function accepts 2 arguments:
+** 1. Ticket: Access Token for DCTM API
+** 2. DQL - Query
+*/
+module.exports.ExecuteDQLUsingApi = function (ticket, dql) {
+    var response;
+    browser.call(() => {
+        return pb2api.ExecuteDQLUsingApi(ticket, {dql: dql}).then((resp) => {
+            response = resp;
+        });
+    });
+    browser.waitUntil(function () {
+        return response == undefined ? false : true;
+    }, 120000, 'Executeing DQl and obtaing response from the server is taking longer than expected! Please increase timeouts if necessary and try again!', 500);
+    return response;
+}
 /*--------------------------------------------------------------------------------------------------- */
 /**************************************** D A T A B A S E S *****************************************/
 /*--------------------------------------------------------------------------------------------------- */
