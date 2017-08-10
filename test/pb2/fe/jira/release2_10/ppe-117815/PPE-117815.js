@@ -66,7 +66,7 @@ describe('PPE-105015: Verify the file naming convention for PB page/template CSS
         handleRuntimeValidation('http');
     });
 
-    it.only("Verify user is able to modify the SSL configuration for new pages", function() {
+    it("Verify user is able to modify the SSL configuration for new pages", function() {
         browser.url(global.appUrl);
         var assetDetails = pageTestData.normalStandalonePage;
         assetDetails.sslRequired = 1; //Setting the value to 1 in current method - PopulatePageProps , unchecks the ssl checkbox.
