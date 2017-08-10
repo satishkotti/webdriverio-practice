@@ -20,6 +20,7 @@
         "args": [
             "./test/pb2/config/wdio/wdio.pbtest.conf.js",
             "--spec", "${relativeFile}"
-        ]
+        ],
+        "trace": true
     }]
 }
