@@ -68,7 +68,7 @@ qa01: {
   
 },
 
-Aubagio: {
+prodseastaging: {
     environment: "https://www.webmd.com/multiple-sclerosis/be-empowered-ms-17/video-ms-build-strength-balance",
     filmstrip:"https://www.webmd.com/multiple-sclerosis/be-empowered-ms-17/video-ms-build-strength-balance",
     gridurl1: "http://www.staging.webmd.com/zztest/webmd-tv/cancer-custom-genetic-treatment",
