@@ -28,8 +28,9 @@ describe('    PPE-121307 Style Poll Module', function () {
    
  
   }); 
-  /*it('PPE-125155 Verify after autosubmit User is only able to reselect the answers for the question , when browser is refreshed', function () {              
-
+   it('PPE-125155 Verify after autosubmit User is only able to reselect the answers for the question , when browser is refreshed for article', function () {              
+ spage.splashpollsubmit();
  
-  }); */
+ 
+  }); 
 });
