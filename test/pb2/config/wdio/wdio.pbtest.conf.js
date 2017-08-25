@@ -5,6 +5,7 @@ var wdioConf = require('./../../../../wdio.conf.js');
 exports.config = merge(wdioConf.config, {
 
     debug: true,
+    execArgv: ['--inspect'],
     sourceMaps: true,
     retainLines: true,
     specs: ['./test/pb2/**.js'],
