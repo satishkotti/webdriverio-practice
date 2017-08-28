@@ -255,3 +255,7 @@ module.exports.Propagate = (specs) =>
     }, 30000, 'Propagate is taking longer than expected', 500);
 
 }
+
+module.exports.ToggleAdditionalProperties = function(toggle){
+    props.additionalPropertiesToggle.get(toggle).click();
+}

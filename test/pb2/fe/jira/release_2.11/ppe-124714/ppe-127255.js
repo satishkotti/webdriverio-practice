@@ -5,17 +5,17 @@ const iwcActions = require('./../../../../common/actions/iwc.actions.js');
 const assetActions = require('./../../../../common/actions/assetactions.actions.js');
 
 //Testdata
-const testdata = require('./../../../../data/testdata/ppe-124714.testdata').ppe127252;
+const testdata = require('./../../../../data/testdata/ppe-124714.testdata').ppe127255;
 
 //Tests
 describe(`PPE-124714: Verify whether user can edit 'SSL Required' checkbox for a new CAP Page`, () => {
 
     var _InitialState = false, _InitialVal = 0;
     var _FinalExpectedState = false, _FinalExpectedVal = 0;
-    var _PageChronId = null; var _PageData = testdata.pagedata;
+    var _PageChronId = testdata.i_chronicle_id;
     var _PBSession = null;
 
-    var GetState = function(){
+    var GetState = function () {
         return browser.execute(`return $('label:contains("SSL Required?") input').get(0).checked`).value;
     }
 
@@ -24,35 +24,16 @@ describe(`PPE-124714: Verify whether user can edit 'SSL Required' checkbox for a
         //Launch PB2 app and login
         test.LaunchAppAndLogin();
 
-        //Enter Interior Workcenter
-        test.EnterIWC('Create', 'Templates & Pages');
+        //Search for an existing CAP Page
+        test.SearchFor(null, _PageChronId, 'Global Search', null);
 
-        //Traverse the Site Structure
-        test.TraverseSS();
+        //Checkout and Edit the page
+        try {
+            test.EditTheAsset();
+        } catch (err) {};
 
-        //Add Page
-        iwcActions.AddToNode('Page');
-
-        //Select the type of page and the css of the page
-        props.checkbox.get('New Standalone').click();
-        props.dropdown('Layout', testdata.pagedata.layout);
-        props.dropdown('CSS Option', testdata.pagedata.layoutCSS);
-
-        //Click Continue button
-        assetActions.ClickModalContinueButton();
-
-        //Populate Page Props
-        props.input.get('Page Name').setValue(_PageData.pageName);
-        if (_PageData.isCAP == 1) //CAP Page
-        {
-            props.checkbox.get('Is CAP?').click();
-            props.dropdown('Content Filter', _PageData.contentFilter);
-            if (_PageData.sponsorProgram != null) { props.dropdown('Sponsor Program', _PageData.sponsorProgram) };
-            if (_PageData.tier != "tier2") { props.dropdown('Tier', _PageData.tier) };
-            if (_PageData.pageThumbnail != null) { props.input.get('Page Thumbnail').setValue(_PageData.pageThumbnail) };
-            if (_PageData.healthRefType != null) { props.dropdown('Health Reference Type', _PageData.healthRefType) };
-
-        }
+        //Expand Additional Properties Section
+        test.ToggleAdditionalProperties('Expand');
 
     });
     it('Verify whether the SSL Required field is enabled to edit when user enters the create mode of a CAP page', () => {
@@ -68,32 +49,29 @@ describe(`PPE-124714: Verify whether user can edit 'SSL Required' checkbox for a
         _InitialState = GetState();
 
         //Toggle the SSL Required field
-        props.checkbox.get('SSL Required?').click();
+        var _SSLRequiredCheckbox = props.checkbox.get('SSL Required?');
+        try {
+            _SSLRequiredCheckbox.click();
+        }
+        catch (err) {
+            _SSLRequiredCheckbox.scroll(0, 250);
+            _SSLRequiredCheckbox.click();
+        }
 
-        if(!_InitialState)
-            {
-                _FinalExpectedState = true;
-                _FinalExpectedVal = 1;
-            }
-
-
-        //Click Continue button
-        assetActions.ClickContinueButton();
-        browser.waitForVisible('.pb-layout');
-        _PageChronId = browser.getText('.pb-chron');
+        if (!_InitialState) {
+            _FinalExpectedState = true;
+            _FinalExpectedVal = 1;
+        }
 
         //Publish the page to Live
-        test.SaveOrPublishTheAsset('Publish to Live', 'Testing PPE-124714 using automation script')
-
-        //Switch to Properties tab
-        test.SwitchAssetTabs('Properties');
+        test.SaveOrPublishTheAsset('Publish to Live', 'Testing PPE-124714 using automation script - create a new version');
 
         //Get the final state of the SSL Required field
         var _FinalState = GetState();
 
         //Assertion - expected state must be the negation of initial state
         expect(_FinalState).to.equal._FinalExpectedState;
-        
+
     });
 
     it('Verify whether the new value is populated in the ATS XML of the page', () => {
@@ -112,11 +90,14 @@ describe(`PPE-124714: Verify whether user can edit 'SSL Required' checkbox for a
         //Assertion
         expect(_ValueFromXML).to.equal(_FinalExpectedVal);
 
-        
+
     });
 
     after(() => {
         browser.url(_PBSession);
-        test.SelectMoreActionsMenuItem('Expire');
+        test.SelectMoreActionsMenuItem('Asset History');
+        browser.click(testdata.restore_to_previous_version_locator);
+        test.CheckoutAndEditTheAsset();
+        test.SaveOrPublishTheAsset('Publish to Live', 'Testing PPE-124714 using automation script - restore to previous version');
     });
 });

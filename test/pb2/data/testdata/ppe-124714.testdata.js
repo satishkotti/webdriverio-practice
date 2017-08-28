@@ -5,7 +5,7 @@ const randomstring = require("randomstring");
 //Generate the asset name
 var assetName = "QA-CAP-Page-" + randomstring.generate(5)
 module.exports = {
-    ppe127552: {
+    ppe127252: {
         pagedata:
         {
             "type": "standalone",
@@ -21,8 +21,8 @@ module.exports = {
             "useArticleProperties": 0,
             "linkTitle": assetName + "-lkttl",
             "windowTitle": assetName + "-wdttl",
-            "contentClassification": "Article within Article",
-            "contentFilter": null,
+            "contentClassification": null,
+            "contentFilter": "Audio - Event",
             "primaryTopicID": "ADD-ADHD",
             "sponsorProgram": null,
             "keywords": assetName + "-kw",
@@ -43,5 +43,11 @@ module.exports = {
 
         }
 
+    },
+
+    ppe127255:
+    {
+        i_chronicle_id: "091e9c5e811e8ce1",
+        restore_to_previous_version_locator: "//span[contains(@class, 'pb-lifecycle') and contains(string(), '8.0')]"
     }
 }
