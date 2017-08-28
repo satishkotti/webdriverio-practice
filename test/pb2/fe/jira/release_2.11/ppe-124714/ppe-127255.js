@@ -36,7 +36,7 @@ describe(`PPE-124714: Verify whether user can edit 'SSL Required' checkbox for a
         test.ToggleAdditionalProperties();
 
     });
-    it('Verify whether the SSL Required field is enabled to edit when user enters the create mode of a CAP page', () => {
+    it('Verify whether the SSL Required field is enabled to edit when user enters the edit mode of an existing CAP page', () => {
 
         //Verify whether the SSL Required field is enabled for editing
         expect(props.checkbox.get('SSL Required').isEnabled()).to.be.true;
@@ -74,7 +74,7 @@ describe(`PPE-124714: Verify whether user can edit 'SSL Required' checkbox for a
 
     });
 
-    it('Verify whether the new value is populated in the ATS XML of the page', () => {
+    it('Verify whether the updated value is populated in the ATS XML of the page', () => {
 
         //Navigate to ATS Status Checker Page
         _PBSession = test.NavigatetoATSStatusCheckerPageOf(_PageChronId, 'Preview');
