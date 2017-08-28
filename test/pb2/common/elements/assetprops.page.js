@@ -4,6 +4,7 @@ const page = require('./../../../common/page');
 var input = '//label[contains(.,"***:")]//input'; //Input Fields
 var textarea = '//label[contains(.,"***:")]//textarea'; //Textarea fields (Keyword(s), User Description, Meta Description)
 var dropdown = '//label[contains(.,"***:")]//a'; //Dropdown using Un-ordered List (ul)
+var dropdown2 = '//label[contains(.,"***:")]//input';
 var dropdownOption = '//li[string()="***"]' //Select an option (li) from dropdown using Un-ordered List (ul)
 var selectDD = '//label[contains(.,"***:")]//select'; //Dropdown using Select
 var checkbox = '//label[contains(.,"***")]//input'; //For Checkbox and Radio button
@@ -21,7 +22,7 @@ var props = Object.create(page, {
     UntilExist: { value: () => { browser.waitForExist(locator, 30000); } },
     UntilVisible: { value: () => { browser.waitForVisible(locator, 30000); } },
     UntilEnabled: { value: () => { browser.waitForEnabled(locator, 30000); } },
-    Scroll: {value: () => { browser.element(locator).scroll(); } },
+    Scroll: { value: () => { browser.element(locator).scroll(); } },
     GetElement: { get: () => { return browser.element(locator); } },
 
     input: {
@@ -94,10 +95,15 @@ var props = Object.create(page, {
         value: (labelName, option) => {
             switch (labelName) {
                 case 'Module Type': locator = selectDD.replace('***:', labelName); props.UntilExist(); props.UntilEnabled(); locator = dropdown.replace('***:', labelName); props.GetElement.click(); break;
+                case 'Layout CSS': selectDD.replace('***', labelName); props.UntilExist(); locator = dropdown.replace('***', labelName); props.GetElement.click(); break;
+                case 'Content Filter': locator = selectDD.replace('***:', labelName); props.UntilExist(); props.UntilEnabled(); locator = dropdown2.replace('***:', labelName); props.GetElement.click(); break;
                 default: locator = selectDD.replace('***', labelName); props.UntilExist(); props.UntilEnabled(); locator = dropdown.replace('***', labelName); props.GetElement.click(); break;
             }
 
-            locator = locator.split('//a')[0] + dropdownOption.replace('***', option);
+            switch (labelName) {
+                case 'Content Filter': locator = locator.split('//input')[0] + dropdownOption.replace('***', option); break;
+                default: locator = locator.split('//a')[0] + dropdownOption.replace('***', option);
+            }
             props.UntilExist();
             props.UntilVisible();
             props.GetElement.click();
@@ -155,7 +161,7 @@ var props = Object.create(page, {
             props.GetElement.click();
             browser.pause(3000);
             let pointerYes = '//button[string()="Yes"]';
-            if(browser.isVisible(pointerYes)){
+            if (browser.isVisible(pointerYes)) {
                 browser.click(pointerYes);
             }
             locator = locator.replace('fa-search', 'fa-trash');
@@ -176,12 +182,11 @@ var props = Object.create(page, {
             locator = locator + '//following-sibling::button//i[contains(@class, "fa-search")]';
             props.UntilExist();
             props.UntilVisible();
-            try{
+            try {
                 //props.Scroll();
                 props.GetElement.click();
             }
-            catch(err)
-            {
+            catch (err) {
                 browser.execute(() => {
                     $('i.fa.fa-search').get(0).scrollIntoView();
                 });
@@ -189,7 +194,7 @@ var props = Object.create(page, {
             }
             browser.pause(3000);
             let pointerYes = '//button[string()="Yes"]';
-            if(browser.isVisible(pointerYes)){
+            if (browser.isVisible(pointerYes)) {
                 browser.click(pointerYes);
             }
             locator = locator.replace('fa-search', 'fa-trash');

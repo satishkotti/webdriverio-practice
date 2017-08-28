@@ -5,6 +5,7 @@ var wdioConf = require('./../../../../wdio.conf.js');
 exports.config = merge(wdioConf.config, {
 
     debug: true,
+    execArgv: ['--inspect'],
     sourceMaps: true,
     retainLines: true,
     specs: ['./test/pb2/**.js'],
@@ -52,7 +53,7 @@ exports.config = merge(wdioConf.config, {
 
         var appConfigFile = require('./../test.config');
         var appConfig = appConfigFile.config;
-        global.testEnv = appConfig.testEnv.qa01;
+        global.testEnv = appConfig.testEnv.qa02;
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.testapiurl = 'http://redirect.' + global.testEnv + '.webmd.com/api/redirect/'
         global.username = appConfig.appAccess.users.default.username;

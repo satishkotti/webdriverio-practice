@@ -113,6 +113,20 @@ module.exports.Create = (assetType, assetDetails) => {
     return assetChronID;
 }
 
+/* --------------------------------------------------------------------
+** T O G G L E  A D D I T I O N A L  P R O P E R T I E S  S E C T I O N 
+** --------------------------------------------------------------------
+** Description:
+** Expands or collpases 'Additional Properties' section present in the asset properties screen
+** Funtion accepts 1 argument. There is no return value for this function:
+**      1. 'toggleOption' can be either 'Expand' or 'expand' or 'Collpase' or 'collpase'
+*/
+
+module.exports.ToggleAdditionalProperties = function()
+{
+    act.ToggleAdditionalProperties();
+}
+
 /* -------------------------------------------------
 ** A D D  P A G E  O R  T E M P L A T E  M O D U L E 
 ** -------------------------------------------------
