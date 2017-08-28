@@ -122,9 +122,9 @@ module.exports.Create = (assetType, assetDetails) => {
 **      1. 'toggleOption' can be either 'Expand' or 'expand' or 'Collpase' or 'collpase'
 */
 
-module.exports.ToggleAdditionalProperties = function(toggleOption)
+module.exports.ToggleAdditionalProperties = function()
 {
-    props.ToggleAdditionalProperties(toggleOption);
+    act.ToggleAdditionalProperties();
 }
 
 /* -------------------------------------------------

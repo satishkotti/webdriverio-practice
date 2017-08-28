@@ -14,7 +14,6 @@ var position = '[position()=*]';
 var required = '//label[contains(.,"***:")]//span[@class="pb-field-required"]';
 var invalid = '//label[contains(.,"***:")]//span[@class="pb-field-invalid"]';
 var link = '//a[string()="***"]';
-var additionalPropsToogle = '.accordion-toggle i.fa.fa-***';
 var locator = '';
 
 
@@ -247,19 +246,6 @@ var props = Object.create(page, {
             get: (linkName) => {
                 locator = link.replace('***', linkName);
                 props.UntilExist();
-                return props.GetElement;
-            }
-        }
-    },
-    additionalPropertiesToggle: {
-        value: {
-            get: (toggle) => {
-                switch (toggle.toLowerCase()) {
-                    case 'expand': locator = additionalPropsToogle.replace('***', 'plus'); break;
-                    case 'collapse': locator = additionalPropsToogle.replace('***', 'minus'); break;
-                }
-                props.UntilExist();
-                props.UntilVisible();
                 return props.GetElement;
             }
         }

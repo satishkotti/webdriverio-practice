@@ -33,7 +33,7 @@ describe(`PPE-124714: Verify whether user can edit 'SSL Required' checkbox for a
         } catch (err) {};
 
         //Expand Additional Properties Section
-        test.ToggleAdditionalProperties('Expand');
+        test.ToggleAdditionalProperties();
 
     });
     it('Verify whether the SSL Required field is enabled to edit when user enters the create mode of a CAP page', () => {
