@@ -18,7 +18,7 @@ var pmdata = Object.create(page, {
             "linkedModule":null,
             "sponsorProgram": null,
             "description": moduleName + "-desc",
-            "tier": 2,
+            "tier": 'tier2',
         }
         }}
         },
@@ -40,7 +40,7 @@ var pmdata = Object.create(page, {
             "linkedModule":null,
             "sponsorProgram": null,
             "description": moduleName + "-desc",
-            "tier": 2,
+            "tier": 'tier2',
 
         }
     }}

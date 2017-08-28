@@ -138,38 +138,18 @@ module.exports.PopulateSMProps = (assetProps) =>
     if ( assetProps.selectXSL != null ) { props.dropdown('Select XSL', assetProps.selectXSL); }
     if ( assetProps.selectCSS != null ) { props.dropdown('Select CSS', assetProps.selectCSS); }
     if ( assetProps.dynamicModuleCategory != null ) { props.dropdown('Dynamic Module Category', assetProps.dynamicModuleCategory); }
-    if ( assetProps.moduleLabel1 != null ) { props.dropdown('Module Label 1', assetProps.moduleLabel1); }
-    if ( assetProps.moduleLabel2 != null ) { props.dropdown('Module Label 2', assetProps.moduleLabel2); }
-    if ( assetProps.linkedModule != null ) { props.input.get('Linked Module').setValue(assetProps.linkedModule); }
-    if ( assetProps.description != null ) { props.textarea.get('Description').setValue(assetProps.description); }
-    if(assetProps.sponsorProgram != null ) { props.dropdown('Sponsor Program', assetProps.sponsorProgram) };
-    if(assetProps.tier != 2) { props.dropdown('Tier', assetProps.tier) };
-    actions.ClickContinueButton();
-    browser.waitForVisible('.pb-chron');
-    return browser.getText('.pb-chron');
-}
-
-module.exports.PopulateDPMProps = (assetProps) =>
-{
-    menu.SelectCreateMenuItem('Shared Modules');
-    props.input.get('Module Name').setValue(assetProps.moduleName);
-    if ( assetProps.moduleName != null || assetProps.moduleName != '' ) { props.input.get('Module Display Name').setValue(assetProps.moduleDispName) };
-    props.dropdown('Module Type', assetProps.moduleType);
-    if ( assetProps.category != null ) { props.dropdown('Category', assetProps.category); }
-    if ( assetProps.selectXSL != null ) { props.dropdown('Select XSL', assetProps.selectXSL); }
-    if ( assetProps.selectCSS != null ) { props.dropdown('Select CSS', assetProps.selectCSS); }
-    if ( assetProps.dynamicModuleCategory != null ) { props.dropdown('Dynamic Module Category', assetProps.dynamicModuleCategory); }
     if ( assetProps.isDefault ) { props.checkbox.get('Is Default').click(); }
     if ( assetProps.moduleLabel1 != null ) { props.dropdown('Module Label 1', assetProps.moduleLabel1); }
     if ( assetProps.moduleLabel2 != null ) { props.dropdown('Module Label 2', assetProps.moduleLabel2); }
     if ( assetProps.linkedModule != null ) { props.input.get('Linked Module').setValue(assetProps.linkedModule); }
     if ( assetProps.description != null ) { props.textarea.get('Description').setValue(assetProps.description); }
     if(assetProps.sponsorProgram != null ) { props.dropdown('Sponsor Program', assetProps.sponsorProgram) };
-    if(assetProps.tier != 2) { props.dropdown('Tier', assetProps.tier) };
+    props.select('Tier', assetProps.tier) ;
     actions.ClickContinueButton();
     browser.waitForVisible('.pb-chron');
     return browser.getText('.pb-chron');
 }
+
 
 module.exports.AddModule = (contentPane, assetProps) =>
 {

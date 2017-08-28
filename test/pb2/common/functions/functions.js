@@ -39,10 +39,10 @@ module.exports.LaunchApp = () => {
 */
 module.exports.Login = (role) => {
     switch (role) {
-        default: app.Login(global.username, global.password);
-        case 'superuser': app.Login(user.superuser.username, user.superuser.password);
-        case 'superuser1': app.Login(user.superuser1.username, user.superuser1.password);
-        case 'programminguser': app.Login(user.programminguser.username, user.programminguser.password);
+        default: app.Login(global.username, global.password);break;
+        case 'superuser': app.Login(user.superuser.username, user.superuser.password); break;
+        case 'superuser1': app.Login(user.superuser1.username, user.superuser1.password); break;
+        case 'programminguser': app.Login(user.programminguser.username, user.programminguser.password); break;
     }
 }
 
@@ -122,7 +122,7 @@ module.exports.Create = (assetType, assetDetails) => {
         case 'Page': iwc.AddToNode(assetType); assetChronID = props.PopulatePageProps(assetDetails); break;
         case 'Template': iwc.AddToNode(assetType); assetChronID = props.PopulateTemplateProps(assetDetails); break;
         case 'Shared Module': menu.SelectCreateMenuItem('Shared Modules'); assetChronID = props.PopulateSMProps(assetDetails); break;
-        case 'Dynamic Programmed Module': menu.SelectCreateMenuItem('Dynamic Programmed Modules'); assetChronID = props.PopulateDPMProps(assetDetails); break;
+        case 'Dynamic Programmed Module': menu.SelectCreateMenuItem('Dynamic Programmed Modules'); assetChronID = props.PopulateSMProps(assetDetails); break;
     }
     return assetChronID;
 }

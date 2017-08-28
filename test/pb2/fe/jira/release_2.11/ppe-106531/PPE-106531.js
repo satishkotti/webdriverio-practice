@@ -59,13 +59,13 @@ describe('PPE-106531: Verify the programming users are able to expire the shared
         test.SearchFor(null, dpm1.id, 'global search');
         browser.pause(4000);
         test.SelectMoreActionsMenuItem('Expire');
-        checkATSStatus(dpm.id);
+        checkATSStatus(dpm1.id);
     });
 
     it("PPE-126077: Verify programming user is able to expire the dynamic programmed module from search results", function() {
         browser.url(global.appUrl);
         test.Logout();
-        test.Login('superuser1');
+        test.Login();
         var dpm2 = createModule('dpm');
         test.Logout();
         test.Login('programminguser');
