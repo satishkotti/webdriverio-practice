@@ -14,7 +14,6 @@ const usersDetails = require('./../../config/users');
 const ats = require('./../actions/ats.actions');
 const user = usersDetails.users;
 const parseXml = require('./../../../common/xml/parseXml');
-const headeractions = require('./../actions/headermenu.actions');
 
 
 /*----------------------------------------------------------------------------------------------------- */
@@ -69,7 +68,7 @@ L O G O U T
 ** Log out of the PB application
 */
 module.exports.Logout = () => {
-        headeractions.Logout();
+        app.Logout();
 }
 
 /*----------------------------------------------------------------------------------------------------------------------- */
