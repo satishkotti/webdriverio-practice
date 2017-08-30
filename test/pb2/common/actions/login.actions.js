@@ -1,5 +1,8 @@
 var LoginPage = require('./../elements/login.page');
 
+var logout = "//header//div/ul/li[text() = 'Logout']";
+var headerMenu = "//header//div";
+
 module.exports.LaunchApp = () => {
         LoginPage.open(global.appUrl);
 }
@@ -28,4 +31,10 @@ module.exports.GetCurrentSite = () => {
         return browser.execute(() => {
                 return $('label:contains("Site:") option[selected="selected"]').get(0).textContent;
         }).value;
+}
+
+module.exports.Logout = () => {
+        browser.element(headerMenu).click();
+        browser.element(logout).click();
+        LoginPage.username.waitForVisible();
 }
