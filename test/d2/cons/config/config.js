@@ -60,8 +60,8 @@ module.exports.testSettings = {
             "url": "http://DMWRS41D-CON-08.portal.webmd.com:8080/pbws/"
         },
         "d2cons": {
-            "url": "http://d2.dev04.webmd.com/D2/#d2",
-            // "url": "http://dmd241d-con-08.portal.webmd.com:8080/D2/#d2",
+            //"url": "http://d2.dev04.webmd.com/D2/#d2",
+            "url": "http://dmd241d-con-08.portal.webmd.com:8080/D2/#d2",
             "users": [{
                 "id": "1",
                 "username": "QAPublication",
@@ -262,7 +262,9 @@ module.exports.testSettings = {
             "ShareableTitle": "Shareable Title Test",
             "ShareableDescription": "Shareable Description Test",
             "FeatureTemplate": 'Article / Feature Template',
-                        "HealthRefTemplate": 'Article / Health Reference Template',
+            "HealthRefTemplate": 'Article / Health Reference Template',
+            "ShortTextArticleProfileName": "Consumer Portal US /  Short Text Templates",
+            "DefinitionArticleTemplate": "Definition",
             "ShareableAlign": "Left",
             "ShareableSupressSocialShare": "true",
             "SectionTextData": "sample test data" + exports.GenerateRandomString(2),

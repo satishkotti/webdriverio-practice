@@ -16,6 +16,11 @@ var SectionHeader="//h2[span[contains(.,'Section Header')]]//following-sibling::
 var RelatedLinksHeader="//h2[span[contains(.,'Related Links Header')]]//following-sibling::div//input";
 var Titleinput="//h2[span[contains(.,'Title')]]//following-sibling::div//input";
 var selectBox = "//h2[span[contains(.,'Question Type')]]//following-sibling::div//div[@ng-if='configitem.selectOptions']//select[@ng-model='itemnode[configitem.nodeName]']";
+var Terminput="//h2[span[contains(.,'Term')]]//following-sibling::div//input";
+var Pronunciationinput="//h2[span[contains(.,'Pronunciation')]]//following-sibling::div//input";
+var Definitioninput="//h2[span[contains(.,'Definition')]]//following-sibling::div//div[text()='Enter text here']";
+var Etymologyinput="//h2[span[contains(.,'Etymology')]]//following-sibling::div//input";
+var Citationsinput="//h2[span[contains(.,'Citations')]]//following-sibling::div//input";
 var contentTabUIObj = {
     switchToMainFrame: function(){
         browser.frame();
@@ -247,8 +252,25 @@ var contentTabUIObj = {
      switchToExternalWidgetFrame: function(){
         var contentWidgetIFrameElement = browser.element(contentPaneFrameSelector);
         browser.frame(contentWidgetIFrameElement.value);
-    }
+    },
 
+    Terminputsetvalue:function (Terminputvalue) {
+        browser.setValue(Terminput, Terminputvalue);
+    },
+    Pronunciationsetvalue:function (Pronunciationinputvalue) {
+        browser.setValue(Pronunciationinput, Pronunciationinputvalue);
+    },
+
+    Definitioninputsetvalue:function (Definitioninputvalue) {
+        browser.setValue(Definitioninput, Definitioninputvalue);
+    },
+    Etymologysetvalue:function (Etymologyinputvalue) {
+        browser.setValue(Etymologyinput, Etymologyinputvalue);
+    },
+
+    Citationssetvalue:function (Citationsinputvalue) {
+        browser.setValue(Citationsinput, Citationsinputvalue);
+    },
 
 }
 
