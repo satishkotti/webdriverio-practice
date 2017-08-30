@@ -1,18 +1,19 @@
 
 const page = require('./../../../common/page');
 
-var input = '//label[contains(.,"***:")]//input'; //Input Fields
-var textarea = '//label[contains(.,"***:")]//textarea'; //Textarea fields (Keyword(s), User Description, Meta Description)
-var dropdown = '//label[contains(.,"***:")]//a'; //Dropdown using Un-ordered List (ul)
-var dropdown2 = '//label[contains(.,"***:")]//input';
+var label = '//label[contains(.,"***:")]';
+var input = `${label}//input`; //Input Fields
+var textarea = `${label}//textarea`; //Textarea fields (Keyword(s), User Description, Meta Description)
+var dropdown = `${label}//a`; //Dropdown using Un-ordered List (ul)
+var dropdown2 = `${label}//input`;
 var dropdownOption = '//li[string()="***"]' //Select an option (li) from dropdown using Un-ordered List (ul)
-var selectDD = '//label[contains(.,"***:")]//select'; //Dropdown using Select
-var checkbox = '//label[contains(.,"***")]//input'; //For Checkbox and Radio button
+var selectDD = `${label}//select`; //Dropdown using Select
+var checkbox = `${dropdown2}`; //For Checkbox and Radio button
 var tab = '//uib-tab-heading[contains(.,"***")]'; //For Properties, Page Layout and Preview tabs
 var legend = '//fieldset[legend[string()="***"]]';
 var position = '[position()=*]';
-var required = '//label[contains(.,"***:")]//span[@class="pb-field-required"]';
-var invalid = '//label[contains(.,"***:")]//span[@class="pb-field-invalid"]';
+var required = `${label}//span[@class="pb-field-required"]`;
+var invalid = `${label}//span[@class="pb-field-invalid"]`;
 var link = '//a[string()="***"]';
 var locator = '';
 
@@ -247,6 +248,25 @@ var props = Object.create(page, {
                 locator = link.replace('***', linkName);
                 props.UntilExist();
                 return props.GetElement;
+            }
+        }
+    },
+    addLinks: {
+        value: function(legendName, labelName, itemNumber, numberOfLinks) {
+
+            locator = '(' + legend.replace('***', legendName) + label.replace('***', labelName) + '//input' + ')[' + itemNumber + ']';
+            props.UntilExist();
+            props.UntilVisible();
+            props.GetElement.setValue(numberOfLinks);
+            locator = '(' + legend.replace('***', legendName) + label.replace('***', labelName) + '//button' + ')[' + itemNumber + ']';
+            props.UntilExist();
+            props.UntilVisible();
+            try{
+                props.GetElement.click();
+            } catch (err) {
+                var location = props.GetElement.getLocation('y');
+                browser.scroll(0, location + 250);
+                props.GetElement.click();
             }
         }
     }
