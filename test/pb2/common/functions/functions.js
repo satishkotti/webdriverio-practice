@@ -165,6 +165,8 @@ module.exports.AddModule = (contentPane, moduleDetails) => {
 module.exports.ConfigureModule = (moduleType, moduleprops) => {
     switch (moduleType.toLowerCase()) {
         case 'multiple video launch': moduleConfigs.ConfigureMultipleVideoLaunchModule(moduleprops); break;
+        case 'sponsor boxes':
+        case 'sponsor box':
         case 'sponsor box module': moduleConfigs.ConfigureSponsorBoxModule(moduleprops); break;
         case 'navigation module': moduleConfigs.ConfigureNavigationModule(moduleprops); break;
         case 'editorial module': moduleConfigs.ConfigureEditorialModule(moduleprops); break;

@@ -33,42 +33,107 @@ module.exports.ConfigureSponsorBoxModule = (assetProps) => {
     if (assetProps.headertext != null) { props.input2.get('Header', 'Header Text', 1).setValue(assetProps.headertext); }
     if (assetProps.headerlink != null) { props.lookup2('Header', 'Link', 1, assetProps.headerlink); }
 
-    if (assetProps.bodycopy.length > 1) {
-        //for more than one link.
-    }
-    else {
-        if (assetProps.bodycopy[0].bodycopyheadertext != null) { props.input2.get('Body Copy', 'Header Text', 1).setValue(assetProps.bodycopy[0].headertext); }
-        if (assetProps.bodycopy[0].bodycopylink != null) { props.lookup2('Body Copy', 'Link', 1, assetProps.bodycopy[0].link); }
-    }
+    let numberOfBodyCopies = assetProps.bodycopy.length;
 
+    if (numberOfBodyCopies > 1) {
+        try {
+            props.addLinks('Body Copy', 'Add Body Copies', 1, numberOfBodyCopies - 1);
+        } catch (err) {
+            let location = props.input2('Body Copy', 'Add Body Copies', 1).getLocation('y');
+            browser.scroll(0, location + 250);
+            props.addLinks('Body Copy', 'Add Body Copies', 1, numberOfBodyCopies - 1);
+        }
+    }
+    for (let i = 1; i <= numberOfBodyCopies; i++) {
 
-    if (assetProps.bodyimagelogo != null) { props.lookup2('Body Image', 'Logo', 1, assetProps.bodyimagelogo); }
+        if (assetProps.bodycopy[i - 1].bodycopyheadertext != null) { props.textarea2.get('Body Copy', 'Header Text', i).setValue(assetProps.bodycopy[i - 1].headertext); }
+        try {
+            if (assetProps.bodycopy[i - 1].bodycopylink != null) { props.lookup2('Body Copy', 'Link', i, assetProps.bodycopy[i - 1].link); }
+        }
+        catch (e) {
+            let location = props.input2('BodyCopy', 'Link', i).getLocation('y');
+            browser.scroll(0, location + 250);
+            if (assetProps.bodycopy[i - 1].bodycopylink != null) { props.lookup2('Body Copy', 'Link', i, assetProps.bodycopy[i - 1].link); }
+        }
+    }
+    if (assetProps.bodyimagelogo != null) {
+
+        try {
+            props.lookup2('Body Image', 'Logo', 1, assetProps.bodyimagelogo);
+        } catch (err) {
+            let location = props.input2('Body Image', 'Logo', 1).getLocation('y');
+            browser.scroll(0, location + 250);
+            props.lookup2('Body Image', 'Logo', 1, assetProps.bodyimagelogo);
+        }
+    }
     if (assetProps.bodyimageoverridetext != null) { props.input2.get('Body Image', 'Override text', 1).setValue(assetProps.bodyimageoverridetext); }
     if (assetProps.bodyimageLink != null) { props.lookup2('Body Image', 'Link', 1, assetProps.bodyimageLink); }
     if (assetProps.bodyimageleft != 0) { props.checkbox2.get('Body Image', 'Left', 1).click(); }
     if (assetProps.bodyimageright != 0) { props.checkbox2.get('Body Image', 'Right', 1).click(); }
 
-    if (assetProps.bodylinks.length > 1) {
-        //for more than one link.
+    let numberOfBodyLinks = assetProps.bodylinks.length;
+
+    if (numberOfBodyLinks > 1) {
+
+        try {
+            props.addLinks('Body Links', 'Add Body Links', 1, numberOfBodyLinks - 1);
+        } catch (err) {
+            let location = props.input2('Body Links', 'Add Body Links', 1).getLocation('y');
+            browser.scroll(0, location + 250);
+            props.addLinks('Body Links', 'Add Body Links', 1, numberOfBodyLinks - 1);
+        }
     }
-    else {
-        if (assetProps.bodylinks[0].bulletson != 0) { props.checkbox2.get('Body Links', 'Bullets On', 1).click(); }
-        if (assetProps.bodylinks[0].text != null) { props.input2.get('Body Links', 'Text', 1).setValue(assetProps.bodylinks[0].text); }
-        if (assetProps.bodylinks[0].link != null) { props.lookup2('Body Links', 'Link', 1, assetProps.bodylinks[0].link); }
+    for (let i = 1; i <= numberOfBodyLinks; i++) {
+
+        if (assetProps.bodylinks[i - 1].bulletson != 0) { props.checkbox2.get('Body Links', 'Bullets On', 1).click(); }
+        if (assetProps.bodylinks[i - 1].text != null) { props.textarea2.get('Body Links', 'Text', i).setValue(assetProps.bodylinks[i-1].text); }
+        try {
+            if (assetProps.bodylinks[i - 1].link != null) { props.lookup2('Body Links', 'Link', i, assetProps.bodylinks[i - 1].link); }
+        }
+        catch (e) {
+            let location = props.input2.get('Body Links', 'Link', i).getLocation('y');
+            browser.scroll(0, y + 250);
+            props.lookup2('Body Links', 'Link', i, assetProps.bodylinks[i - 1].link);
+        }
     }
 
-    if (assetProps.lowerlinks.length > 1) {
-        //for more than one link.
+    let numberOfLowerLinks = assetProps.lowerlinks.length;
+
+    if (numberOfLowerLinks > 1) {
+        try {
+            props.addLinks('Lower Links', 'Add Lower Links', 1, numberOfLowerLinks - 1);
+        } catch (err) {
+            let location = props.input2('Lower Links', 'Add Lower Links', 1).getLocation('y');
+            browser.scroll(0, location + 250);
+            props.addLinks('Lower Links', 'Add Lower Links', 1, numberOfLowerLinks - 1);
+        }
     }
-    else {
+    for (let i = 1; i <= numberOfLowerLinks; i++) {
+
         if (assetProps.lowerlinks[0].bulletson != 0) { props.checkbox2.get('Lower Links', 'Bullets On', 1).click(); }
         if (assetProps.lowerlinks[0].newpage != 0) { props.checkbox2.get('Lower Links', 'New Page', 1).click(); }
         if (assetProps.lowerlinks[0].rollover != 0) { props.checkbox2.get('Lower Links', 'Rollover', 1).click(); }
-        if (assetProps.lowerlinks[0].text != null) { props.input2.get('Lower Links', 'Text', 1).setValue(assetProps.lowerlinks[0].text); }
-        if (assetProps.lowerlinks[0].link != null) { props.lookup2('Lower Links', 'Link', 1, assetProps.lowerlinks[0].link); }
+        if (assetProps.lowerlinks[i - 1].text != null) { props.textarea2.get('Lower Links', 'Text', i).setValue(assetProps.lowerlinks[i - 1].text); }
+
+        try {
+            if (assetProps.lowerlinks[i - 1].link != null) { props.lookup2('Lower Links', 'Link', i, assetProps.lowerlinks[i - 1].link); }
+        }
+        catch (e) {
+            let location = props.input2('Lower Links', 'Link', i).getLocation('y');
+            browser.scroll(0, location + 250);
+            props.lookup2('Lower Links', 'Link', i, assetProps.lowerlinks[i - 1].link);
+        }
     }
-    if (assetProps.importcontent != null) { props.lookup2('Article', 'Import Content', 1, assetProps.importcontent); }
+    try {
+        if (assetProps.importcontent != null) { props.lookup2('Article', 'Import Content', 1, assetProps.importcontent); }
+    }
+    catch (e) {
+        let location = props.input2('Article', 'Import Content', 1).getLocation('y');
+        browser.scroll(0, location + 250);
+        props.lookup2('Article', 'Import Content', 1, assetProps.importcontent);
+    }
 }
+
 
 module.exports.ConfigureNavigationModule = (assetProps) => {
     if (assetProps.text != null) { props.input.get('Text').setValue(assetProps.text); }
@@ -454,11 +519,11 @@ module.exports.configureediteditorialmodule = (assetProps) => {
 
         var linkCount = browser.elements('//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]').value.length;
         //for more than one link.     
-      //  if (browser.isExisting('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[0]') == true)
-            
-            $('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[1]').click();
+        //  if (browser.isExisting('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[0]') == true)
+
+        $('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[1]').click();
         $('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Link")]//i[@class="fa fa-trash"])[1]').click();
-    
+
         if (assetProps.modulelinks[0].modulelinksimage != null) { props.lookup2('Module Links', 'Image', 1, assetProps.modulelinks[0].modulelinksimage); }
         if (assetProps.modulelinks[0].modulelinkslinktext != null) { props.input2.get('Module Links', 'Link Text', 1).setValue(assetProps.modulelinks[0].modulelinkslinktext); }
         if (assetProps.modulelinks[0].modulelinkslink != null) { props.lookup2('Module Links', 'Link', 1, assetProps.modulelinks[0].modulelinkslink); }
@@ -526,8 +591,8 @@ module.exports.configureediteditorialmodule = (assetProps) => {
     var imagesCount = browser.elements('//fieldset[legend[string()="Linked Images"]]//label[contains(.,"Link")]').value.length;
     if (assetProps.linkedimages.length > 1) {
         //for more than one link.
-       $('(//fieldset[legend[string()="Linked Images"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[1]').click();
-       $('(//fieldset[legend[string()="Linked Images"]]//label[contains(.,"Link")]//i[@class="fa fa-trash"])[1]').click();
+        $('(//fieldset[legend[string()="Linked Images"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[1]').click();
+        $('(//fieldset[legend[string()="Linked Images"]]//label[contains(.,"Link")]//i[@class="fa fa-trash"])[1]').click();
         if (assetProps.linkedimages[0].linkedimagesimage != null) { props.lookup2('Linked Images', 'Image', 1, assetProps.linkedimages[0].linkedimagesimage); }
         if (assetProps.linkedimages[0].linkedimageslink != null) { props.lookup2('Linked Images', 'Link', 1, assetProps.linkedimages[0].linkedimageslink); }
         if (assetProps.linkedimages[0].OverrideText != null) { props.input2.get('Linked Images', 'Override Text', 1).setValue(assetProps.linkedimages[0].OverrideText); }
@@ -574,22 +639,21 @@ module.exports.ConfigureLinkListModule = (assetProps) => {
     }
 
     //Populate Module Links section
-    for(let i = 1; i <= moduleLinksCount; i++)
-    {
-        let linkText = moduleLinksSection[i-1].linkText;
-        let link = moduleLinksSection[i-1].link;
-        let icon = moduleLinksSection[i-1].icon;
+    for (let i = 1; i <= moduleLinksCount; i++) {
+        let linkText = moduleLinksSection[i - 1].linkText;
+        let link = moduleLinksSection[i - 1].link;
+        let icon = moduleLinksSection[i - 1].icon;
 
-        if(linkText != null) { props.input2.get('Module Links', 'Link Text', i).setValue(moduleLinksSection[i-1].linkText); }
-        if(link != null) { props.lookup2('Module Links', 'Link', i, link); }
-        if(icon != null) { props.lookup2('Module Links', 'Icon', i, link); }
+        if (linkText != null) { props.input2.get('Module Links', 'Link Text', i).setValue(moduleLinksSection[i - 1].linkText); }
+        if (link != null) { props.lookup2('Module Links', 'Link', i, link); }
+        if (icon != null) { props.lookup2('Module Links', 'Icon', i, link); }
     }
 
     //Populate Emphasized Links Section
     let emphasizedLinksSection = assetProps.emphasizedLinks;
     let linkText = emphasizedLinksSection.linkText;
     let link = emphasizedLinksSection.link;
-    
-    if(linkText != null) { props.input2.get('Emphasized Link', 'Link Text', 1).setValue(linkText); }
-    if(link != null) { props.lookup2('Emphasized Link', 'Link Text', 1, linkText); }
+
+    if (linkText != null) { props.input2.get('Emphasized Link', 'Link Text', 1).setValue(linkText); }
+    if (link != null) { props.lookup2('Emphasized Link', 'Link Text', 1, linkText); }
 }

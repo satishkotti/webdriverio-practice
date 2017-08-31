@@ -5,10 +5,10 @@ var label = '//label[contains(.,"***:")]';
 var input = `${label}//input`; //Input Fields
 var textarea = `${label}//textarea`; //Textarea fields (Keyword(s), User Description, Meta Description)
 var dropdown = `${label}//a`; //Dropdown using Un-ordered List (ul)
-var dropdown2 = `${label}//input`;
+var dropdown2 = `${input}`;
 var dropdownOption = '//li[string()="***"]' //Select an option (li) from dropdown using Un-ordered List (ul)
 var selectDD = `${label}//select`; //Dropdown using Select
-var checkbox = `${dropdown2}`; //For Checkbox and Radio button
+var checkbox = `${input}`.replace("***:", "***"); //For Checkbox and Radio button
 var tab = '//uib-tab-heading[contains(.,"***")]'; //For Properties, Page Layout and Preview tabs
 var legend = '//fieldset[legend[string()="***"]]';
 var position = '[position()=*]';
