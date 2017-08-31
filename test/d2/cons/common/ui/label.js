@@ -11,7 +11,7 @@ var LabelUIObj = {
     togglemenu: function(){
         LabelUIObj.switchToExternalWidgetFrame();
         browser.click("//i[@class='toggle ms-menu']",maxWaitTimeInMs);
-        browser.waitForVisible("//a[contains(.,'Question(s)')]",maxWaitTimeInMs)
+        browser.pause(2000);
     },
     questionTitleLabel: function () {
        var questionTitleLabel = browser.isExisting("//a[contains(.,'Question(s)')]//following-sibling::i[@popover-html='Add a child']");
@@ -41,6 +41,10 @@ var LabelUIObj = {
        var questionLabel = browser.isExisting("//a[contains(.,'Section(s)')]/../../..//following-sibling::i[@popover-html='Add a sibling below']");
        expect(questionLabel).to.be.true;
     },
+
+    switchParentFrame: function(){
+        browser.frameParent();
+    }
 
     
 }

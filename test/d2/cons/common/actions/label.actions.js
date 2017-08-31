@@ -24,6 +24,9 @@ var labelObj = {
     },
     sectionLabel: function(){
         labelUI.sectionLabel();
+    },
+    switchParentFrame: function(){
+        labelUI.switchParentFrame();
     }
 }
 

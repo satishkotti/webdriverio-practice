@@ -20,18 +20,19 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989', function (
             username: functions.getQAPublicationUser().username,
             password: functions.getQAPublicationUser().password
         });
-       
-         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
-         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
-         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
-         workspaceMenu.createContent(
-         global.d2ConDataSettings.inputData.ArticleProfileName,
+
+        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+
+    });
+
+    it('Basic flow', function () {
+        AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
+        AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
+        workspaceMenu.createContent(
+            global.d2ConDataSettings.inputData.ArticleProfileName,
             global.d2ConDataSettings.inputData.QuizArticleTemplate,
             AssetTitle,
             AssetName);
-    });
-
-     it('Basic flow', function () {
         documentListTab.selectAsset(AssetTitle);
         contentTab.checkOut();
         labels.togglemenu();
@@ -40,6 +41,27 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989', function (
         labels.questionLabel();
         labels.resultTitleLabel();
         labels.resultLabel();
+        labels.switchParentFrame();
+        contentTab.checkIn();
+    });
+     it('Basic flow2', function () {
+        AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
+        AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
+        workspaceMenu.createContent(
+            global.d2ConDataSettings.inputData.ArticleProfileName,
+            global.d2ConDataSettings.inputData.QuizArticleTemplate,
+            AssetTitle,
+            AssetName);
+        documentListTab.selectAsset(AssetTitle);
+        contentTab.checkOut();
+        labels.togglemenu();
+        labels.questionTitleLabel();
+        labels.answerLabel();
+        labels.questionLabel();
+        labels.resultTitleLabel();
+        labels.resultLabel();
+        labels.switchParentFrame();
+        contentTab.checkIn();
     });
 });
 
