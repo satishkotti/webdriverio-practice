@@ -9,13 +9,14 @@ var ResultsSelector = "//h2[span[contains(.,'Results Text')]]//following-sibling
 var checkoutButtonSelector = "//button[contains(string(),'Check-out')]";
 var checkInButonSelector = "//button[contains(string(),'Check-in')]";
 var contentTabSelector = "//span[text()='Content']";
-var contentPaneFrameSelector = "iframe[id*='oam_id==ExternalWidget-3!!oam_target_type==ExternalWidget']";
+var contentPaneFrameSelector = "//div[@tag_id='Content-widget']//iframe[contains(@id,'ExternalWidget')]";
 var Helper = require('./../functions/functions');
 var contentHeader="//div[@class='container']//center[@class='ng-binding']";
 var SectionHeader="//h2[span[contains(.,'Section Header')]]//following-sibling::div//input";
 var RelatedLinksHeader="//h2[span[contains(.,'Related Links Header')]]//following-sibling::div//input";
 var Titleinput="//h2[span[contains(.,'Title')]]//following-sibling::div//input";
 var selectBox = "//h2[span[contains(.,'Question Type')]]//following-sibling::div//div[@ng-if='configitem.selectOptions']//select[@ng-model='itemnode[configitem.nodeName]']";
+
 var contentTabUIObj = {
     switchToMainFrame: function(){
         browser.frame();
