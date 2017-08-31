@@ -38,6 +38,8 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989', function (
         labels.questionTitleLabel();
         labels.answerLabel();
         labels.questionLabel();
+        labels.resultTitleLabel();
+        labels.resultLabel();
     });
 });
 

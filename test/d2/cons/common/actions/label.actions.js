@@ -13,6 +13,18 @@ var labelObj = {
     questionLabel: function () {
         labelUI.questionLabel();
     },
+    resultTitleLabel: function(){
+        labelUI.resultTitleLabel();
+    },
+    resultLabel: function(){
+        labelUI.resultLabel();
+    },
+    sectionTitleLabel: function(){
+        labelUI.sectionTitleLabel();
+    },
+    sectionLabel: function(){
+        labelUI.sectionLabel();
+    }
 }
 
 module.exports = labelObj;
