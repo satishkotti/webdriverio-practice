@@ -14,7 +14,7 @@ module.exports.ClickOn = function (buttonText) {
             ats.assetInfo.click();
             break;
         default:
-            ats.button.get(buttonText).click();
+            ats.button.get('Preview').click();
             break;
     }
 }
