@@ -83,7 +83,30 @@ setRequiredPropertiesPublishngTab: function(){
      Citationssetvalue:function(data){
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.Citationssetvalue(data);
-    }
+    },
+
+     setRequiredProperties: function(friendlyName, ContentClassification, userDescr, keywords, lnkTtl, windowTtl, publication,
+    copyright, primaryTopicId){
+        
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.TermfriendlyNameSet(friendlyName);
+        propertiesTabUI.busRefNameSet(ContentClassification);
+        propertiesTabUI.userDescriptionNameSet(userDescr);
+        propertiesTabUI.keywordsNameSet(keywords);
+        propertiesTabUI.linkTitleSet(lnkTtl);
+        propertiesTabUI.windowTitleSet(windowTtl);
+        propertiesTabUI.publicationSet(publication);
+        propertiesTabUI.copyrightSet(copyright);
+        propertiesTabUI.primaryTopicIdSet(primaryTopicId);
+        propertiesTabUI.originalPublishDateSet();
+        
+        propertiesTabUI.save();
+
+
+//Add: assert set properties
+
+    },
 
 }
 
