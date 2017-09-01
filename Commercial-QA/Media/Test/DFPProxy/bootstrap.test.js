@@ -5,7 +5,7 @@ var options = {
     //host: '127.0.0.1',
     port: 4444,
     desiredCapabilities: {
-        browserName: 'firefox'
+        browserName: 'chrome'
     },
     maxInstances: 1,
 
