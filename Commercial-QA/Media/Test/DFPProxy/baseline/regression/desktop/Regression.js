@@ -30,6 +30,7 @@ var options = {
 var webdriverio = require("webdriverio");
 var browser = webdriverio.remote(options);
 var webmd_proxy = require("wdio-browser-proxy")(browser,{manualPort:8098});
+
 var qs = require("querystring");
 
 //var apiurl = "http://" + data.host + ":" + data.port ;
@@ -219,7 +220,7 @@ function _Fnport() {
                     .post('/proxy?port=' + 8098)
                     .end(function(err,res){
                      
-                         console.log("proxy updated");
+                         console.log("manual port updated");
                          done();
                          })
                          
