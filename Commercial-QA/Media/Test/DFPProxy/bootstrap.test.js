@@ -18,7 +18,8 @@ var webmd_proxy = require('wdio-browser-proxy')(browser, {
     port: 8080,
      host: '172.28.37.142',
      //host: '127.0.0.1',
-    selPort: 4444
+    selPort: 4444,
+    manualPort:8085
 });
 
 global.browser.addCommand('waitForUrl', function (value, timeout) {

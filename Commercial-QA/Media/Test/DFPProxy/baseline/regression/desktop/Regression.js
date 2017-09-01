@@ -13,7 +13,7 @@ var urls1 = require("./../../../config/DFPRegression.TestData");
 //var urls1 = require("./../../../config/DFPAdcallstestdata");
 //var urls2 = require("./../../../config/DFPAdcallstestdata.1");
 var ada = require("./../../../common/functions/AdcallsActions");
-var options = {
+/*var options = {
     desiredCapabilities: {
         browserName: "chrome",  // declare browser name here
         
@@ -29,7 +29,7 @@ var options = {
 //var browser = webdriverio.multiremote(options);
 var webdriverio = require("webdriverio");
 var browser = webdriverio.remote(options);
-var webmd_proxy = require("wdio-browser-proxy")(browser,{manualPort:8085});
+var webmd_proxy = require("wdio-browser-proxy")(browser,{manualPort:8085});*/
 
 var qs = require("querystring");
 
