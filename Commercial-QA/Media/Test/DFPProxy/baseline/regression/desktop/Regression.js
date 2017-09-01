@@ -34,8 +34,8 @@ var webmd_proxy = require("wdio-browser-proxy")(browser,{manualPort:8085});*/
 var qs = require("querystring");
 
 //var apiurl = "http://" + data.host + ":" + data.port ;
-//var apiurl = "http://172.28.37.142:8080";
-var apiurl = "http://127.0.0.1:8080";
+var apiurl = "http://172.28.37.142:8080";
+//var apiurl = "http://127.0.0.1:8080";
 var server = supertest.agent(apiurl);
 
 // Describe Network calls function
