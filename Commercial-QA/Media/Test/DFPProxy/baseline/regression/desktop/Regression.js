@@ -29,7 +29,7 @@ var options = {
 //var browser = webdriverio.multiremote(options);
 var webdriverio = require("webdriverio");
 var browser = webdriverio.remote(options);
-var webmd_proxy = require("wdio-browser-proxy")(browser,{manualPort:8098});
+var webmd_proxy = require("wdio-browser-proxy")(browser,{manualPort:8085});
 
 var qs = require("querystring");
 
@@ -217,7 +217,7 @@ function _Fnport() {
                 try{
                 
                     server
-                    .post('/proxy?port=' + 8098)
+                    .post('/proxy?port=' + 8085)
                     .end(function(err,res){
                      
                          console.log("manual port updated");
