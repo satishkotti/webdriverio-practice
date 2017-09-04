@@ -25,8 +25,17 @@ var labelObj = {
     sectionLabel: function(){
         labelUI.sectionLabel();
     },
+    faqquestionLabel: function(){
+        labelUI.faqquestionLabel();
+    },
+    faqanswerLabel: function(){
+        labelUI.faqanswerLabel();
+    },
     switchParentFrame: function(){
         labelUI.switchParentFrame();
+    },
+    refresh: function(){
+        labelUI.refresh();
     }
 }
 

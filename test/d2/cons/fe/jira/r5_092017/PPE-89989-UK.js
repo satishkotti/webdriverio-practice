@@ -9,7 +9,7 @@ var findTab = require('./../../../common/actions/findTab.actions');
 var labels = require('./../../../common/actions/label.actions');
 var randomstring = require("randomstring");
 
-describe('RMQ: Rename label for adding questions/answers- PPE-89989', function () {
+describe('RMQ: Rename label for adding questions/answers- PPE-89989 - UK', function () {
     var AssetTitle;
     var AssetName;
     before(function () {
@@ -23,7 +23,7 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989', function (
 
     });
 
-    it('Verify there is "Add Answer" for Question Label instead of "Add Child" for RMQ-US template- PPE-128188, Verify there is "Add Answer below" for Answer Label instead of "Add a sibling Below" for RMQ-US template - PPE-128189, Verify there is "Add Answer" for Result Label instead of "Add Child" for RMQ-US template - PPE-128190', function () {
+    it('Verify there is "Add Answer" for Question Label instead of "Add Child" for RMQ-UK template- PPE-128191, Verify there is "Add Answer below" for Answer Label instead of "Add a sibling Below" for RMQ-UK template - PPE-128192, Verify there is "Add Answer" for Result Label instead of "Add Child" for RMQ-UK template - PPE-128193', function () {
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
@@ -43,7 +43,7 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989', function (
         contentTab.checkIn();
         browser.pause(5000);
     });
-    it('Verify there is "Add Answer" for Question Label instead of "Add Child" for FAQ-US template - PPE-128194, Verify there is "Add Answer below" for Answer Label instead of "Add a sibling Below" for FAQ-US template - PPE-128195', function () {
+    it('Verify there is "Add Answer" for Question Label instead of "Add Child" for FAQ-UK template - PPE-128196, Verify there is "Add Answer below" for Answer Label instead of "Add a sibling Below" for FAQ-UK template - PPE-128197', function () {
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
@@ -61,7 +61,7 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989', function (
         contentTab.checkIn();
         browser.pause(5000);
     });
-    it('Verify there is "Add Child" for Question Label instead of "Add Answer" for News-US template- PPE-128199, Verify there is "Add Sibling below" for Answer Label instead of "Add a Answer Below" for News-US template - PPE-128200', function () {
+    it('Verify there is "Add Child" for Question Label instead of "Add Answer" for News-UK template- PPE-128201, Verify there is "Add Sibling below" for Answer Label instead of "Add a Answer Below" for News-UK template - PPE-128202', function () {
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
@@ -77,9 +77,9 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989', function (
         contentTab.checkIn();
         browser.pause(5000);
     });
-    it('Verify there are "Add Answer","Add Answer below" labels instead of "Add Child","Add Sibling below" for Existing RMQ-US template - PPE-128203', function () {
+    it('Verify there are "Add Answer","Add Answer below" labels instead of "Add Child","Add Sibling below" for Existing RMQ-UK template - PPE-128204', function () {
         labels.refresh();
-        findTab.findByChronicleId(global.d2ConDataSettings.inputData.LabelQuizUS);
+        findTab.findByChronicleId(global.d2ConDataSettings.inputData.LabelQuizUK);
         contentTab.checkOut();
         labels.togglemenu();
         labels.questionTitleLabel();
@@ -89,11 +89,10 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989', function (
         labels.resultLabel();
         labels.switchParentFrame();
         contentTab.checkIn();
-        browser.pause(5000);
     });
-    it('Verify there are "Add Answer","Add Answer below" labels instead of "Add Child","Add Sibling below" for Existing FAQ-US template - PPE-128206', function () {
+    it('Verify there are "Add Answer","Add Answer below" labels instead of "Add Child","Add Sibling below" for Existing FAQ-UK template - PPE-128210', function () {
         labels.refresh();
-        findTab.findByChronicleId(global.d2ConDataSettings.inputData.LabelFAQUS);
+        findTab.findByChronicleId(global.d2ConDataSettings.inputData.LabelFAQUK);
         contentTab.checkOut();
         labels.togglemenu();
         labels.questionTitleLabel();
@@ -103,9 +102,9 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989', function (
         contentTab.checkIn();
         browser.pause(5000);
     });
-    it('Verify there are "Add Answer","Add Answer below" labels instead of "Add Child","Add Sibling below" for Existing News-US template - PPE-128208', function () {
+    it('Verify there are "Add Answer","Add Answer below" labels instead of "Add Child","Add Sibling below" for Existing News-UK template - PPE-128208', function () {
         labels.refresh();
-        findTab.findByChronicleId(global.d2ConDataSettings.inputData.LabelNewsUS);
+        findTab.findByChronicleId(global.d2ConDataSettings.inputData.LabelNewsUK);
         contentTab.checkOut();
         labels.togglemenu();
         labels.sectionTitleLabel();
