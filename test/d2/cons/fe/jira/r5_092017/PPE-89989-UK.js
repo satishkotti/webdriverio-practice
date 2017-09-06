@@ -19,7 +19,7 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989 - UK', funct
             password: functions.getQAPublicationUser().password
         });
 
-        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UKtestFolderPath);
 
     });
 
@@ -27,7 +27,7 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989 - UK', funct
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
-            global.d2ConDataSettings.inputData.ArticleProfileName,
+            global.d2ConDataSettings.inputData.UkArticleProfileName,
             global.d2ConDataSettings.inputData.QuizArticleTemplate,
             AssetTitle,
             AssetName);
@@ -47,7 +47,7 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989 - UK', funct
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
-            global.d2ConDataSettings.inputData.ArticleProfileName,
+            global.d2ConDataSettings.inputData.UkArticleProfileName,
             global.d2ConDataSettings.inputData.FAQArticleTemplate,
             AssetTitle,
             AssetName);
@@ -65,7 +65,7 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989 - UK', funct
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
-            global.d2ConDataSettings.inputData.ArticleProfileName,
+            global.d2ConDataSettings.inputData.UkArticleProfileName,
             global.d2ConDataSettings.inputData.ArticleTemplate,
             AssetTitle,
             AssetName);
@@ -89,18 +89,6 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989 - UK', funct
         labels.resultLabel();
         labels.switchParentFrame();
         contentTab.checkIn();
-    });
-    it('Verify there are "Add Answer","Add Answer below" labels instead of "Add Child","Add Sibling below" for Existing FAQ-UK template - PPE-128210', function () {
-        labels.refresh();
-        findTab.findByChronicleId(global.d2ConDataSettings.inputData.LabelFAQUK);
-        contentTab.checkOut();
-        labels.togglemenu();
-        labels.questionTitleLabel();
-        labels.faqanswerLabel();
-        labels.faqquestionLabel();
-        labels.switchParentFrame();
-        contentTab.checkIn();
-        browser.pause(5000);
     });
     it('Verify there are "Add Answer","Add Answer below" labels instead of "Add Child","Add Sibling below" for Existing News-UK template - PPE-128208', function () {
         labels.refresh();

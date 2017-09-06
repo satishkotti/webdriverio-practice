@@ -393,7 +393,6 @@ module.exports.testSettings = {
             "LabelFAQUS":"091e9c5e80096101",
             "LabelNewsUS":"091e9c5e80006ce3",
             "LabelQuizUK":"091e9c5e80bcf2e4",
-            "LabelFAQUK":"091e9c5e80379a94",
             "LabelNewsUK":"091e9c5e812c9222",
         }
     }
