@@ -97,6 +97,14 @@ module.exports = {
           browser.click("//div[@title='"+textValue+"']")
           browser.pause(1000);
     },
+    
+    TermfriendlyNameSet: function(textValue){
+        browser.setValue("input#wbmd_c_cons_term-input", textValue);
+    },
+    TermfriendlyNameGet: function(){
+        return browser.getValue("input#wwbmd_c_cons_term-input");
+    },
+    
 
     articleTabSelect: function(){
         browser.click("//span[@text()='Article']")

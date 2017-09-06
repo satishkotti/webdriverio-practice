@@ -24,6 +24,7 @@ module.exports = {
         findTabUI.DeleteValidation();
     },
     findbyId: function(chronicleId){
+        
         findTabUI.switchToExternalWidget0Frame();
         findTabUI.findByChronicleId(chronicleId);
         browser.frameParent();
