@@ -36,6 +36,7 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989 - UK', funct
         labels.togglemenu();
         labels.questionTitleLabel();
         labels.answerTitleLabel();
+        labels.answerLabel();
         labels.questionLabel();
         labels.resultTitleLabel();
         labels.resultLabel();
