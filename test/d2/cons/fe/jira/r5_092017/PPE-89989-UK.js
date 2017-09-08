@@ -35,7 +35,7 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989 - UK', funct
         contentTab.checkOut();
         labels.togglemenu();
         labels.questionTitleLabel();
-        labels.answerLabel();
+        labels.answerTitleLabel();
         labels.questionLabel();
         labels.resultTitleLabel();
         labels.resultLabel();
@@ -73,6 +73,7 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989 - UK', funct
         contentTab.checkOut();
         labels.togglemenu();
         labels.sectionTitleLabel();
+        labels.sectionLabel();
         labels.switchParentFrame();
         contentTab.checkIn();
         browser.pause(5000);
@@ -83,6 +84,7 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989 - UK', funct
         contentTab.checkOut();
         labels.togglemenu();
         labels.questionTitleLabel();
+        labels.answerTitleLabel();
         labels.answerLabel();
         labels.questionLabel();
         labels.resultTitleLabel();
@@ -96,6 +98,7 @@ describe('RMQ: Rename label for adding questions/answers- PPE-89989 - UK', funct
         contentTab.checkOut();
         labels.togglemenu();
         labels.sectionTitleLabel();
+        labels.sectionLabel();
         labels.switchParentFrame();
         contentTab.checkIn();
         browser.pause(5000);
