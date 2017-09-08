@@ -82,8 +82,6 @@ var LabelUIObj = {
        expect(questionLabel).to.be.true;
         var questionLabel2 = browser.isExisting("//a[contains(.,'1.')]//following-sibling::i[@popover-html='Add a child']");
        expect(questionLabel2).to.be.false;
-       var questionLabel3 = browser.isExisting("//i[@popover-html='Add Answer below']");
-       expect(questionLabel3).to.be.false;
     },
      faqanswerLabel: function () {
        var answerLabel = browser.isExisting("//i[@popover-html='Add Answer below']");
