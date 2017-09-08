@@ -7,6 +7,9 @@ var labelObj = {
     questionTitleLabel: function () {
         labelUI.questionTitleLabel();
     },
+    answerTitleLabel: function(){
+        labelUI.answerTitleLabel();
+    },
     answerLabel: function () {
         labelUI.answerLabel();
     },
