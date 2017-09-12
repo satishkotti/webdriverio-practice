@@ -1,0 +1,33 @@
+{
+  "name": "wdio-browser-proxys",
+  "version": "1.0.3",
+  "description": "this is a module that will add a proxy to webdriverio tests to capture network traffic",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@stash.portal.webmd.com:7999/conapps/wdio-browser-proxy.git"
+  },
+  "keywords": [
+    "webdriverio"
+  ],
+  "author": "Zhi Deng",
+  "license": "ISC",
+  "dependencies": {
+    "browsermob-proxy": "^1.0.9",
+    "lodash": "^4.17.4",
+    "q": "^1.4.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "proxyquire": "^1.7.11",
+    "sinon": "^1.17.7",
+    "webdriverio": "^4.6.2"
+  }
+}

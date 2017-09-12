@@ -3,7 +3,7 @@ var should = require('should');
 var path = require('path');
 var rootPath = path.normalize(__dirname)
 var argv = require("yargs").argv;
-var infobarfunction = require('./../../../common/functions/PPE-101389.actions');
+var infobarfunction = require('./../../../common/actions/PPE-101389.actions');
 var rootPath = path.normalize(__dirname)
 console.log(__dirname);
 var Input = require('./../../../config/Webmd-tv')[argv.env];
@@ -19,7 +19,7 @@ describe('Add WebMD TV Design Option to Video Player Info Bar', function () {
     // infobar.infobarfacebookwidthfont.should.equal("12px");
 
     console.log("FACEBOOK COLOR" + JSON.stringify(infobar.infobarfacebookcolor));
-    infobar.infobarfacebookcolor.parsed.hex.should.equal("#038fca");
+    infobar.infobarfacebookcolor.parsed.hex.should.equal("#00b4ff");
     console.log(infobar.infobarfacebookwidthfont);
     console.log(infobar.infobarfacebookfamily);
     console.log(infobar.infobartwitterwidthfont);

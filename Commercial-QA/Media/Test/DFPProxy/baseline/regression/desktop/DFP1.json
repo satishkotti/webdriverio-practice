@@ -1,0 +1,29 @@
+
+[
+        {
+                "URL": "http://www.staging.webmd.com/health-insurance/choosing-hospital#1"       
+        },
+        {
+                "URL": "http://www.webmd.com/health-insurance/choosing-hospital#1"
+        },
+        {
+                "URL": "http://www.staging.webmd.com/drugs/2/drug-17410/actos-oral/details"
+        },
+        {
+                "URL": "http://www.webmd.com/drugs/2/drug-17410/actos-oral/details"
+        },
+        {
+        "URL":"http://www.staging.webmd.com/menopause/ss/slideshow-menopause-overview"
+    },
+      {
+        "URL":"http://www.webmd.com/menopause/ss/slideshow-menopause-overview"
+    },
+    {
+        "URL":"http://www.staging.webmd.com/diet/rm-quiz-caffeine-myths"
+    },
+    {
+        "URL":"http://www.webmd.com/diet/rm-quiz-caffeine-myths"
+    }
+        
+
+]

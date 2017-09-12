@@ -1,11 +1,7 @@
 var webdriverio = require('webdriverio');
 var should = require('should');
-var path = require('path');
-var rootPath = path.normalize(__dirname)
 var argv = require("yargs").argv;
-var assetpage = require('./../../../common/functions/PPE-100761.actions');
-var rootPath = path.normalize(__dirname)
-console.log(__dirname);
+var assetpage = require('./../../../common/actions/PPE-100761.actions');
 var Input = require('./../../../config/Webmd-tv')[argv.env];
 var url = Input.environment;
 var gridurl = Input.gridurl1;
@@ -20,25 +16,25 @@ describe('Build the WebMD TV Content Grids', function () {
   this.timeout(100000);
 
 
-  it('Validating ad is present right of the Grid', function () {
+  /*it('Validating ad is present right of the Grid', function () {
     //browser.url(url);
     browser.pause(2000);
     var adposition = assetpage.adposition();
     expect(adposition.width).to.be.equal(300);
     expect(adposition.positions.value.rightadpsoition > adposition.positions.value.gridposition).to.be.true;
-    if(adposition.height==250){
-    expect(adposition.height).to.be.equal(250);
-  }else{
-    expect(adposition.height).to.be.equal(600);
-  }
+    if (adposition.height == 250) {
+      expect(adposition.height).to.be.equal(250);
+    } else {
+      expect(adposition.height).to.be.equal(600);
+    }
 
-  });
+  });*/
   it("Validate look and feel of the grid 1 and url validation on clicking title", function () {
     var actions = assetpage.grid1();
     actions.url.should.equal(gridurl);
     actions.article.should.equal("14px");
     //actions.articletitleheight.should.equal(128);
-    actions.articletitlewidth.should.equal('400px');
+    actions.articletitlewidth.should.equal('420px');
     console.log(actions.articletitlewidth);
     actions.articletitlecolor.should.equal("#2b2c34");
     actions.articletitle.should.equal("33px");
@@ -50,7 +46,7 @@ describe('Build the WebMD TV Content Grids', function () {
     } else {
       console.log("pakka" + actions.assettype);
       actions.assettype.should.equal(actions.gettitle);
-  }
+    }
 
   });
   it("Validate look and feel of the grid 2 and url validation on clicking title", function () {
@@ -74,7 +70,7 @@ describe('Build the WebMD TV Content Grids', function () {
     var actions = assetpage.grid3();
     actions.url.should.equal(gridurl3);
     actions.article.should.equal("14px");
-    actions.articletitlewidth.should.equal('400px');
+    actions.articletitlewidth.should.equal('420px');
     console.log(actions.articletitlewidth);
     actions.articletitlecolor.should.equal("#2b2c34");
     actions.articletitle.should.equal("33px");
@@ -91,12 +87,12 @@ describe('Build the WebMD TV Content Grids', function () {
     var actions = assetpage.grid4();
     actions.url.should.equal(gridurl4);
     actions.article.should.equal("14px");
-    actions.articletitlewidth.should.equal("400px");
+    actions.articletitlewidth.should.equal("420px");
     actions.articletitlecolor.should.equal("#2b2c34");
     actions.articletitle.should.equal("33px");
     actions.articlecolor.should.equal("#067f85");
     actions.articlefontfamily.should.equal("roboto condensed");
-        if (actions.gettitle == "FROM OUR SPONSOR") {
+    if (actions.gettitle == "FROM OUR SPONSOR") {
       console.log("Validation for sponsors");
     } else if (actions.gettitle == "ARTICLE") {
       console.log("pakka4" + actions.assettype4);
@@ -112,7 +108,7 @@ describe('Build the WebMD TV Content Grids', function () {
     actions.url.should.equal(gridurl5);
     actions.article.should.equal("14px");
     //actions.articletitleheight.should.equal(128);
-    actions.articletitlewidth.should.equal('400px');
+    actions.articletitlewidth.should.equal('420px');
     actions.articletitlecolor.should.equal("#2b2c34");
     actions.articletitle.should.equal("33px");
     actions.articlecolor.should.equal("#067f85");
@@ -134,7 +130,7 @@ describe('Build the WebMD TV Content Grids', function () {
     actions.url.should.equal(gridurl6);
     actions.article.should.equal("14px");
     //actions.articletitleheight.should.equal(128);
-    actions.articletitlewidth.should.equal('400px');
+    actions.articletitlewidth.should.equal('420px');
     actions.articletitlecolor.should.equal("#2b2c34");
     actions.articletitle.should.equal("33px");
     console.log(JSON.stringify(actions.articletitlefontfamily));

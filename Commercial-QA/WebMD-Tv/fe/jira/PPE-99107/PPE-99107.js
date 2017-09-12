@@ -1,14 +1,10 @@
 var webdriverio = require('webdriverio');
 var should = require('should');
-var path = require('path');
-var rootPath = path.normalize(__dirname)
 var argv = require("yargs").argv;
-var videoheader = require('./../../../common/functions/PPE-99107.actions');
-var rootPath = path.normalize(__dirname)
-console.log(__dirname);
+var videoheader = require('./../../../common/actions/PPE-99107.actions');
 var Input = require('./../../../config/Webmd-tv')[argv.env];
 var url = Input.article;
-var webmdurl=Input.webmdurl;
+var webmdurl = Input.webmdurl;
 var largevideoheaders;
 var smallvideoheaders;
 
@@ -49,17 +45,17 @@ describe('Add WebMD TV Design Option to Marquee Header', function () {
     smallvideoheaders.smallvideotwitterwidthfont.should.equal("12px");
     smallvideoheaders.smallvideotranscriptwidthfont.should.equal("12px");
   });
-    it('Validating smallvideo play and pause', function () {
-  smallvideoheaders.result.should.equal(true);
-});
-it('Validating Nowplaying color,font-size,font-family', function () {
-smallvideoheaders.nowplayingfontsize.should.equal('12px');
-smallvideoheaders.nowplayingfontcolor.should.equal("#00d5e0");
-smallvideoheaders.nowplayingfontfamily.should.equal("source sans pro");
-});
-it("Click on WebMD logo should navigate to WbMD Homepage",function(){
-  //console.log(smallvideoheaders.webmdurl);
-  smallvideoheaders.webmdurl.should.equal(webmdurl);
+  it('Validating smallvideo play and pause', function () {
+    smallvideoheaders.result.should.equal(true);
+  });
+  it('Validating Nowplaying color,font-size,font-family', function () {
+    smallvideoheaders.nowplayingfontsize.should.equal('12px');
+    smallvideoheaders.nowplayingfontcolor.should.equal("#00d5e0");
+    smallvideoheaders.nowplayingfontfamily.should.equal("source sans pro");
+  });
+  it("Click on WebMD logo should navigate to WbMD Homepage", function () {
+    //console.log(smallvideoheaders.webmdurl);
+    smallvideoheaders.webmdurl.should.equal(webmdurl);
 
-});
+  });
 });
