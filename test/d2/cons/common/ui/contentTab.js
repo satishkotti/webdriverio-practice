@@ -21,6 +21,8 @@ var Pronunciationinput="//h2[span[contains(.,'Pronunciation')]]//following-sibli
 var Definitioninput="//h2[span[contains(.,'Definition')]]//following-sibling::div//div[text()='Enter text here']";
 var Etymologyinput="//h2[span[contains(.,'Etymology')]]//following-sibling::div//input";
 var Citationsinput="//h2[span[contains(.,'Citations')]]//following-sibling::div//input";
+var TitleinputValue="//h2[span[contains(.,'Title')]]//following-sibling::div/div/p";
+var SectionTextinputValue="//h2[span[contains(.,'Section Text')]]//following-sibling::div/div/span/p";
 var contentTabUIObj = {
     switchToMainFrame: function(){
         browser.frame();
@@ -271,6 +273,12 @@ var contentTabUIObj = {
     Citationssetvalue:function (Citationsinputvalue) {
         browser.setValue(Citationsinput, Citationsinputvalue);
     },
+    Titleinputgetvalue:function () {
+        return browser.getText(TitleinputValue);
+    },
+    SectionTextgetvalue:function () {
+        return browser.getText(SectionTextinputValue);
+    }
 
 }
 

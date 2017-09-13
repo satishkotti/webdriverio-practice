@@ -143,6 +143,14 @@ var contentTabObj = {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.checkIn();
     },
+     Titleinputgetvalue:function(){
+        contentTabUI.switchToExternalWidgetFrame();
+       return contentTabUI.Titleinputgetvalue();
+    },
+     SectionTextgetvalue:function(){
+        contentTabUI.switchToExternalWidgetFrame();
+       return contentTabUI.SectionTextgetvalue();
+    },
    
 }
 module.exports = contentTabObj;
