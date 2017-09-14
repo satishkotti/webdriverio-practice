@@ -45,6 +45,10 @@ var ckEditorObj = {
     sectionTextModuleMenuClick: function(){
         contentTabUI.ModuleckEditorMenuClick(1);
 
+    },
+    sectionTextMediaMenuClick: function(){
+        contentTabUI.MediackEditorMenuClick(1);
+
     }   
 }
 module.exports = ckEditorObj;
