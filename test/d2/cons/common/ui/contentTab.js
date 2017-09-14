@@ -173,6 +173,12 @@ var contentTabUIObj = {
         browser.click("(//a[@title='Insert Module'])[" + sectionIndex + "]");
         browser.pause(5000);
     },
+
+     MediackEditorMenuClick: function (sectionIndex) {
+        browser.moveToObject("(//a[@title='Insert media'])[" + sectionIndex + "]");
+        browser.click("(//a[@title='Insert media'])[" + sectionIndex + "]");
+        browser.pause(5000);
+    },
     ExpandContentTab: function () {
         browser.waitForVisible('//span[contains(.,"Content")]//*[@id="menuDownArrow-button"]');
         browser.click('//span[contains(.,"Content")]//*[@id="menuDownArrow-button"]');
