@@ -133,4 +133,28 @@ module.exports = {
         propertiesTabUI.save();
 
     },
+        setRequiredPropertiesWithPrimaryreviewDate: function(friendlyName, busRef, userDescr, keywords, lnkTtl, windowTtl, publication,
+    copyright, primaryTopicId,date){
+        
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.friendlyNameSet(friendlyName);
+        propertiesTabUI.busRefNameSet(busRef);
+        propertiesTabUI.userDescriptionNameSet(userDescr);
+        propertiesTabUI.keywordsNameSet(keywords);
+        propertiesTabUI.linkTitleSet(lnkTtl);
+        propertiesTabUI.windowTitleSet(windowTtl);
+        propertiesTabUI.publicationSet(publication);
+        propertiesTabUI.copyrightSet(copyright);
+        propertiesTabUI.primaryTopicIdSet(primaryTopicId);
+        propertiesTabUI.originalPublishDateSet();
+        propertiesTabUI.authRevtab();
+        propertiesTabUI.primaryMedicalReviewDateTimeset(date);
+        
+        propertiesTabUI.save();
+
+
+//Add: assert set properties
+
+    },
 }

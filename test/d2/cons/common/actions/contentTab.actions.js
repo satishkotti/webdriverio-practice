@@ -112,8 +112,6 @@ var contentTabObj = {
         contentTabUI.ImageClick(Imageloc);
         contentTabObj.selectImageSearch(Imagetype);
         browser.frameParent();
-       
-
     },
     selectImageSearch: function (searchimagetype) {
         contentTabUI.setImageType("Image");
@@ -124,9 +122,8 @@ var contentTabObj = {
     ImagelinkVal: function(Imageloc){
         contentTabUI.switchToExternalWidgetFrame();
         var ImagelinkVal=contentTabUI.ImagelinkVal(Imageloc);
-
-        return ImagelinkVal;
         browser.frameParent();
+        return ImagelinkVal;
     },
 
     cancelcheckout: function(){
