@@ -11,20 +11,20 @@ var checkInButonSelector = "//button[contains(string(),'Check-in')]";
 var contentTabSelector = "//span[text()='Content']";
 var contentPaneFrameSelector = "//div[@tag_id='Content-widget']//iframe[contains(@id,'ExternalWidget')]";
 var Helper = require('./../functions/functions');
-var contentHeader="//div[@class='container']//center[@class='ng-binding']";
-var SectionHeader="//h2[span[contains(.,'Section Header')]]//following-sibling::div//input";
-var RelatedLinksHeader="//h2[span[contains(.,'Related Links Header')]]//following-sibling::div//input";
-var Titleinput="//h2[span[contains(.,'Title')]]//following-sibling::div//input";
+var contentHeader = "//div[@class='container']//center[@class='ng-binding']";
+var SectionHeader = "//h2[span[contains(.,'Section Header')]]//following-sibling::div//input";
+var RelatedLinksHeader = "//h2[span[contains(.,'Related Links Header')]]//following-sibling::div//input";
+var Titleinput = "//h2[span[contains(.,'Title')]]//following-sibling::div//input";
 var selectBox = "//h2[span[contains(.,'Question Type')]]//following-sibling::div//div[@ng-if='configitem.selectOptions']//select[@ng-model='itemnode[configitem.nodeName]']";
-var Terminput="//h2[span[contains(.,'Term')]]//following-sibling::div//input";
-var Pronunciationinput="//h2[span[contains(.,'Pronunciation')]]//following-sibling::div//input";
-var Definitioninput="//h2[span[contains(.,'Definition')]]//following-sibling::div//div[text()='Enter text here']";
-var Etymologyinput="//h2[span[contains(.,'Etymology')]]//following-sibling::div//input";
-var Citationsinput="//h2[span[contains(.,'Citations')]]//following-sibling::div//input";
-var TitleinputValue="//h2[span[contains(.,'Title')]]//following-sibling::div/div/p";
-var SectionTextinputValue="//h2[span[contains(.,'Section Text')]]//following-sibling::div/div/span/p";
+var Terminput = "//h2[span[contains(.,'Term')]]//following-sibling::div//input";
+var Pronunciationinput = "//h2[span[contains(.,'Pronunciation')]]//following-sibling::div//input";
+var Definitioninput = "//h2[span[contains(.,'Definition')]]//following-sibling::div//div[text()='Enter text here']";
+var Etymologyinput = "//h2[span[contains(.,'Etymology')]]//following-sibling::div//input";
+var Citationsinput = "//h2[span[contains(.,'Citations')]]//following-sibling::div//input";
+var TitleinputValue = "//h2[span[contains(.,'Title')]]//following-sibling::div/div/p";
+var SectionTextinputValue = "//h2[span[contains(.,'Section Text')]]//following-sibling::div/div/span/p";
 var contentTabUIObj = {
-    switchToMainFrame: function(){
+    switchToMainFrame: function () {
         browser.frame();
     },
     switchToExternalWidgetFrame: function () {
@@ -67,33 +67,32 @@ var contentTabUIObj = {
         browser.frameParent();
         browser.pause(5000);
     },
-    cancelCheckoutConfirmYes: function(){
+    cancelCheckoutConfirmYes: function () {
         browser.click("//button[contains(string(),'Cancel')]");
         contentTabUIObj.cancelCheckoutPopupYes();
     },
-    cancelCheckoutConfirmNo: function(){
+    cancelCheckoutConfirmNo: function () {
         browser.click("//button[contains(string(),'Cancel')]");
         contentTabUIObj.cancelCheckoutPopupNo();
     },
-    cancelCheckoutPopupYes:function(){
+    cancelCheckoutPopupYes: function () {
         browser.frameParent();
         browser.waitForVisible("//div[@class='modal-content']//button[contains(.,'Yes')]", maxWaitTimeInMs);
         browser.click("//div[@class='modal-content']//button[contains(.,'Yes')]");
     },
-    cancelCheckoutPopupNo:function(){
+    cancelCheckoutPopupNo: function () {
         browser.frameParent();
         browser.waitForVisible("//div[@class='modal-content']//button[contains(.,'No')]", maxWaitTimeInMs);
         browser.click("//div[@class='modal-content']//button[contains(.,'No')]");
     },
     clearSectionTextValue: function () {
-        try 
-        {
+        try {
             browser.clearElement(sectionTextSelector);
         } catch (err) {
             console.log('Fail to clear Section Text' + err)
         }
     },
-    Titleinputsetvalue:function (Titleinputvalue) {
+    Titleinputsetvalue: function (Titleinputvalue) {
         browser.setValue(Titleinput, Titleinputvalue);
     },
     sectionHeaderSetValue: function (sectionHeaderVal) {
@@ -105,11 +104,11 @@ var contentTabUIObj = {
         browser.setValue(sectionTextSelector, sectionTextVal);
     },
     highlightsSetValue: function (highlightsValue) {
-        
+
         browser.setValue(highlightsSelector, highlightsValue);
     },
     pullQuotesSetValue: function (pullQuotesValue) {
-        
+
         browser.setValue(pullQuotesSelector, pullQuotesValue);
     },
     citationsSetValue: function (citationValue) {
@@ -122,30 +121,27 @@ var contentTabUIObj = {
     },
 
     RelatedLinkHeaderSetValue: function (RelatedLinksHeaderVal) {
-        
+
         browser.setValue(RelatedLinksHeader, RelatedLinksHeaderVal);
 
     },
 
-    QuestionTextSetValue:function(Data)
-    {
-       browser.scroll(QuestionTextSelector);
-       browser.setValue(QuestionTextSelector, Data);
+    QuestionTextSetValue: function (Data) {
+        browser.scroll(QuestionTextSelector);
+        browser.setValue(QuestionTextSelector, Data);
     },
-     QuestiontypeSelectText:function(Value)
-    {
-       
-        browser.selectByValue(selectBox,Value);
-        
+    QuestiontypeSelectText: function (Value) {
+
+        browser.selectByValue(selectBox, Value);
+
     },
 
-     ResultTextSetValue:function(Data)
-    {
-       browser.scroll(ResultsSelector);
-       browser.setValue(ResultsSelector, Data);
+    ResultTextSetValue: function (Data) {
+        browser.scroll(ResultsSelector);
+        browser.setValue(ResultsSelector, Data);
     },
-    
-    
+
+
     mModuleckEditorMenuClick: function (sectionIndex) {
         browser.moveToObject("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])[" + sectionIndex + "]");
         browser.click("(//span[contains(.,'Module')]/following-sibling::span[@class='cke_button_arrow'])[" + sectionIndex + "]");
@@ -197,9 +193,9 @@ var contentTabUIObj = {
     },
 
 
-     ImageClick:function(Imagemodule){
-        var ImageSelector= "//h2[span[contains(.,'"+Imagemodule+"')]]//following-sibling::div//div//div//div[@class='column']//button[@ng-click='repoImageSelector()']";
-        browser.waitForVisible(ImageSelector,maxWaitTimeInMs);
+    ImageClick: function (Imagemodule) {
+        var ImageSelector = "//h2[span[contains(.,'" + Imagemodule + "')]]//following-sibling::div//div//div//div[@class='column']//button[@ng-click='repoImageSelector()']";
+        browser.waitForVisible(ImageSelector, maxWaitTimeInMs);
         browser.moveToObject(ImageSelector);
         browser.leftClick(ImageSelector);
         browser.pause(10000);
@@ -227,56 +223,55 @@ var contentTabUIObj = {
     selectImage: function () {
         browser.click("//div[@class='modal-footer']//button[contains(string(),'Select')]");
         browser.pause(1000);
-       
+
     },
-    ImagelinkVal:function (Imagemodule) {
-        var ImageSelector= "//h2[span[contains(.,'"+Imagemodule+"')]]//following-sibling::div//div//div//div[@class='ng-binding']";
-        browser.waitForVisible(ImageSelector,maxWaitTimeInMs);
+    ImagelinkVal: function (Imagemodule) {
+        var ImageSelector = "//h2[span[contains(.,'" + Imagemodule + "')]]//following-sibling::div//div//div//div[@class='ng-binding']";
+        browser.waitForVisible(ImageSelector, maxWaitTimeInMs);
         var imagelinkval = browser.getText(ImageSelector);
         return imagelinkval;
     },
 
-     cancelCheckout: function(){
+    cancelCheckout: function () {
         browser.click("//button[contains(string(),'Cancel')]");
         browser.frameParent();
     },
 
-    contentHeaderGet:function()
-    {
+    contentHeaderGet: function () {
         contentTabUIObj.switchToExternalWidgetFrame();
-        browser.waitForVisible(contentHeader,maxWaitTimeInMs);
-        var result=browser.getText(contentHeader);
+        browser.waitForVisible(contentHeader, maxWaitTimeInMs);
+        var result = browser.getText(contentHeader);
         browser.frameParent();
         return result;
 
     },
 
-     switchToExternalWidgetFrame: function(){
+    switchToExternalWidgetFrame: function () {
         var contentWidgetIFrameElement = browser.element(contentPaneFrameSelector);
         browser.frame(contentWidgetIFrameElement.value);
     },
 
-    Terminputsetvalue:function (Terminputvalue) {
+    Terminputsetvalue: function (Terminputvalue) {
         browser.setValue(Terminput, Terminputvalue);
     },
-    Pronunciationsetvalue:function (Pronunciationinputvalue) {
+    Pronunciationsetvalue: function (Pronunciationinputvalue) {
         browser.setValue(Pronunciationinput, Pronunciationinputvalue);
     },
 
-    Definitioninputsetvalue:function (Definitioninputvalue) {
+    Definitioninputsetvalue: function (Definitioninputvalue) {
         browser.setValue(Definitioninput, Definitioninputvalue);
     },
-    Etymologysetvalue:function (Etymologyinputvalue) {
+    Etymologysetvalue: function (Etymologyinputvalue) {
         browser.setValue(Etymologyinput, Etymologyinputvalue);
     },
 
-    Citationssetvalue:function (Citationsinputvalue) {
+    Citationssetvalue: function (Citationsinputvalue) {
         browser.setValue(Citationsinput, Citationsinputvalue);
     },
-    Titleinputgetvalue:function () {
+    Titleinputgetvalue: function () {
         return browser.getText(TitleinputValue);
     },
-    SectionTextgetvalue:function () {
+    SectionTextgetvalue: function () {
         return browser.getText(SectionTextinputValue);
     }
 

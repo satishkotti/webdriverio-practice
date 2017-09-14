@@ -4,46 +4,46 @@ var contentTabUI = require('./../ui/contentTab');
 
 var nativeEditObj = {
 
-    nativeEditXML: function(){
+    nativeEditXML: function () {
         contentTab.checkOut();
         contentTab.Titleinputsetvalue("QATest");
         browser.frameParent();
         contentTab.sectionTextSetValue("QA");
-         browser.frameParent();
-         contentTabUI.switchToExternalWidgetFrame();
-         nativeEdit.nativebutton();
-         browser.frameParent();
+        browser.frameParent();
+        contentTabUI.switchToExternalWidgetFrame();
+        nativeEdit.nativebutton();
+        browser.frameParent();
     },
 
-    titleupdate: function(){
+    titleupdate: function () {
         nativeEdit.switchToExternalWidgetFrame();
         nativeEdit.titleupdate();
     },
-    copysection: function(){
+    copysection: function () {
         nativeEdit.copysection();
         browser.frameParent();
     },
-    applybutton:function(){
+    applybutton: function () {
         nativeEdit.applyButton();
     },
-    cancelbutton:function(){
+    cancelbutton: function () {
         nativeEdit.cancelButton();
     },
-    validation:function(){
+    validation: function () {
         contentTab.checkIn();
         nativeEdit.validation();
         contentTab.checkOut();
         contentTabUI.switchToExternalWidgetFrame();
-         nativeEdit.nativebutton();
-         browser.frameParent()
-         nativeEdit.switchToExternalWidgetFrame();
-         nativeEdit.closetagbreak();
-         browser.frameParent();
-         nativeEdit.applyButton();
-         nativeEdit.alertOk();
-         nativeEdit.cancelButton();
-         contentTab.checkIn();
+        nativeEdit.nativebutton();
+        browser.frameParent()
+        nativeEdit.switchToExternalWidgetFrame();
+        nativeEdit.closetagbreak();
+        browser.frameParent();
+        nativeEdit.applyButton();
+        nativeEdit.alertOk();
+        nativeEdit.cancelButton();
+        contentTab.checkIn();
     }
-    
+
 }
 module.exports = nativeEditObj;

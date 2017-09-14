@@ -19,8 +19,8 @@ describe('General Features - Native Edit- PPE-30636', function () {
         });
 
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
-          AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
-          AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
+        AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
+        AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
             global.d2ConDataSettings.inputData.ArticleProfileName,
             global.d2ConDataSettings.inputData.ArticleTemplate,
@@ -28,16 +28,15 @@ describe('General Features - Native Edit- PPE-30636', function () {
             AssetName);
     });
 
-    it('E2E', function () {
+    it('Verify there is Native Edit XML option in the Content tab - PPE-129655,Verify user is able to update content tag information in the Native XML editor-PPE-129656,Verify the error message when user updated invalid tags in Native XML editor -PPE-129665,Verify special character are not being displayed by copying particular clone-able section -PPE-129666', function () {
 
         documentListTab.selectAsset(AssetTitle);
-       // documentListTab.selectAsset("QATestAssetNV071");
         nativeEdit.nativeEditXML();
         nativeEdit.titleupdate();
         nativeEdit.copysection();
         nativeEdit.applybutton();
         nativeEdit.validation();
-       
+
     });
 
 });
