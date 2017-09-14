@@ -64,6 +64,7 @@ function _Fn(val) {
 
      it('Number of Medianet Calls', function () {
         console.log(mnet.length);
+		mnet.length.should.be.above(0);
     });
 
      it('Duplicate Mnet', function () {
