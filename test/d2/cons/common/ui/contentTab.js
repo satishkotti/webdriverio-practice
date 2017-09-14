@@ -21,6 +21,9 @@ var Pronunciationinput = "//h2[span[contains(.,'Pronunciation')]]//following-sib
 var Definitioninput = "//h2[span[contains(.,'Definition')]]//following-sibling::div//div[text()='Enter text here']";
 var Etymologyinput = "//h2[span[contains(.,'Etymology')]]//following-sibling::div//input";
 var Citationsinput = "//h2[span[contains(.,'Citations')]]//following-sibling::div//input";
+var TitleinputValue = "//h2[span[contains(.,'Title')]]//following-sibling::div/div/p";
+var SectionTextinputValue = "//h2[span[contains(.,'Section Text')]]//following-sibling::div/div/span/p";
+
 var contentTabUIObj = {
     switchToMainFrame: function () {
         browser.frame();
@@ -171,6 +174,12 @@ var contentTabUIObj = {
         browser.click("(//a[@title='Insert Module'])[" + sectionIndex + "]");
         browser.pause(5000);
     },
+
+     MediackEditorMenuClick: function (sectionIndex) {
+        browser.moveToObject("(//a[@title='Insert media'])[" + sectionIndex + "]");
+        browser.click("(//a[@title='Insert media'])[" + sectionIndex + "]");
+        browser.pause(5000);
+    },
     ExpandContentTab: function () {
         browser.waitForVisible('//span[contains(.,"Content")]//*[@id="menuDownArrow-button"]');
         browser.click('//span[contains(.,"Content")]//*[@id="menuDownArrow-button"]');
@@ -202,7 +211,7 @@ var contentTabUIObj = {
         if (Imagemodule == 'Results Image'){
             browser.scroll("//h2[span[contains(.,'Results Segment')]]");
         }
-        browser.waitForVisible(ImageSelector,maxWaitTimeInMs);
+        browser.waitForVisible(ImageSelector, maxWaitTimeInMs);
         browser.moveToObject(ImageSelector);
         browser.leftClick(ImageSelector);
         browser.pause(10000);
@@ -275,6 +284,12 @@ var contentTabUIObj = {
     Citationssetvalue: function (Citationsinputvalue) {
         browser.setValue(Citationsinput, Citationsinputvalue);
     },
+    Titleinputgetvalue: function () {
+        return browser.getText(TitleinputValue);
+    },
+    SectionTextgetvalue: function () {
+        return browser.getText(SectionTextinputValue);
+    }
 
 }
 
