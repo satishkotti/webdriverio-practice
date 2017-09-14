@@ -1,8 +1,8 @@
 var webdriverio = require("webdriverio");
 var options = {
-    //  host: '172.28.37.142',
+      host: '172.28.37.142',
     // host: '172.25.18.106',
-    host: '127.0.0.1',
+    // host: '127.0.0.1',
     port: 4444,
     desiredCapabilities: {
         browserName: 'chrome'
@@ -13,11 +13,11 @@ var options = {
 global.browser = webdriverio.remote(options);
 console.log(browser);
 var webmd_proxy = require('wdio-browser-proxy')(browser, {
-     //host: '172.28.37.142',
-     host: '127.0.0.1',
+     host: '172.28.37.142',
+     //host: '127.0.0.1',
     port: 8080,
-    // host: '172.28.37.142',
-     host: '127.0.0.1',
+     host: '172.28.37.142',
+    // host: '127.0.0.1',
     selPort: 4444,
     manualPort:8085,
     timeouts:{"connection":10000,"read":10000,"request":10000}
