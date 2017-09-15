@@ -103,7 +103,7 @@ module.exports.testSettings = {
             "url": "http://d2.qa01.webmd.com/D2/#d2",
             "users": [{
                 "id": "1",
-                "username": "QAPublication1",
+                "username": "QAPublication",
                 "password": "QA-Doc#1",
                 "type": "user"
             },
@@ -115,7 +115,7 @@ module.exports.testSettings = {
             },
             {
                 "id": "3",
-                "username": "QAPublication1",
+                "username": "QAPublication",
                 "password": "QA-Doc#1",
                 "type": "user"
             }
