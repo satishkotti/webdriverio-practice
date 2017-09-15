@@ -23,6 +23,7 @@ var Etymologyinput = "//h2[span[contains(.,'Etymology')]]//following-sibling::di
 var Citationsinput = "//h2[span[contains(.,'Citations')]]//following-sibling::div//input";
 var TitleinputValue = "//h2[span[contains(.,'Title')]]//following-sibling::div/div/p";
 var SectionTextinputValue = "//h2[span[contains(.,'Section Text')]]//following-sibling::div/div/span/p";
+
 var contentTabUIObj = {
     switchToMainFrame: function () {
         browser.frame();
@@ -200,7 +201,16 @@ var contentTabUIObj = {
 
 
     ImageClick: function (Imagemodule) {
-        var ImageSelector = "//h2[span[contains(.,'" + Imagemodule + "')]]//following-sibling::div//div//div//div[@class='column']//button[@ng-click='repoImageSelector()']";
+        var ImageSelector = "//h2[span[contains(.,'" + Imagemodule + "')]]//following-sibling::div//button[@ng-click='repoImageSelector()']";
+        if (Imagemodule == 'Question Media'){
+            browser.scroll("//h2[span[contains(.,'Question Text')]]");
+        }
+          if (Imagemodule == 'Answer Media'){
+            browser.scroll("//h2[span[contains(.,'Answer Text')]]");
+        }
+        if (Imagemodule == 'Results Image'){
+            browser.scroll("//h2[span[contains(.,'Results Segment')]]");
+        }
         browser.waitForVisible(ImageSelector, maxWaitTimeInMs);
         browser.moveToObject(ImageSelector);
         browser.leftClick(ImageSelector);
