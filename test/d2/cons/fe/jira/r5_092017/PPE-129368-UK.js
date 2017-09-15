@@ -12,7 +12,7 @@ var mModuleBulletOption = require('./../../../common/actions/mModuleBullet.actio
 var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
 var randomstring = require("randomstring");
 
-describe('Regression', function () {
+describe('Image path broken - PPE-129368 -UK', function () {
 
     var chronicleId;
     var AssetTitle;
@@ -29,7 +29,7 @@ describe('Regression', function () {
 
     });
 
-    it('PPE-86953-Verify the Health Reference Template - Media Asset field  in SCS Target File in US Folder', function () {
+    it('Image path broken - PPE-129368 -UK', function () {
         repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UKtestFolderPath);
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
