@@ -115,7 +115,7 @@ module.exports.testSettings = {
             },
             {
                 "id": "3",
-                "username": "QAPublication1",
+                "username": "QAPublication",
                 "password": "QA-Doc#1",
                 "type": "user"
             }
