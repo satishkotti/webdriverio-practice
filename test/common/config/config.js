@@ -3,10 +3,10 @@ module.exports = {
     {
         "dbRtLive": 
         {
-            "user": "",
-            "password": "",
-            "server": "",
-            "database": ""
+            "user": "qaautomation1",
+            "password": "qaautomation1",
+            "server": "sqlvp-cdv1-08.portal.webmd.com",
+            "database": "Live_RT"
         }
     },
      "dev03": //dev03
