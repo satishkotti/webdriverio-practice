@@ -115,17 +115,17 @@ gulp.task("default", ["mochaTest"], function () {
 
 gulp.task("local", [], function () {
 	return gulp.src(["./bootstrap.test.js",
-	//"./baseline/regression/desktop/Regression.js",
-    "./jira/desktop/Sprint_61/PPE-129126Scripts.js"
+	"./baseline/regression/desktop/Regression.js",
+    //"./jira/desktop/Sprint_61/PPE-129126Scripts.js"
 	]).pipe(mocha())
 });
 
 gulp.task('mochaTest', ['clean'], function () {
 
     return gulp.src(["./bootstrap.test.js",
-        //"./baseline/regression/desktop/Regression.js",
+        "./baseline/regression/desktop/Regression.js",
        //  "./jira/desktop/Sprint_59/PPE121501Scripts.js",
-	   "./jira/desktop/Sprint_61/PPE-129126Scripts.js"
+	   //"./jira/desktop/Sprint_61/PPE-129126Scripts.js"
     ])
         .pipe(mocha({
             require: "bootstrap.test.js",

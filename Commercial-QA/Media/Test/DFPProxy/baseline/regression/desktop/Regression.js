@@ -34,8 +34,8 @@ var webmd_proxy = require("wdio-browser-proxy")(browser,{manualPort:8085});*/
 var qs = require("querystring");
 
 //var apiurl = "http://" + data.host + ":" + data.port ;
-var apiurl = "http://172.28.37.142:8080";
-//var apiurl = "http://127.0.0.1:8080";
+//var apiurl = "http://172.28.37.142:8080";
+var apiurl = "http://127.0.0.1:8080";
 var server = supertest.agent(apiurl);
 
 // Describe Network calls function
@@ -55,7 +55,6 @@ function _Fn(val) {
         before(function (done) {
 		try{
         var x = browser.enableProxy({})
-            .timeouts('page load', 6000000)
             .url(stagingurl)
                 .end()
                 .getNetworkCalls('https://securepubads.g.doubleclick.net/gampad').then(function (result) {
@@ -138,15 +137,15 @@ function _Fn(val) {
             ada.compareStrings(DFPpt,prodpt);
         });
 
-        it(" pt Validation with page source", function () { 
-            var pgsource=browser.getSource().toString();
-            console.log("Control Passes pagesource");
-            var regex = new RegExp('(var s_topic=\")\d(\",)?/'); 
-            var temp = regex.exec(pgsource);
-            var sourcetopic = temp[0].substr(14,17);
-            console.log(sourcetopic);    
-            console.log(DFPpts==sourcetopic);
-        });
+        // it(" pt Validation with page source", function () { 
+        //     var pgsource=browser.getSource().toString();
+        //     console.log("Control Passes pagesource");
+        //     var regex = new RegExp('(var s_topic=\")\d(\",)?/'); 
+        //     var temp = regex.exec(pgsource);
+        //     var sourcetopic = temp[0].substr(14,17);
+        //     console.log(sourcetopic);    
+        //     console.log(DFPpts==sourcetopic);
+        // });
 
         
         it(" fis validation first impression ", function () {
@@ -237,7 +236,7 @@ function _Fnport() {
 
 _Fnport();
 //for (var i = 0; i < urls1.staging.length; i++) {
-for (var i = 0; i < 4; i++) {
+for (var i = 0; i < urls1.staging.length; i++) {
 try{
        _Fn(i);
 	   }catch (error) {
