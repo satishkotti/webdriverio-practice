@@ -123,9 +123,9 @@ gulp.task("local", [], function () {
 gulp.task('mochaTest', ['clean'], function () {
 
     return gulp.src(["./bootstrap.test.js",
-        "./baseline/regression/desktop/Regression.js",
        //  "./jira/desktop/Sprint_59/PPE121501Scripts.js",
-	   //"./jira/desktop/Sprint_61/PPE-129126Scripts.js"
+	   "./jira/desktop/Sprint_61/PPE-129126Scripts.js",
+       "./baseline/regression/desktop/Regression.js",
     ])
         .pipe(mocha({
             require: "bootstrap.test.js",
