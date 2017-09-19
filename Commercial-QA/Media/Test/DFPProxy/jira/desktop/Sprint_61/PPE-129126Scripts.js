@@ -76,7 +76,7 @@ function _Fnport() {
 
 _Fnport();
 
-for (var i = 10; i < urls1.staging.length; i++) {
+for (var i = 0; i < urls1.staging.length; i++) {
 try{
        _Fn(i);
 	   }catch (error) {
