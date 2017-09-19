@@ -2,7 +2,7 @@ var config = require("./config.js")
 var JSONPath = require('JSONPath');
 
 module.exports = {
-    env: "dev",
+    env: "qa01",
 
     getConfig: function () 
     {

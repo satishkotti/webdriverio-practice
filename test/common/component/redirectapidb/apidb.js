@@ -1200,5 +1200,42 @@ AND R.To_Site_Id = ToPage.site_id
             mssql.executeSql(sql)
             );
     },
+    redirecting_to_Boots: function () {
+        mssql.connection = this.connection;
+
+        var sql = `
+                            SELECT top 4 friendly_url,
+                                    site_id,
+                                    PREFIX,
+                                    content_chronic_id
+                            FROM rt_pageurlmap
+                            WHERE content_chronic_id IN
+                                ( SELECT content_chronic_id
+                                FROM rt_pageUrlMap
+                                WHERE status = 'a'
+                                GROUP BY content_chronic_id
+                                HAVING count(*) > 1 )
+                            AND content_chronic_id IN
+                                ( SELECT content_chronic_id
+                                FROM rt_pageurlmap P
+                                LEFT OUTER JOIN manual_redirect ROnID ON P.redirect_id = ROnID.id
+                                LEFT OUTER JOIN manual_redirect ROnUrl ON P.friendly_url = ROnUrl.from_url
+                                AND P.prefix = ROnUrl.from_prefix
+                                AND p.site_id = ROnUrl.from_site_id
+                                WHERE P.status <> 'd'
+                                AND ROnId.id IS NULL
+                                AND ROnUrl.id IS NULL
+                                GROUP BY P.content_chronic_id
+                                HAVING Count(*) > 1)
+                            ORDER BY content_chronic_id                   
+                                                                                                   
+                    `;
+
+        return Promise.resolve
+            (
+            mssql.executeSql(sql)
+           
+            );
+    },
 
 };

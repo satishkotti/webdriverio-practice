@@ -650,7 +650,21 @@ module.exports.DeleteResult = (appendurl, apiparameters) => {
     return response;
 
 }
+module.exports.PostResultredirectingtoBoots = (appendurl, apiparameters) => {
 
+    apiUrl = global.testapiurl + appendurl;
+    var response;
+    browser.call(() => {
+        return Promise.resolve(redirect.PostResultsApiredirectingtoBoots(apiUrl, null, apiparameters)
+            .then(function (result) {
+                response = result;
+            }).catch(err => {
+                console.log(err);
+            }));
+    });
+    return response;
+
+}
 
 /*------------------------------------------------------------------------------------------------------------- */
 /**************************************** A C T I V I T Y   Q U E U E *****************************************/
