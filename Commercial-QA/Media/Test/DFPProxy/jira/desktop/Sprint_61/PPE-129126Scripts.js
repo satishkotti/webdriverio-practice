@@ -26,45 +26,31 @@ var server = supertest.agent(apiurl);
 // Describe Network calls function
 
 function _Fn(val) {
-  describe("PPE-129126 Multiple Medianet calls"+val, function () {
+  describe('PPE-129126 Multiple Medianet calls', function () {
     this.timeout(999999);
+    var t1,t2,temp,x;
 
     before(function (done) {
         var r;
         this.timeout(999999);
         var currenturl = urls1.staging[val];
-       // var currenturl = 'https://www.perf.webmd.com/sleep-disorders/guide/tips-reduce-stress';
        console.log(currenturl);
-        var x = browser.enableProxy({})
-        // .addBlackList('http://fast.webmd.demdex.net/.*')
-        // .addBlackList('http://img.webmd.com/pixel/.*')
-        // .addBlackList('http://img.preview.webmd.com/pixel/.*')
-        // .addBlackList('http://img.staging.webmd.com/pixel/.*')
-        // .addBlackList('http://px.moatads.com/.*')
-        // .addBlackList('https://token.rubiconproject.com/token.*')
-        // .addBlackList('http://ads.yahoo.com/.*')
-        // .addBlackList('https://secure.insightexpressai.com/.*')
-        // .addBlackList('http://a.postrelease.com/*')
-        // .addBlackList('http://pixel.onaudience.com/*')
-        // .addBlackList('http://std.o.webmd.com/*')
-        // .addBlackList('http://www.webmd.com/api/directories/Service.svc/.*')
+         x = browser.enableProxy({})
         .addBlackList('https://.*newsletter*').windowHandleMaximize()
     
             .url(currenturl)
+            .pause(30000)
+            })            
             .end()
-            .getNetworkCalls('https://contextual.media.net').then(function (result) {
+            .getNetworkCalls('http://contextual.media.net').then(function (result) {
                     mnet = result;
-                    //console.log(mnet.length);
-                    //qs1 = mnet[0].request.url;
-                     //console.log(qs1);
                     done();
-                });
-            
+                });            
     });
 
      it('Number of Medianet Calls', function () {
         console.log(mnet.length);
-		mnet.length.should.be.above(0);
+        mnet.length.should.be.above(0);
     });
 
      it('Duplicate Mnet', function () {
@@ -75,31 +61,24 @@ function _Fn(val) {
 }
 
 function _Fnport() {
-
     before(function (done) {
-                try{
-                
+                try{                
                     server
                     .post('/proxy?port=' + 8085)
-                    .end(function(err,res){
-                     
+                    .end(function(err,res){                
                          console.log("manual port updated");
                          done();
                          })
-                         
-                
-                
                 }
                 catch(error){
                     console.log(error);
-                }
-                
+                }                
             });
 }
 
 _Fnport();
 
-for (var i = 0; i < urls1.staging.length; i++) {
+for (var i = 10; i < urls1.staging.length; i++) {
 try{
        _Fn(i);
 	   }catch (error) {
