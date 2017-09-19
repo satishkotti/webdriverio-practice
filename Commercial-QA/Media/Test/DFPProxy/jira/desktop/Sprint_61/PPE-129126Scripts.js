@@ -39,8 +39,7 @@ function _Fn(val) {
         .addBlackList('https://.*newsletter*').windowHandleMaximize()
     
             .url(currenturl)
-            .pause(30000)
-            })            
+            .pause(30000)           
             .end()
             .getNetworkCalls('http://contextual.media.net').then(function (result) {
                     mnet = result;
@@ -57,7 +56,7 @@ function _Fn(val) {
         ada.verifyDuplicateMedianetcalls(mnet);
      });
 
-
+});
 }
 
 function _Fnport() {
