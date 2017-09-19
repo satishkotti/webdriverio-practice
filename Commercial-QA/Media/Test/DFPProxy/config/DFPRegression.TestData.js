@@ -1,7 +1,6 @@
 module.exports = {
     prod: [
         "http://www.webmd.com",
-        "http://www.webmd.com/lupus/guide/arthritis-lupus#1",
         "http://www.webmd.com/vitamins-supplements/ingredientmono-1017-FOLIC+ACID.aspx?activeIngredientId=1017&activeIngredientName=FOLIC+ACID",
         "http://www.webmd.com/cold-and-flu/news/20160929/flagging-flu-shot-rate-worries-cdc#1",
         "http://www.webmd.com/drugs/2/drug-17410/actos-oral/details",
@@ -79,8 +78,8 @@ module.exports = {
         "http://www.webmd.com/baby/pregnancy-baby-newsletter",
         "http://www.webmd.com/a-to-z-guides/exocrine-pancreatic-insufficiency-15/epi-symptoms",
         "http://www.webmd.com/a-to-z-guides/future-of-health/advances-in-obesity-treatment",
-        "http://pets.staging.webmd.com/community-tv-pet-health-10/topic-summaries",
-        "http://pets.staging.webmd.com/dogs/ss/slideshow-brushing-dog-teeth",
+        "http://pets.webmd.com/community-tv-pet-health-10/topic-summaries",
+        "http://pets.webmd.com/dogs/ss/slideshow-brushing-dog-teeth",
         "http://www.webmd.com/heart-disease/news/20011114/bicycling-may-replace-viagra-for-men-with-heart-failure",
         "http://www.webmd.com/digestive-disorders/lactose-intolerance-14/slideshow-dairy",
         "http://www.webmd.com/women/health-news-11/slideshow-winter-skin-hazards",
@@ -92,16 +91,16 @@ module.exports = {
         "http://www.webmd.com/women/features/stress-during-pregnancy",
         "http://www.webmd.com/balance/features/self-help-popular-effectiveness",
         "http://www.webmd.com/a-to-z-guides/features/self-help-popular-effectiveness",
-        "http://www.webmd.com/women/tc/vaginal-yeast-infections-symptoms"
+        "http://www.webmd.com/women/tc/vaginal-yeast-infections-symptoms",
+        "http://www.webmd.com/lupus/guide/arthritis-lupus#1",
     ],
     staging: [
         "http://www.staging.webmd.com",
-        "http://www.staging.webmd.com/lupus/guide/arthritis-lupus#1",
         "http://www.staging.webmd.com/vitamins-supplements/ingredientmono-1017-FOLIC+ACID.aspx?activeIngredientId=1017&activeIngredientName=FOLIC+ACID",
         "http://www.staging.webmd.com/cold-and-flu/news/20160929/flagging-flu-shot-rate-worries-cdc#1",
         "http://www.staging.webmd.com/drugs/2/drug-17410/actos-oral/details",
         "http://www.staging.webmd.com/my-medicine/default.htm#how-to-use",
-        "http://www.stagomg.webmd.com/interaction-checker/default.htm",
+        "http://www.staging.webmd.com/interaction-checker/default.htm",
         "http://symptoms.staging.webmd.com/default.htm#introView",
         "https://www.staging.webmd.com/migraines-headaches/migraine-assessment/default.htm",
         "http://www.staging.webmd.com/sleep-disorders/night-waking-insomnia-16/video-foods-sleep",
@@ -187,11 +186,11 @@ module.exports = {
         "http://www.staging.webmd.com/women/features/stress-during-pregnancy",
         "http://www.staging.webmd.com/balance/features/self-help-popular-effectiveness",
         "http://www.staging.webmd.com/a-to-z-guides/features/self-help-popular-effectiveness",
-        "http://www.staging.webmd.com/women/tc/vaginal-yeast-infections-symptoms"
+        "http://www.staging.webmd.com/women/tc/vaginal-yeast-infections-symptoms",
+        "http://www.staging.webmd.com/lupus/guide/arthritis-lupus#1",
     ],
     qa01: [
         "https://www.qa01.webmd.com",
-        "https://www.qa01.webmd.com/lupus/guide/arthritis-lupus#1",
         "http://www.qa01.webmd.com/my-medicine/default.htm#how-to-use",
         "http://www.qa01.webmd.com/interaction-checker/default.htm",
         "http://symptoms.qa01.webmd.com/default.htm#introView",
@@ -284,11 +283,12 @@ module.exports = {
         "https://www.qa01.webmd.com/food-recipes/video/shuck-corn",
         "https://www.qa01.webmd.com/beauty/video/thread-lift-downside",
         "http://www.qa01.webmd.com/vitamins-supplements/ingredientmono-1017-FOLIC+ACID.aspx?activeIngredientId=1017&activeIngredientName=FOLIC+ACID",
-        "https://www.qa01.webmd.com/eye-health/eye-vision-tv/video-itchy-eyes"
+        "https://www.qa01.webmd.com/eye-health/eye-vision-tv/video-itchy-eyes",
+        "https://www.qa01.webmd.com/lupus/guide/arthritis-lupus#1",
+        
     ],
     perf: [
         "https://www.perf.webmd.com",
-        "https://www.perf.webmd.com/lupus/guide/arthritis-lupus#1",
         "https://www.perf.webmd.com/cold-and-flu/news/20160929/flagging-flu-shot-rate-worries-cdc#1",
         "https://www.perf.webmd.com/drugs/2/drug-17410/actos-oral/details",
         "https://www.perf.webmd.com/menopause/ss/slideshow-menopause-overview",
@@ -374,6 +374,7 @@ module.exports = {
         "https://www.perf.webmd.com/women/tc/vaginal-yeast-infections-symptoms",
         "https://www.perf.webmd.com/food-recipes/video/shuck-corn",
         "https://www.perf.webmd.com/beauty/video/thread-lift-downside",
-        "https://www.perf.webmd.com/eye-health/eye-vision-tv/video-itchy-eyes"
+        "https://www.perf.webmd.com/eye-health/eye-vision-tv/video-itchy-eyes",
+        "https://www.perf.webmd.com/lupus/guide/arthritis-lupus#1",
     ]
 }
