@@ -57,7 +57,7 @@ function _Fn(val) {
         ada.verifyDuplicateMedianetcalls(mnet);
      });
 
-});
+
 }
 
 function _Fnport() {
