@@ -36,15 +36,14 @@ function _Fn(val) {
         var currenturl = urls1.staging[val];
        console.log(currenturl);
          x = browser.enableProxy({})
-        .addBlackList('https://.*newsletter*').windowHandleMaximize()
-    
-            .url(currenturl)
-            .pause(30000)           
+        .addBlackList('https://.*newsletter*').windowHandleMaximize()    
+            .url(currenturl)        
             .end()
             .getNetworkCalls('http://contextual.media.net').then(function (result) {
                     mnet = result;
                     done();
                 });            
+                
     });
 
      it('Number of Medianet Calls', function () {
