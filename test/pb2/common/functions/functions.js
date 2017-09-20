@@ -153,6 +153,53 @@ module.exports.AddModule = (contentPane, moduleDetails) => {
     props.AddModule(contentPane, moduleDetails);
 }
 
+/* -------------------------------------------------
+** C O N F I G U R E  P A G E  O R  T E M P L A T E  M O D U L E 
+** -------------------------------------------------
+** Description:
+** Configure a page or template module
+** Funtion accepts 2 arguments:
+**      1. 'contentPane' is the name of the content pane. Eg: ContentPane0
+**      2. 'moduleDetails' is a json which contains values to be populated in the various fields present in the UI
+*/
+module.exports.ConfigurePageTemplateModule = (moduleType, moduleDetails) => {
+    browser.pause(10000);
+    browser.scroll("="+moduleDetails.moduleName);
+    browser.click("="+moduleDetails.moduleName);
+    browser.pause(5000);
+    switch (moduleType.toLowerCase()) {
+        case 'multiple video launch': moduleConfigs.ConfigureMultipleVideoLaunchModule(moduleprops); break;
+        case 'sponsor boxes':
+        case 'sponsor box':
+        case 'sponsor box module': moduleConfigs.ConfigureSponsorBoxModule(moduleprops); break;
+        case 'navigation module': moduleConfigs.ConfigureNavigationModule(moduleprops); break;
+        case 'editorial module': moduleConfigs.ConfigureEditorialModule(moduleprops); break;
+        case 'vertical promo module': moduleConfigs.ConfigureVerticalPromoModule(moduleprops); break;
+        case 'editnavigationmodule': moduleConfigs.ConfigureEditNavigationModule(moduleprops); break;
+        case 'editsponsorboxmodule': moduleConfigs.Configureeditsponsorboxmodule(moduleprops); break;
+        case 'editverticalpromomodule': moduleConfigs.ConfigureEditverticalpromomodule(moduleprops); break;
+        case 'editeditorialmodule': moduleConfigs.configureediteditorialmodule(moduleprops); break;
+        case 'html module': moduleConfigs.configureHtmlModule(moduleprops); break;
+        case 'edithtmlmodule': moduleConfigs.EditconfigureHtmlModule(moduleprops); break;
+        case 'linklist module': moduleConfigs.ConfigureLinkListModule(moduleprops); break;
+        default: moduleConfigs.ConfigureModuleSCS(moduleDetails); break;
+    }
+    act.ClickSaveButton();
+    browser.waitForVisible('//button[contains(text(),"Cancel Checkout")]');
+    browser.pause(10000);
+
+}
+
+/* -------------------------------------------------------------
+** G E T  S C S  C O N T E T  O F  D E P R E C A T E D  M O D U L E
+** -------------------------------------------------------------
+** Description:
+** Gets the SCS xml of the deprecated modules
+*/
+module.exports.GetModuleConfigurationSCS = () => {
+    return moduleConfigs.GetConfigurationDeprecatedModule();
+}
+
 /* -------------------------------------------------------------
 ** C O N F I G U R E  P A G E  O R  T E M P L A T E  M O D U L E 
 ** -------------------------------------------------------------
@@ -178,6 +225,7 @@ module.exports.ConfigureModule = (moduleType, moduleprops) => {
         case 'html module': moduleConfigs.configureHtmlModule(moduleprops); break;
         case 'edithtmlmodule': moduleConfigs.EditconfigureHtmlModule(moduleprops); break;
         case 'linklist module': moduleConfigs.ConfigureLinkListModule(moduleprops); break;
+        default: moduleConfigs.ConfigureModuleSCS(moduleprops); break;
     }
 
 }

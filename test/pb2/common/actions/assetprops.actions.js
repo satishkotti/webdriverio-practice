@@ -143,8 +143,8 @@ module.exports.PopulateSMProps = (assetProps) =>
     if ( assetProps.moduleLabel2 != null ) { props.dropdown('Module Label 2', assetProps.moduleLabel2); }
     if ( assetProps.linkedModule != null ) { props.input.get('Linked Module').setValue(assetProps.linkedModule); }
     if ( assetProps.description != null ) { props.textarea.get('Description').setValue(assetProps.description); }
-    if(assetProps.sponsorProgram != null ) { props.dropdown('Sponsor Program', assetProps.sponsorProgram) };
-    props.select('Tier', assetProps.tier) ;
+    if ( assetProps.sponsorProgram != null ) { props.dropdown('Sponsor Program', assetProps.sponsorProgram) };
+    if ( assetProps.tier != null ) {props.select('Tier', assetProps.tier) };
     actions.ClickContinueButton();
     browser.waitForVisible('.pb-chron');
     return browser.getText('.pb-chron');
