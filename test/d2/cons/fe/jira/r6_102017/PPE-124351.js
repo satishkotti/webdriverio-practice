@@ -46,7 +46,7 @@ describe('Remove "X" above the Check-Out button in the Content window-124351', f
 
   
 
-    it.skip('Verify the Remove "X" above the Check-Out button in the Content window.', function () {
+    it('Verify the Remove "X" above the Check-Out button in the Content window.', function () {
         Removeclosebtn.VerifyRemoveclose() ;
         browser.frameParent();
         contentTab.checkOut();
