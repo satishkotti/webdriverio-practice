@@ -1227,7 +1227,7 @@ AND R.To_Site_Id = ToPage.site_id
                                 AND ROnUrl.id IS NULL
                                 GROUP BY P.content_chronic_id
                                 HAVING Count(*) > 1)
-                            ORDER BY content_chronic_id                   
+                            ORDER BY content_chronic_id  desc                 
                                                                                                    
                     `;
 
