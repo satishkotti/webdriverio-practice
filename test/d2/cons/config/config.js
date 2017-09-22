@@ -60,8 +60,8 @@ module.exports.testSettings = {
             "url": "http://DMWRS41D-CON-08.portal.webmd.com:8080/pbws/"
         },
         "d2cons": {
-            //"url": "http://d2.dev04.webmd.com/D2/#d2",
-            "url": "http://dmd241d-con-08.portal.webmd.com:8080/D2/#d2",
+            "url": "http://d2.dev04.webmd.com/D2/#d2",
+           // "url": "http://dmd241d-con-08.portal.webmd.com:8080/D2/#d2",
             "users": [{
                 "id": "1",
                 "username": "QAPublication",

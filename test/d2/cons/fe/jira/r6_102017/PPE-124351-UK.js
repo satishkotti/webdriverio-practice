@@ -30,11 +30,11 @@ describe('Remove "X" above the Check-Out button in the Content window-124351', f
         });
 
         browser.pause(10000);
-        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UKtestFolderPath);
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
-            global.d2ConDataSettings.inputData.ArticleProfileName,
+            global.d2ConDataSettings.inputData.UkArticleProfileName,
             global.d2ConDataSettings.inputData.ArticleTemplate,
             AssetTitle,
             AssetName);
@@ -46,7 +46,7 @@ describe('Remove "X" above the Check-Out button in the Content window-124351', f
 
   
 
-    it.skip('Verify the Remove "X" above the Check-Out button in the Content window.', function () {
+    it('Verify the Remove "X" above the Check-Out button in the Content window.', function () {
         Removeclosebtn.VerifyRemoveclose() ;
         browser.frameParent();
         contentTab.checkOut();
@@ -58,7 +58,7 @@ describe('Remove "X" above the Check-Out button in the Content window-124351', f
 
    
     it('Verify the Remove "X" above the Check-Out button in the Content window.-Existing Asset', function () {
-        findTab.findbyId("091e9c5e800239f2");
+        findTab.findbyId("091e9c5e81209c02");
         Removeclosebtn.VerifyRemoveclose() ;
        
         
