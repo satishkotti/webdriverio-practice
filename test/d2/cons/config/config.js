@@ -60,8 +60,8 @@ module.exports.testSettings = {
             "url": "http://DMWRS41D-CON-08.portal.webmd.com:8080/pbws/"
         },
         "d2cons": {
-            "url": "http://d2.dev04.webmd.com/D2/#d2",
-            // "url": "http://dmd241d-con-08.portal.webmd.com:8080/D2/#d2",
+            //"url": "http://d2.dev04.webmd.com/D2/#d2",
+            "url": "http://dmd241d-con-08.portal.webmd.com:8080/D2/#d2",
             "users": [{
                 "id": "1",
                 "username": "QAPublication",
@@ -103,7 +103,7 @@ module.exports.testSettings = {
             "url": "http://d2.qa01.webmd.com/D2/#d2",
             "users": [{
                 "id": "1",
-                "username": "QAPublication1",
+                "username": "QAPublication",
                 "password": "QA-Doc#1",
                 "type": "user"
             },
@@ -115,7 +115,7 @@ module.exports.testSettings = {
             },
             {
                 "id": "3",
-                "username": "QAPublication1",
+                "username": "QAPublication",
                 "password": "QA-Doc#1",
                 "type": "user"
             }
@@ -262,7 +262,9 @@ module.exports.testSettings = {
             "ShareableTitle": "Shareable Title Test",
             "ShareableDescription": "Shareable Description Test",
             "FeatureTemplate": 'Article / Feature Template',
-                        "HealthRefTemplate": 'Article / Health Reference Template',
+            "HealthRefTemplate": 'Article / Health Reference Template',
+            "ShortTextArticleProfileName": "Consumer Portal US /  Short Text Templates",
+            "DefinitionArticleTemplate": "Definition",
             "ShareableAlign": "Left",
             "ShareableSupressSocialShare": "true",
             "SectionTextData": "sample test data" + exports.GenerateRandomString(2),
@@ -387,7 +389,13 @@ module.exports.testSettings = {
             " updatequeryCondition": "where r_object_id='091e9c5e80b30fb4';",
             "DQLQuery": "select * from wbmd_cons_article;",
             "WPSQLQuery":"select all wbmd_cons_article.r_object_id,wbmd_cons_article.object_name,wbmd_cons_article.title,wbmd_cons_article.subject,wbmd_cons_article.resolution_label,wbmd_cons_article.owner_name,wbmd_cons_article.owner_permit,wbmd_cons_article.group_name,wbmd_cons_article.group_permit,wbmd_cons_article.world_permit,wbmd_cons_article.log_entry,wbmd_cons_article.acl_domain,wbmd_cons_article.acl_name,wbmd_cons_article.language_code,wbmd_cons_article.wbmd_prim_med_revr,wbmd_cons_article.wbmd_lk_ttl,wbmd_cons_article.wbmd_wdw_ttl,wbmd_cons_article.wbmd_orig_pub_dt,wbmd_cons_article.wbmd_site_archv_ovrd_dt,wbmd_cons_article.wbmd_desc_user,wbmd_cons_article.wbmd_desc_meta,wbmd_cons_article.wbmd_keywords,wbmd_cons_article.wbmd_publ,wbmd_cons_article.wbmd_ext_id,wbmd_cons_article.wbmd_cpyrt,wbmd_cons_article.wbmd_disclmr,wbmd_cons_article.wbmd_prim_revw_dt,wbmd_cons_article.wbmd_archive_bool,wbmd_cons_article.wbmd_bus_ref,wbmd_cons_article.wbmd_prim_subj_cd,wbmd_cons_article.wbmd_med_ref_type,wbmd_cons_article.wbmd_site,wbmd_cons_article.wbmd_doc_template,wbmd_cons_article.wbmd_status,wbmd_cons_article.wbmd_eff_date,wbmd_cons_article.wbmd_exp_date,wbmd_cons_article.wbmd_c_sec_med_revr,wbmd_cons_article.wbmd_c_sec_med_revw_dt,wbmd_cons_article.wbmd_c_cons_edtr,wbmd_cons_article.wbmd_c_edtr_revr_dt,wbmd_cons_article.wbmd_c_cons_cpy_edtr,wbmd_cons_article.wbmd_c_cons_revw_dt,wbmd_cons_article.wbmd_c_prim_top_id,wbmd_cons_article.wbmd_c_stg_of_cond,wbmd_cons_article.wbmd_c_publ_disp,wbmd_cons_article.wbmd_sponsor_mlr,wbmd_cons_article.wbmd_sponsor_mlr_dt,wbmd_cons_article.wbmd_sponsor_int_mlr,wbmd_cons_article.wbmd_sponsor_int_mlr_dt,wbmd_cons_article.wbmd_c_init_prod_use,wbmd_cons_article.wbmd_c_asset_name,wbmd_cons_article.wbmd_prog_col,wbmd_cons_article.wbmd_cbp,wbmd_cons_article.wbmd_c_frnd_nm,wbmd_cons_article.wbmd_c_teaser,wbmd_cons_article.wbmd_c_channel_id,wbmd_cons_article.wbmd_c_art_thmbnl,wbmd_cons_article.wbmd_c_mini_article,wbmd_cons_article.wbmd_c_dyn_mod_bool,wbmd_cons_article.r_object_type,wbmd_cons_article.r_creation_date,wbmd_cons_article.r_modify_date,wbmd_cons_article.a_content_type from wbmd_cons_article_sp wbmd_cons_article where (wbmd_cons_article.i_has_folder = 1 and wbmd_cons_article.i_is_deleted = 0) and ( ( wbmd_cons_article.owner_name in ('QAPublication1','wbmd_all','dm_world','wbmd_admin','wbmd_approved_read_grp','wbmd_pb_administrator','wbmd_staging_promote_grp','wcm_content_author_role','d2_content_creator','wbmd_websvcs_pwr_usr','wbmd_design_read','wbmd_spons_read','wbmd_design_write_cs','wcm_web_developer_role','wbmd_nonspons_read','wbmd_wip_promote_grp','wbmd_spons_write_cs','content author','wbmd_staging_read_grp','wbmd_pb_all','wcm','web developer','wbmd_edtr_read','wbmd_approved_demote_grp','wbmd_channel_grp','wbmd_redirecttool_user','wbmd_wip_read_grp','wbmd_edtr_write_cs','wcm_content_manager_role','wbmd_expire_write','wbmd_websvcs','wbmd_active_expire_grp')) or (exists (select 1 from dm_acl_s ACL_S0, dm_acl_r ACL_R where ACL_S0.r_object_id = ACL_R.r_object_id and wbmd_cons_article.acl_domain = ACL_S0.owner_name and wbmd_cons_article.acl_name = ACL_S0.object_name and ((ACL_R.r_accessor_name in ('QAPublication1','dm_world') or (ACL_R.r_is_group = 1 and (ACL_R.r_accessor_name in ('QAPublication1','wbmd_all','dm_world','wbmd_admin','wbmd_approved_read_grp','wbmd_pb_administrator','wbmd_staging_promote_grp','wcm_content_author_role','d2_content_creator','wbmd_websvcs_pwr_usr','wbmd_design_read','wbmd_spons_read','wbmd_design_write_cs','wcm_web_developer_role','wbmd_nonspons_read','wbmd_wip_promote_grp','wbmd_spons_write_cs','content author','wbmd_staging_read_grp','wbmd_pb_all','wcm','web developer','wbmd_edtr_read','wbmd_approved_demote_grp','wbmd_channel_grp','wbmd_redirecttool_user','wbmd_wip_read_grp','wbmd_edtr_write_cs','wcm_content_manager_role','wbmd_expire_write','wbmd_websvcs','wbmd_active_expire_grp')))) and ((ACL_R.r_permit_type = 0 or ACL_R.r_permit_type is null) and (((ACL_R.r_accessor_permit >= 2) and ((ACL_S0.i_has_access_restrictions = 0 or ACL_S0.i_has_access_restrictions is null) or (not exists (select 1 from dm_acl_r ACL_R2 where ACL_R2.r_object_id = ACL_S0.r_object_id and ACL_R2.r_permit_type = 3 and (ACL_R2.r_accessor_name in ('QAPublication1','wbmd_all','dm_world','wbmd_admin','wbmd_approved_read_grp','wbmd_pb_administrator','wbmd_staging_promote_grp','wcm_content_author_role','d2_content_creator','wbmd_websvcs_pwr_usr','wbmd_design_read','wbmd_spons_read','wbmd_design_write_cs','wcm_web_developer_role','wbmd_nonspons_read','wbmd_wip_promote_grp','wbmd_spons_write_cs','content author','wbmd_staging_read_grp','wbmd_pb_all','wcm','web developer','wbmd_edtr_read','wbmd_approved_demote_grp','wbmd_channel_grp','wbmd_redirecttool_user','wbmd_wip_read_grp','wbmd_edtr_write_cs','wcm_content_manager_role','wbmd_expire_write','wbmd_websvcs','wbmd_active_expire_grp')) and (ACL_R2.r_accessor_permit >= 1 and ACL_R2.r_accessor_permit <= 2))))))) and ((ACL_S0.i_has_required_groups = 0 or ACL_S0.i_has_required_groups is null) or (not exists (select 1 from dm_acl_r ACL_R2 where ACL_R2.r_object_id = ACL_S0.r_object_id and ACL_R2.r_permit_type = 6 and (ACL_R2.r_accessor_name not in ('QAPublication1','wbmd_all','dm_world','wbmd_admin','wbmd_approved_read_grp','wbmd_pb_administrator','wbmd_staging_promote_grp','wcm_content_author_role','d2_content_creator','wbmd_websvcs_pwr_usr','wbmd_design_read','wbmd_spons_read','wbmd_design_write_cs','wcm_web_developer_role','wbmd_nonspons_read','wbmd_wip_promote_grp','wbmd_spons_write_cs','content author','wbmd_staging_read_grp','wbmd_pb_all','wcm','web developer','wbmd_edtr_read','wbmd_approved_demote_grp','wbmd_channel_grp','wbmd_redirecttool_user','wbmd_wip_read_grp','wbmd_edtr_write_cs','wcm_content_manager_role','wbmd_expire_write','wbmd_websvcs','wbmd_active_expire_grp'))))) and ((ACL_S0.i_has_required_group_set = 0 or ACL_S0.i_has_required_group_set is null) or (exists (select 1 from dm_acl_r ACL_R2 where ACL_R2.r_object_id = ACL_S0.r_object_id and ACL_R2.r_permit_type = 7 and (ACL_R2.r_accessor_name in ('QAPublication1','wbmd_all','dm_world','wbmd_admin','wbmd_approved_read_grp','wbmd_pb_administrator','wbmd_staging_promote_grp','wcm_content_author_role','d2_content_creator','wbmd_websvcs_pwr_usr','wbmd_design_read','wbmd_spons_read','wbmd_design_write_cs','wcm_web_developer_role','wbmd_nonspons_read','wbmd_wip_promote_grp','wbmd_spons_write_cs','content author','wbmd_staging_read_grp','wbmd_pb_all','wcm','web developer','wbmd_edtr_read','wbmd_approved_demote_grp','wbmd_channel_grp','wbmd_redirecttool_user','wbmd_wip_read_grp','wbmd_edtr_write_cs','wcm_content_manager_role','wbmd_expire_write','wbmd_websvcs','wbmd_active_expire_grp')))))))))",
-            
+            "QuizArticleTemplate":'Article / Quiz',
+            "FAQArticleTemplate": 'Article / FAQ Template',
+            "LabelQuizUS":"091e9c5e8070aaa9",
+            "LabelFAQUS":"091e9c5e80096101",
+            "LabelNewsUS":"091e9c5e80006ce3",
+            "LabelQuizUK":"091e9c5e80bcf2e4",
+            "LabelNewsUK":"091e9c5e812c9222",
         }
     }
 }
