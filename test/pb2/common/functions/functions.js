@@ -178,6 +178,8 @@ module.exports.ConfigureModule = (moduleType, moduleprops) => {
         case 'html module': moduleConfigs.configureHtmlModule(moduleprops); break;
         case 'edithtmlmodule': moduleConfigs.EditconfigureHtmlModule(moduleprops); break;
         case 'linklist module': moduleConfigs.ConfigureLinkListModule(moduleprops); break;
+        case 'two column header':
+        case 'two column header module': moduleConfigs.ConfigureTwoColumnHeaderModule(moduleprops); break;
     }
 
 }
