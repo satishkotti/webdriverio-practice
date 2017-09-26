@@ -97,14 +97,28 @@ module.exports = {
             "database": "Preview_RT"
         }
     },
-    "preprod": //qa00
+    "qa00": //qa00
     {
         "dbRtLive":
         {
-            "user": "",
-            "password": "",
-            "server": "",
-            "database": ""
+            "user": "qaautomation1",
+            "password": "qaautomation1",
+            "server": "sqlvp-cq00-08.portal.webmd.com",
+            "database": "Live_RT"
+        },
+        "dbRtStaging":
+        {
+            "user": "qaautomation1",
+            "password": "qaautomation1",
+            "server": "sqlvp-cq00-08.portal.webmd.com",
+            "database": "Staging_RT"
+        },
+        "dbRtPreview":
+        {
+            "user": "qaautomation1",
+            "password": "qaautomation1",
+            "server": "sqlvp-cq00-08.portal.webmd.com",
+            "database": "Preview_RT"
         }
     },
 };
