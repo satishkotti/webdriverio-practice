@@ -363,6 +363,24 @@ var documentListUIObj = {
         expect(ppTimestamp).to.be.true;
         browser.click("button[ng-click='$confirm()']");
     },
+    demoteResultsDialogueOkSelectForLiveAsset: function(assetName)
+     {
+        browser.waitForVisible("div.modal-body > label", maxWaitTimeInMs);
+        var objName = browser.getText("//table[@id='validateTable']//tr//td[2]");
+        var state = browser.getText("//table[@id='validateTable']//tr//td[3]");
+        var sysMsg = browser.getText("//table[@id='validateTable']//tr//td[4]");
+        expect(assetName).to.equal(objName);
+        expect(state).to.equal(stagingStateLbl);
+        expect(sysMsg).to.equal(successStagingSysMsg);
+        browser.click("//div[@class='modal-footer']//button[contains(text(),'OK')]");
+    },
+    demoteAssetForLiveAsset: function (assetName)
+    {   browser.pause(2000);
+        documentListUIObj.contextualMenuActivate(assetName);
+        documentListUIObj.contextualMenuLifeCycleSelect();
+        documentListUIObj.lifeCycleDemoteSelect();
+        documentListUIObj.demoteResultsDialogueOkSelectForLiveAsset(assetName);
+    },
 }
 
 module.exports = documentListUIObj;

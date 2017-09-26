@@ -1,4 +1,4 @@
-var maxWaitTimeInMs = 30000;
+var maxWaitTimeInMs = 100000;
 var dqlEditorFrameSelector = "//div[@tag_id='DQL Editor-widget']//iframe[contains(@id,'ExternalWidget')]";
 
 var dqlEditorTabUIObj = {
@@ -90,6 +90,17 @@ var dqlEditorTabUIObj = {
         var sqlQuery = sqlQuery.trim();
         expect(sqlQuery).to.equal(WPSQLQuery);
 
+    },
+      dqlQueryExecution: function (query) {
+        dqlEditorTabUIObj.switchToExternalWidgetFrame();
+        dqlEditorTabUIObj.dqlEditorQuery(query);
+        dqlEditorTabUIObj.dqlEditorRun();
+        browser.waitForVisible("//table[@id='dql']//tr[2]/td[2]",maxWaitTimeInMs);
+        var id= browser.getText("//table[@id='dql']//tr[2]/td[2]");
+       // browser.pause(1000);
+        console.log(id);
+        browser.frameParent();
+        return id;
 
     },
 
