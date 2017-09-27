@@ -1207,9 +1207,9 @@ AND R.To_Site_Id = ToPage.site_id
                             SELECT top 4 friendly_url,
                                     site_id,
                                     PREFIX,
-                                    content_chronic_id
-                            FROM rt_pageurlmap
-                            WHERE content_chronic_id IN
+                                    content_chronic_id,status
+                            FROM  rt_pageurlmap
+                            WHERE rt_pageurlmap.status = 'a' and content_chronic_id IN
                                 ( SELECT content_chronic_id
                                 FROM rt_pageUrlMap
                                 WHERE status = 'a'
