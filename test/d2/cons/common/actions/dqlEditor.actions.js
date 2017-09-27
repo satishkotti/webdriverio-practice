@@ -16,5 +16,8 @@ module.exports = {
     },
     dqlEditorSQLQuery: function (query, WPSQLQuery) {
         dqlEditorTabUI.dqlEditorSQLQuery(query, WPSQLQuery);
+    },
+    dqlQueryExecution: function(query){
+       return dqlEditorTabUI.dqlQueryExecution(query);
     }
 }
