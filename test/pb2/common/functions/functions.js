@@ -700,9 +700,10 @@ module.exports.NavigateToHomepage = () => {
 **
 ** Function accepts 1 argument:
 **  1. 'menuItem' is the name of the option to be selected
+**  2. 'argument' is the version to select to in the Asset History panel
 */
-module.exports.SelectMoreActionsMenuItem = (menuItem) => {
-    act.SelectMoreActionsMenuItem(menuItem);
+module.exports.SelectMoreActionsMenuItem = (menuItem, argument) => {
+    act.SelectMoreActionsMenuItem(menuItem, argument);
 }
 
 /*
