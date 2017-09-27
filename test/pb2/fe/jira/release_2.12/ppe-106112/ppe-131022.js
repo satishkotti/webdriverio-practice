@@ -5,7 +5,28 @@ var chronid = null;
 var xmlFile = null;
 var pb2Session = null;
 
+var encodeEntities = function (val) {
+    var value = val || "";
+    var SURROGATE_PAIR_REGEXP = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g,
+        // Match everything outside of normal chars and " (quote character)
+        NON_ALPHANUMERIC_REGEXP = /([^"-~ |!\t\n\f])/g;
+
+    return value.
+        replace(/&/g, '&amp;').
+        replace(SURROGATE_PAIR_REGEXP, function (value) {
+            var hi = value.charCodeAt(0);
+            var low = value.charCodeAt(1);
+            return '&#' + (((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000) + ';';
+        }).
+        replace(NON_ALPHANUMERIC_REGEXP, function (value) {
+            return '&#' + value.charCodeAt(0) + ';';
+        }).
+        replace(/</g, '&lt;').
+        replace(/>/g, '&gt;');
+};
+
 describe(`PPE-106112: For a new Page/Template/Shared module verify whether user is able to enter HTML code in the text fields`, () => {
+
 
     describe('HTML code must be retained by the UI text fields', () => {
 
@@ -37,7 +58,7 @@ describe(`PPE-106112: For a new Page/Template/Shared module verify whether user 
         });
 
         it('HTML code must be reatined by Attribution Text field', () => {
-            var actual = browser.execute(`return $('label:contains("Text:") input')[1].value`).value;
+            var actual = browser.execute(`return $('label:contains("Text:") input')[2].value`).value;
             var expected = testdata.case1.AttributionText;
             expect(actual).to.equal(expected);
         });
@@ -49,9 +70,6 @@ describe(`PPE-106112: For a new Page/Template/Shared module verify whether user 
             //Navigate to ATS Status Checker page - Live
             pb2Session = test.NavigatetoATSStatusCheckerPageOf(chronid, 'live');
 
-            //Click ATS Repreocess button
-            test.ClickButtonInATSPage('ATS Reprocess');
-
             //Wait for the asset to processed in ATS and XML to be generated
             test.WaitForATSFile('ATS Output File');
 
@@ -61,20 +79,20 @@ describe(`PPE-106112: For a new Page/Template/Shared module verify whether user 
         })
 
         it('HTML code must be retained in encoded format for module_title tag in the XML', () => {
-            var actual = parseInt(xmlFile.webmd_rendition.content.wbmd_asset.webmd_module.module_data.module_title);
-            var expected = encodeURIComponent(testdata.case1.TitleText);
+            var actual = xmlFile.webmd_rendition.content.wbmd_asset.webmd_module.module_data.moduleTitle;
+            var expected = encodeEntities(testdata.case1.TitleText);
             expect(actual).to.equal(expected);
         });
 
         it('HTML code must be retained in encoded format for module_subtitle tag in the XML', () => {
-            var actual = parseInt(xmlFile.webmd_rendition.content.wbmd_asset.webmd_module.module_data.module_subtitle);
-            var expected = encodeURIComponent(testdata.case1.SubtitleText);
+            var actual = xmlFile.webmd_rendition.content.wbmd_asset.webmd_module.module_data.module_subtitle;
+            var expected = encodeEntities(testdata.case1.SubtitleText);
             expect(actual).to.equal(expected);
         });
 
         it('HTML code must be retained in encoded format for attribution_link_text tag in the XML', () => {
-            var actual = parseInt(xmlFile.webmd_rendition.content.wbmd_asset.webmd_module.module_data.attribution_link_text);
-            var expected = encodeURIComponent(testdata.case1.AttributionText);
+            var actual = xmlFile.webmd_rendition.content.wbmd_asset.webmd_module.module_data.attribution_link_text;
+            var expected = encodeEntities(testdata.case1.AttributionText);
             expect(actual).to.equal(expected);
         });
     });
@@ -113,7 +131,7 @@ describe(`PPE-106112: For a new Page/Template/Shared module verify whether user 
         });
 
         it('HTML code must be reatined by Attribution Text field', () => {
-            var actual = browser.execute(`return $('label:contains("Text:") input')[1].value`).value;
+            var actual = browser.execute(`return $('label:contains("Text:") input')[2].value`).value;
             var expected = testdata.case2.AttributionText;
             expect(actual).to.equal(expected);
         });
@@ -125,10 +143,10 @@ describe(`PPE-106112: For a new Page/Template/Shared module verify whether user 
             //Navigate to ATS Status Checker page - Live
             test.NavigatetoATSStatusCheckerPageOf(chronid, 'live');
 
-            //Click ATS Repreocess button
-            test.ClickButtonInATSPage('ATS Reprocess');
+            test.ClickButtonInATSPage("ATS Reprocess");
 
             //Wait for the asset to processed in ATS and XML to be generated
+            browser.pause(5000);
             test.WaitForATSFile('ATS Output File');
 
             //Parse the XML File and obtain the value of 'wbmd_is_ssl_reqd'
@@ -137,20 +155,20 @@ describe(`PPE-106112: For a new Page/Template/Shared module verify whether user 
         })
 
         it('HTML code must be retained in encoded format for module_title tag in the XML', () => {
-            var actual = parseInt(xmlFile.webmd_rendition.content.wbmd_asset.webmd_module.module_data.module_title);
-            var expected = encodeURIComponent(testdata.case2.TitleText);
+            var actual = xmlFile.webmd_rendition.content.wbmd_asset.webmd_module.module_data.moduleTitle;
+            var expected = encodeEntities(testdata.case2.TitleText);
             expect(actual).to.equal(expected);
         });
 
         it('HTML code must be retained in encoded format for module_subtitle tag in the XML', () => {
-            var actual = parseInt(xmlFile.webmd_rendition.content.wbmd_asset.webmd_module.module_data.module_subtitle);
-            var expected = encodeURIComponent(testdata.case2.SubtitleText);
+            var actual = xmlFile.webmd_rendition.content.wbmd_asset.webmd_module.module_data.module_subtitle;
+            var expected = encodeEntities(testdata.case2.SubtitleText);
             expect(actual).to.equal(expected);
         });
 
         it('HTML code must be retained in encoded format for attribution_link_text tag in the XML', () => {
-            var actual = parseInt(xmlFile.webmd_rendition.content.wbmd_asset.webmd_module.module_data.attribution_link_text);
-            var expected = encodeURIComponent(testdata.case2.AttributionText);
+            var actual = xmlFile.webmd_rendition.content.wbmd_asset.webmd_module.module_data.attribution_link_text;
+            var expected = testdata.case2.AttributionText;
             expect(actual).to.equal(expected);
         });
     });
