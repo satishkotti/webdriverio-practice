@@ -698,3 +698,44 @@ module.exports.ConfigureTwoColumnHeaderModule = (assetProps) => {
     }
 
 }
+
+module.exports.ConfigureStandarPromoModule = (assetProps) => {
+
+    if (assetProps.ModuleTitle != null) {
+        props.input.get('Module Title').setValue(assetProps.TitleText);
+    }
+    if(assetProps.ModuleLink != null) {
+        props.lookup2('Module Title', 'Link', 1, assetProps.ModuleLink);
+    }
+
+    if (assetProps.LogoImage != null) {
+        props.lookup2('Logo', 'Image', 1, assetProps.LogoImage);
+    }
+
+    if (assetProps.LogoTitle != null) {
+        props.input.get('Logo Title').setValue(assetProps.LogoTitle);
+    }
+
+    if (assetProps.LogoLink != null) {
+        props.lookup2('Logo', 'Link', 1, assetProps.LogoLink);
+    }
+
+    let slides = assetProps.Slides;
+
+    if (slides.length != undefined && slides.length > 0) {
+        if (slides.length > 1) {
+            props.addLinks('Slides', 'Add Slides', 1, slides.length - 1);
+        }
+
+        for (var index = 1; index <= slides.length; index++) {
+            browser.scroll(props.link2.get('Slide #'+index));
+            props.link2.get('Slide #'+index).click();
+            props.lookup2('Slides', 'Image', index, slides[index-1].Image);
+            props.input.get('Slide Header Text').setValue(assetProps.LogoTitle);
+            props.lookup2('Slides', 'Slide Header Link', index, slides[index-1].SlideHeaderLink);
+            props.input.get('Slide Title').setValue(assetProps.SlideTitle);
+            props.input.get('Slide Sub Text').setValue(assetProps.SlideSubText);
+        }
+    }
+
+}
