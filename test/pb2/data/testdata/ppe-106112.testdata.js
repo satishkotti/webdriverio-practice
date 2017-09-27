@@ -4,7 +4,7 @@ var assetName = `QASM-PPE106112-${randomstring.generate(5)}`;
 module.exports = {
     ppe_131022:
     {
-        create:
+        case1:
         {
             "moduleName": assetName,
             "moduleDispName": assetName,
@@ -18,14 +18,14 @@ module.exports = {
             "linkedModule": null,
             "sponsorProgram": null,
             "description": assetName + "-desc",
-            "tier": 2,
+            "tier": "tier2",
             "TitleText": "<title>Title</title>",
             "SubtitleText": "<subtitle>Subtitle Text test",
-            "Image On": 0,
-            "HeaderURL": "091e9c5e801651b2",
+            "ImageOn": 0,
+            "HeaderURL": null,
             "AttributionText": "Attribution Text",
-            "Images":
-            [
+            "AttributionURL": null,
+            "Images": [
                 {
                     "Link": "091e9c5e80661dc9",
                     "Image": "091e9c5e803fecd4",
@@ -33,7 +33,7 @@ module.exports = {
                 }
             ]
         },
-        edit:
+        case2:
         {
             "moduleName": assetName,
             "moduleDispName": assetName,
@@ -53,14 +53,8 @@ module.exports = {
             "ImageOn": 0,
             "HeaderURL": "091e9c5e801651b2",
             "AttributionText": "Attribution Text",
-            "Images":
-            [
-                {
-                    "Link": "091e9c5e80661dc9",
-                    "Image": "091e9c5e803fecd4",
-
-                }
-            ]
+            "AttributionURL": null,
+            "Images": []
         }
     }
 }

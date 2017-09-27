@@ -130,7 +130,6 @@ module.exports.PopulateTemplateProps = (assetProps) =>
 
 module.exports.PopulateSMProps = (assetProps) =>
 {
-    menu.SelectCreateMenuItem('Shared Modules');
     props.input.get('Module Name').setValue(assetProps.moduleName);
     if ( assetProps.moduleName != null || assetProps.moduleName != '' ) { props.input.get('Module Display Name').setValue(assetProps.moduleDispName) };
     props.dropdown('Module Type', assetProps.moduleType);

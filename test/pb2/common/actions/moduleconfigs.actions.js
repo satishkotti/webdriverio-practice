@@ -673,15 +673,15 @@ module.exports.ConfigureTwoColumnHeaderModule = (assetProps) => {
     }
 
     if (assetProps.HeaderURL != null) {
-        props.lookup.get('Header URL').setValue(assetProps.HeaderURL);
+        props.lookup('Header URL', assetProps.HeaderURL);
     }
 
     if (assetProps.AttributionText != null) {
-        props.input2.get('Attribution', 'Text', 1, assetProps.AttributionText);
+        props.input2.get('Attribution', 'Text', 1).setValue(assetProps.AttributionText);
     }
 
     if (assetProps.AttributionURL != null) {
-        props.lookup.get('Attribution URL').setValue(assetProps.AttributionURL);
+        props.lookup('Attribution URL', assetProps.AttributionURL);
     }
 
     let images = assetProps.Images;
