@@ -15,7 +15,7 @@ var position = '[position()=*]';
 var required = `${label}//span[@class="pb-field-required"]`;
 var invalid = `${label}//span[@class="pb-field-invalid"]`;
 var link = '//a[string()="***"]';
-var link2 = '//a[contains(.,"***")]';
+var link2 = '//a[contains(.,"***")]'; //For Links which contains text
 var locator = '';
 
 

@@ -180,6 +180,8 @@ module.exports.ConfigureModule = (moduleType, moduleprops) => {
         case 'linklist module': moduleConfigs.ConfigureLinkListModule(moduleprops); break;
         case 'two column header':
         case 'two column header module': moduleConfigs.ConfigureTwoColumnHeaderModule(moduleprops); break;
+        case 'standard promo':
+        case 'standard promo module': moduleConfigs.ConfigureStandarPromoModule(moduleprops); break;
     }
 
 }

@@ -10,7 +10,7 @@ exports.config = merge(wdioConf.config, {
     waitforTimeout: 120000,
     mochaOpts: {
         ui: 'bdd',
-        timeout: 900000
+        timeout: 9000000
     },
     capabilities: [{
         maxInstances: gulpFile.MaxInstances,
