@@ -68,12 +68,12 @@ describe(`PPE-88184:Verify Remove Module Types`, () => {
         test.Select('Module XSL');
         let iframe = browser.element(_SMData.Xsliframe);
         browser.frame(iframe.value);
-        browser.waitForVisible(_SMData.SelectXSLModule);
-        browser.click(_SMData.SelectXSLModule);
+
 
         for (var i = 0; i < _SMData.RemovedModuleType.length; i++) {
-
-            var XSLModuleTypes = browser.isExisting(`//option[@label="${_SMData.RemovedModuleType[i]}"]`);
+            browser.waitForVisible(_SMData.SelectXSLModule);
+            browser.click(_SMData.SelectXSLModule);
+            var XSLModuleTypes = browser.isExisting(`//option[string()="${_SMData.RemovedModuleType[i]}"]`);
             expect(XSLModuleTypes).to.be.false;
 
         }
