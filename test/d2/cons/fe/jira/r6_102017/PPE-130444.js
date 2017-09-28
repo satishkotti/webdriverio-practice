@@ -1,13 +1,8 @@
 var functions = require('./../../../common/functions/functions');
 var login = require('./../../../common/actions/login.actions');
-var repositoryBrowserTab = require('./../../../common/actions/repositoryBrowserTab.actions');
-var workspaceMenu = require('./../../../common/actions/workspace.menu.actions');
-var documentListTab = require('./../../../common/actions/documentListTab.actions');
 var contentTab = require('./../../../common/actions/contentTab.actions');
-var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
 var findTab = require('./../../../common/actions/findTab.actions');
 var dqlEditorTab = require('./../../../common/actions/dqlEditor.actions');
-var randomstring = require("randomstring");
 
 describe('Article doesnt display content in Content window PPE-130444', function () {
     before(function () {
