@@ -46,9 +46,6 @@ describe('PPE-129375:Preview links redirecting to Boots', () => {
 
         it('Verify that Preview links redirecting to Boots_Live', () => {
 
-            console.log(CreateByID_redirecting_to_Boots_Live.body.Message);
-            expect(CreateByID_redirecting_to_Boots_Live.body.Status).to.equal('Success');
-            expect(CreateByID_redirecting_to_Boots_Live.body.StatusCode).to.equal(1);
             expect(records_Live[0].content_chronic_id).to.equal(CreateByID_redirecting_to_Boots_Live.body.Data[0].FromChronicId);
             expect(records_Live[0].friendly_url).to.equal(CreateByID_redirecting_to_Boots_Live.body.Data[0].FromUrl);
             if (CreateByID_redirecting_to_Boots_Live.body.Data[0].FromPage_SiteId == "3") {
@@ -95,9 +92,6 @@ describe('PPE-129375:Preview links redirecting to Boots', () => {
 
         it('Verify that Preview links redirecting to Boots_Staging', () => {
 
-            console.log(CreateByID_redirecting_to_Boots_Staging.body.Message);
-            expect(CreateByID_redirecting_to_Boots_Staging.body.Status).to.equal('Success');
-            expect(CreateByID_redirecting_to_Boots_Staging.body.StatusCode).to.equal(1);
             expect(records_Staging[0].content_chronic_id).to.equal(CreateByID_redirecting_to_Boots_Staging.body.Data[0].FromChronicId);
             expect(records_Staging[0].friendly_url).to.equal(CreateByID_redirecting_to_Boots_Staging.body.Data[0].FromUrl);
             if (CreateByID_redirecting_to_Boots_Staging.body.Data[0].FromPage_SiteId == "3") {
@@ -144,13 +138,11 @@ describe('PPE-129375:Preview links redirecting to Boots', () => {
 
         it('Verify that Preview links redirecting to Boots_Preview', () => {
 
-            console.log(CreateByID_redirecting_to_Boots_Preview.body.Message);
-            expect(CreateByID_redirecting_to_Boots_Preview.body.Status).to.equal('Success');
-            expect(CreateByID_redirecting_to_Boots_Preview.body.StatusCode).to.equal(1);
             expect(records_Preview[0].content_chronic_id).to.equal(CreateByID_redirecting_to_Boots_Preview.body.Data[0].FromChronicId);
             expect(records_Preview[0].friendly_url).to.equal(CreateByID_redirecting_to_Boots_Preview.body.Data[0].FromUrl);
             if (CreateByID_redirecting_to_Boots_Preview.body.Data[0].FromPage_SiteId == "3") {
                 expect(parseInt(records_Preview[0].site_id)).to.equal(CreateByID_redirecting_to_Boots_Preview.body.Data[0].FromPage_SiteId);
+
             }
             else if (CreateByID_redirecting_to_Boots_Preview.body.Data[0].FromPage_SiteId == "8") {
                 expect(parseInt(records_Preview[1].site_id)).to.equal(CreateByID_redirecting_to_Boots_Preview.body.Data[0].FromPage_SiteId);
