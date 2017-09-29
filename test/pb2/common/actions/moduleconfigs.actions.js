@@ -702,13 +702,20 @@ module.exports.ConfigureTwoColumnHeaderModule = (assetProps) => {
 module.exports.ConfigureStandarPromoModule = (assetProps) => {
 
     if (assetProps.ModuleTitle != null) {
-        props.input.get('Module Title').setValue(assetProps.TitleText);
+        props.input.get('Module Title').setValue(assetProps.ModuleTitle);
     }
+
     if(assetProps.ModuleLink != null) {
+        if(!props.input2.get('Module Title', 'Link', 1).isEnabled()){
+            props.button2.get('Module Title', 'Link', 1).click();
+        }
         props.lookup2('Module Title', 'Link', 1, assetProps.ModuleLink);
     }
 
     if (assetProps.LogoImage != null) {
+        if(!props.input2.get('Logo', 'Image', 1).isEnabled()){
+            props.button2.get('Logo', 'Image', 1).click();
+        }
         props.lookup2('Logo', 'Image', 1, assetProps.LogoImage);
     }
 
@@ -717,6 +724,9 @@ module.exports.ConfigureStandarPromoModule = (assetProps) => {
     }
 
     if (assetProps.LogoLink != null) {
+        if(!props.input2.get('Logo', 'Link', 1).isEnabled()){
+            props.button2.get('Logo', 'Link', 1).click();
+        }
         props.lookup2('Logo', 'Link', 1, assetProps.LogoLink);
     }
 
@@ -728,13 +738,23 @@ module.exports.ConfigureStandarPromoModule = (assetProps) => {
         }
 
         for (var index = 1; index <= slides.length; index++) {
-            browser.scroll(props.link2.get('Slide #'+index));
+            props.link2.get('Slide #'+index).scroll();
             props.link2.get('Slide #'+index).click();
+            browser.execute(function(index){
+                $('label:contains("Slide Sub Text:") input').get(index-1).scrollIntoView()}, index
+                );
+            if(!props.input2.get('Slides', 'Image', index).isEnabled()){
+                props.button2.get('Slides', 'Image', index).click();
+            }
             props.lookup2('Slides', 'Image', index, slides[index-1].Image);
-            props.input.get('Slide Header Text').setValue(assetProps.LogoTitle);
+            props.input.get('Slide Header Text').setValue(slides[index-1].SlideHeaderText);
+            if(!props.input2.get('Slides', 'Slide Header Link', index).isEnabled()){
+                props.button2.get('Slides', 'Slide Header Link', index).click();
+            }
             props.lookup2('Slides', 'Slide Header Link', index, slides[index-1].SlideHeaderLink);
-            props.input.get('Slide Title').setValue(assetProps.SlideTitle);
-            props.input.get('Slide Sub Text').setValue(assetProps.SlideSubText);
+            props.input.get('Slide Title').setValue(slides[index-1].SlideTitle);
+            props.input.get('Slide Emphasized Text').setValue(slides[index-1].SlideEmphasizedText);
+            props.input.get('Slide Sub Text').setValue(slides[index-1].SlideSubText);
         }
     }
 

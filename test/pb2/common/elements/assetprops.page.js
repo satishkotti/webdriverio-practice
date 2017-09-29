@@ -17,6 +17,8 @@ var invalid = `${label}//span[@class="pb-field-invalid"]`;
 var link = '//a[string()="***"]';
 var link2 = '//a[contains(.,"***")]'; //For Links which contains text
 var locator = '';
+var button = `${label}//button`// Text less button under a label
+var lookup = '';
 
 
 var props = Object.create(page, {
@@ -27,6 +29,20 @@ var props = Object.create(page, {
     Scroll: { value: () => { browser.element(locator).scroll(); } },
     GetElement: { get: () => { return browser.element(locator); } },
 
+    buton:{
+        value: {
+            get: (labelName) => {
+                locator = button.replace('***', labelName); return props.GetElement;
+            }
+        }
+    },
+    button2:{
+        value: {
+            get: (legendName, labelName, itemNumber) => {
+                locator = '(' + legend.replace('***', legendName) + button.replace('***', labelName) + ')[' + itemNumber + ']'; return props.GetElement;
+                }
+        }
+    },
     input: {
         value: {
             get: (labelName) => {

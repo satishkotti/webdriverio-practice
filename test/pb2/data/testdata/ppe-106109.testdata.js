@@ -2,7 +2,7 @@ const randomstring = require('randomstring');
 var assetName = `QASM-PPE106109-${randomstring.generate(5)}`;
 
 module.exports = {
-    ppe_130430:
+    ppe_106109:
     {
         create:
         {
