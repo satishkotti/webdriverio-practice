@@ -56,5 +56,56 @@ module.exports = {
             "AttributionURL": null,
             "Images": []
         }
+    },
+    ppe_131023:
+    {
+        assetChronId: "091e9c5e80cde0fe",
+        case1:
+        {
+            "moduleName": assetName,
+            "moduleDispName": assetName,
+            "moduleType": "TwoColumnHeaderModule",
+            "category": null,
+            "selectXSL": null,
+            "selectCSS": null,
+            "dynamicModuleCategory": null,
+            "moduleLabel1": null,
+            "moduleLabel2": null,
+            "linkedModule": null,
+            "sponsorProgram": null,
+            "description": assetName + "-desc",
+            "tier": "tier2",
+            "TitleText": "<title>Title</title>",
+            "SubtitleText": "<subtitle>Subtitle Text test",
+            "ImageOn": 0,
+            "HeaderURL": null,
+            "AttributionText": "Attribution Text",
+            "AttributionURL": null,
+            "Images": []
+        },
+        case2:
+        {
+            "moduleName": assetName,
+            "moduleDispName": assetName,
+            "moduleType": "TwoColumnHeaderModule",
+            "category": null,
+            "selectXSL": null,
+            "selectCSS": null,
+            "dynamicModuleCategory": null,
+            "moduleLabel1": null,
+            "moduleLabel2": null,
+            "linkedModule": null,
+            "sponsorProgram": null,
+            "description": assetName + "-desc",
+            "tier": 2,
+            "TitleText": "$1Title",
+            "SubtitleText": "$1Subtitle Text test$1",
+            "ImageOn": 0,
+            "HeaderURL": null,
+            "AttributionText": "Attribution Text",
+            "AttributionURL": null,
+            "Images": []
+        },
+        previousStandardVersion: "4.0"
     }
 }

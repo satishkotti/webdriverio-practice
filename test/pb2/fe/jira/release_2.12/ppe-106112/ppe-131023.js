@@ -1,11 +1,11 @@
 var test = require('./../../../../common/functions/functions');
-var testdata = require('./../../../../data/testdata/ppe-106112.testdata').ppe_131022;
+var testdata = require('./../../../../data/testdata/ppe-106112.testdata').ppe_131023;
 
-var chronid = null;
+var chronid = testdata.assetChronId;
 var xmlFile = null;
 var pb2Session = null;
 
-describe(`PPE-106112: For a new Page/Template/Shared module verify whether user is able to enter HTML code in the text fields`, () => {
+describe(`PPE-106112: For an existing Page/Template/Shared module verify whether user is able to enter HTML code in the text fields`, () => {
 
 
     describe('HTML code must be retained by the UI text fields', () => {
@@ -15,8 +15,14 @@ describe(`PPE-106112: For a new Page/Template/Shared module verify whether user 
             //Launch App and Login
             test.LaunchAppAndLogin();
 
-            //Create a new shared module
-            chronid = test.Create('Shared Module', testdata.case1);
+            //Search for the shared module
+            test.SearchFor(null, chronid, 'Global Search', null);
+
+            //Edit the asset
+            test.EditTheAsset();
+
+            //Switch asset tabs
+            test.SwitchAssetTabs('Module Configuration');
 
             //Configure the shared module
             test.ConfigureModule('Two Column Header Module', testdata.case1);
@@ -50,6 +56,9 @@ describe(`PPE-106112: For a new Page/Template/Shared module verify whether user 
             //Navigate to ATS Status Checker page - Live
             pb2Session = test.NavigatetoATSStatusCheckerPageOf(chronid, 'live');
 
+            test.ClickButtonInATSPage("ATS Reprocess");
+            browser.pause(5000);
+
             //Wait for the asset to processed in ATS and XML to be generated
             test.WaitForATSFile('ATS Output File');
 
@@ -78,7 +87,7 @@ describe(`PPE-106112: For a new Page/Template/Shared module verify whether user 
     });
 });
 
-describe(`PPE-106112: For a new Page/Template/Shared module verify whether user is able to enter '$1' value in the text fields`, () => {
+describe(`PPE-106112: For an existing Page/Template/Shared module verify whether user is able to enter '$1' value in the text fields`, () => {
 
     describe('HTML code must be retained by the UI text fields', () => {
 
@@ -89,6 +98,9 @@ describe(`PPE-106112: For a new Page/Template/Shared module verify whether user 
 
             //Edit the asset
             test.EditTheAsset();
+
+            //Switch asset tabs
+            test.SwitchAssetTabs('Module Configuration');
 
             //Configure the module
             test.ConfigureModule('Two Column Header Module', testdata.case2);
@@ -151,5 +163,20 @@ describe(`PPE-106112: For a new Page/Template/Shared module verify whether user 
             var expected = testdata.case2.AttributionText;
             expect(actual).to.equal(expected);
         });
+
+        after( () => {
+
+            //Navigate back to PB2 App
+            browser.url(pb2Session);
+
+            //Restore the test asset to the last standard version
+            test.SelectMoreActionsMenuItem('Asset History', testdata.previousStandardVersion);
+
+            //Checkout & Edit the asset
+            test.CheckoutAndEditTheAsset();
+
+            //Publish the asset to Live
+            test.SaveOrPublishTheAsset('Publish to Live', 'Testing PPE-106122: Restoring the asset to previous standard version after the test');
+        })
     });
 });
