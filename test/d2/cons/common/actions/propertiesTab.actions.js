@@ -153,8 +153,40 @@ module.exports = {
         
         propertiesTabUI.save();
 
-
-//Add: assert set properties
+    },
+     setRequiredPropertiesCollection: function(friendlyName, collectiontype, userDescr, keywords, lnkTtl, windowTtl, publication,
+    copyright, primaryTopicId){
+        
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.friendlyNameSet(friendlyName);
+        propertiesTabUI.CollectionTypeSet(collectiontype);
+        propertiesTabUI.userDescriptionNameSet(userDescr);
+        propertiesTabUI.keywordsNameSet(keywords);
+        propertiesTabUI.linkTitleSet(lnkTtl);
+        propertiesTabUI.windowTitleSet(windowTtl);
+        propertiesTabUI.publicationSet(publication);
+        propertiesTabUI.copyrightSet(copyright);
+        propertiesTabUI.primaryTopicIdSet(primaryTopicId);
+        propertiesTabUI.originalPublishDateSet();     
+        propertiesTabUI.save();
 
     },
+    setCollectionid: function(collectionid){   
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+        propertiesTabUI.collectionIDSet(collectionid);    
+        propertiesTabUI.save();
+    },
+    getcollectionid: function(){
+        propertiesTabUI.propertiesTabSelect();
+        return propertiesTabUI.collectionIDGet();  
+    },
+    collectionIDValidation:  function(newCollectionId,oldCollectionId){
+        propertiesTabUI.collectionIDValidation(newCollectionId,oldCollectionId);
+    },
+    collectionIDValidationmessage: function(oldCollectionId){
+        propertiesTabUI.collectionIDValidationmessage(oldCollectionId);
+        propertiesTabUI.cancelEdit();
+    }
 }
