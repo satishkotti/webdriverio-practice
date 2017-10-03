@@ -9,7 +9,7 @@ var findTab = require('./../../../common/actions/findTab.actions');
 var dqlEditorTab = require('./../../../common/actions/dqlEditor.actions');
 var randomstring = require("randomstring");
 
-describe('Unable to demote or promote object with no label PPE-89127', function () {
+describe('Error message displayed when trying to update collection ID with an existing ID of other cabinet PPE-73596', function () {
     var AssetTitle;
     var AssetName;
     before(function () {
@@ -21,7 +21,7 @@ describe('Unable to demote or promote object with no label PPE-89127', function 
         
     });
 
-    it('Unable to demote or promote object with no label PPE-89127', function () {
+    it('Error message displayed when trying to update collection ID with an existing ID of other cabinet PPE-73596', function () {
         dqlEditorTab.dqlEditorWidget();
         var USCollectionid = dqlEditorTab.dqlQueryExecution("select wbmd_col_id,wbmd_site from wbmd_cons_collection where wbmd_site='1001' and wbmd_col_id not in(select wbmd_col_id from wbmd_cons_collection group by wbmd_col_id having count(wbmd_col_id)>1)");
         var UKCollectionid = dqlEditorTab.dqlQueryExecution("select wbmd_col_id,wbmd_site from wbmd_cons_collection where wbmd_site='1006' and wbmd_col_id not in(select wbmd_col_id from wbmd_cons_collection group by wbmd_col_id having count(wbmd_col_id)>1)");
