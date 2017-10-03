@@ -713,7 +713,7 @@ module.exports.ConfigureStandarPromoModule = (assetProps) => {
     }
 
     if (assetProps.LogoImage != null) {
-        if(!props.input2.get('Logo', 'Image', 1).isEnabled()){
+        if(props.button2.get('Logo', 'Image', 1).isVisible()){
             props.button2.get('Logo', 'Image', 1).click();
         }
         props.lookup2('Logo', 'Image', 1, assetProps.LogoImage);
@@ -743,7 +743,7 @@ module.exports.ConfigureStandarPromoModule = (assetProps) => {
             browser.execute(function(index){
                 $('label:contains("Slide Sub Text:") input').get(index-1).scrollIntoView()}, index
                 );
-            if(!props.input2.get('Slides', 'Image', index).isEnabled()){
+            if(props.button2.get('Slides', 'Image', index).isVisible()){
                 props.button2.get('Slides', 'Image', index).click();
             }
             props.lookup2('Slides', 'Image', index, slides[index-1].Image);

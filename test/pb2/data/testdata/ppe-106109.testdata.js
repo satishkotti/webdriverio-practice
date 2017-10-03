@@ -4,7 +4,7 @@ var assetName = `QASM-PPE106109-${randomstring.generate(5)}`;
 module.exports = {
     ppe_106109:
     {
-        create:
+        case1:
         {
             "moduleName": assetName,
             "moduleDispName": assetName,
@@ -36,7 +36,7 @@ module.exports = {
                 }
             ]
         },
-        edit:
+        case2:
         {
             "moduleName": assetName,
             "moduleDispName": assetName,
