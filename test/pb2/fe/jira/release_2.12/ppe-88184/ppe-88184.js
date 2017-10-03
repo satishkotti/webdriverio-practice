@@ -62,22 +62,5 @@ describe(`PPE-88184:Verify Remove Module Types`, () => {
         }
         browser.pause(5000);
     });
-    it('Verify Remove Module Types  in Create Module XSL', () => {
-
-        //Select a Module XSL
-        test.Select('Module XSL');
-        let iframe = browser.element(_SMData.Xsliframe);
-        browser.frame(iframe.value);
-
-
-        for (var i = 0; i < _SMData.RemovedModuleType.length; i++) {
-            browser.waitForVisible(_SMData.SelectXSLModule);
-            browser.click(_SMData.SelectXSLModule);
-            var XSLModuleTypes = browser.isExisting(`//option[string()="${_SMData.RemovedModuleType[i]}"]`);
-            expect(XSLModuleTypes).to.be.false;
-
-        }
-        browser.pause(5000);
-    });
 
 });
