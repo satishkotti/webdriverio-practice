@@ -86,7 +86,7 @@ module.exports.ConfigureSponsorBoxModule = (assetProps) => {
     for (let i = 1; i <= numberOfBodyLinks; i++) {
 
         if (assetProps.bodylinks[i - 1].bulletson != 0) { props.checkbox2.get('Body Links', 'Bullets On', 1).click(); }
-        if (assetProps.bodylinks[i - 1].text != null) { props.textarea2.get('Body Links', 'Text', i).setValue(assetProps.bodylinks[i-1].text); }
+        if (assetProps.bodylinks[i - 1].text != null) { props.textarea2.get('Body Links', 'Text', i).setValue(assetProps.bodylinks[i - 1].text); }
         try {
             if (assetProps.bodylinks[i - 1].link != null) { props.lookup2('Body Links', 'Link', i, assetProps.bodylinks[i - 1].link); }
         }
@@ -656,4 +656,45 @@ module.exports.ConfigureLinkListModule = (assetProps) => {
 
     if (linkText != null) { props.input2.get('Emphasized Link', 'Link Text', 1).setValue(linkText); }
     if (link != null) { props.lookup2('Emphasized Link', 'Link Text', 1, linkText); }
+}
+
+module.exports.ConfigureTwoColumnHeaderModule = (assetProps) => {
+
+    if (assetProps.TitleText != null) {
+        props.input.get('Title Text').setValue(assetProps.TitleText);
+    }
+
+    if (assetProps.SubtitleText != null) {
+        props.input.get('Subtitle Text').setValue(assetProps.SubtitleText);
+    }
+
+    if (assetProps.ImageOn != 0) {
+        props.checkbox.get('Image On').click();
+    }
+
+    if (assetProps.HeaderURL != null) {
+        props.lookup('Header URL', assetProps.HeaderURL);
+    }
+
+    if (assetProps.AttributionText != null) {
+        props.input2.get('Attribution', 'Text', 1).setValue(assetProps.AttributionText);
+    }
+
+    if (assetProps.AttributionURL != null) {
+        props.lookup('Attribution URL', assetProps.AttributionURL);
+    }
+
+    let images = assetProps.Images;
+
+    if (images.length != undefined && images.length > 0) {
+        if (images.length > 1) {
+            props.addLinks('Images', 'Add Links', 1, images.length - 1);
+        }
+
+        for (var index = 0; index < images.length; index++) {
+            props.lookup2('Images', 'Link', index + 1, images[index].Link);
+            props.lookup2('Images', 'Image', index + 1, images[index].Image);
+        }
+    }
+
 }

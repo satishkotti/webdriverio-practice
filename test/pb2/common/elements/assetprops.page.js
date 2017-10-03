@@ -30,8 +30,8 @@ var props = Object.create(page, {
         value: {
             get: (labelName) => {
                 switch (labelName) {
-                    case 'WebMD Nickname': locator = input.replace('***:', labelName); return props.GetElement; break;
-                    default: locator = input.replace('***', labelName); return props.GetElement; break;
+                    case 'WebMD Nickname': locator = input.replace('***:', labelName); props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
+                    default: locator = input.replace('***', labelName); props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
                 }
             }
         }
@@ -40,8 +40,8 @@ var props = Object.create(page, {
         value: {
             get: (legendName, labelName, itemNumber) => {
                 switch (labelName) {
-                    case 'WebMD Nickname': '(' + legend.replace('***', legendName) + input.replace('***:', labelName) + ')[' + itemNumber + ']'; return props.GetElement; break;
-                    default: locator = '(' + legend.replace('***', legendName) + input.replace('***', labelName) + ')[' + itemNumber + ']'; return props.GetElement; break;
+                    case 'WebMD Nickname': '(' + legend.replace('***', legendName) + input.replace('***:', labelName) + ')[' + itemNumber + ']'; props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
+                    default: locator = '(' + legend.replace('***', legendName) + input.replace('***', labelName) + ')[' + itemNumber + ']'; props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
                 }
             }
         }
@@ -50,8 +50,8 @@ var props = Object.create(page, {
         value: {
             get: (labelName, itemNumber) => {
                 switch (labelName) {
-                    case 'WebMD Nickname': '(' + input.replace('***:', labelName) + ')[' + itemNumber + ']'; return props.GetElement; break;
-                    default: locator = '(' + input.replace('***', labelName) + ')[' + itemNumber + ']'; return props.GetElement; break;
+                    case 'WebMD Nickname': '(' + input.replace('***:', labelName) + ')[' + itemNumber + ']'; props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
+                    default: locator = '(' + input.replace('***', labelName) + ')[' + itemNumber + ']'; props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
                 }
             }
         }
@@ -60,6 +60,7 @@ var props = Object.create(page, {
         value: {
             get: (labelName) => {
                 locator = textarea.replace('***', labelName);
+                props.UntilExist(); props.UntilVisible();
                 return props.GetElement;
             }
         }
@@ -69,6 +70,7 @@ var props = Object.create(page, {
         value: {
             get: (legendName, labelName, itemNumber) => {
                 locator = '(' + legend.replace('***', legendName) + textarea.replace('***', labelName) + ')[' + itemNumber + ']';
+                props.UntilExist(); props.UntilVisible();
                 return props.GetElement;
             }
         }
@@ -78,6 +80,7 @@ var props = Object.create(page, {
         value: {
             get: (labelName) => {
                 locator = checkbox.replace('***', labelName);
+                props.UntilExist(); props.UntilVisible();
                 return props.GetElement;
             }
         }
@@ -87,6 +90,7 @@ var props = Object.create(page, {
         value: {
             get: (legendName, labelName, itemNumber) => {
                 locator = '(' + legend.replace('***', legendName) + checkbox.replace('***', labelName) + ')[' + itemNumber + ']';
+                props.UntilExist(); props.UntilVisible();
                 return props.GetElement;
             }
         }
@@ -252,7 +256,7 @@ var props = Object.create(page, {
         }
     },
     addLinks: {
-        value: function(legendName, labelName, itemNumber, numberOfLinks) {
+        value: function (legendName, labelName, itemNumber, numberOfLinks) {
 
             locator = '(' + legend.replace('***', legendName) + label.replace('***', labelName) + '//input' + ')[' + itemNumber + ']';
             props.UntilExist();
@@ -261,7 +265,7 @@ var props = Object.create(page, {
             locator = '(' + legend.replace('***', legendName) + label.replace('***', labelName) + '//button' + ')[' + itemNumber + ']';
             props.UntilExist();
             props.UntilVisible();
-            try{
+            try {
                 props.GetElement.click();
             } catch (err) {
                 var location = props.GetElement.getLocation('y');
