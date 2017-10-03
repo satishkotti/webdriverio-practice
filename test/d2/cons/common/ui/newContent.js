@@ -7,7 +7,9 @@ var newContentObj = module.exports = {
         newContentObj.setProfile(creationProflieName, articleTemplateName);
         newContentObj.setObjectName(objectName, descriptionName);
     },
-    createNewCollection: function(){ 
+    createNewCollection: function(creationProflieName, collectionTemplateName, objectName, descriptionName){ 
+          newContentObj.setProfile(creationProflieName, collectionTemplateName);
+        newContentObj.setObjectName(objectName, descriptionName);
     },
     createShortTextCollection: function(){ 
 

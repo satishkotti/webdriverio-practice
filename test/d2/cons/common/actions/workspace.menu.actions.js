@@ -11,5 +11,10 @@ module.exports = {
 
      IncludeExpiredFilterVersions: function(){
        workspaceMenuUI.IncludeExpiredFilterVersions();
+    },
+    createContentCollection: function(creationProflieName, collectionTemplateName, objectName, descriptionName){
+         workspaceMenuUI.selectNewContent();
+       newContentModal.createNewArticle(creationProflieName, collectionTemplateName, objectName, descriptionName);
+
     }
 }
