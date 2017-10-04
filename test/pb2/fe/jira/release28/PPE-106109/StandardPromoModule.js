@@ -18,7 +18,7 @@ describe('XML validations for Standard Promo Module', () => {
         before(() => {
 
             var chronid = test.Create('Shared Module', testAssetProps);
-            test.ConfigureModule('StandardPromomodule', testAssetProps);
+            test.ConfigureModule('Standard Promo module', testAssetProps);
             test.SaveOrPublishTheAsset('Publish to Live', 'Testing to compare renditions of PB1 & PB2');
             test.NavigatetoATSStatusCheckerPageOf(chronid, 'live');
             test.ClickButtonInATSPage('ATS Reprocess');

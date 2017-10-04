@@ -28,7 +28,7 @@ var testEnv = flags.env;
 var selectTest = flags.selectTests;
 var error = chalk.bold.red;
 var defaultWaitTimeout = 180000;
-var defaultMochaTestTimeout = 600000;
+var defaultMochaTestTimeout = 6000000;
 var gridHost = '172.28.38.219';
 var gridPort = 4444;
 
