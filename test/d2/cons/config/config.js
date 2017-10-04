@@ -396,6 +396,9 @@ module.exports.testSettings = {
             "LabelNewsUS":"091e9c5e80006ce3",
             "LabelQuizUK":"091e9c5e80bcf2e4",
             "LabelNewsUK":"091e9c5e812c9222",
+             "AssetObjectName": "QATestAsset" + exports.GenerateRandomString(5),
+            "AssetDescription": "QATestAssetT" + exports.GenerateRandomString(5),
+            "CollectionTemplateChannel":"Collection TOC Channel",
         }
     }
 }
