@@ -188,5 +188,13 @@ module.exports = {
     collectionIDValidationmessage: function(oldCollectionId){
         propertiesTabUI.collectionIDValidationmessage(oldCollectionId);
         propertiesTabUI.cancelEdit();
+    },
+
+    propertiessave:function(){
+        propertiesTabUI.propertiesTabSelect();
+        propertiesTabUI.edit();
+         propertiesTabUI.save();
     }
+
+
 }
