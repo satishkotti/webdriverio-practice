@@ -1,13 +1,13 @@
 module.exports = {
     urlwithoutparams:
     {
-        "url": " https://www.dev01.webmd.com/default.htm",
+        "url": ' https://www.'+ global.testEnv + '.webmd.com/default.htm',
         "siteId": "3",
-        "environment": "dev01"
+        "environment":global.testEnv
     },
     urlwithparams: {
-        "url": " https://www.dev01.webmd.com/default.htm?pg=3",
+        "url": ' https://www.' + global.testEnv + '.webmd.com/default.htm?pg=3',
         "siteId": "3",
-        "environment": "dev01"
-    }
+        "environment": global.testEnv
+        }
 }
