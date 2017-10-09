@@ -153,7 +153,7 @@ module.exports.ExecuteDQLUsingApi = function (ticket, dql) {
             .set('WBMD-LOGIN-TICKET', ticket)
             .set("Authorization", "bearer P8Z/0jXAhIFR8GfjDuiSmYgvjCKmReJ6mP34ZUqwGfAlR5v3")
             .send({
-                dql: dql
+                'dql': dql
             })
             .expect(200, function (err, res) {
                 if (!err && res.body) {

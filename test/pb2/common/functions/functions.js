@@ -867,12 +867,12 @@ module.exports.GenerateApiAccessToken = function () {
     browser.call(() => {
         pb2api.GenerateAccessToken().then((response) => {
             ticket = response.data.loginTicket;
+            });
         });
 
         browser.waitUntil(function () {
             return ticket == undefined ? false : true;
         }, 60000, 'Generating access token is taking longer than expected! Please increase timeouts if necessary and try again!', 500)
-    });
     //console.log(ticket);
     return ticket;
 }
@@ -1033,7 +1033,7 @@ module.exports.CancelCheckoutAssetUsingApi = function (ticket, payload) {
 module.exports.ExecuteDQLUsingApi = function (ticket, dql) {
     var response;
     browser.call(() => {
-        return pb2api.ExecuteDQLUsingApi(ticket, {dql: dql}).then((resp) => {
+        return pb2api.ExecuteDQLUsingApi(ticket, {'dql': dql}).then((resp) => {
             response = resp;
         });
     });
