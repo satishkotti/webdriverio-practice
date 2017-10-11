@@ -14,9 +14,14 @@ describe('PPE-117735', function() {
        response = test.searchurl(accessToken,testdata.urlwithoutparams)
        expect(response.Data).to.not.equal(null);
    })
-    it('Search the url without params and should  return chronicleid',function() {
+    it('Search the url with params and should  return chronicleid',function() {
         accessToken = test.GenerateApiAccessToken();
        response = test.searchbaseurl(accessToken,testdata.urlwithparams)
+       expect(response.Data).to.not.equal(null);
+   })
+    it('Search the url without params and should  return chronicleid',function() {
+        accessToken = test.GenerateApiAccessToken();
+       response = test.searchbaseurl(accessToken,testdata.urlwithoutparams)
        expect(response.Data).to.not.equal(null);
    })
 })
