@@ -30,10 +30,18 @@ describe('PPE-117735: Verify the query string for the url are not trimmed when s
         });
 
         it('Verify the error is displayed when performed a global search with invalid query parameters', () => {
+            browser.url(global.appUrl);
             test.SearchFor(null, test_url + '?test=123', 'global search', null);
             browser.pause(10000);
-            var error = browser.element("//div[contains(@class, 'pb-modal-text')]").getText()
-            expect(error).to.equal(error_msg);
+            var  chronid = browser.element("//span[contains(@class, 'pb-chronSummary-value')]/a").getText();
+            expect(chronid).to.equal(test_chronID);
+
+            browser.url(global.appUrl);
+            test.SearchFor(null, test_url + '#123', 'global search', null);
+            browser.pause(10000);
+            var  chronid = browser.element("//span[contains(@class, 'pb-chronSummary-value')]/a").getText();
+            expect(chronid).to.equal(test_chronID);
+
         });
 
         it('Verify the creation of pointers for urls with query string', () => {
