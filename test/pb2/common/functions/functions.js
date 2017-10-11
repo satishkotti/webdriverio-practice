@@ -1056,6 +1056,18 @@ module.exports.searchurl = function (ticket,payload) {
     }, 120000, 'Executeing DQl and obtaing response from the server is taking longer than expected! Please increase timeouts if necessary and try again!', 500);
     return response;
 }
+module.exports.searchbaseurl = function (ticket,payload) {
+    var response;
+    browser.call(() => {
+        return pb2siemngmntapi.searchbaseurl(ticket,payload).then((resp) => {
+            response = resp;
+        });
+    });
+    browser.waitUntil(function () {
+        return response == undefined ? false : true;
+    }, 120000, 'Executeing DQl and obtaing response from the server is taking longer than expected! Please increase timeouts if necessary and try again!', 500);
+    return response;
+}
 /*--------------------------------------------------------------------------------------------------- */
 /**************************************** D A T A B A S E S *****************************************/
 /*--------------------------------------------------------------------------------------------------- */
