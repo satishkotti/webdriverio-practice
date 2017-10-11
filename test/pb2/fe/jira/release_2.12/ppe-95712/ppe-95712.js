@@ -1,8 +1,8 @@
 var randomstring = require("randomstring");
-var msqlqueryrun = require("./../../../../common/mysqlconnect/runmysqlquery");
 var test = require('./../../../../common/functions/functions');
 var testdata = require('./../../../../data/testdata/ppe-95712.testdata').ppe_95712;
 var props = require('./../../../../common/elements/assetprops.page');
+var sql = require('.//../../../../../common/db/sqlDb');
 
 var dbrecords = [];
 var testEnv= global.testEnv;
@@ -17,19 +17,19 @@ describe('PPE-95712: Verify the query string for the url are not trimmed when se
 
         before(() => {
             var query = `select top 5 * from RT_PageUrlMap where status = 'D'`;
-            msqlqueryrun.getQueryResults(query, testEnv).then(function(records){
-                dbrecords = records;
-            })
-            browser.pause(30000)
-            expired_url = dbrecords[0].friendly_url;
-            expired_url = 'http://www.' + testEnv + '.webmd.com' + expired_url;
-            expired_chronic_id = dbrecords[0].content_chronic_id;
+            //var query = `select  content_chronic_id ,friendly_url from RT_PageUrlMap where status = 'D' Group by content_chronic_id,friendly_url having count(friendly_url) = 1`;
+            sql.executeQuery(query).then(function(resultset){
+                dbrecords = resultset;
+                expired_url = dbrecords[0].friendly_url;
+                expired_url = 'http://www.' + testEnv + '.webmd.com' + expired_url;
+                expired_chronic_id = dbrecords[0].content_chronic_id;
+            });
+            browser.pause(30000);
             test.LaunchAppAndLogin();
             console.log(expired_chronic_id, expired_url)
         })
 
         it('Verify the creation of pointers for urls with query string', () => {
-            browser.url("http://localhost:8080");
             smchronid = test.Create('Shared Module', testdata);
             browser.pause(5000)
             testdata.ModuleLink = expired_url;
@@ -57,7 +57,7 @@ describe('PPE-95712: Verify the query string for the url are not trimmed when se
         });
 
         it('Verify that pointers are not created for expired chronicle IDs', () => {
-            browser.url("http://localhost:8080");
+            browser.url(global.appUrl);
             smchronid = test.Create('Shared Module', testdata);
             browser.pause(5000)
             testdata.ModuleLink = expired_chronic_id;
@@ -73,8 +73,8 @@ describe('PPE-95712: Verify the query string for the url are not trimmed when se
 
         after(() => {
             var dm_ticket = test.GenerateApiAccessToken();
-            var delete_query = 'delete dm_document(all) object where i_chronicle_id in ("'+link_ptr_cid +'")';
-            var resp = test.ExecuteDQLUsingApi(dm_ticket, delete_query);
+            var payload = {"rObjectIds":[link_ptr_cid]};
+            var resp = test.ExpireAssetUsingApi(dm_ticket, payload);
             console.log(resp)
         })
 });
