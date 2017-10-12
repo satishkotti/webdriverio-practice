@@ -615,6 +615,15 @@ module.exports.configureediteditorialmodule = (assetProps) => {
 
 }
 
+module.exports.GetConfigurationDeprecatedModule = () => {
+    browser.pause(10000);
+    return props.textarea.get('SCS Content').getText();
+}
+
+module.exports.ConfigureModuleSCS = (assetProps) => {
+    if (assetProps.SCSContent) { props.textarea.get('SCS Content').setValue(assetProps.SCSContent); }
+}
+
 module.exports.configureHtmlModule = (assetProps) => {
     if (assetProps.ModuleHTML) { props.textarea.get('Module HTML').setValue(assetProps.ModuleHTML); }
 }

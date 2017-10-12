@@ -27,6 +27,33 @@ var smdata = Object.create(page, {
         }
     },
 
+    deprecatedModule: {
+        value:{
+            get: () => {
+            var assetName = "QASM-ActivityQueue-" + randomstring.generate(5);
+            var smProps = {};
+            return smProps =
+                {
+                    "moduleName": assetName,
+                    "moduleDispName": assetName,
+                    "moduleType": null,
+                    "category": null,
+                    "selectXSL": null,
+                    "selectCSS": null,
+                    "dynamicModuleCategory": null,
+                    "moduleLabel1": null,
+                    "moduleLabel2": null,
+                    "linkedModule": null,
+                    "sponsorProgram": null,
+                    "description": assetName + "-desc",
+                    "tier": null,
+                    "SCSContent": null,
+
+                }
+        }
+    }
+    },
+
     multiplevideolaunchModule: {
         get: () => {
             var assetName = "QASM-MVL-" + randomstring.generate(5);
