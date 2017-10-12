@@ -1,5 +1,5 @@
 var test = require('./../../../../common/functions/functions');
-var testdata = require('./../../../../data/testdata/ppe-117735.testdata').ppe_117735;
+var testdata = require('./../../../../data/testdata/ppe-117735_ui.testdata').ppe_117735;
 var randomstring = require('randomstring');
 
 
