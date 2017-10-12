@@ -22,7 +22,7 @@ describe('XML validations for Edit Standard promo Module', () => {
             test.SearchFor(null, chronid, 'Global Search', null);
             test.EditTheAsset();
             test.SwitchAssetTabs('Module Configuration');
-            test.ConfigureModule('EditStandardPromoModule', testAssetProps);
+            test.ConfigureModule('Standard Promo Module', testAssetProps);
             xml1 = test.GetXMLValues('StandardPromomodule', test.GetXML(chronid, 'live'));
 
             test.SaveOrPublishTheAsset('Publish to Live', 'Testing to compare renditions of last versions');

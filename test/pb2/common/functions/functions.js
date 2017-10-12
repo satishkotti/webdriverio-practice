@@ -10,6 +10,7 @@ const rdt = require('./../actions/redirecttool.actions');
 const assetxml = require('./../actions/assetxmlreaders.actions');
 const moduleConfigs = require('./../actions/moduleconfigs.actions');
 const pb2api = require('./../../../common/api/dctm-api');
+const pb2siemngmntapi = require('./../../../common/api/sitemanagementapi');
 const usersDetails = require('./../../config/users');
 const ats = require('./../actions/ats.actions');
 const user = usersDetails.users;
@@ -225,6 +226,10 @@ module.exports.ConfigureModule = (moduleType, moduleprops) => {
         case 'html module': moduleConfigs.configureHtmlModule(moduleprops); break;
         case 'edithtmlmodule': moduleConfigs.EditconfigureHtmlModule(moduleprops); break;
         case 'linklist module': moduleConfigs.ConfigureLinkListModule(moduleprops); break;
+        case 'two column header':
+        case 'two column header module': moduleConfigs.ConfigureTwoColumnHeaderModule(moduleprops); break;
+        case 'standard promo':
+        case 'standard promo module': moduleConfigs.ConfigureStandarPromoModule(moduleprops); break;
         default: moduleConfigs.ConfigureModuleSCS(moduleprops); break;
     }
 
@@ -746,9 +751,10 @@ module.exports.NavigateToHomepage = () => {
 **
 ** Function accepts 1 argument:
 **  1. 'menuItem' is the name of the option to be selected
+**  2. 'argument' is the version to select to in the Asset History panel
 */
-module.exports.SelectMoreActionsMenuItem = (menuItem) => {
-    act.SelectMoreActionsMenuItem(menuItem);
+module.exports.SelectMoreActionsMenuItem = (menuItem, argument) => {
+    act.SelectMoreActionsMenuItem(menuItem, argument);
 }
 
 /*
@@ -908,14 +914,14 @@ module.exports.GetXMLValues = (assetType, xml) => {
 module.exports.GenerateApiAccessToken = function () {
     var ticket;
     browser.call(() => {
-        pb2api.GenerateAccessToken().then((response) => {
+        return pb2api.GenerateAccessToken().then((response) => {
             ticket = response.data.loginTicket;
+            });
         });
 
         browser.waitUntil(function () {
             return ticket == undefined ? false : true;
         }, 60000, 'Generating access token is taking longer than expected! Please increase timeouts if necessary and try again!', 500)
-    });
     //console.log(ticket);
     return ticket;
 }
@@ -1017,6 +1023,29 @@ module.exports.PublishAssetUsingApi = function (ticket, payload) {
     return response;
 }
 
+/* ------------------------------
+** E X P I R E  E N D P O I N T
+** ------------------------------
+** Description:
+** Expires an asset using DCTM API
+**
+** Function accepts 2 arguments:
+** 1. Ticket: Access Token for DCTM API
+** 2. Payload
+*/
+module.exports.ExpireAssetUsingApi = function (ticket, payload) {
+    var response;
+    browser.call(() => {
+        return pb2api.ExpireAssetUsingApi(ticket, payload).then((resp) => {
+            response = resp;
+        });
+    });
+    browser.waitUntil(function () {
+        return response == undefined ? false : true;
+    }, 120000, 'Expiring the asset is taking longer than expected! Please increase timeouts if necessary and try again!', 500);
+    return response;
+}
+
 /* ----------------------------------
 ** C H E C K - O U T  E N D P O I N T
 ** ----------------------------------
@@ -1076,7 +1105,33 @@ module.exports.CancelCheckoutAssetUsingApi = function (ticket, payload) {
 module.exports.ExecuteDQLUsingApi = function (ticket, dql) {
     var response;
     browser.call(() => {
-        return pb2api.ExecuteDQLUsingApi(ticket, {dql: dql}).then((resp) => {
+        return pb2api.ExecuteDQLUsingApi(ticket, {'dql': dql}).then((resp) => {
+            response = resp;
+        });
+    });
+    browser.waitUntil(function () {
+        return response == undefined ? false : true;
+    }, 120000, 'Executeing DQl and obtaing response from the server is taking longer than expected! Please increase timeouts if necessary and try again!', 500);
+    return response;
+}
+
+
+module.exports.searchurl = function (ticket,payload) {
+    var response;
+    browser.call(() => {
+        return pb2siemngmntapi.searchurl(ticket,payload).then((resp) => {
+            response = resp;
+        });
+    });
+    browser.waitUntil(function () {
+        return response == undefined ? false : true;
+    }, 120000, 'Executeing DQl and obtaing response from the server is taking longer than expected! Please increase timeouts if necessary and try again!', 500);
+    return response;
+}
+module.exports.searchbaseurl = function (ticket,payload) {
+    var response;
+    browser.call(() => {
+        return pb2siemngmntapi.searchbaseurl(ticket,payload).then((resp) => {
             response = resp;
         });
     });

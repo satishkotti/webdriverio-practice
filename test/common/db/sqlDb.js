@@ -1,5 +1,6 @@
 var sql = require('mssql');
 var Promise = require('bluebird');
+var dbconnection = require('./rtdbconnection').rtdbconnections;
 
 /*
 var dbConfig = {
@@ -9,7 +10,21 @@ var dbConfig = {
     database: "Pagebuilder_SiteManagement"
 };
 */
-var dbConfig = global.envSettings.siteMgmtDb;
+var dbConfig = {};
+
+if(global.envSettings === undefined){
+    global.envSettings = {};
+    switch(global.testEnv){
+        case 'dev01': global.envSettings.rtDb = dbconnection.dev01; break;
+        case 'qa01': global.envSettings.rtDb = dbconnection.qa01; break;
+        case 'qa00': global.envSettings.rtDb = dbconnection.qa00; break;
+    }
+    dbConfig = global.envSettings.rtDb;
+}
+else{
+    dbConfig = global.envSettings.siteMgmntDb;
+}
+
 module.exports = {
     executeQuery: function ExecuteQuery(query) {
 

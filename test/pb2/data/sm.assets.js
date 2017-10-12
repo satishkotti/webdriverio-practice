@@ -598,10 +598,10 @@ var smdata = Object.create(page, {
                     "description": assetName + "-desc",
                     "tier": 2,
                     "ModuleTitle": "Module Title test",
-                    "Link": "091e9c5e80661dc9",
-                    "logo": "091e9c5e803fecd4",
+                    "ModuleLink": "091e9c5e80661dc9",
+                    "LogoImage": "091e9c5e803fecd4",
                     "LogoTitle": "Logo Title Text",
-                    "logolink": "091e9c5e80661dc9",
+                    "LogoLink": "091e9c5e80661dc9",
                     "Slides":
                     [
                         {
@@ -626,10 +626,10 @@ var smdata = Object.create(page, {
             return smProps =
                 {
                     "ModuleTitle": "Module Title test update",
-                    "Link": "091e9c5e80661dc9",
-                    "logo": "091e9c5e803fecd4",
+                    "ModuleLink": "091e9c5e80661dc9",
+                    "LogoImage": "091e9c5e803fecd4",
                     "LogoTitle": "Logo Title Text update",
-                    "logolink": "091e9c5e80661dc9",
+                    "LogoLink": "091e9c5e80661dc9",
                     "Slides":
                     [
                         {

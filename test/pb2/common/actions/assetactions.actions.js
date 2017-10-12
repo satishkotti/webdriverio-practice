@@ -208,7 +208,7 @@ module.exports.SavePublishFromMoreActions = (action, comment) => {
     }
 }
 
-module.exports.SelectMoreActionsMenuItem = (menuItem) => {
+module.exports.SelectMoreActionsMenuItem = (menuItem, argument) => {
     acts.buttonMenu.get('More Actions', menuItem);
 
     switch (menuItem) {
@@ -235,8 +235,9 @@ module.exports.SelectMoreActionsMenuItem = (menuItem) => {
             }, 30000, 'Expire is not pushed to queue yet', 500);
             break;
         case 'Asset History':
-            browser.waitForVisible('(//tr[contains(@class, "k-alt ng-scope")])[1]');
-            browser.click('(//tr[contains(@class, "k-alt ng-scope")])[1]');
+            browser.waitForExist(`//div[@id="historyGrid"]//span[string()="${argument}"]`);
+            browser.waitForVisible(`//div[@id="historyGrid"]//span[string()="${argument}"]`);
+            browser.click(`//div[@id="historyGrid"]//span[string()="${argument}"]`);
             break;
     }
 }

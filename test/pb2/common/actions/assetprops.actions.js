@@ -130,7 +130,6 @@ module.exports.PopulateTemplateProps = (assetProps) =>
 
 module.exports.PopulateSMProps = (assetProps) =>
 {
-    menu.SelectCreateMenuItem('Shared Modules');
     props.input.get('Module Name').setValue(assetProps.moduleName);
     if ( assetProps.moduleName != null || assetProps.moduleName != '' ) { props.input.get('Module Display Name').setValue(assetProps.moduleDispName) };
     props.dropdown('Module Type', assetProps.moduleType);
@@ -144,7 +143,7 @@ module.exports.PopulateSMProps = (assetProps) =>
     if ( assetProps.linkedModule != null ) { props.input.get('Linked Module').setValue(assetProps.linkedModule); }
     if ( assetProps.description != null ) { props.textarea.get('Description').setValue(assetProps.description); }
     if ( assetProps.sponsorProgram != null ) { props.dropdown('Sponsor Program', assetProps.sponsorProgram) };
-    if ( assetProps.tier != null ) {props.select('Tier', assetProps.tier) };
+    if ( assetProps.tier !=2 ) { props.select('Tier', assetProps.tier) };
     actions.ClickContinueButton();
     browser.waitForVisible('.pb-chron');
     return browser.getText('.pb-chron');

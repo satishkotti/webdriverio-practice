@@ -15,7 +15,10 @@ var position = '[position()=*]';
 var required = `${label}//span[@class="pb-field-required"]`;
 var invalid = `${label}//span[@class="pb-field-invalid"]`;
 var link = '//a[string()="***"]';
+var link2 = '//a[contains(.,"***")]'; //For Links which contains text
 var locator = '';
+var button = `${label}//button`// Text less button under a label
+var lookup = '';
 
 
 var props = Object.create(page, {
@@ -26,12 +29,26 @@ var props = Object.create(page, {
     Scroll: { value: () => { browser.element(locator).scroll(); } },
     GetElement: { get: () => { return browser.element(locator); } },
 
+    buton:{
+        value: {
+            get: (labelName) => {
+                locator = button.replace('***', labelName); return props.GetElement;
+            }
+        }
+    },
+    button2:{
+        value: {
+            get: (legendName, labelName, itemNumber) => {
+                locator = '(' + legend.replace('***', legendName) + button.replace('***', labelName) + ')[' + itemNumber + ']'; return props.GetElement;
+                }
+        }
+    },
     input: {
         value: {
             get: (labelName) => {
                 switch (labelName) {
-                    case 'WebMD Nickname': locator = input.replace('***:', labelName); return props.GetElement; break;
-                    default: locator = input.replace('***', labelName); return props.GetElement; break;
+                    case 'WebMD Nickname': locator = input.replace('***:', labelName); props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
+                    default: locator = input.replace('***', labelName); props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
                 }
             }
         }
@@ -40,8 +57,8 @@ var props = Object.create(page, {
         value: {
             get: (legendName, labelName, itemNumber) => {
                 switch (labelName) {
-                    case 'WebMD Nickname': '(' + legend.replace('***', legendName) + input.replace('***:', labelName) + ')[' + itemNumber + ']'; return props.GetElement; break;
-                    default: locator = '(' + legend.replace('***', legendName) + input.replace('***', labelName) + ')[' + itemNumber + ']'; return props.GetElement; break;
+                    case 'WebMD Nickname': '(' + legend.replace('***', legendName) + input.replace('***:', labelName) + ')[' + itemNumber + ']'; props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
+                    default: locator = '(' + legend.replace('***', legendName) + input.replace('***', labelName) + ')[' + itemNumber + ']'; props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
                 }
             }
         }
@@ -50,8 +67,8 @@ var props = Object.create(page, {
         value: {
             get: (labelName, itemNumber) => {
                 switch (labelName) {
-                    case 'WebMD Nickname': '(' + input.replace('***:', labelName) + ')[' + itemNumber + ']'; return props.GetElement; break;
-                    default: locator = '(' + input.replace('***', labelName) + ')[' + itemNumber + ']'; return props.GetElement; break;
+                    case 'WebMD Nickname': '(' + input.replace('***:', labelName) + ')[' + itemNumber + ']'; props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
+                    default: locator = '(' + input.replace('***', labelName) + ')[' + itemNumber + ']'; props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
                 }
             }
         }
@@ -60,6 +77,7 @@ var props = Object.create(page, {
         value: {
             get: (labelName) => {
                 locator = textarea.replace('***', labelName);
+                props.UntilExist(); props.UntilVisible();
                 return props.GetElement;
             }
         }
@@ -69,6 +87,7 @@ var props = Object.create(page, {
         value: {
             get: (legendName, labelName, itemNumber) => {
                 locator = '(' + legend.replace('***', legendName) + textarea.replace('***', labelName) + ')[' + itemNumber + ']';
+                props.UntilExist(); props.UntilVisible();
                 return props.GetElement;
             }
         }
@@ -78,6 +97,7 @@ var props = Object.create(page, {
         value: {
             get: (labelName) => {
                 locator = checkbox.replace('***', labelName);
+                props.UntilExist(); props.UntilVisible();
                 return props.GetElement;
             }
         }
@@ -87,6 +107,7 @@ var props = Object.create(page, {
         value: {
             get: (legendName, labelName, itemNumber) => {
                 locator = '(' + legend.replace('***', legendName) + checkbox.replace('***', labelName) + ')[' + itemNumber + ']';
+                props.UntilExist(); props.UntilVisible();
                 return props.GetElement;
             }
         }
@@ -251,8 +272,17 @@ var props = Object.create(page, {
             }
         }
     },
+    link2: {
+        value:{
+            get:(linkName) => {
+                locator = link2.replace('***', linkName);
+                props.UntilExist();
+                return props.GetElement;
+            }
+        }
+    },
     addLinks: {
-        value: function(legendName, labelName, itemNumber, numberOfLinks) {
+        value: function (legendName, labelName, itemNumber, numberOfLinks) {
 
             locator = '(' + legend.replace('***', legendName) + label.replace('***', labelName) + '//input' + ')[' + itemNumber + ']';
             props.UntilExist();
@@ -261,7 +291,7 @@ var props = Object.create(page, {
             locator = '(' + legend.replace('***', legendName) + label.replace('***', labelName) + '//button' + ')[' + itemNumber + ']';
             props.UntilExist();
             props.UntilVisible();
-            try{
+            try {
                 props.GetElement.click();
             } catch (err) {
                 var location = props.GetElement.getLocation('y');

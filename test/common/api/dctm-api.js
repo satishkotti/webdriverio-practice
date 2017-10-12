@@ -153,7 +153,7 @@ module.exports.ExecuteDQLUsingApi = function (ticket, dql) {
             .set('WBMD-LOGIN-TICKET', ticket)
             .set("Authorization", "bearer P8Z/0jXAhIFR8GfjDuiSmYgvjCKmReJ6mP34ZUqwGfAlR5v3")
             .send({
-                dql: dql
+                'dql': dql
             })
             .expect(200, function (err, res) {
                 if (!err && res.body) {
@@ -175,6 +175,33 @@ module.exports.CheckoutAssetUsingApi = function (ticket, payload) {
     return new Promise(function (resolve, reject) {
         server
             .put('dctm/object/checkout')
+            .set("Content-Type", "application/json")
+            .set("WBMD-USERNAME", global.username)
+            .set("WBMD-REPOSITORY", global.doc)
+            .set('WBMD-LOGIN-TICKET', ticket)
+            .set("Authorization", "bearer P8Z/0jXAhIFR8GfjDuiSmYgvjCKmReJ6mP34ZUqwGfAlR5v3")
+            .send(payload)
+            .expect(200, function (err, res) {
+                if (!err && res.body) {
+                    return resolve(res.body);
+                }
+                else {
+                    return reject(
+                        {
+                            error: err,
+                            response: res.body
+                        });
+                }
+            });
+    });
+
+}
+
+module.exports.ExpireAssetUsingApi = function (ticket, payload) {
+
+    return new Promise(function (resolve, reject) {
+        server
+            .post('dctm/object/expire')
             .set("Content-Type", "application/json")
             .set("WBMD-USERNAME", global.username)
             .set("WBMD-REPOSITORY", global.doc)
