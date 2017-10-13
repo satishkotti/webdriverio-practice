@@ -22,7 +22,6 @@ describe(`PPE-82828:Verify Remove "Copy Node" action buttons`, () => {
         var GetRemoveCopyNode = browser.isExisting(_SMData.RemoveCopyNode);
         expect(GetRemoveCopyNode).to.be.false;
         browser.pause(5000);
-        console.log('done');
     });
     it('Verify Remove Node Copy , Replace Originals', () => {
         browser.refresh();
