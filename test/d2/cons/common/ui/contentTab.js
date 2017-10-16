@@ -23,6 +23,10 @@ var Etymologyinput = "//h2[span[contains(.,'Etymology')]]//following-sibling::di
 var Citationsinput = "//h2[span[contains(.,'Citations')]]//following-sibling::div//input";
 var TitleinputValue = "//h2[span[contains(.,'Title')]]//following-sibling::div/div/p";
 var SectionTextinputValue = "//h2[span[contains(.,'Section Text')]]//following-sibling::div/div/span/p";
+var DefaultExplanationSelector= "//h2[span[contains(.,'Default Explanation')]]//following-sibling::div//div[text()='Enter text here']";
+var AnswerTextSelector="//h2[span[contains(.,'Answer Text')]]//following-sibling::div//div[text()='Enter text here']";
+var AnswerExplanationSelector="//h2[span[contains(.,'Answer Explanation')]]//following-sibling::div//div[text()='Enter text here']";
+var AnswerValueSelector="//h2[contains(.,'Answer Value')]/..//input";
 
 var contentTabUIObj = {
     switchToMainFrame: function () {
@@ -57,7 +61,7 @@ var contentTabUIObj = {
         browser.scroll(checkoutButtonSelector);
         browser.click(checkoutButtonSelector);
         browser.pause(5000);
-        browser.frameParent();
+       // browser.frameParent();
         browser.pause(5000);
     },
     checkIn: function () {
@@ -135,6 +139,22 @@ var contentTabUIObj = {
 
         browser.selectByValue(selectBox, Value);
 
+    },
+    DefaultExplanationSetValue: function (Data) {
+        browser.scroll(DefaultExplanationSelector);
+        browser.setValue(DefaultExplanationSelector, Data);
+    },
+       AnswerTextSetValue: function (Data) {
+        browser.scroll(AnswerTextSelector);
+        browser.setValue(AnswerTextSelector, Data);
+    },
+    AnswerValueSetValue: function (Data) {
+        browser.scroll(AnswerValueSelector);
+        browser.setValue(AnswerValueSelector, Data);
+    },
+     AnswerExplanationSetValue: function (Data) {
+        browser.scroll(AnswerExplanationSelector);
+        browser.setValue(AnswerExplanationSelector, Data);
     },
 
     ResultTextSetValue: function (Data) {
