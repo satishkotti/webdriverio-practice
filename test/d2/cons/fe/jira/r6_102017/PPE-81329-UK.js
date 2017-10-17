@@ -9,7 +9,7 @@ var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
 var randomstring = require("randomstring");
 
 
-describe('RMQ Template - Copy Question - PPE-81329 -US', function () {
+describe('RMQ Template - Copy Question - PPE-81329 -UK', function () {
 
     var chronicleId;
     var AssetTitle;
@@ -23,11 +23,11 @@ describe('RMQ Template - Copy Question - PPE-81329 -US', function () {
             password: functions.getQAPublicationUser().password
         });
 
-        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.testFolderPath);
+        repositoryBrowserTab.openFolder(global.d2ConDataSettings.inputData.UKtestFolderPath);
         AssetTitle = global.d2ConDataSettings.inputData.ArticleObjectName + randomstring.generate(2);
         AssetName = global.d2ConDataSettings.inputData.ArticleDescription + randomstring.generate(2);
         workspaceMenu.createContent(
-            global.d2ConDataSettings.inputData.ArticleProfileName,
+            global.d2ConDataSettings.inputData.UkArticleProfileName,
             global.d2ConDataSettings.inputData.QUizAritcleTemplate,
             AssetTitle,
             AssetName);
@@ -39,8 +39,8 @@ describe('RMQ Template - Copy Question - PPE-81329 -US', function () {
         cidName = propertiesTab.getChronicleIdAndName();
         objName = cidName.objectName;
         chronicleId = cidName.chronicleId;
-        propertiesTab.setRequiredPropertiesWithPrimaryreviewDate(objName, 'Tool - RMQ', objName, objName, objName, objName, 'WebMD Health Tools',
-            '2015 WebMD', 'ADD-ADHD (Adult)', '16 Oct 2017 19:08:00');
+        propertiesTab.setRequiredPropertiesWithPrimaryreviewDate(objName, 'Tool - RMQ', objName, objName, objName, objName, 'WebMD Health Tools - UK',
+            '2015 WebMD - UK', 'ADD-ADHD (Adult)', '16 Oct 2017 19:08:00');
         documentListTab.assetPowerPromotePublishToStaging(objName);
         browser.pause(5000);
         browser.call(function () {

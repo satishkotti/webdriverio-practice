@@ -61,7 +61,7 @@ var contentTabUIObj = {
         browser.scroll(checkoutButtonSelector);
         browser.click(checkoutButtonSelector);
         browser.pause(5000);
-       // browser.frameParent();
+        browser.frameParent();
         browser.pause(5000);
     },
     checkIn: function () {
@@ -201,8 +201,8 @@ var contentTabUIObj = {
         browser.pause(5000);
     },
     ExpandContentTab: function () {
-        browser.waitForVisible('//span[contains(.,"Content")]//*[@id="menuDownArrow-button"]');
-        browser.click('//span[contains(.,"Content")]//*[@id="menuDownArrow-button"]');
+        browser.waitForVisible('//span[string()="Content"]//*[@id="menuDownArrow-button"]');
+        browser.click('//span[string()="Content"]//*[@id="menuDownArrow-button"]');
 
         if (browser.isExisting("//div[@id='x-menu-el-toggleViewWidget-menuItem']//span[text()='Expand']")) {
             browser.click("//div[@id='x-menu-el-toggleViewWidget-menuItem']//span[text()='Expand']");
@@ -210,8 +210,8 @@ var contentTabUIObj = {
         }
     },
     CollapseContentTab: function () {
-        browser.waitForVisible('//span[contains(.,"Content")]//*[@id="menuDownArrow-button"]');
-        browser.click('//span[contains(.,"Content")]//*[@id="menuDownArrow-button"]');
+        browser.waitForVisible('//span[string()="Content"]//*[@id="menuDownArrow-button"]');
+        browser.click('//span[string()="Content"]//*[@id="menuDownArrow-button"]');
 
         if (browser.isExisting("//div[@id='x-menu-el-toggleViewWidget-menuItem']//span[text()='Collapse']")) {
             browser.click("//div[@id='x-menu-el-toggleViewWidget-menuItem']//span[text()='Collapse']");
