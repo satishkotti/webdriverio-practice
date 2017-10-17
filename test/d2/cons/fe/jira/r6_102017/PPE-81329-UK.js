@@ -33,7 +33,7 @@ describe('RMQ Template - Copy Question - PPE-81329 -UK', function () {
             AssetName);
     });
 
-    it('Verify user is able to clone the Question node -PPE-134958,Verify user is having all the attributes for the cloned Question node- PPE-134959, Verify user is able to update the Question Text in the content tab - PPE-134969, Verify user is able to clone the Answer node-  PPE-134985,Verify the renditions for asset after the cloning Question node- PPE-134986', function () {
+    it('Verify user is able to clone the Question node -PPE-134958,Verify user is having all the attributes for the cloned Question node- PPE-134959, Verify user is able to update the Question Text in the content tab - PPE-134969, Verify the renditions for asset after the cloning Question node- PPE-134986,Verify user is able to clone the Answer node-  PPE-134985', function () {
         documentListTab.selectAsset(AssetTitle);
         rmqClone.rmqclone();
         cidName = propertiesTab.getChronicleIdAndName();
