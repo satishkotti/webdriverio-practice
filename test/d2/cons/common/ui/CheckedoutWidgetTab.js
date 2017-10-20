@@ -4,7 +4,7 @@ var CheckedoutWidgetTabUIObj = {
 
     CheckedoutWidget: function () {
         
-        var ChkoutWidgt = browser.isExisting("//li[@tag_id='Checkout documents-widgetTab']//span[text()='Checkout documents']");
+        var ChkoutWidgt = browser.isExisting("//li[@tag_id='Checked Out Documents-widgetTab']//span[text()='Checked Out Documents']");
         if (ChkoutWidgt == false) 
         {
             browser.click("//div[@id='tab-container-3']//div//ul//span[@id='addTool-button']");
@@ -13,14 +13,8 @@ var CheckedoutWidgetTabUIObj = {
             browser.pause(3000);
           
         }
-
-
-        browser.rightClick("//li[@tag_id='Checkout documents-widgetTab']//span[text()='Checkout documents']");
-        browser.waitForVisible("//span[@id='refreshWidget-menuItem']", maxWaitTimeInMs);
-        browser.click("//span[@id='refreshWidget-menuItem']", maxWaitTimeInMs);
+        browser.click("//li[@tag_id='Checked Out Documents-widgetTab']//span[text()='Checked Out Documents']");
         browser.pause(5000);
-        
-
 
     },
    
