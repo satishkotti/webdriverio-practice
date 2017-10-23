@@ -56,8 +56,8 @@ var rmqcloneUIObj = {
         browser.frameParent();
         contentTab.checkIn();
        cidName = propertiesTab.getChronicleIdAndName();
-        objName = cidName.objectName;
-        chronicleId = cidName.chronicleId;
+        var objName = cidName.objectName;
+        var chronicleId = cidName.chronicleId;
         propertiesTab.setRequiredPropertiesWithPrimaryreviewDate(friendlyName, busRef, userDescr, keywords, lnkTtl, windowTtl, publication,
     copyright, primaryTopicId,date);
         documentListTab.assetPowerPromotePublishToStaging(objName);
@@ -76,6 +76,15 @@ var rmqcloneUIObj = {
                         path: "$..content_section",
                         resultType: 'all'
                     });
+                    expect(Content[0].parent.content_section.quiz.questions.question[0].atext).to.be.equal(undefined);
+                    expect(Content[0].parent.content_section.quiz.questions.question[0].amedia).to.be.equal(undefined);
+                    expect(Content[0].parent.content_section.quiz.questions.question[0].aweight).to.be.equal(undefined);
+                    expect(Content[0].parent.content_section.quiz.questions.question[0].aexpl).to.be.equal(undefined);
+                       
+                    expect(Content[0].parent.content_section.quiz.questions.question[1].atext).to.be.equal(undefined);
+                    expect(Content[0].parent.content_section.quiz.questions.question[1].amedia).to.be.equal(undefined);
+                    expect(Content[0].parent.content_section.quiz.questions.question[1].aweight).to.be.equal(undefined);
+                    expect(Content[0].parent.content_section.quiz.questions.question[1].aexpl).to.be.equal(undefined);
                     var qtext = Content[0].parent.content_section.quiz.questions.question[0].qtext.p;
                     var qtext = qtext.replace(/(?:\r\n\t|\r|\n|\t)/g, '');
                     var qtext = qtext.trim();
