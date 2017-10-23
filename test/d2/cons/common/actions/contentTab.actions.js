@@ -96,6 +96,26 @@ var contentTabObj = {
         contentTabUI.QuestiontypeSelectText("3");
 
     },
+    DefaultExplanationSetValue: function (data) {
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.DefaultExplanationSetValue(data);
+
+    },
+    AnswerTextSetValue: function (data) {
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.AnswerTextSetValue(data);
+
+    },
+    AnswerValueSetValue: function (data) {
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.AnswerValueSetValue(data);
+
+    },
+    AnswerExplanationSetValue: function (data) {
+        contentTabUI.switchToExternalWidgetFrame();
+        contentTabUI.AnswerExplanationSetValue(data);
+
+    },
     ResultTextSetValue: function (data) {
         contentTabUI.switchToExternalWidgetFrame();
         contentTabUI.ResultTextSetValue(data);
