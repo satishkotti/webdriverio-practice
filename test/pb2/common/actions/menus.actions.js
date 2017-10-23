@@ -38,3 +38,13 @@ module.exports.SortColumn = (table, column, sortType) =>
 module.exports.SelectHamburgerMenuItem = (option) => {
     homepage.hamburger.moveToObject().click('//li[text()="' + option + '"]');
 }
+module.exports.ToggleUserSettingsMenu = ()=>
+{
+    homepage.usersettings.click();
+    
+}
+module.exports.ToggleHamburgerMenuItem = ()=>
+{
+    homepage.hamburger.click();
+    
+}

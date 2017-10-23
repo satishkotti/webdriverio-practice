@@ -10,6 +10,7 @@ var menu = Object.create(page, {
     home: { get: () => { return browser.element('.pb-home'); } },
     queue: { get: () => { return browser.element('//li[text()="Queue"]'); } },
     hamburger: { get: () => { return browser.element('.fa-bars'); } },
+    usersettings: { get: () => { return browser.element('.pb-topbar-userName'); } },
     checkedOutDB: { get: () => { return browser.element('#grid-checkedOut');}},
     favoritesDB: {get: () => {return browser.element('#grid-favorites');}},
     tableColumnSort: { value: {get: (table, column, sortType) => {

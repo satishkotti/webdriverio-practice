@@ -763,7 +763,28 @@ module.exports.SelectMoreActionsMenuItem = (menuItem, argument) => {
 module.exports.GetCurrentWindowsUsername = () => {
 
 }
-
+/* --------------------------------------------
+** O P E N / C L O S E   U S E R   S E T T I N G S   M E N U
+** --------------------------------------------
+** Description:
+** Opens/Closes user settings menu dropdown under username
+**
+*/
+module.exports.ToggleUserSettingsMenu = () => {
+    menu.ToggleUserSettingsMenu();
+}
+    
+/* --------------------------------------------
+** O P E N / C L O S E   H A M B U R G E R   M E N U
+** --------------------------------------------
+** Description:
+** Opens/Closes hamburger menu dropdown 
+**
+*/
+module.exports.ToggleHamburgerMenu = () => {
+    menu.ToggleHamburgerMenuItem();
+}
+   
 /*--------------------------------------------------------------------------------------------------------------------- */
 /**************************************** A T S   S T A T U S   C H E C K E R *****************************************/
 /*--------------------------------------------------------------------------------------------------------------------- */
