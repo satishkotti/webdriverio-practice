@@ -6,7 +6,7 @@
     "configurations": [{
         "type": "node",
         "request": "launch",
-        "port": 9229,
+        "port": 5859,
         "name": "WebdriverIO",
         "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
         "windows": {
@@ -18,10 +18,8 @@
         // This args config runs only the file that's open and displayed
         // (e.g., a file in test/spec/):
         "args": [
-            
-            "./test/pb2/config/wdio/wdio.pbtest.conf.js",
+            "wdio", "./test/pb2/config/wdio/wdio.pbtest.conf.js",
             "--spec", "${relativeFile}"
-        ],
-        "trace": true
+        ]
     }]
 }
