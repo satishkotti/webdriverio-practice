@@ -10,7 +10,7 @@ exports.config = merge(wdioConf.config, {
     waitforTimeout: 120000,
     mochaOpts: {
         ui: 'bdd',
-        timeout: 900000
+        timeout: 9000000
     },
     capabilities: [{
         maxInstances: gulpFile.MaxInstances,
@@ -36,13 +36,13 @@ exports.config = merge(wdioConf.config, {
                 },                
 				download: { 
                     //temp path added until nas share path ready w/perm
-                    default_directory: "\\\\nasfs21d-ops-08.portal.webmd.com\\devbuildhome\\cmstest\\download",
+                    default_directory: "Z:\\downloads",
                     prompt_for_download: false,
                 }
             }
         }
     }],
-	
+    onPrepare: function() {},
     before: function () {
 
         var chai = require('chai');
@@ -60,6 +60,9 @@ exports.config = merge(wdioConf.config, {
         global.appUrl = 'http://genesys.' + global.testEnv + '.webmd.com';
         global.username = appConfig.appAccess.users.default.username;
         global.password = appConfig.appAccess.users.default.password;
+        global.site = appConfig.site.webmd.desktop;
+        global.sslevel = appConfig.siteStructureLevel(global.site);
         global.browserDownloadPath = gulpFile.DownloadPath;
+        global.doc = 'webmddoc01';
     }
 });

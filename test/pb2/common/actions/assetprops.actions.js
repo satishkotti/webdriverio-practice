@@ -100,7 +100,7 @@ module.exports.PopulatePageProps = (assetProps) =>
     }
 
     actions.ClickContinueButton();
-    browser.waitForVisible('//div[@name="ContentPane0"]');
+    browser.waitForVisible('.pb-layout');
     return browser.getText('.pb-chron');
 }
 
@@ -130,7 +130,6 @@ module.exports.PopulateTemplateProps = (assetProps) =>
 
 module.exports.PopulateSMProps = (assetProps) =>
 {
-    menu.SelectCreateMenuItem('Shared Modules');
     props.input.get('Module Name').setValue(assetProps.moduleName);
     if ( assetProps.moduleName != null || assetProps.moduleName != '' ) { props.input.get('Module Display Name').setValue(assetProps.moduleDispName) };
     props.dropdown('Module Type', assetProps.moduleType);
@@ -138,22 +137,27 @@ module.exports.PopulateSMProps = (assetProps) =>
     if ( assetProps.selectXSL != null ) { props.dropdown('Select XSL', assetProps.selectXSL); }
     if ( assetProps.selectCSS != null ) { props.dropdown('Select CSS', assetProps.selectCSS); }
     if ( assetProps.dynamicModuleCategory != null ) { props.dropdown('Dynamic Module Category', assetProps.dynamicModuleCategory); }
+    if ( assetProps.isDefault ) { props.checkbox.get('Is Default').click(); }
     if ( assetProps.moduleLabel1 != null ) { props.dropdown('Module Label 1', assetProps.moduleLabel1); }
     if ( assetProps.moduleLabel2 != null ) { props.dropdown('Module Label 2', assetProps.moduleLabel2); }
     if ( assetProps.linkedModule != null ) { props.input.get('Linked Module').setValue(assetProps.linkedModule); }
     if ( assetProps.description != null ) { props.textarea.get('Description').setValue(assetProps.description); }
-    if(assetProps.sponsorProgram != null ) { props.dropdown('Sponsor Program', assetProps.sponsorProgram) };
-    if(assetProps.tier != 2) { props.dropdown('Tier', assetProps.tier) };
+    if ( assetProps.sponsorProgram != null ) { props.dropdown('Sponsor Program', assetProps.sponsorProgram) };
+    if ( assetProps.tier !=2 ) { props.select('Tier', assetProps.tier) };
     actions.ClickContinueButton();
     browser.waitForVisible('.pb-chron');
     return browser.getText('.pb-chron');
 }
 
+
 module.exports.AddModule = (contentPane, assetProps) =>
 {
     props.element('.fa-eye').click();
     props.element('div[name="' + contentPane + '"').waitForVisible();
+    let location = props.element('div[name="' + contentPane + '"').getLocation('y');
+    props.element('div[name="' + contentPane + '"').scroll(0, parseInt(location) - 200);
     props.element('div[name="' + contentPane + '"').moveToObject();
+    //props.element('div[name="' + contentPane + '"').scroll(0, 200);
     props.element('div[name="' + contentPane + '"] .fa-plus.add-module').click();
     props.element('.pb-add-module.section-open').waitForVisible();
     props.input.get('Module Name').setValue(assetProps.moduleName);
@@ -165,15 +169,22 @@ module.exports.AddModule = (contentPane, assetProps) =>
     if ( assetProps.moduleLabel1 != null ) { props.dropdown('Module Label 1', assetProps.moduleLabel1); }
     if ( assetProps.moduleLabel2 != null ) { props.dropdown('Module Label 2', assetProps.moduleLabel2); }
     actions.ClickAddModuleButton();
-    browser.waitUntil( () => {
-        return browser.isExisting('//div[contains(@class,"tab-pane") and contains(@class,"active")]//i[contains(@class,"fa-pulse")]') == true;
-    }, 30000, "Module is not yet added to the content pane", 500);
-    browser.waitUntil( () => {
-        return browser.isExisting('//div[contains(@class,"tab-pane") and contains(@class,"active")]//i[contains(@class,"fa-pulse")]') == false;
-    }, 30000, "Module is not yet added to the content pane", 500);
+    let visibilityCounter = 0, hiddenCounter = 0;
+    let spinnerVisible = false, spinnerHidden = true;
+    while(visibilityCounter < 120 && !spinnerVisible)
+    {
+        spinnerVisible = browser.isExisting('//div[contains(@class,"tab-pane") and contains(@class,"active")]//i[contains(@class,"fa-pulse")]');
+        browser.pause(500);
+        visibilityCounter++;
+    }
+    while(hiddenCounter < 120 && spinnerHidden)
+    {
+        spinnerHidden = browser.isExisting('//div[contains(@class,"tab-pane") and contains(@class,"active")]//i[contains(@class,"fa-pulse")]');
+        browser.pause(500);
+        hiddenCounter++;
+    }
     props.element('.pb-node-breadcrumb a').waitForVisible();
     props.element('.pb-layout-view').waitForVisible();
-
 }
 
 module.exports.SwitchAssetTabs = (tabName) =>

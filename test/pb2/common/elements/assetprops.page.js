@@ -1,19 +1,24 @@
 
-var page = require('./../../../common/page');
+const page = require('./../../../common/page');
 
-var input = '//label[contains(.,"***:")]//input'; //Input Fields
-var textarea = '//label[contains(.,"***:")]//textarea'; //Textarea fields (Keyword(s), User Description, Meta Description)
-var dropdown = '//label[contains(.,"***:")]//a'; //Dropdown using Un-ordered List (ul)
+var label = '//label[contains(.,"***:")]';
+var input = `${label}//input`; //Input Fields
+var textarea = `${label}//textarea`; //Textarea fields (Keyword(s), User Description, Meta Description)
+var dropdown = `${label}//a`; //Dropdown using Un-ordered List (ul)
+var dropdown2 = `${input}`;
 var dropdownOption = '//li[string()="***"]' //Select an option (li) from dropdown using Un-ordered List (ul)
-var selectDD = '//label[contains(.,"***:")]//select'; //Dropdown using Select
-var checkbox = '//label[contains(.,"***")]//input'; //For Checkbox and Radio button
+var selectDD = `${label}//select`; //Dropdown using Select
+var checkbox = `${input}`.replace("***:", "***"); //For Checkbox and Radio button
 var tab = '//uib-tab-heading[contains(.,"***")]'; //For Properties, Page Layout and Preview tabs
 var legend = '//fieldset[legend[string()="***"]]';
-var position = '[position()=*]'
-var required = '//label[contains(.,"***:")]//span[@class="pb-field-required"]';
-var invalid = '//label[contains(.,"***:")]//span[@class="pb-field-invalid"]'
+var position = '[position()=*]';
+var required = `${label}//span[@class="pb-field-required"]`;
+var invalid = `${label}//span[@class="pb-field-invalid"]`;
 var link = '//a[string()="***"]';
+var link2 = '//a[contains(.,"***")]'; //For Links which contains text
 var locator = '';
+var button = `${label}//button`// Text less button under a label
+var lookup = '';
 
 
 var props = Object.create(page, {
@@ -24,16 +29,27 @@ var props = Object.create(page, {
     Scroll: { value: () => { browser.element(locator).scroll(); } },
     GetElement: { get: () => { return browser.element(locator); } },
 
+    buton:{
+        value: {
+            get: (labelName) => {
+                locator = button.replace('***', labelName); return props.GetElement;
+            }
+        }
+    },
+    button2:{
+        value: {
+            get: (legendName, labelName, itemNumber) => {
+                locator = '(' + legend.replace('***', legendName) + button.replace('***', labelName) + ')[' + itemNumber + ']'; return props.GetElement;
+                }
+        }
+    },
     input: {
         value: {
             get: (labelName) => {
                 switch (labelName) {
-                    case 'WebMD Nickname': locator = input.replace('***:', labelName); break;
-                    default: locator = input.replace('***', labelName); break;
+                    case 'WebMD Nickname': locator = input.replace('***:', labelName); props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
+                    default: locator = input.replace('***', labelName); props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
                 }
-                props.UntilExist();
-                props.UntilVisible();
-                return props.GetElement;
             }
         }
     },
@@ -41,17 +57,27 @@ var props = Object.create(page, {
         value: {
             get: (legendName, labelName, itemNumber) => {
                 switch (labelName) {
-                    case 'WebMD Nickname': '(' + legend.replace('***', legendName) + input.replace('***:', labelName) + ')[' + itemNumber + ']'; return props.GetElement; break;
-                    default: locator = '(' + legend.replace('***', legendName) + input.replace('***', labelName) + ')[' + itemNumber + ']'; return props.GetElement; break;
+                    case 'WebMD Nickname': '(' + legend.replace('***', legendName) + input.replace('***:', labelName) + ')[' + itemNumber + ']'; props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
+                    default: locator = '(' + legend.replace('***', legendName) + input.replace('***', labelName) + ')[' + itemNumber + ']'; props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
                 }
             }
         }
     },
-
+    input3: {
+        value: {
+            get: (labelName, itemNumber) => {
+                switch (labelName) {
+                    case 'WebMD Nickname': '(' + input.replace('***:', labelName) + ')[' + itemNumber + ']'; props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
+                    default: locator = '(' + input.replace('***', labelName) + ')[' + itemNumber + ']'; props.UntilExist(); props.UntilVisible(); return props.GetElement; break;
+                }
+            }
+        }
+    },
     textarea: {
         value: {
             get: (labelName) => {
                 locator = textarea.replace('***', labelName);
+                props.UntilExist(); props.UntilVisible();
                 return props.GetElement;
             }
         }
@@ -61,6 +87,7 @@ var props = Object.create(page, {
         value: {
             get: (legendName, labelName, itemNumber) => {
                 locator = '(' + legend.replace('***', legendName) + textarea.replace('***', labelName) + ')[' + itemNumber + ']';
+                props.UntilExist(); props.UntilVisible();
                 return props.GetElement;
             }
         }
@@ -70,6 +97,7 @@ var props = Object.create(page, {
         value: {
             get: (labelName) => {
                 locator = checkbox.replace('***', labelName);
+                props.UntilExist(); props.UntilVisible();
                 return props.GetElement;
             }
         }
@@ -79,6 +107,7 @@ var props = Object.create(page, {
         value: {
             get: (legendName, labelName, itemNumber) => {
                 locator = '(' + legend.replace('***', legendName) + checkbox.replace('***', labelName) + ')[' + itemNumber + ']';
+                props.UntilExist(); props.UntilVisible();
                 return props.GetElement;
             }
         }
@@ -88,10 +117,15 @@ var props = Object.create(page, {
         value: (labelName, option) => {
             switch (labelName) {
                 case 'Module Type': locator = selectDD.replace('***:', labelName); props.UntilExist(); props.UntilEnabled(); locator = dropdown.replace('***:', labelName); props.GetElement.click(); break;
+                case 'Layout CSS': selectDD.replace('***', labelName); props.UntilExist(); locator = dropdown.replace('***', labelName); props.GetElement.click(); break;
+                case 'Content Filter': locator = selectDD.replace('***:', labelName); props.UntilExist(); props.UntilEnabled(); locator = dropdown2.replace('***:', labelName); props.GetElement.click(); break;
                 default: locator = selectDD.replace('***', labelName); props.UntilExist(); props.UntilEnabled(); locator = dropdown.replace('***', labelName); props.GetElement.click(); break;
             }
 
-            locator = locator.split('//a')[0] + dropdownOption.replace('***', option);
+            switch (labelName) {
+                case 'Content Filter': locator = locator.split('//input')[0] + dropdownOption.replace('***', option); break;
+                default: locator = locator.split('//a')[0] + dropdownOption.replace('***', option);
+            }
             props.UntilExist();
             props.UntilVisible();
             props.GetElement.click();
@@ -147,6 +181,11 @@ var props = Object.create(page, {
             props.UntilExist();
             props.UntilVisible();
             props.GetElement.click();
+            browser.pause(3000);
+            let pointerYes = '//button[string()="Yes"]';
+            if (browser.isVisible(pointerYes)) {
+                browser.click(pointerYes);
+            }
             locator = locator.replace('fa-search', 'fa-trash');
             browser.waitUntil(() => {
                 return browser.isExisting(locator) == true;
@@ -162,7 +201,6 @@ var props = Object.create(page, {
             props.UntilExist();
             props.UntilVisible();
             props.GetElement.setValue(dctmIdOrUrl);
-            locator = input.replace('***', labelName);
             locator = locator + '//following-sibling::button//i[contains(@class, "fa-search")]';
             props.UntilExist();
             props.UntilVisible();
@@ -171,22 +209,15 @@ var props = Object.create(page, {
                 props.GetElement.click();
             }
             catch (err) {
-
-                //props.Scroll();
-                //var topBarSize = browser.getElementSize('.pb-topbar-nav', 'height');
-                //var buttonSize = browser.getElementSize(locator, 'height');
-                //var y = topBarSize + buttonSize;
                 browser.execute(() => {
                     $('i.fa.fa-search').get(0).scrollIntoView();
                 });
-                try {
-                    props.GetElement.click();
-                }
-                catch (err) {
-                    browser.element(locator).scroll(0, 300);
-                    props.GetElement.click();
-                }
-
+                props.GetElement.click();
+            }
+            browser.pause(3000);
+            let pointerYes = '//button[string()="Yes"]';
+            if (browser.isVisible(pointerYes)) {
+                browser.click(pointerYes);
             }
             locator = locator.replace('fa-search', 'fa-trash');
             browser.waitUntil(() => {
@@ -196,7 +227,6 @@ var props = Object.create(page, {
 
         }
     },
-
     element: {
         value: (eleLocator) => {
             locator = eleLocator;
@@ -239,6 +269,34 @@ var props = Object.create(page, {
                 locator = link.replace('***', linkName);
                 props.UntilExist();
                 return props.GetElement;
+            }
+        }
+    },
+    link2: {
+        value:{
+            get:(linkName) => {
+                locator = link2.replace('***', linkName);
+                props.UntilExist();
+                return props.GetElement;
+            }
+        }
+    },
+    addLinks: {
+        value: function (legendName, labelName, itemNumber, numberOfLinks) {
+
+            locator = '(' + legend.replace('***', legendName) + label.replace('***', labelName) + '//input' + ')[' + itemNumber + ']';
+            props.UntilExist();
+            props.UntilVisible();
+            props.GetElement.setValue(numberOfLinks);
+            locator = '(' + legend.replace('***', legendName) + label.replace('***', labelName) + '//button' + ')[' + itemNumber + ']';
+            props.UntilExist();
+            props.UntilVisible();
+            try {
+                props.GetElement.click();
+            } catch (err) {
+                var location = props.GetElement.getLocation('y');
+                browser.scroll(0, location + 250);
+                props.GetElement.click();
             }
         }
     }

@@ -167,5 +167,42 @@ Redirectapi.prototype.DeleteResultsApi = function DeleteResultsApi(url, options,
         }
     });
 };
+Redirectapi.prototype.PostResultsApiredirectingtoBoots = function PostResultsApiredirectingtoBoots(url, options, apiparameters) {
+
+    switch (url) {
+        case testurl + testAssetProps.Create_Redirect_on_ChronicleIDS: jsonData = apiparameters; break;
+    }
+
+    return new Promise(function (resolve, reject) {
+        if (options !== 'undefined') {
+            options = {
+                method: "POST",
+                url: url,
+                json: true,
+                body: jsonData,
+                headers: {
+                    'WBMD-USERNAME': USERNAME,
+                    "Content-Type": 'application/json'
+
+                }
+
+            };
+        }
+        try {
+            request.post(url, options, function (err, response, body) {
+                if (!err && response.statusCode == 200) {
+                    resolve(response);
+
+                } else
+                    reject(err);
+            })
+
+        }
+        catch (error) {
+            console.log('Redirectapi' + error);
+            reject(error);
+        }
+    });
+};
 
 module.exports = new Redirectapi();
