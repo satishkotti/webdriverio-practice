@@ -127,6 +127,23 @@ module.exports.Create = (assetType, assetDetails) => {
     }
     return assetChronID;
 }
+/* -------------------------------------------------------------------
+** SELECT  A S S E T S  T H R O U G H  U S E R  I N T E R F A C E 
+** -------------------------------------------------------------------
+** Description:
+** Select shared module or Dynamic Programmed Module or Module XSL
+** Funtion accepts 1 arguments :
+**      1. 'assetType' can be 'shared module' or 'Dynamic Programmed Module' or 'Module XSL'
+*/
+module.exports.Select = (assetType) => {
+   
+    switch (assetType) {
+        case 'Shared Module': menu.SelectCreateMenuItem('Shared Modules'); break;
+        case 'Dynamic Programmed Module': menu.SelectCreateMenuItem('Dynamic Programmed Modules'); break;
+        case 'Module XSL': menu.SelectCreateMenuItem('Module XSL'); break;
+    }
+   
+}
 
 /* --------------------------------------------------------------------
 ** T O G G L E  A D D I T I O N A L  P R O P E R T I E S  S E C T I O N 
