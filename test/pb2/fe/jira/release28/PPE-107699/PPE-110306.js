@@ -51,7 +51,7 @@ function uiVerification(index){
     expect(browser.isExisting(id)).equals(true,"ContentPane"+index+" does not exist");
     expect(browser.getText(id)).equals("HTMLPageModule"+index, "Verify the module on ContentPane"+index);
 }
-
+//No need to run the test suite as the new css option is not deployed for Boots Site.
 describe('PPE-107699: New Template/Page Layout screen', function() {
     before(() => {
         //Launch App

@@ -37,22 +37,30 @@ function createTemplateAndPublish(type, templateFrom){
 }
 
 function addModules(index){
+    console.log("Adding module on Content pane ", index)
     test.AddModule('ContentPane'+index,moduleTestData.htmlModule.get('HTMLModuleOnContentPane'+index));
-    browser.pause(10000);
+    browser.pause(15000);
+    browser.waitForVisible('//button[contains(text(),"Cancel Checkout")]');
+    browser.waitForVisible('//button[contains(text(),"Save/Publish")]');
     browser.scroll("=HTMLModuleOnContentPane"+index);
     browser.click("=HTMLModuleOnContentPane"+index);
-    browser.pause(5000);
+    browser.pause(3000);
     browser.waitForVisible('//label[contains(text(),"Module HTML")]');
     if(!(browser.isVisible("//label/textarea"))){browser.waitForVisible("//label/textarea");}
     if(!(browser.isEnabled("textarea.pb-textarea"))){browser.waitForEnabled("textarea.pb-textarea");}
     browser.setValue("textarea.pb-textarea","HTMLModuleOnContentPane"+index);
-    test.SaveModule();
-    browser.waitForVisible('//button[contains(text(),"Cancel Checkout")]');
     browser.pause(10000);
+    test.SaveModule();
+    browser.pause(15000);
+    browser.waitForVisible('//button[contains(text(),"Cancel Checkout")]');
+    browser.waitForVisible('//button[contains(text(),"Save/Publish")]');
+    
 }
 
 function uiVerification(index){
+    console.log("verifying UI on content pane", index)
     var id = "#ContentPane"+index;
+    browser.waitForVisible(id);
     expect(browser.isExisting(id)).equals(true,"ContentPane"+index+" does not exist");
     expect(browser.getText(id)).equals("HTMLModuleOnContentPane"+index, "Verify the module on ContentPane"+index);
 }
@@ -89,6 +97,8 @@ function commonTestSteps(contentPaneSections, chronID){
         browser.pause(10000)
         var handles = browser.windowHandles();
         browser.switchTab(handles.value[1]);
+        browser.refresh();
+        browser.pause(10000);
         for(pane in panesAdded){
                 if((panesAdded[pane]!=0) &&(panesAdded[pane]!=99)){ uiVerification(panesAdded[pane]);}
         }
