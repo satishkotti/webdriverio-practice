@@ -97,13 +97,15 @@ var dqlEditorTabUIObj = {
         dqlEditorTabUIObj.dqlEditorRun();
         browser.waitForVisible("//table[@id='dql']//tr[2]/td[2]",maxWaitTimeInMs);
         var id= browser.getText("//table[@id='dql']//tr[2]/td[2]");
-       // browser.pause(1000);
+        var count = ('//table[@id="dql"]//tr.length');
+      // browser.pause(1000);
         console.log(id);
         browser.frameParent();
         return id;
 
     },
 
+  
 }
 
 module.exports = dqlEditorTabUIObj;

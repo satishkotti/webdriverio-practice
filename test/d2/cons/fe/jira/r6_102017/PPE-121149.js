@@ -11,6 +11,7 @@ var ckEditorMenu = require('./../../../common/actions/ckEditor.actions');
 var Snippetswidget = require('./../../../common/actions/Snippetswidget.actions');
 var propertiesTab = require('./../../../common/actions/propertiesTab.actions');
 var findTab = require('./../../../common/actions/findTab.actions');
+var dqlEditorTab = require('./../../../common/actions/dqlEditor.actions');
 var randomstring = require("randomstring");
 
 describe('D2: Contextual viewing of all snippets on an article-PPE-121149', function () {
@@ -52,8 +53,22 @@ describe('D2: Contextual viewing of all snippets on an article-PPE-121149', func
                
         });
 
+ });
+           it('Verify the all related snippets when looking at a parent article-PPE-135561', function () {
+                browser.pause(5000);
+               findTab.findbyId("091e9c5e8000799f");
+               browser.pause(5000);
+               Snippetswidget.selectversions();
+               Snippetswidget.SelectSnippetAsset();
+               browser.frameParent();
+               dqlEditorTab.dqlEditorWidget();
+               Snippetswidget.Verifyrelatedassetdata("select r_object_id,object_name,title,wbmd_ext_id,wbmd_prim_revw_dt,r_modify_date,r_modifier from wbmd_cons_article where wbmd_ext_id like '%091e9c5e8000799f%' and i_cabinet_id = '0c1e9c5e80002a25' and r_object_id not in(select r_object_id from wbmd_cons_article where any r_version_label='Expired') union select r_object_id,object_name,title,wbmd_ext_id,wbmd_prim_revw_dt,r_modify_date,r_modifier from wbmd_cons_article where i_chronicle_id = '091e9c5e8000799f' and i_cabinet_id = '0c1e9c5e80002a25'  and r_object_id not in(select r_object_id from wbmd_cons_article where any r_version_label='Expired') order by 1 desc");
+                
+        });
+
+
         
-    });
+   
 
    
   

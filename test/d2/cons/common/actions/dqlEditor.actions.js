@@ -20,4 +20,5 @@ module.exports = {
     dqlQueryExecution: function(query){
        return dqlEditorTabUI.dqlQueryExecution(query);
     }
+    
 }
