@@ -6,7 +6,7 @@ var accessToken,response;
 describe('PPE-96474', function() {
      
 
- /*  it('Search valid subdomain urls and should return chronicle id with SearchByFriendlyurl',function() {
+   it('Search valid subdomain urls and should return chronicle id with SearchByFriendlyurl',function() {
        accessToken = test.GenerateApiAccessToken();
     var urls = testdata.validsubdomainurls;
      urls.forEach(function (asset) {
@@ -39,7 +39,7 @@ describe('PPE-96474', function() {
          response = test.searchbaseurl(accessToken, asset)
          expect(response.Data).to.not.equal(null);
      }, this);
-   })*/
+   })
    it('Search invalid subdomain urls and should not return chronicle id with SearchByFriendlyurl',function() {
        accessToken = test.GenerateApiAccessToken();
     var urls = testdata.invalidsubdomainurls;
