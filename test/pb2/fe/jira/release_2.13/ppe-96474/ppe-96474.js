@@ -62,6 +62,9 @@ describe('PPE-96474: Sub-Domain Support for search / URL look-up', () => {
                     ** Before
                     */
                     before(() => {
+                        //Navigate to homescreen
+                        pb2.NavigateToHomepage();
+
                         //Search for the asset using it's friendly-url
                         pb2.SearchFor(null, testAssetData_validation2.friendly_url, 'Global Search', null);
 
@@ -94,6 +97,9 @@ describe('PPE-96474: Sub-Domain Support for search / URL look-up', () => {
                     ** Before
                     */
                     before(() => {
+                        //Navigate to homescreen
+                        pb2.NavigateToHomepage();
+
                         //Search for assets using the keyword
                         pb2.SearchFor('Page', testAssetData_validation3.keyword, 'Global Search', null);
                         browser.waitForExist(`//td[string()="${testAssetData_validation3.keyword}"]`);
@@ -136,7 +142,7 @@ describe(`PPE-136424: Verify whether the URL Look-up fields in PB2 app accepts a
 
         try {
             //Populate the look-up field with chronicle id of a sub-domain asset
-            pb2.ConfigureModule()
+            pb2.ConfigureModule('LinkList Module', _SmProps);
         } catch (err) {
             noErr = false;
         }
