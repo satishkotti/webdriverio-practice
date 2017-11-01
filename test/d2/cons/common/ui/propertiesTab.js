@@ -1,5 +1,6 @@
 var maxWaitTimeInMs = 30000;
 var propertiesTabSelector= "//span[text()='Properties']";
+var moment =require('moment-timezone');
 
 module.exports = {
     chronicleIdGet: function(){
@@ -83,12 +84,27 @@ module.exports = {
         return browser.getValue("input#wbmd_bus_ref-input");
     },
     originalPublishDateSet: function(){
-          browser.click("//div[@id='wbmd_orig_pub_dt']/img")
-          browser.pause(1000);  
-          browser.click("//button[contains(.,'Today')]")
+          browser.click("//div[@id='wbmd_orig_pub_dt']/img");
+          browser.waitForVisible("//button[contains(.,'Now')]");
+          browser.click("//button[contains(.,'Now')]");
           //browser.setValue("input#wbmd_bus_ref-input", textValue);
           browser.pause(1000);
     },
+     CollectionTypeSet: function(textValue){
+         
+           browser.click("//div[@id='wbmd_col_type']/img")
+          browser.pause(1000);  
+          browser.click("//div[@title='"+textValue+"']")
+          browser.pause(1000);
+    },
+    
+    TermfriendlyNameSet: function(textValue){
+        browser.setValue("input#wbmd_c_cons_term-input", textValue);
+    },
+    TermfriendlyNameGet: function(){
+        return browser.getValue("input#wwbmd_c_cons_term-input");
+    },
+    
 
     articleTabSelect: function(){
         browser.click("//span[@text()='Article']")
@@ -102,14 +118,88 @@ module.exports = {
     edit: function(){
         browser.waitForVisible("//div[@tag_id='Properties-widget']//button[text()='Edit']", maxWaitTimeInMs);
         browser.click("//div[@tag_id='Properties-widget']//button[text()='Edit']");
+        browser.pause(5000);
     },
     save: function(){
          browser.click("//div[@tag_id='Properties-widget']//button[text()='Save']");
-         browser.pause(5000);
+         browser.pause(8000);
     },
     cancelEdit: function(){
          browser.click("//div[@tag_id='Properties-widget']//button[text()='Cancel Edit']");
          browser.pause(5000);
-    }
+    },
+    originalPublishDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_orig_pub_dt-input", dateTimeStamp);
+    },
+      overrideSiteArchiveDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_site_archv_ovrd_dt-input", dateTimeStamp);
+    },
+      primaryMedicalReviewDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_prim_revw_dt-input", dateTimeStamp);
+    },
+       secondaryMedicalReviewDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_c_sec_med_revw_dt-input", dateTimeStamp);
+    },
+       editorReviewDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_c_edtr_revr_dt-input", dateTimeStamp);
+    },
+       copyEditorReviewDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_c_cons_revw_dt-input", dateTimeStamp);
+    },
+      sponsorMLRDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_sponsor_mlr_dt-input", dateTimeStamp);
+    },
+      sponsorInternalMLRDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_sponsor_int_mlr_dt-input", dateTimeStamp);
+    },
+     effectiveDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_eff_date-input", dateTimeStamp);
+    },
+     expirationDateTimeset: function(dateTimeStamp){
+        browser.setValue("#wbmd_exp_date-input", dateTimeStamp);
+    },
+    authRevtab: function(){
+        browser.click("//span/span[contains(.,'Auth & Rev')]");
+        browser.pause(1000);
+    },
+     sponsorMLRtab: function(){
+        browser.click("//span/span[contains(.,'Sponsor MLR')]");
+        browser.pause(1000);
+    },
+     publishingtab: function(){
+        browser.click("//span/span[contains(.,'Auth & Rev')]");
+        browser.click("//span/span[contains(.,'Publishing')]");
+        browser.pause(1000);
+    },
+ publishingTabSelect: function(){
+        
+        browser.click("//span/span[contains(.,'Publishing')]");
+        browser.pause(1000);
+    },
+    otherTabSelect: function(){
+        browser.click("//span/span[contains(.,'Other')]")
+    },
+    objectTitleGet: function(){
+        return browser.getValue("input#title-input");
+    },
+     publishingTabSelect: function(){
+        browser.click("//span//span[contains(.,'Publishing')]");
+
+    },
+      systemPublishingDateSet:function(textValue){
+         browser.setValue("#wbmd_eff_date-input",textValue);
+    },
+     expirationDateSet:function(textValue){
+         return browser.setValue("#wbmd_exp_date-input",textValue);
+
+    },
+     disclaimerSet: function(textValue){
+         browser.click("//div[@id='wbmd_disclmr']/img")
+          browser.pause(1000);  
+          browser.click("//div[@title='"+textValue+"']")
+          browser.pause(1000);
+    },
+
+
 }
 
