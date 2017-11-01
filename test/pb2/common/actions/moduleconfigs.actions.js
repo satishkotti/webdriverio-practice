@@ -635,8 +635,8 @@ module.exports.ConfigureLinkListModule = (assetProps) => {
 
     //Populate Module Title Section
     let moduleTitleSection = assetProps.moduleTitle;
-    if (moduleTitleSection.moduleTile != null) { props.input.get('Module Title').setValue(moduleTitleSection.moduleTile); }
-    if (moduleTitleSection.link != null) { props.input.get('Link').setValue(moduleTitleSection.link); }
+    if (moduleTitleSection.moduleTitle != null) { props.input.get('Module Title').setValue(moduleTitleSection.moduleTitle); }
+    if (moduleTitleSection.link != null) { props.lookup( 'Link', moduleTitleSection.link); }
 
     let moduleLinksSection = assetProps.moduleLinks;
     let moduleLinksCount = moduleLinksSection.length;

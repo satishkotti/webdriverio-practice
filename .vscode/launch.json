@@ -7,7 +7,7 @@
         "type": "node",
         "request": "launch",
         "port": 5859,
-        "name": "WebdriverIO",
+        "name": "WebdriverIO Config 1",
         "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
         "windows": {
             "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio"
@@ -19,6 +19,26 @@
         // (e.g., a file in test/spec/):
         "args": [
             "wdio", "./test/pb2/config/wdio/wdio.pbtest.conf.js",
+            "--spec", "${relativeFile}"
+        ]
+    },
+    {
+        "type": "node",
+        "request": "launch",
+        "protocol": "inspector",
+        "port": 9229,
+        "name": "WebdriverIO Config 2",
+        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
+        "windows": {
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio"
+        },
+        "cwd": "${workspaceRoot}",
+        "console": "integratedTerminal",
+        "timeout": 20000,
+        // This args config runs only the file that's open and displayed
+        // (e.g., a file in test/spec/):
+        "args": [
+            "./test/pb2/config/wdio/wdio.pbtest2.conf.js",
             "--spec", "${relativeFile}"
         ]
     }]

@@ -1,7 +1,10 @@
+const randomstring = require('randomstring');
+let assetName = `QASM-PPE96474-${randomstring.generate(3)}`;
+
 module.exports = {
     validsubdomainurls:
     [
-        
+
         {
             "url": 'https://exchanges$$LifeCycle$$$$CoreDomain$$/webmd-exchanges/experts-guests-sponsors',
             "siteId": "3",
@@ -93,8 +96,53 @@ module.exports = {
             "siteId": "3",
             "environment": global.testEnv
         }
-        
-        ]
 
+    ],
 
+    fe:
+    {
+        asset: {
+            val1: {
+                chronicle_id: '091e9c5e8053803f',
+                expected_values: {
+                    title: 'Experts Guests and Sponsors'
+                }
+            },
+            val2: {
+                friendly_url: `http://exchanges.${global.testEnv}.webmd.com/webmd-exchanges/experts-guests-sponsors`,
+                expected_values: {
+                    title: 'Experts Guests and Sponsors'
+                }
+            },
+            val3: {
+                keyword: 'Experts Guests and Sponsors'
+            }
+        },
+        LinkListModule: {
+            "moduleName": assetName,
+            "moduleDispName": assetName,
+            "moduleType": "LinkList",
+            "category": null,
+            "selectXSL": 'Footer v2',
+            "selectCSS": 'Standard',
+            "dynamicModuleCategory": null,
+            "moduleLabel1": null,
+            "moduleLabel2": null,
+            "linkedModule": null,
+            "sponsorProgram": null,
+            "description": assetName + "-desc",
+            "tier": 2,
+            "moduleTitle":
+            {
+                "moduleTitle": "Testing PPE-96474",
+                "link": `http://exchanges.${global.testEnv}.webmd.com/webmd-exchanges/experts-guests-sponsors`
+            },
+            "moduleLinks": [],
+            "emphasizedLinks":
+            {
+                "linkText": null,
+                "link": null
+            }
+        }
+    },
 }
