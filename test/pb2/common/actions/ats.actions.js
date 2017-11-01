@@ -4,11 +4,14 @@ module.exports.Navigate = function (chronID, stage) {
     return ats.gotoURL(chronID, stage);
 }
 module.exports.ClickOn = function (buttonText) {
-    switch (buttonText) {
-        case 'Preview':
-        case 'Staging':
-        case 'Live':
+    switch (buttonText.toLowerCase()) {
+        case 'preview':
+        case 'staging':
+        case 'live':
             ats.stage(buttonText).click();
+            break;
+        case 'show asset info':
+            ats.assetInfo.click();
             break;
         default:
             ats.button.get(buttonText).click();

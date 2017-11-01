@@ -7,27 +7,27 @@ module.exports = {
 
         var requestOptions = {
             method: 'POST',
-            uri: global.envSettings.dctmApiConfig.url + '/dctm/auth/login',
+            uri: 'http://dmrest.' + global.testEnv + '.webmd.com/pbws' + '/dctm/auth/login',
             headers: headers,
             json: {
-                userName: global.envSettings.dctmApiConfig.dctmUsername,
-                password: global.envSettings.dctmApiConfig.dctmPassword,
-                repoName: global.envSettings.dctmApiConfig.dctmDocbase
+                userName: global.username,
+                password: global.password,
+                repoName: 'webmddoc01'
             }
         };
         var request = require('request');
         request(requestOptions, options.callback);
     },
     execute: function(options) {
-        var url = global.envSettings.dctmApiConfig.url + options.uri;
+        var url = 'http://dmrest.' + global.testEnv + '.webmd.com/pbws' + options.uri;
         var method = options.method.toUpperCase();
 
         var headers = {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json;charset=UTF-8',
             'WBMD-LOGIN-TICKET': options.dmTickets,
-            'WBMD-USERNAME': global.envSettings.dctmApiConfig.dctmUsername,
-            'WBMD-REPOSITORY': global.envSettings.dctmApiConfig.dctmDocbase,
+            'WBMD-USERNAME': global.username,
+            'WBMD-REPOSITORY': 'webmddoc01',
             'Authorization': 'bearer DCYMpdkP79jDjW1IHSGBkO1z2YaKeZmAWH5KoY8x+azCK1iX'
 
         };

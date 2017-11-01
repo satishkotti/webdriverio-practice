@@ -26,24 +26,6 @@ module.exports.ConfigureMultipleVideoLaunchModule = (assetProps) => {
     }
 }
 
-module.exports.ConfigureUpdateMultipleVideoLaunchModule = (assetProps) => {
-
-    if (assetProps.brand != "None") { props.dropdown('Brand', assetProps.brand); }
-    if (assetProps.moduleTitle != null) { props.input.get('Module Title').setValue(assetProps.moduleTitle); }
-    if (assetProps.moduleDesc != null) { props.input.get('Module Description').setValue(assetProps.moduleDesc); }
-    if (assetProps.videos.length > 2) {
-        //for more than one link.
-    }
-    else {
-      //  $('//label[contains(.," Add Links")]//i[@class="fa fa-plus"]').click();
-        $('(//i[@class="fa fa-trash"])[2]').click();
-        if (assetProps.videos[0].videoObject != null) { props.lookup('Video Object', assetProps.videos[0].videoObject); }
-        if (assetProps.videos[0].videoTitleOverride != null) { props.input.get('Video Title Override').setValue(assetProps.videos[0].videoTitleOverride); }
-        if (assetProps.videos[0].videoDescOverride != null) { props.input.get('Video Description Override').setValue(assetProps.videos[0].videoDescOverride); }
-    }
-}
-
-
 module.exports.ConfigureSponsorBoxModule = (assetProps) => {
     if (assetProps.logo != null) { props.lookup2('Sponsor Logo', 'Logo', 1, assetProps.logo); }
     if (assetProps.overridetext != null) { props.input2.get('Sponsor Logo', 'Override Text', 1).setValue(assetProps.overridetext); }
@@ -51,42 +33,107 @@ module.exports.ConfigureSponsorBoxModule = (assetProps) => {
     if (assetProps.headertext != null) { props.input2.get('Header', 'Header Text', 1).setValue(assetProps.headertext); }
     if (assetProps.headerlink != null) { props.lookup2('Header', 'Link', 1, assetProps.headerlink); }
 
-    if (assetProps.bodycopy.length > 1) {
-        //for more than one link.
-    }
-    else {
-        if (assetProps.bodycopy[0].bodycopyheadertext != null) { props.input2.get('Body Copy', 'Header Text', 1).setValue(assetProps.bodycopy[0].headertext); }
-        if (assetProps.bodycopy[0].bodycopylink != null) { props.lookup2('Body Copy', 'Link', 1, assetProps.bodycopy[0].link); }
-    }
+    let numberOfBodyCopies = assetProps.bodycopy.length;
 
+    if (numberOfBodyCopies > 1) {
+        try {
+            props.addLinks('Body Copy', 'Add Body Copies', 1, numberOfBodyCopies - 1);
+        } catch (err) {
+            let location = props.input2('Body Copy', 'Add Body Copies', 1).getLocation('y');
+            browser.scroll(0, location + 250);
+            props.addLinks('Body Copy', 'Add Body Copies', 1, numberOfBodyCopies - 1);
+        }
+    }
+    for (let i = 1; i <= numberOfBodyCopies; i++) {
 
-    if (assetProps.bodyimagelogo != null) { props.lookup2('Body Image', 'Logo', 1, assetProps.bodyimagelogo); }
+        if (assetProps.bodycopy[i - 1].bodycopyheadertext != null) { props.textarea2.get('Body Copy', 'Header Text', i).setValue(assetProps.bodycopy[i - 1].headertext); }
+        try {
+            if (assetProps.bodycopy[i - 1].bodycopylink != null) { props.lookup2('Body Copy', 'Link', i, assetProps.bodycopy[i - 1].link); }
+        }
+        catch (e) {
+            let location = props.input2('BodyCopy', 'Link', i).getLocation('y');
+            browser.scroll(0, location + 250);
+            if (assetProps.bodycopy[i - 1].bodycopylink != null) { props.lookup2('Body Copy', 'Link', i, assetProps.bodycopy[i - 1].link); }
+        }
+    }
+    if (assetProps.bodyimagelogo != null) {
+
+        try {
+            props.lookup2('Body Image', 'Logo', 1, assetProps.bodyimagelogo);
+        } catch (err) {
+            let location = props.input2('Body Image', 'Logo', 1).getLocation('y');
+            browser.scroll(0, location + 250);
+            props.lookup2('Body Image', 'Logo', 1, assetProps.bodyimagelogo);
+        }
+    }
     if (assetProps.bodyimageoverridetext != null) { props.input2.get('Body Image', 'Override text', 1).setValue(assetProps.bodyimageoverridetext); }
     if (assetProps.bodyimageLink != null) { props.lookup2('Body Image', 'Link', 1, assetProps.bodyimageLink); }
     if (assetProps.bodyimageleft != 0) { props.checkbox2.get('Body Image', 'Left', 1).click(); }
     if (assetProps.bodyimageright != 0) { props.checkbox2.get('Body Image', 'Right', 1).click(); }
 
-    if (assetProps.bodylinks.length > 1) {
-        //for more than one link.
+    let numberOfBodyLinks = assetProps.bodylinks.length;
+
+    if (numberOfBodyLinks > 1) {
+
+        try {
+            props.addLinks('Body Links', 'Add Body Links', 1, numberOfBodyLinks - 1);
+        } catch (err) {
+            let location = props.input2('Body Links', 'Add Body Links', 1).getLocation('y');
+            browser.scroll(0, location + 250);
+            props.addLinks('Body Links', 'Add Body Links', 1, numberOfBodyLinks - 1);
+        }
     }
-    else {
-        if (assetProps.bodylinks[0].bulletson != 0) { props.checkbox2.get('Body Links', 'Bullets On', 1).click(); }
-        if (assetProps.bodylinks[0].text != null) { props.input2.get('Body Links', 'Text', 1).setValue(assetProps.bodylinks[0].text); }
-        if (assetProps.bodylinks[0].link != null) { props.lookup2('Body Links', 'Link', 1, assetProps.bodylinks[0].link); }
+    for (let i = 1; i <= numberOfBodyLinks; i++) {
+
+        if (assetProps.bodylinks[i - 1].bulletson != 0) { props.checkbox2.get('Body Links', 'Bullets On', 1).click(); }
+        if (assetProps.bodylinks[i - 1].text != null) { props.textarea2.get('Body Links', 'Text', i).setValue(assetProps.bodylinks[i - 1].text); }
+        try {
+            if (assetProps.bodylinks[i - 1].link != null) { props.lookup2('Body Links', 'Link', i, assetProps.bodylinks[i - 1].link); }
+        }
+        catch (e) {
+            let location = props.input2.get('Body Links', 'Link', i).getLocation('y');
+            browser.scroll(0, y + 250);
+            props.lookup2('Body Links', 'Link', i, assetProps.bodylinks[i - 1].link);
+        }
     }
 
-    if (assetProps.lowerlinks.length > 1) {
-        //for more than one link.
+    let numberOfLowerLinks = assetProps.lowerlinks.length;
+
+    if (numberOfLowerLinks > 1) {
+        try {
+            props.addLinks('Lower Links', 'Add Lower Links', 1, numberOfLowerLinks - 1);
+        } catch (err) {
+            let location = props.input2('Lower Links', 'Add Lower Links', 1).getLocation('y');
+            browser.scroll(0, location + 250);
+            props.addLinks('Lower Links', 'Add Lower Links', 1, numberOfLowerLinks - 1);
+        }
     }
-    else {
+    for (let i = 1; i <= numberOfLowerLinks; i++) {
+
         if (assetProps.lowerlinks[0].bulletson != 0) { props.checkbox2.get('Lower Links', 'Bullets On', 1).click(); }
         if (assetProps.lowerlinks[0].newpage != 0) { props.checkbox2.get('Lower Links', 'New Page', 1).click(); }
         if (assetProps.lowerlinks[0].rollover != 0) { props.checkbox2.get('Lower Links', 'Rollover', 1).click(); }
-        if (assetProps.lowerlinks[0].text != null) { props.input2.get('Lower Links', 'Text', 1).setValue(assetProps.lowerlinks[0].text); }
-        if (assetProps.lowerlinks[0].link != null) { props.lookup2('Lower Links', 'Link', 1, assetProps.lowerlinks[0].link); }
+        if (assetProps.lowerlinks[i - 1].text != null) { props.textarea2.get('Lower Links', 'Text', i).setValue(assetProps.lowerlinks[i - 1].text); }
+
+        try {
+            if (assetProps.lowerlinks[i - 1].link != null) { props.lookup2('Lower Links', 'Link', i, assetProps.lowerlinks[i - 1].link); }
+        }
+        catch (e) {
+            let location = props.input2('Lower Links', 'Link', i).getLocation('y');
+            browser.scroll(0, location + 250);
+            props.lookup2('Lower Links', 'Link', i, assetProps.lowerlinks[i - 1].link);
+        }
     }
-    if (assetProps.importcontent != null) { props.lookup2('Article', 'Import Content', 1, assetProps.importcontent); }
+    try {
+        if (assetProps.importcontent != null) { props.lookup2('Article', 'Import Content', 1, assetProps.importcontent); }
+    }
+    catch (e) {
+        let location = props.input2('Article', 'Import Content', 1).getLocation('y');
+        browser.scroll(0, location + 250);
+        props.lookup2('Article', 'Import Content', 1, assetProps.importcontent);
+    }
 }
+
 
 module.exports.ConfigureNavigationModule = (assetProps) => {
     if (assetProps.text != null) { props.input.get('Text').setValue(assetProps.text); }
@@ -100,12 +147,12 @@ module.exports.ConfigureNavigationModule = (assetProps) => {
         if (assetProps.groupheadersection[0].groups[0].grouplink != null) { props.lookup2('Group Header Section', 'Link', 1, assetProps.groupheadersection[0].groups[0].grouplink); }
         if (assetProps.groupheadersection[0].groups[0].groupitemlinks[0].grouplinkitemtext != null) { props.input2.get('Group Link Items', 'Text', 1).setValue(assetProps.groupheadersection[0].groups[0].groupitemlinks[0].grouplinkitemtext); }
         if (assetProps.groupheadersection[0].groups[0].groupitemlinks[0].grouplinkitemlink != null) { props.lookup2('Group Link Items', 'Link', 1, assetProps.groupheadersection[0].groups[0].groupitemlinks[0].grouplinkitemlink); }
-        props.element('(//span[contains(@class,"pb-accordian-toggle")])[2]').click();
+      /*  props.element('(//span[contains(@class,"pb-accordian-toggle")])[2]').click();
         if (assetProps.groupheadersection[0].groups[1].grouptext != null) { props.input2.get('Group Header Section', 'Text', 3).setValue(assetProps.groupheadersection[0].groups[1].grouptext); }
         if (assetProps.groupheadersection[0].groups[1].grouplink != null) { props.lookup2('Group Header Section', 'Link', 3, assetProps.groupheadersection[0].groups[1].grouplink); }
         if (assetProps.groupheadersection[0].groups[1].groupitemlinks[0].grouplinkitemtext != null) { props.input2.get('Group Link Items', 'Text', 2).setValue(assetProps.groupheadersection[0].groups[1].groupitemlinks[0].grouplinkitemtext); }
         if (assetProps.groupheadersection[0].groups[1].groupitemlinks[0].grouplinkitemlink != null) { props.lookup2('Group Link Items', 'Link', 2, assetProps.groupheadersection[0].groups[1].groupitemlinks[0].grouplinkitemlink); }
-    }
+   */ }
 
 
 }
@@ -118,10 +165,10 @@ module.exports.ConfigureEditorialModule = (assetProps) => {
         //for more than one link.
     }
     else {
-        if (assetProps.modulelinks[0].modulelinksimage != null) { props.lookup('Image', assetProps.modulelinksimage); }
-        if (assetProps.modulelinks[0].modulelinkslinktext != null) { props.input.get('Link Text').setValue(assetProps.modulelinkslinktext); }
+        if (assetProps.modulelinks[0].modulelinksimage != null) { props.lookup('Image', assetProps.modulelinks[0].modulelinksimage); }
+        if (assetProps.modulelinks[0].modulelinkslinktext != null) { props.input.get('Link Text').setValue(assetProps.modulelinks[0].modulelinkslinktext); }
         if (assetProps.modulelinks[0].modulelinkslink != null) { props.lookup2('Module Links', 'Link', 1, assetProps.modulelinks[0].modulelinkslink); }
-        if (assetProps.modulelinks[0].modulelinksactiontext != null) { props.input.get('Action Text').setValue(assetProps.modulelinksactiontext); }
+        if (assetProps.modulelinks[0].modulelinksactiontext != null) { props.input.get('Action Text').setValue(assetProps.modulelinks[0].modulelinksactiontext); }
 
     }
     if (assetProps.descriptions.length > 1) {
@@ -137,6 +184,7 @@ module.exports.ConfigureEditorialModule = (assetProps) => {
     else {
         if (assetProps.linkedimages[0].linkedimagesimage != null) { props.lookup2('Linked Images', 'Image', 1, assetProps.linkedimages[0].linkedimagesimage); }
         if (assetProps.linkedimages[0].linkedimageslink != null) { props.lookup2('Linked Images', 'Link', 1, assetProps.linkedimages[0].linkedimageslink); }
+        if (assetProps.linkedimages[0].linkedimagesoverridetext != null) { props.input.get('Override Text').setValue(assetProps.linkedimages[0].linkedimagesoverridetext); }
     }
 
     if (assetProps.importarticlecontent != null) { props.input.get('Import Article Content').setValue(assetProps.importarticlecontent); }
@@ -446,6 +494,7 @@ module.exports.ConfigureEditverticalpromomodule = (assetProps) => {
 module.exports.configureediteditorialmodule = (assetProps) => {
 
     if (assetProps.moduletitle != null) { props.input.get('Module Title').setValue(assetProps.moduletitle); }
+    $('(//fieldset[legend[string()="Module Title"]]//i[@class="fa fa-trash"])[1]').click();
     if (assetProps.link != null) { props.lookup('Link', assetProps.link); }
 
     //add module links
@@ -470,8 +519,9 @@ module.exports.configureediteditorialmodule = (assetProps) => {
 
         var linkCount = browser.elements('//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]').value.length;
         //for more than one link.     
-        if (browser.isExisting('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[0]') == true)
-            $('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[1]').click();
+        //  if (browser.isExisting('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[0]') == true)
+
+        $('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[1]').click();
         $('(//fieldset[legend[string()="Module Links"]]//label[contains(.,"Link")]//i[@class="fa fa-trash"])[1]').click();
 
         if (assetProps.modulelinks[0].modulelinksimage != null) { props.lookup2('Module Links', 'Image', 1, assetProps.modulelinks[0].modulelinksimage); }
@@ -541,6 +591,8 @@ module.exports.configureediteditorialmodule = (assetProps) => {
     var imagesCount = browser.elements('//fieldset[legend[string()="Linked Images"]]//label[contains(.,"Link")]').value.length;
     if (assetProps.linkedimages.length > 1) {
         //for more than one link.
+        $('(//fieldset[legend[string()="Linked Images"]]//label[contains(.,"Image")]//i[@class="fa fa-trash"])[1]').click();
+        $('(//fieldset[legend[string()="Linked Images"]]//label[contains(.,"Link")]//i[@class="fa fa-trash"])[1]').click();
         if (assetProps.linkedimages[0].linkedimagesimage != null) { props.lookup2('Linked Images', 'Image', 1, assetProps.linkedimages[0].linkedimagesimage); }
         if (assetProps.linkedimages[0].linkedimageslink != null) { props.lookup2('Linked Images', 'Link', 1, assetProps.linkedimages[0].linkedimageslink); }
         if (assetProps.linkedimages[0].OverrideText != null) { props.input2.get('Linked Images', 'Override Text', 1).setValue(assetProps.linkedimages[0].OverrideText); }
@@ -563,212 +615,156 @@ module.exports.configureediteditorialmodule = (assetProps) => {
 
 }
 
+module.exports.GetConfigurationDeprecatedModule = () => {
+    browser.pause(10000);
+    return props.textarea.get('SCS Content').getText();
+}
+
+module.exports.ConfigureModuleSCS = (assetProps) => {
+    if (assetProps.SCSContent) { props.textarea.get('SCS Content').setValue(assetProps.SCSContent); }
+}
+
 module.exports.configureHtmlModule = (assetProps) => {
     if (assetProps.ModuleHTML) { props.textarea.get('Module HTML').setValue(assetProps.ModuleHTML); }
 }
 module.exports.EditconfigureHtmlModule = (assetProps) => {
     if (assetProps.ModuleHTML) { props.textarea.get('Module HTML').setValue(assetProps.ModuleHTMLEdit); }
 }
-module.exports.configureStandardPromomodule = (assetProps) => {
-    if (assetProps.ModuleTitle) { props.input.get("Module Title").setValue(assetProps.ModuleTitle); }
-    if (assetProps.Link) { props.lookup2("Module Title", "Link", 1, assetProps.Link); }
-    if (assetProps.logo) { props.lookup2("Logo", "Image", 1, assetProps.logo); }
-    if (assetProps.LogoTitle) { props.input.get("Logo Title").setValue(assetProps.LogoTitle); }
-    if (assetProps.logolink) { props.lookup2("Logo", "Link", 1, assetProps.logolink); }
 
+module.exports.ConfigureLinkListModule = (assetProps) => {
 
-    if (assetProps.Slides.length > 1) {
+    //Populate Module Title Section
+    let moduleTitleSection = assetProps.moduleTitle;
+    if (moduleTitleSection.moduleTitle != null) { props.input.get('Module Title').setValue(moduleTitleSection.moduleTitle); }
+    if (moduleTitleSection.link != null) { props.lookup( 'Link', moduleTitleSection.link); }
 
-    }
-    else {
-        try {
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
-        }
-        catch (err) {
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').scroll(0, 500);
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
-        }
-        if (assetProps.Slides[0].Image) { props.lookup2("Slides", "Image", 1, assetProps.Slides[0].Image); }
-        if (assetProps.Slides[0].SlideHeaderText) { props.input2.get("Slides", "Slide Header Text", 1).setValue(assetProps.Slides[0].SlideHeaderText); }
-        if (assetProps.Slides[0].SlideHeaderLink) { props.lookup2("Slides", "Slide Header Link", 1, assetProps.Slides[0].SlideHeaderLink); }
-        if (assetProps.Slides[0].SlideTitle) { props.input2.get("Slides", "Slide Title", 1).setValue(assetProps.Slides[0].SlideTitle); }
-        if (assetProps.Slides[0].SlideEmphasizedText) { props.input2.get("Slides", "Slide Emphasized Text", 1).setValue(assetProps.Slides[0].SlideEmphasizedText); }
-        if (assetProps.Slides[0].SlideSubText) { props.input2.get("Slides", "Slide Sub Text", 1).setValue(assetProps.Slides[0].SlideSubText); }
+    let moduleLinksSection = assetProps.moduleLinks;
+    let moduleLinksCount = moduleLinksSection.length;
 
+    //Add more links if necessary
+    if (moduleLinksCount > 1) {
+        props.element('//label[contains(.,"Add Links:")]//input').setValue(moduleLinksCount - 1)
+        props.element('//label[contains(.,"Add Links:")]//button').click();
     }
 
-}
+    //Populate Module Links section
+    for (let i = 1; i <= moduleLinksCount; i++) {
+        let linkText = moduleLinksSection[i - 1].linkText;
+        let link = moduleLinksSection[i - 1].link;
+        let icon = moduleLinksSection[i - 1].icon;
 
-module.exports.configureEditStandardPromoModule = (assetProps) => {
-    $('//fieldset[legend[string()="Module Title"]]//i[@class="fa fa-trash"]').click();
-    if (assetProps.ModuleTitle) { props.input.get("Module Title").setValue(assetProps.ModuleTitle); }
-    if (assetProps.Link) { props.lookup2("Module Title", "Link", 1, assetProps.Link); }
-    $('(//fieldset[legend[string()="Logo"]]//i[@class="fa fa-trash"])[1]').click();
-    $('(//fieldset[legend[string()="Logo"]]//i[@class="fa fa-trash"])[1]').click();
-    if (assetProps.logo) { props.lookup2("Logo", "Image", 1, assetProps.logo); }
-    if (assetProps.LogoTitle) { props.input.get("Logo Title").setValue(assetProps.LogoTitle); }
-    if (assetProps.logolink) { props.lookup2("Logo", "Link", 1, assetProps.logolink); }
-
-    try {
-        $('//label[contains(.,"Add Slides:")]//i[@class="fa fa-plus"]').click();
-        browser.execute(() => {
-            var height = $(window).scrollTop() + 200;
-            // console.log(height);
-            window.scrollTo(100, height);
-        });
-    }
-    catch (err) {
-        browser.execute(() => {
-            var height = $(window).scrollTop() + 500;
-            // console.log(height);
-            window.scrollTo(100, height);
-        });
-        $('//label[contains(.,"Add Slides:")]//i[@class="fa fa-plus"]').click();
-    }
-    if (assetProps.Slides.length > 1) {
-        try {
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
-        }
-        catch (err) {
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').scroll(0, 500);
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
-        }
-        $('(//fieldset[legend[string()="Slides"]]//i[@class="fa fa-trash"])[1]').click();
-        $('(//fieldset[legend[string()="Slides"]]//i[@class="fa fa-trash"])[1]').click();
-
-        if (assetProps.Slides[0].Image) { props.lookup2("Slides", "Image", 1, assetProps.Slides[0].Image); }
-        if (assetProps.Slides[0].SlideHeaderText) { props.input2.get("Slides", "Slide Header Text", 1).setValue(assetProps.Slides[0].SlideHeaderText); }
-        if (assetProps.Slides[0].SlideHeaderLink) { props.lookup2("Slides", "Slide Header Link", 1, assetProps.Slides[0].SlideHeaderLink); }
-        if (assetProps.Slides[0].SlideTitle) { props.input2.get("Slides", "Slide Title", 1).setValue(assetProps.Slides[0].SlideTitle); }
-        if (assetProps.Slides[0].SlideEmphasizedText) { props.input2.get("Slides", "Slide Emphasized Text", 1).setValue(assetProps.Slides[0].SlideEmphasizedText); }
-        if (assetProps.Slides[0].SlideSubText) { props.input2.get("Slides", "Slide Sub Text", 1).setValue(assetProps.Slides[0].SlideSubText); }
-
-        var count = browser.elements('//span[contains(@class,"pb-accordian-toggle")]').value.length;
-        try {
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[' + count + ']').click();
-        }
-        catch (err) {
-            browser.execute(() => {
-                var height = $(window).scrollTop() + 500;
-                // console.log(height);
-                window.scrollTo(100, height);
-            });
-            //   props.element('(//span[contains(@class,"pb-accordian-toggle")])[' + count + ']').scroll(0, 500);
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[' + count + ']').click();
-        }
-
-        if (assetProps.Slides[1].Image) { props.lookup2("Slides", "Image", count, assetProps.Slides[1].Image); }
-        if (assetProps.Slides[1].SlideHeaderText) { props.input2.get("Slides", "Slide Header Text", count).setValue(assetProps.Slides[1].SlideHeaderText); }
-        if (assetProps.Slides[1].SlideHeaderLink) { props.lookup2("Slides", "Slide Header Link", count, assetProps.Slides[1].SlideHeaderLink); }
-        if (assetProps.Slides[1].SlideTitle) { props.input2.get("Slides", "Slide Title", count).setValue(assetProps.Slides[1].SlideTitle); }
-        if (assetProps.Slides[1].SlideEmphasizedText) { props.input2.get("Slides", "Slide Emphasized Text", count).setValue(assetProps.Slides[1].SlideEmphasizedText); }
-        if (assetProps.Slides[1].SlideSubText) { props.input2.get("Slides", "Slide Sub Text", count).setValue(assetProps.Slides[1].SlideSubText); }
-
-    }
-    else {
-        try {
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
-        }
-        catch (err) {
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').scroll(0, 500);
-            props.element('(//span[contains(@class,"pb-accordian-toggle")])[1]').click();
-        }
-        if (assetProps.Slides[0].Image) { props.lookup2("Slides", "Image", 1, assetProps.Slides[0].Image); }
-        if (assetProps.Slides[0].SlideHeaderText) { props.input2.get("Slides", "Slide Header Text", 1).setValue(assetProps.Slides[0].SlideHeaderText); }
-        if (assetProps.Slides[0].SlideHeaderLink) { props.lookup2("Slides", "Slide Header Link", 1, assetProps.Slides[0].SlideHeaderLink); }
-        if (assetProps.Slides[0].SlideTitle) { props.input2.get("Slides", "Slide Title", 1).setValue(assetProps.Slides[0].SlideTitle); }
-        if (assetProps.Slides[0].SlideEmphasizedText) { props.input2.get("Slides", "Slide Emphasized Text", 1).setValue(assetProps.Slides[0].SlideEmphasizedText); }
-        if (assetProps.Slides[0].SlideSubText) { props.input2.get("Slides", "Slide Sub Text", 1).setValue(assetProps.Slides[0].SlideSubText); }
-
+        if (linkText != null) { props.input2.get('Module Links', 'Link Text', i).setValue(moduleLinksSection[i - 1].linkText); }
+        if (link != null) { props.lookup2('Module Links', 'Link', i, link); }
+        if (icon != null) { props.lookup2('Module Links', 'Icon', i, link); }
     }
 
+    //Populate Emphasized Links Section
+    let emphasizedLinksSection = assetProps.emphasizedLinks;
+    let linkText = emphasizedLinksSection.linkText;
+    let link = emphasizedLinksSection.link;
+
+    if (linkText != null) { props.input2.get('Emphasized Link', 'Link Text', 1).setValue(linkText); }
+    if (link != null) { props.lookup2('Emphasized Link', 'Link Text', 1, linkText); }
 }
 
 module.exports.ConfigureTwoColumnHeaderModule = (assetProps) => {
-    if (assetProps.TitleText) { props.input.get("Title Text").setValue(assetProps.TitleText); }
-    if (assetProps.SubtitleText) { props.input.get("Subtitle Text").setValue(assetProps.SubtitleText); }
-    if (assetProps.HeaderURL) { props.lookup2("Header", "Header URL", 1, assetProps.HeaderURL); }
 
-    if (assetProps.AttributionText) { props.input2.get("Attribution", "Text", 1).setValue(assetProps.AttributionText); }
-
-    if (assetProps.Images.length > 1) {
-
+    if (assetProps.TitleText != null) {
+        props.input.get('Title Text').setValue(assetProps.TitleText);
     }
-    else {
-        try {
-            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
-        }
-        catch (err) {
-            browser.execute(() => {
-                var height = $(window).scrollTop() + 500;
-                // console.log(height);
-                window.scrollTo(100, height);
-            });
-            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
 
-        }
-        if (assetProps.Images[0].Image) { props.lookup2("Images", "Image", 1, assetProps.Images[0].Image); }
+    if (assetProps.SubtitleText != null) {
+        props.input.get('Subtitle Text').setValue(assetProps.SubtitleText);
+    }
 
+    if (assetProps.ImageOn != 0) {
+        props.checkbox.get('Image On').click();
+    }
+
+    if (assetProps.HeaderURL != null) {
+        props.lookup('Header URL', assetProps.HeaderURL);
+    }
+
+    if (assetProps.AttributionText != null) {
+        props.input2.get('Attribution', 'Text', 1).setValue(assetProps.AttributionText);
+    }
+
+    if (assetProps.AttributionURL != null) {
+        props.lookup('Attribution URL', assetProps.AttributionURL);
+    }
+
+    let images = assetProps.Images;
+
+    if (images.length != undefined && images.length > 0) {
+        if (images.length > 1) {
+            props.addLinks('Images', 'Add Links', 1, images.length - 1);
+        }
+
+        for (var index = 0; index < images.length; index++) {
+            props.lookup2('Images', 'Link', index + 1, images[index].Link);
+            props.lookup2('Images', 'Image', index + 1, images[index].Image);
+        }
     }
 
 }
-module.exports.ConfigureEditColumnHeaderModule = (assetProps) => {
 
-    if (assetProps.TitleText) { props.input.get("Title Text").setValue(assetProps.TitleText); }
-    if (assetProps.SubtitleText) { props.input.get("Subtitle Text").setValue(assetProps.SubtitleText); }
-    try {
-        $('//label[contains(.,"Header URL:")]//i[@class="fa fa-trash"]').click();
-    }
-    catch (err) {
-        $('//label[contains(.,"Header URL:")]//i[@class="fa fa-trash"]').scroll(0, 300);
-        $('//label[contains(.,"Header URL:")]//i[@class="fa fa-trash"]').click();
-    }
-    if (assetProps.HeaderURL) { props.lookup2("Header", "Header URL", 1, assetProps.HeaderURL); }
+module.exports.ConfigureStandarPromoModule = (assetProps) => {
 
-    if (assetProps.AttributionText) { props.input2.get("Attribution", "Text", 1).setValue(assetProps.AttributionText); }
-    try {
-        $('//label[contains(.,"Link:")]//i[@class="fa fa-trash"]').click();
+    if (assetProps.ModuleTitle != null) {
+        props.input.get('Module Title').setValue(assetProps.ModuleTitle);
     }
-    catch (err) {
-        $('//label[contains(.,"Link:")]//i[@class="fa fa-trash"]').scroll(0, 600);
-        $('//label[contains(.,"Link:")]//i[@class="fa fa-trash"]').click();
-    }
-    $('//label[contains(.,"Image:")]//i[@class="fa fa-trash"]').click();
 
-    $('//label[contains(.,"Add Links:")]//i[@class="fa fa-plus"]').click();
-
-    if (assetProps.Images.length > 1) {
-        try {
-            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
+    if(assetProps.ModuleLink != null) {
+        if(!props.input2.get('Module Title', 'Link', 1).isEnabled()){
+            props.button2.get('Module Title', 'Link', 1).click();
         }
-        catch (err) {
-            browser.execute(() => {
-                var height = $(window).scrollTop() + 500;
-                // console.log(height);
-                window.scrollTo(100, height);
-            });
-            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
-
-        }
-        if (assetProps.Images[0].Image) { props.lookup2("Images", "Image", 1, assetProps.Images[0].Image); }
-        if (assetProps.Images[1].Link) { props.lookup2("Images", "Link", 2, assetProps.Images[1].Link); }
-        if (assetProps.Images[1].Image) { props.lookup2("Images", "Image", 2, assetProps.Images[1].Image); }
-
+        props.lookup2('Module Title', 'Link', 1, assetProps.ModuleLink);
     }
-    else {
-        try {
-            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
-        }
-        catch (err) {
-            browser.execute(() => {
-                var height = $(window).scrollTop() + 500;
-                // console.log(height);
-                window.scrollTo(100, height);
-            });
-            if (assetProps.Images[0].Link) { props.lookup2("Images", "Link", 1, assetProps.Images[0].Link); }
 
+    if (assetProps.LogoImage != null) {
+        if(props.button2.get('Logo', 'Image', 1).isVisible()){
+            props.button2.get('Logo', 'Image', 1).click();
         }
-        if (assetProps.Images[0].Image) { props.lookup2("Images", "Image", 1, assetProps.Images[0].Image); }
-
+        props.lookup2('Logo', 'Image', 1, assetProps.LogoImage);
     }
+
+    if (assetProps.LogoTitle != null) {
+        props.input.get('Logo Title').setValue(assetProps.LogoTitle);
+    }
+
+    if (assetProps.LogoLink != null) {
+        if(!props.input2.get('Logo', 'Link', 1).isEnabled()){
+            props.button2.get('Logo', 'Link', 1).click();
+        }
+        props.lookup2('Logo', 'Link', 1, assetProps.LogoLink);
+    }
+
+    let slides = assetProps.Slides;
+
+    if (slides.length != undefined && slides.length > 0) {
+        if (slides.length > 1) {
+            props.addLinks('Slides', 'Add Slides', 1, slides.length - 1);
+        }
+
+        for (var index = 1; index <= slides.length; index++) {
+            props.link2.get('Slide #'+index).scroll();
+            props.link2.get('Slide #'+index).click();
+            browser.execute(function(index){
+                $('label:contains("Slide Sub Text:") input').get(index-1).scrollIntoView()}, index
+                );
+            if(props.button2.get('Slides', 'Image', index).isVisible()){
+                props.button2.get('Slides', 'Image', index).click();
+            }
+            props.lookup2('Slides', 'Image', index, slides[index-1].Image);
+            props.input.get('Slide Header Text').setValue(slides[index-1].SlideHeaderText);
+            if(!props.input2.get('Slides', 'Slide Header Link', index).isEnabled()){
+                props.button2.get('Slides', 'Slide Header Link', index).click();
+            }
+            props.lookup2('Slides', 'Slide Header Link', index, slides[index-1].SlideHeaderLink);
+            props.input.get('Slide Title').setValue(slides[index-1].SlideTitle);
+            props.input.get('Slide Emphasized Text').setValue(slides[index-1].SlideEmphasizedText);
+            props.input.get('Slide Sub Text').setValue(slides[index-1].SlideSubText);
+        }
+    }
+
 }
