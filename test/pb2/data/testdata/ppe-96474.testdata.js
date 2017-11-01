@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const randomstring = require('randomstring');
 let assetName = `QASM-PPE96474-${randomstring.generate(3)}`;
 
@@ -5,6 +6,12 @@ module.exports = {
     validsubdomainurls:
     [
 
+=======
+module.exports = {
+    validsubdomainurls:
+    [
+        
+>>>>>>> origin/integration-pb2-release2.10
         {
             "url": 'https://exchanges$$LifeCycle$$$$CoreDomain$$/webmd-exchanges/experts-guests-sponsors',
             "siteId": "3",
@@ -41,7 +48,11 @@ module.exports = {
             "siteId": "3",
             "environment": global.testEnv
         },
+<<<<<<< HEAD
         {
+=======
+         {
+>>>>>>> origin/integration-pb2-release2.10
             "url": 'https://fit$$LifeCycle$$$$CoreDomain$$/kids/food/article/default.htm',
             "siteId": "3",
             "environment": global.testEnv
@@ -51,7 +62,11 @@ module.exports = {
             "siteId": "3",
             "environment": global.testEnv
         },
+<<<<<<< HEAD
         {
+=======
+         {
+>>>>>>> origin/integration-pb2-release2.10
             "url": 'https://pets$$LifeCycle$$$$CoreDomain$$/healthy-pets-vet-16/how-often-bathe-your-dog-poll',
             "siteId": "3",
             "environment": global.testEnv
@@ -71,21 +86,37 @@ module.exports = {
             "siteId": "3",
             "environment": global.testEnv
         },
+<<<<<<< HEAD
         {
+=======
+         {
+>>>>>>> origin/integration-pb2-release2.10
             "url": 'https://teens$$LifeCycle$$$$CoreDomain$$/virtual/news/default.htm',
             "siteId": "3",
             "environment": global.testEnv
         },
+<<<<<<< HEAD
         {
+=======
+         {
+>>>>>>> origin/integration-pb2-release2.10
             "url": 'https://www$$LifeCycle$$$$CoreDomain$$/a-to-z-guides/healthy-living/e.htm',
             "siteId": "3",
             "environment": global.testEnv
         },
+<<<<<<< HEAD
     ],
 
     invalidsubdomainurls:
     [
 
+=======
+        ],
+
+        invalidsubdomainurls:
+    [
+        
+>>>>>>> origin/integration-pb2-release2.10
         {
             "url": 'https://exchanges$$LifeCycle$$$$CoreDomain$$/teen/food-exchanges-health',
             "siteId": "3",
@@ -96,6 +127,7 @@ module.exports = {
             "siteId": "3",
             "environment": global.testEnv
         }
+<<<<<<< HEAD
 
     ],
 
@@ -145,4 +177,10 @@ module.exports = {
             }
         }
     },
+=======
+        
+        ]
+
+
+>>>>>>> origin/integration-pb2-release2.10
 }
