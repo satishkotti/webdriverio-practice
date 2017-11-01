@@ -1264,6 +1264,11 @@ module.exports.searchbaseurl = function (ticket,payload) {
     }, 120000, 'Executeing DQl and obtaing response from the server is taking longer than expected! Please increase timeouts if necessary and try again!', 500);
     return response;
 }
+module.exports.IsProductionEnv = () =>{
+    if(global.testEnv.toLowerCase().indexOf("prod") != -1)
+        return true;
+    return false;
+}
 /*--------------------------------------------------------------------------------------------------- */
 /**************************************** D A T A B A S E S *****************************************/
 /*--------------------------------------------------------------------------------------------------- */
