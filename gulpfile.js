@@ -18,7 +18,7 @@ args.option('env', 'Environment targetted', "dev01")
     .option('app', 'App: rt, d2cons, d2prof, pb2', '')
     .option('maxInstances', 'Maximum number of instances a browser can have', 1)
     .option('logLevel', 'Test runner logging level default error', 'error')
-    .option('selectTests', 'Tests to execute seperated by comma', '');
+    .option('selectTests', 'Tests to execute seperated by comma', 'not-selected');
 
 var flags = args.parse(process.argv);
 
@@ -27,11 +27,9 @@ var conf = flags.conf;
 var testEnv = flags.env;
 var selectTest = flags.selectTests;
 var error = chalk.bold.red;
-var defaultWaitTimeout = 300000;
-var defaultMochaTestTimeout = 500000;
-
-//cms grid
-var gridHost = '172.28.36.18';
+var defaultWaitTimeout = 180000;
+var defaultMochaTestTimeout = 6000000;
+var gridHost = '172.28.38.219';
 var gridPort = 4444;
 
 var tests = [];
@@ -59,6 +57,9 @@ if (conf.length == 0) {
     console.log('config: ' + confPath);
 }
 
+//temp path added until nas share path ready w/perm
+var downloadFolderPath = "Z:\\downloads";
+
 gulp.task('branch', function (cb) {
     return git.revParse({
         args: '--abbrev-ref HEAD'
@@ -67,7 +68,8 @@ gulp.task('branch', function (cb) {
         console.log('app: ' + currentApp);
         console.log('branch: ' + branch);
 
-        if (testEnv.toLowerCase().indexOf('prod') >= 0) {
+        if(testEnv.toLowerCase().indexOf('prod') >= 0)
+        {
             console.log('PROD RUN NOT SUPPORTED FOR DEFAULT TASK');
             cb();
             return;
@@ -100,9 +102,9 @@ gulp.task('branch', function (cb) {
             if (ppeIndex >= 0) {
                 var testfile = branchArr[ppeIndex + 1];
                 specFiles = `test/${appFolder}/**/*${testfile}*.js`;
-                specFileFolder = `test/${appFolder}/**/*${testfile}*/*.js`;
-                tests.push(specFiles);
-                tests.push(specFileFolder);
+				specFileFolder = `test/${appFolder}/**/*${testfile}*/*.js`;
+				tests.push(specFiles);
+				tests.push(specFileFolder);
                 console.log('feature ppe file specs: ' + specFiles);
                 console.log('feature ppe folder specs: ' + specFileFolder);
             }
@@ -146,7 +148,7 @@ var deleteFolderRecursive = function (path) {
 };
 
 gulp.task('selected', function (done) {
-    
+
     console.log('selectTest: '+ selectTest);
     if (selectTest.length > 0) {
 
@@ -168,7 +170,9 @@ gulp.task('selected', function (done) {
     conf.config.host = gridHost;
     conf.config.port = gridPort;
     gulpSequence('webdriver')(function (err) {
-        if (err){ console.log('Failed: ' + err); }
+        if (err) {
+            console.log('Failed: ' + err);
+        }
     });
     done();
 });
@@ -178,9 +182,7 @@ gulp.task('prod', function (done) {
     conf.config.host = gridHost;
     conf.config.port = gridPort;
     gulpSequence('webdriver')(function (err) {
-        if (err) {
-            console.log('Failed: ' + err);
-        }
+        if (err){ console.log('Failed: ' + err); }
     });
     done();
 });
@@ -190,9 +192,7 @@ gulp.task('smoke', function (done) {
     conf.config.host = gridHost;
     conf.config.port = gridPort;
     gulpSequence('webdriver')(function (err) {
-        if (err) {
-            console.log('Failed: ' + err);
-        }
+        if (err){ console.log('Failed: ' + err); }
     });
     done();
 });
@@ -205,9 +205,7 @@ gulp.task('all', function (done) {
     conf.config.host = gridHost;
     conf.config.port = gridPort;
     gulpSequence('webdriver')(function (err) {
-        if (err) {
-            console.log('Failed: ' + err);
-        }
+        if (err){ console.log('Failed: ' + err); }
     });
     done();
 });
@@ -267,9 +265,7 @@ gulp.task('default', function (done) {
     conf.config.host = gridHost;
     conf.config.port = gridPort;
     gulpSequence('branch', 'webdriver')(function (err) {
-        if (err) {
-            console.log('Failed: ' + err);
-        }
+        if (err){ console.log('Failed: ' + err); }
     });
     done();
 });
@@ -277,5 +273,6 @@ gulp.task('default', function (done) {
 module.exports = {
     TestEnv: testEnv.toLowerCase(),
     MaxInstances: flags.maxInstances,
-    LogLevel: flags.logLevel
+    LogLevel: flags.logLevel,
+	DownloadPath: downloadFolderPath
 }

@@ -27,6 +27,33 @@ var smdata = Object.create(page, {
         }
     },
 
+    deprecatedModule: {
+        value:{
+            get: () => {
+            var assetName = "QASM-ActivityQueue-" + randomstring.generate(5);
+            var smProps = {};
+            return smProps =
+                {
+                    "moduleName": assetName,
+                    "moduleDispName": assetName,
+                    "moduleType": null,
+                    "category": null,
+                    "selectXSL": null,
+                    "selectCSS": null,
+                    "dynamicModuleCategory": null,
+                    "moduleLabel1": null,
+                    "moduleLabel2": null,
+                    "linkedModule": null,
+                    "sponsorProgram": null,
+                    "description": assetName + "-desc",
+                    "tier": null,
+                    "SCSContent": null,
+
+                }
+        }
+    }
+    },
+
     multiplevideolaunchModule: {
         get: () => {
             var assetName = "QASM-MVL-" + randomstring.generate(5);
@@ -239,7 +266,8 @@ var smdata = Object.create(page, {
                     "modulelinks":
                     [
                         {
-                            "modulelinksimage": "091e9c5e8000f8de",
+                           // "modulelinksimage": "091e9c5e8000f8de",
+                            "modulelinksimage": "091e9c5e81384a04",
                             "modulelinkslinktext": "Links Text",
                             "modulelinkslink": "091e9c5e80661dc9",
                             "modulelinksactiontext": "Links Action Text"
@@ -259,6 +287,7 @@ var smdata = Object.create(page, {
                         {
                             "linkedimagesimage": "091e9c5e8046dba9",
                             "linkedimageslink": "091e9c5e8000f8de",
+                            "linkedimagesoverridetext": "Override Text"
 
 
                         }
@@ -437,7 +466,7 @@ var smdata = Object.create(page, {
                     "image": "091e9c5e803fecd4",
                     "introtext": "Intro Text updated",
                     "buttonlink": "091e9c5e80661dc9 ",
-                    "buttontext": "Button Text updated ",
+                    "buttontext": "Button Text updated",
                     "descriptiontext": "Description Text updated",
                     "iconicoverlays":
                     [
@@ -569,10 +598,10 @@ var smdata = Object.create(page, {
                     "description": assetName + "-desc",
                     "tier": 2,
                     "ModuleTitle": "Module Title test",
-                    "Link": "091e9c5e80661dc9",
-                    "logo": "091e9c5e803fecd4",
+                    "ModuleLink": "091e9c5e80661dc9",
+                    "LogoImage": "091e9c5e803fecd4",
                     "LogoTitle": "Logo Title Text",
-                    "logolink": "091e9c5e80661dc9",
+                    "LogoLink": "091e9c5e80661dc9",
                     "Slides":
                     [
                         {
@@ -597,10 +626,10 @@ var smdata = Object.create(page, {
             return smProps =
                 {
                     "ModuleTitle": "Module Title test update",
-                    "Link": "091e9c5e80661dc9",
-                    "logo": "091e9c5e803fecd4",
+                    "ModuleLink": "091e9c5e80661dc9",
+                    "LogoImage": "091e9c5e803fecd4",
                     "LogoTitle": "Logo Title Text update",
-                    "logolink": "091e9c5e80661dc9",
+                    "LogoLink": "091e9c5e80661dc9",
                     "Slides":
                     [
                         {

@@ -149,7 +149,7 @@ module.exports.SponsorModuleLaunchXMLValues = (result) => {
         }, this);
     } else {
         obj['body_copy_body_copy_text_1'] = bodyCopies.body_copy.hasOwnProperty('body_copy_text') ? bodyCopies.body_copy.body_copy_text : 'body_copy_text missed on xml';
-        obj['body_copy_body_copy_link_view_'] = bodyCopies.body_copy.hasOwnProperty('body_copy_link_view') ? bodyCopies.body_copy.body_copy_link_view : 'body_copy_link_view missed on xml';
+        obj['body_copy_body_copy_link_view_1'] = bodyCopies.body_copy.hasOwnProperty('body_copy_link_view') ? bodyCopies.body_copy.body_copy_link_view : 'body_copy_link_view missed on xml';
         obj['body_copy_body_copy_link_directive_1'] = bodyCopies.body_copy.hasOwnProperty('body_copy_link') && (bodyCopies.body_copy.body_copy_link) ? bodyCopies.body_copy.body_copy_link.$.directive : 'body_copy_link missed on xml';
         obj['body_copy_body_copy_link_object_type_1'] = bodyCopies.body_copy.hasOwnProperty('body_copy_link') && (bodyCopies.body_copy.body_copy_link) ? bodyCopies.body_copy.body_copy_link.$.object_type : 'body_copy_link missed on xml';
     }
@@ -287,12 +287,12 @@ module.exports.NavigationModuleLaunchXMLValues = (result) => {
     }
     else {
         rowNumber = 1;
-        obj['group_name_1'] = groups.group.hasOwnProperty('group_name') && groups.group.module_title_text ? groups.group.group_name : 'group_name missed on xml';
-        obj['group_link_view_1'] = groups.group.hasOwnProperty('group_link_view') && groups.group.module_title_text ? groups.group.group_link_view : 'group_link_view missed on xml';
+        obj['group_name_1'] = groups.group.hasOwnProperty('group_name') && groups.group.group_name ? groups.group.group_name : 'group_name missed on xml';
+        obj['group_link_view_1'] = groups.group.hasOwnProperty('group_link_view') && groups.group.group_link_view ? groups.group.group_link_view : 'group_link_view missed on xml';
         obj['group_link_chronic_id_1'] = groups.group.hasOwnProperty('group_link') && groups.group.group_link.$.chronic_id ? true : false;
         obj['group_link_object_type_1'] = groups.group.hasOwnProperty('group_link') && groups.group.group_link ? groups.group.group_link.$.object_type : 'group_link object_type missed on xml';
 
-        var linkItems = element.link_items.link_item;
+        var linkItems =  groups.group.link_items.link_item;
         if (linkItems.length != undefined) {
             linkItems.forEach(function (linkelement) {
                 linkItemCount = linkItemCount + 1;
@@ -486,11 +486,12 @@ module.exports.ConfigureVerticalPromoModule = (result) => {
     obj["button_link_view"] = moduleData.button_link_view;
     obj["description_text"] = moduleData.description_text;
 
-    obj['image_source_directive'] = moduleData.hasOwnProperty('image_source') && moduleData.image_link ? moduleData.image_link.$.directive : 'image_link missed on xml';
-    obj['image_source_object_type'] = moduleData.hasOwnProperty('image_source') && moduleData.image_link ? moduleData.image_link.$.object_type : 'image_link missed on xml';
-    obj['image_source_path'] = moduleData.hasOwnProperty('image_source') && moduleData.image_link ? moduleData.image_link.$.path : 'image_link missed on xml';
-    obj['image_source_alt'] = moduleData.hasOwnProperty('image_source') && moduleData.image_link ? moduleData.image_link.$.alt : 'image_link missed on xml';
-    obj['image_source_chronic_id'] = moduleData.hasOwnProperty('image_source') && moduleData.image_link && moduleData.image_link.$.chronic_id != undefined ? true : false;
+    obj['image_source_directive'] = moduleData.hasOwnProperty('image_source') && moduleData.image_source ? moduleData.image_source.$.directive : 'image_link missed on xml';
+    obj['image_source_object_type'] = moduleData.hasOwnProperty('image_source') && moduleData.image_source ? moduleData.image_source.$.object_type : 'image_link missed on xml';
+    obj['image_source_path'] = moduleData.hasOwnProperty('image_source') && moduleData.image_source ? moduleData.image_source.$.path : 'image_link missed on xml';
+    obj['image_source_alt'] = moduleData.hasOwnProperty('image_source') && moduleData.image_source ? moduleData.image_source.$.alt : 'image_link missed on xml';
+    obj['image_source_chronic_id'] = moduleData.hasOwnProperty('image_source') && moduleData.image_source && moduleData.image_source.$.chronic_id != undefined ? true : false;
+  //  obj['image_source_chronic_id'] = moduleData.hasOwnProperty('image_source') && moduleData.image_link && moduleData.image_link.$.chronic_id != undefined ? true : false;
 
     obj["button_link_directive"] = moduleData.hasOwnProperty('button_link') && moduleData.button_link ? moduleData.button_link.$.directive : 'button_link missed on xml';
     obj["button_link_object_type"] = moduleData.hasOwnProperty('button_link') && moduleData.button_link ? moduleData.button_link.$.object_type : 'button_link missed on xml';
@@ -636,7 +637,7 @@ module.exports.StandardPromomodule = (result) => {
     obj["logo_source_chronic_id"] = logos.logo.hasOwnProperty('logo_source') && logos.logo.logo_source.$.chronic_id ? true : false;
     obj["logo_source_directive"] = logos.logo.hasOwnProperty('logo_source') && logos.logo.logo_source.$.directive ? logos.logo.logo_source.$.directive : "logo_source directive missed on xml";
     obj["logo_source_object_type"] = logos.logo.hasOwnProperty('logo_source') && logos.logo.logo_source.$.object_type ? logos.logo.logo_source.$.object_type : "logo_source object_type missed on xml";
-    obj["logo_link_url_chronic_id"] = logos.logo.hasOwnProperty('logo_link_url') && logos.logo.logo_link_url.$.chronic_id ? true : false; ""
+    obj["logo_link_url_chronic_id"] = logos.logo.hasOwnProperty('logo_link_url') && logos.logo.logo_link_url.$.chronic_id ? true : false;
     obj["logo_link_url_directive"] = logos.logo.hasOwnProperty('logo_link_url') && logos.logo.logo_link_url.$.directive ? logos.logo.logo_link_url.$.directive : "logo_link_url directive missed on xml";
     obj["logo_link_url_object_type"] = logos.logo.hasOwnProperty('logo_link_url') && logos.logo.logo_link_url.$.object_type ? logos.logo.logo_link_url.$.object_type : "logo_link_url object_type missed on xml";
 
@@ -650,9 +651,9 @@ module.exports.StandardPromomodule = (result) => {
             obj["slide_title_emphasized_text_" + rowNumber] = element.hasOwnProperty('slide_title_emphasized_text') && element.slide_title_emphasized_text ? element.slide_title_emphasized_text : "slide_title_emphasized_text missed on xml";
             obj["image_alt_text_override_" + rowNumber] = element.hasOwnProperty('image_alt_text_override') && element.image_alt_text_override ? element.image_alt_text_override : "image_alt_text_override missed on xml";
 
-            obj["image_source_chronic_id_" + rowNumber] = element.hasOwnProperty('logo_link_url') && element.image_source.$.chronic_id ? true : false; ""
-            obj["image_source_directive_" + rowNumber] = element.hasOwnProperty('logo_link_url') && element.image_source.$.directive ? element.image_source.$.directive : "logo_link_url directive missed on xml";
-            obj["image_source_object_type_" + rowNumber] = element.hasOwnProperty('logo_link_url') && element.image_source.$.object_type ? element.image_source.$.object_type : "logo_link_url object_type missed on xml";
+            obj["image_source_chronic_id_" + rowNumber] = element.hasOwnProperty('image_source') && element.image_source.$.chronic_id ? true : false;
+            obj["image_source_directive_" + rowNumber] = element.hasOwnProperty('image_source') && element.image_source.$.directive ? element.image_source.$.directive : "image_source directive missed on xml";
+            obj["image_source_object_type_" + rowNumber] = element.hasOwnProperty('image_source') && element.image_source.$.object_type ? element.image_source.$.object_type : "image_source object_type missed on xml";
 
         }, this);
     }
@@ -664,9 +665,9 @@ module.exports.StandardPromomodule = (result) => {
         obj["slide_title_emphasized_text_" + rowNumber] = slides.slide.hasOwnProperty('slide_title_emphasized_text') && slides.slide.slide_title_emphasized_text ? slides.slide.slide_title_emphasized_text : "slide_title_emphasized_text missed on xml";
         obj["image_alt_text_override_" + rowNumber] = slides.slide.hasOwnProperty('image_alt_text_override') && slides.slide.image_alt_text_override ? slides.slide.image_alt_text_override : "image_alt_text_override missed on xml";
 
-        obj["image_source_chronic_id_" + rowNumber] = slides.slide.hasOwnProperty('logo_link_url') && slides.slide.image_source.$.chronic_id ? true : false; ""
-        obj["image_source_directive_" + rowNumber] = slides.slide.hasOwnProperty('logo_link_url') && slides.slide.image_source.$.directive ? slides.slide.image_source.$.directive : "logo_link_url directive missed on xml";
-        obj["image_source_object_type_" + rowNumber] = slides.slide.hasOwnProperty('logo_link_url') && slides.slide.image_source.$.object_type ? slides.slide.image_source.$.object_type : "logo_link_url object_type missed on xml";
+        obj["image_source_chronic_id_" + rowNumber] = slides.slide.hasOwnProperty('image_source') && slides.slide.image_source.$.chronic_id ? true : false;
+        obj["image_source_directive_" + rowNumber] = slides.slide.hasOwnProperty('image_source') && slides.slide.image_source.$.directive ? slides.slide.image_source.$.directive : "image_source directive missed on xml";
+        obj["image_source_object_type_" + rowNumber] = slides.slide.hasOwnProperty('image_source') && slides.slide.image_source.$.object_type ? slides.slide.image_source.$.object_type : "image_source object_type missed on xml";
     }
 
     return obj;
