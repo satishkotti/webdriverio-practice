@@ -73,7 +73,10 @@ var documentListObj = {
     
     powerPromoteTimeStampValidation: function(assetName,dateTimeStamp){
         documentListUI.powerPromoteTimeStampValidation(assetName,dateTimeStamp);
-    }
+    },
+    demoteAssetForLiveAsset: function(assetName){
+        documentListUI.demoteAssetForLiveAsset(assetName);
+    },
 
 }
 module.exports = documentListObj;

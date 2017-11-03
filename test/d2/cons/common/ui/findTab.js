@@ -12,6 +12,7 @@ module.exports = {
         browser.frame(contentWidgetIFrameElement.value);
     },
     findByChronicleId: function(objChronicleId){
+        browser.pause(4000);
         browser.waitForVisible("//input[@placeholder='Enter text']");
         browser.setValue("//input[@placeholder='Enter text']",objChronicleId);
         browser.click("//span[contains(@class,'search')]");

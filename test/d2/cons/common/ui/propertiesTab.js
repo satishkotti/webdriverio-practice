@@ -199,6 +199,22 @@ module.exports = {
           browser.click("//div[@title='"+textValue+"']")
           browser.pause(1000);
     },
+     collectionIDSet: function(textValue){
+        browser.setValue("#wbmd_col_id-input", textValue);
+    },
+    collectionIDGet: function(){
+        return browser.getText("#wbmd_ext_id");
+    },
+    collectionIDValidation:  function(newCollectionId,oldCollectionId){
+         var CollectionId= parseInt(newCollectionId);
+        expect(CollectionId).to.be.above(oldCollectionId);
+    },
+     collectionIDValidationmessage:  function(oldCollectionId){
+
+        var validationmsg= browser.isExisting("//span[string()='This Collection Id "+oldCollectionId+" has already been used.']");
+        expect(validationmsg).to.be.true;
+        browser.click("//button[string()='OK' and  @aria-disabled=not('false')]");
+    }
 
 
 }
