@@ -1,4 +1,11 @@
-var TTSSrchPage = require('./../../elements/ttsadmin/ttssearch.page');
+var EditTTSConfigPage = require('./../../elements/ttsadmin/editttsconfig.page');
+
+module.exports.FindUrlData = function () {
+        EditTTSConfigPage.fndUrlLnk.click();
+        
+
+
+};
 
 module.exports.TTSGroupSrch = (keygrp) => {
         TTSSrchPage.homeLnk.click();     
@@ -25,8 +32,7 @@ module.exports.GetGroupUrlData = function (row) {
                 status: GetText(TTSGroupUrlDataWebElements.status),
                 full_url: GetText(TTSGroupUrlDataWebElements.full_url),
                 page_name: GetText(TTSGroupUrlDataWebElements.page_name),
-                restriction_collision: GetText(TTSGroupUrlDataWebElements.restriction_collision),
-                restriction_group: GetText(TTSGroupUrlDataWebElements.restriction_group),
+ 
 
         }
         console.log("##########");

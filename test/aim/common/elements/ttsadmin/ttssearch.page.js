@@ -10,6 +10,9 @@ var showallBtn = '#showAll';// click show all  button for the provided group
 var clrSrchRsltBtn = '#clear'; // click clear search results  button after result set shown
 var confSrchRsltLnk = '//div[@id="GroupSearchResults"]//tr/td[1]/a'; // click configure after search results set shown
 
+// TTS configuration
+var EditCnfgLnk = '//a[text()="Edit Configuration"]';// select edit confuguration link in TTS configuration
+var vwTugLnk = '//a[@id="viewtug"]';//select view tug in TTS config
 
 
 let loadingIcon = '//div[@id="ConfigUrlsGrid"]/div[7]/h1'; //  wait procesing bar
@@ -23,12 +26,14 @@ let groupUrlsModalHeaders = {
     status: 1,
     full_url: 6,
     page_name: 7,
-    restriction: 19,
+    restriction_collision: 19,
+    restriction_group: 20,
     
 }
 
 let ReturnElement = function (locator) {
     browser.waitForExist(locator);
+    browser.waitForVisible(locator);
     return browser.element(locator);
 }
 
@@ -69,8 +74,10 @@ var ttsGroupSearchPg = Object.create(page, {
                status: ReturnElement(groupUrlsModalTD.replace('##', groupUrlsModalHeaders.status)),
                 full_url: ReturnElement(groupUrlsModalTD.replace('##', groupUrlsModalHeaders.full_url)),
                 page_name:ReturnElement(groupUrlsModalTD.replace('##', groupUrlsModalHeaders.page_name)),
-             
-            }
+                 restriction_collision:ReturnElement(groupUrlsModalTD.replace('##', groupUrlsModalHeaders.restriction_collision)),
+                restriction_group:ReturnElement(groupUrlsModalTD.replace('##', groupUrlsModalHeaders.restriction_group)),
+
+        }
 
             return groupUrlData;
         }

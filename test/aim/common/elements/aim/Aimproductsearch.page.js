@@ -31,6 +31,7 @@ let prodUrlsModalHeaders = {
 
 let ReturnElement = function (locator) {
     browser.waitForExist(locator);
+      browser.waitForVisible(locator);
     return browser.element(locator);
 }
 
