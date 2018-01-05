@@ -1,2 +1,2 @@
 # webdriverio-practice
-webdriverio practice in vlabs
+webdriverio practice in vlabs updated commit
